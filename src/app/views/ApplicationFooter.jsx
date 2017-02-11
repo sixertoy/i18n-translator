@@ -1,7 +1,4 @@
 import React from 'react';
-import isempty from 'lodash.isempty';
-import isstring from 'lodash.isstring';
-// punkbeer
 
 class ApplicationFooter extends React.PureComponent {
 
@@ -16,16 +13,11 @@ class ApplicationFooter extends React.PureComponent {
 
   -------------------------------------------------------- */
 
-  _saveTranslations (evt) {
+  _showTranslationsContent (evt, savediff) {
     evt.preventDefault();
     const ApplicationAction = this.props.facade.getAction('ApplicationAction');
-    ApplicationAction.saveLanguages();
-  }
-
-  _saveTranslationsDiff (evt) {
-    evt.preventDefault();
-    const ApplicationAction = this.props.facade.getAction('ApplicationAction');
-    ApplicationAction.saveLanguagesDiff();
+    ApplicationAction.togglePopin();
+    ApplicationAction.saveLocales(savediff);
   }
 
   /* --------------------------------------------------------
@@ -37,21 +29,24 @@ class ApplicationFooter extends React.PureComponent {
   _renderSaveButtons () {
     return (
       <span>
-        <button onClick={e => this._saveTranslations(e)}
+        <button onClick={e => this._showTranslationsContent(e, false)}
           style={{
-            padding: '7px',
             marginRight: '12px'
           }}>
-          <span>Save (admin)</span>
+          <span>
+            <i className="icon-download" />
+            <span>Save (admin)</span>
+          </span>
         </button>
-        <button onClick={e => this._saveTranslationsDiff(e)}
+        <button type="submit"
+          onClick={e => this._showTranslationsContent(e, true)}
           style={{
-            padding: '7px',
-            color: 'white',
-            marginRight: '12px',
-            background: '#00FF00'
-          }}>
-          <span>Save diff</span>
+            marginRight: '12px'
+          }} >
+          <span>
+            <i className="icon-download" />
+            <span>Save Diff</span>
+          </span>
         </button>
       </span>
     );
@@ -59,12 +54,11 @@ class ApplicationFooter extends React.PureComponent {
 
   render () {
     return (
-      <div className="application-footer flex-columns"
+      <div className="application-footer flex-columns flex-align-end shadow-top"
         style={{
           width: '100%',
           height: '50px',
           minHeight: '50px',
-          padding: '10px 32px',
           background: '#1D1F21'
         }}>
         {this._renderSaveButtons()}
@@ -75,7 +69,6 @@ class ApplicationFooter extends React.PureComponent {
 }
 
 ApplicationFooter.propTypes = {
-  langs: React.PropTypes.array.isRequired,
   facade: React.PropTypes.object.isRequired
 };
 

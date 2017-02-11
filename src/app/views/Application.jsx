@@ -24,8 +24,9 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      json: [],
       orders: [],
-      diff: null,
+      openpopin: false,
       translations: {}
     };
   }
@@ -46,17 +47,25 @@ class App extends React.Component {
 
   ------------------------------------------------ */
 
-  _onApplicationStoreChange ({ orders, translations, diff }) {
+  /**
+   * Called when application's store emit changes
+   */
+  _onApplicationStoreChange ({ json, tablekeys, orders, locales, openpopin }) {
     this.setState({
+      json,
       orders,
-      diff,
-      translations
+      locales,
+      openpopin,
+      tablekeys
     });
   }
 
+  /**
+   * Called when user enter a new value into an language/key input
+   */
   _onInputChange (langkey, key, value) {
     const action = this.props.facade.getAction('ApplicationAction');
-    action.updateLanguageValue({
+    action.updateValue({
       langkey, key, value
     });
   }
@@ -67,11 +76,27 @@ class App extends React.Component {
 
   ------------------------------------------------ */
 
-  _renderTranslationKeys () {
+  _renderInput (langkey, key, values) {
+    const value = entities.decode(values[langkey][key] || '');
+    return (
+      <input type="text"
+        style={{
+          marginTop: '0',
+          padding: '7px',
+          width: '240px',
+          marginLeft: '12px'
+        }}
+        defaultValue={value}
+        key={`input_${key}_${langkey}`}
+        onChange={e => this._onInputChange(langkey, key, e.target.value)} />
+    );
+  }
+
+  _renderTranslations () {
     const orders = this.state.orders;
-    const langs = this.state.translations;
-    const keys = this.props.translationkeys;
-    if (!langs || isempty(langs)) {
+    const keys = this.state.tablekeys;
+    const locales = this.state.locales;
+    if (!locales || isempty(locales)) {
       return false;
     }
     return (
@@ -90,18 +115,7 @@ class App extends React.Component {
               marginTop: '0',
               marginBottom: '3px'
             }}>
-              {orders.map(langkey => <input type="text"
-                style={{
-                  marginTop: '0',
-                  padding: '7px',
-                  width: '240px',
-                  marginLeft: '12px'
-                }}
-                onChange={(e) => {
-                  this._onInputChange(langkey, key, e.target.value);
-                }}
-                key={`input_${key}_${langkey}`}
-                defaultValue={entities.decode(langs[langkey][key] || '')} />)}
+              {orders.map(langkey => this._renderInput(langkey, key, locales))}
             </p>
             <p style={{
               marginTop: '0',
@@ -121,14 +135,14 @@ class App extends React.Component {
   ------------------------------------------------ */
 
   _renderApplicationPopin () {
-    const popinvisible = !isempty(this.state.diff || false);
-    console.log('popinvisible', popinvisible);
-    if (!popinvisible) {
+    console.log('this.state.openpopin', this.state.openpopin);
+    if (!this.state.openpopin || !this.state.json) {
       return false;
     }
+    console.log('this.state.json', this.state.json);
     return (
       <ApplicationPopin facade={this.props.facade}
-        provider={this.state.diff} />
+        provider={this.state.json} />
     );
   }
 
@@ -154,13 +168,13 @@ class App extends React.Component {
             style={{
               width: '100%',
               overflowY: 'scroll',
-              overflowX: 'hidden'
+              overflowX: 'hidden',
+              background: '#CCCCCC'
             }}>
             <ul style={{
               width: '100%',
-              padding: '20px',
-              background: '#CCCCCC'
-            }}>{this._renderTranslationKeys()}</ul>
+              padding: '20px'
+            }}>{this._renderTranslations()}</ul>
           </div>
           <ApplicationFooter facade={this.props.facade} />
         </div>
@@ -171,8 +185,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  facade: React.PropTypes.object.isRequired,
-  translationkeys: React.PropTypes.object.isRequired
+  facade: React.PropTypes.object.isRequired
 };
 
 export default App;

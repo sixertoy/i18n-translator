@@ -1,10 +1,14 @@
 import AbstractAction from './../../core/abstracts/AbstractAction';
 // lib
 import Constants from './../constants';
-// languages
-import locales from './../../data/locales';
 
 class ApplicationAction extends AbstractAction {
+
+  togglePopin () {
+    this.getDispatcher().dispatch({
+      type: Constants.FLUX.TOGGLE_POPIN
+    });
+  }
 
   createNewLanguage (key) {
     this.getDispatcher().dispatch({
@@ -13,29 +17,27 @@ class ApplicationAction extends AbstractAction {
     });
   }
 
-  loadLanguages () {
+  initializeStore (locales, tablekeys) {
     this.getDispatcher().dispatch({
-      type: Constants.FLUX.LOAD_LANGUAGES,
-      data: locales
+      type: Constants.FLUX.INITIALIZE_APP,
+      data: {
+        locales,
+        tablekeys
+      }
     });
   }
 
-  updateLanguageValue (data) {
+  updateValue (data) {
     this.getDispatcher().dispatch({
       type: Constants.FLUX.UPDATE_VALUE,
       data
     });
   }
 
-  saveLanguages () {
+  saveLocales (data) {
     this.getDispatcher().dispatch({
-      type: Constants.FLUX.SAVE_LANGUAGES
-    });
-  }
-
-  saveLanguagesDiff () {
-    this.getDispatcher().dispatch({
-      type: Constants.FLUX.SAVE_LANGUAGES_DIFF
+      type: Constants.FLUX.SAVE_LOCALES,
+      data
     });
   }
 

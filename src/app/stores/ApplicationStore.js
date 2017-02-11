@@ -1,108 +1,88 @@
-import isempty from 'lodash.isempty';
+import { diff, apply } from 'rus-diff';
 // project
 import Constants from './../constants';
 import { ObjectUtils } from './../../core/utils';
-import translationKeys from './../../data/translation-keys.json';
 import AbstractStore from './../../core/abstracts/AbstractStore';
 
 class ApplicationStore extends AbstractStore {
 
   constructor (dispatcher) {
     super({
-      diff: {},
-      translations: {},
-      orders: ['en', 'fr'],
-      translationkeys: translationKeys
+      json: null,
+      locales: null,
+      tablekeys: null,
+      openpopin: false,
+      orders: ['en', 'fr']
     }, dispatcher);
-    this._translations = {};
+    // store original languages
+    this._origin = {};
   }
 
-  getTranslationKeys () {
-    return this.getState('translationkeys');
-  }
-
-  getTranslations () {
-    return this.getState('translations');
-  }
-
-  _onCreateNewLanguage ({ langkey }) {
-    let obj = {};
-    obj[langkey] = this._createEmptyLanguage();
-    obj = Object.assign(obj, this.getState('translations'));
+  /**
+   * called when all locales files are loaded
+   * store origin files data
+   */
+  _onApplicationInit ({ data }) {
+    const { tablekeys, locales } = data;
+    this._origin = ObjectUtils.clone(locales);
     this.setState({
-      translations: obj,
+      locales: ObjectUtils.clone(locales),
+      tablekeys: ObjectUtils.clone(tablekeys)
+    });
+  }
+
+  _onCreateNewLanguage (langkey) {
+    const locales = this.getState('locales');
+    // duplicate table keys, add new language to currents
+    locales[langkey] = Object.keys(this.getState('tablekeys'))
+      .reduce((acc, k) => Object.assign(acc, { [k]: '' }), {});
+    this.setState({
+      locales,
       orders: [].concat(this.getState('orders'), [langkey])
     });
   }
 
-  _onLoadLanguages ({ data }) {
-    this._translations = ObjectUtils.clone(data);
-    this.setState({
-      translations: data
-    });
-  }
-
   _onUpdateValue ({ data }) {
-    const obj = this.getState('translations');
-    obj[data.langkey][data.key] = data.value;
+    const locales = this.getState('locales');
+    locales[data.langkey][data.key] = data.value;
     this.setState({
-      translations: obj
+      locales
     });
   }
 
-  _createEmptyLanguage () {
-    const obj = {};
-    const keys = this.getState('translationkeys');
-    Object.keys(keys).reduce((acc, key) => {
-      obj[key] = '';
-      return acc;
-    }, obj);
-    return obj;
-  }
-
-  _onSaveLanguageDiff () {
-    const diff = {};
-    let translated = '';
-    const updates = this.getState('translations');
-    Object.entries(updates).forEach(([langkey, pairs]) => {
-      if (!ObjectUtils.has(this._translations, langkey)) {
-        // if it's a new language, store all values
-        diff[langkey] = ObjectUtils.clone(pairs);
-
-      } else {
-        // if not a new language
-        Object.entries(pairs).forEach(([key, value]) => {
-          translated = this._translations[langkey][key];
-          if (value !== translated && !isempty(value)) {
-            if (!ObjectUtils.has(diff, langkey)) {
-              diff[langkey] = {};
-            }
-            diff[langkey][key] = value;
-          }
-        });
-      }
-    });
+  _onSaveLocales (usediff) {
+    let json = this.getState('locales');
+    if (usediff) {
+      json = diff(this._origin, this.getState('locales'));
+      json = apply({}, json);
+    }
     this.setState({
-      diff
+      json
     });
   }
 
   _initDispatcher () {
     const token = this._dispatcher.register((obj) => {
       switch (obj.type) {
-      case Constants.FLUX.LOAD_LANGUAGES:
-        this._onLoadLanguages(obj);
+      case Constants.FLUX.INITIALIZE_APP:
+        this._onApplicationInit(obj);
         break;
       case Constants.FLUX.UPDATE_VALUE:
         this._onUpdateValue(obj);
         break;
-      case Constants.FLUX.SAVE_LANGUAGES:
-        break;
-      case Constants.FLUX.SAVE_LANGUAGES_DIFF:
-        this._onSaveLanguageDiff();
+      case Constants.FLUX.SAVE_LOCALES:
+        // save current translation
+        this._onSaveLocales(obj.data);
         break;
       case Constants.FLUX.CREATE_NEW_LANGUAGE:
-        this._onCreateNewLanguage(obj);
+        // create a new language
+        this._onCreateNewLanguage(obj.data);
+        break;
+      case Constants.FLUX.TOGGLE_POPIN:
+        // open/close popin
+        this.setState({
+          openpopin: !this.getState('openpopin')
+        });
         break;
       default:
         // empty case

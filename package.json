@@ -16,8 +16,10 @@
     "stylelint-config-standard": "15.0.1"
   },
   "dependencies": {
+    "brace": "0.9.1",
     "flux": "3.1.2",
     "html-entities": "1.2.0",
+    "lodash.isboolean": "3.0.3",
     "lodash.isempty": "4.4.0",
     "lodash.isstring": "4.0.1",
     "path-to-regexp": "1.7.0",
@@ -25,6 +27,7 @@
     "react": "15.4.2",
     "react-ace": "4.1.4",
     "react-dom": "15.4.2",
+    "rus-diff": "1.1.0",
     "slug": "0.9.1",
     "url-parse": "1.1.7"
   },

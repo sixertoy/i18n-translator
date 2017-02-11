@@ -43,17 +43,13 @@ class ApplicationHeader extends React.PureComponent {
         <input type="text"
           style={{
             width: '240px',
-            padding: '7px',
-            marginRight: '3px',
-            border: '1px solid #CCCCCC'
+            marginRight: '3px'
           }}
           placeholder="Search for..." />
-        <button onClick={e => this._searchFor(e)}
-          style={{
-            padding: '7px',
-            marginRight: '12px'
-          }}>
-          <span>Search</span>
+        <button onClick={e => this._searchFor(e)} >
+          <span>
+            <i className="icon-search" />
+          </span>
         </button>
       </span>
     );
@@ -64,16 +60,12 @@ class ApplicationHeader extends React.PureComponent {
       <span>
         <input type="text"
           style={{
-            padding: '7px',
-            marginRight: '3px',
-            border: '1px solid #CCCCCC'
+            width: '240px',
+            marginRight: '3px'
           }}
           ref={(c) => { this._newlangInput = c; }}
           placeholder="Create new language" />
-        <button onClick={e => this._createNewLanguage(e)}
-          style={{
-            padding: '7px'
-          }}>
+        <button onClick={e => this._createNewLanguage(e)} >
           <span>Create</span>
         </button>
       </span>
@@ -82,16 +74,15 @@ class ApplicationHeader extends React.PureComponent {
 
   render () {
     return (
-      <div className="application-header flex-columns"
+      <div className="application-header flex-columns flex-space-between shadow-bottom"
         style={{
           width: '100%',
           height: '70px',
           minHeight: '70px',
-          background: 'white',
-          padding: '20px 32px'
+          background: 'white'
         }}>
-        {this._renderCreateNewLanguage()}
         {this._renderSearchInput()}
+        {this._renderCreateNewLanguage()}
       </div>
     );
   }

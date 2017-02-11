@@ -1,3 +1,9 @@
+/* ------------------------------------------------------
+
+ Application
+
+------------------------------------------------------ */
+
 .application {
   top: 0;
   left: 0;
@@ -6,43 +12,20 @@
   position: absolute;
 }
 
-.flex-columns {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.flex-columns > * {
-  /* item */
-}
-
-.flex-rows {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.flex-rows > * {
-  /* item */
-}
-
-.flex-vertical-centered {
-  align-items: center;
-  justify-content: center;
-}
-
 .application-header,
 .application-footer {
   flex-grow: 0;
   flex-shrink: 0;
-  justify-content: space-between;
+  padding: 20px 32px;
 }
 
 .application-footer {
-  justify-content: flex-end;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.application-popin > .inner {
+  border-radius: 4px;
 }
 
 .application-translations-list {
