@@ -1,0 +1,51 @@
+.application {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.flex-columns {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.flex-columns > * {
+  /* item */
+}
+
+.flex-rows {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.flex-rows > * {
+  /* item */
+}
+
+.flex-vertical-centered {
+  align-items: center;
+  justify-content: center;
+}
+
+.application-header,
+.application-footer {
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: space-between;
+}
+
+.application-footer {
+  justify-content: flex-end;
+}
+
+.application-translations-list {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
