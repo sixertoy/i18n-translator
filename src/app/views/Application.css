@@ -25,6 +25,22 @@
   padding: 10px 32px;
 }
 
+.application-translations-list {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.application-copy-to-clipboard {
+  border-radius: 4px;
+  background: #EEEEEE;
+}
+
+/* ------------------------------------------------------
+
+ Popin
+
+------------------------------------------------------ */
+
 .application-popin > .inner {
   border-radius: 4px;
   justify-content: space-between;
@@ -33,7 +49,6 @@
 .application-popin > .inner > .popin-content {
   flex-grow: 1;
   flex-shrink: 1;
-  border-radius: 4px;
 }
 
 .application-popin > .inner > .flex-columns {
@@ -41,17 +56,20 @@
   flex-shrink: 0;
 }
 
-.application-translations-list {
-  flex-grow: 1;
-  flex-shrink: 1;
+.application-popin .popin-locales-tabs > * {
+  border-radius: 4px 4px 0 0;
 }
 
 /* ------------------------------------------------------
 
- Z Indexex
+ Z Indexes
 
 ------------------------------------------------------ */
 
 .application-popin {
   z-index: 500;
+}
+
+.application-copy-to-clipboard {
+  z-index: 600;
 }

@@ -28,6 +28,13 @@ li {
   list-style-type: none;
 }
 
+a,
+a:hover,
+a:visited {
+  color: #1D1F21;
+  text-decoration: none;
+}
+
 button,
 textarea,
 input[type="text"],
@@ -85,6 +92,10 @@ button[type="submit"] {
 .shadow-top {
   z-index: 5;
   box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+.shadow-around {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
 }
 
 /* ---------------------------------------------------

@@ -1,16 +1,14 @@
-/* @flow */
 import React from 'react';
-import AceEditor from 'react-ace';
-// ace editor config
-import 'brace/mode/json';
-import 'brace/theme/github';
-// punkbeer
+// project
+import TextEditor from './commons/TextEditor';
 
 class ApplicationPopin extends React.PureComponent {
 
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      current: 0
+    };
   }
 
   _onCloseHandler (evt) {
@@ -19,75 +17,130 @@ class ApplicationPopin extends React.PureComponent {
     action.togglePopin();
   }
 
-  _toggleMinified (evt) {
-    evt.preventDefault();
+  _onLocaleTabClick (e, index) {
+    e.preventDefault();
+    if (index === this.state.current) {
+      return false;
+    }
+    return this.setState({
+      current: index
+    });
+  }
+
+  _onDiffButtonClick (e) {
+    e.preventDefault();
+    this.setState({
+      current: -1
+    });
+  }
+
+  _renderCloseButton () {
+    return (
+      <a href=""
+        style={{
+          display: 'block',
+          color: '#000000'
+        }}
+        onClick={e => this._onCloseHandler(e)}>
+        <i className="icon-cancel" />
+      </a>
+    );
+  }
+
+  _renderLocalesTabs () {
+    const current = this.state.current;
+    return (
+      <span className="popin-locales-tabs"
+        style={{
+          marginRight: '40px'
+        }}>
+        {Object.entries(this.props.locales)
+          .map(([langkey], index) => <a href=""
+            key={`tabs_${langkey}`}
+            style={{
+              width: '40px',
+              paddingTop: '7px',
+              marginRight: '3px',
+              textAlign: 'center',
+              paddingLeft: '12px',
+              paddingRight: '12px',
+              paddingBottom: '7px',
+              color: (current === index) ? '#338596' : '#ABABAB',
+              background: (current === index) ? '#FFFFFF' : 'transparent'
+            }}
+            onClick={e => this._onLocaleTabClick(e, index)} >
+            <span>{langkey}</span>
+          </a>)}
+        <a href=""
+          style={{
+            paddingTop: '7px',
+            marginRight: '3px',
+            textAlign: 'center',
+            paddingLeft: '12px',
+            paddingRight: '12px',
+            paddingBottom: '7px',
+            color: (current < 0) ? '#338596' : '#ABABAB',
+            background: (current < 0) ? '#FFFFFF' : 'transparent'
+          }}
+          onClick={e => this._onDiffButtonClick(e)}>
+          <span>{'< diff >'}</span>
+        </a>
+      </span>
+    );
   }
 
   _renderPopinHeader () {
     return (
-      <div className="flex-columns flex-align-end"
+      <div className="application-popin-header flex-columns flex-align-end"
         style={{
           width: '100%',
-          height: '40px',
-          padding: '10px 0'
+          lineHeight: '25px',
+          paddingTop: '12px',
+          paddingLeft: '12px',
+          paddingRight: '12px',
+          background: '#FBFBFB'
         }} >
-        <a href=""
-          onClick={e => this._onCloseHandler(e)}>
-          <i className="icon-cancel" />
-        </a>
+        {this._renderLocalesTabs()}
+        {this._renderCloseButton()}
       </div>
     );
   }
 
   _renderPopinFooter () {
     return (
-      <div className="flex-columns flex-align-end"
+      <div className="application-popin-footer flex-columns flex-align-end"
         style={{
           width: '100%',
           height: '50px',
-          padding: '10px 0'
-        }} >
-        <button onClick={e => this._toggleMinified(e)}>
-          <span>Show minified versions</span>
-        </button>
-      </div>
+          paddingLeft: '12px',
+          paddingRight: '12px',
+          background: '#FBFBFB'
+        }} />
     );
   }
 
-  _renderTextArea (obj, key, len) {
-    return (
-      <div key={key}
-        style={{
-          height: `${(100 / len)}%`
-        }}>
-        <AceEditor readOnly
-          wrapEnabled
-          tabSize={2}
-          mode="json"
-          width="100%"
-          height="100%"
-          theme="github"
-          name={`${key}`}
-          showPrintMargin={false}
-          editorProps={{ $blockScrolling: true }}
-          value={JSON.stringify(obj, null, '  ')}
-          annotations={[{ row: 0, column: 2, type: 'error', text: 'Some error.' }]} />
-      </div>
-    );
-  }
-
-  _renderTextAreas () {
+  _renderTextArea () {
+    let langkey = null;
+    let locales = null;
     const entries = Object.entries(this.props.locales);
-    const len = entries.length;
+    if (this.state.current < 0) {
+      langkey = 'diff';
+      locales = this.props.json;
+    } else {
+      [langkey, locales] = entries[this.state.current];
+    }
     return (
-      <div className="popin-content"
+      <div className="application-popin-content"
         style={{
           width: '100%',
+          height: '100%',
           overflow: 'hidden',
-          position: 'relative'
+          position: 'relative',
+          background: '#FFFFFF'
         }}>
         <div className="absolute-container" >
-          {entries.map(([key, obj]) => this._renderTextArea(obj, `editor-${key}`, len))}
+          <TextEditor locales={locales}
+            langkey={`editor-${langkey}`} />
         </div>
       </div>
     );
@@ -102,14 +155,15 @@ class ApplicationPopin extends React.PureComponent {
         }}>
         <div className="inner flex-rows"
           style={{
+            padding: '0',
             width: '80%',
             height: '95%',
             margin: '0 auto',
-            padding: '0 20px',
+            overflow: 'hidden',
             background: 'white'
           }}>
           {this._renderPopinHeader()}
-          {this._renderTextAreas()}
+          {this._renderTextArea()}
           {this._renderPopinFooter()}
         </div>
       </div>
