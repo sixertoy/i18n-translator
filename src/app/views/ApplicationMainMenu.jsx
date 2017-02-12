@@ -2,6 +2,7 @@ import React from 'react';
 import isempty from 'lodash.isempty';
 import isstring from 'lodash.isstring';
 // punkbeer
+import logo from './../../assets/json_logo.svg';
 
 class ApplicationMainMenu extends React.PureComponent {
 
@@ -74,13 +75,33 @@ class ApplicationMainMenu extends React.PureComponent {
 
   render () {
     return (
-      <div className="application-main-menu flex-columns flex-space-between shadow-bottom"
+      <div className="application-header shadow-bottom"
         style={{
           width: '100%',
           background: '#FBFBFB'
         }}>
-        {/* this._renderSearchInput() */}
-        {this._renderCreateNewLanguage()}
+        <h1 style={{
+          margin: '10px 0',
+          textAlign: 'center'
+        }}>
+          <img alt="JSON Translation Online Editor"
+            style={{
+              width: '40px',
+              height: '40px',
+              marginRight: '10px',
+              verticalAlign: 'bottom'
+            }}
+            src={logo} />
+          <span>JSON Translation Online Editor</span>
+        </h1>
+        <div className="application-main-menu flex-columns flex-space-between"
+          style={{
+            width: '100%',
+            background: '#FBFBFB'
+          }}>
+          {/* this._renderSearchInput() */}
+          {this._renderCreateNewLanguage()}
+        </div>
       </div>
     );
   }

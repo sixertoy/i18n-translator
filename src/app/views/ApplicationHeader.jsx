@@ -1,12 +1,10 @@
 import React from 'react';
-import logo from './../../assets/json_logo.svg';
 
 const ApplicationHeader = () => (
   <div className="application-header"
     style={{
       width: '100%',
-      color: 'white',
-      background: '#1F2327'
+      background: '#FBFBFB'
     }}>
     <h1 style={{
       margin: '10px 0',

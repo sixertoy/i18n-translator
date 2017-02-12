@@ -5,7 +5,6 @@ import { AllHtmlEntities as entities } from 'html-entities';
 import './Application.css';
 import ApplicationPopin from './ApplicationPopin';
 import ApplicationFooter from './ApplicationFooter';
-import ApplicationHeader from './ApplicationHeader';
 import ApplicationMainMenu from './ApplicationMainMenu';
 import ToastNotification from './commons/ToastNotification';
 
@@ -176,7 +175,6 @@ class App extends React.Component {
             overflow: 'hidden',
             position: 'relative'
           }}>
-          <ApplicationHeader />
           <ApplicationMainMenu langs={this.state.orders}
             facade={this.props.facade} />
           <div className="application-translations-list"
