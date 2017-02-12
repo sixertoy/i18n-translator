@@ -26,6 +26,18 @@
 
 .application-popin > .inner {
   border-radius: 4px;
+  justify-content: space-between;
+}
+
+.application-popin > .inner > .popin-content {
+  flex-grow: 1;
+  flex-shrink: 1;
+  border-radius: 4px;
+}
+
+.application-popin > .inner > .flex-columns {
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .application-translations-list {

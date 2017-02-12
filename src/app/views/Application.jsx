@@ -135,11 +135,9 @@ class App extends React.Component {
   ------------------------------------------------ */
 
   _renderApplicationPopin () {
-    console.log('this.state.openpopin', this.state.openpopin);
     if (!this.state.openpopin || !this.state.json) {
       return false;
     }
-    console.log('this.state.json', this.state.json);
     return (
       <ApplicationPopin facade={this.props.facade}
         provider={this.state.json} />

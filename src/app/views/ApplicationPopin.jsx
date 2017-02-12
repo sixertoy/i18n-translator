@@ -25,25 +25,28 @@ class ApplicationPopin extends React.PureComponent {
 
   _renderPopinHeader () {
     return (
-      <div style={{
-        width: '100%',
-        height: '40px',
-        padding: '2Opx'
-      }} >
-        <button onClick={e => this._onCloseHandler(e)}>
+      <div className="flex-columns flex-align-end"
+        style={{
+          width: '100%',
+          height: '40px',
+          padding: '10px 0'
+        }} >
+        <a href=""
+          onClick={e => this._onCloseHandler(e)}>
           <i className="icon-cancel" />
-        </button>
+        </a>
       </div>
     );
   }
 
   _renderPopinFooter () {
     return (
-      <div style={{
-        width: '100%',
-        height: '40px',
-        padding: '2Opx'
-      }} >
+      <div className="flex-columns flex-align-end"
+        style={{
+          width: '100%',
+          height: '50px',
+          padding: '10px 0'
+        }} >
         <button onClick={e => this._toggleMinified(e)}>
           <span>Show minified versions</span>
         </button>
@@ -52,44 +55,48 @@ class ApplicationPopin extends React.PureComponent {
   }
 
   _renderTextArea () {
-    console.log('this.props.provider', this.props.provider);
     return (
-      <AceEditor readOnly
-        mode="json"
-        width="100%"
-        height="100%"
-        theme="github"
-        name="UNIQUE_ID_OF_DIV"
-        editorProps={{ $blockScrolling: true }}
-        value={JSON.stringify(this.props.provider, null, '  ')} />
+      <div className="popin-content"
+        style={{
+          width: '100%',
+          overflow: 'hidden',
+          position: 'relative'
+        }}>
+        <div className="absolute-container">
+          <AceEditor readOnly
+            wrapEnabled
+            tabSize={2}
+            mode="json"
+            width="100%"
+            height="100%"
+            theme="github"
+            name="brace-editor"
+            showPrintMargin={false}
+            value={JSON.stringify(this.props.provider, null, '  ')}
+            annotations={[{ row: 0, column: 2, type: 'error', text: 'Some error.' }]} />
+        </div>
+      </div>
     );
   }
 
   render () {
-    console.log('this.props.provider', this.props.provider);
     return (
-      <div className="application-popin flex-rows flex-centered"
+      <div className="application-popin flex-rows flex-centered absolute-container"
         style={{
-          top: '0',
-          left: '0',
-          right: '0',
-          bottom: '0',
           zIndex: '100',
-          position: 'absolute',
+          overflow: 'hidden',
           background: 'rgba(0, 0, 0, 0.75)'
         }}>
-        <div className="inner"
+        <div className="inner flex-rows"
           style={{
             width: '80%',
-            height: '80%',
-            padding: '2Opx',
+            height: '95%',
             margin: '0 auto',
+            padding: '0 20px',
             background: 'white'
           }}>
           {this._renderPopinHeader()}
-          <div>
-            {this._renderTextArea()}
-          </div>
+          {this._renderTextArea()}
           {this._renderPopinFooter()}
         </div>
       </div>
