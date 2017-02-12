@@ -2,8 +2,8 @@
   "name": "i18n-translator",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sixertoy.github.io/i18n-translator/",
   "devDependencies": {
-    "react-scripts": "0.8.5",
     "chai": "3.5.0",
     "eslint": "3.14.1",
     "eslint-config-airbnb": "14.0.0",
@@ -11,7 +11,9 @@
     "eslint-plugin-jsx-a11y": "3.0.2",
     "eslint-plugin-react": "6.9.0",
     "flow-bin": "0.38.0",
+    "gh-pages": "0.12.0",
     "mocha": "3.2.0",
+    "react-scripts": "0.8.5",
     "stylelint-config-standard": "15.0.1"
   },
   "dependencies": {
@@ -36,6 +38,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "flow": "flow"
+    "flow": "flow",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

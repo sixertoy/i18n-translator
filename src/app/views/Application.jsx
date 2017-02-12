@@ -6,6 +6,7 @@ import './Application.css';
 import ApplicationPopin from './ApplicationPopin';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
+import ToastNotification from './commons/ToastNotification';
 
 class App extends React.Component {
 
@@ -51,6 +52,7 @@ class App extends React.Component {
    * Called when application's store emit changes
    */
   _onApplicationStoreChange ({ json, tablekeys, orders, locales, openpopin }) {
+    console.log('_onApplicationStoreChange _onApplicationStoreChange _onApplicationStoreChange');
     this.setState({
       json,
       orders,
@@ -87,7 +89,7 @@ class App extends React.Component {
           marginLeft: '12px'
         }}
         defaultValue={value}
-        key={`input_${key}_${langkey}`}
+        key={`${langkey}_${key}`}
         onChange={e => this._onInputChange(langkey, key, e.target.value)} />
     );
   }
@@ -134,8 +136,21 @@ class App extends React.Component {
 
   ------------------------------------------------ */
 
+  _renderToastNotification () {
+    let show = false;
+    if (this.state.json && isempty(this.state.json)) {
+      show = true;
+    }
+    return (
+      <ToastNotification show={show}
+        content={'No content to save'} />
+    );
+  }
+
   _renderApplicationPopin () {
-    if (!this.state.openpopin || !this.state.json) {
+    let valid = this.state.openpopin;
+    valid = valid && this.state.json && !isempty(this.state.json);
+    if (!valid) {
       return false;
     }
     return (

@@ -5,8 +5,12 @@ const %%name%%PureRender = props => (
   </div>
 );
 
-%%name%%PureRender.defaultProps = {};
+%%name%%PureRender.defaultProps = {
+  label: ''
+};
 
-%%name%%PureRender.propTypes = {};
+%%name%%PureRender.propTypes = {
+  label: React.PropTypes.string
+};
 
 export default %%name%%PureRender;

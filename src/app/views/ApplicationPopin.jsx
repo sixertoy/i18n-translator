@@ -83,7 +83,6 @@ class ApplicationPopin extends React.PureComponent {
     return (
       <div className="application-popin flex-rows flex-centered absolute-container"
         style={{
-          zIndex: '100',
           overflow: 'hidden',
           background: 'rgba(0, 0, 0, 0.75)'
         }}>

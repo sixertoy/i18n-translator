@@ -12,6 +12,12 @@
   position: absolute;
 }
 
+.application-close-button,
+.application-close-button:hover,
+.application-close-button:visited {
+  color: white;
+}
+
 .application-header,
 .application-footer {
   flex-grow: 0;
@@ -43,4 +49,14 @@
 .application-translations-list {
   flex-grow: 1;
   flex-shrink: 1;
+}
+
+/* ------------------------------------------------------
+
+ Z Indexex
+
+------------------------------------------------------ */
+
+.application-popin {
+  z-index: 500;
 }
