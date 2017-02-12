@@ -54,7 +54,31 @@ class ApplicationPopin extends React.PureComponent {
     );
   }
 
-  _renderTextArea () {
+  _renderTextArea (obj, key, len) {
+    return (
+      <div key={key}
+        style={{
+          height: `${(100 / len)}%`
+        }}>
+        <AceEditor readOnly
+          wrapEnabled
+          tabSize={2}
+          mode="json"
+          width="100%"
+          height="100%"
+          theme="github"
+          name={`${key}`}
+          showPrintMargin={false}
+          value={JSON.stringify(obj, null, '  ')}
+          annotations={[{ row: 0, column: 2, type: 'error', text: 'Some error.' }]} />
+      </div>
+    );
+  }
+
+  _renderTextAreas () {
+    const entries = Object.entries(this.props.locales);
+    const len = entries.length;
+    console.log('len', this.props.locales);
     return (
       <div className="popin-content"
         style={{
@@ -62,18 +86,8 @@ class ApplicationPopin extends React.PureComponent {
           overflow: 'hidden',
           position: 'relative'
         }}>
-        <div className="absolute-container">
-          <AceEditor readOnly
-            wrapEnabled
-            tabSize={2}
-            mode="json"
-            width="100%"
-            height="100%"
-            theme="github"
-            name="brace-editor"
-            showPrintMargin={false}
-            value={JSON.stringify(this.props.provider, null, '  ')}
-            annotations={[{ row: 0, column: 2, type: 'error', text: 'Some error.' }]} />
+        <div className="absolute-container" >
+          {entries.map(([key, obj]) => this._renderTextArea(obj, `editor-${key}`, len))}
         </div>
       </div>
     );
@@ -95,7 +109,7 @@ class ApplicationPopin extends React.PureComponent {
             background: 'white'
           }}>
           {this._renderPopinHeader()}
-          {this._renderTextArea()}
+          {this._renderTextAreas()}
           {this._renderPopinFooter()}
         </div>
       </div>
@@ -105,8 +119,9 @@ class ApplicationPopin extends React.PureComponent {
 }
 
 ApplicationPopin.propTypes = {
+  json: React.PropTypes.object.isRequired,
   facade: React.PropTypes.object.isRequired,
-  provider: React.PropTypes.oneOfType([
+  locales: React.PropTypes.oneOfType([
     React.PropTypes.bool,
     React.PropTypes.object
   ]).isRequired

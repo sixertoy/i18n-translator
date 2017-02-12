@@ -34,10 +34,9 @@ class ApplicationAction extends AbstractAction {
     });
   }
 
-  saveLocales (data) {
+  saveLocales () {
     this.getDispatcher().dispatch({
-      type: Constants.FLUX.SAVE_LOCALES,
-      data
+      type: Constants.FLUX.SAVE_LOCALES
     });
   }
 

@@ -50,12 +50,9 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
-  _onSaveLocales (usediff) {
-    let json = this.getState('locales');
-    if (usediff) {
-      json = diff(this._origin, this.getState('locales'));
-      json = apply({}, json);
-    }
+  _onSaveLocales () {
+    let json = diff(this._origin, this.getState('locales'));
+    json = apply({}, json);
     this.setState({
       json
     });
@@ -72,7 +69,7 @@ class ApplicationStore extends AbstractStore {
         break;
       case Constants.FLUX.SAVE_LOCALES:
         // save current translation
-        this._onSaveLocales(obj.data);
+        this._onSaveLocales();
         break;
       case Constants.FLUX.CREATE_NEW_LANGUAGE:
         // create a new language

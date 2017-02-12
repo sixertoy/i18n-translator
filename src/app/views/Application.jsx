@@ -25,7 +25,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      json: [],
+      json: {},
       orders: [],
       openpopin: false,
       translations: {}
@@ -146,26 +146,14 @@ class App extends React.Component {
 
   ------------------------------------------------ */
 
-  _renderToastNotification () {
-    let show = false;
-    if (this.state.json && isempty(this.state.json)) {
-      show = true;
-    }
-    return (
-      <ToastNotification show={show}
-        content={'No content to save'} />
-    );
-  }
-
   _renderApplicationPopin () {
-    let valid = this.state.openpopin;
-    valid = valid && this.state.json && !isempty(this.state.json);
-    if (!valid) {
+    if (!this.state.openpopin) {
       return false;
     }
     return (
       <ApplicationPopin facade={this.props.facade}
-        provider={this.state.json} />
+        json={this.state.json}
+        locales={this.state.locales} />
     );
   }
 

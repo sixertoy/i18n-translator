@@ -12,13 +12,14 @@ const ExportButton = props => (
 );
 
 ExportButton.defaultProps = {
+  styles: {},
   type: 'button'
 };
 
 ExportButton.propTypes = {
   type: React.PropTypes.string,
+  styles: React.PropTypes.object,
   label: React.PropTypes.string.isRequired,
-  styles: React.PropTypes.object.isRequired,
   clickHandler: React.PropTypes.func.isRequired
 };
 

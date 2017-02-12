@@ -15,11 +15,11 @@ class ApplicationFooter extends React.PureComponent {
 
   -------------------------------------------------------- */
 
-  _showTranslationsContent (evt, savediff) {
+  _showTranslationsContent (evt) {
     evt.preventDefault();
     const ApplicationAction = this.props.facade.getAction('ApplicationAction');
     ApplicationAction.togglePopin();
-    ApplicationAction.saveLocales(savediff);
+    ApplicationAction.saveLocales();
   }
 
   /* --------------------------------------------------------
@@ -32,13 +32,10 @@ class ApplicationFooter extends React.PureComponent {
     return (
       <span>
         <ExportButton label={'Export All Languages'}
-          clickHandler={e => this._showTranslationsContent(e, false)}
+          clickHandler={e => this._showTranslationsContent(e)}
           styles={{
             marginRight: '12px'
           }} />
-        <ExportButton label={'Save Diff'}
-          type="submit"
-          clickHandler={e => this._showTranslationsContent(e, true)} />
       </span>
     );
   }
