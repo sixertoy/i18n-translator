@@ -1,6 +1,7 @@
 .editorconfig
 .eslintrc.json
 .flowconfig
+.fontellorc.json
 .gitignore
 .npmrc
 .nvmrc

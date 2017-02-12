@@ -6,6 +6,7 @@ import './Application.css';
 import ApplicationPopin from './ApplicationPopin';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
+import ApplicationMainMenu from './ApplicationMainMenu';
 import ToastNotification from './commons/ToastNotification';
 
 class App extends React.Component {
@@ -52,7 +53,6 @@ class App extends React.Component {
    * Called when application's store emit changes
    */
   _onApplicationStoreChange ({ json, tablekeys, orders, locales, openpopin }) {
-    console.log('_onApplicationStoreChange _onApplicationStoreChange _onApplicationStoreChange');
     this.setState({
       json,
       orders,
@@ -121,10 +121,11 @@ class App extends React.Component {
             </p>
             <p style={{
               marginTop: '0',
+              color: '#CCCCCC',
               marginBottom: '0',
-              fontSize: '0.8em',
+              fontSize: '0.9em',
               marginLeft: '12px'
-            }}><small>{key}</small></p>
+            }}><small>{`#${key}`}</small></p>
           </li>
         )
     ));
@@ -175,14 +176,15 @@ class App extends React.Component {
             overflow: 'hidden',
             position: 'relative'
           }}>
-          <ApplicationHeader langs={this.state.orders}
+          <ApplicationHeader />
+          <ApplicationMainMenu langs={this.state.orders}
             facade={this.props.facade} />
           <div className="application-translations-list"
             style={{
               width: '100%',
               overflowY: 'scroll',
               overflowX: 'hidden',
-              background: '#CCCCCC'
+              background: '#EEEEEE'
             }}>
             <ul style={{
               width: '100%',

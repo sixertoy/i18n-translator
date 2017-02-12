@@ -18,16 +18,12 @@
   color: white;
 }
 
+.application-footer,
 .application-header,
-.application-footer {
+.application-main-menu {
   flex-grow: 0;
   flex-shrink: 0;
-  padding: 20px 32px;
-}
-
-.application-footer {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 32px;
 }
 
 .application-popin > .inner {
