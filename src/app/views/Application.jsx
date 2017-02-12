@@ -6,7 +6,6 @@ import './Application.css';
 import ApplicationPopin from './ApplicationPopin';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationMainMenu from './ApplicationMainMenu';
-import ToastNotification from './commons/ToastNotification';
 
 class App extends React.Component {
 
@@ -24,6 +23,7 @@ class App extends React.Component {
 
   constructor (props) {
     super(props);
+    this._initialized = false;
     this.state = {
       json: {},
       orders: [],
@@ -35,6 +35,17 @@ class App extends React.Component {
   componentDidMount () {
     const store = this.props.facade.getStore('ApplicationStore');
     store.subscribe(s => this._onApplicationStoreChange(s));
+  }
+
+  componentDidUpdate () {
+    if (!this._initialized) {
+      // eslint-disable-next-line
+      console.log('warning: resize textarea');
+      this._initialized = true;
+      document.querySelectorAll('.autosize')
+        // eslint-disable-next-line
+        .forEach(elt => (elt.style.height = `${(elt.scrollHeight)}px`));
+    }
   }
 
   componentWillUnmount () {
@@ -98,6 +109,7 @@ class App extends React.Component {
         className="autosize"
         defaultValue={value}
         key={`${langkey}_${key}`}
+        editorProps={{ $blockScrolling: true }}
         onChange={e => this._onAutoSizeChange(e.target, langkey, key)} />
     );
   }
