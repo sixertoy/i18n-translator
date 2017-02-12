@@ -1,5 +1,7 @@
 # i18n Translator UI
 
+[![Build Status](https://travis-ci.org/sixertoy/i18n-translator.svg?branch=master)](https://travis-ci.org/sixertoy/i18n-translator)
+
 ## Install
 
 ```bash

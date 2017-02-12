@@ -3,7 +3,7 @@ cache:
   directories:
     - node_modules
 before_install:
-  - git config user.name "sixertoy"
-  - git config user.email "sixertoy.github@gmail.com"
+  - git config --global user.name "sixertoy"
+  - git config --global user.email "sixertoy.github@gmail.com"
 script:
   - npm run deploy
