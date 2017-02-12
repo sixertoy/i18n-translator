@@ -40,6 +40,26 @@ class ApplicationFooter extends React.PureComponent {
     );
   }
 
+  _renderCredits () {
+    return (
+      <span style={{
+        color: '#A0A0A0',
+        fontSize: '0.55em',
+        lineHeight: '40px',
+        fontFamily: 'arial',
+        letterSpacing: '0.12em',
+        textTransform: 'uppercase'
+      }}>
+        <span style={{
+          marginRight: '12px'
+        }}>{`v${this.props.version}`}</span>
+        <span style={{
+          marginRight: '3px'
+        }}>Made with <span style={{ color: '#DD4739' }}>♥</span> and React</span>
+      </span>
+    );
+  }
+
   render () {
     return (
       <div className="application-footer flex-columns flex-space-between shadow-top"
@@ -51,20 +71,7 @@ class ApplicationFooter extends React.PureComponent {
           paddingBottom: '10px',
           background: '#1D1F21'
         }}>
-        <span style={{
-          color: '#323232',
-          fontSize: '0.8em',
-          lineHeight: '40px',
-          fontFamily: 'arial',
-          textTransform: 'uppercase'
-        }}>
-          <span style={{
-            marginRight: '12px'
-          }}>Made with <span style={{ color: '#DD4739' }}>♥</span> and React</span>
-          <span style={{
-            marginRight: '3px'
-          }}>{`Version: ${this.props.version}`}</span>
-        </span>
+        {this._renderCredits()}
         {this._renderSaveButtons()}
       </div>
     );

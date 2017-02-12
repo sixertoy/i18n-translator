@@ -109,7 +109,6 @@ class App extends React.Component {
         className="autosize"
         defaultValue={value}
         key={`${langkey}_${key}`}
-        editorProps={{ $blockScrolling: true }}
         onChange={e => this._onAutoSizeChange(e.target, langkey, key)} />
     );
   }

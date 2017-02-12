@@ -69,6 +69,7 @@ class ApplicationPopin extends React.PureComponent {
           theme="github"
           name={`${key}`}
           showPrintMargin={false}
+          editorProps={{ $blockScrolling: true }}
           value={JSON.stringify(obj, null, '  ')}
           annotations={[{ row: 0, column: 2, type: 'error', text: 'Some error.' }]} />
       </div>
@@ -78,7 +79,6 @@ class ApplicationPopin extends React.PureComponent {
   _renderTextAreas () {
     const entries = Object.entries(this.props.locales);
     const len = entries.length;
-    console.log('len', this.props.locales);
     return (
       <div className="popin-content"
         style={{

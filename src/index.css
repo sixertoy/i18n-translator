@@ -59,7 +59,7 @@ button[type="submit"] {
   outline: 0;
   color: white;
   cursor: pointer;
-  padding: 7px 12px;
+  padding: 0.8em 12px;
   background: #70B7FD;
 }
 
