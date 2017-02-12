@@ -200,7 +200,8 @@ class App extends React.Component {
               padding: '20px'
             }}>{this._renderTranslations()}</ul>
           </div>
-          <ApplicationFooter facade={this.props.facade} />
+          <ApplicationFooter version={this.props.version}
+            facade={this.props.facade} />
         </div>
         {this._renderApplicationPopin()}
       </div>
@@ -209,6 +210,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
+  version: React.PropTypes.string.isRequired,
   facade: React.PropTypes.object.isRequired
 };
 

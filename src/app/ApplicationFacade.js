@@ -15,7 +15,7 @@ import tablekeys from './../data/table-keys.json';
 
 class ApplicationFacade extends AbstractFacade {
 
-  start () {
+  start (version) {
     this._beforeStart({
       services,
       stores,
@@ -24,7 +24,8 @@ class ApplicationFacade extends AbstractFacade {
       observers
     });
     // eslint-disable-next-line
-    ReactDOM.render(<Application facade={this} />, document.getElementById('root'));
+    ReactDOM.render(<Application version={version}
+      facade={this} />, document.getElementById('root'));
     // first application action
     // load languages files and locales keys
     const action = this.getAction('ApplicationAction');

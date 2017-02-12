@@ -23,3 +23,7 @@ npm start
 npm run deploy
 ```
 > open https://sixertoy.github.io/i18n-translator/
+
+## Links
+
+- [Tech Ads](https://carbonads.net)

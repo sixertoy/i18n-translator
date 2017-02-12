@@ -45,7 +45,7 @@ class ApplicationFooter extends React.PureComponent {
 
   render () {
     return (
-      <div className="application-footer flex-columns flex-align-end shadow-top"
+      <div className="application-footer flex-columns flex-space-between shadow-top"
         style={{
           width: '100%',
           height: '50px',
@@ -54,6 +54,20 @@ class ApplicationFooter extends React.PureComponent {
           paddingBottom: '10px',
           background: '#1D1F21'
         }}>
+        <span style={{
+          color: '#323232',
+          fontSize: '0.8em',
+          lineHeight: '40px',
+          fontFamily: 'arial',
+          textTransform: 'uppercase'
+        }}>
+          <span style={{
+            marginRight: '12px'
+          }}>Made with <span style={{ color: '#DD4739' }}>♥</span> and React</span>
+          <span style={{
+            marginRight: '3px'
+          }}>{`Version: ${this.props.version}`}</span>
+        </span>
         {this._renderSaveButtons()}
       </div>
     );
@@ -62,6 +76,7 @@ class ApplicationFooter extends React.PureComponent {
 }
 
 ApplicationFooter.propTypes = {
+  version: React.PropTypes.string.isRequired,
   facade: React.PropTypes.object.isRequired
 };
 
