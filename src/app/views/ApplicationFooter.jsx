@@ -1,4 +1,6 @@
 import React from 'react';
+// project
+import ExportButton from './buttons/ExportButton';
 
 class ApplicationFooter extends React.PureComponent {
 
@@ -29,25 +31,17 @@ class ApplicationFooter extends React.PureComponent {
   _renderSaveButtons () {
     return (
       <span>
-        <button onClick={e => this._showTranslationsContent(e, false)}
-          style={{
+        <ExportButton label={'Export All Languages (admin)'}
+          clickHandler={e => this._showTranslationsContent(e, false)}
+          styles={{
             marginRight: '12px'
-          }}>
-          <span>
-            <i className="icon-download" />
-            <span>Save (admin)</span>
-          </span>
-        </button>
-        <button type="submit"
-          onClick={e => this._showTranslationsContent(e, true)}
-          style={{
+          }} />
+        <ExportButton type={'submit'}
+          label={'Export Snippet'}
+          clickHandler={e => this._showTranslationsContent(e, true)}
+          styles={{
             marginRight: '12px'
-          }} >
-          <span>
-            <i className="icon-download" />
-            <span>Save Diff</span>
-          </span>
-        </button>
+          }} />
       </span>
     );
   }
