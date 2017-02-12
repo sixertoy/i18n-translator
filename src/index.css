@@ -120,6 +120,10 @@ button[type="submit"] {
   justify-content: center;
 }
 
+.flex-vertical-centered {
+  align-self: flex-start;
+}
+
 .flex-align-end {
   align-items: flex-end;
   justify-content: flex-end;

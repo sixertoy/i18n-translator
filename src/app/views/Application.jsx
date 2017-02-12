@@ -121,10 +121,11 @@ class App extends React.Component {
               marginLeft: '12px',
               marginBottom: '5px'
             }}><em>{value}</em></p>
-            <p style={{
-              marginTop: '0',
-              marginBottom: '3px'
-            }}>
+            <p className="flex-columns"
+              style={{
+                marginTop: '0',
+                marginBottom: '3px'
+              }}>
               {orders.map(langkey => this._renderInput(langkey, key, locales))}
             </p>
             <p style={{
