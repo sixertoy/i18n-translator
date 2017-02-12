@@ -71,6 +71,13 @@ class App extends React.Component {
     });
   }
 
+  _onAutoSizeChange (target, langkey, key) {
+    const value = target.value;
+    // eslint-disable-next-line
+    target.style.height = `${target.scrollHeight}px`;
+    this._onInputChange(langkey, key, value);
+  }
+
   /* ------------------------------------------------
 
    Privates
@@ -80,16 +87,18 @@ class App extends React.Component {
   _renderInput (langkey, key, values) {
     const value = entities.decode(values[langkey][key] || '');
     return (
-      <input type="text"
+      <textarea type="text"
+        rows="1"
         style={{
           marginTop: '0',
           padding: '7px',
-          width: '240px',
+          width: '350px',
           marginLeft: '12px'
         }}
+        className="autosize"
         defaultValue={value}
         key={`${langkey}_${key}`}
-        onChange={e => this._onInputChange(langkey, key, e.target.value)} />
+        onChange={e => this._onAutoSizeChange(e.target, langkey, key)} />
     );
   }
 
@@ -180,6 +189,7 @@ class App extends React.Component {
           <div className="application-translations-list"
             style={{
               width: '100%',
+              fontSize: '1.2em',
               overflowY: 'scroll',
               overflowX: 'hidden',
               background: '#EEEEEE'

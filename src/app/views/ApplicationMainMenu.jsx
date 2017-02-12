@@ -82,7 +82,8 @@ class ApplicationMainMenu extends React.PureComponent {
         }}>
         <h1 style={{
           margin: '10px 0',
-          textAlign: 'center'
+          textAlign: 'center',
+          lineHeight: '1.25em'
         }}>
           <img alt="JSON Translation Online Editor"
             style={{

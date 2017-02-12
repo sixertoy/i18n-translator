@@ -31,14 +31,8 @@ class ApplicationFooter extends React.PureComponent {
   _renderSaveButtons () {
     return (
       <span>
-        <ExportButton label={'Export All Languages (admin)'}
+        <ExportButton label={'Export All Languages'}
           clickHandler={e => this._showTranslationsContent(e, false)}
-          styles={{
-            marginRight: '12px'
-          }} />
-        <ExportButton type={'submit'}
-          label={'Export Snippet'}
-          clickHandler={e => this._showTranslationsContent(e, true)}
           styles={{
             marginRight: '12px'
           }} />
