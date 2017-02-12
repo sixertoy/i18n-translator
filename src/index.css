@@ -45,6 +45,7 @@ textarea[class^="autosize"] {
   border: 0;
   outline: none;
   overflow: hidden;
+  padding: 20px 10px;
 }
 
 textarea,

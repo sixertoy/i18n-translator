@@ -74,7 +74,7 @@ class App extends React.Component {
   _onAutoSizeChange (target, langkey, key) {
     const value = target.value;
     // eslint-disable-next-line
-    target.style.height = `${target.scrollHeight}px`;
+    target.style.height = `${(target.scrollHeight)}px`;
     this._onInputChange(langkey, key, value);
   }
 

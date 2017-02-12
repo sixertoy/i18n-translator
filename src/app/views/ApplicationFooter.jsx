@@ -36,6 +36,9 @@ class ApplicationFooter extends React.PureComponent {
           styles={{
             marginRight: '12px'
           }} />
+        <ExportButton label={'Save Diff'}
+          type="submit"
+          clickHandler={e => this._showTranslationsContent(e, true)} />
       </span>
     );
   }
