@@ -25,9 +25,14 @@
   padding: 10px 32px;
 }
 
-.application-translations-list {
+.application-screen {
+  width: 100%;
   flex-grow: 1;
   flex-shrink: 1;
+  font-size: 1.2em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: rgb(238, 238, 238);
 }
 
 .application-copy-to-clipboard {

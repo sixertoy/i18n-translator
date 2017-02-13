@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ExportButton = props => (
+const ApplicationButton = props => (
   <button type={props.type}
     style={props.styles}
     onClick={props.clickHandler} >
@@ -11,16 +11,16 @@ const ExportButton = props => (
   </button>
 );
 
-ExportButton.defaultProps = {
+ApplicationButton.defaultProps = {
   styles: {},
   type: 'button'
 };
 
-ExportButton.propTypes = {
+ApplicationButton.propTypes = {
   type: React.PropTypes.string,
   styles: React.PropTypes.object,
   label: React.PropTypes.string.isRequired,
   clickHandler: React.PropTypes.func.isRequired
 };
 
-export default ExportButton;
+export default ApplicationButton;

@@ -1,8 +1,8 @@
 import React from 'react';
 // project
-import TextEditor from './commons/TextEditor';
+import ApplicationAceEditor from './commons/ApplicationAceEditor';
 
-class ApplicationPopin extends React.PureComponent {
+class ApplicationExportPopin extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -139,7 +139,7 @@ class ApplicationPopin extends React.PureComponent {
           background: '#FFFFFF'
         }}>
         <div className="absolute-container" >
-          <TextEditor locales={locales}
+          <ApplicationAceEditor locales={locales}
             langkey={`editor-${langkey}`} />
         </div>
       </div>
@@ -172,7 +172,7 @@ class ApplicationPopin extends React.PureComponent {
 
 }
 
-ApplicationPopin.propTypes = {
+ApplicationExportPopin.propTypes = {
   json: React.PropTypes.object.isRequired,
   facade: React.PropTypes.object.isRequired,
   locales: React.PropTypes.oneOfType([
@@ -181,4 +181,4 @@ ApplicationPopin.propTypes = {
   ]).isRequired
 };
 
-export default ApplicationPopin;
+export default ApplicationExportPopin;

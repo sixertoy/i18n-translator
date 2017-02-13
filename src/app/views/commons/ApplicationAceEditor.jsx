@@ -5,7 +5,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import 'brace/mode/json';
 import 'brace/theme/chrome';
 
-const TextEditor = ({ locales, langkey }) => (
+const ApplicationAceEditor = ({ locales, langkey }) => (
   <div style={{
     width: '100%',
     height: '100%',
@@ -38,13 +38,13 @@ const TextEditor = ({ locales, langkey }) => (
   </div>
 );
 
-TextEditor.defaultProps = {
+ApplicationAceEditor.defaultProps = {
   label: ''
 };
 
-TextEditor.propTypes = {
+ApplicationAceEditor.propTypes = {
   langkey: React.PropTypes.string.isRequired,
   locales: React.PropTypes.object.isRequired
 };
 
-export default TextEditor;
+export default ApplicationAceEditor;
