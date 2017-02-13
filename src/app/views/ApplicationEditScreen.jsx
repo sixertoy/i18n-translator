@@ -84,6 +84,13 @@ class ApplicationEditScreen extends React.PureComponent {
             }}>
             <p style={{
               marginTop: '0',
+              color: '#CCCCCC',
+              marginBottom: '0',
+              fontSize: '0.9em',
+              marginLeft: '12px'
+            }}><small>{`#${key}`}</small></p>
+            <p style={{
+              marginTop: '0',
               marginLeft: '12px',
               marginBottom: '5px'
             }}><em>{value}</em></p>
@@ -94,13 +101,6 @@ class ApplicationEditScreen extends React.PureComponent {
               }}>
               {orders.map(langkey => this._renderInput(langkey, key, locales))}
             </p>
-            <p style={{
-              marginTop: '0',
-              color: '#CCCCCC',
-              marginBottom: '0',
-              fontSize: '0.9em',
-              marginLeft: '12px'
-            }}><small>{`#${key}`}</small></p>
           </li>
         )
     ));
