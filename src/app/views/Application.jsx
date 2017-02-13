@@ -1,10 +1,13 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 // lib
 import './Application.css';
+// import GithubStarButton from './../../core/views/GithubStarButton';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
 import ApplicationEditScreen from './ApplicationEditScreen';
 import ApplicationExportPopin from './ApplicationExportPopin';
+import GithubOctocatCorner from './../../core/views/GithubOctocatCorner';
 
 class App extends React.Component {
 
@@ -92,6 +95,13 @@ class App extends React.Component {
           bottom: '0',
           position: 'absolute'
         }}>
+        <Helmet meta={[{
+          name: 'description',
+          content: 'Helmet application'
+        }, {
+          property: 'og:type',
+          content: 'article'
+        }]} />
         <div className="flex-rows"
           style={{
             width: '100%',
@@ -115,6 +125,9 @@ class App extends React.Component {
             facade={this.props.facade} />
         </div>
         {this._renderApplicationExportPopin()}
+        <GithubOctocatCorner direction="left"
+          username="sixertoy"
+          projectname="i18n-translator" />
       </div>
     );
   }

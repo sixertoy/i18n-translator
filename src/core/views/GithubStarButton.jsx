@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 
 /**
  * @see https://buttons.github.io/
@@ -13,7 +14,12 @@ const GithubStarButton = props => (
     href={`https://github.com/${props.username}/${props.projectname}`}
     aria-label={`Star ${props.username}/${props.projectname} on GitHub"`}
     data-count-api={`/repos/${props.username}/${props.projectname}#stargazers_count`}
-    data-count-href={`/${props.username}/${props.projectname}/stargazers`}>{props.label}</a>
+    data-count-href={`/${props.username}/${props.projectname}/stargazers`}>{props.label}
+    <Helmet script={[{
+      type: 'text/javascript',
+      src: 'https://buttons.github.io/buttons.js'
+    }]} />
+  </a>
 );
 
 GithubStarButton.defaultProps = {
