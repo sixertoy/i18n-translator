@@ -1,16 +1,29 @@
 /* @flow */
 import React from 'react';
-// punkbeer
+// project
 
 class %%name%% extends React.PureComponent {
+
+  /* ------------------------------------------------
+
+   Statics
+
+  ------------------------------------------------ */
 
   getChildContext () {
     return {};
   }
 
+  /* ------------------------------------------------
+
+   React Lifecycle
+
+  ------------------------------------------------ */
+
   constructor (props, context) {
     super(props);
     this.state = {};
+    this._initialized = false;
   }
 
   componentWillReceiveProps(nextProps, nextContext) {}
@@ -19,7 +32,29 @@ class %%name%% extends React.PureComponent {
 
   componentWillUpdate(nextProps, nextState, nextContext) {}
 
-  componentDidUpdate(prevProps, prevState, prevContext) {}
+  componentDidUpdate(prevProps, prevState, prevContext) {
+    if (!this._initialized) {
+      this._initialized = true;
+    }
+  }
+
+  /* ------------------------------------------------
+
+   Privates
+
+  ------------------------------------------------ */
+
+  /* ------------------------------------------------
+
+   Sub Components Render
+
+  ------------------------------------------------ */
+
+  /* ------------------------------------------------
+
+   Render
+
+  ------------------------------------------------ */
 
   render () {
     return (
