@@ -6,7 +6,7 @@ const ApplicationHeader = () => (
   <div className="application-header flex-columns"
     style={{
       textAlign: 'left',
-      padding: '32px 32px 32px 32px'
+      padding: '20px 32px 20px 32px'
     }}>
     <a href="/">
       <img alt="JSON Translation Online Editor"
