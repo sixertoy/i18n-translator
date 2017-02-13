@@ -28,8 +28,9 @@ class App extends React.Component {
     this.state = {
       json: {},
       orders: [],
-      openpopin: false,
-      translations: {}
+      locales: {},
+      primarykeys: {},
+      openpopin: false
     };
   }
 
@@ -52,13 +53,13 @@ class App extends React.Component {
   /**
    * Called when application's store emit changes
    */
-  _onApplicationStoreChange ({ json, tablekeys, orders, locales, openpopin }) {
+  _onApplicationStoreChange ({ json, primarykeys, orders, locales, openpopin }) {
     this.setState({
       json,
       orders,
       locales,
       openpopin,
-      tablekeys
+      primarykeys
     });
   }
 
@@ -118,9 +119,9 @@ class App extends React.Component {
             <ApplicationHeader facade={this.props.facade} />
           </div>
           <ApplicationEditScreen orders={this.state.orders}
+            facade={this.props.facade}
             locales={this.state.locales}
-            tablekeys={this.state.tablekeys}
-            facade={this.props.facade} />
+            primarykeys={this.state.primarykeys} />
           <ApplicationFooter version={this.props.version}
             facade={this.props.facade} />
         </div>
