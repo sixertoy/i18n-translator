@@ -2,6 +2,7 @@ import React from 'react';
 import isempty from 'lodash.isempty';
 import { AllHtmlEntities as entities } from 'html-entities';
 // project
+import { ObjectUtils } from './../../core/utils';
 
 class ApplicationEditScreen extends React.PureComponent {
 
@@ -76,7 +77,7 @@ class ApplicationEditScreen extends React.PureComponent {
       return false;
     }
     return (
-      Object.entries(keys)
+      ObjectUtils.entries(keys)
         .map(([key, value]) => (
           <li key={`key_${key}`}
             style={{

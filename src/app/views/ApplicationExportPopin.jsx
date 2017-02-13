@@ -1,5 +1,6 @@
 import React from 'react';
 // project
+import { ObjectUtils } from './../../core/utils';
 import ApplicationAceEditor from './commons/ApplicationAceEditor';
 
 class ApplicationExportPopin extends React.PureComponent {
@@ -54,7 +55,7 @@ class ApplicationExportPopin extends React.PureComponent {
         style={{
           marginRight: '40px'
         }}>
-        {Object.entries(this.props.locales)
+        {ObjectUtils.entries(this.props.locales)
           .map(([langkey], index) => <a href=""
             key={`tabs_${langkey}`}
             style={{
@@ -122,7 +123,7 @@ class ApplicationExportPopin extends React.PureComponent {
   _renderTextArea () {
     let langkey = null;
     let locales = null;
-    const entries = Object.entries(this.props.locales);
+    const entries = ObjectUtils.entries(this.props.locales);
     if (this.state.current < 0) {
       langkey = 'diff';
       locales = this.props.json;

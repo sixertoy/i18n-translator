@@ -5,7 +5,8 @@ import logo from './../../assets/json_logo.svg';
 const ApplicationHeader = () => (
   <div className="application-header flex-columns"
     style={{
-      textAlign: 'left'
+      textAlign: 'left',
+      padding: '32px 32px 32px 32px'
     }}>
     <a href="/">
       <img alt="JSON Translation Online Editor"

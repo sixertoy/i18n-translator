@@ -69,7 +69,8 @@ class ApplicationFooter extends React.PureComponent {
           minHeight: '50px',
           paddingTop: '10px',
           paddingBottom: '10px',
-          background: '#1D1F21'
+          background: '#1D1F21',
+          padding: '10px 32px 10px 32px'
         }}>
         {this._renderCredits()}
         {this._renderSaveButtons()}
