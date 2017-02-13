@@ -11,7 +11,7 @@ import routesActions from './routes';
 import Application from './views/Application';
 // datas
 import locales from './../data/locales';
-import tablekeys from './../data/table-keys.json';
+import primarykeys from './../data/primary-keys.json';
 
 class ApplicationFacade extends AbstractFacade {
 
@@ -29,7 +29,7 @@ class ApplicationFacade extends AbstractFacade {
     // first application action
     // load languages files and locales keys
     const action = this.getAction('ApplicationAction');
-    action.initializeStore(locales, tablekeys);
+    action.initializeStore(locales, primarykeys);
   }
 
 }

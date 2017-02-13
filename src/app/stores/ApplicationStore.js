@@ -10,7 +10,7 @@ class ApplicationStore extends AbstractStore {
     super({
       json: null,
       locales: null,
-      tablekeys: null,
+      primarykeys: null,
       openpopin: false,
       orders: ['en', 'fr']
     }, dispatcher);
@@ -23,18 +23,18 @@ class ApplicationStore extends AbstractStore {
    * store origin files data
    */
   _onApplicationInit ({ data }) {
-    const { tablekeys, locales } = data;
+    const { primarykeys, locales } = data;
     this._origin = ObjectUtils.clone(locales);
     this.setState({
       locales: ObjectUtils.clone(locales),
-      tablekeys: ObjectUtils.clone(tablekeys)
+      primarykeys: ObjectUtils.clone(primarykeys)
     });
   }
 
   _onCreateNewLanguage (langkey) {
     const locales = this.getState('locales');
     // duplicate table keys, add new language to currents
-    locales[langkey] = Object.keys(this.getState('tablekeys'))
+    locales[langkey] = Object.keys(this.getState('primarykeys'))
       .reduce((acc, k) => Object.assign(acc, { [k]: '' }), {});
     this.setState({
       locales,

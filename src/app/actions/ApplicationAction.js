@@ -17,12 +17,12 @@ class ApplicationAction extends AbstractAction {
     });
   }
 
-  initializeStore (locales, tablekeys) {
+  initializeStore (locales, primarykeys) {
     this.getDispatcher().dispatch({
       type: Constants.FLUX.INITIALIZE_APP,
       data: {
         locales,
-        tablekeys
+        primarykeys
       }
     });
   }

@@ -71,8 +71,8 @@ class ApplicationEditScreen extends React.PureComponent {
 
   _renderTranslations () {
     const orders = this.props.orders;
-    const keys = this.props.tablekeys;
     const locales = this.props.locales;
+    const keys = this.props.primarykeys;
     if (!locales || isempty(locales)) {
       return false;
     }
@@ -131,13 +131,13 @@ class ApplicationEditScreen extends React.PureComponent {
 ApplicationEditScreen.defaultProps = {
   orders: [],
   locales: {},
-  tablekeys: {}
+  primarykeys: {}
 };
 
 ApplicationEditScreen.propTypes = {
   orders: React.PropTypes.array,
   locales: React.PropTypes.object,
-  tablekeys: React.PropTypes.object,
+  primarykeys: React.PropTypes.object,
   facade: React.PropTypes.object.isRequired
 };
 
