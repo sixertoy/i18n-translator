@@ -12,17 +12,17 @@
   position: absolute;
 }
 
-.application-close-button,
-.application-close-button:hover,
-.application-close-button:visited {
-  color: white;
-}
-
 .application-footer,
 .application-header {
   flex-grow: 0;
   flex-shrink: 0;
   padding: 10px 32px;
+}
+
+.application-header {
+  padding: 32px;
+  align-items: center;
+  justify-content: center;
 }
 
 .application-screen {

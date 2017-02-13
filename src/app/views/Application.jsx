@@ -3,7 +3,7 @@ import React from 'react';
 import './Application.css';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
-import ApplicationMainMenu from './ApplicationMainMenu';
+// import ApplicationMainMenu from './ApplicationMainMenu';
 import ApplicationEditScreen from './ApplicationEditScreen';
 import ApplicationExportPopin from './ApplicationExportPopin';
 
@@ -99,8 +99,8 @@ class App extends React.Component {
               background: '#FBFBFB'
             }}>
             <ApplicationHeader facade={this.props.facade} />
-            <ApplicationMainMenu langs={this.state.orders}
-              facade={this.props.facade} />
+            {/* <ApplicationMainMenu langs={this.state.orders}
+            facade={this.props.facade} /> */}
           </div>
           <ApplicationEditScreen orders={this.state.orders}
             locales={this.state.locales}
