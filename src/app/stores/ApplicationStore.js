@@ -31,20 +31,20 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
-  _onCreateNewLanguage (langkey) {
+  _onCreateNewLanguage (primarykey) {
     const locales = this.getState('locales');
     // duplicate table keys, add new language to currents
-    locales[langkey] = Object.keys(this.getState('primarykeys'))
+    locales[primarykey] = Object.keys(this.getState('primarykeys'))
       .reduce((acc, k) => Object.assign(acc, { [k]: '' }), {});
     this.setState({
       locales,
-      orders: [].concat(this.getState('orders'), [langkey])
+      orders: [].concat(this.getState('orders'), [primarykey])
     });
   }
 
   _onUpdateValue ({ data }) {
     const locales = this.getState('locales');
-    locales[data.langkey][data.key] = data.value;
+    locales[data.lang][data.primarykey] = data.value;
     this.setState({
       locales
     });
