@@ -15,7 +15,7 @@
     "mocha": "3.2.0",
     "react-scripts": "0.8.5",
     "stylelint-config-standard": "15.0.1",
-    "@kadira/storybook": "^2.21.0"
+    "@kadira/storybook": "2.21.0"
   },
   "dependencies": {
     "brace": "0.9.1",
