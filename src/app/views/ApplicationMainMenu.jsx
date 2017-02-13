@@ -3,6 +3,7 @@ import isempty from 'lodash.isempty';
 import isstring from 'lodash.isstring';
 // punkbeer
 import logo from './../../assets/json_logo.svg';
+import GithubStarButton from './../../core/views/GithubStarButton';
 
 class ApplicationMainMenu extends React.PureComponent {
 
@@ -75,34 +76,15 @@ class ApplicationMainMenu extends React.PureComponent {
 
   render () {
     return (
-      <div className="application-header shadow-bottom"
+      <div className="application-main-menu flex-columns flex-space-between"
         style={{
           width: '100%',
           background: '#FBFBFB'
         }}>
-        <h1 style={{
-          margin: '10px 0',
-          textAlign: 'center',
-          lineHeight: '1.25em'
-        }}>
-          <img alt="JSON Translation Online Editor"
-            style={{
-              width: '40px',
-              height: '40px',
-              marginRight: '10px',
-              verticalAlign: 'bottom'
-            }}
-            src={logo} />
-          <span>JSON Translation Online Editor</span>
-        </h1>
-        <div className="application-main-menu flex-columns flex-space-between"
-          style={{
-            width: '100%',
-            background: '#FBFBFB'
-          }}>
-          {/* this._renderSearchInput() */}
-          {this._renderCreateNewLanguage()}
-        </div>
+        {/* this._renderSearchInput() */}
+        {this._renderCreateNewLanguage()}
+        <GithubStarButton username="sixertoy"
+          projectname="i18n-translator" />
       </div>
     );
   }

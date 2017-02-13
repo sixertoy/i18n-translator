@@ -1,13 +1,19 @@
 import React from 'react';
 
-const GithubStarButton = () => (
+/**
+ * @see https://buttons.github.io/
+ *
+ * <!-- Place this tag in your head or just before your close body tag. -->
+ * <script async defer src="https://buttons.github.io/buttons.js"></script>
+ */
+const GithubStarButton = props => (
   <a className="github-button"
-    href="https://github.com/ntkme/github-buttons"
     data-style="mega"
     data-count-aria-label="# stargazers on GitHub"
-    data-count-href="/ntkme/github-buttons/stargazers"
-    data-count-api="/repos/ntkme/github-buttons#stargazers_count"
-    aria-label="Star ntkme/github-buttons on GitHub">{this.props.label}</a>
+    href={`https://github.com/${props.username}/${props.projectname}`}
+    aria-label={`Star ${props.username}/${props.projectname} on GitHub"`}
+    data-count-api={`/repos/${props.username}/${props.projectname}#stargazers_count`}
+    data-count-href={`/${props.username}/${props.projectname}/stargazers`}>{props.label}</a>
 );
 
 GithubStarButton.defaultProps = {
@@ -16,7 +22,8 @@ GithubStarButton.defaultProps = {
 
 GithubStarButton.propTypes = {
   label: React.PropTypes.string,
-  repository: React.PropTypes.string.isRequired
+  username: React.PropTypes.string.isRequired,
+  projectname: React.PropTypes.string.isRequired
 };
 
 export default GithubStarButton;
