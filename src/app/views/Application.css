@@ -4,23 +4,13 @@
 
 ------------------------------------------------------ */
 
-.application {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-}
-
 .application-footer,
 .application-header {
   flex-grow: 0;
   flex-shrink: 0;
-  padding: 10px 32px;
 }
 
 .application-header {
-  padding: 32px;
   align-items: center;
   justify-content: center;
 }

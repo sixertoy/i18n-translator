@@ -3,7 +3,6 @@ import React from 'react';
 import './Application.css';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
-// import ApplicationMainMenu from './ApplicationMainMenu';
 import ApplicationEditScreen from './ApplicationEditScreen';
 import ApplicationExportPopin from './ApplicationExportPopin';
 
@@ -85,7 +84,14 @@ class App extends React.Component {
 
   render () {
     return (
-      <div className="application">
+      <div className="application"
+        style={{
+          top: '0',
+          left: '0',
+          right: '0',
+          bottom: '0',
+          position: 'absolute'
+        }}>
         <div className="flex-rows"
           style={{
             width: '100%',
@@ -96,11 +102,10 @@ class App extends React.Component {
           <div className="shadow-bottom"
             style={{
               width: '100%',
+              position: 'relative',
               background: '#FBFBFB'
             }}>
             <ApplicationHeader facade={this.props.facade} />
-            {/* <ApplicationMainMenu langs={this.state.orders}
-            facade={this.props.facade} /> */}
           </div>
           <ApplicationEditScreen orders={this.state.orders}
             locales={this.state.locales}

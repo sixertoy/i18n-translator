@@ -1,4 +1,14 @@
+import ObjectEntries from 'object.entries';
+
 class ObjectUtils {
+
+  static entries (obj) {
+    try {
+      return Object.entries(obj);
+    } catch (e) {
+      return ObjectEntries(obj);
+    }
+  }
 
   static has (obj, propname) {
     return Object.prototype.hasOwnProperty.call(obj, propname);
@@ -9,7 +19,7 @@ class ObjectUtils {
   }
 
   static toMap (obj) {
-    return new Map(Object.entries(obj));
+    return new Map(ObjectUtils.entries(obj));
   }
 
   static clone (obj) {
