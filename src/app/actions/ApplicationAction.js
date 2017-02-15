@@ -4,9 +4,10 @@ import Constants from './../constants';
 
 class ApplicationAction extends AbstractAction {
 
-  togglePopin () {
+  togglePopin (type) {
     this.getDispatcher().dispatch({
-      type: Constants.FLUX.TOGGLE_POPIN
+      type: Constants.FLUX.TOGGLE_POPIN,
+      data: type
     });
   }
 

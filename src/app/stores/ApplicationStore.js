@@ -1,3 +1,4 @@
+import isempty from 'lodash.isempty';
 import { diff, apply } from 'rus-diff';
 // project
 import Constants from './../constants';
@@ -8,10 +9,10 @@ class ApplicationStore extends AbstractStore {
 
   constructor (dispatcher) {
     super({
-      json: null,
-      locales: null,
-      primarykeys: null,
+      json: {},
+      locales: {},
       openpopin: false,
+      primarykeys: {},
       orders: ['en', 'fr']
     }, dispatcher);
     // store original languages
@@ -78,7 +79,7 @@ class ApplicationStore extends AbstractStore {
       case Constants.FLUX.TOGGLE_POPIN:
         // open/close popin
         this.setState({
-          openpopin: !this.getState('openpopin')
+          openpopin: !this.getState('openpopin') ? obj.data : false
         });
         break;
       default:

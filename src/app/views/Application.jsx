@@ -3,13 +3,15 @@ import Helmet from 'react-helmet';
 // lib
 import './Application.css';
 // import GithubStarButton from './../../core/views/GithubStarButton';
+import Constants from './../constants';
+import ExportPopin from './popins/ExportPopin';
+import ImportPopin from './popins/ImportPopin';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
-import ApplicationEditScreen from './ApplicationEditScreen';
-import ApplicationExportPopin from './ApplicationExportPopin';
+import ApplicationContent from './ApplicationContent';
 import GithubOctocatCorner from './../../core/views/GithubOctocatCorner';
 
-class App extends React.Component {
+class Application extends React.Component {
 
   /* ------------------------------------------------
 
@@ -31,6 +33,12 @@ class App extends React.Component {
       locales: {},
       primarykeys: {},
       openpopin: false
+    };
+  }
+
+  getChildContext () {
+    return {
+      facade: this.props.facade
     };
   }
 
@@ -69,15 +77,31 @@ class App extends React.Component {
 
   ------------------------------------------------ */
 
-  _renderApplicationExportPopin () {
+  _renderApplicationPopin () {
+    let view = Constants.REACT.NO_RENDER;
     if (!this.state.openpopin) {
-      return false;
+      return view;
     }
-    return (
-      <ApplicationExportPopin facade={this.props.facade}
-        json={this.state.json}
-        locales={this.state.locales} />
-    );
+    switch (this.state.openpopin) {
+    case 'import':
+      view = (
+        <ImportPopin facade={this.props.facade}
+          submit={'Continuer'}
+          title={'Create or import a new description file'} />
+        );
+      break;
+    case 'export':
+      view = (
+        <ExportPopin facade={this.props.facade}
+          title={'Export languages'}
+          json={this.state.json}
+          locales={this.state.locales} />
+        );
+      break;
+    default:
+      break;
+    }
+    return view;
   }
 
   /* ------------------------------------------------
@@ -116,16 +140,14 @@ class App extends React.Component {
               position: 'relative',
               background: '#FBFBFB'
             }}>
-            <ApplicationHeader facade={this.props.facade} />
+            <ApplicationHeader />
           </div>
-          <ApplicationEditScreen orders={this.state.orders}
-            facade={this.props.facade}
+          <ApplicationContent orders={this.state.orders}
             locales={this.state.locales}
             primarykeys={this.state.primarykeys} />
-          <ApplicationFooter version={this.props.version}
-            facade={this.props.facade} />
+          <ApplicationFooter version={this.props.version} />
         </div>
-        {this._renderApplicationExportPopin()}
+        {this._renderApplicationPopin()}
         <GithubOctocatCorner direction="left"
           username="sixertoy"
           projectname="i18n-translator" />
@@ -134,9 +156,13 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
+Application.childContextTypes = {
+  facade: React.PropTypes.object
+};
+
+Application.propTypes = {
   version: React.PropTypes.string.isRequired,
   facade: React.PropTypes.object.isRequired
 };
 
-export default App;
+export default Application;
