@@ -28,7 +28,7 @@ class ApplicationMainMenu extends React.PureComponent {
     if (!isstring(key) || isempty(key.trim()) || (this.props.langs.indexOf(key) >= 0)) {
       return false;
     }
-    const ApplicationAction = this.props.facade.getAction('ApplicationAction');
+    const ApplicationAction = this.context.facade.getAction('ApplicationAction');
     ApplicationAction.createNewLanguage(key);
     return true;
   }
@@ -90,6 +90,10 @@ class ApplicationMainMenu extends React.PureComponent {
   }
 
 }
+
+ApplicationMainMenu.contextTypes = {
+  facade: React.PropTypes.object
+};
 
 ApplicationMainMenu.propTypes = {
   langs: React.PropTypes.array.isRequired,

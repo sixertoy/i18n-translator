@@ -1,21 +1,16 @@
 import React from 'react';
 // project
-import { ObjectUtils } from './../../core/utils';
-import ApplicationAceEditor from './commons/ApplicationAceEditor';
+import PopinFactory from './../hoc/PopinFactory';
+import { ObjectUtils } from './../../../core/utils';
+import ReactAceEditor from './../commons/ReactAceEditor';
 
-class ApplicationExportPopin extends React.PureComponent {
+class ExportPopin extends React.PureComponent {
 
   constructor (props) {
     super(props);
     this.state = {
       current: 0
     };
-  }
-
-  _onCloseHandler (evt) {
-    evt.preventDefault();
-    const action = this.props.facade.getAction('ApplicationAction');
-    action.togglePopin();
   }
 
   _onLocaleTabClick (e, index) {
@@ -33,19 +28,6 @@ class ApplicationExportPopin extends React.PureComponent {
     this.setState({
       current: -1
     });
-  }
-
-  _renderCloseButton () {
-    return (
-      <a href=""
-        style={{
-          display: 'block',
-          color: '#000000'
-        }}
-        onClick={e => this._onCloseHandler(e)}>
-        <i className="icon-cancel" />
-      </a>
-    );
   }
 
   _renderLocalesTabs () {
@@ -90,36 +72,6 @@ class ApplicationExportPopin extends React.PureComponent {
     );
   }
 
-  _renderPopinHeader () {
-    return (
-      <div className="application-popin-header flex-columns flex-align-end"
-        style={{
-          width: '100%',
-          lineHeight: '25px',
-          paddingTop: '12px',
-          paddingLeft: '12px',
-          paddingRight: '12px',
-          background: '#FBFBFB'
-        }} >
-        {this._renderLocalesTabs()}
-        {this._renderCloseButton()}
-      </div>
-    );
-  }
-
-  _renderPopinFooter () {
-    return (
-      <div className="application-popin-footer flex-columns flex-align-end"
-        style={{
-          width: '100%',
-          height: '50px',
-          paddingLeft: '12px',
-          paddingRight: '12px',
-          background: '#FBFBFB'
-        }} />
-    );
-  }
-
   _renderTextArea () {
     let langkey = null;
     let locales = null;
@@ -140,8 +92,8 @@ class ApplicationExportPopin extends React.PureComponent {
           background: '#FFFFFF'
         }}>
         <div className="absolute-container" >
-          <ApplicationAceEditor locales={locales}
-            langkey={`editor-${langkey}`} />
+          <ReactAceEditor jsonstring={JSON.stringify(locales, null, '  ')}
+            editorid={`editor-${langkey}`} />
         </div>
       </div>
     );
@@ -149,37 +101,32 @@ class ApplicationExportPopin extends React.PureComponent {
 
   render () {
     return (
-      <div className="application-popin flex-rows flex-centered absolute-container"
+      <div className="inner flex-rows"
         style={{
+          padding: '0',
+          width: '80%',
+          height: '95%',
+          margin: '0 auto',
           overflow: 'hidden',
-          background: 'rgba(0, 0, 0, 0.75)'
+          background: 'white'
         }}>
-        <div className="inner flex-rows"
-          style={{
-            padding: '0',
-            width: '80%',
-            height: '95%',
-            margin: '0 auto',
-            overflow: 'hidden',
-            background: 'white'
-          }}>
-          {this._renderPopinHeader()}
-          {this._renderTextArea()}
-          {this._renderPopinFooter()}
-        </div>
+        {this._renderLocalesTabs()}
+        {this._renderTextArea()}
       </div>
     );
   }
 
 }
 
-ApplicationExportPopin.propTypes = {
-  json: React.PropTypes.object.isRequired,
-  facade: React.PropTypes.object.isRequired,
+ExportPopin.propTypes = {
+  json: React.PropTypes.oneOfType([
+    React.PropTypes.bool,
+    React.PropTypes.object
+  ]).isRequired,
   locales: React.PropTypes.oneOfType([
     React.PropTypes.bool,
     React.PropTypes.object
   ]).isRequired
 };
 
-export default ApplicationExportPopin;
+export default PopinFactory(ExportPopin);

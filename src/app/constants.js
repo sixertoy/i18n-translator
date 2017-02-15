@@ -5,6 +5,9 @@ const constants = {
     SAVE_LOCALES: 'SAVE_LOCALES',
     INITIALIZE_APP: 'INITIALIZE_APP',
     CREATE_NEW_LANGUAGE: 'CREATE_NEW_LANGUAGE'
+  },
+  REACT: {
+    NO_RENDER: false
   }
 };
 

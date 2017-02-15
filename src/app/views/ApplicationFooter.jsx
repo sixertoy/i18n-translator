@@ -17,8 +17,8 @@ class ApplicationFooter extends React.PureComponent {
 
   _showTranslationsContent (evt) {
     evt.preventDefault();
-    const ApplicationAction = this.props.facade.getAction('ApplicationAction');
-    ApplicationAction.togglePopin();
+    const ApplicationAction = this.context.facade.getAction('ApplicationAction');
+    ApplicationAction.togglePopin('export');
     ApplicationAction.saveLocales();
   }
 
@@ -80,9 +80,12 @@ class ApplicationFooter extends React.PureComponent {
 
 }
 
+ApplicationFooter.contextTypes = {
+  facade: React.PropTypes.object
+};
+
 ApplicationFooter.propTypes = {
-  version: React.PropTypes.string.isRequired,
-  facade: React.PropTypes.object.isRequired
+  version: React.PropTypes.string.isRequired
 };
 
 export default ApplicationFooter;
