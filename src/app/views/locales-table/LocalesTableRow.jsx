@@ -20,7 +20,7 @@ class LocalesTableRow extends React.PureComponent {
           fontSize: '0.9em',
           marginLeft: '12px',
           marginBottom: '3px'
-        }}><small>{`# ${value}`}</small></p>
+        }}><a name={value}>{`# ${value}`}</a></p>
     );
   }
 

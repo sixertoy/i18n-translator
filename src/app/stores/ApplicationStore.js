@@ -32,7 +32,7 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
-  _onCreateNewLanguage (primarykey) {
+  _onCreateNewLanguage ({ primarykey }) {
     const locales = this.getState('locales');
     // duplicate table keys, add new language to currents
     locales[primarykey] = Object.keys(this.getState('primarykeys'))
@@ -48,6 +48,13 @@ class ApplicationStore extends AbstractStore {
     locales[data.lang][data.primarykey] = data.value;
     this.setState({
       locales
+    });
+  }
+
+  _onImportLanguages ({ data }) {
+    console.log('data', data);
+    this.setState({
+      openpopin: false
     });
   }
 
@@ -74,7 +81,11 @@ class ApplicationStore extends AbstractStore {
         break;
       case Constants.FLUX.CREATE_NEW_LANGUAGE:
         // create a new language
-        this._onCreateNewLanguage(obj.data);
+        this._onCreateNewLanguage(obj);
+        break;
+      case Constants.FLUX.IMPORT_LANGUAGES:
+        // create a new language
+        this._onImportLanguages(obj);
         break;
       case Constants.FLUX.TOGGLE_POPIN:
         // open/close popin

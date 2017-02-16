@@ -1,6 +1,6 @@
 import React from 'react';
 // project
-import ApplicationButton from './buttons/ApplicationButton';
+import SubmitButton from './buttons/SubmitButton';
 
 class ApplicationFooter extends React.PureComponent {
 
@@ -31,7 +31,7 @@ class ApplicationFooter extends React.PureComponent {
   _renderSaveButtons () {
     return (
       <span>
-        <ApplicationButton label={'Export All Languages'}
+        <SubmitButton label={'Export All Languages'}
           clickHandler={e => this._showTranslationsContent(e)}
           styles={{
             marginRight: '12px'

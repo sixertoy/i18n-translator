@@ -1,6 +1,7 @@
 import React from 'react';
+// project
 
-const factory = (ComposedComponent) => {
+const factory = (Wrapped) => {
   class PopinFactory extends React.Component {
 
     constructor (props) {
@@ -20,10 +21,6 @@ const factory = (ComposedComponent) => {
       evt.preventDefault();
       const action = this.props.facade.getAction('ApplicationAction');
       action.togglePopin(false);
-    }
-
-    _onSubmitClickHandler (evt) {
-      evt.preventDefault();
     }
 
     /* ---------------------------------------------------------------------
@@ -50,7 +47,7 @@ const factory = (ComposedComponent) => {
             overflow: 'hidden',
             background: 'rgba(0, 0, 0, 0.75)'
           }}>
-          <div className="inner flex-rows"
+          <div className="application-popin-inner flex-rows"
             style={{
               padding: '0',
               width: '80%',
@@ -76,26 +73,8 @@ const factory = (ComposedComponent) => {
               </h3>
               {this._renderCloseButton()}
             </div>
-            <ComposedComponent {...this.props} />
-            <div className="application-popin-footer flex-columns flex-align-end"
-              style={{
-                width: '100%',
-                paddingTop: '12px',
-                paddingLeft: '12px',
-                paddingRight: '12px',
-                paddingBottom: '12px',
-                background: '#FBFBFB'
-              }} >
-              {(!this.props.submit)
-                ? false
-                : (
-                  <button type="submit"
-                    onClick={e => this._onSubmitClickHandler(e)}>
-                    <span>{this.props.submit}</span>
-                  </button>
-                )
-              }
-            </div>
+            <Wrapped submitted={this.state.submitted}
+              {...this.props} />
           </div>
         </div>
       );
@@ -104,15 +83,7 @@ const factory = (ComposedComponent) => {
 
   PopinFactory.propTypes = {
     title: React.PropTypes.string.isRequired,
-    facade: React.PropTypes.object.isRequired,
-    submit: React.PropTypes.oneOfType([
-      React.PropTypes.bool,
-      React.PropTypes.string
-    ])
-  };
-
-  PopinFactory.defaultProps = {
-    submit: false
+    facade: React.PropTypes.object.isRequired
   };
 
   return PopinFactory;

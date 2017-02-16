@@ -1,26 +1,28 @@
 import React from 'react';
 
-const ApplicationButton = props => (
+const SubmitButton = props => (
   <button type={props.type}
     style={props.styles}
     onClick={props.clickHandler} >
     <span>
-      <i className="icon-download" />
+      <i className={props.iconclass} />
       <span>{props.label}</span>
     </span>
   </button>
 );
 
-ApplicationButton.defaultProps = {
+SubmitButton.defaultProps = {
   styles: {},
-  type: 'button'
+  type: 'button',
+  iconclass: 'icon-download'
 };
 
-ApplicationButton.propTypes = {
+SubmitButton.propTypes = {
   type: React.PropTypes.string,
   styles: React.PropTypes.object,
+  iconclass: React.PropTypes.string,
   label: React.PropTypes.string.isRequired,
   clickHandler: React.PropTypes.func.isRequired
 };
 
-export default ApplicationButton;
+export default SubmitButton;

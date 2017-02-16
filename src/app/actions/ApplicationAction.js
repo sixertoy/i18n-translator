@@ -41,6 +41,13 @@ class ApplicationAction extends AbstractAction {
     });
   }
 
+  importLanguagesSet (imports) {
+    this.getDispatcher().dispatch({
+      type: Constants.FLUX.IMPORT_LANGUAGES,
+      data: imports
+    });
+  }
+
 }
 
 export default ApplicationAction;

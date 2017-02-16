@@ -23,7 +23,12 @@ class %%name%% extends React.PureComponent {
   constructor (props, context) {
     super(props);
     this.state = {};
+    this._ismounted = false;
     this._initialized = false;
+  }
+
+  componentDidMount () {
+    this._ismounted = true;
   }
 
   componentWillReceiveProps(nextProps, nextContext) {}
@@ -36,6 +41,10 @@ class %%name%% extends React.PureComponent {
     if (!this._initialized) {
       this._initialized = true;
     }
+  }
+
+  componentWillUnmount () {
+    this._ismounted = false;
   }
 
   /* ------------------------------------------------
