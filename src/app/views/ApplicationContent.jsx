@@ -54,7 +54,7 @@ class ApplicationContent extends React.PureComponent {
             textAlign: 'center',
             padding: '20px 35px'
           }}>
-          <span>Create or import a new description file</span>
+          <span>Create or import a new language set</span>
         </button>
       </div>
     );

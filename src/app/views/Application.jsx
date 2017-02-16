@@ -86,8 +86,7 @@ class Application extends React.Component {
     case 'import':
       view = (
         <ImportPopin facade={this.props.facade}
-          submit={'Continuer'}
-          title={'Create or import a new description file'} />
+          title={'Create a new language set'} />
         );
       break;
     case 'export':

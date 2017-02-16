@@ -1,4 +1,5 @@
 import React from 'react';
+import noop from 'lodash.noop';
 import AceEditor from 'react-ace';
 import CopyToClipboard from 'react-copy-to-clipboard';
 // ace editor config
@@ -18,14 +19,15 @@ const renderCopyToClipboard = jsonstring => (<CopyToClipboard text={jsonstring}>
   </a>
 </CopyToClipboard>);
 
-const ReactAceEditor = ({ editorid, jsonstring, usecopy }) => (
-  <div style={{
-    width: '100%',
-    height: '100%',
-    position: 'relative'
-  }}>
+const ReactAceEditor = ({ readOnly, editorid, jsonstring, usecopy, changehandler }) => (
+  <div className="application-ace-editor"
+    style={{
+      width: '100%',
+      height: '100%',
+      position: 'relative'
+    }}>
     {usecopy ? renderCopyToClipboard(jsonstring) : false}
-    <AceEditor readOnly
+    <AceEditor readOnly={readOnly}
       wrapEnabled
       tabSize={2}
       mode="json"
@@ -35,6 +37,7 @@ const ReactAceEditor = ({ editorid, jsonstring, usecopy }) => (
       value={jsonstring}
       name={`${editorid}`}
       showPrintMargin={false}
+      onChange={e => changehandler(e)}
       editorProps={{ $blockScrolling: true }}
       annotations={[{ row: 0, column: 2, type: 'error', text: 'Some error.' }]} />
   </div>
@@ -42,11 +45,15 @@ const ReactAceEditor = ({ editorid, jsonstring, usecopy }) => (
 
 ReactAceEditor.defaultProps = {
   label: '',
-  usecopy: true
+  usecopy: true,
+  readOnly: true,
+  usecchangehandleropy: true
 };
 
 ReactAceEditor.propTypes = {
   usecopy: React.PropTypes.bool,
+  readOnly: React.PropTypes.bool,
+  changehandler: React.PropTypes.func,
   editorid: React.PropTypes.string.isRequired,
   jsonstring: React.PropTypes.string.isRequired
 };
