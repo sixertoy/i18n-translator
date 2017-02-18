@@ -1,4 +1,6 @@
 import React from 'react';
+// import Select from 'react-select';
+import isempty from 'lodash.isempty';
 // project
 import PopinFooter from './../commons/PopinFooter';
 import ReactAceEditor from './../commons/ReactAceEditor';
@@ -9,15 +11,24 @@ class ImportPopin extends React.PureComponent {
 
   constructor (props) {
     super(props);
-    this._datas = [];
+    this._datas = {};
     this._ismounted = false;
+    this._currentvalue = false;
+    this._selectOptions = [
+      { value: 'json', label: 'JSON' },
+      { value: 'javascript', label: 'JavaScript' }
+    ];
     this._stepsIterator = StepsIterator([
-      this.renderFileImportStep.bind(this),
+      () => this.renderFileImportStep.bind(this),
       // question: is it a description file
-      this.renderLoadMoreContent.bind(this)
+      () => this.renderLoadMoreContent.bind(this)
     ]);
+    this._editordefaultvalue = '// Put your JSON code to start working with your translations';
     this.state = {
+      count: 0,
       submitted: false,
+      jsonisvalid: false,
+      editormode: this._selectOptions[0].value,
       currentstep: this._stepsIterator.next().value
     };
   }
@@ -47,6 +58,8 @@ class ImportPopin extends React.PureComponent {
     if (response) {
       this.setState({
         submitted: false,
+        jsonisvalid: false,
+        count: (this.state.count + 1),
         currentstep: this._stepsIterator.next().value
       });
     } else {
@@ -64,8 +77,22 @@ class ImportPopin extends React.PureComponent {
   }
 
   _onAceEditorChange (value) {
-    const length = this._datas;
-    this._datas[length] = value;
+    this._currentvalue = value;
+    try {
+      const obj = JSON.parse(value);
+      if (isempty(obj)) {
+        // should alert user
+        throw new Error('is empty');
+      }
+      this._datas[`step-${this.state.count}`] = obj;
+      this.setState({
+        jsonisvalid: true
+      });
+    } catch (e) {
+      this.setState({
+        jsonisvalid: false
+      });
+    }
   }
 
   /* --------------------------------------------------
@@ -76,19 +103,30 @@ class ImportPopin extends React.PureComponent {
 
   renderLoadMoreContent () {
     return (
-      <div style={{
-        width: '100%',
-        height: '100%',
-        position: 'relative'
-      }}>
+      <div className="flex-rows flex-centered"
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'relative'
+        }}>
         <h3>
           <span>Load more language set ?</span>
         </h3>
         <p>
-          <button onClick={e => this._onLoadMoreContentHandler(e, false)}>
+          <button onClick={e => this._onLoadMoreContentHandler(e, false)}
+            style={{
+              margin: '0 10px',
+              paddingLeft: '20px',
+              paddingRight: '20px'
+            }}>
             <span>No</span>
           </button>
-          <button onClick={e => this._onLoadMoreContentHandler(e, true)}>
+          <button onClick={e => this._onLoadMoreContentHandler(e, true)}
+            style={{
+              margin: '0 10px',
+              paddingLeft: '20px',
+              paddingRight: '20px'
+            }}>
             <span>Yes</span>
           </button>
         </p>
@@ -97,6 +135,7 @@ class ImportPopin extends React.PureComponent {
   }
 
   renderFileImportStep () {
+    console.log('renderFileImportStep renderFileImportStep renderFileImportStep', this._currentvalue || this._editordefaultvalue);
     return (
       <div style={{
         width: '100%',
@@ -106,8 +145,10 @@ class ImportPopin extends React.PureComponent {
         <ReactAceEditor usecopy={false}
           readOnly={false}
           editorid={'editor-import'}
-          jsonstring={JSON.stringify({}, null, '  ')}
-          changehandler={e => this._onAceEditorChange(e)} />
+          editormode={this.state.editormode}
+          defaultvalue={this._editordefaultvalue}
+          changehandler={e => this._onAceEditorChange(e)}
+          jsonstring={this._currentvalue || this._editordefaultvalue} />
       </div>
     );
   }
@@ -129,19 +170,42 @@ class ImportPopin extends React.PureComponent {
           overflow: 'hidden',
           background: 'white'
         }}>
+        {/*
+          <div className="flex-rows flex-no-shrink"
+          style={{
+            width: '100%',
+            zIndex: '500',
+            color: 'white',
+            padding: '12px 32px',
+            background: this.context.theme.velvet
+          }}>
+            <div style={{ width: '240px' }}>
+            <Select name="aceeditor-mode-select"
+              clearable={false}
+              value={this.state.editormode}
+              options={this._selectOptions}
+              onChange={({ label, value }) => this._onEditorModeChange(label, value)} />
+            </div>
+          </div>
+        */}
         <div className="flex-rows"
           style={{
             width: '100%',
             height: '100%'
-          }}>{this.state.currentstep}</div>
+          }}>{this.state.currentstep()}</div>
         <PopinFooter cancelClickHandler={false}
-          submitClickHandler={this.state.submitted
+          submitClickHandler={!this.state.jsonisvalid || this.state.submitted
             ? false : e => this._onClickSubmitHandler(e)} />
       </div>
     );
   }
 
 }
+
+ImportPopin.contextTypes = {
+  theme: React.PropTypes.object,
+  facade: React.PropTypes.object
+};
 
 ImportPopin.propTypes = {
   facade: React.PropTypes.object.isRequired

@@ -1,5 +1,6 @@
 import React from 'react';
 // project
+import Constants from './../constants';
 import SubmitButton from './buttons/SubmitButton';
 
 class ApplicationFooter extends React.PureComponent {
@@ -29,12 +30,16 @@ class ApplicationFooter extends React.PureComponent {
   -------------------------------------------------------- */
 
   _renderSaveButtons () {
+    if (!this.props.canexport) {
+      return Constants.REACT.NO_RENDER;
+    }
     return (
       <span>
         <SubmitButton label={'Export All Languages'}
           clickHandler={e => this._showTranslationsContent(e)}
           styles={{
-            marginRight: '12px'
+            marginRight: '12px',
+            background: '#661E75'
           }} />
       </span>
     );
@@ -85,7 +90,8 @@ ApplicationFooter.contextTypes = {
 };
 
 ApplicationFooter.propTypes = {
-  version: React.PropTypes.string.isRequired
+  version: React.PropTypes.string.isRequired,
+  canexport: React.PropTypes.bool.isRequired
 };
 
 export default ApplicationFooter;

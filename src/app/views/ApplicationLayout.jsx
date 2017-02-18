@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import isempty from 'lodash.isempty';
 // lib
 import './Application.css';
 // import GithubStarButton from './../../core/views/GithubStarButton';
@@ -31,14 +32,17 @@ class Application extends React.Component {
       json: {},
       orders: [],
       locales: {},
-      primarykeys: {},
-      openpopin: false
+      openpopin: false,
+      primarykeys: false
     };
   }
 
   getChildContext () {
     return {
-      facade: this.props.facade
+      facade: this.props.facade,
+      theme: {
+        velvet: '#661E75'
+      }
     };
   }
 
@@ -144,7 +148,8 @@ class Application extends React.Component {
           <ApplicationContent orders={this.state.orders}
             locales={this.state.locales}
             primarykeys={this.state.primarykeys} />
-          <ApplicationFooter version={this.props.version} />
+          <ApplicationFooter version={this.props.version}
+            canexport={!isempty(this.state.primarykeys)} />
         </div>
         {this._renderApplicationPopin()}
         <GithubOctocatCorner direction="left"
@@ -156,6 +161,7 @@ class Application extends React.Component {
 }
 
 Application.childContextTypes = {
+  theme: React.PropTypes.object,
   facade: React.PropTypes.object
 };
 

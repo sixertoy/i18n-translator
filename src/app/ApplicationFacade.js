@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import packages CSS
+import 'react-select/dist/react-select.css';
 // core
-import { AbstractFacade } from '../core/abstracts';
-// app
 import stores from './stores';
 import actions from './actions';
 import services from './services';
 import observers from './observers';
 import routesActions from './routes';
-import Application from './views/Application';
-// datas
-import locales from './../data/locales';
+import { AbstractFacade } from '../core/abstracts';
+import ApplicationLayout from './views/ApplicationLayout';
 
 class ApplicationFacade extends AbstractFacade {
 
@@ -23,12 +22,8 @@ class ApplicationFacade extends AbstractFacade {
       observers
     });
     // eslint-disable-next-line
-    ReactDOM.render(<Application version={version}
+    ReactDOM.render(<ApplicationLayout version={version}
       facade={this} />, document.getElementById('root'));
-    // first application action
-    // load languages files and locales keys
-    const action = this.getAction('ApplicationAction');
-    action.initializeStore(locales, {});
   }
 
 }

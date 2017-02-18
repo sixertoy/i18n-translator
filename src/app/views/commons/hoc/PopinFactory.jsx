@@ -59,10 +59,7 @@ const factory = (Wrapped) => {
             <div className="application-popin-header flex-columns flex-space-between"
               style={{
                 width: '100%',
-                paddingTop: '12px',
-                paddingLeft: '12px',
-                paddingRight: '12px',
-                paddingBottom: '12px',
+                padding: '12px 32px',
                 background: '#FBFBFB'
               }} >
               <h3 style={{

@@ -113,7 +113,7 @@ class LocalesTableRow extends React.PureComponent {
 }
 
 LocalesTableRow.propTypes = {
-  langs: React.PropTypes.object.isRequired,
+  langs: React.PropTypes.array.isRequired,
   values: React.PropTypes.array.isRequired,
   facade: React.PropTypes.object.isRequired,
   primarykey: React.PropTypes.string.isRequired,
