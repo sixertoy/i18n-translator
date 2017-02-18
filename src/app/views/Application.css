@@ -1,3 +1,7 @@
+.ace-github .ace_gutter {
+  background: #FBFBFB !important;
+}
+
 /* ------------------------------------------------------
 
  Application
@@ -10,14 +14,14 @@
   flex-shrink: 0;
 }
 
-.application-header {
-  align-items: center;
-  justify-content: center;
-}
-
 .application-screen {
+  display: flex;
   flex-grow: 1;
   flex-shrink: 1;
+}
+
+.application-screen .application-screen-inner {
+  /* align-self: center; */
 }
 
 .application-copy-to-clipboard {

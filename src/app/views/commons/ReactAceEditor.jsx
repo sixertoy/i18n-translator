@@ -3,8 +3,9 @@ import noop from 'lodash.noop';
 import AceEditor from 'react-ace';
 import CopyToClipboard from 'react-copy-to-clipboard';
 // ace editor config
-import 'brace/mode/json';
 import 'brace/theme/github';
+import 'brace/mode/json';
+import 'brace/mode/javascript';
 
 const renderCopyToClipboard = jsonstring => (<CopyToClipboard text={jsonstring}>
   <a className="application-copy-to-clipboard shadow-around"
@@ -19,43 +20,56 @@ const renderCopyToClipboard = jsonstring => (<CopyToClipboard text={jsonstring}>
   </a>
 </CopyToClipboard>);
 
-const ReactAceEditor = ({ readOnly, editorid, jsonstring, usecopy, changehandler }) => (
+const ReactAceEditor = props => (
   <div className="application-ace-editor"
     style={{
       width: '100%',
       height: '100%',
       position: 'relative'
     }}>
-    {usecopy ? renderCopyToClipboard(jsonstring) : false}
-    <AceEditor readOnly={readOnly}
+    {props.usecopy ? renderCopyToClipboard(props.jsonstring) : false}
+    <AceEditor readOnly={props.readOnly}
+      focus
       wrapEnabled
       tabSize={2}
-      mode="json"
       width="100%"
       height="100%"
       theme="github"
-      value={jsonstring}
-      name={`${editorid}`}
       showPrintMargin={false}
-      onChange={e => changehandler(e)}
+      mode={props.editormode}
+      value={props.jsonstring}
+      name={`${props.editorid}`}
+      onChange={e => props.changehandler(e)}
       editorProps={{ $blockScrolling: true }}
-      annotations={[{ row: 0, column: 2, type: 'error', text: 'Some error.' }]} />
+      setOptions={{
+        showInvisibles: false,
+        showPrintMargin: false,
+        showLineNumbers: false,
+        displayIndentGuides: true,
+        highlightGutterLine: false
+      }}
+      defaultValue={props.defaultvalue} />
   </div>
 );
 
 ReactAceEditor.defaultProps = {
   label: '',
   usecopy: true,
+  jsonstring: '',
   readOnly: true,
-  usecchangehandleropy: true
+  defaultvalue: '',
+  editormode: 'json',
+  changehandler: noop
 };
 
 ReactAceEditor.propTypes = {
   usecopy: React.PropTypes.bool,
   readOnly: React.PropTypes.bool,
+  jsonstring: React.PropTypes.string,
+  editormode: React.PropTypes.string,
   changehandler: React.PropTypes.func,
-  editorid: React.PropTypes.string.isRequired,
-  jsonstring: React.PropTypes.string.isRequired
+  defaultvalue: React.PropTypes.string,
+  editorid: React.PropTypes.string.isRequired
 };
 
 export default ReactAceEditor;

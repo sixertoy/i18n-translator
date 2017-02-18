@@ -1,4 +1,3 @@
-import isempty from 'lodash.isempty';
 import { diff, apply } from 'rus-diff';
 // project
 import Constants from './../constants';
@@ -12,7 +11,7 @@ class ApplicationStore extends AbstractStore {
       json: {},
       locales: {},
       openpopin: false,
-      primarykeys: {},
+      primarykeys: false,
       orders: ['en', 'fr']
     }, dispatcher);
     // store original languages
@@ -32,6 +31,17 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
+  _onImportLanguages ({ data }) {
+    this._origin = data;
+    const keys = Object.keys(data);
+    const primarykeys = ObjectUtils.clone(data[keys[0]]);
+    this.setState({
+      primarykeys,
+      openpopin: false,
+      locales: ObjectUtils.clone(data)
+    });
+  }
+
   _onCreateNewLanguage ({ primarykey }) {
     const locales = this.getState('locales');
     // duplicate table keys, add new language to currents
@@ -48,13 +58,6 @@ class ApplicationStore extends AbstractStore {
     locales[data.lang][data.primarykey] = data.value;
     this.setState({
       locales
-    });
-  }
-
-  _onImportLanguages ({ data }) {
-    console.log('data', data);
-    this.setState({
-      openpopin: false
     });
   }
 

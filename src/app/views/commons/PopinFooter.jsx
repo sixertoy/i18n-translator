@@ -36,10 +36,8 @@ class PopinFooter extends React.PureComponent {
       <div className="application-popin-footer flex-columns flex-align-end"
         style={{
           width: '100%',
-          paddingTop: '12px',
-          paddingLeft: '12px',
-          paddingRight: '12px',
-          paddingBottom: '12px',
+          minHeight: '60px',
+          padding: '12px 32px',
           background: '#FBFBFB'
         }} >
         {!this.props.cancelClickHandler

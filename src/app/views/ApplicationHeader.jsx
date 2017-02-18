@@ -3,7 +3,7 @@ import React from 'react';
 import logo from './../../assets/json_logo.svg';
 
 const ApplicationHeader = () => (
-  <div className="application-header flex-columns"
+  <div className="application-header flex-columns flex-centered"
     style={{
       textAlign: 'left',
       padding: '20px 32px 20px 32px'

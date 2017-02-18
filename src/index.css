@@ -35,10 +35,8 @@ a:visited {
   text-decoration: none;
 }
 
-button,
 textarea,
-input[type="text"],
-button[type="submit"] {
+input[type="text"] {
   padding: 7px;
   border-radius: 4px;
   border: 1px solid #CCCCCC;
@@ -67,7 +65,6 @@ button[type="submit"] {
   color: white;
   cursor: pointer;
   padding: 0.8em 12px;
-  background: #70B7FD;
 }
 
 button[type="submit"] {
@@ -132,10 +129,6 @@ button[type="submit"] {
   justify-content: center;
 }
 
-.flex-vertical-centered {
-  align-self: flex-start;
-}
-
 .flex-align-end {
   align-items: flex-end;
   justify-content: flex-end;
@@ -152,6 +145,14 @@ button[type="submit"] {
 
 .flex-space-between {
   justify-content: space-between;
+}
+
+.flex-no-grow {
+  flex-shrink: 0;
+}
+
+.flex-no-shrink {
+  flex-shrink: 0;
 }
 
 /* ---------------------------------------------------
