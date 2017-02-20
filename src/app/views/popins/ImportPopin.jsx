@@ -3,8 +3,8 @@ import React from 'react';
 import isempty from 'lodash.isempty';
 // project
 import PopinFooter from './../commons/PopinFooter';
+import PopinFactory from './../commons/PopinFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
-import PopinFactory from './../commons/hoc/PopinFactory';
 import StepsIterator from './../../../core/iterators/StepsIterator';
 
 class ImportPopin extends React.PureComponent {
@@ -23,7 +23,8 @@ class ImportPopin extends React.PureComponent {
       // question: is it a description file
       () => this.renderLoadMoreContent.bind(this)
     ]);
-    this._editordefaultvalue = '// Put your JSON code to start working with your translations';
+    this._editordefaultvalue = '{"super": "super"}';
+    // this._editordefaultvalue = '// Put your JSON code to start working with your translations';
     this.state = {
       count: 0,
       submitted: false,
@@ -112,12 +113,15 @@ class ImportPopin extends React.PureComponent {
         <h3>
           <span>Load more language set ?</span>
         </h3>
-        <p>
+        <p style={{
+          marginTop: '0'
+        }}>
           <button onClick={e => this._onLoadMoreContentHandler(e, false)}
             style={{
               margin: '0 10px',
               paddingLeft: '20px',
-              paddingRight: '20px'
+              paddingRight: '20px',
+              background: this.context.theme.velvet
             }}>
             <span>No</span>
           </button>
@@ -125,7 +129,8 @@ class ImportPopin extends React.PureComponent {
             style={{
               margin: '0 10px',
               paddingLeft: '20px',
-              paddingRight: '20px'
+              paddingRight: '20px',
+              background: this.context.theme.velvet
             }}>
             <span>Yes</span>
           </button>
@@ -135,7 +140,6 @@ class ImportPopin extends React.PureComponent {
   }
 
   renderFileImportStep () {
-    console.log('renderFileImportStep renderFileImportStep renderFileImportStep', this._currentvalue || this._editordefaultvalue);
     return (
       <div style={{
         width: '100%',

@@ -13,7 +13,7 @@ import ApplicationLayout from './views/ApplicationLayout';
 
 class ApplicationFacade extends AbstractFacade {
 
-  start (version) {
+  start ({ name, version }) {
     this._beforeStart({
       services,
       stores,
@@ -22,7 +22,8 @@ class ApplicationFacade extends AbstractFacade {
       observers
     });
     // eslint-disable-next-line
-    ReactDOM.render(<ApplicationLayout version={version}
+    ReactDOM.render(<ApplicationLayout appname={name}
+      version={version}
       facade={this} />, document.getElementById('root'));
   }
 

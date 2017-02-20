@@ -58,14 +58,15 @@ class LocalesTable extends React.PureComponent {
     return (
       <div className="application-locales-table"
         style={{
+          width: '100%',
           padding: '20px'
         }}>
-        {ObjectUtils.entries(primarykeys).map(([pkey, desc], index) =>
+        {ObjectUtils.entries(primarykeys).map(([pkey, desc]) =>
           <LocalesTableRow key={`row_${pkey}`}
             langs={langs}
             primarykey={pkey}
             description={desc}
-            isheader={index === 0}
+            isheader={false}
             facade={this.props.facade}
             values={langs.map(lang => locales[lang][pkey])} />)}
       </div>

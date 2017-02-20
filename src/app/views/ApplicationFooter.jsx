@@ -39,7 +39,7 @@ class ApplicationFooter extends React.PureComponent {
           clickHandler={e => this._showTranslationsContent(e)}
           styles={{
             marginRight: '12px',
-            background: '#661E75'
+            background: this.context.theme.velvet
           }} />
       </span>
     );
@@ -60,7 +60,9 @@ class ApplicationFooter extends React.PureComponent {
         }}>{`v${this.props.version}`}</span>
         <span style={{
           marginRight: '3px'
-        }}>Made with <span style={{ color: '#DD4739' }}>♥</span> and React</span>
+        }}>Made with <span style={{
+          color: this.context.theme.love
+        }}>♥</span> and React</span>
       </span>
     );
   }
@@ -74,8 +76,8 @@ class ApplicationFooter extends React.PureComponent {
           minHeight: '50px',
           paddingTop: '10px',
           paddingBottom: '10px',
-          background: '#34495E',
-          padding: '10px 32px 10px 32px'
+          padding: '10px 32px 10px 32px',
+          background: this.context.theme.metal
         }}>
         {this._renderCredits()}
         {this._renderSaveButtons()}
@@ -86,6 +88,7 @@ class ApplicationFooter extends React.PureComponent {
 }
 
 ApplicationFooter.contextTypes = {
+  theme: React.PropTypes.object,
   facade: React.PropTypes.object
 };
 

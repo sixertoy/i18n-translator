@@ -1,7 +1,7 @@
 import React from 'react';
 // project
 import { ObjectUtils } from './../../../core/utils';
-import PopinFactory from './../commons/hoc/PopinFactory';
+import PopinFactory from './../commons/PopinFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
 
 class ExportPopin extends React.PureComponent {

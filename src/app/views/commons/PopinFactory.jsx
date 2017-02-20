@@ -19,7 +19,7 @@ const factory = (Wrapped) => {
 
     _onCloseHandler (evt) {
       evt.preventDefault();
-      const action = this.props.facade.getAction('ApplicationAction');
+      const action = this.context.facade.getAction('ApplicationAction');
       action.togglePopin(false);
     }
 
@@ -53,14 +53,15 @@ const factory = (Wrapped) => {
               width: '80%',
               height: '95%',
               margin: '0 auto',
+              maxHeight: '620px',
               overflow: 'hidden',
               background: 'white'
             }}>
             <div className="application-popin-header flex-columns flex-space-between"
               style={{
                 width: '100%',
-                padding: '12px 32px',
-                background: '#FBFBFB'
+                background: '#FBFBFB',
+                padding: '12px 12px 12px 32px'
               }} >
               <h3 style={{
                 margin: '0',
@@ -78,9 +79,13 @@ const factory = (Wrapped) => {
     }
   }
 
+  PopinFactory.contextTypes = {
+    theme: React.PropTypes.object,
+    facade: React.PropTypes.object
+  };
+
   PopinFactory.propTypes = {
-    title: React.PropTypes.string.isRequired,
-    facade: React.PropTypes.object.isRequired
+    title: React.PropTypes.string.isRequired
   };
 
   return PopinFactory;
