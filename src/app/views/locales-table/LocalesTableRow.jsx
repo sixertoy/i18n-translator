@@ -103,8 +103,8 @@ class LocalesTableRow extends React.PureComponent {
         style={{
           marginBottom: '22px'
         }} >
-        {LocalesTableRow.renderRowPrimaryKeyName(pkey)}
         {LocalesTableRow.renderRowDescription(desc)}
+        {LocalesTableRow.renderRowPrimaryKeyName(pkey)}
         {LocalesTableRow.renderRowLanguagesInput(this.props.facade, { pkey, langs, values })}
       </div>
     );

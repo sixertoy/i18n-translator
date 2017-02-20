@@ -41,6 +41,8 @@ class Application extends React.Component {
     return {
       facade: this.props.facade,
       theme: {
+        love: '#DD4739',
+        metal: '#34495E',
         velvet: '#661E75'
       }
     };
@@ -143,7 +145,7 @@ class Application extends React.Component {
               position: 'relative',
               background: '#FBFBFB'
             }}>
-            <ApplicationHeader />
+            <ApplicationHeader appname={this.props.appname} />
           </div>
           <ApplicationContent orders={this.state.orders}
             locales={this.state.locales}
@@ -166,6 +168,7 @@ Application.childContextTypes = {
 };
 
 Application.propTypes = {
+  appname: React.PropTypes.string.isRequired,
   version: React.PropTypes.string.isRequired,
   facade: React.PropTypes.object.isRequired
 };
