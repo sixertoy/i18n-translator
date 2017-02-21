@@ -42,17 +42,28 @@ class PopinFooter extends React.PureComponent {
         }} >
         {!this.props.cancelClickHandler
           ? false
-          : (<SubmitButton label={this.props.cancellabel}
-            clickHandler={e => this.props.cancelClickHandler(e)} />)}
+          : (
+            <SubmitButton label={this.props.cancellabel}
+              clickHandler={e => this.props.cancelClickHandler(e)} />
+          )}
         {!this.props.submitClickHandler
           ? false
-          : (<SubmitButton label={this.props.submitlabel}
-            clickHandler={e => this.props.submitClickHandler(e)} />)}
+          : (
+            <SubmitButton label={this.props.submitlabel}
+              iconclass="icon-download"
+              styles={{ background: this.context.theme.velvet }}
+              clickHandler={e => this.props.submitClickHandler(e)} />
+          )}
       </div>
     );
   }
 
 }
+
+PopinFooter.contextTypes = {
+  theme: React.PropTypes.object,
+  facade: React.PropTypes.object
+};
 
 PopinFooter.propTypes = {
   cancellabel: React.PropTypes.string,

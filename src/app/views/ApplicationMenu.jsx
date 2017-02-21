@@ -5,7 +5,7 @@ import isstring from 'lodash.isstring';
 import logo from './../../assets/json_logo.svg';
 import GithubStarButton from './../../core/views/GithubStarButton';
 
-class ApplicationMainMenu extends React.PureComponent {
+class ApplicationMenu extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -18,18 +18,8 @@ class ApplicationMainMenu extends React.PureComponent {
 
   -------------------------------------------------------- */
 
-  _searchFor (evt) {
-    evt.preventDefault();
-  }
-
   _createNewLanguage (evt) {
     evt.preventDefault();
-    const key = this._newlangInput.value;
-    if (!isstring(key) || isempty(key.trim()) || (this.props.langs.indexOf(key) >= 0)) {
-      return false;
-    }
-    const ApplicationAction = this.context.facade.getAction('ApplicationAction');
-    ApplicationAction.createNewLanguage(key);
     return true;
   }
 
@@ -38,24 +28,6 @@ class ApplicationMainMenu extends React.PureComponent {
    Renders Sub Components
 
   -------------------------------------------------------- */
-
-  _renderSearchInput () {
-    return (
-      <span>
-        <input type="text"
-          style={{
-            width: '240px',
-            marginRight: '3px'
-          }}
-          placeholder="Search for..." />
-        <button onClick={e => this._searchFor(e)} >
-          <span>
-            <i className="icon-search" />
-          </span>
-        </button>
-      </span>
-    );
-  }
 
   _renderCreateNewLanguage () {
     return (
@@ -79,25 +51,19 @@ class ApplicationMainMenu extends React.PureComponent {
       <div className="application-main-menu flex-columns flex-space-between"
         style={{
           width: '100%',
+          padding: '12px 32px',
           background: '#FBFBFB'
         }}>
-        {/* this._renderSearchInput() */}
         {this._renderCreateNewLanguage()}
-        <GithubStarButton username="sixertoy"
-          projectname="i18n-translator" />
       </div>
     );
   }
 
 }
 
-ApplicationMainMenu.contextTypes = {
+ApplicationMenu.contextTypes = {
+  theme: React.PropTypes.object,
   facade: React.PropTypes.object
 };
 
-ApplicationMainMenu.propTypes = {
-  langs: React.PropTypes.array.isRequired,
-  facade: React.PropTypes.object.isRequired
-};
-
-export default ApplicationMainMenu;
+export default ApplicationMenu;
