@@ -1,6 +1,6 @@
 import React from 'react';
 // project
-import { ObjectUtils } from './../../../core/utils';
+import { entries } from './../../../core/utils/ObjectUtils';
 import PopinFactory from './../commons/hoc/PopinFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
 
@@ -37,7 +37,7 @@ class ExportPopin extends React.PureComponent {
         style={{
           marginRight: '40px'
         }}>
-        {ObjectUtils.entries(this.props.locales)
+        {entries(this.props.locales)
           .map(([langkey], index) => <a href=""
             key={`tabs_${langkey}`}
             style={{
@@ -75,7 +75,7 @@ class ExportPopin extends React.PureComponent {
   _renderTextArea () {
     let langkey = null;
     let locales = null;
-    const entries = ObjectUtils.entries(this.props.locales);
+    const entries = entries(this.props.locales);
     if (this.state.current < 0) {
       langkey = 'diff';
       locales = this.props.json;

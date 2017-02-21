@@ -1,7 +1,8 @@
 import { diff, apply } from 'rus-diff';
 // project
+import { fillwith } from './../../core/utils/ObjectUtils';
+import { deduplicate, alphasort } from './../../core/utils/ArrayUtils';
 import Constants from './../constants';
-import { ObjectUtils } from './../../core/utils';
 import AbstractStore from './../../core/abstracts/AbstractStore';
 
 class ApplicationStore extends AbstractStore {
@@ -9,7 +10,7 @@ class ApplicationStore extends AbstractStore {
   constructor (dispatcher) {
     super({
       json: {},
-      locales: {},
+      locales: [],
       openpopin: false,
       primarykeys: false,
       orders: ['en', 'fr']
@@ -18,18 +19,28 @@ class ApplicationStore extends AbstractStore {
     this._origin = {};
   }
 
+  /**
+   * @param {Array} data - An array of pairs key/values
+   */
   _onImportLanguages ({ data }) {
-    // @TODO clone data
-    this._origin = data;
-    const primarykeys = ObjectUtils.clone(data[0]);
+    this._origin = [].concat(data);
+    console.log('this._origin', this._origin);
+    let locales = [].concat(data);
+    // all primarykeys
+    const primarykeys = locales.reduce((acc, obj) => acc.concat(Object.keys(obj)), [])
+      .filter(deduplicate)
+      .sort(alphasort);
+    // check if all keys are in locales
+    locales = locales.map(obj => fillwith(obj, primarykeys, ''));
     this.setState({
+      locales,
       primarykeys,
-      openpopin: false,
-      locales: [].concat(data)
+      openpopin: false
     });
   }
 
   _onCreateNewLanguage ({ primarykey }) {
+    /*
     const locales = this.getState('locales');
     // duplicate table keys, add new language to currents
     locales[primarykey] = Object.keys(this.getState('primarykeys'))
@@ -38,22 +49,27 @@ class ApplicationStore extends AbstractStore {
       locales,
       orders: [].concat(this.getState('orders'), [primarykey])
     });
+    */
   }
 
   _onUpdateValue ({ data }) {
+    /*
     const locales = this.getState('locales');
     locales[data.lang][data.primarykey] = data.value;
     this.setState({
       locales
     });
+    */
   }
 
   _onSaveLocales () {
+    /*
     let json = diff(this._origin, this.getState('locales'));
     json = apply({}, json);
     this.setState({
       json
     });
+    */
   }
 
   _initDispatcher () {

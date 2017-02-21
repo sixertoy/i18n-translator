@@ -1,6 +1,7 @@
 import { Dispatcher } from 'flux';
 // core
-import { StringUtils, ObjectUtils } from './../utils';
+import { entries } from './../utils/ObjectUtils';
+import StringUtils from './../utils/StringUtils';
 
 class AbstractFacade {
 
@@ -11,7 +12,7 @@ class AbstractFacade {
     this._routesActions = null;
     this._dispatcher = new Dispatcher();
     this._config = new Map(
-      ObjectUtils.entries(appconfig).filter(
+      entries(appconfig).filter(
         // keep only 'REACT_APP_' prefixed .env's variables
         item => (item[0].indexOf('REACT_APP_') >= 0)
       )

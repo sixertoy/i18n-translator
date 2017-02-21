@@ -1,9 +1,9 @@
 import React from 'react';
-import isempty from 'lodash.isempty';
-import isstring from 'lodash.isstring';
-// punkbeer
-import logo from './../../assets/json_logo.svg';
-import GithubStarButton from './../../core/views/GithubStarButton';
+// import isempty from 'lodash.isempty';
+// import isstring from 'lodash.isstring';
+// project
+// import logo from './../../assets/json_logo.svg';
+// import GithubStarButton from './../../core/views/GithubStarButton';
 
 class ApplicationMenu extends React.PureComponent {
 

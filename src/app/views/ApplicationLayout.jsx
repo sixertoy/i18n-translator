@@ -33,7 +33,7 @@ class Application extends React.Component {
     this.state = {
       json: {},
       orders: [],
-      locales: {},
+      locales: [],
       openpopin: false,
       primarykeys: false
     };
@@ -119,6 +119,9 @@ class Application extends React.Component {
   ------------------------------------------------ */
 
   render () {
+
+    console.log('this.state.primarykeys', this.state.primarykeys);
+
     return (
       <div className="application"
         style={{

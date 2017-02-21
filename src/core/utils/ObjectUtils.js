@@ -1,42 +1,47 @@
 import ObjectEntries from 'object.entries';
+// core
+import { deduplicate } from './ArrayUtils';
 
-class ObjectUtils {
+export const entries = (obj) => {
+  try {
+    return Object.entries(obj);
+  } catch (e) {
+    return ObjectEntries(obj);
+  }
+};
 
-  static entries (obj) {
-    try {
-      return Object.entries(obj);
-    } catch (e) {
-      return ObjectEntries(obj);
+export const has = (obj, propname) => Object.prototype.hasOwnProperty.call(obj, propname);
+
+export const isObject = obj => (
+  obj
+  && !Array.isArray(obj)
+  && typeof obj === 'object'
+  && typeof obj !== 'function'
+);
+
+export const toMap = obj => new Map(entries(obj));
+
+export const clone = obj => JSON.parse(JSON.stringify(obj));
+
+export const fillwith = (obj, keys, defaultvalue = '') => {
+  const oclone = clone(obj);
+  const missing = Object.keys(obj)
+    .concat(keys).filter(deduplicate);
+  missing.forEach((key) => {
+    if (!has(oclone, key)) {
+      oclone[key] = defaultvalue;
     }
-  }
+  });
+  return oclone;
+};
 
-  static has (obj, propname) {
-    return Object.prototype.hasOwnProperty.call(obj, propname);
-  }
+export const update = (dest, src) => {
+  const updated = clone(dest);
+  Object.keys(src).forEach((k) => {
+    // copy object
+    updated[k] = src[k];
+  });
+  return updated;
+};
 
-  static isObject (obj) {
-    return (obj && !Array.isArray(obj) && typeof obj === 'object' && typeof obj !== 'function');
-  }
-
-  static toMap (obj) {
-    return new Map(ObjectUtils.entries(obj));
-  }
-
-  static clone (obj) {
-    let clone = {};
-    clone = JSON.parse(JSON.stringify(obj));
-    return clone;
-  }
-
-  static update (dest, src) {
-    const updated = ObjectUtils.clone(dest);
-    Object.keys(src).forEach((k) => {
-      // copy object
-      updated[k] = src[k];
-    });
-    return updated;
-  }
-
-}
-
-export default ObjectUtils;
+export default {};

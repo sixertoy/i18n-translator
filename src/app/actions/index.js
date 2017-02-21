@@ -1,8 +1,8 @@
-import { ObjectUtils } from './../../core/utils';
+import { toMap } from './../../core/utils/ObjectUtils';
 // project
 import ApplicationAction from './ApplicationAction';
 
-const imports = ObjectUtils.toMap({
+const imports = toMap({
   ApplicationAction
 });
 

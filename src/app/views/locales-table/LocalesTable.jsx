@@ -1,7 +1,7 @@
 import React from 'react';
 // project
 import LocalesTableRow from './LocalesTableRow';
-import { ObjectUtils } from './../../../core/utils';
+import { entries } from './../../../core/utils/ObjectUtils';
 
 class LocalesTable extends React.PureComponent {
 
@@ -54,7 +54,6 @@ class LocalesTable extends React.PureComponent {
   render () {
     const locales = this.props.locales;
     const langs = Object.keys(locales);
-    console.log('langs', langs);
     const primarykeys = this.props.primarykeys;
     return (
       <div className="application-locales-table"
@@ -62,24 +61,22 @@ class LocalesTable extends React.PureComponent {
           width: '100%',
           padding: '20px'
         }}>
-        {ObjectUtils.entries(primarykeys).map(([pkey, desc]) =>
-          <LocalesTableRow key={`row_${pkey}`}
+        {primarykeys.map(key =>
+          <LocalesTableRow key={`row_${key}`}
             langs={langs}
-            primarykey={pkey}
-            description={desc}
+            primarykey={key}
             isheader={false}
             facade={this.props.facade}
-            values={langs.map(lang => locales[lang][pkey])} />)}
+            values={langs.map(lang => locales[lang][key])} />)}
       </div>
     );
   }
-
 }
 
 LocalesTable.propTypes = {
   facade: React.PropTypes.object.isRequired,
-  locales: React.PropTypes.object.isRequired,
-  primarykeys: React.PropTypes.object.isRequired
+  locales: React.PropTypes.array.isRequired,
+  primarykeys: React.PropTypes.array.isRequired
 };
 
 export default LocalesTable;

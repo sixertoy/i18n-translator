@@ -1,7 +1,7 @@
 /* eslint no-console: 0, max-nested-callbacks: 0 */
 import { expect } from 'chai';
 //
-import ObjectUtils from './ObjectUtils';
+import { clone } from './ObjectUtils';
 
 describe('ObjectUtils', () => {
 
@@ -21,7 +21,7 @@ describe('ObjectUtils', () => {
           prop: true
         }
       };
-      result = ObjectUtils.clone(expected);
+      result = clone(expected);
       expect(result).to.not.equal(expected);
       expect(result.prop3).to.not.equal(expected.prop3);
     });

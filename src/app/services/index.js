@@ -1,5 +1,5 @@
-import { ObjectUtils } from './../../core/utils';
+import { toMap } from './../../core/utils/ObjectUtils';
 
-const imports = ObjectUtils.toMap({});
+const imports = toMap({});
 
 export default imports;
