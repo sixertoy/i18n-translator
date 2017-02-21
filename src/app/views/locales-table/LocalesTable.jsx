@@ -1,7 +1,7 @@
 import React from 'react';
 // project
 import LocalesTableRow from './LocalesTableRow';
-import { entries } from './../../../core/utils/ObjectUtils';
+// import { entries } from './../../../core/utils/ObjectUtils';
 
 class LocalesTable extends React.PureComponent {
 
@@ -52,8 +52,9 @@ class LocalesTable extends React.PureComponent {
   ------------------------------------------------ */
 
   render () {
-    const locales = this.props.locales;
-    const langs = Object.keys(locales);
+    const values = this.props.values;
+    const langs = Object.keys(values);
+    console.log('langs', langs);
     const primarykeys = this.props.primarykeys;
     return (
       <div className="application-locales-table"
@@ -67,15 +68,15 @@ class LocalesTable extends React.PureComponent {
             primarykey={key}
             isheader={false}
             facade={this.props.facade}
-            values={langs.map(lang => locales[lang][key])} />)}
+            values={langs.map(lang => values[lang][key])} />)}
       </div>
     );
   }
 }
 
 LocalesTable.propTypes = {
+  values: React.PropTypes.array.isRequired,
   facade: React.PropTypes.object.isRequired,
-  locales: React.PropTypes.array.isRequired,
   primarykeys: React.PropTypes.array.isRequired
 };
 

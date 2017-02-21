@@ -1,4 +1,4 @@
-import { diff, apply } from 'rus-diff';
+// import { diff, apply } from 'rus-diff';
 // project
 import { fillwith } from './../../core/utils/ObjectUtils';
 import { deduplicate, alphasort } from './../../core/utils/ArrayUtils';
@@ -10,30 +10,32 @@ class ApplicationStore extends AbstractStore {
   constructor (dispatcher) {
     super({
       json: {},
-      locales: [],
+      langs: [],
+      values: [],
       openpopin: false,
-      primarykeys: false,
-      orders: ['en', 'fr']
+      primarykeys: false
     }, dispatcher);
     // store original languages
-    this._origin = {};
+    this._origin = [];
   }
 
   /**
    * @param {Array} data - An array of pairs key/values
    */
   _onImportLanguages ({ data }) {
-    this._origin = [].concat(data);
-    console.log('this._origin', this._origin);
-    let locales = [].concat(data);
+    this._origin = this._origin.concat(data);
+    let values = [].concat(data);
     // all primarykeys
-    const primarykeys = locales.reduce((acc, obj) => acc.concat(Object.keys(obj)), [])
+    const primarykeys = values.reduce((acc, obj) => acc.concat(Object.keys(obj)), [])
       .filter(deduplicate)
       .sort(alphasort);
-    // check if all keys are in locales
-    locales = locales.map(obj => fillwith(obj, primarykeys, ''));
+    // languages
+    const langs = [];
+    // check if all keys are in values
+    values = values.map(obj => fillwith(obj, primarykeys, ''));
     this.setState({
-      locales,
+      langs,
+      values,
       primarykeys,
       openpopin: false
     });
@@ -41,30 +43,30 @@ class ApplicationStore extends AbstractStore {
 
   _onCreateNewLanguage ({ primarykey }) {
     /*
-    const locales = this.getState('locales');
+    const values = this.getState('values');
     // duplicate table keys, add new language to currents
-    locales[primarykey] = Object.keys(this.getState('primarykeys'))
+    values[primarykey] = Object.keys(this.getState('primarykeys'))
       .reduce((acc, k) => Object.assign(acc, { [k]: '' }), {});
     this.setState({
-      locales,
-      orders: [].concat(this.getState('orders'), [primarykey])
+      values,
+      langs: [].concat(this.getState('langs'), [primarykey])
     });
     */
   }
 
   _onUpdateValue ({ data }) {
     /*
-    const locales = this.getState('locales');
-    locales[data.lang][data.primarykey] = data.value;
+    const values = this.getState('values');
+    values[data.lang][data.primarykey] = data.value;
     this.setState({
-      locales
+      values
     });
     */
   }
 
   _onSaveLocales () {
     /*
-    let json = diff(this._origin, this.getState('locales'));
+    let json = diff(this._origin, this.getState('values'));
     json = apply({}, json);
     this.setState({
       json

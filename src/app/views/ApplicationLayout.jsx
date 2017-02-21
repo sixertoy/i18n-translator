@@ -11,7 +11,6 @@ import ApplicationMenu from './ApplicationMenu';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
 import ApplicationContent from './ApplicationContent';
-import ApplicationButtons from './ApplicationButtons';
 import GithubOctocatCorner from './../../core/views/GithubOctocatCorner';
 
 class Application extends React.Component {
@@ -32,8 +31,8 @@ class Application extends React.Component {
     super(props);
     this.state = {
       json: {},
-      orders: [],
-      locales: [],
+      langs: [],
+      values: [],
       openpopin: false,
       primarykeys: false
     };
@@ -70,11 +69,11 @@ class Application extends React.Component {
   /**
    * Called when application's store emit changes
    */
-  _onApplicationStoreChange ({ json, primarykeys, orders, locales, openpopin }) {
+  _onApplicationStoreChange ({ langs, json, primarykeys, values, openpopin }) {
     this.setState({
       json,
-      orders,
-      locales,
+      langs,
+      values,
       openpopin,
       primarykeys
     });
@@ -103,7 +102,7 @@ class Application extends React.Component {
         <ExportPopin facade={this.props.facade}
           title={'Export languages'}
           json={this.state.json}
-          locales={this.state.locales} />
+          values={this.state.values} />
         );
       break;
     default:
@@ -119,9 +118,6 @@ class Application extends React.Component {
   ------------------------------------------------ */
 
   render () {
-
-    console.log('this.state.primarykeys', this.state.primarykeys);
-
     return (
       <div className="application"
         style={{
@@ -153,13 +149,12 @@ class Application extends React.Component {
             }}>
             <ApplicationHeader appname={this.props.appname} />
           </div>
-          <ApplicationMenu />
-          <ApplicationContent orders={this.state.orders}
-            locales={this.state.locales}
+          <ApplicationMenu canexport={!isempty(this.state.values)}
+            canadd={!isempty(this.state.values)} />
+          <ApplicationContent langs={this.state.langs}
+            values={this.state.values}
             primarykeys={this.state.primarykeys} />
           <ApplicationFooter version={this.props.version}
-            canexport={!isempty(this.state.primarykeys)} />
-          <ApplicationButtons canadd={!isempty(this.state.primarykeys)}
             canexport={!isempty(this.state.primarykeys)} />
         </div>
         {this._renderApplicationPopin()}
