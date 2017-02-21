@@ -11,7 +11,7 @@ class ImportPopin extends React.PureComponent {
 
   constructor (props) {
     super(props);
-    this._datas = {};
+    this._datas = [];
     this._ismounted = false;
     this._currentvalue = false;
     this._selectOptions = [
@@ -85,7 +85,7 @@ class ImportPopin extends React.PureComponent {
         // should alert user
         throw new Error('is empty');
       }
-      this._datas[`step-${this.state.count}`] = obj;
+      this._datas[this.state.count] = obj;
       this.setState({
         jsonisvalid: true
       });
@@ -121,7 +121,7 @@ class ImportPopin extends React.PureComponent {
               margin: '0 10px',
               paddingLeft: '20px',
               paddingRight: '20px',
-              background: this.context.theme.velvet
+              background: this.context.theme.grey
             }}>
             <span>No</span>
           </button>

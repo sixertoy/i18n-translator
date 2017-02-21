@@ -32,6 +32,7 @@ class ApplicationAction extends AbstractAction {
   }
 
   importLanguagesSet (imports) {
+    console.log('imports', imports);
     this.getDispatcher().dispatch({
       type: Constants.FLUX.IMPORT_LANGUAGES,
       data: imports

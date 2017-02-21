@@ -2,11 +2,13 @@ import React from 'react';
 // project
 import logo from './../../assets/json_logo.svg';
 import GithubStarButton from './../../core/views/GithubStarButton';
+import TwitterShareButton from './../../core/views/TwitterShareButton';
 
 const ApplicationHeader = props => (
   <div className="application-header flex-columns flex-space-around"
     style={{
       textAlign: 'left',
+      position: 'relative',
       padding: '20px 32px 20px 32px'
     }}>
     <div className="flex-columns flex-centered">
@@ -39,9 +41,20 @@ const ApplicationHeader = props => (
         </h2>
       </div>
     </div>
-    <div>
-      <GithubStarButton username="sixertoy"
-        projectname={props.appname} />
+    <div style={{
+      right: '32px',
+      position: 'absolute'
+    }}>
+      <span style={{
+        marginRight: '12px'
+      }}>
+        <TwitterShareButton username="sixertoy"
+          projecturl={`https://sixertoy.github.io/${props.appname}`} />
+      </span>
+      <span>
+        <GithubStarButton username="sixertoy"
+          projectname={props.appname} />
+      </span>
     </div>
   </div>
 );

@@ -33,12 +33,11 @@ class ApplicationStore extends AbstractStore {
 
   _onImportLanguages ({ data }) {
     this._origin = data;
-    const keys = Object.keys(data);
-    const primarykeys = ObjectUtils.clone(data[keys[0]]);
+    const primarykeys = ObjectUtils.clone(data[0]);
     this.setState({
       primarykeys,
       openpopin: false,
-      locales: ObjectUtils.clone(data)
+      locales: [].concat(data)
     });
   }
 

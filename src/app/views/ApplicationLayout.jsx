@@ -7,9 +7,11 @@ import './Application.css';
 import Constants from './../constants';
 import ExportPopin from './popins/ExportPopin';
 import ImportPopin from './popins/ImportPopin';
+import ApplicationMenu from './ApplicationMenu';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
 import ApplicationContent from './ApplicationContent';
+import ApplicationButtons from './ApplicationButtons';
 import GithubOctocatCorner from './../../core/views/GithubOctocatCorner';
 
 class Application extends React.Component {
@@ -41,6 +43,7 @@ class Application extends React.Component {
     return {
       facade: this.props.facade,
       theme: {
+        grey: '#B9B9B9',
         love: '#DD4739',
         metal: '#34495E',
         velvet: '#661E75'
@@ -147,10 +150,13 @@ class Application extends React.Component {
             }}>
             <ApplicationHeader appname={this.props.appname} />
           </div>
+          <ApplicationMenu />
           <ApplicationContent orders={this.state.orders}
             locales={this.state.locales}
             primarykeys={this.state.primarykeys} />
           <ApplicationFooter version={this.props.version}
+            canexport={!isempty(this.state.primarykeys)} />
+          <ApplicationButtons canadd={!isempty(this.state.primarykeys)}
             canexport={!isempty(this.state.primarykeys)} />
         </div>
         {this._renderApplicationPopin()}

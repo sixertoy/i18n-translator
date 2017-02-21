@@ -28,6 +28,11 @@
   border-radius: 4px;
 }
 
+.application-buttons > * {
+  overflow: hidden;
+  border-radius: 50%;
+}
+
 /* ------------------------------------------------------
 
  Popin
