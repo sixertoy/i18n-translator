@@ -100,10 +100,10 @@ ApplicationContent.defaultProps = {
 };
 
 ApplicationContent.propTypes = {
-  locales: React.PropTypes.object,
+  locales: React.PropTypes.array,
   primarykeys: React.PropTypes.oneOfType([
     React.PropTypes.bool,
-    React.PropTypes.object
+    React.PropTypes.array
   ])
 };
 

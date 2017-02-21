@@ -96,14 +96,12 @@ class LocalesTableRow extends React.PureComponent {
     const langs = this.props.langs;
     const values = this.props.values;
     const pkey = this.props.primarykey;
-    const desc = this.props.description;
     const classes = 'application-locales-table-row';
     return (
-      <div className={`${classes} ${slug(pkey.toLowerCase())} ${slug(desc)}`}
+      <div className={`${classes} ${slug(pkey.toLowerCase())}`}
         style={{
           marginBottom: '22px'
         }} >
-        {LocalesTableRow.renderRowDescription(desc)}
         {LocalesTableRow.renderRowPrimaryKeyName(pkey)}
         {LocalesTableRow.renderRowLanguagesInput(this.props.facade, { pkey, langs, values })}
       </div>
@@ -116,8 +114,7 @@ LocalesTableRow.propTypes = {
   langs: React.PropTypes.array.isRequired,
   values: React.PropTypes.array.isRequired,
   facade: React.PropTypes.object.isRequired,
-  primarykey: React.PropTypes.string.isRequired,
-  description: React.PropTypes.string.isRequired
+  primarykey: React.PropTypes.string.isRequired
 };
 
 export default LocalesTableRow;

@@ -1,12 +1,12 @@
 import { EventEmitter } from 'events';
 import isstring from 'lodash.isstring';
 // punkbeer
-import ObjectUtils from './../utils/ObjectUtils';
+import { clone, update } from './../utils/ObjectUtils';
 
 class AbstractStore {
 
   constructor (ostate, dispatcher) {
-    this._state = ObjectUtils.clone(ostate);
+    this._state = clone(ostate);
     this._dispatcher = dispatcher;
     this._emitter = new EventEmitter();
     this._initDispatcher();
@@ -17,12 +17,12 @@ class AbstractStore {
    * @param {Object} ostate
    */
   setState (ostate) {
-    this._state = ObjectUtils.update(this._state, ostate);
+    this._state = update(this._state, ostate);
     this._emitChange();
   }
 
   getState (key) {
-    const state = ObjectUtils.clone(this._state);
+    const state = clone(this._state);
     if (key && isstring(key)) {
       return state[key];
     }
