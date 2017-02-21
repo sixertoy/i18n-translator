@@ -18,20 +18,8 @@ class ApplicationStore extends AbstractStore {
     this._origin = {};
   }
 
-  /**
-   * called when all locales files are loaded
-   * store origin files data
-   */
-  _onApplicationInit ({ data }) {
-    const { primarykeys, locales } = data;
-    this._origin = ObjectUtils.clone(locales);
-    this.setState({
-      locales: ObjectUtils.clone(locales),
-      primarykeys: ObjectUtils.clone(primarykeys)
-    });
-  }
-
   _onImportLanguages ({ data }) {
+    // @TODO clone data
     this._origin = data;
     const primarykeys = ObjectUtils.clone(data[0]);
     this.setState({
@@ -71,9 +59,6 @@ class ApplicationStore extends AbstractStore {
   _initDispatcher () {
     const token = this._dispatcher.register((obj) => {
       switch (obj.type) {
-      case Constants.FLUX.INITIALIZE_APP:
-        this._onApplicationInit(obj);
-        break;
       case Constants.FLUX.UPDATE_VALUE:
         this._onUpdateValue(obj);
         break;

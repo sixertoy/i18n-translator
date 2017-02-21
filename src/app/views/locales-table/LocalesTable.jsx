@@ -54,6 +54,7 @@ class LocalesTable extends React.PureComponent {
   render () {
     const locales = this.props.locales;
     const langs = Object.keys(locales);
+    console.log('langs', langs);
     const primarykeys = this.props.primarykeys;
     return (
       <div className="application-locales-table"
