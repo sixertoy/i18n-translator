@@ -1,9 +1,7 @@
 import React from 'react';
-// import isempty from 'lodash.isempty';
-// import isstring from 'lodash.isstring';
 // project
-// import logo from './../../assets/json_logo.svg';
-// import GithubStarButton from './../../core/views/GithubStarButton';
+import Constants from './../constants';
+import SubmitButton from './buttons/SubmitButton';
 
 class ApplicationMenu extends React.PureComponent {
 
@@ -23,23 +21,74 @@ class ApplicationMenu extends React.PureComponent {
     return true;
   }
 
+  _createNewPrimaryKey (evt) {
+    evt.preventDefault();
+    return true;
+  }
+
+  _onExportClickHandler (evt) {
+    evt.preventDefault();
+    const ApplicationAction = this.context.facade.getAction('ApplicationAction');
+    ApplicationAction.togglePopin('export');
+    ApplicationAction.saveLocales();
+  }
+
   /* --------------------------------------------------------
 
    Renders Sub Components
 
   -------------------------------------------------------- */
 
+  _renderExportButton () {
+    if (!this.props.canexport) {
+      return Constants.REACT.NO_RENDER;
+    }
+    return (
+      <SubmitButton clickHandler={e => this._onExportClickHandler(e)}
+        label={'Export'}
+        iconclass={'icon-download'}
+        styles={{
+          background: this.context.theme.velvet
+        }} />
+    );
+  }
+
   _renderCreateNewLanguage () {
+    if (!this.props.canadd) {
+      return Constants.REACT.NO_RENDER;
+    }
+    return (
+      <span style={{
+        marginRight: '20px'
+      }}>
+        <input type="text"
+          style={{
+            width: '70px',
+            marginRight: '3px'
+          }}
+          ref={(c) => { this._newlangInput = c; }}
+          placeholder="lang" />
+        <button onClick={e => this._createNewLanguage(e)} >
+          <span>Create</span>
+        </button>
+      </span>
+    );
+  }
+
+  _renderCreateNewPrimaryKey () {
+    if (!this.props.canadd) {
+      return Constants.REACT.NO_RENDER;
+    }
     return (
       <span>
         <input type="text"
           style={{
-            width: '240px',
+            width: '70px',
             marginRight: '3px'
           }}
           ref={(c) => { this._newlangInput = c; }}
-          placeholder="Create new language" />
-        <button onClick={e => this._createNewLanguage(e)} >
+          placeholder="primary" />
+        <button onClick={e => this._createNewPrimaryKey(e)} >
           <span>Create</span>
         </button>
       </span>
@@ -54,12 +103,23 @@ class ApplicationMenu extends React.PureComponent {
           padding: '12px 32px',
           background: '#FBFBFB'
         }}>
-        {this._renderCreateNewLanguage()}
+        <div>
+          {this._renderCreateNewLanguage()}
+          {this._renderCreateNewPrimaryKey()}
+        </div>
+        <div>
+          {this._renderExportButton()}
+        </div>
       </div>
     );
   }
 
 }
+
+ApplicationMenu.propTypes = {
+  canadd: React.PropTypes.bool.isRequired,
+  canexport: React.PropTypes.bool.isRequired
+};
 
 ApplicationMenu.contextTypes = {
   theme: React.PropTypes.object,
