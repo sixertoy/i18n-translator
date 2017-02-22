@@ -1,7 +1,6 @@
 import React from 'react';
 // project
 import LocalesTableRow from './LocalesTableRow';
-// import { entries } from './../../../core/utils/ObjectUtils';
 
 class LocalesTable extends React.PureComponent {
 
@@ -54,7 +53,6 @@ class LocalesTable extends React.PureComponent {
   render () {
     const values = this.props.values;
     const langs = Object.keys(values);
-    console.log('langs', langs);
     const primarykeys = this.props.primarykeys;
     return (
       <div className="application-locales-table"
@@ -62,6 +60,7 @@ class LocalesTable extends React.PureComponent {
           width: '100%',
           padding: '20px'
         }}>
+        {langs.map(key => <span>{key}</span>)}
         {primarykeys.map(key =>
           <LocalesTableRow key={`row_${key}`}
             langs={langs}
