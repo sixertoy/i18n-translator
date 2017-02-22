@@ -5,15 +5,15 @@ import isempty from 'lodash.isempty';
 import PopinFooter from './../commons/PopinFooter';
 import PopinFactory from './../commons/PopinFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
+import { entries } from './../../../core/utils/ObjectUtils';
 import StepsIterator from './../../../core/iterators/StepsIterator';
 
 class ImportPopin extends React.PureComponent {
 
   constructor (props) {
     super(props);
-    this._datas = [];
+    this._locales = {};
     this._ismounted = false;
-    this._currentvalue = false;
     this._selectOptions = [
       { value: 'json', label: 'JSON' },
       { value: 'javascript', label: 'JavaScript' }
@@ -21,13 +21,16 @@ class ImportPopin extends React.PureComponent {
     this._stepsIterator = StepsIterator([
       () => this.renderFileImportStep.bind(this),
       // question: is it a description file
+      () => this.renderSelectLanguage.bind(this),
+      // question: import another language
       () => this.renderLoadMoreContent.bind(this)
     ]);
     this._editordefaultvalue = '{"super": "super"}';
     // this._editordefaultvalue = '// Put your JSON code to start working with your translations';
     this.state = {
       count: 0,
-      submitted: false,
+      langkey: false,
+      jsonstring: false,
       jsonisvalid: false,
       editormode: this._selectOptions[0].value,
       currentstep: this._stepsIterator.next().value
@@ -56,41 +59,50 @@ class ImportPopin extends React.PureComponent {
 
   _onLoadMoreContentHandler (e, response) {
     e.preventDefault();
+    const action = this.props.facade.getAction('ApplicationAction');
+    action.addLanguage(this.state.langkey, this.state.jsonstring);
     if (response) {
       this.setState({
-        submitted: false,
+        langkey: false,
+        jsonstring: false,
         jsonisvalid: false,
         count: (this.state.count + 1),
         currentstep: this._stepsIterator.next().value
       });
     } else {
-      const action = this.props.facade.getAction('ApplicationAction');
-      action.importLanguagesSet(this._datas);
+      action.togglePopin('import');
     }
   }
 
   _onClickSubmitHandler (e) {
     e.preventDefault();
     this.setState({
-      submitted: true,
+      jsonisvalid: false,
       currentstep: this._stepsIterator.next().value
     });
   }
 
+  _onClickLanguageHandler (e, langkey) {
+    e.stopPropagation();
+    this.setState({
+      langkey
+    });
+  }
+
   _onAceEditorChange (value) {
-    this._currentvalue = value;
     try {
       const obj = JSON.parse(value);
       if (isempty(obj)) {
         // should alert user
         throw new Error('is empty');
       }
-      this._datas[this.state.count] = obj;
       this.setState({
+        jsonstring: value,
         jsonisvalid: true
       });
     } catch (e) {
       this.setState({
+        jsonstring: value,
         jsonisvalid: false
       });
     }
@@ -139,6 +151,50 @@ class ImportPopin extends React.PureComponent {
     );
   }
 
+  renderSelectLanguage () {
+    const languages = {
+      // using language keys RFC 3066
+      'en-US': 'English',
+      'it-IT': 'Italian',
+      'fr-FR': 'French',
+      'es-ES': 'Spanish',
+      'pt-PT': 'Portuguese',
+      'de-DE': 'German'
+    };
+    return (
+      <div className="flex-rows flex-centered"
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'relative'
+        }}>
+        <h3>
+          <span>Select language ?</span>
+        </h3>
+        <p style={{
+          marginTop: '0'
+        }}>
+          {entries(languages).map(([key, val]) =>
+            <label key={`radio-${key}`}
+              htmlFor={key}
+              style={{
+                marginRight: '7px'
+              }}>
+              <input id={key}
+                value={key}
+                type="radio"
+                name="lang-radio-input"
+                onClick={e => this._onClickLanguageHandler(e, key)} />
+              <span style={{
+                marginLeft: '3px'
+              }}>{val}</span>
+            </label>
+          )}
+        </p>
+      </div>
+    );
+  }
+
   renderFileImportStep () {
     return (
       <div style={{
@@ -152,7 +208,7 @@ class ImportPopin extends React.PureComponent {
           editormode={this.state.editormode}
           defaultvalue={this._editordefaultvalue}
           changehandler={e => this._onAceEditorChange(e)}
-          jsonstring={this._currentvalue || this._editordefaultvalue} />
+          jsonstring={this.state.jsonstring || this._editordefaultvalue} />
       </div>
     );
   }
@@ -164,6 +220,7 @@ class ImportPopin extends React.PureComponent {
   -------------------------------------------------- */
 
   render () {
+    const showsubmit = this.state.jsonisvalid || this.state.langkey;
     return (
       <div className="application-popin-content flex-rows"
         style={{
@@ -198,7 +255,7 @@ class ImportPopin extends React.PureComponent {
             height: '100%'
           }}>{this.state.currentstep()}</div>
         <PopinFooter cancelClickHandler={false}
-          submitClickHandler={!this.state.jsonisvalid || this.state.submitted
+          submitClickHandler={!showsubmit
             ? false : e => this._onClickSubmitHandler(e)} />
       </div>
     );

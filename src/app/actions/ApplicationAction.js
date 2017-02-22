@@ -31,10 +31,10 @@ class ApplicationAction extends AbstractAction {
     });
   }
 
-  importLanguagesSet (imports) {
+  addLanguage (langkey, json) {
     this.getDispatcher().dispatch({
-      type: Constants.FLUX.IMPORT_LANGUAGES,
-      data: imports
+      type: Constants.FLUX.ADD_LANGUAGE,
+      data: [langkey, json]
     });
   }
 

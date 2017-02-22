@@ -1,6 +1,6 @@
 // import { diff, apply } from 'rus-diff';
 // project
-import { fillwith } from './../../core/utils/ObjectUtils';
+import { fillwith, clone, entries } from './../../core/utils/ObjectUtils';
 import { deduplicate, alphasort } from './../../core/utils/ArrayUtils';
 import Constants from './../constants';
 import AbstractStore from './../../core/abstracts/AbstractStore';
@@ -19,13 +19,17 @@ class ApplicationStore extends AbstractStore {
     this._origin = [];
   }
 
-  /**
-   * @param {Array} data - An array of pairs key/values
-   */
-  _onImportLanguages ({ data }) {
-    this._origin = this._origin.concat(data);
-    let values = [].concat(data);
-    // all primarykeys
+  _onAddLanguage ([langkey, jsonstring]) {
+    const langs = [langkey]
+      .concat(this.getState('langs'));
+    const values = [JSON.parse(jsonstring)]
+      .concat(this.getState('values'));
+    this.setState({
+      langs,
+      values
+    });
+  }
+    /*
     const primarykeys = values.reduce((acc, obj) => acc.concat(Object.keys(obj)), [])
       .filter(deduplicate)
       .sort(alphasort);
@@ -33,13 +37,7 @@ class ApplicationStore extends AbstractStore {
     const langs = [];
     // check if all keys are in values
     values = values.map(obj => fillwith(obj, primarykeys, ''));
-    this.setState({
-      langs,
-      values,
-      primarykeys,
-      openpopin: false
-    });
-  }
+    */
 
   _onCreateNewLanguage ({ primarykey }) {
     /*
@@ -88,9 +86,9 @@ class ApplicationStore extends AbstractStore {
         // create a new language
         this._onCreateNewLanguage(obj);
         break;
-      case Constants.FLUX.IMPORT_LANGUAGES:
-        // create a new language
-        this._onImportLanguages(obj);
+      case Constants.FLUX.ADD_LANGUAGE:
+        // add a new imported language
+        this._onAddLanguage(obj.data);
         break;
       case Constants.FLUX.TOGGLE_POPIN:
         // open/close popin
