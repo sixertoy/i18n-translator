@@ -18,7 +18,8 @@ class ApplicationMenu extends React.PureComponent {
 
   _createNewLanguage (evt) {
     evt.preventDefault();
-    return true;
+    const ApplicationAction = this.context.facade.getAction('ApplicationAction');
+    ApplicationAction.togglePopin('import');
   }
 
   _createNewPrimaryKey (evt) {
@@ -61,15 +62,8 @@ class ApplicationMenu extends React.PureComponent {
       <span style={{
         marginRight: '20px'
       }}>
-        <input type="text"
-          style={{
-            width: '70px',
-            marginRight: '3px'
-          }}
-          ref={(c) => { this._newlangInput = c; }}
-          placeholder="lang" />
         <button onClick={e => this._createNewLanguage(e)} >
-          <span>Create</span>
+          <span>Add a Language</span>
         </button>
       </span>
     );
@@ -104,10 +98,10 @@ class ApplicationMenu extends React.PureComponent {
           background: '#FBFBFB'
         }}>
         <div>
-          {this._renderCreateNewLanguage()}
           {this._renderCreateNewPrimaryKey()}
         </div>
         <div>
+          {this._renderCreateNewLanguage()}
           {this._renderExportButton()}
         </div>
       </div>

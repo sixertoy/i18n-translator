@@ -29,25 +29,23 @@ class LocalesTableRow extends React.PureComponent {
       <p className="application-locales-table-row-description"
         style={{
           marginTop: '0',
-          marginLeft: '12px',
           marginBottom: '7px'
         }}><em>{value}</em></p>
     );
   }
 
-  static renderRowLanguagesInput (facade, { pkey, langs, values }) {
+  static renderRowLanguagesInput (facade, { primarykey, langs, values }) {
     return (
       <p className="flex-columns"
         style={{
           marginTop: '0',
           marginBottom: '3px'
         }}>
-        {langs.map((lang, index) =>
-          <LocaleTableRowInput key={`${lang}_${pkey}`}
-            lang={lang}
+        {values.map((str, index) =>
+          <LocaleTableRowInput key={`${langs[index]}-${primarykey}`}
             facade={facade}
-            primarykey={pkey}
-            value={values[index] || ''} />)}
+            primarykey={primarykey}
+            value={str || ''} />)}
       </p>
     );
   }
@@ -95,15 +93,16 @@ class LocalesTableRow extends React.PureComponent {
   render () {
     const langs = this.props.langs;
     const values = this.props.values;
-    const pkey = this.props.primarykey;
+    const primarykey = this.props.primarykey;
+    console.log('primarykey', primarykey);
     const classes = 'application-locales-table-row';
     return (
-      <div className={`${classes} ${slug(pkey.toLowerCase())}`}
+      <div className={`${classes} ${slug(primarykey.toLowerCase())}`}
         style={{
           marginBottom: '22px'
         }} >
-        {LocalesTableRow.renderRowPrimaryKeyName(pkey)}
-        {LocalesTableRow.renderRowLanguagesInput(this.props.facade, { pkey, langs, values })}
+        {LocalesTableRow.renderRowPrimaryKeyName(primarykey)}
+        {LocalesTableRow.renderRowLanguagesInput(this.props.facade, { primarykey, langs, values })}
       </div>
     );
   }

@@ -51,29 +51,40 @@ class LocalesTable extends React.PureComponent {
   ------------------------------------------------ */
 
   render () {
+    const langs = this.props.langs;
     const values = this.props.values;
-    const langs = Object.keys(values);
     const primarykeys = this.props.primarykeys;
     return (
       <div className="application-locales-table"
         style={{
           width: '100%',
-          padding: '20px'
+          padding: '20px 32px'
         }}>
-        {langs.map(key => <span>{key}</span>)}
+        <div className={'application-locales-table-header flex-rows flex-align-start'}
+          style={{
+            textAlign: 'center',
+            paddingLeft: '12px',
+            paddingRight: '12px',
+            marginBottom: '20px'
+          }}>
+          {langs.map(key => <span key={`header-${key}`}
+            style={{
+              maxWidth: '350px'
+            }}>{key}</span>)}
+        </div>
         {primarykeys.map(key =>
           <LocalesTableRow key={`row_${key}`}
             langs={langs}
             primarykey={key}
-            isheader={false}
             facade={this.props.facade}
-            values={langs.map(lang => values[lang][key])} />)}
+            values={values.map(obj => (obj[key] || ''))} />)}
       </div>
     );
   }
 }
 
 LocalesTable.propTypes = {
+  langs: React.PropTypes.array.isRequired,
   values: React.PropTypes.array.isRequired,
   facade: React.PropTypes.object.isRequired,
   primarykeys: React.PropTypes.array.isRequired
