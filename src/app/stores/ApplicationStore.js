@@ -1,7 +1,7 @@
 // import { diff, apply } from 'rus-diff';
 // project
-import { fillwith, clone, entries } from './../../core/utils/ObjectUtils';
-import { deduplicate, alphasort } from './../../core/utils/ArrayUtils';
+// import { fillwith, clone, entries } from './../../core/utils/ObjectUtils';
+import { alphasort } from './../../core/utils/ArrayUtils';
 import Constants from './../constants';
 import AbstractStore from './../../core/abstracts/AbstractStore';
 
@@ -12,32 +12,38 @@ class ApplicationStore extends AbstractStore {
       json: {},
       langs: [],
       values: [],
-      openpopin: false,
-      primarykeys: false
+      primarykeys: [],
+      openpopin: false
     }, dispatcher);
     // store original languages
     this._origin = [];
   }
 
+  /**
+   * @description Get all existing primary keys, filter the params one
+   * by checking if already exists in current collection
+   * then concat with existing and ordering doing an alphanumeric sort
+   *
+   * @param {String} langkey
+   * @param {String} jsonstring
+   */
   _onAddLanguage ([langkey, jsonstring]) {
-    const langs = [langkey]
-      .concat(this.getState('langs'));
-    const values = [JSON.parse(jsonstring)]
-      .concat(this.getState('values'));
+    let values = JSON.parse(jsonstring);
+    const langs = this.getState('langs').concat([langkey]);
+
+    let primarykeys = this.getState('primarykeys');
+    primarykeys = Object.keys(values)
+      .filter(key => (primarykeys.indexOf(key) === -1))
+      .concat(primarykeys)
+      .sort(alphasort);
+
+    values = this.getState('values').concat([values]);
     this.setState({
       langs,
-      values
+      values,
+      primarykeys
     });
   }
-    /*
-    const primarykeys = values.reduce((acc, obj) => acc.concat(Object.keys(obj)), [])
-      .filter(deduplicate)
-      .sort(alphasort);
-    // languages
-    const langs = [];
-    // check if all keys are in values
-    values = values.map(obj => fillwith(obj, primarykeys, ''));
-    */
 
   _onCreateNewLanguage ({ primarykey }) {
     /*

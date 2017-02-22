@@ -27,17 +27,19 @@ class %%name%% extends React.PureComponent {
     this._initialized = false;
   }
 
+  componentWillMount () {}
+
   componentDidMount () {
     this._ismounted = true;
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {}
+  componentWillReceiveProps (nextProps, nextContext) {}
 
-  shouldComponentUpdate(nextProps, nextState, nextContext)  {}
+  shouldComponentUpdate (nextProps, nextState, nextContext)  {}
 
-  componentWillUpdate(nextProps, nextState, nextContext) {}
+  componentWillUpdate (nextProps, nextState, nextContext) {}
 
-  componentDidUpdate(prevProps, prevState, prevContext) {
+  componentDidUpdate (prevProps, prevState, prevContext) {
     if (!this._initialized) {
       this._initialized = true;
     }

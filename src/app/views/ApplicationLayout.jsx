@@ -94,7 +94,9 @@ class Application extends React.Component {
     case 'import':
       view = (
         <ImportPopin facade={this.props.facade}
-          title={'Create a new language set'} />
+          langs={this.state.langs}
+          title={'Create a new language set'}
+          primarykeys={this.state.primarykeys} />
         );
       break;
     case 'export':
@@ -149,8 +151,9 @@ class Application extends React.Component {
             }}>
             <ApplicationHeader appname={this.props.appname} />
           </div>
-          <ApplicationMenu canexport={!isempty(this.state.values)}
-            canadd={!isempty(this.state.values)} />
+          {!isempty(this.state.values)
+            && <ApplicationMenu canexport={!isempty(this.state.values)}
+              canadd={!isempty(this.state.values)} />}
           <ApplicationContent langs={this.state.langs}
             values={this.state.values}
             primarykeys={this.state.primarykeys} />

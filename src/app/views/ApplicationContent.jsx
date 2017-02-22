@@ -35,6 +35,7 @@ class ApplicationContent extends React.PureComponent {
     }
     return (
       <LocalesTable facade={this.context.facade}
+        langs={this.props.langs}
         values={this.props.values}
         primarykeys={this.props.primarykeys} />
     );
@@ -95,11 +96,13 @@ ApplicationContent.contextTypes = {
 };
 
 ApplicationContent.defaultProps = {
+  langs: [],
   values: {},
   primarykeys: false
 };
 
 ApplicationContent.propTypes = {
+  langs: React.PropTypes.array,
   values: React.PropTypes.array,
   primarykeys: React.PropTypes.oneOfType([
     React.PropTypes.bool,

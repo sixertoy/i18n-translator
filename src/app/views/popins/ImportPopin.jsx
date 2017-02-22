@@ -25,8 +25,7 @@ class ImportPopin extends React.PureComponent {
       // question: import another language
       () => this.renderLoadMoreContent.bind(this)
     ]);
-    this._editordefaultvalue = '{"super": "super"}';
-    // this._editordefaultvalue = '// Put your JSON code to start working with your translations';
+    this._editordefaultvalue = '// Put your JSON code to start working with your translations';
     this.state = {
       count: 0,
       langkey: false,
@@ -174,22 +173,24 @@ class ImportPopin extends React.PureComponent {
         <p style={{
           marginTop: '0'
         }}>
-          {entries(languages).map(([key, val]) =>
-            <label key={`radio-${key}`}
-              htmlFor={key}
-              style={{
-                marginRight: '7px'
-              }}>
-              <input id={key}
-                value={key}
-                type="radio"
-                name="lang-radio-input"
-                onClick={e => this._onClickLanguageHandler(e, key)} />
-              <span style={{
-                marginLeft: '3px'
-              }}>{val}</span>
-            </label>
-          )}
+          {entries(languages)
+            .filter(([key]) => (this.props.langs.indexOf(key) === -1))
+            .map(([key, val]) =>
+              <label key={`radio-${key}`}
+                htmlFor={key}
+                style={{
+                  marginRight: '7px'
+                }}>
+                <input id={key}
+                  value={key}
+                  type="radio"
+                  name="lang-radio-input"
+                  onClick={e => this._onClickLanguageHandler(e, key)} />
+                <span style={{
+                  marginLeft: '3px'
+                }}>{val}</span>
+              </label>
+            )}
         </p>
       </div>
     );
@@ -221,6 +222,11 @@ class ImportPopin extends React.PureComponent {
 
   render () {
     const showsubmit = this.state.jsonisvalid || this.state.langkey;
+    if (!isempty(this.props.primarykeys)) {
+      const defaultvalue = this.props.primarykeys
+        .reduce((obj, key) => Object.assign(obj, { [key]: '' }), {});
+      this._editordefaultvalue = JSON.stringify(defaultvalue, null, ' ');
+    }
     return (
       <div className="application-popin-content flex-rows"
         style={{
@@ -269,7 +275,9 @@ ImportPopin.contextTypes = {
 };
 
 ImportPopin.propTypes = {
-  facade: React.PropTypes.object.isRequired
+  langs: React.PropTypes.array.isRequired,
+  facade: React.PropTypes.object.isRequired,
+  primarykeys: React.PropTypes.array.isRequired
 };
 
 export default PopinFactory(ImportPopin);

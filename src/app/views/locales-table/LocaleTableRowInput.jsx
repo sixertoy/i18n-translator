@@ -31,10 +31,10 @@ class LocaleTableRowInput extends React.PureComponent {
   /**
    * Called before user's input change, will update input size
    */
-  _onAutoSizeChange (target, pkey, lang) {
+  _onAutoSizeChange (target, pkey) {
     // eslint-disable-next-line
     target.style.height = `${(target.scrollHeight)}px`;
-    this._onInputChange(lang, pkey, target.value);
+    // this._onInputChange(pkey, target.value);
   }
 
   /* ------------------------------------------------
@@ -44,11 +44,10 @@ class LocaleTableRowInput extends React.PureComponent {
   ------------------------------------------------ */
 
   render () {
-    const lang = this.props.lang;
     const pkey = this.props.primarykey;
     const value = entities.decode(this.props.value || '');
     return (
-      <textarea key={`${lang}_${pkey}`}
+      <textarea key={`textarea-${pkey}`}
         rows="1"
         style={{
           marginTop: '0',
@@ -59,14 +58,13 @@ class LocaleTableRowInput extends React.PureComponent {
         }}
         className="autosize"
         defaultValue={value}
-        onChange={e => this._onAutoSizeChange(e.target, pkey, lang)} />
+        onChange={e => this._onAutoSizeChange(e.target, pkey)} />
     );
   }
 
 }
 
 LocaleTableRowInput.propTypes = {
-  lang: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
   facade: React.PropTypes.object.isRequired,
   primarykey: React.PropTypes.string.isRequired
