@@ -60,7 +60,7 @@ class LocalesTable extends React.PureComponent {
           width: '100%',
           padding: '20px 32px'
         }}>
-        <div className={'application-locales-table-header flex-rows flex-align-start'}
+        <div className={'application-locales-table-header flex-columns flex-align-start'}
           style={{
             textAlign: 'center',
             paddingLeft: '12px',
@@ -68,6 +68,7 @@ class LocalesTable extends React.PureComponent {
             marginBottom: '20px'
           }}>
           {langs.map(key => <span key={`header-${key}`}
+            className="flex-responsive-child"
             style={{
               maxWidth: '350px'
             }}>{key}</span>)}
