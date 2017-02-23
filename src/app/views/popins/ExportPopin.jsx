@@ -31,15 +31,14 @@ class ExportPopin extends React.PureComponent {
   }
 
   _renderLocalesTabs () {
-    const current = this.state.current;
     return (
       <span className="popin-locales-tabs"
         style={{
           marginRight: '40px'
         }}>
-        {entries(this.props.locales)
-          .map(([langkey], index) => <a href=""
-            key={`tabs_${langkey}`}
+        {entries(this.props.langs)
+          .map((val, index) => <a href=""
+            key={`tabs_${val}`}
             style={{
               width: '40px',
               paddingTop: '7px',
@@ -48,11 +47,11 @@ class ExportPopin extends React.PureComponent {
               paddingLeft: '12px',
               paddingRight: '12px',
               paddingBottom: '7px',
-              color: (current === index) ? '#338596' : '#ABABAB',
-              background: (current === index) ? '#FFFFFF' : 'transparent'
+              color: (this.state.current === index) ? '#338596' : '#ABABAB',
+              background: (this.state.current === index) ? '#FFFFFF' : 'transparent'
             }}
             onClick={e => this._onLocaleTabClick(e, index)} >
-            <span>{langkey}</span>
+            <span>{val}</span>
           </a>)}
         <a href=""
           style={{
@@ -62,8 +61,8 @@ class ExportPopin extends React.PureComponent {
             paddingLeft: '12px',
             paddingRight: '12px',
             paddingBottom: '7px',
-            color: (current < 0) ? '#338596' : '#ABABAB',
-            background: (current < 0) ? '#FFFFFF' : 'transparent'
+            color: (this.state.current < 0) ? '#338596' : '#ABABAB',
+            background: (this.state.current < 0) ? '#FFFFFF' : 'transparent'
           }}
           onClick={e => this._onDiffButtonClick(e)}>
           <span>{'< diff >'}</span>
@@ -75,7 +74,7 @@ class ExportPopin extends React.PureComponent {
   _renderTextArea () {
     let langkey = null;
     let locales = null;
-    const arr = entries(this.props.locales);
+    const arr = entries(this.props.values);
     if (this.state.current < 0) {
       langkey = 'diff';
       locales = this.props.json;
@@ -92,8 +91,9 @@ class ExportPopin extends React.PureComponent {
           background: '#FFFFFF'
         }}>
         <div className="absolute-container" >
-          <ReactAceEditor jsonstring={JSON.stringify(locales, null, '  ')}
-            editorid={`editor-${langkey}`} />
+          <ReactAceEditor editorid={`editor-${langkey}`}
+            usecopy={false}
+            jsonstring={JSON.stringify(locales, null, '  ')} />
         </div>
       </div>
     );
@@ -119,11 +119,15 @@ class ExportPopin extends React.PureComponent {
 }
 
 ExportPopin.propTypes = {
+  langs: React.PropTypes.oneOfType([
+    React.PropTypes.bool,
+    React.PropTypes.array
+  ]).isRequired,
   json: React.PropTypes.oneOfType([
     React.PropTypes.bool,
     React.PropTypes.object
   ]).isRequired,
-  locales: React.PropTypes.oneOfType([
+  values: React.PropTypes.oneOfType([
     React.PropTypes.bool,
     React.PropTypes.object
   ]).isRequired

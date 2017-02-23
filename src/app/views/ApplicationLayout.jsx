@@ -94,8 +94,8 @@ class Application extends React.Component {
     case 'import':
       view = (
         <ImportPopin facade={this.props.facade}
-          langs={this.state.langs}
           title={'Create a new language set'}
+          langs={this.state.langs}
           primarykeys={this.state.primarykeys} />
         );
       break;
@@ -104,6 +104,7 @@ class Application extends React.Component {
         <ExportPopin facade={this.props.facade}
           title={'Export languages'}
           json={this.state.json}
+          langs={this.state.langs}
           values={this.state.values} />
         );
       break;
