@@ -22,16 +22,18 @@ class ApplicationMenu extends React.PureComponent {
     ApplicationAction.togglePopin('import');
   }
 
+  /*
   _createNewPrimaryKey (evt) {
     evt.preventDefault();
     return true;
   }
+  */
 
   _onExportClickHandler (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
     ApplicationAction.togglePopin('export');
-    ApplicationAction.saveLocales();
+    // ApplicationAction.saveLocales();
   }
 
   /* --------------------------------------------------------
@@ -69,6 +71,7 @@ class ApplicationMenu extends React.PureComponent {
     );
   }
 
+  /*
   _renderCreateNewPrimaryKey () {
     if (!this.props.canadd) {
       return Constants.REACT.NO_RENDER;
@@ -88,6 +91,7 @@ class ApplicationMenu extends React.PureComponent {
       </span>
     );
   }
+  */
 
   render () {
     return (

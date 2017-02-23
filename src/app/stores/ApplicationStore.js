@@ -59,6 +59,7 @@ class ApplicationStore extends AbstractStore {
   }
 
   _onUpdateValue ({ data }) {
+    console.log('data', data);
     /*
     const values = this.getState('values');
     values[data.lang][data.primarykey] = data.value;
@@ -86,7 +87,7 @@ class ApplicationStore extends AbstractStore {
         break;
       case Constants.FLUX.SAVE_LOCALES:
         // save current translation
-        this._onSaveLocales();
+        // this._onSaveLocales();
         break;
       case Constants.FLUX.CREATE_NEW_LANGUAGE:
         // create a new language

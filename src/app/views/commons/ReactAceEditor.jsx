@@ -48,7 +48,7 @@ const ReactAceEditor = props => (
         displayIndentGuides: true,
         highlightGutterLine: false
       }}
-      defaultValue={props.defaultvalue} />
+      defaultValue={props.jsonstring || props.defaultvalue} />
   </div>
 );
 

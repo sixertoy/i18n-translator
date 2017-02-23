@@ -1,6 +1,5 @@
 import React from 'react';
 // project
-import { entries } from './../../../core/utils/ObjectUtils';
 import PopinFactory from './../commons/PopinFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
 
@@ -32,11 +31,13 @@ class ExportPopin extends React.PureComponent {
 
   _renderLocalesTabs () {
     return (
-      <span className="popin-locales-tabs"
+      <div className="popin-locales-tabs"
         style={{
-          marginRight: '40px'
+          width: '100%',
+          padding: '12px 0',
+          textAlign: 'right'
         }}>
-        {entries(this.props.langs)
+        {this.props.langs
           .map((val, index) => <a href=""
             key={`tabs_${val}`}
             style={{
@@ -67,20 +68,12 @@ class ExportPopin extends React.PureComponent {
           onClick={e => this._onDiffButtonClick(e)}>
           <span>{'< diff >'}</span>
         </a>
-      </span>
+      </div>
     );
   }
 
   _renderTextArea () {
-    let langkey = null;
-    let locales = null;
-    const arr = entries(this.props.values);
-    if (this.state.current < 0) {
-      langkey = 'diff';
-      locales = this.props.json;
-    } else {
-      [langkey, locales] = arr[this.state.current];
-    }
+    const jsonstring = JSON.stringify(this.props.values[this.state.current], null, '  ');
     return (
       <div className="application-popin-content"
         style={{
@@ -91,9 +84,9 @@ class ExportPopin extends React.PureComponent {
           background: '#FFFFFF'
         }}>
         <div className="absolute-container" >
-          <ReactAceEditor editorid={`editor-${langkey}`}
+          <ReactAceEditor editorid={`editor-${this.props.langs[this.state.current]}`}
             usecopy={false}
-            jsonstring={JSON.stringify(locales, null, '  ')} />
+            jsonstring={jsonstring} />
         </div>
       </div>
     );
@@ -104,7 +97,7 @@ class ExportPopin extends React.PureComponent {
       <div className="inner flex-rows"
         style={{
           padding: '0',
-          width: '80%',
+          width: '100%',
           height: '95%',
           margin: '0 auto',
           overflow: 'hidden',
@@ -119,18 +112,9 @@ class ExportPopin extends React.PureComponent {
 }
 
 ExportPopin.propTypes = {
-  langs: React.PropTypes.oneOfType([
-    React.PropTypes.bool,
-    React.PropTypes.array
-  ]).isRequired,
-  json: React.PropTypes.oneOfType([
-    React.PropTypes.bool,
-    React.PropTypes.object
-  ]).isRequired,
-  values: React.PropTypes.oneOfType([
-    React.PropTypes.bool,
-    React.PropTypes.object
-  ]).isRequired
+  langs: React.PropTypes.array.isRequired,
+  json: React.PropTypes.object.isRequired,
+  values: React.PropTypes.array.isRequired
 };
 
 export default PopinFactory(ExportPopin);

@@ -1,5 +1,4 @@
 import React from 'react';
-// import Select from 'react-select';
 import isempty from 'lodash.isempty';
 // project
 import PopinFooter from './../commons/PopinFooter';
@@ -12,12 +11,7 @@ class ImportPopin extends React.PureComponent {
 
   constructor (props) {
     super(props);
-    this._locales = {};
     this._ismounted = false;
-    this._selectOptions = [
-      { value: 'json', label: 'JSON' },
-      { value: 'javascript', label: 'JavaScript' }
-    ];
     this._stepsIterator = StepsIterator([
       () => this.renderFileImportStep.bind(this),
       // question: is it a description file
@@ -25,13 +19,20 @@ class ImportPopin extends React.PureComponent {
       // question: import another language
       () => this.renderLoadMoreContent.bind(this)
     ]);
-    this._editordefaultvalue = '// Put your JSON code to start working with your translations';
+
+    let defaultvalue = '// Put your JSON code to start working with your translations';
+    if (!isempty(props.primarykeys)) {
+      defaultvalue = props.primarykeys
+        .reduce((obj, key) => Object.assign(obj, { [key]: '' }), {});
+      defaultvalue = JSON.stringify(defaultvalue, null, ' ');
+    }
+
     this.state = {
       count: 0,
       langkey: false,
-      jsonstring: false,
+      editormode: 'json',
       jsonisvalid: false,
-      editormode: this._selectOptions[0].value,
+      jsonstring: defaultvalue,
       currentstep: this._stepsIterator.next().value
     };
   }
@@ -89,22 +90,20 @@ class ImportPopin extends React.PureComponent {
   }
 
   _onAceEditorChange (value) {
-    try {
-      const obj = JSON.parse(value);
-      if (isempty(obj)) {
-        // should alert user
-        throw new Error('is empty');
+    let jsonisvalid = false;
+    const jsonstring = value;
+    if (!isempty(value)) {
+      try {
+        JSON.parse(jsonstring);
+        jsonisvalid = true;
+      } catch (e) {
+        // if value is empty, is not a valid string
       }
-      this.setState({
-        jsonstring: value,
-        jsonisvalid: true
-      });
-    } catch (e) {
-      this.setState({
-        jsonstring: value,
-        jsonisvalid: false
-      });
     }
+    this.setState({
+      jsonstring,
+      jsonisvalid
+    });
   }
 
   /* --------------------------------------------------
@@ -207,9 +206,9 @@ class ImportPopin extends React.PureComponent {
           readOnly={false}
           editorid={'editor-import'}
           editormode={this.state.editormode}
-          defaultvalue={this._editordefaultvalue}
-          changehandler={e => this._onAceEditorChange(e)}
-          jsonstring={this.state.jsonstring || this._editordefaultvalue} />
+          jsonstring={this.state.jsonstring}
+          defaultvalue={this.props.defaultvalue}
+          changehandler={e => this._onAceEditorChange(e)} />
       </div>
     );
   }
@@ -222,11 +221,6 @@ class ImportPopin extends React.PureComponent {
 
   render () {
     const showsubmit = this.state.jsonisvalid || this.state.langkey;
-    if (!isempty(this.props.primarykeys)) {
-      const defaultvalue = this.props.primarykeys
-        .reduce((obj, key) => Object.assign(obj, { [key]: '' }), {});
-      this._editordefaultvalue = JSON.stringify(defaultvalue, null, ' ');
-    }
     return (
       <div className="application-popin-content flex-rows"
         style={{
@@ -237,24 +231,6 @@ class ImportPopin extends React.PureComponent {
           overflow: 'hidden',
           background: 'white'
         }}>
-        {/*
-          <div className="flex-rows flex-no-shrink"
-          style={{
-            width: '100%',
-            zIndex: '500',
-            color: 'white',
-            padding: '12px 32px',
-            background: this.context.theme.velvet
-          }}>
-            <div style={{ width: '240px' }}>
-            <Select name="aceeditor-mode-select"
-              clearable={false}
-              value={this.state.editormode}
-              options={this._selectOptions}
-              onChange={({ label, value }) => this._onEditorModeChange(label, value)} />
-            </div>
-          </div>
-        */}
         <div className="flex-rows"
           style={{
             width: '100%',
@@ -275,9 +251,14 @@ ImportPopin.contextTypes = {
 };
 
 ImportPopin.propTypes = {
+  defaultvalue: React.PropTypes.string,
   langs: React.PropTypes.array.isRequired,
   facade: React.PropTypes.object.isRequired,
   primarykeys: React.PropTypes.array.isRequired
+};
+
+ImportPopin.defaultProps = {
+  defaultvalue: '// Put your JSON code to start working with your translations'
 };
 
 export default PopinFactory(ImportPopin);
