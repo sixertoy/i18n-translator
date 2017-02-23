@@ -63,8 +63,6 @@ class LocalesTable extends React.PureComponent {
         <div className={'application-locales-table-header flex-columns flex-align-start'}
           style={{
             textAlign: 'center',
-            paddingLeft: '12px',
-            paddingRight: '12px',
             marginBottom: '20px'
           }}>
           {langs.map(key => <span key={`header-${key}`}

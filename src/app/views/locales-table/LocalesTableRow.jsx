@@ -18,7 +18,6 @@ class LocalesTableRow extends React.PureComponent {
           marginTop: '0',
           color: '#CCCCCC',
           fontSize: '0.9em',
-          marginLeft: '12px',
           marginBottom: '3px'
         }}><a name={value}>{`# ${value}`}</a></p>
     );
@@ -94,7 +93,6 @@ class LocalesTableRow extends React.PureComponent {
     const langs = this.props.langs;
     const values = this.props.values;
     const primarykey = this.props.primarykey;
-    console.log('primarykey', primarykey);
     const classes = 'application-locales-table-row';
     return (
       <div className={`${classes} ${slug(primarykey.toLowerCase())}`}
