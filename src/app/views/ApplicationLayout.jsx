@@ -10,7 +10,7 @@ import ImportPopin from './popins/ImportPopin';
 import ApplicationMenu from './ApplicationMenu';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
-import ApplicationContent from './ApplicationContent';
+import ApplicationLayoutContent from './ApplicationLayoutContent';
 import GithubOctocatCorner from './../../core/views/GithubOctocatCorner';
 
 class Application extends React.Component {
@@ -154,7 +154,7 @@ class Application extends React.Component {
           {!isempty(this.state.values)
             && <ApplicationMenu canexport={!isempty(this.state.values)}
               canadd={!isempty(this.state.values)} />}
-          <ApplicationContent langs={this.state.langs}
+          <ApplicationLayoutContent langs={this.state.langs}
             values={this.state.values}
             primarykeys={this.state.primarykeys} />
           <ApplicationFooter version={this.props.version}
