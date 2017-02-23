@@ -58,6 +58,14 @@
   border-radius: 4px 4px 0 0;
 }
 
+.application-locales-table-row > .flex-columns textarea {
+  flex: 1 1 auto;
+}
+
+.application-locales-table-row > .flex-columns textarea ~ textarea {
+  margin-left: 20px;
+}
+
 /* ------------------------------------------------------
 
  Z Indexes

@@ -98,7 +98,7 @@ class ApplicationMenu extends React.PureComponent {
           background: '#FBFBFB'
         }}>
         <div>
-          {this._renderCreateNewPrimaryKey()}
+          {/* this._renderCreateNewPrimaryKey() */}
         </div>
         <div>
           {this._renderCreateNewLanguage()}
