@@ -23,9 +23,9 @@ class LocaleTableRowInput extends React.PureComponent {
   /**
    * Called when user enter a new value into an language/key input
    */
-  _onInputChange (lang, primarykey, value) {
+  _onInputChange (primarykey, value) {
     const action = this.props.facade.getAction('ApplicationAction');
-    action.updateValue({ primarykey, lang, value });
+    action.updateValue({ primarykey, value });
   }
 
   /**
@@ -34,7 +34,7 @@ class LocaleTableRowInput extends React.PureComponent {
   _onAutoSizeChange (target, pkey) {
     // eslint-disable-next-line
     target.style.height = `${(target.scrollHeight)}px`;
-    // this._onInputChange(pkey, target.value);
+    this._onInputChange(pkey, target.value);
   }
 
   /* ------------------------------------------------
