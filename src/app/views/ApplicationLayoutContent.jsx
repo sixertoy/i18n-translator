@@ -3,7 +3,7 @@ import isboolean from 'lodash.isboolean';
 // project
 import LocalesTable from './locales-table/LocalesTable';
 
-class ApplicationContent extends React.PureComponent {
+class ApplicationLayoutContent extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -90,18 +90,18 @@ class ApplicationContent extends React.PureComponent {
   }
 }
 
-ApplicationContent.contextTypes = {
+ApplicationLayoutContent.contextTypes = {
   theme: React.PropTypes.object,
   facade: React.PropTypes.object
 };
 
-ApplicationContent.defaultProps = {
+ApplicationLayoutContent.defaultProps = {
   langs: [],
   values: {},
   primarykeys: false
 };
 
-ApplicationContent.propTypes = {
+ApplicationLayoutContent.propTypes = {
   langs: React.PropTypes.array,
   values: React.PropTypes.array,
   primarykeys: React.PropTypes.oneOfType([
@@ -110,4 +110,4 @@ ApplicationContent.propTypes = {
   ])
 };
 
-export default ApplicationContent;
+export default ApplicationLayoutContent;
