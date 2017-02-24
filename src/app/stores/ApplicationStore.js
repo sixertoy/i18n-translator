@@ -1,4 +1,4 @@
-// import { diff, apply } from 'rus-diff';
+import { diff, apply } from 'rus-diff';
 // project
 // import { fillwith, clone, entries } from './../../core/utils/ObjectUtils';
 import { alphasort } from './../../core/utils/ArrayUtils';
@@ -12,6 +12,7 @@ class ApplicationStore extends AbstractStore {
       json: {},
       langs: [],
       values: [],
+      origin: {},
       primarykeys: [],
       openpopin: false
     }, dispatcher);
@@ -29,7 +30,11 @@ class ApplicationStore extends AbstractStore {
    */
   _onAddLanguage ([langkey, jsonstring]) {
     let values = JSON.parse(jsonstring);
+    const origin = this.getState('origin');
     const langs = this.getState('langs').concat([langkey]);
+
+    // save origin
+    origin[langkey] = jsonstring;
 
     let primarykeys = this.getState('primarykeys');
     primarykeys = Object.keys(values)
@@ -40,6 +45,7 @@ class ApplicationStore extends AbstractStore {
     values = this.getState('values').concat([values]);
     this.setState({
       langs,
+      origin,
       values,
       primarykeys
     });
@@ -54,14 +60,15 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
-  _onSaveLocales () {
-    /*
-    let json = diff(this._origin, this.getState('values'));
-    json = apply({}, json);
+  _onExportDiffChanges () {
+    const langs = this.getState('langs');
+    const values = this.getState('values');
+    const current = langs.reduce((acc, lang) =>
+      Object.assign(acc, { [lang]: values[langs.indexOf(lang)] }), {});
+    const json = apply({}, diff(current, this.getState('origin')));
     this.setState({
       json
     });
-    */
   }
 
   _initDispatcher () {
@@ -70,9 +77,8 @@ class ApplicationStore extends AbstractStore {
       case Constants.FLUX.UPDATE_VALUE:
         this._onUpdateValue(obj.data);
         break;
-      case Constants.FLUX.SAVE_LOCALES:
-        // save current translation
-        // this._onSaveLocales();
+      case Constants.FLUX.EXPORT_DIFF_CHANGES:
+        this._onExportDiffChanges();
         break;
       case Constants.FLUX.ADD_LANGUAGE:
         // add a new imported language
