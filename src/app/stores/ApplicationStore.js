@@ -34,7 +34,7 @@ class ApplicationStore extends AbstractStore {
     const langs = this.getState('langs').concat([langkey]);
 
     // save origin
-    origin[langkey] = jsonstring;
+    origin[langkey] = JSON.parse(jsonstring);
 
     let primarykeys = this.getState('primarykeys');
     primarykeys = Object.keys(values)
@@ -65,9 +65,8 @@ class ApplicationStore extends AbstractStore {
     const values = this.getState('values');
     const current = langs.reduce((acc, lang) =>
       Object.assign(acc, { [lang]: values[langs.indexOf(lang)] }), {});
-    const json = apply({}, diff(current, this.getState('origin')));
     this.setState({
-      json
+      json: apply({}, diff(this.getState('origin'), current))
     });
   }
 

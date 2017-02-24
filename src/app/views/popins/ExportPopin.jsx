@@ -73,7 +73,12 @@ class ExportPopin extends React.PureComponent {
   }
 
   _renderTextArea () {
-    const jsonstring = JSON.stringify(this.props.values[this.state.current], null, '  ');
+    const string = (this.state.current < 0)
+      ? this.props.json
+      : this.props.values[this.state.current];
+    const editorid = (this.state.current < 0)
+      ? 'diff'
+      : this.props.langs[this.state.current];
     return (
       <div className="application-popin-content"
         style={{
@@ -84,9 +89,9 @@ class ExportPopin extends React.PureComponent {
           background: '#FFFFFF'
         }}>
         <div className="absolute-container" >
-          <ReactAceEditor editorid={`editor-${this.props.langs[this.state.current]}`}
+          <ReactAceEditor editorid={`editor-${editorid}`}
             usecopy={false}
-            jsonstring={jsonstring} />
+            jsonstring={JSON.stringify(string, null, '  ')} />
         </div>
       </div>
     );
