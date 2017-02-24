@@ -54,8 +54,7 @@ class ExportPopin extends React.PureComponent {
             onClick={e => this._onLocaleTabClick(e, index)} >
             <span>{val}</span>
           </a>)}
-        {/*
-          <a href=""
+        <a href=""
           style={{
             paddingTop: '7px',
             marginRight: '3px',
@@ -68,8 +67,7 @@ class ExportPopin extends React.PureComponent {
           }}
           onClick={e => this._onDiffButtonClick(e)}>
           <span>{'< diff >'}</span>
-          </a>
-        */}
+        </a>
       </div>
     );
   }

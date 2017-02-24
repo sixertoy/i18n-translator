@@ -22,18 +22,11 @@ class ApplicationMenu extends React.PureComponent {
     ApplicationAction.togglePopin('import');
   }
 
-  /*
-  _createNewPrimaryKey (evt) {
-    evt.preventDefault();
-    return true;
-  }
-  */
-
   _onExportClickHandler (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
+    ApplicationAction.exportDiffChanges();
     ApplicationAction.togglePopin('export');
-    // ApplicationAction.saveLocales();
   }
 
   /* --------------------------------------------------------
@@ -71,28 +64,6 @@ class ApplicationMenu extends React.PureComponent {
     );
   }
 
-  /*
-  _renderCreateNewPrimaryKey () {
-    if (!this.props.canadd) {
-      return Constants.REACT.NO_RENDER;
-    }
-    return (
-      <span>
-        <input type="text"
-          style={{
-            width: '70px',
-            marginRight: '3px'
-          }}
-          ref={(c) => { this._newlangInput = c; }}
-          placeholder="primary" />
-        <button onClick={e => this._createNewPrimaryKey(e)} >
-          <span>Create</span>
-        </button>
-      </span>
-    );
-  }
-  */
-
   render () {
     return (
       <div className="application-main-menu flex-columns flex-space-between"
@@ -101,9 +72,7 @@ class ApplicationMenu extends React.PureComponent {
           padding: '12px 32px',
           background: '#FBFBFB'
         }}>
-        <div>
-          {/* this._renderCreateNewPrimaryKey() */}
-        </div>
+        <div />
         <div>
           {this._renderAddNewLanguage()}
           {this._renderExportButton()}
