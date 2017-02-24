@@ -3,6 +3,7 @@
   "version": "0.3.9",
   "private": true,
   "homepage": "https://sixertoy.github.io/i18n-translator/",
+  "description": ":fr: :on: :uk: i18n Online Translations Editor (JSON)",
   "devDependencies": {
     "chai": "3.5.0",
     "eslint": "3.14.1",

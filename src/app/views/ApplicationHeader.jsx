@@ -13,7 +13,7 @@ const ApplicationHeader = props => (
     }}>
     <div className="flex-columns flex-centered">
       <a href="/">
-        <img alt="JSON Translation Online Editor"
+        <img alt="i18n Online Translations Editor (JSON)"
           style={{
             width: '60px',
             height: '60px',
@@ -28,7 +28,7 @@ const ApplicationHeader = props => (
           lineHeight: '1.25em',
           fontWeight: 'normal'
         }}>
-          <span>JSON Translation Online Editor</span>
+          <span>i18n Online Translations Editor (JSON)</span>
         </h1>
         <h2 style={{
           margin: '0',
@@ -37,7 +37,7 @@ const ApplicationHeader = props => (
           fontWeight: 'normal',
           fontSize: '1.285715em'
         }}>
-          <span>Create/Update JSON languages files in a simple way</span>
+          <span>Create/Update your languages files in a simple way</span>
         </h2>
       </div>
     </div>
