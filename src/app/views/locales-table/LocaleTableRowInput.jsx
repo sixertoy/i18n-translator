@@ -12,6 +12,7 @@ class LocaleTableRowInput extends React.PureComponent {
   constructor (props) {
     super(props);
     this.state = {};
+    this._keyboardTimeout = null;
   }
 
   /* ------------------------------------------------
@@ -22,10 +23,18 @@ class LocaleTableRowInput extends React.PureComponent {
 
   /**
    * Called when user enter a new value into an language/key input
+   * Using a timeout between each key input
    */
   _onInputChange (primarykey, value) {
+    const lang = this.props.lang;
     const action = this.props.facade.getAction('ApplicationAction');
-    action.updateValue({ primarykey, value });
+    if (this._keyboardTimeout) {
+      clearTimeout(this._keyboardTimeout);
+    }
+    this._keyboardTimeout = setTimeout(() => {
+      action.updateValue({ primarykey, value, lang });
+      this._keyboardTimeout = null;
+    }, 300);
   }
 
   /**
@@ -63,6 +72,7 @@ class LocaleTableRowInput extends React.PureComponent {
 }
 
 LocaleTableRowInput.propTypes = {
+  lang: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
   facade: React.PropTypes.object.isRequired,
   primarykey: React.PropTypes.string.isRequired

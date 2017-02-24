@@ -45,28 +45,13 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
-  _onCreateNewLanguage ({ primarykey }) {
-    /*
+  _onUpdateValue ({ primarykey, lang, value }) {
+    const index = this.getState('langs').indexOf(lang);
     const values = this.getState('values');
-    // duplicate table keys, add new language to currents
-    values[primarykey] = Object.keys(this.getState('primarykeys'))
-      .reduce((acc, k) => Object.assign(acc, { [k]: '' }), {});
-    this.setState({
-      values,
-      langs: [].concat(this.getState('langs'), [primarykey])
-    });
-    */
-  }
-
-  _onUpdateValue ({ data }) {
-    console.log('data', data);
-    /*
-    const values = this.getState('values');
-    values[data.lang][data.primarykey] = data.value;
+    values[index][primarykey] = value;
     this.setState({
       values
     });
-    */
   }
 
   _onSaveLocales () {
@@ -83,15 +68,11 @@ class ApplicationStore extends AbstractStore {
     const token = this._dispatcher.register((obj) => {
       switch (obj.type) {
       case Constants.FLUX.UPDATE_VALUE:
-        this._onUpdateValue(obj);
+        this._onUpdateValue(obj.data);
         break;
       case Constants.FLUX.SAVE_LOCALES:
         // save current translation
         // this._onSaveLocales();
-        break;
-      case Constants.FLUX.CREATE_NEW_LANGUAGE:
-        // create a new language
-        this._onCreateNewLanguage(obj);
         break;
       case Constants.FLUX.ADD_LANGUAGE:
         // add a new imported language
@@ -100,7 +81,9 @@ class ApplicationStore extends AbstractStore {
       case Constants.FLUX.TOGGLE_POPIN:
         // open/close popin
         this.setState({
-          openpopin: !this.getState('openpopin') ? obj.data : false
+          openpopin: !this.getState('openpopin')
+            ? obj.data
+            : false
         });
         break;
       default:
