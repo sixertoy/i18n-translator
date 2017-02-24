@@ -1,9 +1,9 @@
 import { diff, apply } from 'rus-diff';
 // project
-// import { fillwith, clone, entries } from './../../core/utils/ObjectUtils';
-import { alphasort } from './../../core/utils/ArrayUtils';
 import Constants from './../constants';
+import { alphasort } from './../../core/utils/ArrayUtils';
 import AbstractStore from './../../core/abstracts/AbstractStore';
+import { fillwith, clone } from './../../core/utils/ObjectUtils';
 
 class ApplicationStore extends AbstractStore {
 
@@ -16,8 +16,6 @@ class ApplicationStore extends AbstractStore {
       primarykeys: [],
       openpopin: false
     }, dispatcher);
-    // store original languages
-    this._origin = [];
   }
 
   /**
@@ -33,16 +31,22 @@ class ApplicationStore extends AbstractStore {
     const origin = this.getState('origin');
     const langs = this.getState('langs').concat([langkey]);
 
-    // save origin
-    origin[langkey] = JSON.parse(jsonstring);
+    // preserve originals values
+    origin[langkey] = clone(values);
 
     let primarykeys = this.getState('primarykeys');
     primarykeys = Object.keys(values)
+      // check if primary keys exists
       .filter(key => (primarykeys.indexOf(key) === -1))
+      // add to current primary keys
       .concat(primarykeys)
+      // sort by alpha order
       .sort(alphasort);
 
-    values = this.getState('values').concat([values]);
+    values = this.getState('values')
+      .concat([values])
+      .map(obj => fillwith(obj, primarykeys));
+
     this.setState({
       langs,
       origin,
@@ -63,6 +67,7 @@ class ApplicationStore extends AbstractStore {
   _onExportDiffChanges () {
     const langs = this.getState('langs');
     const values = this.getState('values');
+
     const current = langs.reduce((acc, lang) =>
       Object.assign(acc, { [lang]: values[langs.indexOf(lang)] }), {});
     this.setState({

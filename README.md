@@ -1,4 +1,4 @@
-# i18n Translator UI
+# :fr: :on: :uk: i18n Online Translations Editor (JSON)
 
 [![Build Status](https://travis-ci.org/sixertoy/i18n-translator.svg?branch=master)](https://travis-ci.org/sixertoy/i18n-translator)
 
