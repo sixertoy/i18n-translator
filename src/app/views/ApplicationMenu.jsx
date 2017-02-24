@@ -16,7 +16,7 @@ class ApplicationMenu extends React.PureComponent {
 
   -------------------------------------------------------- */
 
-  _createNewLanguage (evt) {
+  _addNewLanguage (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
     ApplicationAction.togglePopin('import');
@@ -56,7 +56,7 @@ class ApplicationMenu extends React.PureComponent {
     );
   }
 
-  _renderCreateNewLanguage () {
+  _renderAddNewLanguage () {
     if (!this.props.canadd) {
       return Constants.REACT.NO_RENDER;
     }
@@ -64,7 +64,7 @@ class ApplicationMenu extends React.PureComponent {
       <span style={{
         marginRight: '20px'
       }}>
-        <button onClick={e => this._createNewLanguage(e)} >
+        <button onClick={e => this._addNewLanguage(e)} >
           <span>Add a Language</span>
         </button>
       </span>
@@ -105,7 +105,7 @@ class ApplicationMenu extends React.PureComponent {
           {/* this._renderCreateNewPrimaryKey() */}
         </div>
         <div>
-          {this._renderCreateNewLanguage()}
+          {this._renderAddNewLanguage()}
           {this._renderExportButton()}
         </div>
       </div>

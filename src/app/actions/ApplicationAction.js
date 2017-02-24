@@ -11,13 +11,6 @@ class ApplicationAction extends AbstractAction {
     });
   }
 
-  createNewLanguage (key) {
-    this.getDispatcher().dispatch({
-      type: Constants.FLUX.CREATE_NEW_LANGUAGE,
-      data: key
-    });
-  }
-
   updateValue (data) {
     this.getDispatcher().dispatch({
       type: Constants.FLUX.UPDATE_VALUE,

@@ -43,8 +43,9 @@ class LocalesTableRow extends React.PureComponent {
         {values.map((str, index) =>
           <LocaleTableRowInput key={`${langs[index]}-${primarykey}`}
             facade={facade}
-            primarykey={primarykey}
-            value={str || ''} />)}
+            value={str || ''}
+            lang={langs[index]}
+            primarykey={primarykey} />)}
       </p>
     );
   }
