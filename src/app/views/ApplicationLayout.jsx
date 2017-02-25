@@ -1,15 +1,16 @@
+/* globals ga */
 import React from 'react';
 import Helmet from 'react-helmet';
 import isempty from 'lodash.isempty';
 // lib
 import './Application.css';
-// import GithubStarButton from './../../core/views/GithubStarButton';
 import Constants from './../constants';
 import ExportPopin from './popins/ExportPopin';
 import ImportPopin from './popins/ImportPopin';
 import ApplicationMenu from './ApplicationMenu';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
+import GoogleAnalytics from './../../core/views/GoogleAnalytics';
 import ApplicationLayoutContent from './ApplicationLayoutContent';
 import GithubOctocatCorner from './../../core/views/GithubOctocatCorner';
 
@@ -165,6 +166,10 @@ class Application extends React.Component {
         <GithubOctocatCorner direction="left"
           username="sixertoy"
           projectname="i18n-translator" />
+        <GoogleAnalytics onload={() => {
+          ga('create', 'UA-92648806-1', 'auto');
+          ga('send', 'pageview', 'index.html');
+        }} />
       </div>
     );
   }
