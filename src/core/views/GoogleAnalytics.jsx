@@ -4,10 +4,11 @@ import noop from 'lodash.noop';
 /**
  * USAGE:
  * -------------------------------------------------
- * <GoogleAnalytics onload={() => {
+ * <GoogleAnalytics restricted={['localhost']}
+ *  onload={() => {
  *    ga('create', '<your_google_analytics_application_id>', 'auto');
  *    ga('send', 'pageview');
- * }} />
+ *  }} />
  *
  *
  * @type {[type]}

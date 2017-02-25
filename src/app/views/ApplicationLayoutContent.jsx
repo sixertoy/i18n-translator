@@ -1,5 +1,5 @@
 import React from 'react';
-import isboolean from 'lodash.isboolean';
+import isempty from 'lodash.isempty';
 // project
 import LocalesTable from './locales-table/LocalesTable';
 
@@ -30,7 +30,7 @@ class ApplicationLayoutContent extends React.PureComponent {
   ------------------------------------------------ */
 
   _renderLocalesTable () {
-    if (isboolean(this.props.primarykeys)) {
+    if (isempty(this.props.primarykeys)) {
       return false;
     }
     return (
@@ -42,7 +42,7 @@ class ApplicationLayoutContent extends React.PureComponent {
   }
 
   _renderCreateForm () {
-    if (!isboolean(this.props.primarykeys)) {
+    if (!isempty(this.props.primarykeys)) {
       return false;
     }
     return (
@@ -70,7 +70,7 @@ class ApplicationLayoutContent extends React.PureComponent {
   ------------------------------------------------ */
 
   render () {
-    const classes = isboolean(this.props.primarykeys)
+    const classes = isempty(this.props.primarykeys)
       ? 'flex-centered'
       : 'flex-start';
     return (
@@ -98,16 +98,13 @@ ApplicationLayoutContent.contextTypes = {
 ApplicationLayoutContent.defaultProps = {
   langs: [],
   values: {},
-  primarykeys: false
+  primarykeys: []
 };
 
 ApplicationLayoutContent.propTypes = {
   langs: React.PropTypes.array,
   values: React.PropTypes.array,
-  primarykeys: React.PropTypes.oneOfType([
-    React.PropTypes.bool,
-    React.PropTypes.array
-  ])
+  primarykeys: React.PropTypes.array
 };
 
 export default ApplicationLayoutContent;

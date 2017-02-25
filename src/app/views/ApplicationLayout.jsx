@@ -34,8 +34,8 @@ class Application extends React.Component {
       json: {},
       langs: [],
       values: [],
-      openpopin: false,
-      primarykeys: false
+      primarykeys: [],
+      openpopin: false
     };
   }
 
