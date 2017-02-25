@@ -11,42 +11,13 @@ class LocalesTableRow extends React.PureComponent {
 
   ------------------------------------------------ */
 
-  static renderRowPrimaryKeyName (value) {
-    return (
-      <p className="application-locales-table-row-primarykey-name"
-        style={{
-          marginTop: '0',
-          color: '#CCCCCC',
-          fontSize: '0.9em',
-          marginBottom: '3px'
-        }}><a name={value}>{`# ${value}`}</a></p>
-    );
-  }
-
   static renderRowDescription (value) {
     return (
-      <p className="application-locales-table-row-description"
+      <p className="application-table-row-description"
         style={{
           marginTop: '0',
           marginBottom: '7px'
         }}><em>{value}</em></p>
-    );
-  }
-
-  static renderRowLanguagesInput (facade, { primarykey, langs, values }) {
-    return (
-      <p className="flex-columns"
-        style={{
-          marginTop: '0',
-          marginBottom: '3px'
-        }}>
-        {values.map((str, index) =>
-          <LocaleTableRowInput key={`${langs[index]}-${primarykey}`}
-            facade={facade}
-            value={str || ''}
-            lang={langs[index]}
-            primarykey={primarykey} />)}
-      </p>
     );
   }
 
@@ -94,21 +65,54 @@ class LocalesTableRow extends React.PureComponent {
     const langs = this.props.langs;
     const values = this.props.values;
     const primarykey = this.props.primarykey;
-    const classes = 'application-locales-table-row';
     return (
-      <div className={`${classes} ${slug(primarykey.toLowerCase())}`}
+      <tr className={`application-table-row ${slug(primarykey.toLowerCase())}`}
         style={{
-          marginBottom: '22px'
+          backgroundColor: this.props.odd
+            ? 'transparent'
+            : this.context.theme.greylight
         }} >
-        {LocalesTableRow.renderRowPrimaryKeyName(primarykey)}
-        {LocalesTableRow.renderRowLanguagesInput(this.props.facade, { primarykey, langs, values })}
-      </div>
+        <td className="application-table-primarykey table-cell-ellipsis"
+          style={{
+            width: '8%',
+            padding: '12px',
+            textAlign: 'right',
+            verticalAlign: 'top'
+          }}>
+          {/*
+
+            primary key column
+
+          */}
+          <span style={{
+            color: '#CCCCCC',
+            fontSize: '0.9em'
+          }}><a name={primarykey}>{`# ${primarykey}`}</a></span>
+        </td>
+        {/*
+
+          translation value columns
+
+        */}
+        {values.map((str, index) =>
+          <LocaleTableRowInput key={`${langs[index]}-${primarykey}`}
+            facade={this.props.facade}
+            value={str || ''}
+            lang={langs[index]}
+            primarykey={primarykey} />)}
+      </tr>
     );
   }
 
 }
 
+LocalesTableRow.contextTypes = {
+  theme: React.PropTypes.object,
+  facade: React.PropTypes.object
+};
+
 LocalesTableRow.propTypes = {
+  odd: React.PropTypes.bool.isRequired,
   langs: React.PropTypes.array.isRequired,
   values: React.PropTypes.array.isRequired,
   facade: React.PropTypes.object.isRequired,

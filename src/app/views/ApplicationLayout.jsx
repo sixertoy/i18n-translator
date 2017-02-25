@@ -46,7 +46,8 @@ class Application extends React.Component {
         grey: '#B9B9B9',
         love: '#DD4739',
         metal: '#34495E',
-        velvet: '#661E75'
+        velvet: '#661E75',
+        greylight: '#E3E3E3'
       }
     };
   }

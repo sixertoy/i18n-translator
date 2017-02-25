@@ -74,14 +74,16 @@ class ApplicationLayoutContent extends React.PureComponent {
       ? 'flex-centered'
       : 'flex-start';
     return (
-      <div className={`application-screen flex-rows ${classes}`}
+      <div className={`application-layout-content flex-grow-and-shrink flex-rows ${classes}`}
         style={{
           width: '100%',
           fontSize: '1.2em',
+          paddingTop: '20px',
           overflowX: 'hidden',
           overflowY: 'scroll',
           position: 'relative',
-          background: '#EEEEEE'
+          background: '#EEEEEE',
+          paddingBottom: '20px'
         }}>
         {this._renderCreateForm()}
         {this._renderLocalesTable()}

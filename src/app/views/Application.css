@@ -14,12 +14,6 @@
   flex-shrink: 0;
 }
 
-.application-screen {
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-
 .application-screen .application-screen-inner {
   /* align-self: center; */
 }
@@ -58,11 +52,11 @@
   border-radius: 4px 4px 0 0;
 }
 
-.application-locales-table-row > .flex-columns textarea {
+.application-table-row > .flex-columns textarea {
   flex: 1 1 auto;
 }
 
-.application-locales-table-row > .flex-columns textarea ~ textarea {
+.application-table-row > .flex-columns textarea ~ textarea {
   margin-left: 20px;
 }
 

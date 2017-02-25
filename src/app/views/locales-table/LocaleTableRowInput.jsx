@@ -56,16 +56,20 @@ class LocaleTableRowInput extends React.PureComponent {
     const pkey = this.props.primarykey;
     const value = entities.decode(this.props.value || '');
     return (
-      <textarea key={`textarea-${pkey}`}
-        rows="1"
-        style={{
-          marginTop: '0',
-          padding: '7px',
-          maxWidth: '350px'
-        }}
-        className="autosize"
-        defaultValue={value}
-        onChange={e => this._onAutoSizeChange(e.target, pkey)} />
+      <td style={{
+        padding: '12px 6px',
+        verticalAlign: 'top'
+      }}>
+        <textarea key={`textarea-${pkey}`}
+          rows="1"
+          style={{
+            width: '100%',
+            padding: '7px'
+          }}
+          className="autosize"
+          defaultValue={value}
+          onChange={e => this._onAutoSizeChange(e.target, pkey)} />
+      </td>
     );
   }
 
