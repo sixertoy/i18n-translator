@@ -1,13 +1,13 @@
 import React from 'react';
 import isempty from 'lodash.isempty';
 // project
-import PopinFooter from './../commons/PopinFooter';
-import PopinFactory from './../commons/PopinFactory';
+import ScreenFooter from './../commons/ScreenFooter';
+import ScreenFactory from './../commons/ScreenFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
 import { entries } from './../../../core/utils/ObjectUtils';
 import StepsIterator from './../../../core/iterators/StepsIterator';
 
-class ImportPopin extends React.PureComponent {
+class ImportScreen extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -70,7 +70,7 @@ class ImportPopin extends React.PureComponent {
         currentstep: this._stepsIterator.next().value
       });
     } else {
-      action.togglePopin('import');
+      action.toggleScreen('import');
     }
   }
 
@@ -222,7 +222,7 @@ class ImportPopin extends React.PureComponent {
   render () {
     const showsubmit = this.state.jsonisvalid || this.state.langkey;
     return (
-      <div className="application-popin-content flex-rows"
+      <div className="application-screen-content flex-rows"
         style={{
           padding: '0',
           width: '100%',
@@ -236,7 +236,7 @@ class ImportPopin extends React.PureComponent {
             width: '100%',
             height: '100%'
           }}>{this.state.currentstep()}</div>
-        <PopinFooter cancelClickHandler={false}
+        <ScreenFooter cancelClickHandler={false}
           submitClickHandler={!showsubmit
             ? false : e => this._onClickSubmitHandler(e)} />
       </div>
@@ -245,20 +245,20 @@ class ImportPopin extends React.PureComponent {
 
 }
 
-ImportPopin.contextTypes = {
+ImportScreen.contextTypes = {
   theme: React.PropTypes.object,
   facade: React.PropTypes.object
 };
 
-ImportPopin.propTypes = {
+ImportScreen.propTypes = {
   defaultvalue: React.PropTypes.string,
   langs: React.PropTypes.array.isRequired,
   facade: React.PropTypes.object.isRequired,
   primarykeys: React.PropTypes.array.isRequired
 };
 
-ImportPopin.defaultProps = {
+ImportScreen.defaultProps = {
   defaultvalue: '// Put your JSON code to start working with your translations'
 };
 
-export default PopinFactory(ImportPopin);
+export default ScreenFactory(ImportScreen);

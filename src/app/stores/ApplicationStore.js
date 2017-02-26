@@ -14,7 +14,7 @@ class ApplicationStore extends AbstractStore {
       values: [],
       origin: {},
       primarykeys: [],
-      openpopin: false
+      openscreen: false
     }, dispatcher);
   }
 
@@ -88,10 +88,10 @@ class ApplicationStore extends AbstractStore {
         // add a new imported language
         this._onAddLanguage(obj.data);
         break;
-      case Constants.FLUX.TOGGLE_POPIN:
-        // open/close popin
+      case Constants.FLUX.TOGGLE_SCREEN:
+        // switch between screen
         this.setState({
-          openpopin: !this.getState('openpopin')
+          openscreen: !this.getState('openscreen')
             ? obj.data
             : false
         });

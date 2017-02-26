@@ -16,17 +16,24 @@ class ApplicationMenu extends React.PureComponent {
 
   -------------------------------------------------------- */
 
-  _addNewLanguage (evt) {
+  _addNewLanguageClickHandler (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
-    ApplicationAction.togglePopin('import');
+    ApplicationAction.toggleScreen('import');
   }
 
   _onExportClickHandler (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
     ApplicationAction.exportDiffChanges();
-    ApplicationAction.togglePopin('export');
+    ApplicationAction.toggleScreen('export');
+  }
+
+  _showEditTableClickHandler (evt) {
+    evt.preventDefault();
+    const ApplicationAction = this.context.facade.getAction('ApplicationAction');
+    ApplicationAction.exportDiffChanges();
+    ApplicationAction.toggleScreen('import');
   }
 
   /* --------------------------------------------------------
@@ -49,7 +56,7 @@ class ApplicationMenu extends React.PureComponent {
     );
   }
 
-  _renderAddNewLanguage () {
+  _renderAddNewLanguageButton () {
     if (!this.props.canadd) {
       return Constants.REACT.NO_RENDER;
     }
@@ -57,8 +64,20 @@ class ApplicationMenu extends React.PureComponent {
       <span style={{
         marginRight: '20px'
       }}>
-        <button onClick={e => this._addNewLanguage(e)} >
+        <button onClick={e => this._addNewLanguageClickHandler(e)} >
           <span>Add a Language</span>
+        </button>
+      </span>
+    );
+  }
+
+  _renderShowEditTableButton () {
+    return (
+      <span style={{
+        marginRight: '20px'
+      }}>
+        <button onClick={e => this._showEditTableClickHandler(e)} >
+          <span>Show table</span>
         </button>
       </span>
     );
@@ -69,12 +88,14 @@ class ApplicationMenu extends React.PureComponent {
       <div className="application-main-menu flex-no-grow-no-shrink flex-columns flex-space-between"
         style={{
           width: '100%',
+          minHeight: '55px',
           padding: '12px 32px',
           background: '#FBFBFB'
         }}>
         <div />
         <div>
-          {this._renderAddNewLanguage()}
+          {this._renderShowEditTableButton()}
+          {this._renderAddNewLanguageButton()}
           {this._renderExportButton()}
         </div>
       </div>

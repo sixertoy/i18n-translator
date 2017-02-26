@@ -1,10 +1,10 @@
 import React from 'react';
 // project
 import { entries } from './../../../core/utils/ObjectUtils';
-import PopinFactory from './../commons/hoc/PopinFactory';
+import ScreenFactory from './../commons/hoc/ScreenFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
 
-class ExportPopin extends React.PureComponent {
+class ExportScreen extends React.PureComponent {
 
   constructor (props) {
     super(props);
@@ -33,7 +33,7 @@ class ExportPopin extends React.PureComponent {
   _renderLocalesTabs () {
     const current = this.state.current;
     return (
-      <span className="popin-locales-tabs"
+      <span className="screen-locales-tabs"
         style={{
           marginRight: '40px'
         }}>
@@ -83,7 +83,7 @@ class ExportPopin extends React.PureComponent {
       [langkey, locales] = entries[this.state.current];
     }
     return (
-      <div className="application-popin-content"
+      <div className="application-screen-content"
         style={{
           width: '100%',
           height: '100%',
@@ -118,7 +118,7 @@ class ExportPopin extends React.PureComponent {
 
 }
 
-ExportPopin.propTypes = {
+ExportScreen.propTypes = {
   json: React.PropTypes.oneOfType([
     React.PropTypes.bool,
     React.PropTypes.object
@@ -129,4 +129,4 @@ ExportPopin.propTypes = {
   ]).isRequired
 };
 
-export default PopinFactory(ExportPopin);
+export default ScreenFactory(ExportScreen);

@@ -3,7 +3,7 @@ import React from 'react';
 // project
 import SubmitButton from './../buttons/SubmitButton';
 
-class PopinFooter extends React.PureComponent {
+class ScreenFooter extends React.PureComponent {
 
   /* ------------------------------------------------
 
@@ -33,7 +33,7 @@ class PopinFooter extends React.PureComponent {
 
   render () {
     return (
-      <div className="application-popin-footer flex-columns flex-align-end"
+      <div className="application-screen-footer flex-columns flex-align-end"
         style={{
           width: '100%',
           minHeight: '60px',
@@ -60,12 +60,12 @@ class PopinFooter extends React.PureComponent {
 
 }
 
-PopinFooter.contextTypes = {
+ScreenFooter.contextTypes = {
   theme: React.PropTypes.object,
   facade: React.PropTypes.object
 };
 
-PopinFooter.propTypes = {
+ScreenFooter.propTypes = {
   cancellabel: React.PropTypes.string,
   cancelClickHandler: React.PropTypes.oneOfType([
     React.PropTypes.bool,
@@ -78,9 +78,9 @@ PopinFooter.propTypes = {
   ]).isRequired
 };
 
-PopinFooter.defaultProps = {
+ScreenFooter.defaultProps = {
   cancellabel: 'Cancel',
   submitlabel: 'Continue'
 };
 
-export default PopinFooter;
+export default ScreenFooter;

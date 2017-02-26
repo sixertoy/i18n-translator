@@ -2,7 +2,7 @@ import React from 'react';
 // project
 
 const factory = (Wrapped) => {
-  class PopinFactory extends React.Component {
+  class ScreenFactory extends React.Component {
 
     constructor (props) {
       super(props);
@@ -20,7 +20,7 @@ const factory = (Wrapped) => {
     _onCloseHandler (evt) {
       evt.preventDefault();
       const action = this.context.facade.getAction('ApplicationAction');
-      action.togglePopin(false);
+      action.toggleScreen(false);
     }
 
     /* ---------------------------------------------------------------------
@@ -42,12 +42,12 @@ const factory = (Wrapped) => {
 
     render () {
       return (
-        <div className="application-popin flex-rows flex-centered absolute-container"
+        <div className="application-screen flex-rows flex-centered absolute-container"
           style={{
             overflow: 'hidden',
             background: 'rgba(0, 0, 0, 0.75)'
           }}>
-          <div className="application-popin-inner flex-rows"
+          <div className="application-screen-inner flex-rows"
             style={{
               padding: '0',
               width: '80%',
@@ -57,7 +57,7 @@ const factory = (Wrapped) => {
               overflow: 'hidden',
               background: 'white'
             }}>
-            <div className="application-popin-header flex-columns flex-space-between"
+            <div className="application-screen-header flex-columns flex-space-between"
               style={{
                 width: '100%',
                 background: '#FBFBFB',
@@ -79,16 +79,16 @@ const factory = (Wrapped) => {
     }
   }
 
-  PopinFactory.contextTypes = {
+  ScreenFactory.contextTypes = {
     theme: React.PropTypes.object,
     facade: React.PropTypes.object
   };
 
-  PopinFactory.propTypes = {
+  ScreenFactory.propTypes = {
     title: React.PropTypes.string.isRequired
   };
 
-  return PopinFactory;
+  return ScreenFactory;
 
 };
 

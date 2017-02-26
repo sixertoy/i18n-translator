@@ -20,7 +20,7 @@ class ApplicationLayoutContent extends React.PureComponent {
   _onClickImportButtonHandler (evt) {
     evt.preventDefault();
     const action = this.context.facade.getAction('ApplicationAction');
-    action.togglePopin('import');
+    action.toggleScreen('import');
   }
 
   /* ------------------------------------------------

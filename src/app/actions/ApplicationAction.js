@@ -4,10 +4,17 @@ import Constants from './../constants';
 
 class ApplicationAction extends AbstractAction {
 
-  togglePopin (type) {
+  toggleScreen (type) {
     this.getDispatcher().dispatch({
-      type: Constants.FLUX.TOGGLE_POPIN,
+      type: Constants.FLUX.TOGGLE_SCREEN,
       data: type
+    });
+  }
+
+  addLanguage (langkey, json) {
+    this.getDispatcher().dispatch({
+      type: Constants.FLUX.ADD_LANGUAGE,
+      data: [langkey, json]
     });
   }
 
@@ -21,13 +28,6 @@ class ApplicationAction extends AbstractAction {
   exportDiffChanges () {
     this.getDispatcher().dispatch({
       type: Constants.FLUX.EXPORT_DIFF_CHANGES
-    });
-  }
-
-  addLanguage (langkey, json) {
-    this.getDispatcher().dispatch({
-      type: Constants.FLUX.ADD_LANGUAGE,
-      data: [langkey, json]
     });
   }
 

@@ -5,8 +5,8 @@ import isempty from 'lodash.isempty';
 // lib
 import './Application.css';
 import Constants from './../constants';
-import ExportPopin from './popins/ExportPopin';
-import ImportPopin from './popins/ImportPopin';
+import ExportScreen from './screens/ExportScreen';
+import ImportScreen from './screens/ImportScreen';
 import ApplicationMenu from './ApplicationMenu';
 import ApplicationFooter from './ApplicationFooter';
 import ApplicationHeader from './ApplicationHeader';
@@ -35,7 +35,7 @@ class Application extends React.Component {
       langs: [],
       values: [],
       primarykeys: [],
-      openpopin: false
+      openscreen: false
     };
   }
 
@@ -71,13 +71,13 @@ class Application extends React.Component {
   /**
    * Called when application's store emit changes
    */
-  _onApplicationStoreChange ({ langs, json, primarykeys, values, openpopin }) {
+  _onApplicationStoreChange (state) {
     this.setState({
-      json,
-      langs,
-      values,
-      openpopin,
-      primarykeys
+      json: state.json,
+      langs: state.langs,
+      values: state.values,
+      openscreen: state.openscreen,
+      primarykeys: state.primarykeys
     });
   }
 
@@ -87,15 +87,12 @@ class Application extends React.Component {
 
   ------------------------------------------------ */
 
-  _renderApplicationPopin () {
+  _renderApplicationScreen () {
     let view = Constants.REACT.NO_RENDER;
-    if (!this.state.openpopin) {
-      return view;
-    }
-    switch (this.state.openpopin) {
+    switch (this.state.openscreen) {
     case 'import':
       view = (
-        <ImportPopin facade={this.props.facade}
+        <ImportScreen facade={this.props.facade}
           title={'Create a new language set'}
           langs={this.state.langs}
           primarykeys={this.state.primarykeys} />
@@ -103,7 +100,7 @@ class Application extends React.Component {
       break;
     case 'export':
       view = (
-        <ExportPopin facade={this.props.facade}
+        <ExportScreen facade={this.props.facade}
           title={'Export languages'}
           json={this.state.json}
           langs={this.state.langs}
@@ -154,16 +151,15 @@ class Application extends React.Component {
             }}>
             <ApplicationHeader appname={this.props.appname} />
           </div>
-          {!isempty(this.state.values)
-            && <ApplicationMenu canexport={!isempty(this.state.values)}
-              canadd={!isempty(this.state.values)} />}
+          {<ApplicationMenu canexport={!isempty(this.state.values)}
+            canadd />}
           <ApplicationLayoutContent langs={this.state.langs}
             values={this.state.values}
             primarykeys={this.state.primarykeys} />
           <ApplicationFooter version={this.props.version}
             canexport={!isempty(this.state.primarykeys)} />
         </div>
-        {this._renderApplicationPopin()}
+        {this._renderApplicationScreen()}
         <GithubOctocatCorner direction="left"
           username="sixertoy"
           projectname="i18n-translator" />

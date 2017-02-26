@@ -29,26 +29,26 @@
 
 /* ------------------------------------------------------
 
- Popin
+ Screens
 
 ------------------------------------------------------ */
 
-.application-popin-inner {
+.application-screen-inner {
   border-radius: 4px;
   justify-content: space-between;
 }
 
-.application-popin-inner > .popin-content {
+.application-screen-inner > .screen-content {
   flex-grow: 1;
   flex-shrink: 1;
 }
 
-.application-popin-inner > .flex-columns {
+.application-screen-inner > .flex-columns {
   flex-grow: 0;
   flex-shrink: 0;
 }
 
-.application-popin .popin-locales-tabs > * {
+.application-screen .screen-locales-tabs > * {
   border-radius: 4px 4px 0 0;
 }
 
@@ -66,7 +66,7 @@
 
 ------------------------------------------------------ */
 
-.application-popin {
+.application-screen {
   z-index: 500;
 }
 

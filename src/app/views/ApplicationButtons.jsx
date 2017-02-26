@@ -36,14 +36,14 @@ class ApplicationButton extends React.PureComponent {
   _showTranslationsContent (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
-    ApplicationAction.togglePopin('export');
+    ApplicationAction.toggleScreen('export');
     ApplicationAction.saveLocales();
   }
 
   _addNewLanguage (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
-    ApplicationAction.togglePopin('import');
+    ApplicationAction.toggleScreen('import');
   }
 
   /* ------------------------------------------------
