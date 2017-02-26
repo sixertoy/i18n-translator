@@ -7,6 +7,12 @@ const constants = {
   },
   REACT: {
     NO_RENDER: false
+  },
+  SCREENS: {
+    EDIT: 'edit',
+    IMPORT: 'import',
+    EXPORT: 'export',
+    CONNECT: 'connect'
   }
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import isempty from 'lodash.isempty';
 // project
+import Constants from './../../constants';
 import ScreenFooter from './../commons/ScreenFooter';
 import ScreenFactory from './../commons/ScreenFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
@@ -28,6 +29,7 @@ class ImportScreen extends React.PureComponent {
     }
 
     this.state = {
+      defaultvalue,
       count: 0,
       langkey: false,
       editormode: 'json',
@@ -57,20 +59,22 @@ class ImportScreen extends React.PureComponent {
 
   -------------------------------------------------- */
 
-  _onLoadMoreContentHandler (e, response) {
+  _onLoadYesNoClickHandler (e, response) {
     e.preventDefault();
-    const action = this.props.facade.getAction('ApplicationAction');
+    const action = this.context.facade.getAction('ApplicationAction');
     action.addLanguage(this.state.langkey, this.state.jsonstring);
     if (response) {
       this.setState({
         langkey: false,
-        jsonstring: false,
         jsonisvalid: false,
         count: (this.state.count + 1),
-        currentstep: this._stepsIterator.next().value
+        currentstep: this._stepsIterator.next().value,
+        jsonstring: response
+          ? this.state.defaultvalue
+          : false
       });
     } else {
-      action.toggleScreen('import');
+      action.toggleScreen(Constants.SCREENS.EDIT);
     }
   }
 
@@ -126,7 +130,7 @@ class ImportScreen extends React.PureComponent {
         <p style={{
           marginTop: '0'
         }}>
-          <button onClick={e => this._onLoadMoreContentHandler(e, false)}
+          <button onClick={e => this._onLoadYesNoClickHandler(e, false)}
             style={{
               margin: '0 10px',
               paddingLeft: '20px',
@@ -135,7 +139,7 @@ class ImportScreen extends React.PureComponent {
             }}>
             <span>No</span>
           </button>
-          <button onClick={e => this._onLoadMoreContentHandler(e, true)}
+          <button onClick={e => this._onLoadYesNoClickHandler(e, true)}
             style={{
               margin: '0 10px',
               paddingLeft: '20px',
@@ -253,7 +257,6 @@ ImportScreen.contextTypes = {
 ImportScreen.propTypes = {
   defaultvalue: React.PropTypes.string,
   langs: React.PropTypes.array.isRequired,
-  facade: React.PropTypes.object.isRequired,
   primarykeys: React.PropTypes.array.isRequired
 };
 

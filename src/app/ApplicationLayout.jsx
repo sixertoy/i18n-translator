@@ -3,18 +3,21 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import isempty from 'lodash.isempty';
 // lib
+import GoogleAnalytics from './../core/views/GoogleAnalytics';
+import GithubOctocatCorner from './../core/views/GithubOctocatCorner';
+// application
 import './Application.css';
-import Constants from './../constants';
-import ExportScreen from './screens/ExportScreen';
-import ImportScreen from './screens/ImportScreen';
-import ApplicationMenu from './ApplicationMenu';
-import ApplicationFooter from './ApplicationFooter';
-import ApplicationHeader from './ApplicationHeader';
-import GoogleAnalytics from './../../core/views/GoogleAnalytics';
-import ApplicationLayoutContent from './ApplicationLayoutContent';
-import GithubOctocatCorner from './../../core/views/GithubOctocatCorner';
+import Constants from './constants';
+import ApplicationMenu from './views/ApplicationMenu';
+import ApplicationFooter from './views/ApplicationFooter';
+import ApplicationHeader from './views/ApplicationHeader';
+// screens
+import ImportScreen from './views/screens/ImportScreen';
+import ExportScreen from './views/screens/ExportScreen';
+import ConnectScreen from './views/screens/ConnectScreen';
+import LocalesTable from './views/locales-table/LocalesTable';
 
-class Application extends React.Component {
+class ApplicationLayout extends React.Component {
 
   /* ------------------------------------------------
 
@@ -35,7 +38,8 @@ class Application extends React.Component {
       langs: [],
       values: [],
       primarykeys: [],
-      openscreen: false
+      // default/home screen
+      openscreen: Constants.SCREENS.CONNECT
     };
   }
 
@@ -88,26 +92,43 @@ class Application extends React.Component {
   ------------------------------------------------ */
 
   _renderApplicationScreen () {
-    let view = Constants.REACT.NO_RENDER;
+    let view;
+    console.log('DEBUG :: this.props.openscreen', this.state.openscreen);
     switch (this.state.openscreen) {
-    case 'import':
+    case Constants.SCREENS.IMPORT:
       view = (
-        <ImportScreen facade={this.props.facade}
+        <ImportScreen facade={this.context.facade}
           title={'Create a new language set'}
           langs={this.state.langs}
           primarykeys={this.state.primarykeys} />
         );
       break;
-    case 'export':
+    case Constants.SCREENS.EXPORT:
       view = (
-        <ExportScreen facade={this.props.facade}
+        <ExportScreen facade={this.context.facade}
           title={'Export languages'}
           json={this.state.json}
           langs={this.state.langs}
           values={this.state.values} />
         );
       break;
+    case Constants.SCREENS.EDIT:
+      view = (
+        <LocalesTable facade={this.context.facade}
+          langs={this.state.langs}
+          values={this.state.values}
+          primarykeys={this.state.primarykeys} />
+      );
+      break;
     default:
+    case Constants.SCREENS.CONNECT:
+      view = (
+        <ConnectScreen facade={this.context.facade}
+          title={'Export languages'}
+          json={this.state.json}
+          langs={this.state.langs}
+          values={this.state.values} />
+        );
       break;
     }
     return view;
@@ -120,6 +141,9 @@ class Application extends React.Component {
   ------------------------------------------------ */
 
   render () {
+    const classes = isempty(this.state.primarykeys)
+      ? 'flex-centered'
+      : 'flex-start';
     return (
       <div className="application"
         style={{
@@ -153,13 +177,22 @@ class Application extends React.Component {
           </div>
           {<ApplicationMenu canexport={!isempty(this.state.values)}
             canadd />}
-          <ApplicationLayoutContent langs={this.state.langs}
-            values={this.state.values}
-            primarykeys={this.state.primarykeys} />
+          <div className={`application-layout-content flex-grow-and-shrink flex-rows ${classes}`}
+            style={{
+              width: '100%',
+              fontSize: '1.2em',
+              paddingTop: '20px',
+              overflowX: 'hidden',
+              overflowY: 'scroll',
+              position: 'relative',
+              background: '#EEEEEE',
+              paddingBottom: '20px'
+            }}>
+            {this._renderApplicationScreen()}
+          </div>
           <ApplicationFooter version={this.props.version}
             canexport={!isempty(this.state.primarykeys)} />
         </div>
-        {this._renderApplicationScreen()}
         <GithubOctocatCorner direction="left"
           username="sixertoy"
           projectname="i18n-translator" />
@@ -172,15 +205,15 @@ class Application extends React.Component {
   }
 }
 
-Application.childContextTypes = {
+ApplicationLayout.childContextTypes = {
   theme: React.PropTypes.object,
   facade: React.PropTypes.object
 };
 
-Application.propTypes = {
+ApplicationLayout.propTypes = {
   appname: React.PropTypes.string.isRequired,
   version: React.PropTypes.string.isRequired,
   facade: React.PropTypes.object.isRequired
 };
 
-export default Application;
+export default ApplicationLayout;

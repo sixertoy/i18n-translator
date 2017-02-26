@@ -96,7 +96,7 @@ class LocalesTableRow extends React.PureComponent {
         */}
         {values.map((str, index) =>
           <LocaleTableRowInput key={`${langs[index]}-${primarykey}`}
-            facade={this.props.facade}
+            facade={this.context.facade}
             value={str || ''}
             lang={langs[index]}
             primarykey={primarykey} />)}
@@ -115,7 +115,6 @@ LocalesTableRow.propTypes = {
   odd: React.PropTypes.bool.isRequired,
   langs: React.PropTypes.array.isRequired,
   values: React.PropTypes.array.isRequired,
-  facade: React.PropTypes.object.isRequired,
   primarykey: React.PropTypes.string.isRequired
 };
 

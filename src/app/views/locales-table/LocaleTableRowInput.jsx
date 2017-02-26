@@ -27,7 +27,7 @@ class LocaleTableRowInput extends React.PureComponent {
    */
   _onInputChange (primarykey, value) {
     const lang = this.props.lang;
-    const action = this.props.facade.getAction('ApplicationAction');
+    const action = this.context.facade.getAction('ApplicationAction');
     if (this._keyboardTimeout) {
       clearTimeout(this._keyboardTimeout);
     }
@@ -76,10 +76,14 @@ class LocaleTableRowInput extends React.PureComponent {
 
 }
 
+LocaleTableRowInput.contextTypes = {
+  theme: React.PropTypes.object,
+  facade: React.PropTypes.object
+};
+
 LocaleTableRowInput.propTypes = {
   lang: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
-  facade: React.PropTypes.object.isRequired,
   primarykey: React.PropTypes.string.isRequired
 };
 

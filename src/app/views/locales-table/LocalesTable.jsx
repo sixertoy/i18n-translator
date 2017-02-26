@@ -90,7 +90,7 @@ class LocalesTable extends React.PureComponent {
               langs={langs}
               primarykey={key}
               odd={Boolean(index % 2)}
-              facade={this.props.facade}
+              facade={this.context.facade}
               values={values.map(obj => (obj[key] || ''))} />)}
         </tbody>
       </table>
@@ -106,7 +106,6 @@ LocalesTable.contextTypes = {
 LocalesTable.propTypes = {
   langs: React.PropTypes.array.isRequired,
   values: React.PropTypes.array.isRequired,
-  facade: React.PropTypes.object.isRequired,
   primarykeys: React.PropTypes.array.isRequired
 };
 

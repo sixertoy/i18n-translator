@@ -20,7 +20,7 @@ const factory = (Wrapped) => {
     _onCloseHandler (evt) {
       evt.preventDefault();
       const action = this.context.facade.getAction('ApplicationAction');
-      action.toggleScreen(false);
+      action.toggleScreen();
     }
 
     /* ---------------------------------------------------------------------

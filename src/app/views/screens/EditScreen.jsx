@@ -1,7 +1,6 @@
 import React from 'react';
 // project
 import { entries } from './../../../core/utils/ObjectUtils';
-import ScreenFactory from './../commons/hoc/ScreenFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
 
 class ExportScreen extends React.PureComponent {

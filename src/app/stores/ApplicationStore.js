@@ -1,3 +1,5 @@
+import isempty from 'lodash.isempty';
+import isstring from 'lodash.isstring';
 import { diff, apply } from 'rus-diff';
 // project
 import Constants from './../constants';
@@ -26,7 +28,7 @@ class ApplicationStore extends AbstractStore {
    * @param {String} langkey
    * @param {String} jsonstring
    */
-  _onAddLanguage ([langkey, jsonstring]) {
+  _onAddLanguageChange ([langkey, jsonstring]) {
     let values = JSON.parse(jsonstring);
     const origin = this.getState('origin');
     const langs = this.getState('langs').concat([langkey]);
@@ -55,7 +57,7 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
-  _onUpdateValue ({ primarykey, lang, value }) {
+  _onUpdateValueChange ({ primarykey, lang, value }) {
     const index = this.getState('langs').indexOf(lang);
     const values = this.getState('values');
     values[index][primarykey] = value;
@@ -64,7 +66,7 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
-  _onExportDiffChanges () {
+  _onExportDiffChange () {
     const langs = this.getState('langs');
     const values = this.getState('values');
 
@@ -75,29 +77,45 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
+  /**
+   * @param {String} nextscreen
+   */
+  _onScreenChange (nextscreen) {
+    const langs = this.getState('langs');
+    const screen = this.getState('openscreen');
+    const openscreen = langs.length
+      ? Constants.SCREENS.EDIT
+      : Constants.SCREENS.CONNECT;
+
+    // eslint-disable-next-line
+    console.log('DEBUG :: current > next screen', `${screen} > ${nextscreen}`);
+
+    this.setState({
+      openscreen: isstring(nextscreen) && !isempty(nextscreen)
+        ? nextscreen
+        : openscreen
+    });
+  }
+
+  /**
+   *
+   */
   _initDispatcher () {
     const token = this._dispatcher.register((obj) => {
       switch (obj.type) {
       case Constants.FLUX.UPDATE_VALUE:
-        this._onUpdateValue(obj.data);
+        this._onUpdateValueChange(obj.data);
         break;
       case Constants.FLUX.EXPORT_DIFF_CHANGES:
-        this._onExportDiffChanges();
+        this._onExportDiffChange();
         break;
       case Constants.FLUX.ADD_LANGUAGE:
-        // add a new imported language
-        this._onAddLanguage(obj.data);
+        this._onAddLanguageChange(obj.data);
         break;
       case Constants.FLUX.TOGGLE_SCREEN:
-        // switch between screen
-        this.setState({
-          openscreen: !this.getState('openscreen')
-            ? obj.data
-            : false
-        });
+        this._onScreenChange(obj.data);
         break;
       default:
-        // empty case
         break;
       }
     });

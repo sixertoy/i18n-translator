@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import packages CSS
-import 'react-select/dist/react-select.css';
 // core
+import { AbstractFacade } from '../core/abstracts';
 import stores from './stores';
 import actions from './actions';
 import services from './services';
 import observers from './observers';
 import routesActions from './routes';
-import { AbstractFacade } from '../core/abstracts';
-import ApplicationLayout from './views/ApplicationLayout';
+import ApplicationLayout from './ApplicationLayout';
 
 class ApplicationFacade extends AbstractFacade {
 
