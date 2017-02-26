@@ -19,21 +19,21 @@ class ApplicationMenu extends React.PureComponent {
   _addNewLanguageClickHandler (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
-    ApplicationAction.toggleScreen('import');
+    ApplicationAction.toggleScreen(Constants.SCREENS.IMPORT);
   }
 
   _onExportClickHandler (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
     ApplicationAction.exportDiffChanges();
-    ApplicationAction.toggleScreen('export');
+    ApplicationAction.toggleScreen(Constants.SCREENS.EXPORT);
   }
 
   _showEditTableClickHandler (evt) {
     evt.preventDefault();
     const ApplicationAction = this.context.facade.getAction('ApplicationAction');
     ApplicationAction.exportDiffChanges();
-    ApplicationAction.toggleScreen('import');
+    ApplicationAction.toggleScreen(Constants.SCREENS.EDIT);
   }
 
   /* --------------------------------------------------------

@@ -1,6 +1,5 @@
 import React from 'react';
 // project
-import ScreenFactory from './../commons/ScreenFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
 
 class ExportScreen extends React.PureComponent {
@@ -99,15 +98,10 @@ class ExportScreen extends React.PureComponent {
 
   render () {
     return (
-      <div className="inner flex-rows"
-        style={{
-          padding: '0',
-          width: '100%',
-          height: '95%',
-          margin: '0 auto',
-          overflow: 'hidden',
-          background: 'white'
-        }}>
+      <div style={{
+        margin: '0 auto',
+        textAlign: 'center'
+      }}>
         {this._renderLocalesTabs()}
         {this._renderTextArea()}
       </div>
@@ -116,10 +110,15 @@ class ExportScreen extends React.PureComponent {
 
 }
 
+ExportScreen.contextTypes = {
+  theme: React.PropTypes.object,
+  facade: React.PropTypes.object
+};
+
 ExportScreen.propTypes = {
   langs: React.PropTypes.array.isRequired,
   json: React.PropTypes.object.isRequired,
   values: React.PropTypes.array.isRequired
 };
 
-export default ScreenFactory(ExportScreen);
+export default ExportScreen;
