@@ -64,7 +64,8 @@ class LocaleTableRowInput extends React.PureComponent {
           rows="1"
           style={{
             width: '100%',
-            padding: '7px'
+            padding: '7px',
+            maxWidth: '400px'
           }}
           className="autosize"
           defaultValue={value}

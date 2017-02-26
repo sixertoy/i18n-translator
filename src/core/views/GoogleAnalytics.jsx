@@ -17,7 +17,7 @@ class GoogleAnalytics extends React.Component {
 
   componentDidMount () {
 
-    if (this.props.restricted.indexOf(window.location.hostname) !== -1) {
+    if (process.env.NODE_ENV === 'development') {
       window.ga = noop;
       return null;
     }
@@ -47,12 +47,7 @@ class GoogleAnalytics extends React.Component {
 
 }
 
-GoogleAnalytics.defaultProps = {
-  restricted: ['localhost']
-};
-
 GoogleAnalytics.propTypes = {
-  restricted: React.PropTypes.array,
   onload: React.PropTypes.func.isRequired
 };
 

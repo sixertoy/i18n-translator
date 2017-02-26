@@ -7,7 +7,7 @@ import Helmet from 'react-helmet';
  * <!-- Place this tag in your head or just before your close body tag. -->
  * <script async defer src="https://buttons.github.io/buttons.js"></script>
  */
-const GithubStarButton = props => (
+let GithubStarButton = props => (
   <a className="github-button"
     data-style="mega"
     data-count-aria-label="# stargazers on GitHub"
@@ -31,5 +31,9 @@ GithubStarButton.propTypes = {
   username: React.PropTypes.string.isRequired,
   projectname: React.PropTypes.string.isRequired
 };
+
+if (process.env.NODE_ENV === 'development') {
+  GithubStarButton = () => false;
+}
 
 export default GithubStarButton;

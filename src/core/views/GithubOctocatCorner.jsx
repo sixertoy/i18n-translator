@@ -7,7 +7,7 @@ import Helmet from 'react-helmet';
  * <!-- Place this tag in your head or just before your close body tag. -->
  * <script async defer src="https://buttons.github.io/buttons.js"></script>
  */
-const GithubOctocatCorner = props => (
+let GithubOctocatCorner = props => (
   <div id="octocat-corner"
     style={{
       top: 0,
@@ -57,5 +57,9 @@ GithubOctocatCorner.propTypes = {
   username: React.PropTypes.string.isRequired,
   projectname: React.PropTypes.string.isRequired
 };
+
+if (process.env.NODE_ENV === 'development') {
+  GithubOctocatCorner = () => false;
+}
 
 export default GithubOctocatCorner;

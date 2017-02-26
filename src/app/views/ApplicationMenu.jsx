@@ -66,7 +66,7 @@ class ApplicationMenu extends React.PureComponent {
 
   render () {
     return (
-      <div className="application-main-menu flex-columns flex-space-between"
+      <div className="application-main-menu flex-no-grow-no-shrink flex-columns flex-space-between"
         style={{
           width: '100%',
           padding: '12px 32px',

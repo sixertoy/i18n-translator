@@ -7,7 +7,7 @@ import Helmet from 'react-helmet';
  * <!-- Place this tag in your head or just before your close body tag. -->
  * <script async defer src="https://buttons.github.io/buttons.js"></script>
  */
-const TwitterShareButton = props => (
+let TwitterShareButton = props => (
   <a className="twitter-wjs twitter-share-button"
     href="https://twitter.com/share"
     id="twitter-wjs"
@@ -32,5 +32,9 @@ TwitterShareButton.propTypes = {
   username: React.PropTypes.string.isRequired,
   projecturl: React.PropTypes.string.isRequired
 };
+
+if (process.env.NODE_ENV === 'development') {
+  TwitterShareButton = () => false;
+}
 
 export default TwitterShareButton;

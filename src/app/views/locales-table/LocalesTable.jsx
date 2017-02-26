@@ -75,7 +75,13 @@ class LocalesTable extends React.PureComponent {
               style={{
                 paddingRight: '0px',
                 padding: '12px 12px'
-              }}>{key}</th>)}
+              }}>
+              <span style={{
+                width: '100%',
+                display: 'block',
+                maxWidth: '400px'
+              }}>{key}</span>
+            </th>)}
           </tr>
         </thead>
         <tbody>
