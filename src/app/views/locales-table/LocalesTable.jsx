@@ -55,45 +55,56 @@ class LocalesTable extends React.PureComponent {
     const values = this.props.values;
     const primarykeys = this.props.primarykeys;
     return (
-      <table className="application-table"
-        style={{
-          width: '100%'
-        }}>
-        <thead style={{
-          textAlign: 'center'
-        }}>
-          <tr>
-            <th className="table-cell-ellipsis"
-              style={{
-                width: '8%',
-                padding: '12px',
-                textAlign: 'right'
-              }}>
-              <small>Primary Keys</small>
-            </th>
-            {langs.map(key => <th key={`header-${key}`}
-              style={{
-                paddingRight: '0px',
-                padding: '12px 12px'
-              }}>
-              <span style={{
-                width: '100%',
-                display: 'block',
-                maxWidth: '400px'
-              }}>{key}</span>
-            </th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {primarykeys.map((key, index) =>
-            <LocalesTableRow key={`row_${key}`}
-              langs={langs}
-              primarykey={key}
-              odd={Boolean(index % 2)}
-              facade={this.context.facade}
-              values={values.map(obj => (obj[key] || ''))} />)}
-        </tbody>
-      </table>
+      <div style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative'
+      }}>
+        <table className="application-table"
+          style={{
+            width: '100%',
+            height: '100%'
+          }}>
+          <thead style={{
+            textAlign: 'center'
+          }}>
+            <tr style={{
+            }}>
+              <th className="table-cell-ellipsis"
+                style={{
+                  width: '8%',
+                  padding: '12px',
+                  textAlign: 'right'
+                }}>
+                <small>Primary Keys</small>
+              </th>
+              {langs.map(key => <th key={`header-${key}`}
+                style={{
+                  paddingRight: '0px',
+                  padding: '12px 12px'
+                }}>
+                <span style={{
+                  width: '100%',
+                  display: 'block',
+                  maxWidth: '400px'
+                }}>{key}</span>
+              </th>)}
+            </tr>
+          </thead>
+          <tbody style={{
+            overflowY: 'scroll',
+            overflowX: 'hidden'
+          }}>
+            {primarykeys.map((key, index) =>
+              <LocalesTableRow key={`row_${key}`}
+                langs={langs}
+                primarykey={key}
+                odd={Boolean(index % 2)}
+                facade={this.context.facade}
+                values={values.map(obj => (obj[key] || ''))} />)}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

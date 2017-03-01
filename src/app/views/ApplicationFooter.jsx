@@ -25,17 +25,14 @@ class ApplicationFooter extends React.PureComponent {
       <div className="application-footer flex-columns flex-space-between shadow-top"
         style={{
           width: '100%',
-          height: '50px',
-          minHeight: '50px',
-          paddingTop: '10px',
-          paddingBottom: '10px',
-          padding: '10px 32px 10px 32px',
-          background: this.context.theme.metal
+          height: '20px',
+          padding: '0 32px 0 32px',
+          background: this.context.theme.greylight
         }}>
         <span style={{
           color: '#A0A0A0',
           fontSize: '0.55em',
-          lineHeight: '40px',
+          lineHeight: '2.8em',
           fontFamily: 'arial',
           letterSpacing: '0.12em',
           textTransform: 'uppercase'

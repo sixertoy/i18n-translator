@@ -93,6 +93,7 @@ class ApplicationLayout extends React.Component {
 
   _renderApplicationScreen () {
     let view;
+    // eslint-disable-next-line
     console.log('DEBUG :: this.props.openscreen', this.state.openscreen);
     switch (this.state.openscreen) {
     case Constants.SCREENS.IMPORT:
@@ -180,13 +181,10 @@ class ApplicationLayout extends React.Component {
           <div className={`application-layout-content flex-grow-and-shrink flex-rows ${classes}`}
             style={{
               width: '100%',
+              height: '100%',
               fontSize: '1.2em',
-              paddingTop: '20px',
-              overflowX: 'hidden',
-              overflowY: 'scroll',
               position: 'relative',
-              background: '#EEEEEE',
-              paddingBottom: '20px'
+              background: '#EEEEEE'
             }}>
             {this._renderApplicationScreen()}
           </div>
