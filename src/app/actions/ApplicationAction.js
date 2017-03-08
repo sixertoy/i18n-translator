@@ -11,6 +11,13 @@ class ApplicationAction extends AbstractAction {
     });
   }
 
+  selectExport (index) {
+    this.getDispatcher().dispatch({
+      type: Constants.FLUX.SELECT_EXPORT,
+      data: index
+    });
+  }
+
   toggleColumn (key) {
     this.getDispatcher().dispatch({
       type: Constants.FLUX.TOGGLE_COLUMN,

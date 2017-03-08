@@ -3,7 +3,10 @@ import React from 'react';
 const LocalesTableHeaders = props => (
   <div className="headers flex-no-grow-no-shrink"
     style={{
-      width: '100%'
+      width: '100%',
+      color: '#C0C0C0',
+      borderTop: '1px solid #FFF',
+      textShadow: '1px 1px 1px #FFF'
     }}>
     <div className={'flex-columns'}
       style={{
@@ -28,7 +31,10 @@ const LocalesTableHeaders = props => (
         }}>
         <button style={{
           border: '0',
+          padding: '0',
           width: '100%',
+          fontSize: '1em',
+          color: 'inherit',
           background: 'transparent'
         }}
           onClick={evt => props.ontoggle(evt, key)}>

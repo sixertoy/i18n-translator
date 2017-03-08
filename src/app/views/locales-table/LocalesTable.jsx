@@ -60,7 +60,8 @@ class LocalesTable extends React.PureComponent {
         <div className="table flex-rows"
           style={{
             width: '100%',
-            height: '100%'
+            height: '100%',
+            borderTop: '1px solid #ECECEC'
           }}>
           <LocalesTableHeaders langs={langs}
             collapsed={this.props.collapsed}

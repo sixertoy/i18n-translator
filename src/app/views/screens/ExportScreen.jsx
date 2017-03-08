@@ -4,80 +4,13 @@ import ReactAceEditor from './../commons/ReactAceEditor';
 
 class ExportScreen extends React.PureComponent {
 
-  constructor (props) {
-    super(props);
-    this.state = {
-      current: 0
-    };
-  }
-
-  _onLocaleTabClick (e, index) {
-    e.preventDefault();
-    if (index === this.state.current) {
-      return false;
-    }
-    return this.setState({
-      current: index
-    });
-  }
-
-  _onDiffButtonClick (e) {
-    e.preventDefault();
-    this.setState({
-      current: -1
-    });
-  }
-
-  _renderLocalesTabs () {
-    return (
-      <div className="screen-locales-tabs"
-        style={{
-          width: '100%',
-          padding: '12px 0',
-          textAlign: 'right'
-        }}>
-        {this.props.langs
-          .map((val, index) => <a href=""
-            key={`tabs_${val}`}
-            style={{
-              width: '40px',
-              paddingTop: '7px',
-              marginRight: '3px',
-              textAlign: 'center',
-              paddingLeft: '12px',
-              paddingRight: '12px',
-              paddingBottom: '7px',
-              color: (this.state.current === index) ? '#338596' : '#ABABAB',
-              background: (this.state.current === index) ? '#FFFFFF' : 'transparent'
-            }}
-            onClick={e => this._onLocaleTabClick(e, index)} >
-            <span>{val}</span>
-          </a>)}
-        <a href=""
-          style={{
-            paddingTop: '7px',
-            marginRight: '3px',
-            textAlign: 'center',
-            paddingLeft: '12px',
-            paddingRight: '12px',
-            paddingBottom: '7px',
-            color: (this.state.current < 0) ? '#338596' : '#ABABAB',
-            background: (this.state.current < 0) ? '#FFFFFF' : 'transparent'
-          }}
-          onClick={e => this._onDiffButtonClick(e)}>
-          <span>{'< diff >'}</span>
-        </a>
-      </div>
-    );
-  }
-
   _renderTextArea () {
-    const string = (this.state.current < 0)
+    const string = (this.props.selectexport < 0)
       ? this.props.json
-      : this.props.values[this.state.current];
-    const editorid = (this.state.current < 0)
+      : this.props.values[this.props.selectexport];
+    const editorid = (this.props.selectexport < 0)
       ? 'diff'
-      : this.props.langs[this.state.current];
+      : this.props.langs[this.props.selectexport];
     return (
       <div className="application-screen-content"
         style={{
@@ -105,7 +38,6 @@ class ExportScreen extends React.PureComponent {
         textAlign: 'center',
         position: 'relative'
       }}>
-        {this._renderLocalesTabs()}
         {this._renderTextArea()}
       </div>
     );
@@ -121,7 +53,8 @@ ExportScreen.contextTypes = {
 ExportScreen.propTypes = {
   langs: React.PropTypes.array.isRequired,
   json: React.PropTypes.object.isRequired,
-  values: React.PropTypes.array.isRequired
+  values: React.PropTypes.array.isRequired,
+  selectexport: React.PropTypes.number.isRequired
 };
 
 export default ExportScreen;

@@ -17,7 +17,8 @@ class ApplicationStore extends AbstractStore {
       origin: {},
       collapsed: [],
       primarykeys: [],
-      openscreen: false
+      openscreen: false,
+      selectexport: 0
     }, dispatcher);
   }
 
@@ -90,6 +91,12 @@ class ApplicationStore extends AbstractStore {
     });
   }
 
+  _onSelectedExportChange (index) {
+    this.setState({
+      selectexport: index
+    });
+  }
+
   /**
    * @param {String} nextscreen
    */
@@ -116,6 +123,9 @@ class ApplicationStore extends AbstractStore {
   _initDispatcher () {
     const token = this._dispatcher.register((obj) => {
       switch (obj.type) {
+      case Constants.FLUX.SELECT_EXPORT:
+        this._onSelectedExportChange(obj.data);
+        break;
       case Constants.FLUX.UPDATE_VALUE:
         this._onUpdateValueChange(obj.data);
         break;

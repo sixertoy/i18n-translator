@@ -60,9 +60,15 @@ class LocalesTableRow extends React.PureComponent {
         style={{
           margin: '0',
           padding: '12px 32px',
+          borderTop: this.props.odd
+            ? '1px solid #FFFFFF'
+            : '1px solid rgba(0, 0, 0, 0.03)',
+          borderBottom: this.props.odd
+            ? '0'
+            : '1px solid #F6F6F6',
           backgroundColor: this.props.odd
-            ? 'transparent'
-            : this.context.theme.greylight
+            ? 'rgb(245, 245, 245)'
+            : 'rgba(246, 246, 246, 0.42)'
         }} >
         <span style={{
           width: '8%',

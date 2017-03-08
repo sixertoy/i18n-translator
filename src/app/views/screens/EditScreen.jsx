@@ -74,12 +74,12 @@ class ExportScreen extends React.PureComponent {
   _renderTextArea () {
     let langkey = null;
     let locales = null;
-    const entries = entries(this.props.locales);
+    const values = entries(this.props.locales);
     if (this.state.current < 0) {
       langkey = 'diff';
       locales = this.props.json;
     } else {
-      [langkey, locales] = entries[this.state.current];
+      [langkey, locales] = values[this.state.current];
     }
     return (
       <div className="application-screen-content"

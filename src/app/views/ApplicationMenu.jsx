@@ -2,6 +2,7 @@ import React from 'react';
 // project
 import Constants from './../constants';
 import SubmitButton from './buttons/SubmitButton';
+import ApplicationExportMenu from './menus/ApplicationExportMenu';
 
 class ApplicationMenu extends React.PureComponent {
 
@@ -41,6 +42,16 @@ class ApplicationMenu extends React.PureComponent {
    Renders Sub Components
 
   -------------------------------------------------------- */
+
+  _renderExportMenu () {
+    if (!this.props.isexport) {
+      return false;
+    }
+    return (
+      <ApplicationExportMenu langs={this.props.langs}
+        selectexport={this.props.selectexport} />
+    );
+  }
 
   _renderExportButton () {
     if (!this.props.canexport) {
@@ -92,15 +103,17 @@ class ApplicationMenu extends React.PureComponent {
         style={{
           width: '100%',
           minHeight: '55px',
-          padding: '12px 32px',
+          padding: '0 32px',
           background: '#FBFBFB'
         }}>
-        <div />
-        <div>
+        <div style={{
+          padding: '12px 0'
+        }}>
           {this._renderShowEditTableButton()}
           {this._renderAddNewLanguageButton()}
           {this._renderExportButton()}
         </div>
+        {this._renderExportMenu()}
       </div>
     );
   }
@@ -108,9 +121,12 @@ class ApplicationMenu extends React.PureComponent {
 }
 
 ApplicationMenu.propTypes = {
+  langs: React.PropTypes.array.isRequired,
   canadd: React.PropTypes.bool.isRequired,
   canshow: React.PropTypes.bool.isRequired,
-  canexport: React.PropTypes.bool.isRequired
+  isexport: React.PropTypes.bool.isRequired,
+  canexport: React.PropTypes.bool.isRequired,
+  selectexport: React.PropTypes.number.isRequired
 };
 
 ApplicationMenu.contextTypes = {

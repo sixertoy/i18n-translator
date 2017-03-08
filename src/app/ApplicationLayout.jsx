@@ -38,6 +38,7 @@ class ApplicationLayout extends React.Component {
       langs: [],
       values: [],
       primarykeys: [],
+      selectexport: 0,
       // default/home screen
       openscreen: Constants.SCREENS.CONNECT
     };
@@ -51,7 +52,7 @@ class ApplicationLayout extends React.Component {
         love: '#DD4739',
         metal: '#34495E',
         velvet: '#661E75',
-        greylight: '#E3E3E3'
+        greylight: '#EEEEEE'
       }
     };
   }
@@ -82,7 +83,8 @@ class ApplicationLayout extends React.Component {
       values: state.values,
       collapsed: state.collapsed,
       openscreen: state.openscreen,
-      primarykeys: state.primarykeys
+      primarykeys: state.primarykeys,
+      selectexport: state.selectexport
     });
   }
 
@@ -111,7 +113,8 @@ class ApplicationLayout extends React.Component {
           title={'Export languages'}
           json={this.state.json}
           langs={this.state.langs}
-          values={this.state.values} />
+          values={this.state.values}
+          selectexport={this.state.selectexport} />
         );
       break;
     case Constants.SCREENS.EDIT:
@@ -178,8 +181,11 @@ class ApplicationLayout extends React.Component {
             }}>
             <ApplicationHeader appname={this.props.appname} />
           </div>
-          {<ApplicationMenu canexport={!isempty(this.state.values)}
+          {<ApplicationMenu langs={this.state.langs}
+            selectexport={this.state.selectexport}
+            canexport={!isempty(this.state.values)}
             canadd={this.state.openscreen !== Constants.SCREENS.CONNECT}
+            isexport={this.state.openscreen === Constants.SCREENS.EXPORT}
             canshow={this.state.openscreen !== Constants.SCREENS.CONNECT} />}
           <div className={`application-layout-content flex-grow-and-shrink flex-rows ${classes}`}
             style={{
@@ -187,7 +193,7 @@ class ApplicationLayout extends React.Component {
               height: '100%',
               fontSize: '1.2em',
               position: 'relative',
-              background: '#EEEEEE'
+              background: '#FBFBFB'
             }}>
             {this._renderApplicationScreen()}
           </div>

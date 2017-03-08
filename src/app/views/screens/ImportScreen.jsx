@@ -3,7 +3,6 @@ import isempty from 'lodash.isempty';
 // project
 import Constants from './../../constants';
 import ScreenFooter from './../commons/ScreenFooter';
-import ScreenFactory from './../commons/ScreenFactory';
 import ReactAceEditor from './../commons/ReactAceEditor';
 import { entries } from './../../../core/utils/ObjectUtils';
 import StepsIterator from './../../../core/iterators/StepsIterator';
@@ -264,4 +263,4 @@ ImportScreen.defaultProps = {
   defaultvalue: '// Put your JSON code to start working with your translations'
 };
 
-export default ScreenFactory(ImportScreen);
+export default ImportScreen;
