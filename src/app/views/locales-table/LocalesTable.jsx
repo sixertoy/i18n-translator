@@ -1,6 +1,7 @@
 import React from 'react';
 // project
 import LocalesTableRow from './LocalesTableRow';
+import LocalesTableHeaders from './LocalesTableHeaders';
 
 class LocalesTable extends React.PureComponent {
 
@@ -60,7 +61,40 @@ class LocalesTable extends React.PureComponent {
         height: '100%',
         position: 'relative'
       }}>
-        <table className="application-table"
+        <div className="table flex-rows"
+          style={{
+            width: '100%',
+            height: '100%'
+          }}>
+          <LocalesTableHeaders langs={langs} />
+          <div className="scrollable"
+            style={{
+              width: '100%',
+              height: '100%',
+              position: 'relative',
+              overflowY: 'scroll',
+              overflowX: 'hidden'
+            }}>
+            <div className="table-body"
+              style={{
+                top: '0',
+                left: '0',
+                right: '0',
+                bottom: '0',
+                position: 'absolute'
+              }}>
+              {primarykeys.map((key, index) =>
+                <LocalesTableRow key={`row_${key}`}
+                  langs={langs}
+                  primarykey={key}
+                  odd={Boolean(index % 2)}
+                  facade={this.context.facade}
+                  values={values.map(obj => (obj[key] || ''))} />)}
+            </div>
+          </div>
+        </div>
+        {/*
+          <table className="application-table"
           style={{
             width: '100%',
             height: '100%'
@@ -103,7 +137,8 @@ class LocalesTable extends React.PureComponent {
                 facade={this.context.facade}
                 values={values.map(obj => (obj[key] || ''))} />)}
           </tbody>
-        </table>
+          </table>
+        */}
       </div>
     );
   }

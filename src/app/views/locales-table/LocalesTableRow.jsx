@@ -1,7 +1,7 @@
 import slug from 'slug';
 import React from 'react';
 // project
-import LocaleTableRowInput from './LocaleTableRowInput';
+import LocalesTableRowInput from './LocalesTableRowInput';
 
 class LocalesTableRow extends React.PureComponent {
 
@@ -66,41 +66,34 @@ class LocalesTableRow extends React.PureComponent {
     const values = this.props.values;
     const primarykey = this.props.primarykey;
     return (
-      <tr className={`application-table-row ${slug(primarykey.toLowerCase())}`}
+      <p className={`table-row flex-columns ${slug(primarykey.toLowerCase())}`}
         style={{
+          margin: '0',
+          padding: '12px 32px',
           backgroundColor: this.props.odd
             ? 'transparent'
             : this.context.theme.greylight
         }} >
-        <td className="application-table-primarykey table-cell-ellipsis"
-          style={{
-            width: '8%',
-            padding: '12px',
-            textAlign: 'right',
-            verticalAlign: 'top'
-          }}>
-          {/*
-
-            primary key column
-
-          */}
-          <span style={{
-            color: '#CCCCCC',
-            fontSize: '0.9em'
-          }}><a name={primarykey}>{`# ${primarykey}`}</a></span>
-        </td>
-        {/*
-
-          translation value columns
-
-        */}
+        <span style={{
+          width: '8%',
+          color: '#CCCCCC',
+          fontSize: '0.9em',
+          textAlign: 'right',
+          fontWeight: 'bold'
+        }}>
+          <a name={primarykey}>
+            <span>{`# ${primarykey}`}</span>
+          </a>
+        </span>
+        {/* <!-- translation value columns --> */}
         {values.map((str, index) =>
-          <LocaleTableRowInput key={`${langs[index]}-${primarykey}`}
+          <LocalesTableRowInput key={`${langs[index]}-${primarykey}`}
             facade={this.context.facade}
             value={str || ''}
             lang={langs[index]}
-            primarykey={primarykey} />)}
-      </tr>
+            primarykey={primarykey}
+            width={(100 - 8) / langs.length} />)}
+      </p>
     );
   }
 
