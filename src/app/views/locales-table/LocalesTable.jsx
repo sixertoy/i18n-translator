@@ -24,6 +24,7 @@ class LocalesTable extends React.PureComponent {
   }
 
   componentDidUpdate () {
+    /*
     if (!this._initialized) {
       // eslint-disable-next-line
       this._initialized = true;
@@ -31,6 +32,7 @@ class LocalesTable extends React.PureComponent {
         // eslint-disable-next-line
         .forEach(elt => (elt.style.height = `${(elt.scrollHeight)}px`));
     }
+    */
   }
 
   /* ------------------------------------------------

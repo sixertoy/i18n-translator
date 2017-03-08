@@ -1,4 +1,5 @@
 import React from 'react';
+import isempty from 'lodash.isempty';
 import { AllHtmlEntities as entities } from 'html-entities';
 
 class LocaleTableRowInput extends React.PureComponent {
@@ -12,7 +13,17 @@ class LocaleTableRowInput extends React.PureComponent {
   constructor (props) {
     super(props);
     this.state = {};
+    this._component = null;
     this._keyboardTimeout = null;
+  }
+
+  componentDidMount () {
+    let valid = this._component;
+    valid = valid && !isempty(this.props.value.trim());
+    valid = valid && (this._component.scrollHeight > this._component.style.height);
+    if (valid) {
+      this._component.style.height = `${(this._component.scrollHeight)}px`;
+    }
   }
 
   /* ------------------------------------------------
@@ -69,6 +80,7 @@ class LocaleTableRowInput extends React.PureComponent {
           }}
           className="autosize"
           defaultValue={value}
+          ref={(c) => { this._component = c; }}
           onChange={e => this._onAutoSizeChange(e.target, pkey)} />
       </span>
     );

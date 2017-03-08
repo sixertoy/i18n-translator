@@ -23,6 +23,7 @@ class %%name%% extends React.PureComponent {
   constructor (props, context) {
     super(props);
     this.state = {};
+    this._component = null;
     this._ismounted = false;
     this._initialized = false;
   }
@@ -69,7 +70,7 @@ class %%name%% extends React.PureComponent {
 
   render () {
     return (
-      <div></div>
+      <div ref={(c) => { this._component = c; }}></div>
     );
   }
 
