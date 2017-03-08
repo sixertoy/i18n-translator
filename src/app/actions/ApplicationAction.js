@@ -11,6 +11,13 @@ class ApplicationAction extends AbstractAction {
     });
   }
 
+  toggleColumn (key) {
+    this.getDispatcher().dispatch({
+      type: Constants.FLUX.TOGGLE_COLUMN,
+      data: key
+    });
+  }
+
   addLanguage (langkey, json) {
     this.getDispatcher().dispatch({
       type: Constants.FLUX.ADD_LANGUAGE,

@@ -15,9 +15,22 @@ class ApplicationStore extends AbstractStore {
       langs: [],
       values: [],
       origin: {},
+      collapsed: [],
       primarykeys: [],
       openscreen: false
     }, dispatcher);
+  }
+
+  _onToggleColumnChange (key) {
+    let collapsed = this.getState('collapsed');
+    if (collapsed.indexOf(key) !== -1) {
+      collapsed = collapsed.filter(item => (item !== key));
+    } else {
+      collapsed.push(key);
+    }
+    this.setState({
+      collapsed
+    });
   }
 
   /**
@@ -114,6 +127,9 @@ class ApplicationStore extends AbstractStore {
         break;
       case Constants.FLUX.TOGGLE_SCREEN:
         this._onScreenChange(obj.data);
+        break;
+      case Constants.FLUX.TOGGLE_COLUMN:
+        this._onToggleColumnChange(obj.data);
         break;
       default:
         break;

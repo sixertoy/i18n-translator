@@ -19,17 +19,29 @@ const LocalesTableHeaders = props => (
       }}>Primary Keys</span>
       {props.langs.map(key => <span key={`header-${key}`}
         style={{
-          maxWidth: '400px',
+          maxWidth: '50%',
           textAlign: 'center',
           padding: '12px 12px',
-          width: `${((100 - 8) / props.langs.length)}%`
-        }}>{key}</span>)}
+          width: (props.collapsed.indexOf(key) !== -1)
+            ? '100px'
+            : `${((100 - 8) / props.langs.length)}%`
+        }}>
+        <button style={{
+          border: '0',
+          width: '100%',
+          background: 'transparent'
+        }}
+          onClick={evt => props.ontoggle(evt, key)}>
+          <span>{key}</span>
+        </button>
+      </span>)}
     </div>
   </div>
 );
 
 LocalesTableHeaders.propTypes = {
-  langs: React.PropTypes.array.isRequired
+  langs: React.PropTypes.array.isRequired,
+  ontoggle: React.PropTypes.func.isRequired
 };
 
 export default LocalesTableHeaders;

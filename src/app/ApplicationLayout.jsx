@@ -80,6 +80,7 @@ class ApplicationLayout extends React.Component {
       json: state.json,
       langs: state.langs,
       values: state.values,
+      collapsed: state.collapsed,
       openscreen: state.openscreen,
       primarykeys: state.primarykeys
     });
@@ -118,6 +119,7 @@ class ApplicationLayout extends React.Component {
         <LocalesTable facade={this.context.facade}
           langs={this.state.langs}
           values={this.state.values}
+          collapsed={this.state.collapsed}
           primarykeys={this.state.primarykeys} />
       );
       break;

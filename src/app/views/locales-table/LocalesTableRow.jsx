@@ -33,18 +33,6 @@ class LocalesTableRow extends React.PureComponent {
     this._initialized = false;
   }
 
-  componentDidUpdate () {
-    /*
-    if (!this._initialized) {
-      // eslint-disable-next-line
-      this._initialized = true;
-      document.querySelectorAll('.autosize')
-        // eslint-disable-next-line
-        .forEach(elt => (elt.style.height = `${(elt.scrollHeight)}px`));
-    }
-    */
-  }
-
   /* ------------------------------------------------
 
    Privates
@@ -94,7 +82,9 @@ class LocalesTableRow extends React.PureComponent {
             value={str || ''}
             lang={langs[index]}
             primarykey={primarykey}
-            width={(100 - 8) / langs.length} />)}
+            width={(this.props.collapsed.indexOf(langs[index]) !== -1)
+              ? '100px'
+              : `${((100 - 8) / langs.length)}%`} />)}
       </p>
     );
   }
@@ -110,6 +100,7 @@ LocalesTableRow.propTypes = {
   odd: React.PropTypes.bool.isRequired,
   langs: React.PropTypes.array.isRequired,
   values: React.PropTypes.array.isRequired,
+  collapsed: React.PropTypes.array.isRequired,
   primarykey: React.PropTypes.string.isRequired
 };
 

@@ -68,9 +68,9 @@ class LocaleTableRowInput extends React.PureComponent {
     const value = entities.decode(this.props.value || '');
     return (
       <span style={{
-        maxWidth: '400px',
+        maxWidth: '50%',
         paddingLeft: '12px',
-        width: `${this.props.width}%`
+        width: this.props.width
       }}>
         <textarea key={`textarea-${pkey}`}
           rows="1"
@@ -96,7 +96,7 @@ LocaleTableRowInput.contextTypes = {
 LocaleTableRowInput.propTypes = {
   lang: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
-  width: React.PropTypes.number.isRequired,
+  width: React.PropTypes.string.isRequired,
   primarykey: React.PropTypes.string.isRequired
 };
 
