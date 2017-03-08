@@ -24,7 +24,7 @@ class ImportScreen extends React.PureComponent {
     if (!isempty(props.primarykeys)) {
       defaultvalue = props.primarykeys
         .reduce((obj, key) => Object.assign(obj, { [key]: '' }), {});
-      defaultvalue = JSON.stringify(defaultvalue, null, ' ');
+      defaultvalue = JSON.stringify(defaultvalue, null, '  ');
     }
 
     this.state = {
