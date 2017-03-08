@@ -72,6 +72,9 @@ class ApplicationMenu extends React.PureComponent {
   }
 
   _renderShowEditTableButton () {
+    if (!this.props.canshow) {
+      return Constants.REACT.NO_RENDER;
+    }
     return (
       <span style={{
         marginRight: '20px'
@@ -106,6 +109,7 @@ class ApplicationMenu extends React.PureComponent {
 
 ApplicationMenu.propTypes = {
   canadd: React.PropTypes.bool.isRequired,
+  canshow: React.PropTypes.bool.isRequired,
   canexport: React.PropTypes.bool.isRequired
 };
 

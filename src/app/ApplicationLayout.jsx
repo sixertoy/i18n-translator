@@ -95,7 +95,7 @@ class ApplicationLayout extends React.Component {
   _renderApplicationScreen () {
     let view;
     // eslint-disable-next-line
-    console.log('DEBUG :: this.props.openscreen', this.state.openscreen);
+    // console.log('DEBUG :: this.props.openscreen', this.state.openscreen);
     switch (this.state.openscreen) {
     case Constants.SCREENS.IMPORT:
       view = (
@@ -179,7 +179,8 @@ class ApplicationLayout extends React.Component {
             <ApplicationHeader appname={this.props.appname} />
           </div>
           {<ApplicationMenu canexport={!isempty(this.state.values)}
-            canadd />}
+            canadd={this.state.openscreen !== Constants.SCREENS.CONNECT}
+            canshow={this.state.openscreen !== Constants.SCREENS.CONNECT} />}
           <div className={`application-layout-content flex-grow-and-shrink flex-rows ${classes}`}
             style={{
               width: '100%',
