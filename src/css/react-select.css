@@ -1,0 +1,15 @@
+.Select {
+  width: 120px;
+  font-size: 11px !important;
+}
+
+.Select .Select-control {
+  border-radius: 0 !important;
+}
+
+.Select .Select-menu-outer {
+  top: auto !important;
+  border-radius: 0 !important;
+  position: absolute !important;
+  bottom: calc(100% - 1px) !important;
+}

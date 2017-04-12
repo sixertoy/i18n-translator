@@ -2,9 +2,9 @@ import React from 'react';
 import isempty from 'lodash.isempty';
 // project
 import Constants from './../../constants';
-import ScreenFooter from './../commons/ScreenFooter';
 import ReactAceEditor from './../commons/ReactAceEditor';
 import { entries } from './../../../core/utils/ObjectUtils';
+import ImportScreenFooter from './../commons/ImportScreenFooter';
 import StepsIterator from './../../../core/iterators/StepsIterator';
 
 class ImportScreen extends React.PureComponent {
@@ -89,6 +89,12 @@ class ImportScreen extends React.PureComponent {
     e.stopPropagation();
     this.setState({
       langkey
+    });
+  }
+
+  _onClickEditorModeHandler (obj) {
+    this.setState({
+      editormode: obj.value
     });
   }
 
@@ -239,9 +245,11 @@ class ImportScreen extends React.PureComponent {
             width: '100%',
             height: '100%'
           }}>{this.state.currentstep()}</div>
-        <ScreenFooter cancelClickHandler={false}
+        <ImportScreenFooter editormode={this.state.editormode}
+          cancelClickHandler={false}
           submitClickHandler={!showsubmit
-            ? false : e => this._onClickSubmitHandler(e)} />
+            ? false : e => this._onClickSubmitHandler(e)}
+          editorModeHandler={o => this._onClickEditorModeHandler(o)} />
       </div>
     );
   }

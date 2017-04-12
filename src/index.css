@@ -227,4 +227,6 @@ button[type="submit"] {
 --------------------------------------------------- */
 
 @import url('./css/fontello.css');
+@import url('./css/react-select.css');
+
 /* @import url('./css/toaster-notification.css'); */
