@@ -22,7 +22,9 @@ class ApplicationFacade extends AbstractFacade {
     // eslint-disable-next-line
     ReactDOM.render(<ApplicationLayout appname={name}
       version={version}
-      facade={this} />, document.getElementById('root'));
+      facade={this} />,
+      document.getElementById('root')
+    );
   }
 
 }

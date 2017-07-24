@@ -1,5 +1,6 @@
 import React from 'react';
 import isempty from 'lodash.isempty';
+// import isobject from 'lodash.isobject';
 // project
 import Constants from './../../constants';
 import ReactAceEditor from './../commons/ReactAceEditor';
@@ -92,21 +93,24 @@ class ImportScreen extends React.PureComponent {
     });
   }
 
-  _onClickEditorModeHandler (obj) {
+  _onClickEditorModeHandler ({ value }) {
     this.setState({
-      editormode: obj.value
+      editormode: value
     });
   }
 
   _onAceEditorChange (value) {
+    console.log(arguments);
     let jsonisvalid = false;
     const jsonstring = value;
+    console.log('jsonstring', typeof jsonstring);
     if (!isempty(value)) {
       try {
         JSON.parse(jsonstring);
         jsonisvalid = true;
       } catch (e) {
         // if value is empty, is not a valid string
+        console.log('invalid Object/JSON String');
       }
     }
     this.setState({
