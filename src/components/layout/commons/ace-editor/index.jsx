@@ -1,3 +1,5 @@
+import 'ace-builds';
+import 'ace-builds/webpack-resolver';
 import 'ace-builds/src-min-noconflict/ace';
 import 'ace-builds/src-min-noconflict/mode-json';
 import 'ace-builds/src-min-noconflict/mode-javascript';
@@ -18,6 +20,7 @@ const useStyles = createUseStyles({
   },
 });
 
+// const { NODE_ENV } = process.env;
 const DEFAULT_VALUE =
   '// Put your JSON code to start working with your translations';
 
