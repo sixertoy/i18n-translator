@@ -8,6 +8,7 @@ import { createSelector } from 'reselect';
 import { getThemeByThemeKey } from '../theme';
 import ApplicationFooter from './layout/application-footer';
 import ApplicationHeader from './layout/application-header';
+import ImportCreate from './layout/views/create';
 import Welcome from './layout/views/welcome';
 
 const selectThemeFromKey = createSelector(
@@ -16,12 +17,24 @@ const selectThemeFromKey = createSelector(
 );
 
 const useStyles = createUseStyles({
+  'application-footer': {
+    composes: ['flex-0', 'is-full-width', 'is-flex'],
+    height: 20,
+    maxHeight: 20,
+    minHeight: 20,
+  },
+  'application-header': {
+    composes: ['flex-0', 'is-full-width', 'is-flex'],
+    height: 100,
+    maxHeight: 100,
+    minHeight: 100,
+  },
+  'application-views': {
+    composes: ['flex-1', 'is-flex'],
+    height: 'auto',
+  },
   container: {
     composes: ['flex-rows', 'is-full-layout'],
-  },
-  wrapper: {
-    composes: ['flex-1'],
-    height: 'auto',
   },
 });
 
@@ -30,13 +43,18 @@ const Application = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      <ApplicationHeader theme={theme} />
-      <div className={classes.wrapper}>
+      <div className={classes['application-header']}>
+        <ApplicationHeader theme={theme} />
+      </div>
+      <div className={classes['application-views']}>
         <Switch>
-          <Route component={Welcome} path="/" />
+          <Route exact component={Welcome} path="/" />
+          <Route exact component={ImportCreate} path="/create" />
         </Switch>
       </div>
-      <ApplicationFooter theme={theme} />
+      <div className={classes['application-footer']}>
+        <ApplicationFooter theme={theme} />
+      </div>
     </div>
   );
 };

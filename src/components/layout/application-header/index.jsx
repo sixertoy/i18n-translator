@@ -10,7 +10,6 @@ import TwitterShareButton from './twitter-share-button';
 const useStyles = createUseStyles({
   container: {
     composes: [
-      'flex-0',
       'flex-columns',
       'flex-around',
       'py20',
@@ -19,9 +18,6 @@ const useStyles = createUseStyles({
       'text-left',
       'shadow-bottom',
     ],
-    height: 100,
-    maxHeight: 100,
-    minHeight: 100,
   },
   subtitle: {
     color: '#8e8e8e',
@@ -48,7 +44,7 @@ const ApplicationHeader = ({ theme }) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      {isDevelopment && <OctocatCorner direction="left" />}
+      {!isDevelopment && <OctocatCorner />}
       <div className={classes.wrapper}>
         <JSONLogo />
         <div>
@@ -60,7 +56,7 @@ const ApplicationHeader = ({ theme }) => {
           </h2>
         </div>
       </div>
-      {isDevelopment && (
+      {!isDevelopment && (
         <div>
           <TwitterShareButton />
           <GithubStarButton />

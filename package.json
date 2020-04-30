@@ -33,14 +33,18 @@
   },
   "dependencies": {
     "@nappr/nappr-styles": "^0.2.12",
+    "ace-builds": "^1.4.11",
     "history": "^4.10.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-ace": "^8.1.0",
+    "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "react-jss": "^10.1.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
+    "react-select": "^3.1.0",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "reselect": "^4.0.0"

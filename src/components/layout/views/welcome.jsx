@@ -25,7 +25,7 @@ const WelcomeComponent = () => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <Link className={classes.button} to="/import">
+      <Link className={classes.button} to="/create">
         <span>Create or import a new language set</span>
       </Link>
     </div>

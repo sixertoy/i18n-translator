@@ -10,18 +10,7 @@ const useStyles = createUseStyles({
   },
   container: ({ theme }) => ({
     backgroundColor: theme.colors.grey,
-    composes: [
-      'flex-0',
-      'flex-columns',
-      'flex-between',
-      'shadow-top',
-      'px32',
-      'py0',
-      'is-full-width',
-    ],
-    height: 20,
-    maxHeight: 20,
-    minHeight: 20,
+    composes: ['flex-columns', 'flex-between', 'shadow-top', 'px32', 'py0'],
   }),
   love: ({ theme }) => ({
     color: theme.colors.red,
