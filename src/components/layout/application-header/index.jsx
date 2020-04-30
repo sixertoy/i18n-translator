@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { homepage, name, repository } from '../../../../package.json';
 import GithubStarButton from './github-star-button';
 import JSONLogo from './json-logo';
 import OctocatCorner from './octocat-corner';
@@ -44,7 +45,7 @@ const ApplicationHeader = ({ theme }) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      {!isDevelopment && <OctocatCorner />}
+      {!isDevelopment && <OctocatCorner repository={repository} />}
       <div className={classes.wrapper}>
         <JSONLogo />
         <div>
@@ -58,8 +59,8 @@ const ApplicationHeader = ({ theme }) => {
       </div>
       {!isDevelopment && (
         <div>
-          <TwitterShareButton />
-          <GithubStarButton />
+          <TwitterShareButton homepage={homepage} />
+          <GithubStarButton name={name} repository={repository} />
         </div>
       )}
     </div>

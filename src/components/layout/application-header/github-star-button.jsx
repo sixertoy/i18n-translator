@@ -1,7 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-
-import { name, repository } from '../../../../package.json';
 
 /**
  * @see https://buttons.github.io/
@@ -9,7 +8,7 @@ import { name, repository } from '../../../../package.json';
  * <!-- Place this tag in your head or just before your close body tag. -->
  * <script async defer src="https://buttons.github.io/buttons.js"></script>
  */
-const GithubStarButton = () => (
+const GithubStarButton = ({ name, repository }) => (
   <a
     aria-label={`Star sixertoy/${name} on GitHub"`}
     className="github-button"
@@ -29,5 +28,12 @@ const GithubStarButton = () => (
     />
   </a>
 );
+
+GithubStarButton.propTypes = {
+  name: PropTypes.string.isRequired,
+  repository: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default GithubStarButton;

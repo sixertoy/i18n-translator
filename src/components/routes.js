@@ -1,6 +1,6 @@
-import Create from './layout/views/create';
-import SelectLang from './layout/views/select-lang';
-import Welcome from './layout/views/welcome';
+import Create from './views/create';
+import SelectLang from './views/select-lang';
+import Welcome from './views/welcome';
 
 const routes = [
   {

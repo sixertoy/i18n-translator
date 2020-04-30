@@ -1,7 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-
-import { homepage } from '../../../../package.json';
 
 /**
  * @see https://buttons.github.io/
@@ -9,7 +8,7 @@ import { homepage } from '../../../../package.json';
  * <!-- Place this tag in your head or just before your close body tag. -->
  * <script async defer src="https://buttons.github.io/buttons.js"></script>
  */
-const TwitterShareButton = () => (
+const TwitterShareButton = ({ homepage }) => (
   <a
     className="twitter-wjs twitter-share-button"
     data-hashtags="json,translation,javascript,react"
@@ -29,5 +28,9 @@ const TwitterShareButton = () => (
     />
   </a>
 );
+
+TwitterShareButton.propTypes = {
+  homepage: PropTypes.string.isRequired,
+};
 
 export default TwitterShareButton;

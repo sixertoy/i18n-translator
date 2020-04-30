@@ -2,10 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { repository } from '../../../../package.json';
 import octocat from '../../../assets/octocat.svg';
 
-const OctocatCorner = ({ direction }) => (
+const OctocatCorner = ({ direction, repository }) => (
   <div
     id="octocat-corner"
     style={{
@@ -47,6 +46,9 @@ OctocatCorner.defaultProps = {
 
 OctocatCorner.propTypes = {
   direction: PropTypes.string,
+  repository: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default OctocatCorner;
