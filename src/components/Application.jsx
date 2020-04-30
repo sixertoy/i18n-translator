@@ -6,8 +6,8 @@ import { Route, Switch } from 'react-router-dom';
 import { createSelector } from 'reselect';
 
 import { getThemeByThemeKey } from '../theme';
-import ApplicationFooter from './layout/application-footer';
-import ApplicationHeader from './layout/application-header';
+import ApplicationFooter from './layout/footer';
+import ApplicationHeader from './layout/header';
 import routes from './routes';
 
 const selectThemeFromKey = createSelector(
@@ -16,24 +16,24 @@ const selectThemeFromKey = createSelector(
 );
 
 const useStyles = createUseStyles({
-  'application-footer': {
+  container: {
+    composes: ['flex-rows', 'is-full-layout'],
+  },
+  footer: {
     composes: ['flex-0', 'is-full-width', 'is-flex'],
     height: 20,
     maxHeight: 20,
     minHeight: 20,
   },
-  'application-header': {
+  header: {
     composes: ['flex-0', 'is-full-width', 'is-flex'],
     height: 100,
     maxHeight: 100,
     minHeight: 100,
   },
-  'application-views': {
+  views: {
     composes: ['flex-1', 'is-flex'],
     height: 'auto',
-  },
-  container: {
-    composes: ['flex-rows', 'is-full-layout'],
   },
 });
 
@@ -42,10 +42,10 @@ const Application = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      <div className={classes['application-header']}>
+      <div className={classes.header}>
         <ApplicationHeader theme={theme} />
       </div>
-      <div className={classes['application-views']}>
+      <div className={classes.views}>
         <Switch>
           {routes.map(obj => {
             return (
@@ -59,7 +59,7 @@ const Application = () => {
           })}
         </Switch>
       </div>
-      <div className={classes['application-footer']}>
+      <div className={classes.footer}>
         <ApplicationFooter theme={theme} />
       </div>
     </div>

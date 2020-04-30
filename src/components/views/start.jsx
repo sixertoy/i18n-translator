@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const WelcomeComponent = () => {
+const StartComponent = () => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -32,8 +32,8 @@ const WelcomeComponent = () => {
   );
 };
 
-WelcomeComponent.defaultProps = {};
+StartComponent.defaultProps = {};
 
-WelcomeComponent.propTypes = {};
+StartComponent.propTypes = {};
 
-export default WelcomeComponent;
+export default StartComponent;

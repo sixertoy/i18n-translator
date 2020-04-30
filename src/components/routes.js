@@ -1,10 +1,10 @@
 import Create from './views/create';
-import SelectLang from './views/select-lang';
-import Welcome from './views/welcome';
+import SelectLang from './views/lang';
+import Start from './views/start';
 
 const routes = [
   {
-    component: Welcome,
+    component: Start,
     exact: true,
     path: '/',
   },
