@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import * as loading from './loading';
+import * as app from './app';
 
 function createRootReducer() {
   return combineReducers({
-    ...loading,
+    ...app,
   });
 }
 

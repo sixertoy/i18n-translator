@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import { version } from '../package.json';
 import Application from './components/Application';
 import getRouterHistory from './core/history';
 import { getInitialState } from './redux/initial-state';
@@ -15,12 +16,15 @@ const history = getRouterHistory();
 const initialState = getInitialState(history);
 const { persistor, store } = configure(history, initialState);
 
+// eslint-disable-next-line
+console.log('version : ', version);
+
 const Root = () => (
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <Application />
+          <Application version={version} />
         </BrowserRouter>
       </PersistGate>
     </Provider>

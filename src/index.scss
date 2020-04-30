@@ -24,18 +24,11 @@ $FontSizes: (
   28,
   32
 ) !default;
-$MarginPaddingSizes: (3, 5, 6, 7, 9, 12, 14, 15, 18, 24, 32, 48) !default;
+$MarginPaddingSizes: (0, 3, 5, 6, 7, 9, 12, 14, 15, 18, 24, 32, 48) !default;
 
 @import '~@nappr/nappr-styles/styles.scss';
 @import url('https://fonts.googleapis.com/css?family=Cuprum');
-
-body,
-html {
-  width: 100%;
-  height: 100%;
-  min-width: 100%;
-  min-height: 100%;
-}
+@import './scss/index.scss';
 
 body {
   margin: 0;
@@ -44,36 +37,6 @@ body {
   font-size: 14px;
   line-height: 1.1em;
   font-family: Cuprum, Tahoma, 'Trebuchet MS', sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-ul,
-li {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-table {
-  border-spacing: 0;
-  table-layout: fixed;
-  border-collapse: collapse;
-}
-
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td {
-  border: 0;
-  margin: 0;
-  padding: 0;
 }
 
 a,
@@ -134,128 +97,3 @@ button[type="submit"] {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
-/* ---------------------------------------------------
-
- Shadows
-
---------------------------------------------------- */
-
-.shadow-bottom {
-  z-index: 5;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
-}
-
-.shadow-top {
-  z-index: 5;
-  box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.25);
-}
-
-.shadow-around {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
-}
-
-/* ---------------------------------------------------
-
- Flex
-
---------------------------------------------------- */
-
-.flex-display {
-  display: flex;
-}
-
-.flex-columns {
-  flex-direction: row;
-}
-
-.flex-rows {
-  flex-direction: column;
-}
-
-.flex-rows,
-.flex-columns {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.flew-wrap {
-  flex-wrap: wrap;
-}
-
-.flew-no-wrap {
-  flex-wrap: nowrap;
-}
-
-.flex-centered {
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-align-end {
-  align-items: flex-end;
-  justify-content: flex-end;
-}
-
-.flex-align-start {
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.flex-space-around {
-  justify-content: space-around;
-}
-
-.flex-space-between {
-  justify-content: space-between;
-}
-
-.flex-no-grow {
-  flex-shrink: 0;
-}
-
-.flex-no-shrink {
-  flex-shrink: 0;
-}
-
-.flex-grow-and-shrink {
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-
-.flex-no-grow-no-shrink {
-  display: flex;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-.flex-responsive-child {
-  flex: 1 1 auto;
-}
-
-/* ---------------------------------------------------
-
- Containers
-
---------------------------------------------------- */
-
-.absolute-container {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-}
-
-/* ---------------------------------------------------
-
- Imports
-
---------------------------------------------------- */
-
-@import url('./css/fontello.css');
-@import url('./css/react-select.css');
-
-/* @import url('./css/toaster-notification.css'); */
