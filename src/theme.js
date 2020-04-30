@@ -4,8 +4,10 @@
 // const dark = '#21252B';
 // const gray = '#DDDDDD';
 const grey = '#EEEEEE';
-const red = '#DB483F';
+const red = '#DD4739';
 const body = '#34495E';
+const gray = '#B9B9B9';
+const velvet = '#661E75';
 
 const themes = {
   day: {
@@ -37,13 +39,14 @@ const themeBase = {
     // black,
     // blue,
     // dark,
-    // gray,
     body,
+    gray,
     grey,
     highlight: '#2C313C',
     red,
     scrollbar: '#4B5362',
     shadow: '#3B4048',
+    velvet,
     // white,
   },
 };
