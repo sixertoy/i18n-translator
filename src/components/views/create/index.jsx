@@ -3,12 +3,8 @@ import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useHistory } from 'react-router-dom';
 
-// import StepsIterator from '../../../core/iterators/StepsIterator';
-// import { entries } from '../../../core/utils/ObjectUtils';
 import CodeEditor from '../../commons/code-editor';
 import FooterControls from './footer-controls';
-// import Constants from '../../constants';
-// import SelectLanguage from './select-language';
 
 const useStyles = createUseStyles({
   container: {
