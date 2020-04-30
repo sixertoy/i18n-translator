@@ -24,7 +24,7 @@ const Root = () => (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <Application version={version} />
+          <Application />
         </BrowserRouter>
       </PersistGate>
     </Provider>

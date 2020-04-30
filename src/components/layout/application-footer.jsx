@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { version } from '../../../package.json';
+
 const useStyles = createUseStyles({
   baseline: {
     composes: ['mr3'],
@@ -26,7 +28,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const ApplicationFooter = ({ theme, version }) => {
+const ApplicationFooter = ({ theme }) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
@@ -50,7 +52,6 @@ const ApplicationFooter = ({ theme, version }) => {
 
 ApplicationFooter.propTypes = {
   theme: PropTypes.shape().isRequired,
-  version: PropTypes.string.isRequired,
 };
 
 export default ApplicationFooter;
