@@ -49,6 +49,7 @@
     "url-parse": "1.1.7"
   },
   "scripts": {
+    "lint": "eslint ./src/**/*.{js,jsx,json}",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
