@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import logo from '../../../assets/json_logo.svg';
 
 const JSONLogo = () => (
-  <a href="/">
+  <Link to="/">
     <img
       alt="i18n Online Translations Editor (JSON)"
       src={logo}
@@ -14,7 +15,7 @@ const JSONLogo = () => (
         width: '60px',
       }}
     />
-  </a>
+  </Link>
 );
 
 export default JSONLogo;

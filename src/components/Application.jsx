@@ -8,8 +8,7 @@ import { createSelector } from 'reselect';
 import { getThemeByThemeKey } from '../theme';
 import ApplicationFooter from './layout/application-footer';
 import ApplicationHeader from './layout/application-header';
-import ImportCreate from './layout/views/create';
-import Welcome from './layout/views/welcome';
+import routes from './routes';
 
 const selectThemeFromKey = createSelector(
   state => state.theme,
@@ -48,8 +47,16 @@ const Application = () => {
       </div>
       <div className={classes['application-views']}>
         <Switch>
-          <Route exact component={Welcome} path="/" />
-          <Route exact component={ImportCreate} path="/create" />
+          {routes.map(obj => {
+            return (
+              <Route
+                key={obj.path}
+                component={obj.component}
+                exact={obj.exact}
+                path={obj.path}
+              />
+            );
+          })}
         </Switch>
       </div>
       <div className={classes['application-footer']}>

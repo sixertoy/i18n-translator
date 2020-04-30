@@ -6,7 +6,7 @@
   "homepage": "https://sixertoy.github.io/i18n-translator/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sixertoy/i18n-translator/"
+    "url": "https://github.com/sixertoy/i18n-translator"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.5.0",

@@ -19,11 +19,13 @@ const { persistor, store } = configure(history, initialState);
 // eslint-disable-next-line
 console.log('version : ', version);
 
+const { PUBLIC_URL } = process.env;
+
 const Root = () => (
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+        <BrowserRouter basename={PUBLIC_URL}>
           <Application />
         </BrowserRouter>
       </PersistGate>
