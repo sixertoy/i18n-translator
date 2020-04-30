@@ -1,4 +1,4 @@
-import './index.css';
+import './index.scss';
 
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
