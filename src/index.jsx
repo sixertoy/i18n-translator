@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-// import Application from './components/application';
+import Application from './components/Application';
 import getRouterHistory from './core/history';
 import { getInitialState } from './redux/initial-state';
 import { configure } from './redux/store';
@@ -20,7 +20,7 @@ const Root = () => (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <div>Hello World</div>
+          <Application />
         </BrowserRouter>
       </PersistGate>
     </Provider>
