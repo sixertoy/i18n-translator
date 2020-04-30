@@ -5,16 +5,17 @@
   "homepage": "https://sixertoy.github.io/i18n-translator/",
   "description": ":fr: :on: :uk: i18n Online Translations Editor (JSON)",
   "devDependencies": {
-    "chai": "3.5.0",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.3",
+    "@testing-library/user-event": "^10.1.0",
     "eslint": "3.14.1",
     "eslint-config-airbnb": "14.0.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "3.0.2",
     "eslint-plugin-react": "6.9.0",
-    "flow-bin": "0.38.0",
     "gh-pages": "0.12.0",
-    "mocha": "3.2.0",
-    "react-scripts": "0.8.5",
+    "jest": "^25.5.2",
+    "react-scripts": "3.4.1",
     "stylelint-config-standard": "15.0.1"
   },
   "dependencies": {
