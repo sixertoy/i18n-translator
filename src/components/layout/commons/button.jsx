@@ -11,11 +11,12 @@ const useStyles = createUseStyles({
   },
 });
 
-const SubmitButtonComponent = ({ iconclass, label, onClick }) => {
+const SubmitButtonComponent = ({ disabled, iconclass, label, onClick }) => {
   const classes = useStyles();
   return (
     <button
       className={classes.container}
+      disabled={disabled}
       type="button"
       onClick={evt => {
         evt.preventDefault();
@@ -30,11 +31,13 @@ const SubmitButtonComponent = ({ iconclass, label, onClick }) => {
 };
 
 SubmitButtonComponent.defaultProps = {
+  disabled: false,
   iconclass: false,
   label: false,
 };
 
 SubmitButtonComponent.propTypes = {
+  disabled: PropTypes.bool,
   iconclass: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   label: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   onClick: PropTypes.func.isRequired,

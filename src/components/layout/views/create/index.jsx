@@ -1,6 +1,7 @@
 // import isempty from 'lodash.isempty';
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useHistory } from 'react-router-dom';
 
 // import StepsIterator from '../../../core/iterators/StepsIterator';
 // import { entries } from '../../../core/utils/ObjectUtils';
@@ -127,20 +128,24 @@ const useStyles = createUseStyles({
 // </div>
 const CreateComponent = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [mode, setMode] = useState('json');
-  const [content, setContent] = useState(false);
-  console.log('content', content);
-  // const [contentIsValid, setContentIsValid] = useState('json');
-  // const showsubmit = contentIsValid; // || this.state.langkey
+  const [content, setContent] = useState(null);
   return (
     <div className={classes.container}>
-      <CodeEditor content={content} mode={mode} onChange={setContent} />
+      <CodeEditor
+        content={content}
+        mode={mode}
+        onChange={value => setContent(value)}
+      />
       <FooterControls
         mode={mode}
         onCancel={false}
         onModeChange={setMode}
         // currentstep = this.stepsIterator.next().value
-        onSubmit={() => {}}
+        onSubmit={() => {
+          history.push('/language');
+        }}
       />
     </div>
   );

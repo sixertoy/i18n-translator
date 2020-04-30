@@ -6,7 +6,7 @@ import 'ace-builds/src-min-noconflict/mode-javascript';
 import 'ace-builds/src-min-noconflict/theme-github';
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import AceEditor from 'react-ace';
 import { createUseStyles } from 'react-jss';
 
@@ -21,46 +21,50 @@ const useStyles = createUseStyles({
 });
 
 // const { NODE_ENV } = process.env;
-const DEFAULT_VALUE =
+const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
 
 const CodeEditorComponent = ({ content, mode, onChange }) => {
   const classes = useStyles();
+  const [isValid, setIsValid] = useState(false);
   return (
     <div className={classes.container}>
       {/* {usecopy && <CopyButton content={content} />} */}
       <AceEditor
         focus
+        highlightActiveLine
+        showGutter
         wrapEnabled
         editorProps={{ $blockScrolling: true }}
         height="100%"
         mode={mode}
         name="editor-import"
+        placeholder={PLACEHOLDER_VALUE}
         readOnly={false}
-        setOptions={{
-          displayIndentGuides: true,
-          highlightGutterLine: false,
-          showInvisibles: false,
-          showLineNumbers: false,
-          showPrintMargin: false,
-        }}
         showPrintMargin={false}
         tabSize={2}
         theme="github"
-        value={content || DEFAULT_VALUE}
+        value={content || ''}
         width="100%"
-        onChange={onChange}
+        onChange={value => onChange(value, isValid)}
+        onValidate={annotations => {
+          const errors = annotations.filter(({ type }) => type === 'error');
+          const valid = errors.length === 0;
+          setIsValid(valid);
+          onChange(content, valid);
+        }}
       />
     </div>
   );
 };
 
 CodeEditorComponent.defaultProps = {
+  content: null,
   mode: 'json',
 };
 
 CodeEditorComponent.propTypes = {
-  content: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  content: PropTypes.string,
   mode: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
