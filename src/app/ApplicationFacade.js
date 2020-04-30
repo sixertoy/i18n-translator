@@ -1,32 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 // core
 import { AbstractFacade } from '../core/abstracts';
-import stores from './stores';
 import actions from './actions';
-import services from './services';
+import ApplicationLayout from './ApplicationLayout';
 import observers from './observers';
 import routesActions from './routes';
-import ApplicationLayout from './ApplicationLayout';
+import services from './services';
+import stores from './stores';
 
 class ApplicationFacade extends AbstractFacade {
-
-  start ({ name, version }) {
+  start({ name, version }) {
     this._beforeStart({
+      actions,
+      observers,
+      routesActions,
       services,
       stores,
-      actions,
-      routesActions,
-      observers
     });
     // eslint-disable-next-line
-    ReactDOM.render(<ApplicationLayout appname={name}
-      version={version}
-      facade={this} />,
+    ReactDOM.render(
+      <ApplicationLayout appname={name} facade={this} version={version} />,
       document.getElementById('root')
     );
   }
-
 }
 
 export default ApplicationFacade;

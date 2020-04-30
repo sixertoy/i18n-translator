@@ -1,9 +1,8 @@
-import { toMap } from './../../core/utils/ObjectUtils';
-// project
+import { toMap } from '../../core/utils/ObjectUtils';
 import ApplicationStore from './ApplicationStore';
 
 const imports = toMap({
-  ApplicationStore
+  ApplicationStore,
 });
 
 export default imports;

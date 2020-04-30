@@ -1,4 +1,4 @@
-import { toMap } from './../../core/utils/ObjectUtils';
+import { toMap } from '../../core/utils/ObjectUtils';
 
 const imports = toMap({});
 

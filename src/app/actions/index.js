@@ -1,9 +1,8 @@
-import { toMap } from './../../core/utils/ObjectUtils';
-// project
+import { toMap } from '../../core/utils/ObjectUtils';
 import ApplicationAction from './ApplicationAction';
 
 const imports = toMap({
-  ApplicationAction
+  ApplicationAction,
 });
 
 export default imports;

@@ -1,68 +1,71 @@
 import React from 'react';
-// project
-import { entries } from './../../../core/utils/ObjectUtils';
-import ReactAceEditor from './../commons/ReactAceEditor';
+
+import { entries } from '../../../core/utils/ObjectUtils';
+import ReactAceEditor from '../commons/ReactAceEditor';
 
 class ExportScreen extends React.PureComponent {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
-      current: 0
+      current: 0,
     };
   }
 
-  _onLocaleTabClick (e, index) {
+  _onLocaleTabClick(e, index) {
     e.preventDefault();
     if (index === this.state.current) {
       return false;
     }
     return this.setState({
-      current: index
+      current: index,
     });
   }
 
-  _onDiffButtonClick (e) {
+  _onDiffButtonClick(e) {
     e.preventDefault();
     this.setState({
-      current: -1
+      current: -1,
     });
   }
 
-  _renderLocalesTabs () {
-    const current = this.state.current;
+  _renderLocalesTabs() {
+    const { current } = this.state;
     return (
-      <span className="screen-locales-tabs"
+      <span
+        className="screen-locales-tabs"
         style={{
-          marginRight: '40px'
+          marginRight: '40px',
         }}>
-        {entries(this.props.locales)
-          .map(([langkey], index) => <a href=""
+        {entries(this.props.locales).map(([langkey], index) => (
+          <a
             key={`tabs_${langkey}`}
+            href=""
             style={{
-              width: '40px',
-              paddingTop: '7px',
+              background: current === index ? '#FFFFFF' : 'transparent',
+              color: current === index ? '#338596' : '#ABABAB',
               marginRight: '3px',
-              textAlign: 'center',
+              paddingBottom: '7px',
               paddingLeft: '12px',
               paddingRight: '12px',
-              paddingBottom: '7px',
-              color: (current === index) ? '#338596' : '#ABABAB',
-              background: (current === index) ? '#FFFFFF' : 'transparent'
+              paddingTop: '7px',
+              textAlign: 'center',
+              width: '40px',
             }}
-            onClick={e => this._onLocaleTabClick(e, index)} >
+            onClick={e => this._onLocaleTabClick(e, index)}>
             <span>{langkey}</span>
-          </a>)}
-        <a href=""
+          </a>
+        ))}
+        <a
+          href=""
           style={{
-            paddingTop: '7px',
+            background: current < 0 ? '#FFFFFF' : 'transparent',
+            color: current < 0 ? '#338596' : '#ABABAB',
             marginRight: '3px',
-            textAlign: 'center',
+            paddingBottom: '7px',
             paddingLeft: '12px',
             paddingRight: '12px',
-            paddingBottom: '7px',
-            color: (current < 0) ? '#338596' : '#ABABAB',
-            background: (current < 0) ? '#FFFFFF' : 'transparent'
+            paddingTop: '7px',
+            textAlign: 'center',
           }}
           onClick={e => this._onDiffButtonClick(e)}>
           <span>{'< diff >'}</span>
@@ -71,7 +74,7 @@ class ExportScreen extends React.PureComponent {
     );
   }
 
-  _renderTextArea () {
+  _renderTextArea() {
     let langkey = null;
     let locales = null;
     const values = entries(this.props.locales);
@@ -82,50 +85,53 @@ class ExportScreen extends React.PureComponent {
       [langkey, locales] = values[this.state.current];
     }
     return (
-      <div className="application-screen-content"
+      <div
+        className="application-screen-content"
         style={{
-          width: '100%',
+          background: '#FFFFFF',
           height: '100%',
           overflow: 'hidden',
           position: 'relative',
-          background: '#FFFFFF'
+          width: '100%',
         }}>
-        <div className="absolute-container" >
-          <ReactAceEditor jsonstring={JSON.stringify(locales, null, '  ')}
-            editorid={`editor-${langkey}`} />
+        <div className="absolute-container">
+          <ReactAceEditor
+            editorid={`editor-${langkey}`}
+            jsonstring={JSON.stringify(locales, null, '  ')}
+          />
         </div>
       </div>
     );
   }
 
-  render () {
+  render() {
     return (
-      <div className="inner flex-rows"
+      <div
+        className="inner flex-rows"
         style={{
-          padding: '0',
-          width: '80%',
+          background: 'white',
           height: '95%',
           margin: '0 auto',
           overflow: 'hidden',
-          background: 'white'
+          padding: '0',
+          width: '80%',
         }}>
         {this._renderLocalesTabs()}
         {this._renderTextArea()}
       </div>
     );
   }
-
 }
 
 ExportScreen.propTypes = {
   json: React.PropTypes.oneOfType([
     React.PropTypes.bool,
-    React.PropTypes.object
+    React.PropTypes.object,
   ]).isRequired,
   locales: React.PropTypes.oneOfType([
     React.PropTypes.bool,
-    React.PropTypes.object
-  ]).isRequired
+    React.PropTypes.object,
+  ]).isRequired,
 };
 
 export default ScreenFactory(ExportScreen);

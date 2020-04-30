@@ -1,10 +1,9 @@
 import React from 'react';
-// project
-import LocalesTableRow from './LocalesTableRow';
+
 import LocalesTableHeaders from './LocalesTableHeaders';
+import LocalesTableRow from './LocalesTableRow';
 
 class LocalesTable extends React.PureComponent {
-
   /* ------------------------------------------------
 
    Statics
@@ -17,7 +16,7 @@ class LocalesTable extends React.PureComponent {
 
   ------------------------------------------------ */
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {};
     this._initialized = false;
@@ -29,7 +28,7 @@ class LocalesTable extends React.PureComponent {
 
   ------------------------------------------------ */
 
-  _onHeadersClickHandler (evt, key) {
+  _onHeadersClickHandler(evt, key) {
     evt.preventDefault();
     const action = this.context.facade.getAction('ApplicationAction');
     action.toggleColumn(key);
@@ -47,49 +46,58 @@ class LocalesTable extends React.PureComponent {
 
   ------------------------------------------------ */
 
-  render () {
-    const langs = this.props.langs;
-    const values = this.props.values;
-    const primarykeys = this.props.primarykeys;
+  render() {
+    const { langs } = this.props;
+    const { values } = this.props;
+    const { primarykeys } = this.props;
     return (
-      <div style={{
-        width: '100%',
-        height: '100%',
-        position: 'relative'
-      }}>
-        <div className="table flex-rows"
+      <div
+        style={{
+          height: '100%',
+          position: 'relative',
+          width: '100%',
+        }}>
+        <div
+          className="table flex-rows"
           style={{
-            width: '100%',
+            borderTop: '1px solid #ECECEC',
             height: '100%',
-            borderTop: '1px solid #ECECEC'
+            width: '100%',
           }}>
-          <LocalesTableHeaders langs={langs}
+          <LocalesTableHeaders
             collapsed={this.props.collapsed}
-            ontoggle={(...rest) => this._onHeadersClickHandler(...rest)} />
-          <div className="scrollable"
+            langs={langs}
+            ontoggle={(...rest) => this._onHeadersClickHandler(...rest)}
+          />
+          <div
+            className="scrollable"
             style={{
-              width: '100%',
               height: '100%',
-              position: 'relative',
+              overflowX: 'hidden',
               overflowY: 'scroll',
-              overflowX: 'hidden'
+              position: 'relative',
+              width: '100%',
             }}>
-            <div className="table-body"
+            <div
+              className="table-body"
               style={{
-                top: '0',
-                left: '0',
-                right: '0',
                 bottom: '0',
-                position: 'absolute'
+                left: '0',
+                position: 'absolute',
+                right: '0',
+                top: '0',
               }}>
-              {primarykeys.map((key, index) =>
-                <LocalesTableRow key={`row_${key}`}
-                  langs={langs}
-                  primarykey={key}
-                  odd={Boolean(index % 2)}
-                  facade={this.context.facade}
+              {primarykeys.map((key, index) => (
+                <LocalesTableRow
+                  key={`row_${key}`}
                   collapsed={this.props.collapsed}
-                  values={values.map(obj => (obj[key] || ''))} />)}
+                  facade={this.context.facade}
+                  langs={langs}
+                  odd={Boolean(index % 2)}
+                  primarykey={key}
+                  values={values.map(obj => obj[key] || '')}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -99,15 +107,15 @@ class LocalesTable extends React.PureComponent {
 }
 
 LocalesTable.contextTypes = {
+  facade: React.PropTypes.object,
   theme: React.PropTypes.object,
-  facade: React.PropTypes.object
 };
 
 LocalesTable.propTypes = {
-  langs: React.PropTypes.array.isRequired,
-  values: React.PropTypes.array.isRequired,
   collapsed: React.PropTypes.array.isRequired,
-  primarykeys: React.PropTypes.array.isRequired
+  langs: React.PropTypes.array.isRequired,
+  primarykeys: React.PropTypes.array.isRequired,
+  values: React.PropTypes.array.isRequired,
 };
 
 export default LocalesTable;

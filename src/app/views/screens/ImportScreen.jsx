@@ -1,16 +1,14 @@
-import React from 'react';
 import isempty from 'lodash.isempty';
-// import isobject from 'lodash.isobject';
-// project
-import Constants from './../../constants';
-import ReactAceEditor from './../commons/ReactAceEditor';
-import { entries } from './../../../core/utils/ObjectUtils';
-import ImportScreenFooter from './../commons/ImportScreenFooter';
-import StepsIterator from './../../../core/iterators/StepsIterator';
+import React from 'react';
+
+import StepsIterator from '../../../core/iterators/StepsIterator';
+import { entries } from '../../../core/utils/ObjectUtils';
+import Constants from '../../constants';
+import ImportScreenFooter from '../commons/ImportScreenFooter';
+import ReactAceEditor from '../commons/ReactAceEditor';
 
 class ImportScreen extends React.PureComponent {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
     this._ismounted = false;
     this._stepsIterator = StepsIterator([
@@ -18,24 +16,27 @@ class ImportScreen extends React.PureComponent {
       // question: is it a description file
       () => this.renderSelectLanguage.bind(this),
       // question: import another language
-      () => this.renderLoadMoreContent.bind(this)
+      () => this.renderLoadMoreContent.bind(this),
     ]);
 
-    let defaultvalue = '// Put your JSON code to start working with your translations';
+    let defaultvalue =
+      '// Put your JSON code to start working with your translations';
     if (!isempty(props.primarykeys)) {
-      defaultvalue = props.primarykeys
-        .reduce((obj, key) => Object.assign(obj, { [key]: '' }), {});
+      defaultvalue = props.primarykeys.reduce(
+        (obj, key) => Object.assign(obj, { [key]: '' }),
+        {}
+      );
       defaultvalue = JSON.stringify(defaultvalue, null, '  ');
     }
 
     this.state = {
-      defaultvalue,
       count: 0,
-      langkey: false,
+      currentstep: this._stepsIterator.next().value,
+      defaultvalue,
       editormode: 'json',
       jsonisvalid: false,
       jsonstring: defaultvalue,
-      currentstep: this._stepsIterator.next().value
+      langkey: false,
     };
   }
 
@@ -45,11 +46,11 @@ class ImportScreen extends React.PureComponent {
 
   -------------------------------------------------- */
 
-  componentDidMount () {
+  componentDidMount() {
     this._ismounted = true;
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this._ismounted = false;
   }
 
@@ -59,47 +60,45 @@ class ImportScreen extends React.PureComponent {
 
   -------------------------------------------------- */
 
-  _onLoadYesNoClickHandler (e, response) {
+  _onLoadYesNoClickHandler(e, response) {
     e.preventDefault();
     const action = this.context.facade.getAction('ApplicationAction');
     action.addLanguage(this.state.langkey, this.state.jsonstring);
     if (response) {
       this.setState({
-        langkey: false,
-        jsonisvalid: false,
-        count: (this.state.count + 1),
+        count: this.state.count + 1,
         currentstep: this._stepsIterator.next().value,
-        jsonstring: response
-          ? this.state.defaultvalue
-          : false
+        jsonisvalid: false,
+        jsonstring: response ? this.state.defaultvalue : false,
+        langkey: false,
       });
     } else {
       action.toggleScreen(Constants.SCREENS.EDIT);
     }
   }
 
-  _onClickSubmitHandler (e) {
+  _onClickSubmitHandler(e) {
     e.preventDefault();
     this.setState({
+      currentstep: this._stepsIterator.next().value,
       jsonisvalid: false,
-      currentstep: this._stepsIterator.next().value
     });
   }
 
-  _onClickLanguageHandler (e, langkey) {
+  _onClickLanguageHandler(e, langkey) {
     e.stopPropagation();
     this.setState({
-      langkey
+      langkey,
     });
   }
 
-  _onClickEditorModeHandler ({ value }) {
+  _onClickEditorModeHandler({ value }) {
     this.setState({
-      editormode: value
+      editormode: value,
     });
   }
 
-  _onAceEditorChange (value) {
+  _onAceEditorChange(value) {
     console.log(arguments);
     let jsonisvalid = false;
     const jsonstring = value;
@@ -114,8 +113,8 @@ class ImportScreen extends React.PureComponent {
       }
     }
     this.setState({
+      jsonisvalid,
       jsonstring,
-      jsonisvalid
     });
   }
 
@@ -125,36 +124,40 @@ class ImportScreen extends React.PureComponent {
 
   -------------------------------------------------- */
 
-  renderLoadMoreContent () {
+  renderLoadMoreContent() {
     return (
-      <div className="flex-rows flex-centered"
+      <div
+        className="flex-rows flex-centered"
         style={{
-          width: '100%',
           height: '100%',
-          position: 'relative'
+          position: 'relative',
+          width: '100%',
         }}>
         <h3>
           <span>Load more language set ?</span>
         </h3>
-        <p style={{
-          marginTop: '0'
-        }}>
-          <button onClick={e => this._onLoadYesNoClickHandler(e, false)}
+        <p
+          style={{
+            marginTop: '0',
+          }}>
+          <button
             style={{
+              background: this.context.theme.grey,
               margin: '0 10px',
               paddingLeft: '20px',
               paddingRight: '20px',
-              background: this.context.theme.grey
-            }}>
+            }}
+            onClick={e => this._onLoadYesNoClickHandler(e, false)}>
             <span>No</span>
           </button>
-          <button onClick={e => this._onLoadYesNoClickHandler(e, true)}
+          <button
             style={{
+              background: this.context.theme.velvet,
               margin: '0 10px',
               paddingLeft: '20px',
               paddingRight: '20px',
-              background: this.context.theme.velvet
-            }}>
+            }}
+            onClick={e => this._onLoadYesNoClickHandler(e, true)}>
             <span>Yes</span>
           </button>
         </p>
@@ -162,66 +165,77 @@ class ImportScreen extends React.PureComponent {
     );
   }
 
-  renderSelectLanguage () {
+  renderSelectLanguage() {
     const languages = {
       // using language keys RFC 3066
+      'de-DE': 'German',
       'en-US': 'English',
-      'it-IT': 'Italian',
-      'fr-FR': 'French',
       'es-ES': 'Spanish',
+      'fr-FR': 'French',
+      'it-IT': 'Italian',
       'pt-PT': 'Portuguese',
-      'de-DE': 'German'
     };
     return (
-      <div className="flex-rows flex-centered"
+      <div
+        className="flex-rows flex-centered"
         style={{
-          width: '100%',
           height: '100%',
-          position: 'relative'
+          position: 'relative',
+          width: '100%',
         }}>
         <h3>
           <span>Select language ?</span>
         </h3>
-        <p style={{
-          marginTop: '0'
-        }}>
+        <p
+          style={{
+            marginTop: '0',
+          }}>
           {entries(languages)
-            .filter(([key]) => (this.props.langs.indexOf(key) === -1))
-            .map(([key, val]) =>
-              <label key={`radio-${key}`}
+            .filter(([key]) => this.props.langs.indexOf(key) === -1)
+            .map(([key, val]) => (
+              <label
+                key={`radio-${key}`}
                 htmlFor={key}
                 style={{
-                  marginRight: '7px'
+                  marginRight: '7px',
                 }}>
-                <input id={key}
-                  value={key}
-                  type="radio"
+                <input
+                  id={key}
                   name="lang-radio-input"
-                  onClick={e => this._onClickLanguageHandler(e, key)} />
-                <span style={{
-                  marginLeft: '3px'
-                }}>{val}</span>
+                  type="radio"
+                  value={key}
+                  onClick={e => this._onClickLanguageHandler(e, key)}
+                />
+                <span
+                  style={{
+                    marginLeft: '3px',
+                  }}>
+                  {val}
+                </span>
               </label>
-            )}
+            ))}
         </p>
       </div>
     );
   }
 
-  renderFileImportStep () {
+  renderFileImportStep() {
     return (
-      <div style={{
-        width: '100%',
-        height: '100%',
-        position: 'relative'
-      }}>
-        <ReactAceEditor usecopy={false}
-          readOnly={false}
-          editorid={'editor-import'}
+      <div
+        style={{
+          height: '100%',
+          position: 'relative',
+          width: '100%',
+        }}>
+        <ReactAceEditor
+          changehandler={e => this._onAceEditorChange(e)}
+          defaultvalue={this.props.defaultvalue}
+          editorid="editor-import"
           editormode={this.state.editormode}
           jsonstring={this.state.jsonstring}
-          defaultvalue={this.props.defaultvalue}
-          changehandler={e => this._onAceEditorChange(e)} />
+          readOnly={false}
+          usecopy={false}
+        />
       </div>
     );
   }
@@ -232,47 +246,53 @@ class ImportScreen extends React.PureComponent {
 
   -------------------------------------------------- */
 
-  render () {
+  render() {
     const showsubmit = this.state.jsonisvalid || this.state.langkey;
     return (
-      <div className="application-screen-content flex-rows"
+      <div
+        className="application-screen-content flex-rows"
         style={{
-          padding: '0',
-          width: '100%',
+          background: 'white',
           height: '100%',
           margin: '0 auto',
           overflow: 'hidden',
-          background: 'white'
+          padding: '0',
+          width: '100%',
         }}>
-        <div className="flex-rows"
+        <div
+          className="flex-rows"
           style={{
+            height: '100%',
             width: '100%',
-            height: '100%'
-          }}>{this.state.currentstep()}</div>
-        <ImportScreenFooter editormode={this.state.editormode}
+          }}>
+          {this.state.currentstep()}
+        </div>
+        <ImportScreenFooter
           cancelClickHandler={false}
-          submitClickHandler={!showsubmit
-            ? false : e => this._onClickSubmitHandler(e)}
-          editorModeHandler={o => this._onClickEditorModeHandler(o)} />
+          editormode={this.state.editormode}
+          editorModeHandler={o => this._onClickEditorModeHandler(o)}
+          submitClickHandler={
+            !showsubmit ? false : e => this._onClickSubmitHandler(e)
+          }
+        />
       </div>
     );
   }
-
 }
 
 ImportScreen.contextTypes = {
+  facade: React.PropTypes.object,
   theme: React.PropTypes.object,
-  facade: React.PropTypes.object
 };
 
 ImportScreen.propTypes = {
   defaultvalue: React.PropTypes.string,
   langs: React.PropTypes.array.isRequired,
-  primarykeys: React.PropTypes.array.isRequired
+  primarykeys: React.PropTypes.array.isRequired,
 };
 
 ImportScreen.defaultProps = {
-  defaultvalue: '// Put your JSON code to start working with your translations'
+  defaultvalue: '// Put your JSON code to start working with your translations',
 };
 
 export default ImportScreen;

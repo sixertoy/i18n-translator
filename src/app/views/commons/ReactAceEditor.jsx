@@ -1,75 +1,82 @@
-import React from 'react';
-import noop from 'lodash.noop';
-import AceEditor from 'react-ace';
-import CopyToClipboard from 'react-copy-to-clipboard';
 // ace editor config
 import 'brace/theme/github';
 import 'brace/mode/json';
 import 'brace/mode/javascript';
 
-const renderCopyToClipboard = jsonstring => (<CopyToClipboard text={jsonstring}>
-  <a className="application-copy-to-clipboard shadow-around"
-    style={{
-      top: '20px',
-      right: '30px',
-      cursor: 'pointer',
-      padding: '7px 12px',
-      position: 'absolute'
-    }}>
-    <span>Copy to clipboard</span>
-  </a>
-</CopyToClipboard>);
+import noop from 'lodash.noop';
+import React from 'react';
+import AceEditor from 'react-ace';
+import CopyToClipboard from 'react-copy-to-clipboard';
+
+const renderCopyToClipboard = jsonstring => (
+  <CopyToClipboard text={jsonstring}>
+    <a
+      className="application-copy-to-clipboard shadow-around"
+      style={{
+        cursor: 'pointer',
+        padding: '7px 12px',
+        position: 'absolute',
+        right: '30px',
+        top: '20px',
+      }}>
+      <span>Copy to clipboard</span>
+    </a>
+  </CopyToClipboard>
+);
 
 const ReactAceEditor = props => (
-  <div className="application-ace-editor"
+  <div
+    className="application-ace-editor"
     style={{
-      width: '100%',
       height: '100%',
-      position: 'relative'
+      position: 'relative',
+      width: '100%',
     }}>
     {props.usecopy ? renderCopyToClipboard(props.jsonstring) : false}
-    <AceEditor readOnly={props.readOnly}
+    <AceEditor
       focus
       wrapEnabled
-      tabSize={2}
-      width="100%"
-      height="100%"
-      theme="github"
-      showPrintMargin={false}
-      mode={props.editormode}
-      value={props.jsonstring}
-      name={`${props.editorid}`}
-      onChange={e => props.changehandler(e)}
+      defaultValue={props.jsonstring || props.defaultvalue}
       editorProps={{ $blockScrolling: true }}
+      height="100%"
+      mode={props.editormode}
+      name={`${props.editorid}`}
+      readOnly={props.readOnly}
       setOptions={{
-        showInvisibles: false,
-        showPrintMargin: false,
-        showLineNumbers: false,
         displayIndentGuides: true,
-        highlightGutterLine: false
+        highlightGutterLine: false,
+        showInvisibles: false,
+        showLineNumbers: false,
+        showPrintMargin: false,
       }}
-      defaultValue={props.jsonstring || props.defaultvalue} />
+      showPrintMargin={false}
+      tabSize={2}
+      theme="github"
+      value={props.jsonstring}
+      width="100%"
+      onChange={e => props.changehandler(e)}
+    />
   </div>
 );
 
 ReactAceEditor.defaultProps = {
-  label: '',
-  usecopy: true,
-  jsonstring: '',
-  readOnly: true,
+  changehandler: noop,
   defaultvalue: '',
   editormode: 'json',
-  changehandler: noop
+  jsonstring: '',
+  label: '',
+  readOnly: true,
+  usecopy: true,
 };
 
 ReactAceEditor.propTypes = {
-  usecopy: React.PropTypes.bool,
-  readOnly: React.PropTypes.bool,
-  jsonstring: React.PropTypes.string,
-  editormode: React.PropTypes.string,
   changehandler: React.PropTypes.func,
   defaultvalue: React.PropTypes.string,
-  editorid: React.PropTypes.string.isRequired
+  editorid: React.PropTypes.string.isRequired,
+  editormode: React.PropTypes.string,
+  jsonstring: React.PropTypes.string,
+  readOnly: React.PropTypes.bool,
+  usecopy: React.PropTypes.bool,
 };
 
 export default ReactAceEditor;

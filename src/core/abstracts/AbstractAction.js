@@ -1,18 +1,16 @@
 class AbstractAction {
-
-  constructor (facade, dispatcher) {
+  constructor(facade, dispatcher) {
     this._facade = facade;
     this._dispatcher = dispatcher;
   }
 
-  getFacade () {
+  getFacade() {
     return this._facade;
   }
 
-  getDispatcher () {
+  getDispatcher() {
     return this._dispatcher;
   }
-
 }
 
 export default AbstractAction;

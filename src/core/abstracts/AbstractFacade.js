@@ -1,11 +1,10 @@
 import { Dispatcher } from 'flux';
-// core
-import { entries } from './../utils/ObjectUtils';
-import StringUtils from './../utils/StringUtils';
+
+import { entries } from '../utils/ObjectUtils';
+import StringUtils from '../utils/StringUtils';
 
 class AbstractFacade {
-
-  constructor (appconfig) {
+  constructor(appconfig) {
     this._stores = null;
     this._actions = null;
     this._services = null;
@@ -14,7 +13,7 @@ class AbstractFacade {
     this._config = new Map(
       entries(appconfig).filter(
         // keep only 'REACT_APP_' prefixed .env's variables
-        item => (item[0].indexOf('REACT_APP_') >= 0)
+        item => item[0].indexOf('REACT_APP_') >= 0
       )
     );
     this._initialize();
@@ -27,11 +26,11 @@ class AbstractFacade {
   ------------------------------------------------ */
 
   // eslint-disable-next-line
-  _initialize () {
+  _initialize() {
     // should be overrided by children
   }
 
-  _beforeStart ({ services, stores, actions, routesActions }) {
+  _beforeStart({ actions, routesActions, services, stores }) {
     this._initServices(services, [this._config]);
     this._initStores(stores, [this._dispatcher]);
     this._initActions(actions, [this, this._dispatcher]);
@@ -41,7 +40,7 @@ class AbstractFacade {
   /**
    *
    */
-  _initServices (imports, params) {
+  _initServices(imports, params) {
     let service = null;
     this._services = new Map();
     imports.forEach((classname, name) => {
@@ -53,7 +52,7 @@ class AbstractFacade {
   /**
    *
    */
-  _initStores (imports, params) {
+  _initStores(imports, params) {
     let store = null;
     this._stores = new Map();
     imports.forEach((classname, name) => {
@@ -65,7 +64,7 @@ class AbstractFacade {
   /**
    *
    */
-  _initActions (imports, params) {
+  _initActions(imports, params) {
     let action = null;
     this._actions = new Map();
     imports.forEach((classname, name) => {
@@ -77,7 +76,7 @@ class AbstractFacade {
   /**
    *
    */
-  _initRoutesActions (imports, params) {
+  _initRoutesActions(imports, params) {
     let route = null;
     this._routesActions = new Map();
     imports.forEach((classname, name) => {
@@ -95,33 +94,33 @@ class AbstractFacade {
   /**
    *
    */
-  getDispacther () {
+  getDispacther() {
     return this._dispatcher;
   }
 
   /**
    *
    */
-  getService (name) {
+  getService(name) {
     return this._services.get(name);
   }
 
   /**
    *
    */
-  getAction (name) {
+  getAction(name) {
     return this._actions.get(name);
   }
 
   /**
    *
    */
-  getRouteAction (name) {
+  getRouteAction(name) {
     let routename = name;
     let index = routename.indexOf('.');
     if (index !== -1) {
       // is a child of...
-      index = (routename.lastIndexOf('.') + 1);
+      index = routename.lastIndexOf('.') + 1;
       routename = routename.slice(index);
     }
     routename = `${StringUtils.ucfirst(routename)}RouteAction`;
@@ -131,16 +130,15 @@ class AbstractFacade {
   /**
    *
    */
-  getStore (name) {
+  getStore(name) {
     return this._stores.get(name);
   }
 
   // eslint-disable-next-line
-  start () {
+  start() {
     // should be overrided
     // this._beforeStart(stores, services, actions, routesActions);
   }
-
 }
 
 export default AbstractFacade;

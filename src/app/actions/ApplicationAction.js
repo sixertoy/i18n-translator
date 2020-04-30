@@ -1,50 +1,47 @@
-import AbstractAction from './../../core/abstracts/AbstractAction';
-// lib
-import Constants from './../constants';
+import AbstractAction from '../../core/abstracts/AbstractAction';
+import Constants from '../constants';
 
 class ApplicationAction extends AbstractAction {
-
-  toggleScreen (type) {
+  toggleScreen(type) {
     this.getDispatcher().dispatch({
+      data: type,
       type: Constants.FLUX.TOGGLE_SCREEN,
-      data: type
     });
   }
 
-  selectExport (index) {
+  selectExport(index) {
     this.getDispatcher().dispatch({
+      data: index,
       type: Constants.FLUX.SELECT_EXPORT,
-      data: index
     });
   }
 
-  toggleColumn (key) {
+  toggleColumn(key) {
     this.getDispatcher().dispatch({
+      data: key,
       type: Constants.FLUX.TOGGLE_COLUMN,
-      data: key
     });
   }
 
-  addLanguage (langkey, json) {
+  addLanguage(langkey, json) {
     this.getDispatcher().dispatch({
+      data: [langkey, json],
       type: Constants.FLUX.ADD_LANGUAGE,
-      data: [langkey, json]
     });
   }
 
-  updateValue (data) {
+  updateValue(data) {
     this.getDispatcher().dispatch({
+      data,
       type: Constants.FLUX.UPDATE_VALUE,
-      data
     });
   }
 
-  exportDiffChanges () {
+  exportDiffChanges() {
     this.getDispatcher().dispatch({
-      type: Constants.FLUX.EXPORT_DIFF_CHANGES
+      type: Constants.FLUX.EXPORT_DIFF_CHANGES,
     });
   }
-
 }
 
 export default ApplicationAction;

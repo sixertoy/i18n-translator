@@ -1,27 +1,25 @@
-import AppConstants from './../core/AppConstants';
+import AppConstants from '../core/AppConstants';
 
 class AbstractRouteAction {
-
-  constructor (facade, dispatcher) {
+  constructor(facade, dispatcher) {
     this._facade = facade;
     this._dispatcher = dispatcher;
   }
 
-  getFacade () {
+  getFacade() {
     return this._facade;
   }
 
-  getDispatcher () {
+  getDispatcher() {
     return this._dispatcher;
   }
 
-  onRouteLeave (routename) {
+  onRouteLeave(routename) {
     this.getDispatcher().dispatch({
+      data: routename,
       type: AppConstants.FLUX.ROUTE_LEAVE,
-      data: routename
     });
   }
-
 }
 
 export default AbstractRouteAction;

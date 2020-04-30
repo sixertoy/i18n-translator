@@ -1,13 +1,13 @@
-import AbstractStore from './AbstractStore';
 import AbstractAction from './AbstractAction';
 import AbstractFacade from './AbstractFacade';
-import AbstractService from './AbstractService';
 import AbstractRouteAction from './AbstractRouteAction';
+import AbstractService from './AbstractService';
+import AbstractStore from './AbstractStore';
 
 export {
   AbstractStore,
   AbstractFacade,
   AbstractAction,
   AbstractService,
-  AbstractRouteAction
+  AbstractRouteAction,
 };

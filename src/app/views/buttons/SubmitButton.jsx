@@ -1,10 +1,11 @@
 import React from 'react';
 
 const SubmitButton = props => (
-  <button className={`button-type-${props.type}`}
-    type={props.type}
+  <button
+    className={`button-type-${props.type}`}
     style={props.styles}
-    onClick={props.clickHandler} >
+    type={props.type}
+    onClick={props.clickHandler}>
     <span>
       {props.iconclass && <i className={props.iconclass} />}
       {props.label && <span>{props.label}</span>}
@@ -13,24 +14,24 @@ const SubmitButton = props => (
 );
 
 SubmitButton.defaultProps = {
-  styles: {},
+  iconclass: false,
   label: false,
+  styles: {},
   type: 'button',
-  iconclass: false
 };
 
 SubmitButton.propTypes = {
-  type: React.PropTypes.string,
-  styles: React.PropTypes.object,
   clickHandler: React.PropTypes.func.isRequired,
   iconclass: React.PropTypes.oneOfType([
     React.PropTypes.bool,
-    React.PropTypes.string
+    React.PropTypes.string,
   ]),
   label: React.PropTypes.oneOfType([
     React.PropTypes.bool,
-    React.PropTypes.string
-  ])
+    React.PropTypes.string,
+  ]),
+  styles: React.PropTypes.object,
+  type: React.PropTypes.string,
 };
 
 export default SubmitButton;

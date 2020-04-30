@@ -1,21 +1,21 @@
 const constants = {
   FLUX: {
     ADD_LANGUAGE: 'ADD_LANGUAGE',
-    UPDATE_VALUE: 'UPDATE_VALUE',
-    TOGGLE_SCREEN: 'TOGGLE_SCREEN',
+    EXPORT_DIFF_CHANGES: 'EXPORT_DIFF_CHANGES',
     SELECT_EXPORT: 'SELECT_EXPORT',
     TOGGLE_COLUMN: 'TOGGLE_COLUMN',
-    EXPORT_DIFF_CHANGES: 'EXPORT_DIFF_CHANGES'
+    TOGGLE_SCREEN: 'TOGGLE_SCREEN',
+    UPDATE_VALUE: 'UPDATE_VALUE',
   },
   REACT: {
-    NO_RENDER: false
+    NO_RENDER: false,
   },
   SCREENS: {
+    CONNECT: 'connect',
     EDIT: 'edit',
-    IMPORT: 'import',
     EXPORT: 'export',
-    CONNECT: 'connect'
-  }
+    IMPORT: 'import',
+  },
 };
 
 export default constants;

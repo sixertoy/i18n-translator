@@ -3,7 +3,7 @@ import frlang from './fr.json';
 
 const langs = {
   en: enlang,
-  fr: frlang
+  fr: frlang,
 };
 
 export default langs;

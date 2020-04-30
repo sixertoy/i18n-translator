@@ -1,16 +1,15 @@
 import React from 'react';
-// application
-import Constants from './../../constants';
+
+import Constants from '../../constants';
 
 class ConnectScreen extends React.PureComponent {
-
   /* ------------------------------------------------
 
    Privates
 
   ------------------------------------------------ */
 
-  _onClickImportButtonHandler (evt) {
+  _onClickImportButtonHandler(evt) {
     evt.preventDefault();
     const action = this.context.facade.getAction('ApplicationAction');
     action.toggleScreen(Constants.SCREENS.IMPORT);
@@ -28,30 +27,31 @@ class ConnectScreen extends React.PureComponent {
 
   ------------------------------------------------ */
 
-  render () {
+  render() {
     return (
-      <div style={{
-        margin: '0 auto',
-        textAlign: 'center'
-      }}>
-        <button onClick={e => this._onClickImportButtonHandler(e)}
+      <div
+        style={{
+          margin: '0 auto',
+          textAlign: 'center',
+        }}>
+        <button
           style={{
+            background: '#661E75',
             fontSize: '0.8em',
-            textAlign: 'center',
             padding: '20px 35px',
-            background: '#661E75'
-          }}>
+            textAlign: 'center',
+          }}
+          onClick={e => this._onClickImportButtonHandler(e)}>
           <span>Create or import a new language set</span>
         </button>
       </div>
     );
   }
-
 }
 
 ConnectScreen.contextTypes = {
+  facade: React.PropTypes.object,
   theme: React.PropTypes.object,
-  facade: React.PropTypes.object
 };
 
 export default ConnectScreen;
