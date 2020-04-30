@@ -11,6 +11,7 @@ const useStyles = createUseStyles({
   container: ({ theme }) => ({
     backgroundColor: theme.colors.grey,
     composes: [
+      'flex-0',
       'flex-columns',
       'flex-between',
       'shadow-top',

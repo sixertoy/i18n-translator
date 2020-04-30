@@ -14,7 +14,12 @@ const selectThemeFromKey = createSelector(
 );
 
 const useStyles = createUseStyles({
-  container: {},
+  container: {
+    composes: ['flex-rows', 'flex-between'],
+  },
+  wrapper: {
+    composes: ['flex-1'],
+  },
 });
 
 const Application = () => {
@@ -23,6 +28,7 @@ const Application = () => {
   return (
     <div className={classes.container}>
       <ApplicationHeader theme={theme} />
+      <div className={classes.wrapper}>Hello World</div>
       <ApplicationFooter theme={theme} />
     </div>
   );

@@ -10,12 +10,14 @@ import TwitterShareButton from './twitter-share-button';
 const useStyles = createUseStyles({
   container: {
     composes: [
+      'flex-0',
       'flex-columns',
       'flex-around',
       'py20',
       'px32',
       'is-relative',
       'text-left',
+      'shadow-bottom',
     ],
   },
   subtitle: {

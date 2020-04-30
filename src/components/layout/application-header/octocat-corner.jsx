@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { homepage } from '../../../../package.json';
+import { repository } from '../../../../package.json';
 import octocat from '../../../assets/octocat.svg';
 
 const OctocatCorner = ({ direction }) => (
@@ -17,7 +17,7 @@ const OctocatCorner = ({ direction }) => (
     <a
       aria-label="View source on Github"
       className="github-corner"
-      href={homepage}>
+      href={repository.url}>
       <img
         alt="i18n Online Translations Editor (JSON)"
         src={octocat}

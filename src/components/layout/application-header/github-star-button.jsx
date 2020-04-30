@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { name } from '../../../../package.json';
+import { name, repository } from '../../../../package.json';
 
 /**
  * @see https://buttons.github.io/
@@ -17,7 +17,7 @@ const GithubStarButton = () => (
     data-count-aria-label="# stargazers on GitHub"
     data-count-href={`/sixertoy/${name}/stargazers`}
     data-style="mega"
-    href={`https://github.com/sixertoy/${name}`}>
+    href={repository.url}>
     Star
     <Helmet
       script={[
