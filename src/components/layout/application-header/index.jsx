@@ -19,6 +19,9 @@ const useStyles = createUseStyles({
       'text-left',
       'shadow-bottom',
     ],
+    height: 100,
+    maxHeight: 100,
+    minHeight: 100,
   },
   subtitle: {
     color: '#8e8e8e',

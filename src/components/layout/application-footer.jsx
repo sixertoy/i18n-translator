@@ -20,6 +20,8 @@ const useStyles = createUseStyles({
       'is-full-width',
     ],
     height: 20,
+    maxHeight: 20,
+    minHeight: 20,
   }),
   love: ({ theme }) => ({
     color: theme.colors.red,
