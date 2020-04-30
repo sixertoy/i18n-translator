@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
 const DEFAULT_VALUE =
   '// Put your JSON code to start working with your translations';
 
-const CodeEditor = ({ content, mode, onChange }) => {
+const CodeEditorComponent = ({ content, mode, onChange }) => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -32,7 +32,6 @@ const CodeEditor = ({ content, mode, onChange }) => {
       <AceEditor
         focus
         wrapEnabled
-        defaultValue={content || DEFAULT_VALUE}
         editorProps={{ $blockScrolling: true }}
         height="100%"
         mode={mode}
@@ -48,23 +47,22 @@ const CodeEditor = ({ content, mode, onChange }) => {
         showPrintMargin={false}
         tabSize={2}
         theme="github"
-        value={content}
+        value={content || DEFAULT_VALUE}
         width="100%"
-        onChange={e => onChange(e)}
+        onChange={onChange}
       />
     </div>
   );
 };
 
-CodeEditor.defaultProps = {
-  content: '',
+CodeEditorComponent.defaultProps = {
   mode: 'json',
 };
 
-CodeEditor.propTypes = {
-  content: PropTypes.string,
+CodeEditorComponent.propTypes = {
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   mode: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-export default CodeEditor;
+export default CodeEditorComponent;

@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 // import StepsIterator from '../../../core/iterators/StepsIterator';
 // import { entries } from '../../../core/utils/ObjectUtils';
-import AceEditor from '../../commons/ace-editor';
+import CodeEditor from '../../commons/code-editor';
 import FooterControls from './footer-controls';
 // import Constants from '../../constants';
 // import SelectLanguage from './select-language';
@@ -88,7 +88,7 @@ const useStyles = createUseStyles({
 //   });
 // }
 
-// onAceEditorChange(value) {
+// onCodeEditorChange(value) {
 //   let jsonisvalid = false;
 //   const jsonstring = value;
 //   if (!isempty(value)) {
@@ -128,15 +128,17 @@ const useStyles = createUseStyles({
 const CreateComponent = () => {
   const classes = useStyles();
   const [mode, setMode] = useState('json');
+  const [content, setContent] = useState(false);
+  console.log('content', content);
   // const [contentIsValid, setContentIsValid] = useState('json');
   // const showsubmit = contentIsValid; // || this.state.langkey
   return (
     <div className={classes.container}>
-      <AceEditor content={null} mode={mode} onChange={() => {}} />
+      <CodeEditor content={content} mode={mode} onChange={setContent} />
       <FooterControls
         mode={mode}
-        onCancel={() => {}}
-        onChangeMode={({ value }) => setMode(value)}
+        onCancel={false}
+        onModeChange={setMode}
         // currentstep = this.stepsIterator.next().value
         onSubmit={() => {}}
       />

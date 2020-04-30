@@ -3,9 +3,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import Select from 'react-select';
 
+// import Select from 'react-select';
 import Button from '../../commons/button';
+import SelectMode from './select-mode';
 
 const useStyles = createUseStyles({
   container: {
@@ -17,24 +18,16 @@ const useStyles = createUseStyles({
   },
 });
 
-const MODES = [
-  { label: 'JSON', value: 'json' },
-  { label: 'JavaScript', value: 'javascript' },
-];
-
-const ControlsComponent = ({ mode, onCancel, onChangeMode, onSubmit }) => {
+const FooterControlsComponent = ({
+  mode,
+  onCancel,
+  onModeChange,
+  onSubmit,
+}) => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <div>
-        <Select
-          clearable={false}
-          name="form-field-name"
-          options={MODES}
-          value={mode}
-          onChange={onChangeMode}
-        />
-      </div>
+      <SelectMode mode={mode} onChange={onModeChange} />
       <div>
         {onCancel && <Button label="Cancel" onClick={onCancel} />}
         {onSubmit && (
@@ -50,12 +43,12 @@ const ControlsComponent = ({ mode, onCancel, onChangeMode, onSubmit }) => {
   );
 };
 
-ControlsComponent.propTypes = {
+FooterControlsComponent.propTypes = {
   mode: PropTypes.string.isRequired,
   onCancel: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]).isRequired,
-  onChangeMode: PropTypes.oneOfType([PropTypes.bool, PropTypes.func])
+  onModeChange: PropTypes.oneOfType([PropTypes.bool, PropTypes.func])
     .isRequired,
   onSubmit: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]).isRequired,
 };
 
-export default ControlsComponent;
+export default FooterControlsComponent;

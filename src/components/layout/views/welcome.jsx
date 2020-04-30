@@ -26,7 +26,7 @@ const WelcomeComponent = () => {
   return (
     <div className={classes.container}>
       <Link className={classes.button} to="/create">
-        <span>Create or import a new language set</span>
+        <span>Create a new language project</span>
       </Link>
     </div>
   );
