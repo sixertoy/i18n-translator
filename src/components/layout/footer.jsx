@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { version } from '../../../package.json';
 
@@ -33,7 +32,8 @@ const useStyles = createUseStyles({
   },
 });
 
-const ApplicationFooter = ({ theme }) => {
+const ApplicationFooter = () => {
+  const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
@@ -46,10 +46,6 @@ const ApplicationFooter = ({ theme }) => {
       </span>
     </div>
   );
-};
-
-ApplicationFooter.propTypes = {
-  theme: PropTypes.shape().isRequired,
 };
 
 export default ApplicationFooter;

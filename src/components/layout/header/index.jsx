@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { homepage, name, repository } from '../../../../package.json';
 import GithubStarButton from './github-star-button';
@@ -33,7 +32,8 @@ const useStyles = createUseStyles({
 const { NODE_ENV } = process.env;
 const isDevelopment = NODE_ENV === 'development';
 
-const ApplicationHeader = ({ theme }) => {
+const ApplicationHeader = () => {
+  const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
@@ -57,10 +57,6 @@ const ApplicationHeader = ({ theme }) => {
       )}
     </div>
   );
-};
-
-ApplicationHeader.propTypes = {
-  theme: PropTypes.shape().isRequired,
 };
 
 export default ApplicationHeader;

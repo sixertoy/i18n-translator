@@ -1,19 +1,11 @@
 // import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { createUseStyles, useTheme } from 'react-jss';
 import { Route, Switch } from 'react-router-dom';
-import { createSelector } from 'reselect';
 
-import { getThemeByThemeKey } from '../theme';
 import ApplicationFooter from './layout/footer';
 import ApplicationHeader from './layout/header';
 import routes from './routes';
-
-const selectThemeFromKey = createSelector(
-  state => state.theme,
-  key => getThemeByThemeKey(key)
-);
 
 const useStyles = createUseStyles({
   container: {
@@ -39,12 +31,12 @@ const useStyles = createUseStyles({
 });
 
 const Application = () => {
-  const theme = useSelector(selectThemeFromKey);
+  const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
       <div className={classes.header}>
-        <ApplicationHeader theme={theme} />
+        <ApplicationHeader />
       </div>
       <div className={classes.views}>
         <Switch>
@@ -61,7 +53,7 @@ const Application = () => {
         </Switch>
       </div>
       <div className={classes.footer}>
-        <ApplicationFooter theme={theme} />
+        <ApplicationFooter />
       </div>
     </div>
   );

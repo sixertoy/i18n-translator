@@ -1,13 +1,13 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles(theme => ({
   button: {
-    background: '#FFFFFF',
+    background: theme.colors.dark,
     borderRadius: 4,
-    color: '#000000',
-    composes: ['py20', 'px35'],
+    color: theme.colors.white,
+    composes: ['py20', 'px32'],
     textAlign: 'center',
   },
   container: {
@@ -19,10 +19,11 @@ const useStyles = createUseStyles({
       'is-full-layout',
     ],
   },
-});
+}));
 
 const StartComponent = () => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
       <Link className={classes.button} to="/create">

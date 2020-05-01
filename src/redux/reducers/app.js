@@ -11,9 +11,4 @@ export const loading = (state = false, action) => {
   }
 };
 
-export const theme = (state = 'light', action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+export default loading;

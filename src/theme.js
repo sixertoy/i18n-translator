@@ -1,7 +1,7 @@
 // const blue = '#2980B9';
-// const white = '#FFFFFF';
 // const black = '#282C34';
 // const gray = '#DDDDDD';
+const white = '#FFFFFF';
 const dark = '#21252B';
 const grey = '#EEEEEE';
 const red = '#DD4739';
@@ -47,15 +47,14 @@ const themeBase = {
     scrollbar: '#4B5362',
     shadow: '#3B4048',
     velvet,
-    // white,
+    white,
   },
 };
 
-export const getThemeByThemeKey = key => {
-  // NOTE export to nappr-core
-  const selectedTheme = themes[key];
-  const colors = { ...themeBase.colors, ...selectedTheme };
-  return { ...themeBase, colors };
-};
+export const getAllThemes = () => themes;
 
-export const getThemes = () => themes;
+export const getThemeByThemeId = id => {
+  const selectedTheme = themes[id];
+  const colors = { ...themeBase.colors, ...selectedTheme };
+  return { colors, ...themeBase, themeid: id };
+};

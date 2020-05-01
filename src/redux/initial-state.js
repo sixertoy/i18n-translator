@@ -1,16 +1,19 @@
 // import queryString from 'query-string';
-import storage from 'redux-persist/lib/storage';
 // import uuidv1 from 'uuid/v1';
+import storage from 'redux-persist/lib/storage';
+
+import { getThemeByThemeId } from '../theme';
 
 const INITIAL_VALUES = {
   loading: false,
+  theme: getThemeByThemeId('day'),
 };
 
 export const reduxPersistConfig = {
   blacklist: ['loading'],
-  key: 'i18translator::',
+  key: 'i18n_translation_editor::',
   storage,
-  whitelist: [],
+  whitelist: ['theme'],
 };
 
 export const getInitialState = () => {
