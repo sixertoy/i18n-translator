@@ -5,8 +5,9 @@ import 'ace-builds/src-min-noconflict/mode-json';
 import 'ace-builds/src-min-noconflict/mode-javascript';
 import 'ace-builds/src-min-noconflict/theme-github';
 
+import isEmpty from 'lodash.isempty';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AceEditor from 'react-ace';
 import { createUseStyles } from 'react-jss';
 
@@ -26,7 +27,12 @@ const PLACEHOLDER_VALUE =
 
 const CodeEditorComponent = ({ content, mode, onChange }) => {
   const classes = useStyles();
-  const [isValid, setIsValid] = useState(false);
+  const [value, setValue] = useState(content);
+  const [valid, setValid] = useState(false);
+  useEffect(() => {
+    const isValid = valid && !isEmpty(value);
+    onChange(value, isValid);
+  }, [value, valid, onChange, content]);
   return (
     <div className={classes.container}>
       {/* {usecopy && <CopyButton content={content} />} */}
@@ -44,14 +50,12 @@ const CodeEditorComponent = ({ content, mode, onChange }) => {
         showPrintMargin={false}
         tabSize={2}
         theme="github"
-        value={content || ''}
+        value={value || ''}
         width="100%"
-        onChange={value => onChange(value, isValid)}
+        onChange={setValue}
         onValidate={annotations => {
           const errors = annotations.filter(({ type }) => type === 'error');
-          const valid = errors.length === 0;
-          setIsValid(valid);
-          onChange(content, valid);
+          setValid(errors.length === 0);
         }}
       />
     </div>

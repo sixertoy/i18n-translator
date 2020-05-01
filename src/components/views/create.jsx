@@ -1,8 +1,10 @@
 // import isempty from 'lodash.isempty';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import { DEFAULT_LANG, EVENT_TYPES } from '../../constants';
 import Button from '../commons/button';
 import CodeEditor from '../commons/code-editor';
 
@@ -24,15 +26,25 @@ const useStyles = createUseStyles({
 const CreateComponent = () => {
   const classes = useStyles();
   const history = useHistory();
-  // const [mode, setMode] = useState('json');
+  const dispatch = useDispatch();
   const [content, setContent] = useState(null);
+  const [lang, setLang] = useState(DEFAULT_LANG);
+  const [canSubmit, setCanSubmit] = useState(true);
+
+  const onSubmitClick = useCallback(() => {
+    const datas = { [lang]: { content, fav: true } };
+    dispatch({ datas, type: EVENT_TYPES.DATAS_CREATE });
+    history.push('/lang');
+  }, [content, dispatch, history, lang]);
+
+  const onEditorChange = useCallback((value, valid) => {
+    setCanSubmit(valid);
+    setContent(value);
+  }, []);
+
   return (
     <div className={classes.container}>
-      <CodeEditor
-        content={content}
-        mode="json"
-        onChange={value => setContent(value)}
-      />
+      <CodeEditor content={content} mode="json" onChange={onEditorChange} />
       <div className={classes.controls}>
         {/* <div>
           <select
@@ -51,10 +63,9 @@ const CreateComponent = () => {
         </div> */}
         <div>
           <Button
+            disabled={!canSubmit}
             label="Continue"
-            onClick={() => {
-              history.push('/lang');
-            }}
+            onClick={onSubmitClick}
           />
         </div>
       </div>

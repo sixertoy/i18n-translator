@@ -5,10 +5,14 @@ body {
   font-family: Arial, Verdana, 'Trebuchet MS', sans-serif;
 }
 
-a,
-a:hover,
-a:visited {
-  text-decoration: none;
+button {
+  color: #FFFFFF;
+  background: #000000;
+  border-radius: 4px;
+
+  &:disabled {
+    opacity: 0.45;
+  }
 }
 
 // textarea,
