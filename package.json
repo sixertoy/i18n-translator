@@ -34,6 +34,7 @@
   "dependencies": {
     "@nappr/nappr-styles": "^0.2.12",
     "ace-builds": "^1.4.11",
+    "classnames": "^2.2.6",
     "history": "^4.10.1",
     "lodash.isempty": "^4.4.0",
     "prop-types": "^15.7.2",

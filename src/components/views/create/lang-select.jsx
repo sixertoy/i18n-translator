@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -5,12 +6,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { LANGS } from '../../../constants';
 
 const useStyles = createUseStyles({
-  options: {
-    cursor: 'pointer',
-    minWidth: '100%',
-    width: '100%',
-  },
-  select: {
+  input: {
     border: 0,
     cursor: 'pointer',
     display: 'inline-block',
@@ -20,7 +16,15 @@ const useStyles = createUseStyles({
     padding: 0,
     width: '100%',
   },
-  'select-box': {
+  options: {
+    cursor: 'pointer',
+    minWidth: '100%',
+    width: '100%',
+  },
+  select: {
+    '&.disabled': {
+      opacity: 0.45,
+    },
     border: '1px solid #000',
     borderRadius: 4,
     display: 'inline-block',
@@ -37,13 +41,17 @@ const languageAlphaSort = (a, b) => {
   return 0;
 };
 
-const LangSelectComponent = ({ onChange, value }) => {
+const LangSelectComponent = ({ disabled, onChange, value }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <span className={classes['select-box']}>
+    <span
+      className={classnames(classes.select, {
+        disabled,
+      })}>
       <select
-        className={classes.select}
+        className={classes.input}
+        disabled={disabled}
         value={value}
         onChange={evt => {
           evt.preventDefault();
@@ -61,9 +69,12 @@ const LangSelectComponent = ({ onChange, value }) => {
   );
 };
 
-LangSelectComponent.defaultProps = {};
+LangSelectComponent.defaultProps = {
+  disabled: false,
+};
 
 LangSelectComponent.propTypes = {
+  disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };

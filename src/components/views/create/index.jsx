@@ -60,7 +60,11 @@ const CreateComponent = () => {
       />
       <div className={classes.controls}>
         <div className={classes.langs}>
-          <LangSelect value={lang} onChange={onLangSelectChange} />
+          <LangSelect
+            disabled={!canSubmit}
+            value={lang}
+            onChange={onLangSelectChange}
+          />
         </div>
         <div className={classes.submit}>
           <Button
