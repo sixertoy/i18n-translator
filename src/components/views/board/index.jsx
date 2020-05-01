@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
     composes: ['flex-0'],
   },
   wrapper: {
-    composes: ['is-relative', 'no-overflow', 'flex-1'],
+    composes: ['is-scrollbox-wrapper', 'flex-1'],
   },
 });
 

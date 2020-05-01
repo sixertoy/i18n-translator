@@ -9,7 +9,7 @@ const useStyles = createUseStyles({
     width: theme.sizes.colwidth,
   }),
   container: {
-    composes: ['is-overlay', 'no-overflow'],
+    composes: ['is-scrollbox'],
   },
   item: {
     '& + &': {
