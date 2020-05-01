@@ -31,17 +31,20 @@ const CreateComponent = () => {
   const [lang, setLang] = useState(DEFAULT_LANG);
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const onSubmitClick = useCallback(() => {
-    const action = { content, lang, type: EVENT_TYPES.DATAS_CREATE };
-    dispatch(action);
-    history.push('/board');
-  }, [content, dispatch, history, lang]);
-
   const onLangSelectChange = useCallback(setLang, []);
 
   const onEditorChange = useCallback((value, valid) => {
     setContent({ valid, value });
   }, []);
+
+  const onSubmitClick = useCallback(() => {
+    dispatch({
+      content: content.value,
+      lang,
+      type: EVENT_TYPES.DATAS_CREATE,
+    });
+    history.push('/board');
+  }, [content, dispatch, history, lang]);
 
   useEffect(() => {
     const isempty = isEmpty(content.value);

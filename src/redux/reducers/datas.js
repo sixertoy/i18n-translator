@@ -5,7 +5,7 @@ export const datas = (state = false, action) => {
     case EVENT_TYPES.DATAS_CREATE:
       return [
         {
-          content: action.content,
+          content: JSON.parse(action.content),
           id: action.lang,
           primary: true,
         },

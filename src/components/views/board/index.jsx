@@ -1,104 +1,80 @@
 import React from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 
-// import { entries } from '../../../core/utils/ObjectUtils';
-// import AceEditor from '../commons/ace-editor';
+import { LANGS } from '../../../constants';
 
-// class EditComponent extends React.PureComponent {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       current: 0,
-//     };
-//   }
+const useStyles = createUseStyles({
+  container: {
+    composes: ['flex-columns', 'no-overflow'],
+  },
+  keys: {},
+  wrapper: {
+    composes: ['flex-columns'],
+  },
+});
 
-// _onLocaleTabClick(e, index) {
-//   e.preventDefault();
-//   if (index === this.state.current) {
-//     return false;
-//   }
-//   return this.setState({
-//     current: index,
-//   });
-// }
+const sortTranslationKeysAsc = (a, b) => {
+  if (a[0] > b[0]) return 1;
+  if (a[0] < b[0]) return -1;
+  return 0;
+};
 
-// _onDiffButtonClick(e) {
-//   e.preventDefault();
-//   this.setState({
-//     current: -1,
-//   });
-// }
-
-// _renderLocalesTabs() {
-//   const { current } = this.state;
-//   return (
-//     <span
-//       className="screen-locales-tabs"
-//       style={{
-//         marginRight: '40px',
-//       }}>
-//       {entries(this.props.locales).map(([langkey], index) => (
-//         <a
-//           key={`tabs_${langkey}`}
-//           href=""
-//           style={{
-//             background: current === index ? '#FFFFFF' : 'transparent',
-//             color: current === index ? '#338596' : '#ABABAB',
-//             marginRight: '3px',
-//             paddingBottom: '7px',
-//             paddingLeft: '12px',
-//             paddingRight: '12px',
-//             paddingTop: '7px',
-//             textAlign: 'center',
-//             width: '40px',
-//           }}
-//           onClick={e => this._onLocaleTabClick(e, index)}>
-//           <span>{langkey}</span>
-//         </a>
-//       ))}
-//       <a
-//         href=""
-//         style={{
-//           background: current < 0 ? '#FFFFFF' : 'transparent',
-//           color: current < 0 ? '#338596' : '#ABABAB',
-//           marginRight: '3px',
-//           paddingBottom: '7px',
-//           paddingLeft: '12px',
-//           paddingRight: '12px',
-//           paddingTop: '7px',
-//           textAlign: 'center',
-//         }}
-//         onClick={e => this._onDiffButtonClick(e)}>
-//         <span>{'< diff >'}</span>
-//       </a>
-//     </span>
-//   );
-// }
+const selectTranslations = createSelector(
+  state => state.datas,
+  datas => {
+    return datas.reduce((acc, { content, id }) => {
+      const values = Object.entries(content)
+        .sort(sortTranslationKeysAsc)
+        .map(arr => arr[1]);
+      const next = { [id]: { label: LANGS[id], values } };
+      return { ...acc, ...next };
+    }, {});
+  }
+);
 
 const selectPrimaryKeys = createSelector(
   state => state.datas,
   datas => {
     const primary = datas.find(o => o.primary);
-    return (primary && Object.keys(primary.content)) || null;
+    const json = (primary && primary.content) || {};
+    const keys = Object.keys(json).sort();
+    return keys.sort();
   }
 );
 
 const EditComponent = () => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const keys = useSelector(selectPrimaryKeys);
-  console.log('keys', keys);
+  const translations = useSelector(selectTranslations);
   return (
-    <div
-      className="inner flex-rows"
-      style={{
-        background: 'white',
-        height: '95%',
-        margin: '0 auto',
-        overflow: 'hidden',
-        padding: '0',
-        width: '80%',
-      }}>
-      {keys}
+    <div className={classes.container}>
+      <div className={classes.wrapper}>
+        <div className={classes.keys}>
+          <span>Primary Keys</span>
+          {keys.map(val => (
+            <div key={val}>
+              <span>{val}</span>
+            </div>
+          ))}
+        </div>
+        {Object.entries(translations).map(([key, { label, values }]) => {
+          return (
+            <div key={key}>
+              <span>{label}</span>
+              <div>
+                {values.map(v => (
+                  <div key={v}>
+                    <span>{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
