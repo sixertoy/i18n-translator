@@ -26,7 +26,7 @@ const HeadersComponent = ({ items }) => {
         <span>Primary Keys</span>
       </div>
       {items.map(obj => (
-        <div key={obj.id} className={classes.item}>
+        <div key={obj.lang} className={classes.item}>
           <span>{obj.label}</span>
         </div>
       ))}

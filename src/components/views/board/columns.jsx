@@ -3,6 +3,8 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
+import Input from './input';
+
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
     '& + &': {
@@ -40,19 +42,16 @@ const ColumnsComponent = ({ items }) => {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.column}>
-          {primaryKeys.map(id => (
-            <div key={id} className={classes.item}>
-              <span>{id}</span>
-            </div>
+          {primaryKeys.map(key => (
+            <Input key={key} lang="primary-key" value={key} />
           ))}
         </div>
-        {items.map(({ id, values }) => (
-          <div key={id} className={classes.column}>
-            {values.map(v => (
-              <div key={v} className={classes.item}>
-                <span>{v}</span>
-              </div>
-            ))}
+        {items.map(({ keys, lang, values }) => (
+          <div key={lang} className={classes.column}>
+            {values.map((translation, index) => {
+              const key = keys[index];
+              return <Input key={key} lang={lang} value={translation} />;
+            })}
           </div>
         ))}
         <div className={classes.column}>
