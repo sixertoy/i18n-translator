@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-/**
- * @see https://buttons.github.io/
- *
- * <!-- Place this tag in your head or just before your close body tag. -->
- * <script async defer src="https://buttons.github.io/buttons.js"></script>
- */
+const HELMET_OPTIONS = [
+  {
+    src: 'https://platform.twitter.com/widgets.js',
+    type: 'text/javascript',
+  },
+];
+
 const TwitterShareButton = ({ homepage }) => (
   <a
     className="twitter-wjs twitter-share-button"
@@ -18,14 +19,7 @@ const TwitterShareButton = ({ homepage }) => (
     href="https://twitter.com/share"
     id="twitter-wjs">
     Share on Twitter
-    <Helmet
-      script={[
-        {
-          src: 'https://platform.twitter.com/widgets.js',
-          type: 'text/javascript',
-        },
-      ]}
-    />
+    <Helmet script={HELMET_OPTIONS} />
   </a>
 );
 

@@ -11,11 +11,8 @@ const useStyles = createUseStyles({
     composes: ['is-full-layout', 'flex-rows'],
   },
   controls: {
-    backgroundColor: '#FBFBFB',
-    composes: ['flex-columns', 'flex-end', 'items-center'],
-    marginLeft: '1px',
-    minHeight: '60px',
-    padding: '12px 32px',
+    composes: ['flex-columns', 'flex-end', 'items-center', 'py12', 'px32'],
+    minHeight: 60,
   },
 });
 

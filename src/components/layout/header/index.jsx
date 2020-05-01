@@ -20,20 +20,11 @@ const useStyles = createUseStyles({
     ],
   },
   subtitle: {
-    color: '#8e8e8e',
-    composes: ['fs14'],
-    fontSize: '1.285715em',
-    fontWeight: 'normal',
-    margin: '0',
-    marginTop: 7,
+    composes: ['m0', 'mt7'],
   },
-  title: ({ theme }) => ({
-    color: theme.colors.body,
-    composes: ['fs20'],
-    fontWeight: 'normal',
-    lineHeight: '1.25em',
-    margin: 0,
-  }),
+  title: {
+    composes: ['m0'],
+  },
   wrapper: {
     composes: ['flex-columns', 'flex-center'],
   },

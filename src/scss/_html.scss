@@ -1,55 +1,51 @@
 body {
-  margin: 0;
-  padding: 0;
-  color: #34495E;
   font-size: 14px;
   line-height: 1.1em;
-  font-family: Cuprum, Tahoma, 'Trebuchet MS', sans-serif;
+  font-family: Arial, Verdana, 'Trebuchet MS', sans-serif;
 }
 
 a,
 a:hover,
 a:visited {
-  color: #1D1F21;
   text-decoration: none;
 }
 
-textarea,
-input[type="text"] {
-  padding: 7px;
-  border-radius: 0;
-  border: 1px solid #CCCCCC;
-}
+// textarea,
+// input[type="text"] {
+//   padding: 7px;
+//   border-radius: 0;
+//   border: 1px solid #CCCCCC;
+// }
 
-textarea {
-  resize: none;
-}
+// textarea {
+//   resize: none;
+// }
 
-textarea[class^="autosize"] {
-  border: 0;
-  outline: none;
-  overflow: hidden;
-  padding: 20px 10px;
-}
+// textarea[class^="autosize"] {
+//   border: 0;
+//   outline: none;
+//   overflow: hidden;
+//   padding: 20px 10px;
+// }
+//
+// textarea,
+// input[type="text"] {
+//   font-family: Consolas, Monaco, 'Andale Mono', monospace;
+// }
 
-textarea,
-input[type="text"] {
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
-}
+// button,
+// button[type="submit"] {
+//   border: 0;
+//   outline: 0;
+//   color: white;
+//   cursor: pointer;
+//   padding: 0.8em 12px;
+// }
 
-button,
-button[type="submit"] {
-  border: 0;
-  outline: 0;
-  color: white;
-  cursor: pointer;
-  padding: 0.8em 12px;
-}
+// button[type="submit"] {
+//   background: rgba(128, 194, 23, 1);
+// }
 
-button[type="submit"] {
-  background: rgba(128, 194, 23, 1);
-}
-
-[class^="icon-"] + span {
-  margin-left: 7px;
-}
+// [class^="icon-"] + span {
+//   margin-left: 7px;
+// }

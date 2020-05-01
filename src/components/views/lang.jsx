@@ -10,13 +10,13 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   label: {
-    marginRight: 7,
+    composes: ['mr7'],
   },
   span: {
-    marginLeft: 3,
+    composes: ['ml3'],
   },
   wrapper: {
-    marginTop: 0,
+    composes: ['mt0'],
   },
 });
 

@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['shadow-around', 'is-absolute', 'py7', 'px12', 'is-pointer'],
+    composes: ['is-absolute', 'py7', 'px12', 'is-pointer'],
     right: 30,
     top: 20,
   },

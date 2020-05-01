@@ -210,7 +210,6 @@ class ApplicationLayout extends React.Component {
             className={`application-layout-content flex-grow-and-shrink flex-rows ${classes}`}
             style={{
               background: '#FBFBFB',
-              fontSize: '1.2em',
               height: '100%',
               position: 'relative',
               width: '100%',

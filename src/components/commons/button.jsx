@@ -4,9 +4,6 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {
-    backgroundColor: '#000000',
-    borderRadius: 4,
-    color: '#FFFFFF',
     composes: ['py12', 'px24'],
   },
 });

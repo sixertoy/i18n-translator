@@ -15,15 +15,17 @@ const useStyles = createUseStyles({
   love: ({ theme }) => ({
     color: theme.colors.red,
   }),
-  version: {
-    composes: ['mr12'],
+  splitter: {
+    composes: ['mx12'],
   },
+  version: ({ theme }) => ({
+    color: theme.colors.dark,
+  }),
   wrapper: {
-    backgroundColor: '#FFFFFF',
+    background: '#FFFFFF',
     borderRadius: '4px 4px 0 0',
     color: '#A0A0A0',
-    fontFamily: 'arial',
-    fontSize: '0.55em',
+    composes: ['fs8'],
     letterSpacing: '0.12em',
     lineHeight: '2.8em',
     padding: '0 12px',
@@ -37,6 +39,7 @@ const ApplicationFooter = ({ theme }) => {
     <div className={classes.container}>
       <span className={classes.wrapper}>
         <span className={classes.version}>{`v${version}`}</span>
+        <span className={classes.splitter}>-</span>
         <span className={classes.baseline}>
           Made with <span className={classes.love}>♥</span> and React
         </span>

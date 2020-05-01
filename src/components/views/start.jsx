@@ -7,8 +7,7 @@ const useStyles = createUseStyles({
     background: '#FFFFFF',
     borderRadius: 4,
     color: '#000000',
-    composes: ['fs14'],
-    padding: '20px 35px',
+    composes: ['py20', 'px35'],
     textAlign: 'center',
   },
   container: {

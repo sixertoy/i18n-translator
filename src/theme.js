@@ -1,8 +1,8 @@
 // const blue = '#2980B9';
 // const white = '#FFFFFF';
 // const black = '#282C34';
-// const dark = '#21252B';
 // const gray = '#DDDDDD';
+const dark = '#21252B';
 const grey = '#EEEEEE';
 const red = '#DD4739';
 const body = '#34495E';
@@ -38,8 +38,8 @@ const themeBase = {
   colors: {
     // black,
     // blue,
-    // dark,
     body,
+    dark,
     gray,
     grey,
     highlight: '#2C313C',
