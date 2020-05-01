@@ -1,7 +1,20 @@
+@import '_variables';
+@import '~@nappr/nappr-styles/styles.scss';
+@import url('https://fonts.googleapis.com/css?family=Cuprum');
+@import '_html';
 @import '_shadows';
 
-// @import url('./css/fontello.css');
-// @import url('./css/react-select.css');
+/* ---------------------------------------------------
+
+ Table
+
+--------------------------------------------------- */
+
+.table-cell-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 #root {
   min-width: 100%;
