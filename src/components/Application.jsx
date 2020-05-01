@@ -3,9 +3,9 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Route, Switch } from 'react-router-dom';
 
+import routes from '../routes';
 import ApplicationFooter from './layout/footer';
 import ApplicationHeader from './layout/header';
-import routes from './routes';
 
 const useStyles = createUseStyles({
   container: {

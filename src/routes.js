@@ -1,6 +1,6 @@
-import Create from './views/create';
-import SelectLang from './views/lang';
-import Start from './views/start';
+import Board from './components/views/board';
+import Create from './components/views/create';
+import Start from './components/views/start';
 
 const routes = [
   {
@@ -14,9 +14,9 @@ const routes = [
     path: '/create',
   },
   {
-    component: SelectLang,
+    component: Board,
     exact: true,
-    path: '/language',
+    path: '/board',
   },
 ];
 
