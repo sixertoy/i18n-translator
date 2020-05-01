@@ -6,10 +6,11 @@ import logo from '../../../assets/json_logo.svg';
 
 const useStyles = createUseStyles({
   image: {
-    height: '60px',
-    marginRight: '10px',
+    height: 20,
+    marginRight: 10,
+    opacity: 0.4,
     verticalAlign: 'bottom',
-    width: '60px',
+    width: 20,
   },
 });
 

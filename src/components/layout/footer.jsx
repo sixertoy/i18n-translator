@@ -7,10 +7,9 @@ const useStyles = createUseStyles({
   baseline: {
     composes: ['mr3'],
   },
-  container: ({ theme }) => ({
-    backgroundColor: theme.colors.grey,
+  container: {
     composes: ['flex-columns', 'flex-end', 'px32', 'py0'],
-  }),
+  },
   love: ({ theme }) => ({
     color: theme.colors.red,
   }),

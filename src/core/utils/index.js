@@ -1,5 +1,1 @@
-import StringUtils from './StringUtils';
-
-export {
-  StringUtils
-};
+export * from './colors';

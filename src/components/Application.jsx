@@ -19,9 +19,9 @@ const useStyles = createUseStyles({
   },
   header: {
     composes: ['flex-0', 'is-full-width', 'is-flex'],
-    height: 100,
-    maxHeight: 100,
-    minHeight: 100,
+    height: 40,
+    maxHeight: 40,
+    minHeight: 40,
   },
   views: ({ theme }) => ({
     backgroundColor: theme.colors.grey,

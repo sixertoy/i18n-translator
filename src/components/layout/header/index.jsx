@@ -18,14 +18,12 @@ const useStyles = createUseStyles({
       'text-left',
     ],
   },
-  subtitle: {
-    composes: ['m0', 'mt7'],
-  },
   title: {
-    composes: ['m0'],
+    composes: ['m0', 'fs20'],
+    fontFamily: ['Cinzel', 'serif'],
   },
   wrapper: {
-    composes: ['flex-columns', 'flex-center'],
+    composes: ['flex-columns', 'flex-center', 'items-center'],
   },
 });
 
@@ -42,11 +40,8 @@ const ApplicationHeader = () => {
         <JSONLogo />
         <div>
           <h1 className={classes.title}>
-            <span>i18n Online Translations Editor (JSON)</span>
+            <span>i18n Online Translation Editor</span>
           </h1>
-          <h2 className={classes.subtitle}>
-            <span>Create/Update your languages files in a simple way</span>
-          </h2>
         </div>
       </div>
       {!isDevelopment && (
