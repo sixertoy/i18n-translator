@@ -1,12 +1,13 @@
-// import isempty from 'lodash.isempty';
-import React, { useCallback, useState } from 'react';
+import isEmpty from 'lodash.isempty';
+import React, { useCallback, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { DEFAULT_LANG, EVENT_TYPES } from '../../constants';
-import Button from '../commons/button';
-import CodeEditor from '../commons/code-editor';
+import { DEFAULT_LANG, EVENT_TYPES } from '../../../constants';
+import Button from '../../commons/button';
+import CodeEditor from '../../commons/code-editor';
+import LangSelect from './lang-select';
 
 const useStyles = createUseStyles({
   container: {
@@ -16,20 +17,19 @@ const useStyles = createUseStyles({
     composes: ['flex-columns', 'flex-end', 'items-center', 'py12', 'px32'],
     minHeight: 60,
   },
+  langs: {
+    composes: ['mr12'],
+  },
+  submit: {},
 });
-
-// const EDITOR_MODES = [
-//   { id: 'json', label: 'JSON' },
-//   { id: 'javascript', label: 'JavaScript' },
-// ];
 
 const CreateComponent = () => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const [content, setContent] = useState(null);
+  const [content, setContent] = useState({});
   const [lang, setLang] = useState(DEFAULT_LANG);
-  const [canSubmit, setCanSubmit] = useState(true);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const onSubmitClick = useCallback(() => {
     const datas = { [lang]: { content, fav: true } };
@@ -38,30 +38,31 @@ const CreateComponent = () => {
   }, [content, dispatch, history, lang]);
 
   const onEditorChange = useCallback((value, valid) => {
-    setCanSubmit(valid);
-    setContent(value);
+    setContent({ valid, value });
   }, []);
+
+  const onLangSelectChange = useCallback(value => {
+    setLang(value);
+  }, []);
+
+  useEffect(() => {
+    const isempty = isEmpty(content.value);
+    const cansubmit = content.valid && !isempty;
+    setCanSubmit(cansubmit);
+  }, [content]);
 
   return (
     <div className={classes.container}>
-      <CodeEditor content={content} mode="json" onChange={onEditorChange} />
+      <CodeEditor
+        content={content.value}
+        mode="json"
+        onChange={onEditorChange}
+      />
       <div className={classes.controls}>
-        {/* <div>
-          <select
-            value={mode}
-            onChange={evt => {
-              evt.preventDefault();
-              const { value } = evt.target;
-              setMode(value);
-            }}>
-            {EDITOR_MODES.map(obj => (
-              <option key={obj.id} value={obj.id}>
-                {obj.label}
-              </option>
-            ))}
-          </select>
-        </div> */}
-        <div>
+        <div className={classes.langs}>
+          <LangSelect value={lang} onChange={onLangSelectChange} />
+        </div>
+        <div className={classes.submit}>
           <Button
             disabled={!canSubmit}
             label="Continue"

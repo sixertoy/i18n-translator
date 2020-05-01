@@ -5,13 +5,10 @@ import 'ace-builds/src-min-noconflict/mode-json';
 import 'ace-builds/src-min-noconflict/mode-javascript';
 import 'ace-builds/src-min-noconflict/theme-github';
 
-import isEmpty from 'lodash.isempty';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import AceEditor from 'react-ace';
 import { createUseStyles } from 'react-jss';
-
-// import CopyButton from './copy-button';
 
 const useStyles = createUseStyles({
   container: {
@@ -30,9 +27,8 @@ const CodeEditorComponent = ({ content, mode, onChange }) => {
   const [value, setValue] = useState(content);
   const [valid, setValid] = useState(false);
   useEffect(() => {
-    const isValid = valid && !isEmpty(value);
-    onChange(value, isValid);
-  }, [value, valid, onChange, content]);
+    onChange(value, valid);
+  }, [value, valid, onChange]);
   return (
     <div className={classes.container}>
       {/* {usecopy && <CopyButton content={content} />} */}
@@ -55,7 +51,7 @@ const CodeEditorComponent = ({ content, mode, onChange }) => {
         onChange={setValue}
         onValidate={annotations => {
           const errors = annotations.filter(({ type }) => type === 'error');
-          setValid(errors.length === 0);
+          setValid(!errors || !errors.length);
         }}
       />
     </div>
