@@ -32,17 +32,15 @@ const CreateComponent = () => {
   const [canSubmit, setCanSubmit] = useState(false);
 
   const onSubmitClick = useCallback(() => {
-    const datas = { [lang]: { content, fav: true } };
-    dispatch({ datas, type: EVENT_TYPES.DATAS_CREATE });
-    history.push('/lang');
+    const action = { content, lang, type: EVENT_TYPES.DATAS_CREATE };
+    dispatch(action);
+    history.push('/board');
   }, [content, dispatch, history, lang]);
+
+  const onLangSelectChange = useCallback(setLang, []);
 
   const onEditorChange = useCallback((value, valid) => {
     setContent({ valid, value });
-  }, []);
-
-  const onLangSelectChange = useCallback(value => {
-    setLang(value);
   }, []);
 
   useEffect(() => {

@@ -10,7 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { version } from '../package.json';
 import Application from './components/application';
 import getRouterHistory from './core/history';
-import { getInitialState } from './redux/initial-state';
+import { getInitialState } from './initial-state';
 import { configure } from './redux/store';
 
 const { PUBLIC_URL } = process.env;

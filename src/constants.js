@@ -12,6 +12,7 @@ export const DEFAULT_LANG = 'en-US';
 
 export const EVENT_TYPES = {
   DATAS_CREATE: 'onDatasCreate',
+  DATAS_UPDATE: 'onDatasUpdate',
   LOADING_COMPLETE: 'onLoadingComplete',
   LOADING_START: 'onLoadingStart',
   THEME_CHANGE: 'onThemeChange',

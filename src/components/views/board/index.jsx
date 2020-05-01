@@ -80,7 +80,7 @@ const selectPrimaryKeys = createSelector(
   state => state.datas,
   datas => {
     const primary = datas.find(o => o.primary);
-    return Object.keys(primary.content);
+    return (primary && Object.keys(primary.content)) || null;
   }
 );
 
