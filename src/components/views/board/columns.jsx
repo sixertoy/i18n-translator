@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -54,6 +55,11 @@ const ColumnsComponent = ({ items }) => {
             ))}
           </div>
         ))}
+        <div className={classes.column}>
+          <Link to="/add">
+            <span>Ajouter</span>
+          </Link>
+        </div>
       </div>
     </div>
   );
