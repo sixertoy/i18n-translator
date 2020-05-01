@@ -4,6 +4,13 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
+    '& + &': {
+      marginLeft: 12,
+    },
+    background: '#000000',
+    borderRadius: 4,
+    color: '#FFFFFF',
+    composes: ['p7'],
     maxWidth: theme.sizes.colwidth,
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,

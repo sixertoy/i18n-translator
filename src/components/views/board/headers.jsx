@@ -4,9 +4,12 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-columns'],
+    composes: ['flex-columns', 'px7'],
   },
   item: ({ theme }) => ({
+    '& + &': {
+      marginLeft: 12,
+    },
     composes: ['px7', 'py12'],
     maxWidth: theme.sizes.colwidth,
     minWidth: theme.sizes.colwidth,

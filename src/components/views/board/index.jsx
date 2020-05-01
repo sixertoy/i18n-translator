@@ -8,12 +8,12 @@ import Headers from './headers';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows'],
+    composes: ['flex-rows', 'py12', 'pl12'],
   },
   headers: {
     composes: ['flex-0'],
   },
-  wrapper: {
+  scrollboxWrapper: {
     composes: ['is-scrollbox-wrapper', 'flex-1'],
   },
 });
@@ -27,7 +27,7 @@ const BoardComponent = () => {
       <div className={classes.headers}>
         <Headers items={translations} />
       </div>
-      <div className={classes.wrapper}>
+      <div className={classes.scrollboxWrapper}>
         <Columns items={translations} />
       </div>
     </div>
