@@ -12,32 +12,32 @@ const useStyles = createUseStyles({
   },
   controls: {
     backgroundColor: '#FBFBFB',
-    composes: ['flex-columns', 'flex-between', 'items-center'],
+    composes: ['flex-columns', 'flex-end', 'items-center'],
     marginLeft: '1px',
     minHeight: '60px',
     padding: '12px 32px',
   },
 });
 
-const EDITOR_MODES = [
-  { id: 'json', label: 'JSON' },
-  { id: 'javascript', label: 'JavaScript' },
-];
+// const EDITOR_MODES = [
+//   { id: 'json', label: 'JSON' },
+//   { id: 'javascript', label: 'JavaScript' },
+// ];
 
 const CreateComponent = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [mode, setMode] = useState('json');
+  // const [mode, setMode] = useState('json');
   const [content, setContent] = useState(null);
   return (
     <div className={classes.container}>
       <CodeEditor
         content={content}
-        mode={mode}
+        mode="json"
         onChange={value => setContent(value)}
       />
       <div className={classes.controls}>
-        <div>
+        {/* <div>
           <select
             value={mode}
             onChange={evt => {
@@ -51,7 +51,7 @@ const CreateComponent = () => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
         <div>
           <Button
             label="Continue"

@@ -36,6 +36,7 @@ const CodeEditorComponent = ({ content, mode, onChange }) => {
         showGutter
         wrapEnabled
         editorProps={{ $blockScrolling: true }}
+        fontSize={16}
         height="100%"
         mode={mode}
         name="editor-import"
