@@ -31,10 +31,11 @@ const useStyles = createUseStyles({
     maxHeight: 100,
     minHeight: 100,
   },
-  views: {
+  views: ({ theme }) => ({
+    backgroundColor: theme.colors.grey,
     composes: ['flex-1', 'is-flex'],
     height: 'auto',
-  },
+  }),
 });
 
 const Application = () => {

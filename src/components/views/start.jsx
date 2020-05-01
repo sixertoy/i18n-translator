@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   button: {
-    background: '#661E75',
+    background: '#FFFFFF',
     borderRadius: 4,
-    fontSize: '0.8em',
+    color: '#000000',
+    composes: ['fs14'],
     padding: '20px 35px',
     textAlign: 'center',
   },

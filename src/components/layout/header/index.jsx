@@ -17,11 +17,11 @@ const useStyles = createUseStyles({
       'px32',
       'is-relative',
       'text-left',
-      'shadow-bottom',
     ],
   },
   subtitle: {
     color: '#8e8e8e',
+    composes: ['fs14'],
     fontSize: '1.285715em',
     fontWeight: 'normal',
     margin: '0',
@@ -29,6 +29,7 @@ const useStyles = createUseStyles({
   },
   title: ({ theme }) => ({
     color: theme.colors.body,
+    composes: ['fs20'],
     fontWeight: 'normal',
     lineHeight: '1.25em',
     margin: 0,

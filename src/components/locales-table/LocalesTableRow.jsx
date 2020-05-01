@@ -4,12 +4,6 @@ import slug from 'slug';
 import LocalesTableRowInput from './LocalesTableRowInput';
 
 class LocalesTableRow extends React.PureComponent {
-  /* ------------------------------------------------
-
-   Statics
-
-  ------------------------------------------------ */
-
   static renderRowDescription(value) {
     return (
       <p
@@ -23,35 +17,11 @@ class LocalesTableRow extends React.PureComponent {
     );
   }
 
-  /* ------------------------------------------------
-
-   React Lifecycle
-
-  ------------------------------------------------ */
-
   constructor(props) {
     super(props);
     this.state = {};
     this._initialized = false;
   }
-
-  /* ------------------------------------------------
-
-   Privates
-
-  ------------------------------------------------ */
-
-  /* ------------------------------------------------
-
-   Sub Components Render
-
-  ------------------------------------------------ */
-
-  /* ------------------------------------------------
-
-   Render
-
-  ------------------------------------------------ */
 
   render() {
     const { langs } = this.props;

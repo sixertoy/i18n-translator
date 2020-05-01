@@ -4,47 +4,17 @@ import LocalesTableHeaders from './LocalesTableHeaders';
 import LocalesTableRow from './LocalesTableRow';
 
 class LocalesTable extends React.PureComponent {
-  /* ------------------------------------------------
-
-   Statics
-
-  ------------------------------------------------ */
-
-  /* ------------------------------------------------
-
-   React Lifecycle
-
-  ------------------------------------------------ */
-
   constructor(props) {
     super(props);
     this.state = {};
     this._initialized = false;
   }
 
-  /* ------------------------------------------------
-
-   Privates
-
-  ------------------------------------------------ */
-
   _onHeadersClickHandler(evt, key) {
     evt.preventDefault();
     const action = this.context.facade.getAction('ApplicationAction');
     action.toggleColumn(key);
   }
-
-  /* ------------------------------------------------
-
-   Sub Components Render
-
-  ------------------------------------------------ */
-
-  /* ------------------------------------------------
-
-   Render
-
-  ------------------------------------------------ */
 
   render() {
     const { langs } = this.props;

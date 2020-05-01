@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
   },
   container: ({ theme }) => ({
     backgroundColor: theme.colors.grey,
-    composes: ['flex-columns', 'flex-between', 'shadow-top', 'px32', 'py0'],
+    composes: ['flex-columns', 'flex-end', 'px32', 'py0'],
   }),
   love: ({ theme }) => ({
     color: theme.colors.red,
@@ -18,21 +18,24 @@ const useStyles = createUseStyles({
   version: {
     composes: ['mr12'],
   },
+  wrapper: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: '4px 4px 0 0',
+    color: '#A0A0A0',
+    fontFamily: 'arial',
+    fontSize: '0.55em',
+    letterSpacing: '0.12em',
+    lineHeight: '2.8em',
+    padding: '0 12px',
+    textTransform: 'uppercase',
+  },
 });
 
 const ApplicationFooter = ({ theme }) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      <span
-        style={{
-          color: '#A0A0A0',
-          fontFamily: 'arial',
-          fontSize: '0.55em',
-          letterSpacing: '0.12em',
-          lineHeight: '2.8em',
-          textTransform: 'uppercase',
-        }}>
+      <span className={classes.wrapper}>
         <span className={classes.version}>{`v${version}`}</span>
         <span className={classes.baseline}>
           Made with <span className={classes.love}>♥</span> and React

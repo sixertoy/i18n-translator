@@ -3,12 +3,6 @@ import isempty from 'lodash.isempty';
 import React from 'react';
 
 class LocaleTableRowInput extends React.PureComponent {
-  /* ------------------------------------------------
-
-   React Lifecycle
-
-  ------------------------------------------------ */
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,12 +19,6 @@ class LocaleTableRowInput extends React.PureComponent {
       this._component.style.height = `${this._component.scrollHeight}px`;
     }
   }
-
-  /* ------------------------------------------------
-
-   Privates
-
-  ------------------------------------------------ */
 
   /**
    * Called when user enter a new value into an language/key input
@@ -56,12 +44,6 @@ class LocaleTableRowInput extends React.PureComponent {
     target.style.height = `${target.scrollHeight}px`;
     this._onInputChange(pkey, target.value);
   }
-
-  /* ------------------------------------------------
-
-   Render
-
-  ------------------------------------------------ */
 
   render() {
     const pkey = this.props.primarykey;
