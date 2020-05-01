@@ -11,11 +11,11 @@ export const LANGS = {
 export const DEFAULT_LANG = 'en-US';
 
 export const EVENT_TYPES = {
-  DATAS_CREATE: 'onDatasCreate',
-  DATAS_UPDATE: 'onDatasUpdate',
   LOADING_COMPLETE: 'onLoadingComplete',
   LOADING_START: 'onLoadingStart',
   THEME_CHANGE: 'onThemeChange',
+  TRANSLATIONS_CREATE: 'onTranslationsCreate',
+  TRANSLATIONS_UPDATE: 'onTranslationsUpdate',
 };
 
 export default EVENT_TYPES;

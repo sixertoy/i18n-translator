@@ -41,7 +41,7 @@ const CreateComponent = () => {
     dispatch({
       content: content.value,
       lang,
-      type: EVENT_TYPES.DATAS_CREATE,
+      type: EVENT_TYPES.TRANSLATIONS_CREATE,
     });
     history.push('/board');
   }, [content, dispatch, history, lang]);

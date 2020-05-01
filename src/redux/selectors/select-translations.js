@@ -9,9 +9,9 @@ const sortTranslationKeysAsc = (a, b) => {
 };
 
 const selectTranslations = createSelector(
-  state => state.datas,
-  datas => {
-    return datas.reduce((acc, { content, id }) => {
+  state => state.translations,
+  translations => {
+    return translations.reduce((acc, { content, id }) => {
       const entries = Object.entries(content).sort(sortTranslationKeysAsc);
       const keys = entries.map(arr => arr[0]);
       const values = entries.map(arr => arr[1]);

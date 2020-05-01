@@ -5,16 +5,16 @@ import storage from 'redux-persist/lib/storage';
 import { getThemeByThemeId } from './theme';
 
 const INITIAL_VALUES = {
-  datas: [],
   loading: false,
   theme: getThemeByThemeId('day'),
+  translations: [],
 };
 
 export const reduxPersistConfig = {
   blacklist: ['loading'],
   key: 'i18n_translation_editor::',
   storage,
-  whitelist: ['theme', 'datas'],
+  whitelist: ['theme', 'translations'],
 };
 
 export const getInitialState = () => {

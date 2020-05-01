@@ -1,8 +1,8 @@
 import { EVENT_TYPES } from '../../constants';
 
-export const datas = (state = false, action) => {
+export const translations = (state = false, action) => {
   switch (action.type) {
-    case EVENT_TYPES.DATAS_CREATE:
+    case EVENT_TYPES.TRANSLATIONS_CREATE:
       return [
         {
           content: JSON.parse(action.content),
@@ -10,11 +10,11 @@ export const datas = (state = false, action) => {
           primary: true,
         },
       ];
-    case EVENT_TYPES.DATAS_UPDATE:
+    case EVENT_TYPES.TRANSLATIONS_UPDATE:
       return state;
     default:
       return state;
   }
 };
 
-export default datas;
+export default translations;
