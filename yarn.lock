@@ -7713,7 +7713,7 @@ jss-plugin-vendor-prefixer@10.1.1:
     css-vendor "^2.0.7"
     jss "10.1.1"
 
-jss-preset-default@10.1.1:
+jss-preset-default@10.1.1, jss-preset-default@^10.1.1:
   version "10.1.1"
   resolved "https://registry.yarnpkg.com/jss-preset-default/-/jss-preset-default-10.1.1.tgz#71f3108398ed04e2bed598a7b3accb7cb3c9ddcd"
   integrity sha512-YwQp/BZ8IiBwxDTQ4uPAjzI2k2njrw6RJegAPvhCB1MTmWN2oR9Dhb5aN3RtepUf/agUkewTMwQqoS6PijgVMg==

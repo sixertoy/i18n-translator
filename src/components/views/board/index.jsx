@@ -2,51 +2,33 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import {
-  selectTranslations,
-  selectTranslationsPrimaryKeys,
-} from '../../../redux/selectors';
+import { selectTranslations } from '../../../redux/selectors';
+import Columns from './columns';
+import Headers from './headers';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-columns', 'no-overflow'],
+    composes: ['flex-rows'],
   },
-  keys: {},
+  headers: {
+    composes: ['flex-0'],
+  },
   wrapper: {
-    composes: ['flex-columns'],
+    composes: ['is-relative', 'no-overflow', 'flex-1'],
   },
 });
 
 const BoardComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const keys = useSelector(selectTranslationsPrimaryKeys);
   const translations = useSelector(selectTranslations);
   return (
     <div className={classes.container}>
+      <div className={classes.headers}>
+        <Headers items={translations} />
+      </div>
       <div className={classes.wrapper}>
-        <div className={classes.keys}>
-          <span>Primary Keys</span>
-          {keys.map(val => (
-            <div key={val}>
-              <span>{val}</span>
-            </div>
-          ))}
-        </div>
-        {Object.entries(translations).map(([key, { label, values }]) => {
-          return (
-            <div key={key}>
-              <span>{label}</span>
-              <div>
-                {values.map(v => (
-                  <div key={v}>
-                    <span>{v}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-        })}
+        <Columns items={translations} />
       </div>
     </div>
   );

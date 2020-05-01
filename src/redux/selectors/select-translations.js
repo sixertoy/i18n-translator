@@ -12,12 +12,12 @@ const selectTranslations = createSelector(
   state => state.datas,
   datas => {
     return datas.reduce((acc, { content, id }) => {
-      const values = Object.entries(content)
-        .sort(sortTranslationKeysAsc)
-        .map(arr => arr[1]);
-      const next = { [id]: { label: LANGS[id], values } };
-      return { ...acc, ...next };
-    }, {});
+      const entries = Object.entries(content).sort(sortTranslationKeysAsc);
+      const keys = entries.map(arr => arr[0]);
+      const values = entries.map(arr => arr[1]);
+      const next = { id, keys, label: LANGS[id], values };
+      return [...acc, next];
+    }, []);
   }
 );
 

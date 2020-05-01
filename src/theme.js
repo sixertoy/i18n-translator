@@ -9,6 +9,8 @@ const body = '#34495E';
 const gray = '#B9B9B9';
 const velvet = '#661E75';
 
+// sizes
+
 const themes = {
   day: {
     active: '#6494ED',
@@ -36,8 +38,6 @@ const themes = {
 
 const themeBase = {
   colors: {
-    // black,
-    // blue,
     body,
     dark,
     gray,
@@ -48,6 +48,9 @@ const themeBase = {
     shadow: '#3B4048',
     velvet,
     white,
+  },
+  sizes: {
+    colwidth: 250,
   },
 };
 
