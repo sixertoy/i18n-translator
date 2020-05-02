@@ -11,7 +11,7 @@ const routes = [
   {
     component: Create,
     exact: true,
-    path: '/create',
+    path: ['/create', '/board/create'],
   },
   {
     component: Board,

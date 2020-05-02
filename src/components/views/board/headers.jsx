@@ -40,7 +40,7 @@ const HeadersComponent = () => {
         ))}
       </div>
       <div className="">
-        <Link to="/board/add">
+        <Link to="/board/create">
           <button type="button">Add language</button>
         </Link>
       </div>
