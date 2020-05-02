@@ -9,8 +9,6 @@ const body = '#34495E';
 const gray = '#B9B9B9';
 const velvet = '#661E75';
 
-// sizes
-
 const themes = {
   day: {
     active: '#6494ED',
@@ -50,6 +48,7 @@ const themeBase = {
     white,
   },
   sizes: {
+    colgutter: 12,
     colwidth: 250,
   },
 };

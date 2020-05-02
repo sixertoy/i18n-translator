@@ -1,7 +1,6 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import {
   selectPrimaryKeys,
@@ -12,7 +11,7 @@ import Input from './input';
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
     '& + &': {
-      marginLeft: 12,
+      marginLeft: theme.sizes.colgutter,
     },
     background: '#000000',
     borderRadius: 4,
@@ -58,11 +57,6 @@ const ColumnsComponent = () => {
             ))}
           </div>
         ))}
-        <div className={classes.column}>
-          <Link to="/add">
-            <span>Ajouter</span>
-          </Link>
-        </div>
       </div>
     </div>
   );
