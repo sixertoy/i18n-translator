@@ -1,22 +1,28 @@
 import React from 'react';
+import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
+import { MdAccountCircle as AccountIcon } from 'react-icons/md';
+import { RiHome2Line as HomeIcon } from 'react-icons/ri';
 import { createUseStyles, useTheme } from 'react-jss';
+import { Link } from 'react-router-dom';
 
-import { homepage, name, repository } from '../../../../package.json';
-import GithubStarButton from './github-star-button';
 import JSONLogo from './json-logo';
-import OctocatCorner from './octocat-corner';
-import TwitterShareButton from './twitter-share-button';
 
 const useStyles = createUseStyles({
   container: {
     composes: [
       'flex-columns',
-      'flex-around',
-      'py20',
-      'px32',
+      'flex-between',
       'is-relative',
       'text-left',
+      'items-center',
     ],
+  },
+  link: {
+    background: '#000000',
+    borderRadius: 4,
+    color: '#FFFFFF',
+    fontSize: 18,
+    padding: 7,
   },
   title: {
     composes: ['m0', 'fs20'],
@@ -27,15 +33,19 @@ const useStyles = createUseStyles({
   },
 });
 
-const { NODE_ENV } = process.env;
-const isDevelopment = NODE_ENV === 'development';
-
 const ApplicationHeader = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      {!isDevelopment && <OctocatCorner repository={repository} />}
+      <div className={classes.menu}>
+        <Link className={classes.link} to="/">
+          <HomeIcon />
+        </Link>
+        <Link className={classes.link} to="/">
+          <ProjectsIcon />
+        </Link>
+      </div>
       <div className={classes.wrapper}>
         <JSONLogo />
         <div>
@@ -44,12 +54,9 @@ const ApplicationHeader = () => {
           </h1>
         </div>
       </div>
-      {!isDevelopment && (
-        <div>
-          <TwitterShareButton homepage={homepage} />
-          <GithubStarButton name={name} repository={repository} />
-        </div>
-      )}
+      <Link className={classes.link} to="/">
+        <AccountIcon />
+      </Link>
     </div>
   );
 };

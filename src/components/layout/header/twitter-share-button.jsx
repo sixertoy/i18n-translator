@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+
+import { homepage } from '../../../../package.json';
 
 const HELMET_OPTIONS = [
   {
@@ -9,7 +10,7 @@ const HELMET_OPTIONS = [
   },
 ];
 
-const TwitterShareButton = ({ homepage }) => (
+const TwitterShareButton = () => (
   <a
     className="twitter-wjs twitter-share-button"
     data-hashtags="json,translation,javascript,react"
@@ -22,9 +23,5 @@ const TwitterShareButton = ({ homepage }) => (
     <Helmet script={HELMET_OPTIONS} />
   </a>
 );
-
-TwitterShareButton.propTypes = {
-  homepage: PropTypes.string.isRequired,
-};
 
 export default TwitterShareButton;

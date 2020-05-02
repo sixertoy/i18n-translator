@@ -2,6 +2,8 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { version } from '../../../package.json';
+// import GithubStarButton from './github-star-button';
+// import TwitterShareButton from './twitter-share-button';
 
 const useStyles = createUseStyles({
   baseline: {
@@ -31,6 +33,9 @@ const useStyles = createUseStyles({
   },
 });
 
+// const { NODE_ENV } = process.env;
+// const isDevelopment = NODE_ENV === 'development';
+
 const ApplicationFooter = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -43,6 +48,12 @@ const ApplicationFooter = () => {
           Made with <span className={classes.love}>♥</span> and React
         </span>
       </span>
+      {/* {!isDevelopment && (
+        <div>
+          <TwitterShareButton homepage={homepage} />
+          <GithubStarButton name={name} repository={repository} />
+        </div>
+      )} */}
     </div>
   );
 };
