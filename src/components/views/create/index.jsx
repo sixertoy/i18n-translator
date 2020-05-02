@@ -28,9 +28,9 @@ const CreateComponent = () => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const [editorContent, setEditorContent] = useState({});
   const [lang, setLang] = useState(DEFAULT_LANG);
   const [canSubmit, setCanSubmit] = useState(false);
+  const [editorContent, setEditorContent] = useState({});
 
   const onLangSelectChange = useCallback(setLang, []);
 

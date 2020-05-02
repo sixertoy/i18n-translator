@@ -1,2 +1,2 @@
-export { default as create } from './all-create';
-export { default as toggleFav } from './all-toggle-fav';
+export { default as create } from './project-create';
+export { default as toggleFav } from './project-toggle-fav';
