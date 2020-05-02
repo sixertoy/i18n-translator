@@ -7,8 +7,8 @@ import translations from './translations';
 function createRootReducer() {
   return combineReducers({
     ...app,
-    ...translations,
     ...theme,
+    translations,
   });
 }
 

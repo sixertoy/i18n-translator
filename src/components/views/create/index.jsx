@@ -39,7 +39,7 @@ const CreateComponent = () => {
   }, []);
 
   const onSubmitClick = useCallback(() => {
-    dispatch(create(lang, editorContent));
+    dispatch(create(lang, editorContent.value));
     dispatch(toggleFav());
     history.push('/board');
   }, [editorContent, dispatch, history, lang]);
