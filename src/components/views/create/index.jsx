@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { DEFAULT_LANG } from '../../../constants';
-import { create, toggleFav } from '../../../redux/actions/translations';
+import { createLanguage } from '../../../redux/actions/translations';
 import Button from '../../commons/button';
 import CodeEditor from '../../commons/code-editor';
 import LangSelect from './lang-select';
@@ -39,8 +39,7 @@ const CreateComponent = () => {
   }, []);
 
   const onSubmitClick = useCallback(() => {
-    dispatch(create(lang, editorContent.value));
-    dispatch(toggleFav());
+    dispatch(createLanguage(lang, editorContent.value));
     history.push('/board');
   }, [editorContent, dispatch, history, lang]);
 

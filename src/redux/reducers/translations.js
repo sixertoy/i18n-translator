@@ -1,15 +1,5 @@
 import { EVENT_TYPES } from '../../constants';
 
-// NOTE data model
-// {
-//  keys: [],
-//  translations: [{
-//    id: string,
-//    fav: bool,
-//    values: string,
-//  }]
-// }
-
 const sortByKeysAsc = (a, b) => {
   if (a[0] > b[0]) return 1;
   if (a[0] < b[0]) return -1;
@@ -30,22 +20,18 @@ export function createTranslation(action) {
   return translation;
 }
 
-export function createProject({ json, lang: id }) {
-  const fav = false;
-  const sorted = parseAndSortJSON(json);
-  const keys = sorted.map(arr => arr[0]);
-  const values = sorted.map(arr => arr[1]);
-  const translation = { fav, id, values };
-  return { keys, translations: [translation] };
-}
-
+// NOTE translation data model
+//  {
+//    lang: string,
+//    fav: bool,
+//    dict: { key: string },
+//    label: string,
+//  ]
 const translations = (state = false, action) => {
-  let next = state;
   switch (action.type) {
     // NOTE -> Alls
     case EVENT_TYPES.TRANSLATIONS_PROJECT_CREATE:
-      next = createProject(action);
-      return next;
+      return [action.translation];
     case EVENT_TYPES.TRANSLATIONS_PROJECT_TOGGLE_FAV:
       return state;
     // NOTE -> Values
