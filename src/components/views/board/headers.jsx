@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
+
+import { selectHeader } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   container: {
@@ -17,25 +19,22 @@ const useStyles = createUseStyles({
   }),
 });
 
-const HeadersComponent = ({ items }) => {
+const HeadersComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const headers = useSelector(selectHeader);
   return (
     <div className={classes.container}>
       <div className={classes.item}>
         <span>Primary Keys</span>
       </div>
-      {items.map(obj => (
-        <div key={obj.lang} className={classes.item}>
-          <span>{obj.label}</span>
+      {headers.map(({ label, lang }) => (
+        <div key={lang} className={classes.item}>
+          <span>{label}</span>
         </div>
       ))}
     </div>
   );
-};
-
-HeadersComponent.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default HeadersComponent;

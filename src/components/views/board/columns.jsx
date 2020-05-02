@@ -1,8 +1,12 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import {
+  selectPrimaryKeys,
+  selectTranslations,
+} from '../../../redux/selectors';
 import Input from './input';
 
 const useStyles = createUseStyles({
@@ -34,24 +38,24 @@ const useStyles = createUseStyles({
   },
 });
 
-const ColumnsComponent = ({ items }) => {
+const ColumnsComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const primaryKeys = items[0].keys;
+  const keys = useSelector(selectPrimaryKeys);
+  const items = useSelector(selectTranslations);
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.column}>
-          {primaryKeys.map(key => (
+          {keys.map(key => (
             <Input key={key} lang="primary-key" value={key} />
           ))}
         </div>
-        {items.map(({ keys, lang, values }) => (
+        {items.map(({ lang, values }) => (
           <div key={lang} className={classes.column}>
-            {values.map((translation, index) => {
-              const key = keys[index];
-              return <Input key={key} lang={lang} value={translation} />;
-            })}
+            {values.map(([key, translation]) => (
+              <Input key={key} lang={lang} value={translation} />
+            ))}
           </div>
         ))}
         <div className={classes.column}>
@@ -62,10 +66,6 @@ const ColumnsComponent = ({ items }) => {
       </div>
     </div>
   );
-};
-
-ColumnsComponent.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default ColumnsComponent;

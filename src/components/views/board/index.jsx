@@ -1,8 +1,6 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
 
-import { selectTranslations } from '../../../redux/selectors';
 import Columns from './columns';
 import Headers from './headers';
 
@@ -21,14 +19,13 @@ const useStyles = createUseStyles({
 const BoardComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const translations = useSelector(selectTranslations);
   return (
     <div className={classes.container}>
       <div className={classes.headers}>
-        <Headers items={translations} />
+        <Headers />
       </div>
       <div className={classes.scrollboxWrapper}>
-        <Columns items={translations} />
+        <Columns />
       </div>
     </div>
   );
