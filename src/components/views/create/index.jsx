@@ -4,7 +4,8 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { DEFAULT_LANG, EVENT_TYPES } from '../../../constants';
+import { DEFAULT_LANG } from '../../../constants';
+import { create, toggleFav } from '../../../redux/actions/translations';
 import Button from '../../commons/button';
 import CodeEditor from '../../commons/code-editor';
 import LangSelect from './lang-select';
@@ -27,35 +28,32 @@ const CreateComponent = () => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const [content, setContent] = useState({});
+  const [editorContent, setEditorContent] = useState({});
   const [lang, setLang] = useState(DEFAULT_LANG);
   const [canSubmit, setCanSubmit] = useState(false);
 
   const onLangSelectChange = useCallback(setLang, []);
 
   const onEditorChange = useCallback((value, valid) => {
-    setContent({ valid, value });
+    setEditorContent({ valid, value });
   }, []);
 
   const onSubmitClick = useCallback(() => {
-    dispatch({
-      content: content.value,
-      lang,
-      type: EVENT_TYPES.TRANSLATIONS_CREATE,
-    });
+    dispatch(create(lang, editorContent));
+    dispatch(toggleFav());
     history.push('/board');
-  }, [content, dispatch, history, lang]);
+  }, [editorContent, dispatch, history, lang]);
 
   useEffect(() => {
-    const isempty = isEmpty(content.value);
-    const cansubmit = content.valid && !isempty;
+    const isempty = isEmpty(editorContent.value);
+    const cansubmit = editorContent.valid && !isempty;
     setCanSubmit(cansubmit);
-  }, [content]);
+  }, [editorContent]);
 
   return (
     <div className={classes.container}>
       <CodeEditor
-        content={content.value}
+        content={editorContent.value}
         mode="json"
         onChange={onEditorChange}
       />
