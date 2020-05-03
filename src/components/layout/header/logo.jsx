@@ -3,16 +3,15 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import logo from '../../../assets/json_logo.svg';
+import logo from '../../../assets/logo.svg';
 import { selectPrimaryKeys } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   image: {
-    height: 20,
-    marginRight: 10,
-    opacity: 0.4,
-    verticalAlign: 'bottom',
-    width: 20,
+    height: 18,
+    marginRight: 5,
+    verticalAlign: 'center',
+    width: 18,
   },
 });
 

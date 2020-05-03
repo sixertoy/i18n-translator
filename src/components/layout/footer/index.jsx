@@ -1,8 +1,8 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { repository, version } from '../../../package.json';
-import { rgba } from '../../core/utils/colors';
+import { repository, version } from '../../../../package.json';
+import { rgba } from '../../../core/utils/colors';
 
 // import GithubStarButton from './github-star-button';
 // import TwitterShareButton from './twitter-share-button';

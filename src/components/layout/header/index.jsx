@@ -1,13 +1,11 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { rgba } from '../../../core/utils/colors';
 import Logo from './logo';
 import Menu from './menu';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: rgba(theme.colors.dark, 0.07),
     color: theme.colors.white,
     composes: ['flex-columns', 'flex-between', 'items-center', 'px12'],
     height: 40,
@@ -15,8 +13,9 @@ const useStyles = createUseStyles({
     minHeight: 40,
   }),
   title: {
-    composes: ['fs20'],
+    composes: ['fs24', 'flex-columns', 'is-bold'],
     fontFamily: ['Cinzel', 'serif'],
+    opacity: 0.7,
   },
 });
 
@@ -25,12 +24,11 @@ const ApplicationHeader = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      <div>
-        <Logo />
-      </div>
+      <div />
       <div>
         <h1 className={classes.title}>
-          <span>SOME</span>
+          <Logo />
+          <span>some</span>
         </h1>
       </div>
       <div>

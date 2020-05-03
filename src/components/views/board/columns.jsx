@@ -50,7 +50,13 @@ const ColumnsComponent = () => {
         <div
           className={classnames(classes.column, { [classes.primary]: true })}>
           {keys.map(key => (
-            <Input key={key} primary lang="primary-key" value={key} />
+            <Input
+              key={key}
+              primary
+              id="primary"
+              lang="primary-key"
+              value={key}
+            />
           ))}
         </div>
         {items.map(({ lang, values }) => (

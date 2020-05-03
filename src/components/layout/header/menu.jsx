@@ -8,7 +8,6 @@ import { RiHome2Line as HomeIcon } from 'react-icons/ri';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import { rgba } from '../../../core/utils/colors';
 import {
   USE_ACCOUNT,
   USE_ADD_LANGUAGE,
@@ -20,7 +19,7 @@ const useStyles = createUseStyles({
     composes: ['flex-columns'],
   },
   link: ({ theme }) => ({
-    background: rgba(theme.colors.white, 0.55),
+    background: theme.colors.white,
     borderRadius: 4,
     color: theme.colors.blue,
     composes: ['is-block', 'ml7', 'p7', 'fs18'],
