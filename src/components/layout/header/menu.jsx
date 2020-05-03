@@ -8,6 +8,7 @@ import { RiHome2Line as HomeIcon } from 'react-icons/ri';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
+import { rgba } from '../../../core/utils/colors';
 import {
   USE_ACCOUNT,
   USE_ADD_LANGUAGE,
@@ -16,16 +17,14 @@ import {
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['is-absolute', 'flex-columns'],
-    right: 12,
-    top: 3,
+    composes: ['flex-columns'],
   },
-  link: {
-    background: '#000000',
+  link: ({ theme }) => ({
+    background: rgba(theme.colors.white, 0.55),
     borderRadius: 4,
-    color: '#FFFFFF',
+    color: theme.colors.blue,
     composes: ['is-block', 'ml7', 'p7', 'fs18'],
-  },
+  }),
 });
 
 const ReactDumbComponent = () => {

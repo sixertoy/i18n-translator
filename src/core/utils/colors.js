@@ -8,12 +8,12 @@ const hexToRGB = hex => {
   ];
 };
 
-export const toRGB = hex => {
+export const rgb = hex => {
   const [r, g, b] = hexToRGB(hex);
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-export const toRGBA = (hex, alpha) => {
+export const rgba = (hex, alpha) => {
   const [r, g, b] = hexToRGB(hex);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };

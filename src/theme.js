@@ -8,6 +8,7 @@ const red = '#DD4739';
 const body = '#34495E';
 const gray = '#B9B9B9';
 const velvet = '#661E75';
+const blue = '#5DAFD6';
 
 const themes = {
   day: {
@@ -36,6 +37,7 @@ const themes = {
 
 const themeBase = {
   colors: {
+    blue,
     body,
     dark,
     gray,
