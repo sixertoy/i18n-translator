@@ -49,7 +49,7 @@ const themeBase = {
   },
   sizes: {
     colgutter: 12,
-    colwidth: 250,
+    colwidth: 300,
   },
 };
 

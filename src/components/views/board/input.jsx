@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
     borderRadius: 4,
   },
   input: {
-    composes: ['is-block', 'px7', 'py3', 'no-overflow'],
+    composes: ['is-block', 'px7', 'py12', 'no-overflow'],
     fontSize: 14,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',

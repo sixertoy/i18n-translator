@@ -23,6 +23,7 @@ const useStyles = createUseStyles({
   }),
   container: {
     composes: ['is-scrollbox'],
+    paddingBottom: 120,
   },
   item: {
     '& + &': {

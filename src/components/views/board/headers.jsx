@@ -8,6 +8,7 @@ import { selectHeader } from '../../../redux/selectors';
 const useStyles = createUseStyles({
   container: {
     composes: ['flex-columns', 'flex-between', 'px7', 'py12', 'items-center'],
+    fontFamily: ['Cinzel', 'serif'],
   },
   item: ({ theme }) => ({
     '& + &': {
@@ -31,7 +32,7 @@ const HeadersComponent = () => {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.item}>
-          <span>Primary Keys</span>
+          <span>Keys</span>
         </div>
         {headers.map(({ label, lang }) => (
           <div key={lang} className={classes.item}>
