@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import React from 'react';
 import { AiOutlineEllipsis as MenuIcon } from 'react-icons/ai';
+import { MdVpnKey as KeyIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -19,7 +20,7 @@ const useStyles = createUseStyles({
     fontFamily: ['Cinzel', 'serif'],
   },
   primary: ({ theme }) => ({
-    composes: ['flex-0'],
+    composes: ['flex-0', 'fs18'],
     maxWidth: theme.sizes.colwidth,
   }),
   wrapper: {
@@ -36,7 +37,7 @@ const HeadersComponent = () => {
       <div className={classes.wrapper}>
         <div
           className={classnames(classes.column, { [classes.primary]: true })}>
-          <span>Keys</span>
+          <KeyIcon />
         </div>
         {headers.map(({ label, lang }) => (
           <div

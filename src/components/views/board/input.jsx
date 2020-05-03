@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -8,14 +7,12 @@ import { rgba } from '../../../core/utils/colors';
 import { updateValue } from '../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
-  container: {
-    composes: ['mb18'],
-  },
+  container: {},
   input: ({ theme }) => ({
     '&:focus': {
       background: rgba(theme.colors.white, 1),
     },
-    background: rgba(theme.colors.white, 0.25),
+    background: rgba(theme.colors.white, 0),
     borderRadius: 4,
     composes: [
       'is-block',
@@ -31,22 +28,14 @@ const useStyles = createUseStyles({
     textOverflow: 'ellipsis',
     transition: 'background 0.5s',
   }),
-  nobackground: {
-    '& $input': {
-      background: 'none !important',
-    },
-  },
 });
 
-const InputComponent = ({ id, lang, primary, value }) => {
+const InputComponent = ({ id, lang, value }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
   return (
-    <div
-      className={classnames(classes.container, {
-        [classes.nobackground]: primary,
-      })}>
+    <div className={classes.container}>
       <input
         className={classes.input}
         defaultValue={value}
@@ -61,14 +50,9 @@ const InputComponent = ({ id, lang, primary, value }) => {
   );
 };
 
-InputComponent.defaultProps = {
-  primary: false,
-};
-
 InputComponent.propTypes = {
   id: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
-  primary: PropTypes.bool,
   value: PropTypes.string.isRequired,
 };
 
