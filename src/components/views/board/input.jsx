@@ -9,8 +9,6 @@ import { updateValue } from '../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    // borderRadius: 4,
-    borderBottom: `1px solid ${theme.colors.white}`,
     composes: ['mb18'],
   }),
   input: ({ theme }) => ({
@@ -18,6 +16,7 @@ const useStyles = createUseStyles({
       background: rgba(theme.colors.white, 1),
     },
     background: rgba(theme.colors.white, 0.25),
+    borderRadius: '4px 4px 0 0',
     composes: [
       'is-block',
       'px7',

@@ -32,7 +32,7 @@ const useStyles = createUseStyles({
     color: theme.colors.red,
   }),
   version: ({ theme }) => ({
-    color: rgba(theme.colors.white, 0.45),
+    color: theme.colors.dark,
   }),
 });
 
