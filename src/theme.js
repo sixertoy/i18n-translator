@@ -1,6 +1,6 @@
 // const blue = '#2980B9';
-// const black = '#282C34';
 // const gray = '#DDDDDD';
+const black = '#394048';
 const white = '#FFFFFF';
 const dark = '#21252B';
 const grey = '#EEEEEE';
@@ -37,6 +37,7 @@ const themes = {
 
 const themeBase = {
   colors: {
+    black,
     blue,
     body,
     dark,

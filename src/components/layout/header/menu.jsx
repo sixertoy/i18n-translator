@@ -72,6 +72,7 @@ const ReactDumbComponent = () => {
           arrow
           arrowSize="small"
           position="bottom-end"
+          style={{ fontSize: 8 }}
           title={title}>
           <Link className={classes.link} to={path}>
             <Icon />

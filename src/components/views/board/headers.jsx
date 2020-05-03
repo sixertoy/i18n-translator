@@ -16,6 +16,7 @@ const useStyles = createUseStyles({
     width: theme.sizes.colwidth,
   }),
   container: {
+    // background: theme.colors.black,
     composes: ['flex-columns', 'flex-between', 'py12', 'items-center'],
     fontFamily: ['Cinzel', 'serif'],
   },
