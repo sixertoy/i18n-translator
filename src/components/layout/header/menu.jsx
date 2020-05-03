@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  AiOutlineDownload as DownloadIcon,
   AiOutlinePlus as PlusIcon,
   AiOutlineProject as ProjectsIcon,
 } from 'react-icons/ai';
@@ -7,6 +8,7 @@ import { MdAccountCircle as AccountIcon } from 'react-icons/md';
 import { RiHome2Line as HomeIcon } from 'react-icons/ri';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
+import { Tooltip } from 'react-tippy';
 
 import {
   USE_ACCOUNT,
@@ -26,30 +28,51 @@ const useStyles = createUseStyles({
   }),
 });
 
+const MENU_ITEMS = [
+  {
+    Icon: PlusIcon,
+    path: '/board/create',
+    title: 'Ajouter une langue',
+    visible: USE_ADD_LANGUAGE,
+  },
+  {
+    Icon: DownloadIcon,
+    path: '/',
+    title: 'Exporter',
+    visible: true,
+  },
+  {
+    Icon: HomeIcon,
+    path: '/',
+    title: 'Accueil',
+    visible: true,
+  },
+  {
+    Icon: ProjectsIcon,
+    path: '/',
+    title: 'Projets',
+    visible: USE_PROJECTS,
+  },
+  {
+    Icon: AccountIcon,
+    path: '/',
+    title: 'Votre compte',
+    visible: USE_ACCOUNT,
+  },
+].filter(({ visible }) => visible);
+
 const ReactDumbComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      {USE_ADD_LANGUAGE && (
-        <Link className={classes.link} to="/board/create">
-          <PlusIcon />
-        </Link>
-      )}
-      <Link className={classes.link} to="/">
-        <HomeIcon />
-      </Link>
-      {USE_PROJECTS && (
-        <Link className={classes.link} to="/">
-          <ProjectsIcon />
-          <span>Projects</span>
-        </Link>
-      )}
-      {USE_ACCOUNT && (
-        <Link className={classes.link} to="/">
-          <AccountIcon />
-        </Link>
-      )}
+      {MENU_ITEMS.map(({ Icon, path, title }) => (
+        <Tooltip arrow arrowSize="small" position="bottom-end" title={title}>
+          <Link className={classes.link} to={path}>
+            <Icon />
+          </Link>
+        </Tooltip>
+      ))}
     </div>
   );
 };

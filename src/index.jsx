@@ -1,3 +1,4 @@
+import 'react-tippy/dist/tippy.css';
 import './scss/index.scss';
 
 import React, { StrictMode } from 'react';
