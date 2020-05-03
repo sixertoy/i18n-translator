@@ -72,8 +72,10 @@ const ColumnsComponent = () => {
         <div
           className={classnames(classes.column, { [classes.primary]: true })}>
           {keys.map((key, index) => (
-            <div className={classnames(classes.stripe, { odd: index % 2 })}>
-              <Input key={key} id="primary" lang="primary-key" value={key} />
+            <div
+              key={key}
+              className={classnames(classes.stripe, { odd: index % 2 })}>
+              <Input id="primary" lang="primary-key" value={key} />
             </div>
           ))}
         </div>
@@ -84,8 +86,10 @@ const ColumnsComponent = () => {
               [classes.primary]: false,
             })}>
             {values.map(([key, translation], index) => (
-              <div className={classnames(classes.stripe, { odd: index % 2 })}>
-                <Input key={key} id={key} lang={lang} value={translation} />
+              <div
+                key={key}
+                className={classnames(classes.stripe, { odd: index % 2 })}>
+                <Input id={key} lang={lang} value={translation} />
               </div>
             ))}
           </div>

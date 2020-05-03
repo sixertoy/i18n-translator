@@ -67,7 +67,12 @@ const ReactDumbComponent = () => {
   return (
     <div className={classes.container}>
       {MENU_ITEMS.map(({ Icon, path, title }) => (
-        <Tooltip arrow arrowSize="small" position="bottom-end" title={title}>
+        <Tooltip
+          key={title}
+          arrow
+          arrowSize="small"
+          position="bottom-end"
+          title={title}>
           <Link className={classes.link} to={path}>
             <Icon />
           </Link>
