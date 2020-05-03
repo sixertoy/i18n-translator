@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiOutlineEllipsis as MenuIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,14 +8,12 @@ import { selectHeader } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-columns', 'flex-between', 'px7', 'py12', 'items-center'],
+    composes: ['flex-columns', 'flex-between', 'py12', 'items-center'],
     fontFamily: ['Cinzel', 'serif'],
   },
   item: ({ theme }) => ({
-    '& + &': {
-      marginLeft: 12,
-    },
-    composes: ['px7'],
+    composes: ['px12', 'flex-columns', 'flex-between'],
+    marginRight: theme.sizes.colgutter,
     maxWidth: theme.sizes.colwidth,
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
@@ -37,13 +36,11 @@ const HeadersComponent = () => {
         {headers.map(({ label, lang }) => (
           <div key={lang} className={classes.item}>
             <span>{label}</span>
+            <Link to="/">
+              <MenuIcon />
+            </Link>
           </div>
         ))}
-      </div>
-      <div className="">
-        <Link to="/board/create">
-          <button type="button">Add language</button>
-        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 {
   "USE_PROJECTS": false,
+  "USE_ADD_LANGUAGE": true,
   "USE_ACCOUNT": false
 }

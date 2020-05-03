@@ -10,13 +10,11 @@ import Input from './input';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
-    '& + &': {
-      marginLeft: theme.sizes.colgutter,
-    },
     background: '#000000',
     borderRadius: 4,
     color: '#FFFFFF',
     composes: ['p7'],
+    marginRight: theme.sizes.colgutter,
     maxWidth: theme.sizes.colwidth,
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
