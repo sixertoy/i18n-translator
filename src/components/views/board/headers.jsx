@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import { AiOutlineEllipsis as MenuIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -7,16 +8,19 @@ import { Link } from 'react-router-dom';
 import { selectHeader } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
+  column: ({ theme }) => ({
+    composes: ['px12', 'flex-columns', 'flex-between', 'flex-1'],
+    marginRight: theme.sizes.colgutter,
+    minWidth: theme.sizes.colwidth,
+    width: theme.sizes.colwidth,
+  }),
   container: {
     composes: ['flex-columns', 'flex-between', 'py12', 'items-center'],
     fontFamily: ['Cinzel', 'serif'],
   },
-  item: ({ theme }) => ({
-    composes: ['px12', 'flex-columns', 'flex-between'],
-    marginRight: theme.sizes.colgutter,
+  primary: ({ theme }) => ({
+    composes: ['flex-0'],
     maxWidth: theme.sizes.colwidth,
-    minWidth: theme.sizes.colwidth,
-    width: theme.sizes.colwidth,
   }),
   wrapper: {
     composes: ['flex-columns', 'items-center'],
@@ -30,11 +34,16 @@ const HeadersComponent = () => {
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
-        <div className={classes.item}>
+        <div
+          className={classnames(classes.column, { [classes.primary]: true })}>
           <span>Keys</span>
         </div>
         {headers.map(({ label, lang }) => (
-          <div key={lang} className={classes.item}>
+          <div
+            key={lang}
+            className={classnames(classes.column, {
+              [classes.primary]: false,
+            })}>
             <span>{label}</span>
             <Link to="/">
               <MenuIcon />

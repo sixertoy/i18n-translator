@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -10,12 +11,10 @@ import Input from './input';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
-    background: '#000000',
     borderRadius: 4,
     color: '#FFFFFF',
-    composes: ['p7'],
+    composes: ['p7', 'flex-1'],
     marginRight: theme.sizes.colgutter,
-    maxWidth: theme.sizes.colwidth,
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
@@ -31,6 +30,10 @@ const useStyles = createUseStyles({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   },
+  primary: ({ theme }) => ({
+    composes: ['flex-0'],
+    maxWidth: theme.sizes.colwidth,
+  }),
   wrapper: {
     composes: ['flex-columns'],
   },
@@ -44,15 +47,20 @@ const ColumnsComponent = () => {
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
-        <div className={classes.column}>
+        <div
+          className={classnames(classes.column, { [classes.primary]: true })}>
           {keys.map(key => (
-            <Input key={key} lang="primary-key" value={key} />
+            <Input key={key} primary lang="primary-key" value={key} />
           ))}
         </div>
         {items.map(({ lang, values }) => (
-          <div key={lang} className={classes.column}>
+          <div
+            key={lang}
+            className={classnames(classes.column, {
+              [classes.primary]: false,
+            })}>
             {values.map(([key, translation]) => (
-              <Input key={key} lang={lang} value={translation} />
+              <Input key={key} id={key} lang={lang} value={translation} />
             ))}
           </div>
         ))}
