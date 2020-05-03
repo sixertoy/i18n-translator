@@ -8,9 +8,10 @@ import ApplicationFooter from './layout/footer';
 import ApplicationHeader from './layout/header';
 
 const useStyles = createUseStyles({
-  container: {
+  container: ({ theme }) => ({
+    background: theme.colors.blue,
     composes: ['flex-rows', 'is-full-layout'],
-  },
+  }),
   footer: {
     composes: ['flex-0', 'is-full-width', 'is-flex'],
     height: 20,
@@ -23,11 +24,10 @@ const useStyles = createUseStyles({
     maxHeight: 40,
     minHeight: 40,
   },
-  views: ({ theme }) => ({
-    backgroundColor: theme.colors.grey,
+  views: {
     composes: ['flex-1', 'is-flex'],
     height: 'auto',
-  }),
+  },
 });
 
 const Application = () => {
