@@ -1,0 +1,61 @@
+.fancy-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.fancy-scrollbar::-webkit-scrollbar-track-piece {
+  background: #DCDEE4;
+}
+
+.fancy-scrollbar::-webkit-scrollbar-thumb {
+  background: #C5C9D1;
+}
+
+.fancy-scrollbar::-webkit-scrollbar,
+.fancy-scrollbar::-webkit-scrollbar-thumb,
+.fancy-scrollbar::-webkit-scrollbar-track,
+.fancy-scrollbar::-webkit-scrollbar-track-piece {
+  border-radius: 6px;
+}
+
+// ::-webkit-scrollbar {
+//   background: transparent;
+//   overflow: visible;
+//   width: 17px;
+// }
+//
+// ::-webkit-scrollbar-track {
+//   background-color: #FFFFFF;
+// }
+//
+// ::-webkit-scrollbar-track-piece {
+//   background-color: #FFFFFF;
+// }
+//
+// ::-webkit-scrollbar-corner {
+//   background: transparent;
+// }
+//
+// ::-webkit-scrollbar-thumb {
+//   background-color: rgba(0, 0, 0, 0.2);
+//   background-color: #ADADAD;
+//   border: solid #FFFFFF;
+//   -webkit-box-shadow:
+//     inset 1px 1px 0 rgba(0, 0, 0, 0.1),
+//     inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+// }
+//
+// ::-webkit-scrollbar-thumb:hover {
+//   background: rgba(0, 0, 0, 0.8);
+//   background-color: #999999;
+// }
+//
+// ::-webkit-scrollbar-thumb:horizontal {
+//   border-width: 4px 6px;
+//   min-width: 40px;
+// }
+//
+// ::-webkit-scrollbar-thumb:vertical {
+//   border-width: 6px 4px;
+//   min-height: 40px;
+// }

@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
     composes: ['flex-0'],
   },
   scrollboxWrapper: {
-    composes: ['is-scrollbox-wrapper', 'flex-1'],
+    composes: ['is-scrollbox-wrapper', 'flex-1', 'mr12'],
   },
 });
 

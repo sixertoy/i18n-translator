@@ -19,7 +19,7 @@ const useStyles = createUseStyles({
     width: theme.sizes.colwidth,
   }),
   container: {
-    composes: ['is-scrollbox'],
+    composes: ['is-scrollbox', 'fancy-scrollbar'],
     paddingBottom: 120,
   },
   item: {

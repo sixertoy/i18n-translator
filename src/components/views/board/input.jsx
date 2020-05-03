@@ -8,15 +8,15 @@ import { rgba } from '../../../core/utils/colors';
 import { updateValue } from '../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
+  container: {
     composes: ['mb18'],
-  }),
+  },
   input: ({ theme }) => ({
     '&:focus': {
       background: rgba(theme.colors.white, 1),
     },
     background: rgba(theme.colors.white, 0.25),
-    borderRadius: '4px 4px 0 0',
+    borderRadius: 4,
     composes: [
       'is-block',
       'px7',
