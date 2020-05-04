@@ -1,17 +1,12 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import Logo from './logo';
 import Menu from './menu';
+import Title from './title';
 
 const useStyles = createUseStyles({
   header: {
     composes: ['flex-0', 'debug'],
-  },
-  title: {
-    composes: ['fs24', 'text-center', 'is-bold', 'debug'],
-    fontFamily: ['Cinzel', 'serif'],
-    opacity: 1,
   },
 });
 
@@ -20,10 +15,7 @@ const ApplicationHeader = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.header}>
-      <h1 className={classes.title}>
-        <Logo />
-        <span>some</span>
-      </h1>
+      <Title />
       <Menu />
     </div>
   );

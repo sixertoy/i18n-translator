@@ -8,6 +8,7 @@
 // OK
 // const velvet = '#661E75';
 const red = '#DD4739';
+const white = '#FAFAFA';
 // const blue = '#0F133F';
 // const dark = '#1C223F';
 // const indigo = '#1C223F';
@@ -21,7 +22,7 @@ const themes = {
   // shadow: '#3B4048',
   day: {
     // active: '#6494ED',
-    // background: '#FEFEFE',
+    background: white,
     // border: '#E4E6E8',
     // button: '#FFFFFF',
     // color: '#202124',
@@ -53,6 +54,7 @@ const themeBase = {
     // grey,
     // indigo,
     red,
+    white,
     // velvet,
     // white,
   },

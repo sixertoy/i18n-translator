@@ -7,10 +7,12 @@ import Stats from './stats';
 
 const useStyles = createUseStyles({
   board: {
-    composes: ['debug'],
+    composes: ['debug', 'flex-rows'],
+    height: '100%',
   },
   wrapper: {
-    composes: ['debug'],
+    composes: ['debug', 'flex-rows'],
+    height: '100%',
   },
 });
 

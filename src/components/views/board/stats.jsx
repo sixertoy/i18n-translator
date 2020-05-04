@@ -11,13 +11,12 @@ import { Tooltip } from 'react-tippy';
 import { USE_ADD_LANGUAGE } from '../../../features.json';
 
 const useStyles = createUseStyles({
-  container: {
-    composes: ['debug'],
-    flex: 0,
-  },
   link: {
     composes: ['debug'],
     fontSize: 24,
+  },
+  stats: {
+    composes: ['debug'],
   },
 });
 
@@ -40,7 +39,7 @@ const StatsComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container}>
+    <div className={classes.stats}>
       <div>
         <span>Nom du projet</span>
       </div>
