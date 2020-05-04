@@ -6,11 +6,14 @@ const black = '#394048';
 const white = '#FFFFFF';
 const dark = '#21252B';
 const grey = '#EEEEEE';
-const red = '#DD4739';
 const body = '#34495E';
 const gray = '#A0A0A0';
 const velvet = '#661E75';
 const blue = '#5DAFD6';
+const indigo = '#4889b9';
+
+// OK
+const red = '#DD4739';
 
 const themes = {
   // highlight: '#2C313C',
@@ -48,6 +51,7 @@ const themeBase = {
     dark,
     gray,
     grey,
+    indigo,
     red,
     velvet,
     white,

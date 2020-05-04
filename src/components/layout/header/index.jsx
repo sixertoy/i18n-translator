@@ -5,14 +5,17 @@ import Logo from './logo';
 import Menu from './menu';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    background: theme.colors.blue,
-    color: theme.colors.white,
-    composes: ['is-relative', 'is-full-width'],
-    height: 40,
-    maxHeight: 40,
-    minHeight: 40,
-  }),
+  container: ({ theme }) => {
+    const { blue, indigo, white } = theme.colors;
+    return {
+      background: `linear-gradient(119deg, ${blue} 35%, ${indigo} 100%)`,
+      color: white,
+      composes: ['is-relative', 'is-full-width'],
+      height: 45,
+      maxHeight: 45,
+      minHeight: 45,
+    };
+  },
   title: {
     composes: ['fs24', 'text-center', 'is-bold'],
     fontFamily: ['Cinzel', 'serif'],

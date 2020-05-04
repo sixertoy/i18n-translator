@@ -9,19 +9,19 @@ import { Link } from 'react-router-dom';
 import { selectHeader } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
-  column: ({ theme }) => ({
-    composes: ['px12', 'flex-columns', 'flex-between', 'flex-1'],
+  container: {
+    composes: ['flex-columns', 'flex-between', 'py12', 'items-center'],
+    fontFamily: ['Cinzel', 'serif'],
+  },
+  header: ({ theme }) => ({
+    composes: ['flex-columns', 'flex-between', 'flex-1', 'fs18'],
     marginRight: theme.sizes.colgutter,
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
-  container: {
-    // background: theme.colors.black,
-    composes: ['flex-columns', 'flex-between', 'py12', 'items-center'],
-    fontFamily: ['Cinzel', 'serif'],
-  },
   primary: ({ theme }) => ({
-    composes: ['flex-0', 'fs18'],
+    flex: 0,
+    justifyContent: 'center',
     maxWidth: theme.sizes.colwidth,
   }),
   wrapper: {
@@ -36,16 +36,11 @@ const HeadersComponent = () => {
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
-        <div
-          className={classnames(classes.column, { [classes.primary]: true })}>
+        <div className={classnames(classes.header, classes.primary)}>
           <KeyIcon />
         </div>
         {headers.map(({ label, lang }) => (
-          <div
-            key={lang}
-            className={classnames(classes.column, {
-              [classes.primary]: false,
-            })}>
+          <div key={lang} className={classes.header}>
             <span>{label}</span>
             <Link to="/">
               <MenuIcon />

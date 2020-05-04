@@ -10,10 +10,11 @@ import PrimaryKeys from './primary-keys';
 import Translations from './translations';
 
 const useStyles = createUseStyles({
-  container: {
+  container: ({ theme }) => ({
+    background: theme.colors.grey,
     composes: ['is-scrollbox', 'fancy-scrollbar', 'pr24'],
     paddingBottom: 120,
-  },
+  }),
   wrapper: {
     composes: ['flex-columns'],
   },

@@ -6,8 +6,7 @@ import Headers from './headers';
 
 const useStyles = createUseStyles({
   container: {
-    // background: theme.colors.grey,
-    composes: ['flex-rows', 'py48', 'pl48'],
+    composes: ['flex-rows', 'm32'],
   },
   headers: {
     composes: ['flex-0'],

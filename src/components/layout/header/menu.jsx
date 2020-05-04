@@ -20,13 +20,13 @@ const useStyles = createUseStyles({
   link: ({ theme }) => ({
     background: theme.colors.white,
     borderRadius: 4,
-    color: theme.colors.blue,
+    color: theme.colors.indigo,
     composes: ['is-block', 'ml7', 'p7', 'fs18'],
   }),
   menu: ({ theme }) => ({
     composes: ['flex-columns', 'is-absolute'],
     right: theme.sizes.colgutter,
-    top: 4,
+    top: 6,
   }),
 });
 
