@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
       'flex-0',
       'px32',
       'pb0',
-      'pt7',
+      'pt12',
       'fs8',
       'is-uppercase',
       'is-relative',

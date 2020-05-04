@@ -4,10 +4,10 @@ import { createUseStyles, useTheme } from 'react-jss';
 const useStyles = createUseStyles({
   credits: {
     borderRadius: '4px 4px 0 0',
+    bottom: 0,
     composes: ['py0', 'px12', 'debug', 'is-absolute'],
     right: 32,
     textTransform: 'uppercase',
-    top: 7,
   },
   love: ({ theme }) => ({ color: theme.colors.red }),
 });

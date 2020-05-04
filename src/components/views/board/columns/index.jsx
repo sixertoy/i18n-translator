@@ -10,7 +10,7 @@ import PrimaryKeys from './primary-keys';
 import Translations from './translations';
 
 const useStyles = createUseStyles({
-  container: {
+  columns: {
     composes: ['flex-1', 'debug'],
   },
   inner: {
@@ -28,7 +28,7 @@ const ColumnsComponent = () => {
   const keys = useSelector(selectPrimaryKeys);
   const items = useSelector(selectTranslations);
   return (
-    <div className={classes.container}>
+    <div className={classes.columns}>
       <div className={classes.scrollbox}>
         <div className={classes.inner}>
           <PrimaryKeys items={keys} />

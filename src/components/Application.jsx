@@ -8,11 +8,13 @@ import ApplicationFooter from './layout/footer';
 import ApplicationHeader from './layout/header';
 
 const useStyles = createUseStyles({
-  container: {
-    composes: ['flex-rows', 'flex-start'],
+  application: {
+    composes: ['flex-rows', 'flex-stretch'],
+    height: '100%',
   },
   views: {
-    composes: ['flex-1', 'is-flex', 'debug'],
+    composes: ['flex-1', 'debug'],
+    height: 'auto',
   },
 });
 
@@ -20,10 +22,10 @@ const Application = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container}>
+    <div className={classes.application}>
       <ApplicationHeader />
       <div className={classes.views}>
-        <Switch>
+        {/* <Switch>
           {routes.map(obj => {
             return (
               <Route
@@ -34,7 +36,7 @@ const Application = () => {
               />
             );
           })}
-        </Switch>
+        </Switch> */}
       </div>
       <ApplicationFooter />
     </div>

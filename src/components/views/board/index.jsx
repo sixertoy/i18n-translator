@@ -6,7 +6,7 @@ import Headers from './headers';
 import Stats from './stats';
 
 const useStyles = createUseStyles({
-  container: {
+  board: {
     composes: ['debug'],
   },
   wrapper: {
@@ -18,7 +18,7 @@ const BoardComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container}>
+    <div className={classes.board}>
       <Stats />
       <div className={classes.wrapper}>
         <Headers />

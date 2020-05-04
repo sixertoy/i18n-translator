@@ -9,12 +9,18 @@ import { Link } from 'react-router-dom';
 import { selectHeader } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
-  container: {
-    composes: ['flex-columns', 'flex-between', 'py12', 'items-center', 'debug'],
-    flex: 0,
+  headers: {
+    composes: [
+      'flex-columns',
+      'flex-between',
+      'py12',
+      'items-center',
+      'debug',
+      'flex-0',
+    ],
     fontFamily: ['Cinzel', 'serif'],
   },
-  header: ({ theme }) => ({
+  item: ({ theme }) => ({
     composes: ['flex-columns', 'flex-between', 'flex-1', 'fs18', 'debug'],
     marginRight: theme.sizes.colgutter,
     minWidth: theme.sizes.colwidth,
@@ -35,13 +41,13 @@ const HeadersComponent = () => {
   const classes = useStyles({ theme });
   const headers = useSelector(selectHeader);
   return (
-    <div className={classes.container}>
+    <div className={classes.headers}>
       <div className={classes.wrapper}>
-        <div className={classnames(classes.header, classes.primary)}>
+        <div className={classnames(classes.item, classes.primary)}>
           <KeyIcon />
         </div>
         {headers.map(({ label, lang }) => (
-          <div key={lang} className={classes.header}>
+          <div key={lang} className={classes.item}>
             <span>{label}</span>
             <Link to="/">
               <MenuIcon />
