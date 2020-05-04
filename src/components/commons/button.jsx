@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['py12', 'px24'],
+    composes: ['py12', 'px24', 'debug'],
   },
 });
 

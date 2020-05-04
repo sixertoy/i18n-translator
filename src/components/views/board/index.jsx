@@ -7,10 +7,10 @@ import Stats from './stats';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows'],
+    composes: ['flex-rows', 'debug'],
   },
   wrapper: {
-    composes: ['m32', 'flex-1', 'flex-rows'],
+    composes: ['m32', 'flex-1', 'flex-rows', 'debug'],
   },
 });
 

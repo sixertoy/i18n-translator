@@ -8,15 +8,14 @@ import { LANGS } from '../../../constants';
 const useStyles = createUseStyles({
   input: {
     border: 0,
+    composes: ['debug', 'fs14', 'm0', 'p0'],
     cursor: 'pointer',
     display: 'inline-block',
-    fontSize: 14,
-    margin: 0,
     minWidth: '100%',
-    padding: 0,
     width: '100%',
   },
   options: {
+    composes: ['debug'],
     cursor: 'pointer',
     minWidth: '100%',
     width: '100%',
@@ -25,12 +24,9 @@ const useStyles = createUseStyles({
     '&.disabled': {
       opacity: 0.45,
     },
-    border: '1px solid #000',
-    borderRadius: 4,
+    composes: ['debug', 'fs12', 'text-left'],
     display: 'inline-block',
-    fontSize: 14,
     padding: '9px 12px',
-    textAlign: 'left',
     width: 200,
   },
 });

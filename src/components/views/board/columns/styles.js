@@ -1,21 +1,16 @@
-import { rgba } from '../../../../core/utils/colors';
+// import { rgba } from '../../../../core/utils/colors';
 
-export const lineStyles = theme => ({
-  // '&.odd': { background: rgba(theme.colors.white, 0.25) },
-  composes: ['is-block', 'p7', 'no-overflow'],
+export const lineStyles = () => ({
+  composes: ['is-block', 'p7', 'no-overflow', 'debug'],
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });
 
-export const inputStyles = theme => ({
-  '&:focus': {
-    // background: rgba(theme.colors.white, 1),
-  },
-  // background: rgba(theme.colors.white, 0),
-  borderRadius: 4,
+export const inputStyles = () => ({
   composes: [
     'is-block',
     'px7',
+    'debug',
     'py12',
     'no-overflow',
     'fs14',

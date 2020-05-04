@@ -9,23 +9,22 @@ import ApplicationHeader from './layout/header';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    // background: theme.colors.blue,
-    composes: ['flex-rows', 'is-full-layout'],
+    composes: ['flex-rows', 'is-full-layout', 'debug'],
   }),
   footer: {
-    composes: ['flex-0', 'is-full-width', 'is-flex'],
+    composes: ['flex-0', 'is-full-width', 'is-flex', 'debug'],
     height: 20,
     maxHeight: 20,
     minHeight: 20,
   },
   header: {
-    composes: ['flex-0', 'is-full-width', 'is-flex'],
+    composes: ['flex-0', 'is-full-width', 'is-flex', 'debug'],
     height: 40,
     maxHeight: 40,
     minHeight: 40,
   },
   views: {
-    composes: ['flex-1', 'is-flex'],
+    composes: ['flex-1', 'is-flex', 'debug'],
     height: 'auto',
   },
 });

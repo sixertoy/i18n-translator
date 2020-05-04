@@ -5,18 +5,16 @@ import Logo from './logo';
 import Menu from './menu';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => {
-    return {
-      // background: blue,
-      // color: white,
-      composes: ['is-relative', 'is-full-width'],
-      height: 45,
-      maxHeight: 45,
-      minHeight: 45,
-    };
+  container: {
+    // background: blue,
+    // color: white,
+    composes: ['is-relative', 'is-full-width', 'debug'],
+    height: 45,
+    maxHeight: 45,
+    minHeight: 45,
   },
   title: {
-    composes: ['fs24', 'text-center', 'is-bold'],
+    composes: ['fs24', 'text-center', 'is-bold', 'debug'],
     fontFamily: ['Cinzel', 'serif'],
     opacity: 1,
   },

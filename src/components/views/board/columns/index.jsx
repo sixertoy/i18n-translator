@@ -10,15 +10,14 @@ import PrimaryKeys from './primary-keys';
 import Translations from './translations';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    // background: theme.colors.grey,
-    composes: ['is-scrollbox-wrapper', 'flex-1'],
-  }),
+  container: {
+    composes: ['is-scrollbox-wrapper', 'flex-1', 'debug'],
+  },
   inner: {
-    composes: ['flex-columns'],
+    composes: ['flex-columns', 'debug'],
   },
   scrollbox: {
-    composes: ['is-scrollbox', 'fancy-scrollbar', 'pr24'],
+    composes: ['is-scrollbox', 'fancy-scrollbar', 'pr24', 'debug'],
     paddingBottom: 120,
   },
 });

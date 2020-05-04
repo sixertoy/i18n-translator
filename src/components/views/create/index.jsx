@@ -13,16 +13,25 @@ import LangSelect from './lang-select';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['is-full-layout', 'flex-rows'],
+    composes: ['is-full-layout', 'flex-rows', 'debug'],
   },
   controls: {
-    composes: ['flex-columns', 'flex-end', 'items-center', 'py12', 'px32'],
+    composes: [
+      'flex-columns',
+      'flex-end',
+      'items-center',
+      'py12',
+      'px32',
+      'debug',
+    ],
     minHeight: 60,
   },
   langs: {
-    composes: ['mr12'],
+    composes: ['mr12', 'debug'],
   },
-  submit: {},
+  submit: {
+    composes: ['debug'],
+  },
 });
 
 const CreateComponent = () => {

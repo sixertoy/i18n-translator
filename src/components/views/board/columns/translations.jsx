@@ -7,7 +7,7 @@ import { inputStyles, lineStyles } from './styles';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
-    composes: ['flex-1'],
+    composes: ['flex-1', 'debug'],
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),

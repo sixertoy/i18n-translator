@@ -7,10 +7,8 @@ import { selectPrimaryKeys } from '../../redux/selectors';
 
 const useStyles = createUseStyles(theme => ({
   button: {
-    // background: theme.colors.dark,
     borderRadius: 4,
-    // color: theme.colors.white,
-    composes: ['py20', 'px32'],
+    composes: ['py20', 'px32', 'debug'],
     textAlign: 'center',
   },
   container: {
@@ -19,6 +17,7 @@ const useStyles = createUseStyles(theme => ({
       'flex-columns',
       'flex-center',
       'items-center',
+      'debug',
       'is-full-layout',
     ],
   },

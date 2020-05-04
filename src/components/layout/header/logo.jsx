@@ -8,6 +8,7 @@ import { selectPrimaryKeys } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   image: {
+    composes: ['debug'],
     height: 18,
     marginRight: 5,
     verticalAlign: 'center',

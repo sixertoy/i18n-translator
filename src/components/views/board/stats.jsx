@@ -11,17 +11,17 @@ import { Tooltip } from 'react-tippy';
 import { USE_ADD_LANGUAGE } from '../../../features.json';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    // background: theme.colors.indigo,
+  container: {
+    composes: ['debug'],
     flex: 0,
     height: 120,
     maxHeight: 120,
     minHeight: 120,
-  }),
-  link: ({ theme }) => ({
-    // color: theme.colors.white,
+  },
+  link: {
+    composes: ['debug'],
     fontSize: 24,
-  }),
+  },
 });
 
 const MENU_ITEMS = [

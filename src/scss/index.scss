@@ -11,10 +11,13 @@
 
 --------------------------------------------------- */
 
-.table-cell-ellipsis {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+// .table-cell-ellipsis {
+//   overflow: hidden;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+// }
+.debug {
+  border: 1px solid #000000;
 }
 
 #root {

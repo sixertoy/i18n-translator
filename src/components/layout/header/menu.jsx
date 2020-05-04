@@ -9,17 +9,12 @@ import { Tooltip } from 'react-tippy';
 import { USE_ACCOUNT, USE_PROJECTS } from '../../../features.json';
 
 const useStyles = createUseStyles({
-  link: ({ theme }) => ({
-    // background: theme.colors.white,
-    borderRadius: 4,
-    // color: theme.colors.white,
-    composes: ['is-block', 'ml7', 'p7', 'fs18'],
-  }),
-  menu: ({ theme }) => ({
-    composes: ['flex-columns', 'is-absolute'],
-    right: theme.sizes.colgutter,
-    top: 6,
-  }),
+  link: {
+    composes: ['is-block', 'ml7', 'p7', 'fs18', 'debug'],
+  },
+  menu: {
+    composes: ['flex-columns', 'debug'],
+  },
 });
 
 const MENU_ITEMS = [
