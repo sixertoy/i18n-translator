@@ -5,9 +5,18 @@ import Menu from './menu';
 import Title from './title';
 
 const useStyles = createUseStyles({
-  header: {
-    composes: ['flex-0', 'debug'],
-  },
+  header: ({ theme }) => ({
+    composes: [
+      'flex-0',
+      'flex-columns',
+      'flex-between',
+      'items-center',
+      'debug',
+    ],
+    height: theme.sizes.header,
+    maxHeight: theme.sizes.header,
+    minHeight: theme.sizes.header,
+  }),
 });
 
 const ApplicationHeader = () => {
@@ -15,6 +24,7 @@ const ApplicationHeader = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.header}>
+      <div className="blank">&nbsp;</div>
       <Title />
       <Menu />
     </div>

@@ -7,7 +7,7 @@ import { selectPrimaryKeys } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   link: {
-    composes: ['debug'],
+    composes: ['is-block', 'debug'],
   },
   logo: {
     composes: ['debug', 'is-inline-block'],
