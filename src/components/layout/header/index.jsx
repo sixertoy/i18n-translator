@@ -5,13 +5,8 @@ import Logo from './logo';
 import Menu from './menu';
 
 const useStyles = createUseStyles({
-  container: {
-    // background: blue,
-    // color: white,
-    composes: ['is-relative', 'is-full-width', 'debug'],
-    height: 45,
-    maxHeight: 45,
-    minHeight: 45,
+  header: {
+    composes: ['flex-0', 'debug'],
   },
   title: {
     composes: ['fs24', 'text-center', 'is-bold', 'debug'],
@@ -24,7 +19,7 @@ const ApplicationHeader = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container}>
+    <div className={classes.header}>
       <h1 className={classes.title}>
         <Logo />
         <span>some</span>

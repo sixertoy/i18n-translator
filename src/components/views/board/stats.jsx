@@ -14,9 +14,6 @@ const useStyles = createUseStyles({
   container: {
     composes: ['debug'],
     flex: 0,
-    height: 120,
-    maxHeight: 120,
-    minHeight: 120,
   },
   link: {
     composes: ['debug'],
@@ -46,6 +43,8 @@ const StatsComponent = () => {
     <div className={classes.container}>
       <div>
         <span>Nom du projet</span>
+      </div>
+      <div>
         <span>Pourcentage</span>
       </div>
       {MENU_ITEMS.map(({ Icon, path, title }) => (

@@ -8,24 +8,11 @@ import ApplicationFooter from './layout/footer';
 import ApplicationHeader from './layout/header';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    composes: ['flex-rows', 'is-full-layout', 'debug'],
-  }),
-  footer: {
-    composes: ['flex-0', 'is-full-width', 'is-flex', 'debug'],
-    height: 20,
-    maxHeight: 20,
-    minHeight: 20,
-  },
-  header: {
-    composes: ['flex-0', 'is-full-width', 'is-flex', 'debug'],
-    height: 40,
-    maxHeight: 40,
-    minHeight: 40,
+  container: {
+    composes: ['flex-rows', 'flex-start'],
   },
   views: {
     composes: ['flex-1', 'is-flex', 'debug'],
-    height: 'auto',
   },
 });
 
@@ -34,9 +21,7 @@ const Application = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      <div className={classes.header}>
-        <ApplicationHeader />
-      </div>
+      <ApplicationHeader />
       <div className={classes.views}>
         <Switch>
           {routes.map(obj => {
@@ -51,9 +36,7 @@ const Application = () => {
           })}
         </Switch>
       </div>
-      <div className={classes.footer}>
-        <ApplicationFooter />
-      </div>
+      <ApplicationFooter />
     </div>
   );
 };

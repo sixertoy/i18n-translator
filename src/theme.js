@@ -2,18 +2,18 @@
 // const gray = '#DDDDDD';
 // color: '#A0A0A0',
 
-const black = '#394048';
-const gray = '#A0A0A0';
+// const black = '#394048';
+// const gray = '#A0A0A0';
 
 // OK
-const velvet = '#661E75';
+// const velvet = '#661E75';
 const red = '#DD4739';
-const blue = '#0F133F';
-const dark = '#1C223F';
-const indigo = '#1C223F';
-const grey = '#454959';
-const white = '#F2E4BD';
-const body = '#D9C6B1';
+// const blue = '#0F133F';
+// const dark = '#1C223F';
+// const indigo = '#1C223F';
+// const grey = '#454959';
+// const white = '#F2E4BD';
+// const body = '#D9C6B1';
 
 const themes = {
   // highlight: '#2C313C',
@@ -45,16 +45,16 @@ const themes = {
 
 const themeBase = {
   colors: {
-    black,
-    blue,
-    body,
-    dark,
-    gray,
-    grey,
-    indigo,
+    // black,
+    // blue,
+    // body,
+    // dark,
+    // gray,
+    // grey,
+    // indigo,
     red,
-    velvet,
-    white,
+    // velvet,
+    // white,
   },
   sizes: {
     colgutter: 12,

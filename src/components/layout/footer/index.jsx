@@ -2,31 +2,25 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { repository, version } from '../../../../package.json';
+import Credits from './credits';
 // import { rgba } from '../../../core/utils/colors';
 
 // import GithubStarButton from './github-star-button';
 // import TwitterShareButton from './twitter-share-button';
 
 const useStyles = createUseStyles({
-  baseline: {
-    borderRadius: '4px 4px 0 0',
-    composes: ['py0', 'px12', 'debug'],
-    textTransform: 'uppercase',
-  },
-  container: {
+  footer: {
     composes: [
-      'debug',
-      'flex-columns',
-      'flex-between',
+      'flex-0',
       'px32',
-      'py0',
+      'pb0',
+      'pt7',
       'fs8',
-      'items-center',
       'is-uppercase',
+      'is-relative',
     ],
     letterSpacing: '0.12em',
   },
-  // love: { color: theme.colors.red },
   version: {
     composes: ['debug'],
   },
@@ -39,15 +33,11 @@ const ApplicationFooter = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container}>
-      <div>
-        <a className={classes.version} href={repository.url}>
-          <span>v{version} - i18n Online Translation Editor</span>
-        </a>
-      </div>
-      <div className={classes.baseline}>
-        Made with <span className={classes.love}>♥</span> and React
-      </div>
+    <div className={classes.footer}>
+      <a className={classes.version} href={repository.url}>
+        <span>v{version} - i18n Online Translation Editor</span>
+      </a>
+      <Credits />
       {/* {!isDevelopment && (
         <div>
           <TwitterShareButton homepage={homepage} />
