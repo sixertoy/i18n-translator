@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import {
   selectPrimaryKeys,
   selectTranslations,
-} from '../../../redux/selectors';
-import PrimaryKeys from './columns/primary-keys';
-import Translations from './columns/translations';
+} from '../../../../redux/selectors';
+import PrimaryKeys from './primary-keys';
+import Translations from './translations';
 
 const useStyles = createUseStyles({
   container: {
