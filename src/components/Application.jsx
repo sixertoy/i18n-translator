@@ -9,7 +9,7 @@ import ApplicationHeader from './layout/header';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: theme.colors.blue,
+    background: theme.colors.grey,
     composes: ['flex-rows', 'is-full-layout'],
   }),
   footer: {

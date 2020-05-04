@@ -6,6 +6,7 @@ import Menu from './menu';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
+    background: theme.colors.blue,
     color: theme.colors.white,
     composes: ['is-relative', 'is-full-width'],
     height: 40,

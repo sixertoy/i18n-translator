@@ -2,7 +2,7 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { repository, version } from '../../../../package.json';
-import { rgba } from '../../../core/utils/colors';
+// import { rgba } from '../../../core/utils/colors';
 
 // import GithubStarButton from './github-star-button';
 // import TwitterShareButton from './twitter-share-button';
@@ -11,12 +11,11 @@ const useStyles = createUseStyles({
   baseline: ({ theme }) => ({
     background: theme.colors.white,
     borderRadius: '4px 4px 0 0',
-    color: '#A0A0A0',
+    color: theme.colors.body,
     composes: ['py0', 'px12'],
     textTransform: 'uppercase',
   }),
-  container: ({ theme }) => ({
-    color: rgba(theme.colors.white, 0.8),
+  container: {
     composes: [
       'flex-columns',
       'flex-between',
@@ -27,12 +26,13 @@ const useStyles = createUseStyles({
       'is-uppercase',
     ],
     letterSpacing: '0.12em',
-  }),
+  },
   love: ({ theme }) => ({
     color: theme.colors.red,
   }),
   version: ({ theme }) => ({
-    color: theme.colors.dark,
+    color: theme.colors.body,
+    opacity: 0.35,
   }),
 });
 
