@@ -3,16 +3,14 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import Columns from './columns';
 import Headers from './headers';
+import Stats from './stats';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows', 'm32'],
+    composes: ['flex-rows'],
   },
-  headers: {
-    composes: ['flex-0'],
-  },
-  scrollboxWrapper: {
-    composes: ['is-scrollbox-wrapper', 'flex-1', 'mr12'],
+  wrapper: {
+    composes: ['m32', 'flex-1', 'flex-rows'],
   },
 });
 
@@ -21,10 +19,9 @@ const BoardComponent = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      <div className={classes.headers}>
+      <Stats />
+      <div className={classes.wrapper}>
         <Headers />
-      </div>
-      <div className={classes.scrollboxWrapper}>
         <Columns />
       </div>
     </div>

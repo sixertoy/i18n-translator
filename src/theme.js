@@ -3,17 +3,17 @@
 // color: '#A0A0A0',
 
 const black = '#394048';
-const white = '#FFFFFF';
-const dark = '#21252B';
-const grey = '#EEEEEE';
-const body = '#34495E';
 const gray = '#A0A0A0';
-const velvet = '#661E75';
-const blue = '#5DAFD6';
-const indigo = '#4889b9';
 
 // OK
+const velvet = '#661E75';
 const red = '#DD4739';
+const blue = '#0F133F';
+const dark = '#1C223F';
+const indigo = '#1C223F';
+const grey = '#454959';
+const white = '#F2E4BD';
+const body = '#D9C6B1';
 
 const themes = {
   // highlight: '#2C313C',

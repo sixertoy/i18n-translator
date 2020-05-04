@@ -11,6 +11,7 @@ import { selectHeader } from '../../../redux/selectors';
 const useStyles = createUseStyles({
   container: {
     composes: ['flex-columns', 'flex-between', 'py12', 'items-center'],
+    flex: 0,
     fontFamily: ['Cinzel', 'serif'],
   },
   header: ({ theme }) => ({
@@ -21,7 +22,6 @@ const useStyles = createUseStyles({
   }),
   primary: ({ theme }) => ({
     flex: 0,
-    justifyContent: 'center',
     maxWidth: theme.sizes.colwidth,
   }),
   wrapper: {

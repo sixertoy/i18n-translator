@@ -9,9 +9,9 @@ import { repository, version } from '../../../../package.json';
 
 const useStyles = createUseStyles({
   baseline: ({ theme }) => ({
-    background: theme.colors.white,
+    // background: theme.colors.white,
     borderRadius: '4px 4px 0 0',
-    color: theme.colors.body,
+    // color: theme.colors.body,
     composes: ['py0', 'px12'],
     textTransform: 'uppercase',
   }),
@@ -28,11 +28,11 @@ const useStyles = createUseStyles({
     letterSpacing: '0.12em',
   },
   love: ({ theme }) => ({
-    color: theme.colors.red,
+    // color: theme.colors.red,
   }),
   version: ({ theme }) => ({
-    color: theme.colors.body,
-    opacity: 0.35,
+    // color: theme.colors.body,
+    // opacity: 0.35,
   }),
 });
 

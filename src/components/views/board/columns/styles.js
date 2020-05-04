@@ -1,7 +1,7 @@
 import { rgba } from '../../../../core/utils/colors';
 
 export const lineStyles = theme => ({
-  '&.odd': { background: rgba(theme.colors.white, 0.25) },
+  // '&.odd': { background: rgba(theme.colors.white, 0.25) },
   composes: ['is-block', 'p7', 'no-overflow'],
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
@@ -9,9 +9,9 @@ export const lineStyles = theme => ({
 
 export const inputStyles = theme => ({
   '&:focus': {
-    background: rgba(theme.colors.white, 1),
+    // background: rgba(theme.colors.white, 1),
   },
-  background: rgba(theme.colors.white, 0),
+  // background: rgba(theme.colors.white, 0),
   borderRadius: 4,
   composes: [
     'is-block',
