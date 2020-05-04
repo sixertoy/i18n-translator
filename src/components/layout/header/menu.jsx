@@ -17,14 +17,16 @@ import {
 } from '../../../features.json';
 
 const useStyles = createUseStyles({
-  container: {
-    composes: ['flex-columns'],
-  },
   link: ({ theme }) => ({
     background: theme.colors.white,
     borderRadius: 4,
     color: theme.colors.blue,
     composes: ['is-block', 'ml7', 'p7', 'fs18'],
+  }),
+  menu: ({ theme }) => ({
+    composes: ['flex-columns', 'is-absolute'],
+    right: theme.sizes.colgutter,
+    top: 4,
   }),
 });
 
@@ -65,7 +67,7 @@ const ReactDumbComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container}>
+    <div className={classes.menu}>
       {MENU_ITEMS.map(({ Icon, path, title }) => (
         <Tooltip
           key={title}
