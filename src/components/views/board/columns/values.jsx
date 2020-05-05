@@ -21,6 +21,7 @@ const useStyles = createUseStyles({
     composes: ['px12', 'fs12'],
   }),
   input: ({ theme }) => ({
+    '&::placeholder': { composes: ['fs12'], opacity: 0.35 },
     color: theme.font,
     composes: ['px7', 'fs14'],
     height: '100%',

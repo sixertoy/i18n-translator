@@ -63,7 +63,7 @@ const themeBase = {
     colgutter: 12,
     colwidth: 300,
     keycol: 220,
-    line: 42,
+    line: 60,
     logo: 28,
     options: 112,
   },

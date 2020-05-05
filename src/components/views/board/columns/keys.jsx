@@ -19,6 +19,7 @@ const useStyles = createUseStyles({
     width: theme.sizes.keycol,
   }),
   input: {
+    '&::placeholder': { composes: ['fs12'], opacity: 0.35 },
     composes: ['is-bold', 'px7', 'fs12', 'is-uppercase'],
     height: '100%',
     textOverflow: 'ellipsis',
