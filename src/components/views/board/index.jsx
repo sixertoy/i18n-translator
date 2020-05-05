@@ -3,11 +3,11 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import Columns from './columns';
 import Headers from './headers';
-import Stats from './stats';
+import Options from './options';
 
 const useStyles = createUseStyles({
   board: {
-    composes: ['debug', 'flex-rows'],
+    composes: ['debug', 'flex-rows', 'flex-stretch'],
     height: '100%',
   },
   wrapper: {
@@ -21,7 +21,7 @@ const BoardComponent = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.board}>
-      <Stats />
+      <Options />
       <div className={classes.wrapper}>
         <Headers />
         <Columns />

@@ -10,7 +10,7 @@ import { USE_ACCOUNT, USE_PROJECTS } from '../../../features.json';
 
 const useStyles = createUseStyles({
   link: {
-    composes: ['ml7', 'p7', 'fs18', 'debug'],
+    composes: ['p7', 'fs18', 'debug'],
   },
   menu: {
     composes: ['debug'],

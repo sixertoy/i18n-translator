@@ -11,6 +11,7 @@ const useStyles = createUseStyles({
       'flex-columns',
       'flex-between',
       'items-center',
+      'px32',
       'debug',
     ],
     height: theme.sizes.header,
@@ -24,9 +25,9 @@ const ApplicationHeader = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.header}>
-      <div className="blank">&nbsp;</div>
-      <Title />
       <Menu />
+      <Title />
+      <div className="blank">&nbsp;</div>
     </div>
   );
 };
