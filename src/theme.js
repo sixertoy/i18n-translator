@@ -51,6 +51,7 @@ const themes = {
     love: '#DA402B',
     odd: '#FFFFFF',
     options: '#0D0D0D',
+    red: '#E5356F',
     triangle: '#DA402B',
     valid: '#ACE539',
   },

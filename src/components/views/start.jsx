@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 import { selectPrimaryKeys } from '../../redux/selectors';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = createUseStyles({
   button: {
     borderRadius: 4,
     composes: ['py20', 'px32', 'debug'],
@@ -21,7 +21,7 @@ const useStyles = createUseStyles(theme => ({
       'is-full-layout',
     ],
   },
-}));
+});
 
 const StartComponent = () => {
   const theme = useTheme();
@@ -40,7 +40,7 @@ const StartComponent = () => {
       {redirect && <Redirect to="/board" />}
       {!redirect && (
         <div className={classes.container}>
-          <Link className={classes.button} to="/add">
+          <Link className={classes.button} to="/create">
             <span>Create a new language project</span>
           </Link>
         </div>

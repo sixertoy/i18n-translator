@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
     width: theme.sizes.colwidth,
   }),
   icon: ({ theme }) => ({
-    '.valid &': { color: theme.valid },
+    '.notvalid &': { color: theme.red },
     color: theme.colors.gray,
     composes: ['px12', 'fs12'],
   }),
@@ -50,11 +50,11 @@ const TranslationsComponent = ({ items }) => {
         {values.map(([key, translation], index) => {
           const odd = index % 2;
           const even = !odd;
-          const valid = translation !== '';
+          const notvalid = !translation || translation === '';
           return (
             <div
               key={key}
-              className={classnames(classes.line, { even, odd, valid })}>
+              className={classnames(classes.line, { even, notvalid, odd })}>
               <input
                 className={classes.input}
                 placeholder="Enter a value"
