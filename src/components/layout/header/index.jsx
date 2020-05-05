@@ -6,7 +6,7 @@ import Title from './title';
 
 const useStyles = createUseStyles({
   header: ({ theme }) => ({
-    background: theme.colors.header,
+    background: theme.header,
     composes: [
       'flex-0',
       'flex-columns',

@@ -11,16 +11,10 @@ const useStyles = createUseStyles({
   },
   logo: ({ theme }) => ({
     composes: ['is-inline-block', 'mr5'],
-    fill: theme.colors.white,
+    fill: theme.triangle,
     height: theme.sizes.logo,
     width: theme.sizes.logo,
   }),
-  // text: ({ theme }) => ({
-  //   color: theme.colors.white,
-  //   composes: ['fs32', 'is-bold'],
-  //   fontFamily: ['Cinzel', 'serif'],
-  //   opacity: 1,
-  // }),
   title: {
     composes: ['text-center', 'fs24'],
     'line-height': 'inherit',

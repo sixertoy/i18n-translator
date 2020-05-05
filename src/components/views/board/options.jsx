@@ -40,7 +40,7 @@ const useStyles = createUseStyles({
     width: 200,
   }),
   title: ({ theme }) => ({
-    color: theme.colors.white,
+    color: theme.triangle,
     composes: ['is-bold'],
   }),
   tools: {
