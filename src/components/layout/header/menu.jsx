@@ -10,8 +10,8 @@ import { USE_ACCOUNT, USE_PROJECTS } from '../../../features.json';
 
 const useStyles = createUseStyles({
   link: ({ theme }) => ({
-    color: theme.colors.font,
-    composes: ['p7', 'fs18'],
+    color: theme.white,
+    composes: ['p7', 'fs20'],
   }),
   menu: {},
 });
