@@ -48,7 +48,9 @@ const themes = {
     header: 'linear-gradient(119deg, #1E103C 24%, #E5356F 100%)',
   },
   day: {
+    font: '#8C8C8C',
     header: '#595959',
+    options: '#0D0D0D',
     triangle: '#DA402B',
   },
 };

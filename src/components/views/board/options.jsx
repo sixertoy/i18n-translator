@@ -7,45 +7,42 @@ import {
   AiOutlineSortDescending as SortIcon,
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Link } from 'react-router-dom';
-import { Tooltip } from 'react-tippy';
 
 import { USE_ADD_LANGUAGE } from '../../../features.json';
+import Tooltip from '../../commons/tooltip';
 
 const useStyles = createUseStyles({
-  inner: {
-    composes: ['flex-columns'],
-  },
-  input: {
-    composes: ['px5', 'py3'],
-  },
-  link: ({ theme }) => ({
-    color: theme.colors.font,
-    composes: ['ml7'],
-    fontSize: 24,
-    opacity: 0.75,
-  }),
+  labels: {},
+  menu: {},
   options: ({ theme }) => ({
-    background: theme.colors.options,
-    color: theme.colors.font,
+    background: theme.options,
+    color: theme.font,
     composes: ['flex-columns', 'flex-between', 'px32', 'items-center'],
     height: theme.sizes.options,
     maxHeight: theme.sizes.options,
     minHeight: theme.sizes.options,
   }),
   search: ({ theme }) => ({
-    background: theme.colors.header,
-    borderRadius: 12,
-    height: 24,
-    width: 200,
+    background: theme.colors.white,
+    borderRadius: 16,
+    composes: ['flex-columns', 'flex-end', 'items-center', 'px12'],
+    height: 32,
+    maxWidth: 260,
+    minWidth: 260,
+    width: 260,
   }),
+  searchIcon: {
+    height: '100%',
+  },
+  searchInput: {
+    composes: ['is-block', 'mr7'],
+    height: '100%',
+    width: '100%',
+  },
   title: ({ theme }) => ({
     color: theme.triangle,
     composes: ['is-bold'],
   }),
-  tools: {
-    composes: ['items-center'],
-  },
 });
 
 const MENU_ITEMS = [
@@ -74,42 +71,29 @@ const OptionsComponent = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.options}>
-      <div className={classes.wrapper}>
+      <div className={classes.labels}>
         <h3 className={classes.title}>
           <span>Nom du projet</span>
         </h3>
-        <div>
+        <div className={classes.bar}>
           <span>Pourcentage</span>
         </div>
       </div>
-      <div className={classes.tools}>
-        <div className={classes.inner}>
-          <div className={classes.search}>
-            <input placeholder="Rechercher" type="text" />
-            <SearchIcon />
-          </div>
-          <span />
-          {MENU_ITEMS.map(({ Icon, path, title }) => (
-            <Tooltip
-              key={title}
-              arrow
-              arrowSize="small"
-              position="bottom-end"
-              style={{ fontSize: 8 }}
-              title={title}>
-              <Link className={classes.link} to={path}>
-                <Icon />
-              </Link>
-            </Tooltip>
-          ))}
-        </div>
+      <div className={classes.search}>
+        <input
+          className={classes.searchInput}
+          placeholder="Rechercher"
+          type="text"
+        />
+        <SearchIcon className={classes.searchIcon} />
+      </div>
+      <div className={classes.menu}>
+        {MENU_ITEMS.map(({ Icon, path, title }) => (
+          <Tooltip key={title} icon={Icon} title={title} to={path} />
+        ))}
       </div>
     </div>
   );
 };
-
-OptionsComponent.defaultProps = {};
-
-OptionsComponent.propTypes = {};
 
 export default OptionsComponent;
