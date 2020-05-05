@@ -20,6 +20,15 @@ export function createTranslation(action) {
   return translation;
 }
 
+export function updateValue(state, { key, lang, update }) {
+  const next = state.reduce((acc, obj) => {
+    const iscurrent = obj.lang === lang;
+    if (!iscurrent) return [...acc, obj];
+    return [...acc, { ...obj, dict: { ...obj.dict, [key]: update } }];
+  }, []);
+  return next;
+}
+
 // NOTE translation data model
 //  {
 //    lang: string,
@@ -38,7 +47,7 @@ const translations = (state = false, action) => {
     case EVENT_TYPES.TRANSLATIONS_VALUE_ADD:
       return state;
     case EVENT_TYPES.TRANSLATIONS_VALUE_UPDATE:
-      return state;
+      return updateValue(state, action);
     case EVENT_TYPES.TRANSLATIONS_VALUE_DELETE:
       return state;
     // NOTE -> Keys

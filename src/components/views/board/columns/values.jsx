@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useDispatch } from 'react-redux';
+
+import { updateValue } from '../../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -37,6 +40,7 @@ const useStyles = createUseStyles({
 
 const TranslationsComponent = ({ items }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const classes = useStyles({ theme });
   const lastLang = items[items.length - 1].lang;
   return items.map(({ lang, values }) => {
@@ -53,13 +57,13 @@ const TranslationsComponent = ({ items }) => {
               className={classnames(classes.line, { even, odd, valid })}>
               <input
                 className={classes.input}
-                defaultValue={translation}
                 placeholder="Enter a value"
                 type="text"
-                onBlur={evt => {
+                value={translation}
+                onChange={evt => {
                   evt.preventDefault();
-                  // const udpate = evt.target.value;
-                  // dispatch(updateValue({ id, lang, udpate }));
+                  const update = evt.target.value;
+                  dispatch(updateValue({ key, lang, update }));
                 }}
               />
               <span className={classes.icon}>

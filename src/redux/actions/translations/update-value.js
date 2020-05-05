@@ -1,11 +1,11 @@
 import { EVENT_TYPES } from '../../../constants';
 
-const updateValue = ({ id, lang, udpate }) => {
+const updateValue = ({ key, lang, update }) => {
   return {
-    id,
+    key,
     lang,
     type: EVENT_TYPES.TRANSLATIONS_VALUE_UPDATE,
-    udpate,
+    update,
   };
 };
 

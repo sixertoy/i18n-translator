@@ -10,7 +10,7 @@ const selectPrimaryKeys = createSelector(
   translations => {
     const keys = translations
       .map(mapKeys)
-      .reduce(mergeKeys)
+      .reduce(mergeKeys, [])
       .filter(uniq)
       .sort();
     return keys;
