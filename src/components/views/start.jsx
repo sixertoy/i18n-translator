@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const StartComponent = () => {
+const StartViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const keys = useSelector(selectPrimaryKeys);
@@ -49,8 +49,4 @@ const StartComponent = () => {
   );
 };
 
-StartComponent.defaultProps = {};
-
-StartComponent.propTypes = {};
-
-export default StartComponent;
+export default StartViewComponent;

@@ -34,7 +34,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const CreateComponent = () => {
+const CreateViewComponent = () => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -97,4 +97,4 @@ const CreateComponent = () => {
   );
 };
 
-export default CreateComponent;
+export default CreateViewComponent;

@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const BoardComponent = () => {
+const BoardViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -30,4 +30,4 @@ const BoardComponent = () => {
   );
 };
 
-export default BoardComponent;
+export default BoardViewComponent;
