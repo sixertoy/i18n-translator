@@ -14,9 +14,9 @@ const useStyles = createUseStyles({
       'items-center',
       'px32',
     ],
-    height: theme.sizes.header,
-    maxHeight: theme.sizes.header,
-    minHeight: theme.sizes.header,
+    height: 40,
+    maxHeight: 40,
+    minHeight: 40,
   }),
 });
 

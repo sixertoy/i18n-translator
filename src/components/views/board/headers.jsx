@@ -19,8 +19,14 @@ const useStyles = createUseStyles({
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
+  keyicon: {
+    composes: ['is-block'],
+    margin: '0 auto',
+  },
   primary: ({ theme }) => ({
-    maxWidth: theme.sizes.colwidth,
+    maxWidth: theme.sizes.keycol,
+    minWidth: theme.sizes.keycol,
+    width: theme.sizes.keycol,
   }),
   wrapper: {
     composes: ['flex-columns', 'items-center'],
@@ -35,7 +41,7 @@ const HeadersComponent = () => {
     <div className={classes.headers}>
       <div className={classes.wrapper}>
         <div className={classnames(classes.item, classes.primary)}>
-          <KeyIcon />
+          <KeyIcon className={classes.keyicon} />
         </div>
         {headers.map(({ label, lang }) => (
           <div key={lang} className={classes.item}>

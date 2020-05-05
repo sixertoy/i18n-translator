@@ -6,8 +6,8 @@ import {
   selectPrimaryKeys,
   selectTranslations,
 } from '../../../../redux/selectors';
-import PrimaryKeys from './primary-keys';
-import Translations from './translations';
+import Keys from './keys';
+import Values from './values';
 
 const useStyles = createUseStyles({
   columns: {
@@ -30,8 +30,8 @@ const ColumnsComponent = () => {
     <div className={classes.columns}>
       <div className={classes.scrollbox}>
         <div className={classes.inner}>
-          <PrimaryKeys items={keys} />
-          <Translations items={items} />
+          <Keys items={keys} />
+          {/* <Values items={items} /> */}
         </div>
       </div>
     </div>

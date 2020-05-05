@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { inputStyles, lineStyles } from './styles';
-
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
     composes: ['flex-1'],
@@ -12,12 +10,29 @@ const useStyles = createUseStyles({
     width: theme.sizes.colwidth,
   }),
   input: ({ theme }) => ({
-    ...inputStyles(theme),
     color: theme.colors.font,
+    composes: [
+      'is-block',
+      'px7',
+      'py7',
+      'no-overflow',
+      'fs14',
+      'no-wrap',
+      'is-full-width',
+    ],
+    fontFamily: ['arial', 'verdana', 'sans-serif'],
+    letterSpacing: '0.05rem',
+    textOverflow: 'ellipsis',
+    transition: 'background 0.5s',
   }),
   line: ({ theme }) => ({
-    ...lineStyles(theme),
+    '&.even': { background: theme.colors.even },
+    '&.odd': { background: theme.colors.odd },
     '.last &': { borderRadius: '0 4px 4px 0' },
+    composes: ['py12', 'no-overflow'],
+    marginBottom: 1,
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   }),
 });
 
@@ -30,9 +45,10 @@ const TranslationsComponent = ({ items }) => {
     return (
       <div key={lang} className={classnames(classes.column, { last })}>
         {values.map(([key, translation], index) => {
-          const odd = !(index % 2);
+          const odd = index % 2;
+          const even = !odd;
           return (
-            <div key={key} className={classnames(classes.line, { odd })}>
+            <div key={key} className={classnames(classes.line, { even, odd })}>
               <input
                 className={classes.input}
                 defaultValue={translation}
