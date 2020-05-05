@@ -10,6 +10,9 @@ const useStyles = createUseStyles({
   headers: {
     composes: ['py12', 'flex-0'],
   },
+  icon: {
+    composes: ['mr7'],
+  },
   keys: ({ theme }) => ({
     fontSize: 18,
     maxWidth: theme.sizes.keycol,
@@ -18,15 +21,9 @@ const useStyles = createUseStyles({
     width: theme.sizes.keycol,
   }),
   values: ({ theme }) => ({
-    composes: [
-      'flex-columns',
-      'flex-between',
-      'flex-1',
-      'fs14',
-      'px7',
-      'is-bold',
-    ],
+    composes: ['flex-1', 'fs14', 'pl7', 'is-bold'],
     fontVariant: 'small-caps',
+    marginLeft: 1,
     maxWidth: '65%',
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
@@ -48,8 +45,10 @@ const HeadersComponent = () => {
         </div>
         {headers.map(({ label, lang }) => (
           <div key={lang} className={classes.values}>
+            <button className={classes.icon} type="button" onClick={() => {}}>
+              <ContextIcon />
+            </button>
             <span>{label}</span>
-            <ContextIcon />
           </div>
         ))}
       </div>
