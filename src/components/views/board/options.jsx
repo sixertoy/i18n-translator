@@ -12,6 +12,9 @@ import { USE_ADD_LANGUAGE } from '../../../features.json';
 import Tooltip from '../../commons/tooltip';
 
 const useStyles = createUseStyles({
+  filter: {
+    composes: ['fs24', 'ml12'],
+  },
   labels: {},
   menu: {},
   options: ({ theme }) => ({
@@ -43,15 +46,12 @@ const useStyles = createUseStyles({
     color: theme.triangle,
     composes: ['is-bold'],
   }),
+  wrapper: {
+    composes: ['flex-columns', 'items-center', 'flex-center'],
+  },
 });
 
 const MENU_ITEMS = [
-  {
-    Icon: SortIcon,
-    path: '/board/create',
-    title: 'Filtrer',
-    visible: true,
-  },
   {
     Icon: PlusIcon,
     path: '/board/create',
@@ -79,13 +79,18 @@ const OptionsComponent = () => {
           <span>Pourcentage</span>
         </div>
       </div>
-      <div className={classes.search}>
-        <input
-          className={classes.searchInput}
-          placeholder="Rechercher"
-          type="text"
-        />
-        <SearchIcon className={classes.searchIcon} />
+      <div className={classes.wrapper}>
+        <div className={classes.search}>
+          <input
+            className={classes.searchInput}
+            placeholder="Rechercher"
+            type="text"
+          />
+          <SearchIcon className={classes.searchIcon} />
+        </div>
+        <button className={classes.filter} type="button" onClick={() => {}}>
+          <SortIcon />
+        </button>
       </div>
       <div className={classes.menu}>
         {MENU_ITEMS.map(({ Icon, path, title }) => (

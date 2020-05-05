@@ -51,6 +51,7 @@ const KeysComponent = ({ items }) => {
             <input
               className={classes.input}
               defaultValue={key}
+              placeholder="Enter a value"
               type="text"
               onBlur={evt => {
                 evt.preventDefault();

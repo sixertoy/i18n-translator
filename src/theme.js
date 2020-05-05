@@ -52,6 +52,7 @@ const themes = {
     odd: '#FFFFFF',
     options: '#0D0D0D',
     triangle: '#DA402B',
+    valid: '#ACE539',
   },
 };
 

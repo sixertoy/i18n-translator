@@ -1,24 +1,34 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
     composes: ['flex-1'],
+    marginLeft: 1,
+    maxWidth: '65%',
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
-  input: {
+  icon: ({ theme }) => ({
+    '.valid &': { color: theme.valid },
+    color: theme.colors.gray,
+    composes: ['px12', 'fs12'],
+  }),
+  input: ({ theme }) => ({
+    color: theme.font,
     composes: ['px7', 'fs14'],
     height: '100%',
     textOverflow: 'ellipsis',
     width: '100%',
-  },
+  }),
   line: ({ theme }) => ({
     '&.even': { background: theme.even },
     '&.odd': { background: theme.odd },
-    borderRadius: '4px 0 0 4px',
+    // '.last &': { borderRadius: '0 4px 4px 0' },
+    // borderRadius: '4px 0 0 4px',
     composes: ['flex-columns', 'no-overflow', 'items-center'],
     height: theme.sizes.line,
     marginBottom: 1,
@@ -36,11 +46,15 @@ const TranslationsComponent = ({ items }) => {
         {values.map(([key, translation], index) => {
           const odd = index % 2;
           const even = !odd;
+          const valid = translation !== '';
           return (
-            <div key={key} className={classnames(classes.line, { even, odd })}>
+            <div
+              key={key}
+              className={classnames(classes.line, { even, odd, valid })}>
               <input
                 className={classes.input}
                 defaultValue={translation}
+                placeholder="Enter a value"
                 type="text"
                 onBlur={evt => {
                   evt.preventDefault();
@@ -48,6 +62,9 @@ const TranslationsComponent = ({ items }) => {
                   // dispatch(updateValue({ id, lang, udpate }));
                 }}
               />
+              <span className={classes.icon}>
+                <CheckIcon />
+              </span>
             </div>
           );
         })}
