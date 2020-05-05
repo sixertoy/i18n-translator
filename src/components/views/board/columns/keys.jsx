@@ -5,12 +5,13 @@ import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
-  button: {
+  button: ({ theme }) => ({
+    '&:hover': { color: theme.triangle },
     background: 'transparent',
-    color: '#000000',
-    composes: ['px12', 'is-full-height', 'is-block'],
-    fontSize: 10,
-  },
+    color: theme.colors.gray,
+    composes: ['pr7', 'pl12', 'is-full-height', 'is-block', 'fs12'],
+    transition: 'color 0.5s',
+  }),
   column: ({ theme }) => ({
     composes: ['flex-0'],
     maxWidth: theme.sizes.keycol,

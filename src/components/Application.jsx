@@ -9,14 +9,14 @@ import ApplicationHeader from './layout/header';
 
 const useStyles = createUseStyles({
   application: ({ theme }) => ({
-    background: theme.colors.background,
+    background: theme.background,
     composes: ['flex-rows', 'flex-stretch'],
     height: '100%',
   }),
-  views: ({ theme }) => ({
+  views: {
     composes: ['flex-1'],
     height: 'auto',
-  }),
+  },
 });
 
 const Application = () => {

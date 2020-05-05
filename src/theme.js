@@ -23,6 +23,7 @@ const orange = '#F0812F';
 const options = '#0D0D0D';
 const header = '#595959';
 const font = '#8C8C8C';
+const gray = '#DDDDDD';
 const odd = '#FFFFFF';
 const white = '#FFFFFF';
 const even = '#F7F7F7';
@@ -34,6 +35,7 @@ const colors = {
   blue,
   even,
   font,
+  gray,
   header,
   odd,
   options,
@@ -48,6 +50,7 @@ const themes = {
     header: 'linear-gradient(119deg, #1E103C 24%, #E5356F 100%)',
   },
   day: {
+    background: '#F1F1F1',
     font: '#8C8C8C',
     header: '#595959',
     options: '#0D0D0D',
@@ -61,7 +64,7 @@ const themeBase = {
     colgutter: 12,
     colwidth: 300,
     keycol: 220,
-    line: 52,
+    line: 42,
     logo: 28,
     options: 112,
   },
