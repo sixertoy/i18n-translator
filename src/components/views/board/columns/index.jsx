@@ -31,7 +31,7 @@ const ColumnsComponent = () => {
       <div className={classes.scrollbox}>
         <div className={classes.inner}>
           <Keys items={keys} />
-          {/* <Values items={items} /> */}
+          <Values items={items} />
         </div>
       </div>
     </div>

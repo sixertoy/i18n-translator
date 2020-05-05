@@ -9,30 +9,19 @@ const useStyles = createUseStyles({
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
-  input: ({ theme }) => ({
-    color: theme.colors.font,
-    composes: [
-      'is-block',
-      'px7',
-      'py7',
-      'no-overflow',
-      'fs14',
-      'no-wrap',
-      'is-full-width',
-    ],
-    fontFamily: ['arial', 'verdana', 'sans-serif'],
-    letterSpacing: '0.05rem',
+  input: {
+    composes: ['px7', 'fs14'],
+    height: '100%',
     textOverflow: 'ellipsis',
-    transition: 'background 0.5s',
-  }),
+    width: '100%',
+  },
   line: ({ theme }) => ({
     '&.even': { background: theme.colors.even },
     '&.odd': { background: theme.colors.odd },
-    '.last &': { borderRadius: '0 4px 4px 0' },
-    composes: ['py12', 'no-overflow'],
+    borderRadius: '4px 0 0 4px',
+    composes: ['flex-columns', 'no-overflow', 'items-center'],
+    height: theme.sizes.line,
     marginBottom: 1,
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
   }),
 });
 
