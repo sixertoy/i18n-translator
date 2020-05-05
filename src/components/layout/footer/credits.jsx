@@ -5,7 +5,7 @@ const useStyles = createUseStyles({
   credits: {
     borderRadius: '4px 4px 0 0',
     bottom: 0,
-    composes: ['py0', 'px12', 'debug', 'is-absolute'],
+    composes: ['py0', 'px12', 'is-absolute'],
     right: 32,
     textTransform: 'uppercase',
   },

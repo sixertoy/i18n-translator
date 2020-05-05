@@ -21,9 +21,7 @@ const useStyles = createUseStyles({
     ],
     letterSpacing: '0.12em',
   },
-  version: {
-    composes: ['debug'],
-  },
+  version: {},
 });
 
 // const { NODE_ENV } = process.env;
