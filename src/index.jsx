@@ -3,6 +3,7 @@ import './scss/index.scss';
 
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import { IconContext } from 'react-icons';
 import { ThemeProvider } from 'react-jss';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -19,6 +20,8 @@ const history = getRouterHistory();
 const initialState = getInitialState(history);
 const { persistor, store } = configure(history, initialState);
 
+const globalIconStyle = { display: 'inline-flex', verticalAlign: 'middle' };
+
 const Root = () => (
   <StrictMode>
     <Provider store={store}>
@@ -27,7 +30,9 @@ const Root = () => (
           <ThemeProvider theme={store.getState().theme}>
             {/* eslint-disable-next-line */}
             {console.log('version : ', version)}
-            <Application />
+            <IconContext.Provider value={{ style: globalIconStyle }}>
+              <Application />
+            </IconContext.Provider>
           </ThemeProvider>
         </BrowserRouter>
       </PersistGate>

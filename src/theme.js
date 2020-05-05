@@ -62,6 +62,7 @@ const themeBase = {
     colgutter: 12,
     colwidth: 300,
     header: 40,
+    options: 80,
   },
 };
 

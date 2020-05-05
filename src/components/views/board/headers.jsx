@@ -21,7 +21,6 @@ const useStyles = createUseStyles({
   }),
   primary: ({ theme }) => ({
     composes: ['debug'],
-    flex: 0,
     maxWidth: theme.sizes.colwidth,
   }),
   wrapper: {

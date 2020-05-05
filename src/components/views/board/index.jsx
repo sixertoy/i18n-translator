@@ -7,11 +7,11 @@ import Options from './options';
 
 const useStyles = createUseStyles({
   board: {
-    composes: ['debug', 'flex-rows', 'flex-stretch'],
+    composes: ['flex-rows', 'flex-stretch'],
     height: '100%',
   },
   wrapper: {
-    composes: ['debug', 'flex-rows', 'px32'],
+    composes: ['flex-rows', 'px32'],
     height: '100%',
   },
 });

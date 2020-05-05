@@ -14,15 +14,15 @@ import { USE_ADD_LANGUAGE } from '../../../features.json';
 
 const useStyles = createUseStyles({
   link: {
-    composes: ['debug', 'ml7'],
+    composes: ['ml7'],
     fontSize: 24,
   },
-  options: {
-    composes: ['debug', 'flex-columns', 'flex-between', 'px32', 'items-center'],
-    height: 80,
-    maxHeight: 80,
-    minHeight: 80,
-  },
+  options: ({ theme }) => ({
+    composes: ['flex-columns', 'flex-between', 'px32', 'items-center'],
+    height: theme.sizes.options,
+    maxHeight: theme.sizes.options,
+    minHeight: theme.sizes.options,
+  }),
 });
 
 const MENU_ITEMS = [
@@ -58,9 +58,9 @@ const OptionsComponent = () => {
   return (
     <div className={classes.options}>
       <div className={classes.wrapper}>
-        <div>
+        <h3>
           <span>Nom du projet</span>
-        </div>
+        </h3>
         <div>
           <span>Pourcentage</span>
         </div>
