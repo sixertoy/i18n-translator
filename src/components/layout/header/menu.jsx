@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
+import { AiOutlineAppstoreAdd as ProjectsIcon } from 'react-icons/ai';
 import { MdAccountCircle as AccountIcon } from 'react-icons/md';
 import { RiHome2Line as HomeIcon } from 'react-icons/ri';
 import { createUseStyles, useTheme } from 'react-jss';

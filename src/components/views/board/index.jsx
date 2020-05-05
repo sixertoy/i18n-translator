@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
     height: '100%',
   },
   wrapper: {
-    composes: ['debug', 'flex-rows'],
+    composes: ['debug', 'flex-rows', 'px32'],
     height: '100%',
   },
 });

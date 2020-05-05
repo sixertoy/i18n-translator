@@ -3,6 +3,8 @@ import React from 'react';
 import {
   AiOutlineDownload as DownloadIcon,
   AiOutlinePlus as PlusIcon,
+  AiOutlineSearch as SearchIcon,
+  AiOutlineSortDescending as SortIcon,
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
@@ -12,7 +14,7 @@ import { USE_ADD_LANGUAGE } from '../../../features.json';
 
 const useStyles = createUseStyles({
   link: {
-    composes: ['debug'],
+    composes: ['debug', 'ml7'],
     fontSize: 24,
   },
   options: {
@@ -24,6 +26,18 @@ const useStyles = createUseStyles({
 });
 
 const MENU_ITEMS = [
+  {
+    Icon: SortIcon,
+    path: '/board/create',
+    title: 'Filtrer',
+    visible: true,
+  },
+  {
+    Icon: SearchIcon,
+    path: '/board/create',
+    title: 'Rechercher',
+    visible: true,
+  },
   {
     Icon: PlusIcon,
     path: '/board/create',
@@ -52,6 +66,7 @@ const OptionsComponent = () => {
         </div>
       </div>
       <div className={classes.tools}>
+        <span />
         {MENU_ITEMS.map(({ Icon, path, title }) => (
           <Tooltip
             key={title}
