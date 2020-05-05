@@ -6,7 +6,7 @@ import { getThemeByThemeId } from './theme';
 
 const INITIAL_VALUES = {
   loading: false,
-  theme: getThemeByThemeId('day'),
+  theme: getThemeByThemeId('bali'),
   translations: [],
 };
 

@@ -24,7 +24,8 @@ export function updateValue(state, { key, lang, update }) {
   const next = state.reduce((acc, obj) => {
     const iscurrent = obj.lang === lang;
     if (!iscurrent) return [...acc, obj];
-    return [...acc, { ...obj, dict: { ...obj.dict, [key]: update } }];
+    const dict = { ...obj.dict, [key]: update };
+    return [...acc, { ...obj, dict }];
   }, []);
   return next;
 }

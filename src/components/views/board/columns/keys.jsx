@@ -6,7 +6,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    '&:hover': { color: theme.triangle },
+    '&:hover': { color: theme.active },
     background: 'transparent',
     color: theme.colors.gray,
     composes: ['pr7', 'pl12', 'is-full-height', 'is-block', 'fs12'],

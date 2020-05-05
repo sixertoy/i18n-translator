@@ -41,9 +41,20 @@ const colors = {
 
 const themes = {
   bali: {
+    active: '#E5356F',
+    background: '#F1F1F1',
+    even: '#F7F7F7',
+    font: '#8C8C8C',
     header: 'linear-gradient(119deg, #1E103C 24%, #E5356F 100%)',
+    love: '#DA402B',
+    odd: '#FFFFFF',
+    options: '#0D0D0D',
+    red: '#E5356F',
+    triangle: '#FFFFFF',
+    valid: '#ACE539',
   },
   day: {
+    active: '#DA402B',
     background: '#F1F1F1',
     even: '#F7F7F7',
     font: '#8C8C8C',
