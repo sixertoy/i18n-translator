@@ -13,6 +13,7 @@ const useStyles = createUseStyles({
   }),
   input: ({ theme }) => ({
     ...inputStyles(theme),
+    color: theme.colors.font,
   }),
   line: ({ theme }) => ({
     ...lineStyles(theme),

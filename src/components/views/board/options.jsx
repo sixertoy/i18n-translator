@@ -13,6 +13,12 @@ import { Tooltip } from 'react-tippy';
 import { USE_ADD_LANGUAGE } from '../../../features.json';
 
 const useStyles = createUseStyles({
+  inner: {
+    composes: ['flex-columns'],
+  },
+  input: {
+    composes: ['px5', 'py3'],
+  },
   link: ({ theme }) => ({
     color: theme.colors.font,
     composes: ['ml7'],
@@ -27,8 +33,19 @@ const useStyles = createUseStyles({
     maxHeight: theme.sizes.options,
     minHeight: theme.sizes.options,
   }),
-  title: ({ theme }) => ({ color: theme.colors.white, composes: ['is-bold'] }),
-  tools: {},
+  search: ({ theme }) => ({
+    background: theme.colors.header,
+    borderRadius: 12,
+    height: 24,
+    width: 200,
+  }),
+  title: ({ theme }) => ({
+    color: theme.colors.white,
+    composes: ['is-bold'],
+  }),
+  tools: {
+    composes: ['items-center'],
+  },
 });
 
 const MENU_ITEMS = [
@@ -36,12 +53,6 @@ const MENU_ITEMS = [
     Icon: SortIcon,
     path: '/board/create',
     title: 'Filtrer',
-    visible: true,
-  },
-  {
-    Icon: SearchIcon,
-    path: '/board/create',
-    title: 'Rechercher',
     visible: true,
   },
   {
@@ -72,20 +83,26 @@ const OptionsComponent = () => {
         </div>
       </div>
       <div className={classes.tools}>
-        <span />
-        {MENU_ITEMS.map(({ Icon, path, title }) => (
-          <Tooltip
-            key={title}
-            arrow
-            arrowSize="small"
-            position="bottom-end"
-            style={{ fontSize: 8 }}
-            title={title}>
-            <Link className={classes.link} to={path}>
-              <Icon />
-            </Link>
-          </Tooltip>
-        ))}
+        <div className={classes.inner}>
+          <div className={classes.search}>
+            <input placeholder="Rechercher" type="text" />
+            <SearchIcon />
+          </div>
+          <span />
+          {MENU_ITEMS.map(({ Icon, path, title }) => (
+            <Tooltip
+              key={title}
+              arrow
+              arrowSize="small"
+              position="bottom-end"
+              style={{ fontSize: 8 }}
+              title={title}>
+              <Link className={classes.link} to={path}>
+                <Icon />
+              </Link>
+            </Tooltip>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 export const lineStyles = theme => ({
   '&.odd': { background: theme.colors.line },
-  composes: ['is-block', 'p7', 'no-overflow'],
+  composes: ['p7', 'no-overflow'],
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });

@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+// import { AiOutlineRight as ArrowIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { inputStyles, lineStyles } from './styles';
@@ -16,6 +17,8 @@ const useStyles = createUseStyles({
     ...inputStyles(theme),
     color: theme.colors.active,
     fontWeight: 'bold',
+    textAlign: 'right',
+    textTransform: 'uppercase',
   }),
   line: ({ theme }) => ({
     ...lineStyles(theme),

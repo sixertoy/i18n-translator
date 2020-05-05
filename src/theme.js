@@ -23,18 +23,38 @@
 
 const options = '#0D0D0D';
 const header = '#595959';
+const red = '#DA402B';
+const white = '#FFFFFF';
+
 const font = '#8C8C8C';
 const background = '#F2F2F2';
 const line = '#FFFFFF';
-const red = '#DA402B';
-const white = '#FFFFFF';
 const active = '#F0812F';
 
 const themes = {
   // highlight: '#2C313C',
   // scrollbar: '#4B5362',
   // shadow: '#3B4048',
+  bali: {
+    header: 'rgba(229, 53, 111, 1)',
+    options:
+      'linear-gradient(119deg, rgba(30,16,60,1) 24%, rgba(229,53,111,1) 100%)',
+    red: '#DA402B',
+    white: '#FFFFFF',
+  },
   day: {
+    active: '#F0812F',
+    background: '#F2F2F2',
+    font: '#8C8C8C',
+    header: '#595959',
+
+    line: '#FFFFFF',
+    options: '#0D0D0D',
+    options: '#0D0D0D',
+    red: '#DA402B',
+    red: '#DA402B',
+    white: '#FFFFFF',
+    white: '#FFFFFF',
     // active: '#6494ED',
     // background: white,
     // border: '#E4E6E8',
@@ -44,17 +64,6 @@ const themes = {
     // disabled: '#5F6368',
     // foreground: '#F5F5F5',
     // popup: '#E4E6E8',
-  },
-  night: {
-    // active: '#6494ED',
-    // background: '#282C34',
-    // border: '#181A1F',
-    // button: '#181A1F',
-    // color: '#D7DAE0',
-    // danger: '#E06C75',
-    // disabled: '#6B727C',
-    // foreground: '#21252B',
-    // popup: '#2F3237',
   },
 };
 
@@ -74,7 +83,8 @@ const themeBase = {
     colwidth: 300,
     footerMargin: 40,
     header: 40,
-    options: 80,
+    logo: 28,
+    options: 112,
   },
 };
 
