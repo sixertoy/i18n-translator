@@ -7,7 +7,7 @@ import { inputStyles, lineStyles } from './styles';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
-    composes: ['flex-1', 'debug'],
+    composes: ['flex-1'],
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
@@ -29,7 +29,7 @@ const TranslationsComponent = ({ items }) => {
     return (
       <div key={lang} className={classnames(classes.column, { last })}>
         {values.map(([key, translation], index) => {
-          const odd = index % 2;
+          const odd = !(index % 2);
           return (
             <div key={key} className={classnames(classes.line, { odd })}>
               <input

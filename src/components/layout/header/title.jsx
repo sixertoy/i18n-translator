@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,16 +9,18 @@ const useStyles = createUseStyles({
   link: {
     composes: ['is-block'],
   },
-  logo: {
+  logo: ({ theme }) => ({
     composes: ['is-inline-block', 'mr5'],
+    fill: theme.colors.font,
     height: 18,
     width: 18,
-  },
-  text: {
+  }),
+  text: ({ theme }) => ({
+    color: theme.colors.font,
     composes: ['fs24', 'is-bold'],
     fontFamily: ['Cinzel', 'serif'],
     opacity: 1,
-  },
+  }),
   title: {
     composes: ['text-center', 'fs24'],
     'line-height': 'inherit',
@@ -26,7 +28,8 @@ const useStyles = createUseStyles({
 });
 
 const LogoComponent = () => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const keys = useSelector(selectPrimaryKeys);
 
   const [pathTo, setPathTo] = useState('/');

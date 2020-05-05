@@ -9,7 +9,7 @@ import Credits from './credits';
 // import TwitterShareButton from './twitter-share-button';
 
 const useStyles = createUseStyles({
-  footer: {
+  footer: ({ theme }) => ({
     composes: [
       'flex-0',
       'px32',
@@ -20,8 +20,11 @@ const useStyles = createUseStyles({
       'is-relative',
     ],
     letterSpacing: '0.12em',
-  },
-  version: {},
+    marginTop: theme.sizes.footerMargin,
+  }),
+  version: ({ theme }) => ({
+    color: theme.colors.font,
+  }),
 });
 
 // const { NODE_ENV } = process.env;

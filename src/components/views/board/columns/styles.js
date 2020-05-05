@@ -1,7 +1,8 @@
 // import { rgba } from '../../../../core/utils/colors';
 
-export const lineStyles = () => ({
-  composes: ['is-block', 'p7', 'no-overflow', 'debug'],
+export const lineStyles = theme => ({
+  '&.odd': { background: theme.colors.line },
+  composes: ['is-block', 'p7', 'no-overflow'],
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
 });
@@ -10,7 +11,6 @@ export const inputStyles = () => ({
   composes: [
     'is-block',
     'px7',
-    'debug',
     'py12',
     'no-overflow',
     'fs14',

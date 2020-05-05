@@ -9,9 +9,10 @@ import { Tooltip } from 'react-tippy';
 import { USE_ACCOUNT, USE_PROJECTS } from '../../../features.json';
 
 const useStyles = createUseStyles({
-  link: {
+  link: ({ theme }) => ({
+    color: theme.colors.font,
     composes: ['p7', 'fs18'],
-  },
+  }),
   menu: {},
 });
 

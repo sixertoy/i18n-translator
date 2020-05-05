@@ -7,8 +7,13 @@
 
 // OK
 // const velvet = '#661E75';
-const red = '#DD4739';
-const white = '#FAFAFA';
+
+// const white = '#F2F2F2';
+// const blue = '#295772';
+// const dark = '#053158';
+// const grey = '#D9E3F2';
+// const red = '#F06F55';
+
 // const blue = '#0F133F';
 // const dark = '#1C223F';
 // const indigo = '#1C223F';
@@ -16,13 +21,22 @@ const white = '#FAFAFA';
 // const white = '#F2E4BD';
 // const body = '#D9C6B1';
 
+const options = '#0D0D0D';
+const header = '#595959';
+const font = '#8C8C8C';
+const background = '#F2F2F2';
+const line = '#FFFFFF';
+const red = '#DA402B';
+const white = '#FFFFFF';
+const active = '#F0812F';
+
 const themes = {
   // highlight: '#2C313C',
   // scrollbar: '#4B5362',
   // shadow: '#3B4048',
   day: {
     // active: '#6494ED',
-    background: white,
+    // background: white,
     // border: '#E4E6E8',
     // button: '#FFFFFF',
     // color: '#202124',
@@ -46,21 +60,19 @@ const themes = {
 
 const themeBase = {
   colors: {
-    // black,
-    // blue,
-    // body,
-    // dark,
-    // gray,
-    // grey,
-    // indigo,
+    active,
+    background,
+    font,
+    header,
+    line,
+    options,
     red,
     white,
-    // velvet,
-    // white,
   },
   sizes: {
     colgutter: 12,
     colwidth: 300,
+    footerMargin: 40,
     header: 40,
     options: 80,
   },

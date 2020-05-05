@@ -7,13 +7,14 @@ import { inputStyles, lineStyles } from './styles';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
-    composes: ['flex-0', 'debug'],
+    composes: ['flex-0'],
     maxWidth: theme.sizes.colwidth,
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
   input: ({ theme }) => ({
     ...inputStyles(theme),
+    color: theme.colors.active,
     fontWeight: 'bold',
   }),
   line: ({ theme }) => ({
@@ -29,7 +30,7 @@ const PrimaryKeysComponent = ({ items }) => {
   return (
     <div className={classes.column}>
       {items.map((key, index) => {
-        const odd = index % 2;
+        const odd = !(index % 2);
         return (
           <div key={key} className={classnames(classes.line, { odd })}>
             <input

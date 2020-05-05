@@ -10,21 +10,20 @@ import { selectHeader } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   headers: {
-    composes: ['py12', 'flex-0', 'debug'],
+    composes: ['py12', 'flex-0'],
     fontFamily: ['Cinzel', 'serif'],
   },
   item: ({ theme }) => ({
-    composes: ['flex-columns', 'flex-between', 'flex-1', 'fs18', 'debug'],
+    composes: ['flex-columns', 'flex-between', 'flex-1', 'fs18'],
     marginRight: theme.sizes.colgutter,
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
   primary: ({ theme }) => ({
-    composes: ['debug'],
     maxWidth: theme.sizes.colwidth,
   }),
   wrapper: {
-    composes: ['flex-columns', 'items-center', 'debug'],
+    composes: ['flex-columns', 'items-center'],
   },
 });
 

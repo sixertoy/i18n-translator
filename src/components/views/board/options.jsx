@@ -13,16 +13,22 @@ import { Tooltip } from 'react-tippy';
 import { USE_ADD_LANGUAGE } from '../../../features.json';
 
 const useStyles = createUseStyles({
-  link: {
+  link: ({ theme }) => ({
+    color: theme.colors.font,
     composes: ['ml7'],
     fontSize: 24,
-  },
+    opacity: 0.75,
+  }),
   options: ({ theme }) => ({
+    background: theme.colors.options,
+    color: theme.colors.font,
     composes: ['flex-columns', 'flex-between', 'px32', 'items-center'],
     height: theme.sizes.options,
     maxHeight: theme.sizes.options,
     minHeight: theme.sizes.options,
   }),
+  title: ({ theme }) => ({ color: theme.colors.white, composes: ['is-bold'] }),
+  tools: {},
 });
 
 const MENU_ITEMS = [
@@ -58,7 +64,7 @@ const OptionsComponent = () => {
   return (
     <div className={classes.options}>
       <div className={classes.wrapper}>
-        <h3>
+        <h3 className={classes.title}>
           <span>Nom du projet</span>
         </h3>
         <div>

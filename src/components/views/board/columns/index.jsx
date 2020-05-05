@@ -11,13 +11,13 @@ import Translations from './translations';
 
 const useStyles = createUseStyles({
   columns: {
-    composes: ['debug', 'is-scrollbox-wrapper', 'flex-1', 'flex-rows'],
+    composes: ['is-scrollbox-wrapper', 'flex-1', 'flex-rows'],
   },
   inner: {
-    composes: ['flex-columns', 'debug'],
+    composes: ['flex-columns'],
   },
   scrollbox: {
-    composes: ['debug', 'is-scrollbox'],
+    composes: ['is-scrollbox'],
   },
 });
 
