@@ -14,7 +14,6 @@ const useStyles = createUseStyles({
   }),
   column: ({ theme }) => ({
     composes: ['flex-0'],
-    maxWidth: theme.sizes.keycol,
     minWidth: theme.sizes.keycol,
     width: theme.sizes.keycol,
   }),

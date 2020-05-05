@@ -6,7 +6,7 @@ const useStyles = createUseStyles({
     background: theme.colors.white,
     borderRadius: '4px 4px 0 0',
     bottom: 0,
-    composes: ['py0', 'px12', 'is-absolute'],
+    composes: ['pb0', 'pt5', 'px12', 'is-absolute'],
     right: 32,
     textTransform: 'uppercase',
   }),

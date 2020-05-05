@@ -1,6 +1,6 @@
 import React from 'react';
-import { AiOutlineEllipsis as MenuIcon } from 'react-icons/ai';
-import { MdVpnKey as KeyIcon } from 'react-icons/md';
+import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
+import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -27,6 +27,7 @@ const useStyles = createUseStyles({
       'is-bold',
     ],
     fontVariant: 'small-caps',
+    maxWidth: '65%',
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
@@ -48,7 +49,7 @@ const HeadersComponent = () => {
         {headers.map(({ label, lang }) => (
           <div key={lang} className={classes.values}>
             <span>{label}</span>
-            <MenuIcon />
+            <ContextIcon />
           </div>
         ))}
       </div>

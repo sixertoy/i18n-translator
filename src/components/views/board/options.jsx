@@ -1,21 +1,30 @@
 // import PropTypes from 'prop-types';
+import Tippy from '@tippyjs/react';
 import React from 'react';
 import {
-  AiOutlineDownload as DownloadIcon,
+  AiOutlineDownload as ExportIcon,
+  AiOutlineEllipsis as ContextIcon,
   AiOutlinePlus as PlusIcon,
   AiOutlineSearch as SearchIcon,
   AiOutlineSortDescending as SortIcon,
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+import { Link } from 'react-router-dom';
 
-import { USE_ADD_LANGUAGE } from '../../../features.json';
-import Tooltip from '../../commons/tooltip';
+import { USE_ADD_LANGUAGE, USE_EXPORT } from '../../../features.json';
 
 const useStyles = createUseStyles({
+  context: {
+    composes: ['fs18'],
+  },
   filter: {
     composes: ['fs24', 'ml12'],
   },
   labels: {},
+  link: ({ theme }) => ({
+    color: theme.font,
+    composes: ['fs24', 'ml7'],
+  }),
   menu: {},
   options: ({ theme }) => ({
     background: theme.options,
@@ -51,21 +60,6 @@ const useStyles = createUseStyles({
   },
 });
 
-const MENU_ITEMS = [
-  {
-    Icon: PlusIcon,
-    path: '/board/create',
-    title: 'Ajouter une langue',
-    visible: USE_ADD_LANGUAGE,
-  },
-  {
-    Icon: DownloadIcon,
-    path: '/',
-    title: 'Exporter',
-    visible: true,
-  },
-].filter(({ visible }) => visible);
-
 const OptionsComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -74,6 +68,9 @@ const OptionsComponent = () => {
       <div className={classes.labels}>
         <h3 className={classes.title}>
           <span>Nom du projet</span>
+          <button className={classes.context} type="button">
+            <ContextIcon />
+          </button>
         </h3>
         <div className={classes.bar}>
           <span>Pourcentage</span>
@@ -93,9 +90,20 @@ const OptionsComponent = () => {
         </button>
       </div>
       <div className={classes.menu}>
-        {MENU_ITEMS.map(({ Icon, path, title }) => (
-          <Tooltip key={title} icon={Icon} title={title} to={path} />
-        ))}
+        {USE_EXPORT && (
+          <Tippy content="Exporter" placement="bottom">
+            <Link className={classes.link} to="/">
+              <ExportIcon />
+            </Link>
+          </Tippy>
+        )}
+        {USE_ADD_LANGUAGE && (
+          <Tippy content="Ajouter une langue" placement="bottom">
+            <Link className={classes.link} to="/board/create">
+              <PlusIcon />
+            </Link>
+          </Tippy>
+        )}
       </div>
     </div>
   );
