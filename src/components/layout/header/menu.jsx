@@ -10,11 +10,9 @@ import { USE_ACCOUNT, USE_PROJECTS } from '../../../features.json';
 
 const useStyles = createUseStyles({
   link: {
-    composes: ['p7', 'fs18', 'debug'],
+    composes: ['p7', 'fs18'],
   },
-  menu: {
-    composes: ['debug'],
-  },
+  menu: {},
 });
 
 const MENU_ITEMS = [

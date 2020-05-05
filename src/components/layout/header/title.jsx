@@ -7,15 +7,15 @@ import { selectPrimaryKeys } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   link: {
-    composes: ['is-block', 'debug'],
+    composes: ['is-block'],
   },
   logo: {
-    composes: ['debug', 'is-inline-block'],
+    composes: ['is-inline-block', 'mr5'],
     height: 18,
     width: 18,
   },
   text: {
-    composes: ['fs24', 'is-bold', 'debug'],
+    composes: ['fs24', 'is-bold'],
     fontFamily: ['Cinzel', 'serif'],
     opacity: 1,
   },

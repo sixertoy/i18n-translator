@@ -12,7 +12,6 @@ const useStyles = createUseStyles({
       'flex-between',
       'items-center',
       'px32',
-      'debug',
     ],
     height: theme.sizes.header,
     maxHeight: theme.sizes.header,
