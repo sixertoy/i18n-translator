@@ -24,23 +24,17 @@ const options = '#0D0D0D';
 const header = '#595959';
 const font = '#8C8C8C';
 const gray = '#DDDDDD';
-const odd = '#FFFFFF';
 const white = '#FFFFFF';
-const even = '#F7F7F7';
-const red = '#DA402B';
 const background = '#F1F1F1';
 
 const colors = {
   background,
   blue,
-  even,
   font,
   gray,
   header,
-  odd,
   options,
   orange,
-  red,
   velvet,
   white,
 };
@@ -51,8 +45,11 @@ const themes = {
   },
   day: {
     background: '#F1F1F1',
+    even: '#F7F7F7',
     font: '#8C8C8C',
     header: '#595959',
+    love: '#DA402B',
+    odd: '#FFFFFF',
     options: '#0D0D0D',
     triangle: '#DA402B',
   },

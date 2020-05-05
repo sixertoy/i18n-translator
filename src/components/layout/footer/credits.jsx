@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
     right: 32,
     textTransform: 'uppercase',
   }),
-  love: ({ theme }) => ({ color: theme.colors.red }),
+  love: ({ theme }) => ({ color: theme.love }),
 });
 
 const CreditsComponents = () => {
