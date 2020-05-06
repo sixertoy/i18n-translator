@@ -17,18 +17,12 @@ import Intro from './steps/intro';
 import Select from './steps/select';
 
 const useStyles = createUseStyles({
-  button: {
-    composes: ['flex-0'],
-  },
   import: {
     composes: ['flex-rows', 'p24'],
     height: '100%',
   },
-  select: {
-    composes: ['flex-0'],
-  },
   wrapper: {
-    composes: ['is-relative', 'flex-1'],
+    composes: ['mt24', 'flex-rows', 'flex-center', 'items-center'],
   },
 });
 
@@ -65,30 +59,32 @@ const ImportViewComponent = () => {
   return (
     <div className={classes.import}>
       <Steps current={step} steps={CREATE_STEPS} />
-      <Switch>
-        <Redirect exact from="/import" push={false} to="/import/start" />
-        <Route exact path="/import/start">
-          <Intro
-            onClick={() => {
-              const path = getPathByStepIndex(1);
-              history.push(path);
-            }}
-          />
-        </Route>
-        <Route exact path="/import/select">
-          <Select
-            lang={lang}
-            onChange={value => {
-              const path = getPathByStepIndex(2);
-              history.push(path);
-              setLang(value);
-            }}
-          />
-        </Route>
-        <Route exact path="/import/editor">
-          <Editor value="" onChange={() => {}} />
-        </Route>
-      </Switch>
+      <div className={classes.wrapper}>
+        <Switch>
+          <Redirect exact from="/import" push={false} to="/import/start" />
+          <Route exact path="/import/start">
+            <Intro
+              onClick={() => {
+                const path = getPathByStepIndex(1);
+                history.push(path);
+              }}
+            />
+          </Route>
+          <Route exact path="/import/select">
+            <Select
+              lang={lang}
+              onChange={value => {
+                const path = getPathByStepIndex(2);
+                history.push(path);
+                setLang(value);
+              }}
+            />
+          </Route>
+          <Route exact path="/import/editor">
+            <Editor value="" onChange={() => {}} />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 };
