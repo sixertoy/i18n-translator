@@ -1,11 +1,11 @@
 import Board from './components/views/board';
 import Create from './components/views/create';
 import Export from './components/views/export';
-import Start from './components/views/start';
+import Home from './components/views/home';
 
 const routes = [
   {
-    component: Start,
+    component: Home,
     exact: true,
     path: '/',
   },

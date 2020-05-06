@@ -3,7 +3,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
-import { selectPrimaryKeys } from '../../redux/selectors';
+import { selectPrimaryKeys } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
