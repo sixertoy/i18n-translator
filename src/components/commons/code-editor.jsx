@@ -8,51 +8,48 @@ import 'ace-builds/src-min-noconflict/theme-github';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import AceEditor from 'react-ace';
-import { createUseStyles } from 'react-jss';
+// import { createUseStyles } from 'react-jss';
 
-const useStyles = createUseStyles({
-  container: {
-    height: '100%',
-    position: 'relative',
-    width: '100%',
-  },
-});
+// const useStyles = createUseStyles({
+//   container: {
+//     height: '100%',
+//     position: 'relative',
+//     width: '100%',
+//   },
+// });
 
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
 
 const CodeEditorComponent = ({ content, mode, onChange }) => {
-  const classes = useStyles();
   const [valid, setValid] = useState(false);
   const [value, setValue] = useState(content);
   useEffect(() => {
     onChange(value, valid);
   }, [value, valid, onChange]);
   return (
-    <div className={classes.container}>
-      <AceEditor
-        focus
-        highlightActiveLine
-        showGutter
-        wrapEnabled
-        editorProps={{ $blockScrolling: true }}
-        height="100%"
-        mode={mode}
-        name="editor-import"
-        placeholder={PLACEHOLDER_VALUE}
-        readOnly={false}
-        showPrintMargin={false}
-        tabSize={2}
-        theme="github"
-        value={value || ''}
-        width="100%"
-        onChange={setValue}
-        onValidate={annotations => {
-          const errors = annotations.filter(({ type }) => type === 'error');
-          setValid(!errors || !errors.length);
-        }}
-      />
-    </div>
+    <AceEditor
+      focus
+      highlightActiveLine
+      showGutter
+      wrapEnabled
+      editorProps={{ $blockScrolling: true }}
+      height="100%"
+      mode={mode}
+      name="code-editor"
+      placeholder={PLACEHOLDER_VALUE}
+      readOnly={false}
+      showPrintMargin={false}
+      tabSize={2}
+      theme="github"
+      value={value || ''}
+      width="100%"
+      onChange={setValue}
+      onValidate={annotations => {
+        const errors = annotations.filter(({ type }) => type === 'error');
+        setValid(!errors || !errors.length);
+      }}
+    />
   );
 };
 

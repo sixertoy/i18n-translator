@@ -5,6 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { LANGS } from '../../../../constants';
 
 const useStyles = createUseStyles({
+  container: {},
   input: {
     border: 0,
     composes: ['debug', 'fs14', 'm0', 'p0'],
@@ -43,7 +44,8 @@ const SelectStepComponent = ({ lang, onChange }) => {
     evt => {
       evt.preventDefault();
       const { value } = evt.target || {};
-      if (!value || value === '') return;
+      const isvalid = value && value !== '';
+      if (!isvalid) return;
       onChange(value);
     },
     [onChange]

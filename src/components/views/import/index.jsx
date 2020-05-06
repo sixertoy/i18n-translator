@@ -81,7 +81,12 @@ const ImportViewComponent = () => {
             />
           </Route>
           <Route exact path="/import/editor">
-            <Editor value="" onChange={() => {}} />
+            <Editor
+              value=""
+              onSubmit={content => {
+                console.log('content', content);
+              }}
+            />
           </Route>
         </Switch>
       </div>
