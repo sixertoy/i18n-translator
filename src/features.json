@@ -2,5 +2,9 @@
   "USE_PROJECTS": true,
   "USE_EXPORT": true,
   "USE_ADD_LANGUAGE": true,
+  "USE_CONTEXT_LANG": false,
+  "USE_CONTEXT_PROJECT": false,
+  "USE_SORT": false,
+  "USE_SEARCH": false,
   "USE_ACCOUNT": false
 }

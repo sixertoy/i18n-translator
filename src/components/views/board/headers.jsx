@@ -4,6 +4,7 @@ import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import { USE_CONTEXT_LANG } from '../../../features.json';
 import { selectHeader } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
@@ -45,9 +46,11 @@ const HeadersComponent = () => {
         </div>
         {headers.map(({ label, lang }) => (
           <div key={lang} className={classes.values}>
-            <button className={classes.icon} type="button" onClick={() => {}}>
-              <ContextIcon />
-            </button>
+            {USE_CONTEXT_LANG && (
+              <button className={classes.icon} type="button" onClick={() => {}}>
+                <ContextIcon />
+              </button>
+            )}
             <span>{label}</span>
           </div>
         ))}

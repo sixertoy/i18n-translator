@@ -11,7 +11,13 @@ import {
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import { USE_ADD_LANGUAGE, USE_EXPORT } from '../../../features.json';
+import {
+  USE_ADD_LANGUAGE,
+  USE_CONTEXT_PROJECT,
+  USE_EXPORT,
+  USE_SEARCH,
+  USE_SORT,
+} from '../../../features.json';
 
 const useStyles = createUseStyles({
   context: {
@@ -68,39 +74,48 @@ const OptionsComponent = () => {
       <div className={classes.labels}>
         <h3 className={classes.title}>
           <span>Nom du projet</span>
-          <button className={classes.context} type="button">
-            <ContextIcon />
-          </button>
+          {USE_CONTEXT_PROJECT && (
+            <button className={classes.context} type="button">
+              <ContextIcon />
+            </button>
+          )}
         </h3>
         <div className={classes.bar}>
           <span>Pourcentage</span>
         </div>
       </div>
       <div className={classes.wrapper}>
-        <div className={classes.search}>
-          <input
-            className={classes.searchInput}
-            placeholder="Rechercher"
-            type="text"
-          />
-          <SearchIcon className={classes.searchIcon} />
-        </div>
-        <button className={classes.filter} type="button" onClick={() => {}}>
-          <SortIcon />
-        </button>
+        {USE_SEARCH && (
+          <div className={classes.search}>
+            <input
+              className={classes.searchInput}
+              placeholder="Rechercher"
+              type="text"
+            />
+            <SearchIcon className={classes.searchIcon} />
+          </div>
+        )}
+        {USE_SORT && (
+          <button className={classes.filter} type="button" onClick={() => {}}>
+            <SortIcon />
+          </button>
+        )}
       </div>
       <div className={classes.menu}>
-        {USE_EXPORT && (
-          <Tippy content="Exporter" placement="bottom">
-            <Link className={classes.link} to="/">
-              <ExportIcon />
+        {USE_ADD_LANGUAGE && (
+          <Tippy
+            content="Ajouter une langue"
+            offset={[10, 10]}
+            placement="bottom-end">
+            <Link className={classes.link} to="/board/create">
+              <PlusIcon />
             </Link>
           </Tippy>
         )}
-        {USE_ADD_LANGUAGE && (
-          <Tippy content="Ajouter une langue" placement="bottom">
-            <Link className={classes.link} to="/board/create">
-              <PlusIcon />
+        {USE_EXPORT && (
+          <Tippy content="Exporter" offset={[10, 10]} placement="bottom-end">
+            <Link className={classes.link} to="/export">
+              <ExportIcon />
             </Link>
           </Tippy>
         )}

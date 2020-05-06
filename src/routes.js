@@ -1,5 +1,6 @@
 import Board from './components/views/board';
 import Create from './components/views/create';
+import Export from './components/views/export';
 import Start from './components/views/start';
 
 const routes = [
@@ -17,6 +18,11 @@ const routes = [
     component: Board,
     exact: true,
     path: '/board',
+  },
+  {
+    component: Export,
+    exact: true,
+    path: '/export',
   },
 ];
 
