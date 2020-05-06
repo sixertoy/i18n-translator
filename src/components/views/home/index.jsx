@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { selectPrimaryKeys } from '../../../redux/selectors';
+import Layout from '../../layout';
 
 const useStyles = createUseStyles({
   button: {
@@ -11,13 +10,12 @@ const useStyles = createUseStyles({
     composes: ['py20', 'px32', 'debug'],
     textAlign: 'center',
   },
-  container: {
+  home: {
     composes: [
       'text-center',
       'flex-columns',
       'flex-center',
       'items-center',
-      'debug',
       'is-full-layout',
     ],
   },
@@ -26,26 +24,14 @@ const useStyles = createUseStyles({
 const StartViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const keys = useSelector(selectPrimaryKeys);
-
-  const [redirect, setRedirect] = useState(false);
-
-  useEffect(() => {
-    const shouldRedirect = keys && keys.length > 0;
-    if (shouldRedirect) setRedirect(true);
-  }, [keys]);
-
   return (
-    <React.Fragment>
-      {redirect && <Redirect to="/board" />}
-      {!redirect && (
-        <div className={classes.container}>
-          <Link className={classes.button} to="/create">
-            <span>Create a new language project</span>
-          </Link>
-        </div>
-      )}
-    </React.Fragment>
+    <Layout id="home">
+      <div className={classes.home}>
+        <Link className={classes.button} to="/create">
+          <span>Create a new language project</span>
+        </Link>
+      </div>
+    </Layout>
   );
 };
 

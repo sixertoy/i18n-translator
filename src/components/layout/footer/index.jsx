@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
 // const { NODE_ENV } = process.env;
 // const isDevelopment = NODE_ENV === 'development';
 
-const ApplicationFooter = () => {
+const ApplicationFooter = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -47,6 +47,6 @@ const ApplicationFooter = () => {
       )} */}
     </div>
   );
-};
+});
 
 export default ApplicationFooter;

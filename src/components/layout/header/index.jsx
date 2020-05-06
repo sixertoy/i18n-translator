@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
   }),
 });
 
-const ApplicationHeader = () => {
+const ApplicationHeader = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -30,6 +30,6 @@ const ApplicationHeader = () => {
       <div className="blank">&nbsp;</div>
     </div>
   );
-};
+});
 
 export default ApplicationHeader;

@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { selectPrimaryKeys } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   link: {
@@ -21,21 +18,12 @@ const useStyles = createUseStyles({
   }),
 });
 
-const LogoComponent = () => {
+const LogoComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const keys = useSelector(selectPrimaryKeys);
-
-  const [pathTo, setPathTo] = useState('/');
-
-  useEffect(() => {
-    const shouldGotoBoard = keys && keys.length > 0;
-    if (shouldGotoBoard) setPathTo('/board');
-  }, [keys]);
-
   return (
     <h1 className={classes.logo}>
-      <Link className={classes.link} to={pathTo}>
+      <Link className={classes.link} to="/">
         <svg
           className={classes.svg}
           viewBox="0 0 510 510"
@@ -45,6 +33,6 @@ const LogoComponent = () => {
       </Link>
     </h1>
   );
-};
+});
 
 export default LogoComponent;

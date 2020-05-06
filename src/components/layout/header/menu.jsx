@@ -37,7 +37,7 @@ const MENU_ITEMS = [
   },
 ].filter(({ visible }) => visible);
 
-const ReactDumbComponent = () => {
+const ReactDumbComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -57,7 +57,7 @@ const ReactDumbComponent = () => {
       ))}
     </div>
   );
-};
+});
 
 ReactDumbComponent.defaultProps = {};
 

@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
   love: ({ theme }) => ({ color: theme.love }),
 });
 
-const CreditsComponents = () => {
+const CreditsComponents = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -21,7 +21,7 @@ const CreditsComponents = () => {
       Made with <span className={classes.love}>♥</span> and React
     </div>
   );
-};
+});
 
 CreditsComponents.defaultProps = {};
 
