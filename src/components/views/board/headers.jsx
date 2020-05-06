@@ -1,10 +1,15 @@
+import Tippy from '@tippyjs/react';
 import React from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { USE_CONTEXT_LANG } from '../../../features.json';
+import {
+  clearLanguage,
+  removeLanguage,
+} from '../../../redux/actions/translations';
 import { selectHeader } from '../../../redux/selectors';
 import PercentageBar from '../../commons/percentage-bar';
 
@@ -49,6 +54,7 @@ const useStyles = createUseStyles({
 
 const HeadersComponent = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const classes = useStyles({ theme });
   const headers = useSelector(selectHeader);
   return (
@@ -60,9 +66,35 @@ const HeadersComponent = () => {
         {headers.map(({ count, label, lang, total }) => (
           <div key={lang} className={classes.values}>
             {USE_CONTEXT_LANG && (
-              <button className={classes.icon} type="button" onClick={() => {}}>
-                <ContextIcon />
-              </button>
+              <Tippy
+                hideOnClick
+                interactive
+                content={() => {
+                  return (
+                    <div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          dispatch(clearLanguage(lang));
+                        }}>
+                        <span>Clear</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          dispatch(removeLanguage(lang));
+                        }}>
+                        <span>Remove</span>
+                      </button>
+                    </div>
+                  );
+                }}
+                placement="bottom"
+                trigger="click">
+                <div>
+                  <ContextIcon />
+                </div>
+              </Tippy>
             )}
             <div className={classes.labels}>
               <div>{label}</div>

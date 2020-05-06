@@ -30,6 +30,24 @@ export function updateValue(state, { key, lang, update }) {
   return next;
 }
 
+export function clearLang(state, lang) {
+  const next = state.reduce((acc, obj) => {
+    const iscurrent = obj.lang === lang;
+    if (!iscurrent) return [...acc, obj];
+    const dict = Object.entries(obj.dict).reduce(
+      (ac, ar) => ({ ...ac, [ar[0]]: '' }),
+      {}
+    );
+    return [...acc, { ...obj, dict }];
+  }, []);
+  return next;
+}
+
+export function removeLang(state, lang) {
+  const next = state.filter(obj => obj.lang !== lang);
+  return next;
+}
+
 // NOTE translation data model
 //  {
 //    lang: string,
@@ -42,22 +60,26 @@ const translations = (state = [], action) => {
     // NOTE -> Alls
     case EVENT_TYPES.TRANSLATIONS_PROJECT_CREATE:
       return [...state, action.translation];
-    case EVENT_TYPES.TRANSLATIONS_PROJECT_TOGGLE_FAV:
-      return state;
+    // case EVENT_TYPES.TRANSLATIONS_PROJECT_TOGGLE_FAV:
+    //   return state;
     // NOTE -> Values
-    case EVENT_TYPES.TRANSLATIONS_VALUE_ADD:
-      return state;
+    case EVENT_TYPES.TRANSLATIONS_LANG_CLEAR:
+      return clearLang(state, action.lang);
+    case EVENT_TYPES.TRANSLATIONS_LANG_REMOVE:
+      return removeLang(state, action.lang);
+    // case EVENT_TYPES.TRANSLATIONS_VALUE_ADD:
+    // return state;
     case EVENT_TYPES.TRANSLATIONS_VALUE_UPDATE:
       return updateValue(state, action);
-    case EVENT_TYPES.TRANSLATIONS_VALUE_DELETE:
-      return state;
+    // case EVENT_TYPES.TRANSLATIONS_VALUE_DELETE:
+    // return state;
     // NOTE -> Keys
-    case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_ADD:
-      return state;
-    case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_UPDATE:
-      return state;
-    case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_DELETE:
-      return state;
+    // case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_ADD:
+    // return state;
+    // case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_UPDATE:
+    // return state;
+    // case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_DELETE:
+    // return state;
     default:
       return state;
   }
