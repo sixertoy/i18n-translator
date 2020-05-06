@@ -7,7 +7,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { USE_PROJECTS } from '../../../features.json';
-import { selectPercentage } from '../../../redux/selectors';
+import { selectPercentages } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -45,7 +45,7 @@ const useStyles = createUseStyles({
 const ExportViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { items, project } = useSelector(selectPercentage);
+  const { items, project } = useSelector(selectPercentages);
   return (
     <div className={classes.export}>
       {USE_PROJECTS && (

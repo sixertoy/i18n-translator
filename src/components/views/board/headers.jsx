@@ -44,7 +44,7 @@ const HeadersComponent = () => {
         <div className={classes.keys}>
           <KeyIcon />
         </div>
-        {headers.map(({ label, lang }) => (
+        {headers.map(({ label, lang, percent }) => (
           <div key={lang} className={classes.values}>
             {USE_CONTEXT_LANG && (
               <button className={classes.icon} type="button" onClick={() => {}}>
@@ -52,6 +52,7 @@ const HeadersComponent = () => {
               </button>
             )}
             <span>{label}</span>
+            <span>{percent}%</span>
           </div>
         ))}
       </div>

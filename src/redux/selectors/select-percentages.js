@@ -26,7 +26,12 @@ const getProject = (total, langs) => {
   return project;
 };
 
-const selectTranslations = createSelector(
+const reduceToObjects = (acc, { lang, ...rest }) => ({
+  ...acc,
+  [lang]: { ...rest },
+});
+
+const selectPercentages = createSelector(
   state => state.translations,
   selectPrimaryKeys,
   (translations, keys) => {
@@ -38,8 +43,10 @@ const selectTranslations = createSelector(
     // project
     total *= translations.length;
     const project = getProject(total, langs);
-    return { items: langs, project };
+    // reduce langs to objects
+    const items = langs.reduce(reduceToObjects, {});
+    return { ...items, project };
   }
 );
 
-export default selectTranslations;
+export default selectPercentages;
