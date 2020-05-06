@@ -1,7 +1,7 @@
 import get from 'lodash.get';
 import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   Redirect,
   Route,
@@ -10,9 +10,11 @@ import {
   useLocation,
 } from 'react-router-dom';
 
+import { createLanguage } from '../../../redux/actions/translations';
 import Steps from '../../commons/Steps';
 import withLayout from '../../layout';
 import Editor from './steps/editor';
+import Finish from './steps/finish';
 import Intro from './steps/intro';
 import Select from './steps/select';
 
@@ -30,6 +32,7 @@ const CREATE_STEPS = [
   { label: 'Commencer', path: '/import/start' },
   { label: 'Langue', path: '/import/select' },
   { label: 'Importer', path: '/import/editor' },
+  { label: 'Finish', path: '/import/finish' },
 ];
 
 function getPathByStepIndex(index) {
@@ -47,14 +50,22 @@ const ImportViewComponent = () => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const [step, setStep] = useState(0);
   const [lang, setLang] = useState(undefined);
+  const [content, setContent] = useState(null);
+
+  const clearState = () => {
+    setContent(null);
+    setLang(undefined);
+  };
 
   useEffect(() => {
     const index = getStepIndexByPath(location);
     if (index !== step) setStep(index);
-  }, [history, lang, location, step]);
+    if (lang && content) dispatch(createLanguage(lang, content));
+  }, [content, dispatch, history, lang, location, step]);
 
   return (
     <div className={classes.import}>
@@ -82,9 +93,20 @@ const ImportViewComponent = () => {
           </Route>
           <Route exact path="/import/editor">
             <Editor
-              value=""
-              onSubmit={content => {
-                console.log('content', content);
+              value={content}
+              onSubmit={value => {
+                const path = getPathByStepIndex(3);
+                history.push(path);
+                setContent(value);
+              }}
+            />
+          </Route>
+          <Route exact path="/import/finish">
+            <Finish
+              onRestart={() => {
+                const path = getPathByStepIndex(1);
+                history.push(path);
+                clearState();
               }}
             />
           </Route>

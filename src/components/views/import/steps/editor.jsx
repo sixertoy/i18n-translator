@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
 
 const EditorStepComponent = ({ onSubmit, value }) => {
   const classes = useStyles();
-  const [content, setContent] = useState(value);
+  const [content, setContent] = useState(value || '');
   const [disabled, setDisabled] = useState(true);
 
   return (
@@ -48,11 +48,13 @@ const EditorStepComponent = ({ onSubmit, value }) => {
   );
 };
 
-EditorStepComponent.defaultProps = {};
+EditorStepComponent.defaultProps = {
+  value: null,
+};
 
 EditorStepComponent.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 export default EditorStepComponent;
