@@ -9,15 +9,18 @@ import {
   AiOutlineSortDescending as SortIcon,
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
   USE_ADD_LANGUAGE,
   USE_CONTEXT_PROJECT,
   USE_EXPORT,
+  USE_PROJECTS,
   USE_SEARCH,
   USE_SORT,
 } from '../../../features.json';
+import { selectPercentages } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   context: {
@@ -69,19 +72,22 @@ const useStyles = createUseStyles({
 const OptionsComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const { project } = useSelector(selectPercentages);
   return (
     <div className={classes.options}>
       <div className={classes.labels}>
-        <h3 className={classes.title}>
-          <span>Nom du projet</span>
-          {USE_CONTEXT_PROJECT && (
-            <button className={classes.context} type="button">
-              <ContextIcon />
-            </button>
-          )}
-        </h3>
+        {USE_PROJECTS && (
+          <h3 className={classes.title}>
+            <span>Nom du projet</span>
+            {USE_CONTEXT_PROJECT && (
+              <button className={classes.context} type="button">
+                <ContextIcon />
+              </button>
+            )}
+          </h3>
+        )}
         <div className={classes.bar}>
-          <span>Pourcentage</span>
+          <span>{project.percent}</span>
         </div>
       </div>
       <div className={classes.wrapper}>
