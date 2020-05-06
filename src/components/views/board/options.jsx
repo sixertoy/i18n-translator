@@ -21,6 +21,7 @@ import {
   USE_SORT,
 } from '../../../features.json';
 import { selectPercentages } from '../../../redux/selectors';
+import PercentageBar from '../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
   context: {
@@ -29,7 +30,9 @@ const useStyles = createUseStyles({
   filter: {
     composes: ['fs24', 'ml12'],
   },
-  labels: {},
+  labels: {
+    composes: ['flex-1'],
+  },
   link: ({ theme }) => ({
     color: theme.font,
     composes: ['fs24', 'ml7'],
@@ -43,6 +46,12 @@ const useStyles = createUseStyles({
     maxHeight: theme.sizes.options,
     minHeight: theme.sizes.options,
   }),
+  percentage: {
+    composes: ['mt7'],
+    maxWidth: '65%',
+    minWidth: '65%',
+    width: '65%',
+  },
   search: ({ theme }) => ({
     background: theme.colors.white,
     borderRadius: 16,
@@ -86,9 +95,13 @@ const OptionsComponent = () => {
             )}
           </h3>
         )}
-        <div className={classes.bar}>
-          <span>{project.percent}</span>
-        </div>
+        <PercentageBar
+          showPercent
+          className={classes.percentage}
+          count={project.count}
+          size="normal"
+          total={project.total}
+        />
       </div>
       <div className={classes.wrapper}>
         {USE_SEARCH && (

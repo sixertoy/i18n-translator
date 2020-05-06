@@ -113,7 +113,7 @@ PercentageBarComponent.defaultProps = {
   position: 'after',
   showCount: false,
   showPercent: false,
-  size: 'small',
+  size: 'normal',
 };
 
 PercentageBarComponent.propTypes = {
