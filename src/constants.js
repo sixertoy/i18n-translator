@@ -1,3 +1,10 @@
+export const ROUTES_ID = {
+  BOARD: 'board',
+  EXPORT: 'export',
+  HOME: 'home',
+  IMPORT: 'import',
+};
+
 export const LANGS = {
   // using language keys RFC 3066
   'de-DE': 'Deutsch',
@@ -7,8 +14,6 @@ export const LANGS = {
   'it-IT': 'Italiano',
   'pt-PT': 'Portugues',
 };
-
-export const DEFAULT_LANG = 'en-US';
 
 export const EVENT_TYPES = {
   LOADING_COMPLETE: 'onLoadingComplete',
@@ -23,5 +28,7 @@ export const EVENT_TYPES = {
   TRANSLATIONS_VALUE_DELETE: 'onTranslationsValueDelete',
   TRANSLATIONS_VALUE_UPDATE: 'onTranslationsValueUdpate',
 };
+
+export const DEFAULT_LANG = 'en-US';
 
 export default EVENT_TYPES;

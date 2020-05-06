@@ -2,13 +2,9 @@ import get from 'lodash.get';
 import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 // import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 import Steps from '../../commons/Steps';
-// import { DEFAULT_LANG } from '../../../constants';
-// import { createLanguage } from '../../../redux/actions/translations';
-// import { selectPrimaryKeys } from '../../../redux/selectors';
-// import Button from '../../commons/button';
 import withLayout from '../../layout';
 import Editor from './steps/editor';
 import Intro from './steps/intro';
@@ -18,7 +14,7 @@ const useStyles = createUseStyles({
   button: {
     composes: ['flex-0'],
   },
-  create: {
+  import: {
     composes: ['flex-rows', 'p24'],
     height: '100%',
   },
@@ -31,12 +27,12 @@ const useStyles = createUseStyles({
 });
 
 const CREATE_STEPS = [
-  { label: 'Commencer', path: '/create' },
-  { label: 'Langue', path: '/create/select' },
-  { label: 'Importer', path: '/create/editor' },
+  { label: 'Commencer', path: '/import/start' },
+  { label: 'Langue', path: '/import/select' },
+  { label: 'Importer', path: '/import/editor' },
 ];
 
-const CreateViewComponent = () => {
+const ImportViewComponent = () => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -47,18 +43,15 @@ const CreateViewComponent = () => {
     const path = get(CREATE_STEPS, `${step}.path`);
     history.push(path);
   }, [history, step]);
+
   return (
-    <div className={classes.create}>
+    <div className={classes.import}>
       <Steps current={step} steps={CREATE_STEPS} />
       <Switch>
-        <Route exact path="/create">
-          <Intro
-            onClick={() => {
-              setStep(step + 1);
-            }}
-          />
+        <Route exact path="/import/start">
+          <Intro onClick={() => setStep(step + 1)} />
         </Route>
-        <Route exact path="/create/select">
+        <Route exact path="/import/select">
           <Select
             lang={lang}
             onChange={value => {
@@ -67,12 +60,13 @@ const CreateViewComponent = () => {
             }}
           />
         </Route>
-        <Route exact path="/create/editor">
+        <Route exact path="/import/editor">
           <Editor value="" onChange={() => {}} />
         </Route>
+        <Redirect exact from="/import" push={false} to="/import/start" />
       </Switch>
     </div>
   );
 };
 
-export default withLayout(CreateViewComponent);
+export default withLayout(ImportViewComponent);

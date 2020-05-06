@@ -33,7 +33,7 @@ const StartViewComponent = () => {
       {/* <h6>
         <span>Create your first project</span>
       </h6> */}
-      <Link className={classes.button} to="/create">
+      <Link className={classes.button} to="/import">
         <RightArrow />
       </Link>
     </div>

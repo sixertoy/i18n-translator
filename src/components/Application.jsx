@@ -19,6 +19,7 @@ const Application = () => {
   return (
     <div className={classes.application}>
       <Switch>
+        <Redirect exact from="/" push={false} to="/home" />
         {routes.map(obj => {
           return (
             <Route
@@ -29,7 +30,6 @@ const Application = () => {
             />
           );
         })}
-        <Redirect to="/home" />
       </Switch>
     </div>
   );
