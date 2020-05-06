@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import Layout from '../../layout';
+import withLayout from '../../layout';
 import Columns from './columns';
 import Headers from './headers';
 import Options from './options';
@@ -21,16 +21,14 @@ const BoardViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <Layout id="board">
-      <div className={classes.board}>
-        <Options />
-        <div className={classes.wrapper}>
-          <Headers />
-          <Columns />
-        </div>
+    <div className={classes.board}>
+      <Options />
+      <div className={classes.wrapper}>
+        <Headers />
+        <Columns />
       </div>
-    </Layout>
+    </div>
   );
 };
 
-export default BoardViewComponent;
+export default withLayout(BoardViewComponent);

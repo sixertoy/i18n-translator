@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { LANGS } from '../../../../constants';
@@ -36,19 +36,25 @@ const languageAlphaSort = (a, b) => {
   return 0;
 };
 
-const LanguageStepComponent = ({ lang, onChange }) => {
+const SelectStepComponent = ({ lang, onChange }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const callback = useCallback(
+    evt => {
+      evt.preventDefault();
+      const { value } = evt.target || {};
+      if (!value || value === '') return;
+      onChange(value);
+    },
+    [onChange]
+  );
   return (
-    <div className={classes.step}>
+    <div className={classes.container}>
       <span className={classes.select}>
-        <select
-          className={classes.input}
-          value={lang}
-          onChange={evt => {
-            evt.preventDefault();
-            onChange(evt.target.value);
-          }}>
+        <select className={classes.input} value={lang} onChange={callback}>
+          <option className={classes.options} value="">
+            -
+          </option>
           {Object.entries(LANGS)
             .sort(languageAlphaSort)
             .map(([id, label]) => (
@@ -62,9 +68,13 @@ const LanguageStepComponent = ({ lang, onChange }) => {
   );
 };
 
-LanguageStepComponent.propTypes = {
-  lang: PropTypes.string.isRequired,
+SelectStepComponent.defaultProps = {
+  lang: undefined,
+};
+
+SelectStepComponent.propTypes = {
+  lang: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-export default LanguageStepComponent;
+export default SelectStepComponent;

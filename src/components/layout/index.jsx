@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
@@ -12,25 +11,17 @@ const useStyles = createUseStyles({
   },
 });
 
-const LayoutComponent = React.memo(
-  ({ children, id }) => {
-    const classes = useStyles();
-    return (
-      <React.Fragment>
-        <ApplicationHeader />
-        <div className={classes.view} id={`${id}-view`}>
-          {children}
-        </div>
-        <ApplicationFooter />
-      </React.Fragment>
-    );
-  },
-  ({ id: prev }, { id: next }) => prev === next
-);
-
-LayoutComponent.propTypes = {
-  children: PropTypes.node.isRequired,
-  id: PropTypes.string.isRequired,
+const wittLayout = WrappedComponent => props => {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <ApplicationHeader />
+      <div className={classes.view}>
+        <WrappedComponent {...props} />
+      </div>
+      <ApplicationFooter />
+    </React.Fragment>
+  );
 };
 
-export default LayoutComponent;
+export default wittLayout;

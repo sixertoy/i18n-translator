@@ -1,17 +1,18 @@
-// import isEmpty from 'lodash.isempty';
-import React from 'react';
+import get from 'lodash.get';
+import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 // import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 import Steps from '../../commons/Steps';
 // import { DEFAULT_LANG } from '../../../constants';
 // import { createLanguage } from '../../../redux/actions/translations';
 // import { selectPrimaryKeys } from '../../../redux/selectors';
 // import Button from '../../commons/button';
-import Layout from '../../layout';
-import Content from './steps/content';
-import Language from './steps/language';
+import withLayout from '../../layout';
+import Editor from './steps/editor';
+import Intro from './steps/intro';
+import Select from './steps/select';
 
 const useStyles = createUseStyles({
   button: {
@@ -29,43 +30,49 @@ const useStyles = createUseStyles({
   },
 });
 
+const CREATE_STEPS = [
+  { label: 'Commencer', path: '/create' },
+  { label: 'Langue', path: '/create/select' },
+  { label: 'Importer', path: '/create/editor' },
+];
+
 const CreateViewComponent = () => {
   const classes = useStyles();
-  // const history = useHistory();
-  // const dispatch = useDispatch();
-  // const keys = useSelector(selectPrimaryKeys);
+  const history = useHistory();
 
-  // const [lang, setLang] = useState(DEFAULT_LANG);
-  // const [disabled, setDisabled] = useState(false);
-  // const [editorContent, setEditorContent] = useState({});
+  const [step, setStep] = useState(0);
+  const [lang, setLang] = useState(undefined);
 
-  // const onLangChange = useCallback(setLang, []);
-
-  // const onEditorChange = useCallback((value, valid) => {
-  //   setEditorContent({ valid, value });
-  // }, []);
-
-  // const onSubmit = useCallback(() => {
-  //   dispatch(createLanguage(lang, editorContent.value));
-  //   history.push('/board');
-  // }, [editorContent, dispatch, history, lang]);
-
-  // useEffect(() => {
-  //   const isDisabled = !editorContent.valid || isEmpty(editorContent.value);
-  //   setDisabled(isDisabled);
-  // }, [editorContent, isStartRoute, keys.length]);
-
+  useEffect(() => {
+    const path = get(CREATE_STEPS, `${step}.path`);
+    history.push(path);
+  }, [history, step]);
   return (
-    <Layout id="create">
-      <Steps steps={['Langue', 'Contenu']} />
-      <div className={classes.create}>
-        <Switch>
-          <Route component={Language} path="/create/select" />
-          <Route component={Content} path="/create/content" />
-        </Switch>
-      </div>
-    </Layout>
+    <div className={classes.create}>
+      <Steps current={step} steps={CREATE_STEPS} />
+      <Switch>
+        <Route exact path="/create">
+          <Intro
+            onClick={() => {
+              setStep(step + 1);
+            }}
+          />
+        </Route>
+        <Route exact path="/create/select">
+          <Select
+            lang={lang}
+            onChange={value => {
+              setLang(value);
+              setStep(step + 1);
+            }}
+          />
+        </Route>
+        <Route exact path="/create/editor">
+          <Editor value="" onChange={() => {}} />
+        </Route>
+      </Switch>
+    </div>
   );
 };
 
-export default CreateViewComponent;
+export default withLayout(CreateViewComponent);

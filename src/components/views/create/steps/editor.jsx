@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
   container: {},
 });
 
-const StepContentComponent = ({ onChange, value }) => {
+const EditorStepComponent = ({ onChange, value }) => {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -22,11 +22,11 @@ const StepContentComponent = ({ onChange, value }) => {
   );
 };
 
-StepContentComponent.defaultProps = {};
+EditorStepComponent.defaultProps = {};
 
-StepContentComponent.propTypes = {
+EditorStepComponent.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 
-export default StepContentComponent;
+export default EditorStepComponent;

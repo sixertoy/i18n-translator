@@ -38,6 +38,7 @@
     "ace-builds": "^1.4.11",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
+    "lodash.get": "^4.4.2",
     "lodash.isempty": "^4.4.0",
     "lodash.uniq": "^4.5.0",
     "prop-types": "^15.7.2",

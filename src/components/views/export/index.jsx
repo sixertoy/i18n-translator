@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { USE_PROJECTS } from '../../../features.json';
 import { selectPercentages } from '../../../redux/selectors';
 import PercentageBar from '../../commons/percentage-bar';
+import withLayout from '../../layout';
 
 const useStyles = createUseStyles({
   button: {
@@ -114,4 +115,4 @@ ExportViewComponent.defaultProps = {};
 
 ExportViewComponent.propTypes = {};
 
-export default ExportViewComponent;
+export default withLayout(ExportViewComponent);

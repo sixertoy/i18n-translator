@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
     width: 28,
   },
   itemLabel: {
-    '$item:not(.last) &:after': {
+    '&:after': {
       background: '#000000',
       content: '""',
       height: 1,
@@ -43,20 +43,21 @@ const useStyles = createUseStyles({
   steps: {},
 });
 
-const StepsComponent = ({ current, steps }) => {
+const StepsComponent = React.memo(({ current, steps }) => {
   const theme = useStyles();
   const classes = useStyles({ theme });
   const lastIndex = steps.length - 1;
   return (
     <div className={classes.steps}>
       <div className={classes.items}>
-        {steps.map((label, index) => {
+        {steps.map((val, index) => {
           const after = current < index;
           const before = current > index;
           const active = current === index;
           const last = index === lastIndex;
           return (
             <div
+              key={val.label || val}
               className={classnames(classes.item, {
                 active,
                 after,
@@ -66,14 +67,14 @@ const StepsComponent = ({ current, steps }) => {
               <span className={classes.itemCircle}>
                 {(!before && index + 1) || <CheckIcon />}
               </span>
-              <span className={classes.itemLabel}>{label}</span>
+              <span className={classes.itemLabel}>{val.label || val}</span>
             </div>
           );
         })}
       </div>
     </div>
   );
-};
+});
 
 StepsComponent.defaultProps = {
   current: 0,
@@ -81,7 +82,10 @@ StepsComponent.defaultProps = {
 
 StepsComponent.propTypes = {
   current: PropTypes.number,
-  steps: PropTypes.arrayOf(PropTypes.string).isRequired,
+  steps: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.shape()),
+  ]).isRequired,
 };
 
 export default StepsComponent;
