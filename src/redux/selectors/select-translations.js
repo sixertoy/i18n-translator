@@ -15,10 +15,10 @@ const selectTranslations = createSelector(
   selectPrimaryKeys,
   (translations, keys) => {
     const merged = keys.reduce(mergeKeys, {});
-    const items = translations.map(({ dict, lang }) => {
+    const items = translations.map(({ dict, label, lang }) => {
       const entries = Object.entries({ ...merged, ...dict });
       const values = entries.sort(sortDictByAsc);
-      return { lang, values };
+      return { label, lang, values };
     });
     return items;
   }
