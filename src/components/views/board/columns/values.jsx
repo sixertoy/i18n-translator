@@ -33,7 +33,7 @@ const useStyles = createUseStyles({
     '&.odd': { background: theme.odd },
     // '.last &': { borderRadius: '0 4px 4px 0' },
     // borderRadius: '4px 0 0 4px',
-    composes: ['flex-columns', 'no-overflow', 'items-center'],
+    composes: ['flex-columns', 'items-center'],
     height: theme.sizes.line,
     marginBottom: 1,
   }),

@@ -41,7 +41,13 @@ const useStyles = createUseStyles({
   options: ({ theme }) => ({
     background: theme.options,
     color: theme.font,
-    composes: ['flex-columns', 'flex-between', 'px32', 'items-center'],
+    composes: [
+      'flex-columns',
+      'flex-between',
+      'items-center',
+      'flex-0',
+      'px32',
+    ],
     height: theme.sizes.options,
     maxHeight: theme.sizes.options,
     minHeight: theme.sizes.options,

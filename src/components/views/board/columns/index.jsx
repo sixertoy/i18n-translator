@@ -11,13 +11,7 @@ import Values from './values';
 
 const useStyles = createUseStyles({
   columns: {
-    composes: ['is-scrollbox-wrapper', 'flex-1', 'flex-rows'],
-  },
-  inner: {
-    composes: ['flex-columns'],
-  },
-  scrollbox: {
-    composes: ['is-scrollbox'],
+    composes: ['flex-1', 'flex-columns'],
   },
 });
 
@@ -28,12 +22,8 @@ const ColumnsComponent = () => {
   const items = useSelector(selectTranslations);
   return (
     <div className={classes.columns}>
-      <div className={classes.scrollbox}>
-        <div className={classes.inner}>
-          <Keys items={keys} />
-          <Values items={items} />
-        </div>
-      </div>
+      <Keys items={keys} />
+      <Values items={items} />
     </div>
   );
 };

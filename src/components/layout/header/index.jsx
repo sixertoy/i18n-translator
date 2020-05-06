@@ -17,6 +17,9 @@ const useStyles = createUseStyles({
     height: 40,
     maxHeight: 40,
     minHeight: 40,
+    position: 'sticky',
+    top: 0,
+    zIndex: 999999,
   }),
 });
 

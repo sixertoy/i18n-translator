@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
     '&.even': { background: theme.even },
     '&.odd': { background: theme.odd },
     borderRadius: '4px 0 0 4px',
-    composes: ['flex-columns', 'no-overflow', 'items-center'],
+    composes: ['flex-columns', 'items-center'],
     height: theme.sizes.line,
     marginBottom: 1,
   }),

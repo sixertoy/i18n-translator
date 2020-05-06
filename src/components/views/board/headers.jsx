@@ -10,7 +10,11 @@ import PercentageBar from '../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
   headers: {
-    composes: ['py12', 'flex-0'],
+    background: '#F1F1F1',
+    composes: ['py12', 'flex-0', 'is-sticky'],
+    position: 'sticky',
+    top: 40,
+    zIndex: 999999,
   },
   icon: {
     composes: ['mr7'],

@@ -7,13 +7,13 @@ import Headers from './headers';
 import Options from './options';
 
 const useStyles = createUseStyles({
-  board: {
+  container: {
     composes: ['flex-rows', 'flex-stretch'],
     height: '100%',
   },
+  table: {},
   wrapper: {
-    composes: ['flex-rows', 'px32', 'pt24'],
-    height: '100%',
+    composes: ['flex-1'],
   },
 });
 
@@ -21,11 +21,13 @@ const BoardViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.board}>
+    <div className={classes.container}>
       <Options />
       <div className={classes.wrapper}>
-        <Headers />
-        <Columns />
+        <div className={classes.table}>
+          <Headers />
+          <Columns />
+        </div>
       </div>
     </div>
   );
