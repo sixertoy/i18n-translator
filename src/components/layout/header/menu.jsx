@@ -1,10 +1,10 @@
+import Tippy from '@tippyjs/react';
 import React from 'react';
 import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
 import { MdAccountCircle as AccountIcon } from 'react-icons/md';
 import { RiHome2Line as HomeIcon } from 'react-icons/ri';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
-import { Tooltip } from 'react-tippy';
 
 import { USE_ACCOUNT, USE_PROJECTS } from '../../../features.json';
 
@@ -19,13 +19,13 @@ const useStyles = createUseStyles({
 const MENU_ITEMS = [
   {
     Icon: HomeIcon,
-    path: '/',
+    path: '/home',
     title: 'Accueil',
     visible: true,
   },
   {
     Icon: ProjectsIcon,
-    path: '/',
+    path: '/board',
     title: 'Projets',
     visible: USE_PROJECTS,
   },
@@ -43,17 +43,15 @@ const ReactDumbComponent = React.memo(() => {
   return (
     <div className={classes.menu}>
       {MENU_ITEMS.map(({ Icon, path, title }) => (
-        <Tooltip
-          key={title}
-          arrow
-          arrowSize="small"
-          position="bottom-end"
-          style={{ fontSize: 8 }}
-          title={title}>
+        <Tippy
+          key={path}
+          content={title}
+          offset={[10, 10]}
+          placement="bottom-end">
           <Link className={classes.link} to={path}>
             <Icon />
           </Link>
-        </Tooltip>
+        </Tippy>
       ))}
     </div>
   );
