@@ -1,8 +1,8 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import Logo from './logo';
 import Menu from './menu';
-import Title from './title';
 
 const useStyles = createUseStyles({
   header: ({ theme }) => ({
@@ -26,7 +26,7 @@ const ApplicationHeader = () => {
   return (
     <div className={classes.header}>
       <Menu />
-      <Title />
+      <Logo />
       <div className="blank">&nbsp;</div>
     </div>
   );
