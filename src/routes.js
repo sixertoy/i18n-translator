@@ -12,7 +12,7 @@ const routes = [
   {
     component: Create,
     exact: true,
-    path: ['/create', '/board/create'],
+    path: ['/create', '/create/:view(select|content)'],
   },
   {
     component: Board,

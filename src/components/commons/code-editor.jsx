@@ -18,20 +18,18 @@ const useStyles = createUseStyles({
   },
 });
 
-// const { NODE_ENV } = process.env;
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
 
 const CodeEditorComponent = ({ content, mode, onChange }) => {
   const classes = useStyles();
-  const [value, setValue] = useState(content);
   const [valid, setValid] = useState(false);
+  const [value, setValue] = useState(content);
   useEffect(() => {
     onChange(value, valid);
   }, [value, valid, onChange]);
   return (
     <div className={classes.container}>
-      {/* {usecopy && <CopyButton content={content} />} */}
       <AceEditor
         focus
         highlightActiveLine
