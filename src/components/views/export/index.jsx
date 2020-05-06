@@ -45,7 +45,7 @@ const useStyles = createUseStyles({
 const ExportViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { items, project } = useSelector(selectPercentages);
+  const { project, ...items } = useSelector(selectPercentages);
   return (
     <div className={classes.export}>
       {USE_PROJECTS && (
@@ -64,30 +64,32 @@ const ExportViewComponent = () => {
           </div>
         </div>
       )}
-      {items.map(({ label, lang, percent }) => {
-        return (
-          <div key={lang} className={classes.line}>
-            <div className={classes.title}>
-              <h5>{label}</h5>
-              <span>{percent}%</span>
+      {Object.entries(items)
+        .map(([lang, values]) => ({ lang, ...values }))
+        .map(({ label, lang, percent }) => {
+          return (
+            <div key={lang} className={classes.line}>
+              <div className={classes.title}>
+                <h5>{label}</h5>
+                <span>{percent}%</span>
+              </div>
+              <div className={classes.actions}>
+                <button
+                  className={classes.button}
+                  type="button"
+                  onClick={() => {}}>
+                  <CopyIcon />
+                </button>
+                <button
+                  className={classes.button}
+                  type="button"
+                  onClick={() => {}}>
+                  <FileIcon />
+                </button>
+              </div>
             </div>
-            <div className={classes.actions}>
-              <button
-                className={classes.button}
-                type="button"
-                onClick={() => {}}>
-                <CopyIcon />
-              </button>
-              <button
-                className={classes.button}
-                type="button"
-                onClick={() => {}}>
-                <FileIcon />
-              </button>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </div>
   );
 };
