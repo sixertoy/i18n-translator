@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 import { USE_PROJECTS } from '../../../features.json';
 import { selectPercentages } from '../../../redux/selectors';
+import PercentageBar from '../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
   button: {
@@ -36,9 +37,14 @@ const useStyles = createUseStyles({
     minWidth: 420,
     width: '60%',
   }),
+  percentage: {
+    composes: ['mt5'],
+    width: 200,
+  },
   title: ({ theme }) => ({
     color: theme.odd,
     composes: ['is-bold'],
+    width: 'auto',
   }),
 });
 
@@ -66,12 +72,17 @@ const ExportViewComponent = () => {
       )}
       {Object.entries(items)
         .map(([lang, values]) => ({ lang, ...values }))
-        .map(({ label, lang, percent }) => {
+        .map(({ count, label, lang, total }) => {
           return (
             <div key={lang} className={classes.line}>
               <div className={classes.title}>
                 <h5>{label}</h5>
-                <span>{percent}%</span>
+                <PercentageBar
+                  className={classes.percentage}
+                  count={count}
+                  size="small"
+                  total={total}
+                />
               </div>
               <div className={classes.actions}>
                 <button
