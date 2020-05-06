@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { USE_CONTEXT_LANG } from '../../../features.json';
 import { selectHeader } from '../../../redux/selectors';
+import PercentageBar from '../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
   headers: {
@@ -21,6 +22,14 @@ const useStyles = createUseStyles({
     paddingLeft: 34,
     width: theme.sizes.keycol,
   }),
+  labels: {
+    composes: ['flex-rows', 'mr24'],
+  },
+  percentage: {
+    maxWidth: '65%',
+    minWidth: '65%',
+    width: '65%',
+  },
   values: ({ theme }) => ({
     composes: ['flex-1', 'fs14', 'pl7', 'is-bold'],
     fontVariant: 'small-caps',
@@ -44,15 +53,22 @@ const HeadersComponent = () => {
         <div className={classes.keys}>
           <KeyIcon />
         </div>
-        {headers.map(({ label, lang, percent }) => (
+        {headers.map(({ count, label, lang, total }) => (
           <div key={lang} className={classes.values}>
             {USE_CONTEXT_LANG && (
               <button className={classes.icon} type="button" onClick={() => {}}>
                 <ContextIcon />
               </button>
             )}
-            <span>{label}</span>
-            <span>{percent}%</span>
+            <div className={classes.labels}>
+              <div>{label}</div>
+              <PercentageBar
+                className={classes.percentage}
+                count={count}
+                size="tiny"
+                total={total}
+              />
+            </div>
           </div>
         ))}
       </div>

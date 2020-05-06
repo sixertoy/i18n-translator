@@ -58,7 +58,12 @@ const ExportViewComponent = () => {
         <div className={classes.line} type="button">
           <div className={classes.title}>
             <h4>Projet</h4>
-            <span>{project.percent}%</span>
+            <PercentageBar
+              className={classes.percentage}
+              count={project.count}
+              size="small"
+              total={project.total}
+            />
           </div>
           <div className={classes.actions}>
             <button className={classes.button} type="button" onClick={() => {}}>
