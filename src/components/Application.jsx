@@ -30,6 +30,9 @@ const Application = () => {
             />
           );
         })}
+        <Route path="*">
+          <Redirect to="/404" />
+        </Route>
       </Switch>
     </div>
   );

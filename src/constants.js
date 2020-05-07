@@ -1,10 +1,3 @@
-export const ROUTES_ID = {
-  BOARD: 'board',
-  EXPORT: 'export',
-  HOME: 'home',
-  IMPORT: 'import',
-};
-
 export const LANGS = {
   // using language keys RFC 3066
   'de-DE': 'Deutsch',

@@ -1,8 +1,16 @@
+import NotFound from './components/views/404';
 import Board from './components/views/board';
 import Export from './components/views/export';
 import Home from './components/views/home';
 import Import from './components/views/import';
-import { ROUTES_ID } from './constants';
+
+const ROUTES_ID = {
+  BOARD: 'board',
+  EXPORT: 'export',
+  HOME: 'home',
+  IMPORT: 'import',
+  NOT_FOUND: 'not-found',
+};
 
 const routes = [
   {
@@ -28,6 +36,12 @@ const routes = [
     exact: true,
     id: ROUTES_ID.EXPORT,
     path: '/export',
+  },
+  {
+    component: NotFound,
+    exact: true,
+    id: ROUTES_ID.NOT_FOUND,
+    path: '/404',
   },
 ];
 
