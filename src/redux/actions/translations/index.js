@@ -1,3 +1,4 @@
+export { default as deleteKey } from './delete-key';
 export { default as updateValue } from './update-value';
 export { default as clearLanguage } from './clear-language';
 export { default as removeLanguage } from './remove-language';

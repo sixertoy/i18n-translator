@@ -1,9 +1,10 @@
 import classnames from 'classnames';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { deleteKey } from '../../../../redux/actions/translations';
 import { selectPrimaryKeys } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
@@ -34,8 +35,17 @@ const useStyles = createUseStyles({
 
 const ColumnKeysComponent = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const classes = useStyles({ theme });
   const items = useSelector(selectPrimaryKeys);
+
+  const onDeleteKey = useCallback(
+    key => {
+      dispatch(deleteKey(key));
+    },
+    [dispatch]
+  );
+
   return (
     <div className={classes.wrapper}>
       {items.map((key, index) => {
@@ -43,7 +53,10 @@ const ColumnKeysComponent = () => {
         const even = !odd;
         return (
           <div key={key} className={classnames(classes.line, { even, odd })}>
-            <button className={classes.icon} type="button" onClick={() => {}}>
+            <button
+              className={classes.icon}
+              type="button"
+              onClick={() => onDeleteKey(key)}>
               <ClearIcon />
             </button>
             <input

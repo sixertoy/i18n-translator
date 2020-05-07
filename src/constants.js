@@ -15,6 +15,7 @@ export const EVENT_TYPES = {
   // TRANSLATIONS_PRIMARY_KEY_ADD: 'onTranslationsPrimaryKeyAdd',
   // TRANSLATIONS_PRIMARY_KEY_DELETE: 'onTranslationsPrimaryKeyDelete',
   // TRANSLATIONS_PRIMARY_KEY_UPDATE: 'onTranslationsPrimaryKeyUpdate',
+  TRANSLATIONS_KEY_DELETE: 'onTranslationsKeyDelete',
   TRANSLATIONS_LANG_CLEAR: 'onTranslationsLangClear',
   TRANSLATIONS_LANG_REMOVE: 'onTranslationsLangRemove',
   // TRANSLATIONS_PROJECT_TOGGLE_FAV: 'onTranslationsProjectToggleFav',

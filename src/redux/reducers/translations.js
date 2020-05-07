@@ -53,6 +53,17 @@ export function removeLanguage(state, { lang }) {
   return next;
 }
 
+export function deleteKey(state, { key }) {
+  const next = state.reduce((acc, obj) => {
+    const { dict, ...rest } = obj;
+    const filtered = Object.entries(dict)
+      .filter(arr => arr[0] !== key)
+      .reduce((ac, arr) => ({ ...ac, [arr[0]]: arr[1] }), {});
+    return [...acc, { ...rest, dict: filtered }];
+  }, []);
+  return next;
+}
+
 // NOTE translation data model
 //  {
 //    lang: string,
@@ -76,6 +87,8 @@ const translations = (state = [], action) => {
     // return state;
     case EVENT_TYPES.TRANSLATIONS_VALUE_UPDATE:
       return updateValue(state, action);
+    case EVENT_TYPES.TRANSLATIONS_KEY_DELETE:
+      return deleteKey(state, action);
     // case EVENT_TYPES.TRANSLATIONS_VALUE_DELETE:
     // return state;
     // NOTE -> Keys
