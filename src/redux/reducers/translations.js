@@ -30,9 +30,9 @@ export function updateValue(state, { key, lang, update }) {
   return next;
 }
 
-export function clearLang(state, lang) {
+export function clearLang(state, action) {
   const next = state.reduce((acc, obj) => {
-    const iscurrent = obj.lang === lang;
+    const iscurrent = obj.lang === action.lang;
     if (!iscurrent) return [...acc, obj];
     const dict = Object.entries(obj.dict).reduce(
       (ac, ar) => ({ ...ac, [ar[0]]: '' }),
@@ -43,8 +43,8 @@ export function clearLang(state, lang) {
   return next;
 }
 
-export function removeLang(state, lang) {
-  const next = state.filter(obj => obj.lang !== lang);
+export function removeLang(state, action) {
+  const next = state.filter(obj => obj.lang !== action.lang);
   return next;
 }
 
@@ -64,9 +64,9 @@ const translations = (state = [], action) => {
     //   return state;
     // NOTE -> Values
     case EVENT_TYPES.TRANSLATIONS_LANG_CLEAR:
-      return clearLang(state, action.lang);
+      return clearLang(state, action);
     case EVENT_TYPES.TRANSLATIONS_LANG_REMOVE:
-      return removeLang(state, action.lang);
+      return removeLang(state, action);
     // case EVENT_TYPES.TRANSLATIONS_VALUE_ADD:
     // return state;
     case EVENT_TYPES.TRANSLATIONS_VALUE_UPDATE:

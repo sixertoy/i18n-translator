@@ -1,41 +1,51 @@
 import Tippy from '@tippyjs/react';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
-// import { createUseStyles } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import {
   clearLanguage,
   removeLanguage,
 } from '../../../../redux/actions/translations';
+import ContextMenuComponent from './context-menu';
 
-// const useStyles = createUseStyles({
-//   button: {},
-// });
+const useStyles = createUseStyles({
+  tooltip: {
+    borderLeft: '0 !important',
+    borderRadius: '4px 0 4px 4px !important',
+    borderRight: '0 !important',
+    borderTop: '0 !important',
+    left: '0 !important',
+  },
+});
 
 const TooltipComponent = ({ lang }) => {
-  // const classes = useStyles();
+  const classes = useStyles();
   const dispatch = useDispatch();
+
+  const onClearHandler = useCallback(() => {
+    dispatch(clearLanguage(lang));
+  }, [dispatch, lang]);
+
+  const onRemoveHandler = useCallback(() => {
+    dispatch(removeLanguage(lang));
+  }, [dispatch, lang]);
+
   return (
     <Tippy
       hideOnClick
       interactive
-      content={() => {
-        return (
-          <div>
-            <button type="button" onClick={() => dispatch(clearLanguage(lang))}>
-              <span>Clear</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => dispatch(removeLanguage(lang))}>
-              <span>Remove</span>
-            </button>
-          </div>
-        );
-      }}
+      className={classes.tooltip}
+      content={
+        <ContextMenuComponent
+          onClear={onClearHandler}
+          onRemove={onRemoveHandler}
+        />
+      }
       placement="bottom"
+      theme="light-border"
       trigger="click">
       <div>
         <ContextIcon />
