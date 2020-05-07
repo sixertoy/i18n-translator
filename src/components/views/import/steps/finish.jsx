@@ -1,15 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
-  button: {},
-  container: {},
-  link: {},
+  button: {
+    background: '#000000',
+    borderRadius: 4,
+    color: '#FFFFFF',
+    composes: ['use-pointer', 'py12', 'px24', 'mb12', 'text-center'],
+    width: 300,
+  },
+  container: {
+    composes: ['flex-rows', 'flex-center', 'items-center'],
+    height: '100%',
+  },
 });
 
-const FinishComponent = ({ onRestart }) => {
+const FinishComponent = ({ onRestart, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -17,15 +24,16 @@ const FinishComponent = ({ onRestart }) => {
       <button className={classes.button} type="button" onClick={onRestart}>
         <span>Ajouter un autre langage</span>
       </button>
-      <Link className={classes.link} to="/board">
+      <button className={classes.button} type="button" onClick={onSubmit}>
         <span>Voir les projets</span>
-      </Link>
+      </button>
     </div>
   );
 };
 
 FinishComponent.propTypes = {
   onRestart: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default FinishComponent;

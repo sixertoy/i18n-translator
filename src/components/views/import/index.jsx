@@ -1,14 +1,7 @@
-import get from 'lodash.get';
-import React, { useEffect, useState } from 'react';
-import { createUseStyles } from 'react-jss';
+import React, { useCallback, useState } from 'react';
+import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
-import {
-  Redirect,
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-} from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 import { createLanguage } from '../../../redux/actions/translations';
 import Steps from '../../commons/Steps';
@@ -17,100 +10,91 @@ import Editor from './steps/editor';
 import Finish from './steps/finish';
 import Intro from './steps/intro';
 import Select from './steps/select';
+import useView from './useView';
 
 const useStyles = createUseStyles({
-  container: {
+  container: ({ theme }) => ({
     composes: ['p24'],
     height: '100%',
+    paddingTop: theme.sizes.header,
+  }),
+  inner: {
+    composes: ['p32'],
+    height: '100%',
   },
-  wrapper: {
-    composes: ['mt24'],
-  },
+  wrapper: ({ theme }) => ({
+    composes: ['pt24', 'flex-1'],
+    height: '100%',
+    paddingBottom: theme.sizes.footer,
+  }),
 });
 
-const CREATE_STEPS = [
-  { label: 'Commencer', path: '/import/start' },
-  { label: 'Langue', path: '/import/select' },
-  { label: 'Importer', path: '/import/editor' },
-  { label: 'Finish', path: '/import/finish' },
-];
-
-function getPathByStepIndex(index) {
-  const path = get(CREATE_STEPS, `${index}.path`);
-  return path;
-}
-
-function getStepIndexByPath(location) {
-  const { pathname } = location;
-  const index = CREATE_STEPS.findIndex(({ path }) => path === pathname);
-  return index;
-}
-
 const ImportViewComponent = () => {
-  const classes = useStyles();
-  const history = useHistory();
-  const location = useLocation();
-  const dispatch = useDispatch();
-
-  const [step, setStep] = useState(0);
   const [lang, setLang] = useState(undefined);
   const [content, setContent] = useState(null);
+
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { path, step, steps } = useView(lang, content);
 
   const clearState = () => {
     setContent(null);
     setLang(undefined);
   };
 
-  useEffect(() => {
-    const index = getStepIndexByPath(location);
-    if (index !== step) setStep(index);
-    if (lang && content) dispatch(createLanguage(lang, content));
-  }, [content, dispatch, history, lang, location, step]);
+  const onIntroHandler = useCallback(() => {
+    history.push(path);
+  }, [history, path]);
+
+  const onSelectHandler = useCallback(
+    value => {
+      history.push(path);
+      setLang(value);
+    },
+    [history, path]
+  );
+
+  const onEditorHandler = useCallback(
+    value => {
+      history.push(path);
+      setContent(value);
+    },
+    [history, path]
+  );
+
+  const onRestartHandler = useCallback(() => {
+    history.push(path);
+    clearState();
+  }, [history, path]);
+
+  const onSubmitHandler = useCallback(() => {
+    dispatch(createLanguage(lang, content));
+    history.push(path);
+  }, [content, dispatch, history, lang, path]);
 
   return (
     <div className={classes.container} id="import-view">
-      <Steps current={step} steps={CREATE_STEPS} />
-      <div className={classes.wrapper}>
-        <Switch>
-          <Redirect exact from="/import" push={false} to="/import/start" />
-          <Route exact path="/import/start">
-            <Intro
-              onClick={() => {
-                const path = getPathByStepIndex(1);
-                history.push(path);
-              }}
-            />
-          </Route>
-          <Route exact path="/import/select">
-            <Select
-              lang={lang}
-              onChange={value => {
-                const path = getPathByStepIndex(2);
-                history.push(path);
-                setLang(value);
-              }}
-            />
-          </Route>
-          <Route exact path="/import/editor">
-            <Editor
-              value={content}
-              onSubmit={value => {
-                const path = getPathByStepIndex(3);
-                history.push(path);
-                setContent(value);
-              }}
-            />
-          </Route>
-          <Route exact path="/import/finish">
-            <Finish
-              onRestart={() => {
-                const path = getPathByStepIndex(1);
-                history.push(path);
-                clearState();
-              }}
-            />
-          </Route>
-        </Switch>
+      <div className={classes.inner}>
+        <Steps current={step} steps={steps} />
+        <div className={classes.wrapper}>
+          <Switch>
+            <Route exact path="/import/start">
+              <Intro onClick={onIntroHandler} />
+            </Route>
+            <Route exact path="/import/select">
+              <Select lang={lang} onChange={onSelectHandler} />
+            </Route>
+            <Route exact path="/import/editor">
+              <Editor value={content} onClick={onEditorHandler} />
+            </Route>
+            <Route exact path="/import/finish">
+              <Finish onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
+            </Route>
+            <Redirect exact from="/import" push={false} to="/import/start" />
+          </Switch>
+        </div>
       </div>
     </div>
   );

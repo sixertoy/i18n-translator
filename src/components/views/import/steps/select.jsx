@@ -5,17 +5,19 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { LANGS } from '../../../../constants';
 
 const useStyles = createUseStyles({
-  container: {},
+  container: {
+    composes: ['flex-columns', 'flex-center', 'items-center'],
+    height: '100%',
+  },
   input: {
     border: 0,
-    composes: ['debug', 'fs14', 'm0', 'p0'],
+    composes: ['fs14', 'm0', 'p0'],
     cursor: 'pointer',
     display: 'inline-block',
     minWidth: '100%',
     width: '100%',
   },
   options: {
-    composes: ['debug'],
     cursor: 'pointer',
     minWidth: '100%',
     width: '100%',
@@ -24,7 +26,9 @@ const useStyles = createUseStyles({
     '&.disabled': {
       opacity: 0.45,
     },
-    composes: ['debug', 'fs12', 'text-left'],
+    border: '1px solid #000000',
+    borderRadius: 4,
+    composes: ['fs12', 'text-left'],
     display: 'inline-block',
     padding: '9px 12px',
     width: 200,

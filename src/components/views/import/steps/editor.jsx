@@ -7,9 +7,10 @@ import CodeEditor from '../../../commons/code-editor';
 
 const useStyles = createUseStyles({
   button: {
-    composes: ['use-pointer'],
+    composes: ['use-pointer', 'py12', 'px24', 'mt12'],
   },
   container: {
+    composes: ['flex-rows'],
     height: '100%',
     width: '100%',
   },
@@ -18,7 +19,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const EditorStepComponent = ({ onSubmit, value }) => {
+const EditorStepComponent = ({ onClick, value }) => {
   const classes = useStyles();
   const [content, setContent] = useState(value || '');
   const [disabled, setDisabled] = useState(true);
@@ -39,7 +40,7 @@ const EditorStepComponent = ({ onSubmit, value }) => {
           className={classes.button}
           disabled={disabled}
           type="button"
-          onClick={() => onSubmit(content)}>
+          onClick={() => onClick(content)}>
           <span>Créer</span>
           <ArrowIcon />
         </button>
@@ -53,7 +54,7 @@ EditorStepComponent.defaultProps = {
 };
 
 EditorStepComponent.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   value: PropTypes.string,
 };
 
