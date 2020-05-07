@@ -15,7 +15,7 @@ const routes = [
     component: Import,
     exact: true,
     id: ROUTES_ID.IMPORT,
-    path: '/import/:index?',
+    path: ['/import', '/import/:index'],
   },
   {
     component: Board,

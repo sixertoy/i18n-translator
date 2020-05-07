@@ -15,6 +15,9 @@ function useStep(lang, content) {
   const [nextPath, setNextPath] = useState(null);
 
   useEffect(() => {
+    if (Number.isNaN(step)) {
+      history.replace(`/import/1`);
+    }
     setNextPath(`/import/${step + 1}`);
     const hasNoLang = step > 2 && !lang;
     const hasNoContent = step > 3 && !content;
