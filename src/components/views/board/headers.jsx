@@ -16,10 +16,8 @@ import PercentageBar from '../../commons/percentage-bar';
 const useStyles = createUseStyles({
   headers: {
     background: '#F1F1F1',
-    composes: ['py12', 'flex-0', 'is-sticky'],
-    position: 'sticky',
-    top: 40,
-    zIndex: 999999,
+    composes: ['py12'],
+    height: 55,
   },
   icon: {
     composes: ['mr7'],
@@ -32,7 +30,7 @@ const useStyles = createUseStyles({
     width: theme.sizes.keycol,
   }),
   labels: {
-    composes: ['flex-rows', 'mr24'],
+    composes: ['mr24'],
   },
   percentage: {
     maxWidth: '65%',
@@ -40,16 +38,13 @@ const useStyles = createUseStyles({
     width: '65%',
   },
   values: ({ theme }) => ({
-    composes: ['flex-1', 'fs14', 'pl7', 'is-bold'],
+    composes: ['fs14', 'pl7', 'is-bold'],
     fontVariant: 'small-caps',
     marginLeft: 1,
     maxWidth: '65%',
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
-  wrapper: {
-    composes: ['flex-columns', 'items-center'],
-  },
 });
 
 const HeadersComponent = () => {
@@ -59,55 +54,53 @@ const HeadersComponent = () => {
   const headers = useSelector(selectHeader);
   return (
     <div className={classes.headers}>
-      <div className={classes.wrapper}>
-        <div className={classes.keys}>
-          <KeyIcon />
-        </div>
-        {headers.map(({ count, label, lang, total }) => (
-          <div key={lang} className={classes.values}>
-            {USE_CONTEXT_LANG && (
-              <Tippy
-                hideOnClick
-                interactive
-                content={() => {
-                  return (
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          dispatch(clearLanguage(lang));
-                        }}>
-                        <span>Clear</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          dispatch(removeLanguage(lang));
-                        }}>
-                        <span>Remove</span>
-                      </button>
-                    </div>
-                  );
-                }}
-                placement="bottom"
-                trigger="click">
-                <div>
-                  <ContextIcon />
-                </div>
-              </Tippy>
-            )}
-            <div className={classes.labels}>
-              <div>{label}</div>
-              <PercentageBar
-                className={classes.percentage}
-                count={count}
-                size="tiny"
-                total={total}
-              />
-            </div>
-          </div>
-        ))}
+      <div className={classes.keys}>
+        <KeyIcon />
       </div>
+      {headers.map(({ count, label, lang, total }) => (
+        <div key={lang} className={classes.values}>
+          {USE_CONTEXT_LANG && (
+            <Tippy
+              hideOnClick
+              interactive
+              content={() => {
+                return (
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        dispatch(clearLanguage(lang));
+                      }}>
+                      <span>Clear</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        dispatch(removeLanguage(lang));
+                      }}>
+                      <span>Remove</span>
+                    </button>
+                  </div>
+                );
+              }}
+              placement="bottom"
+              trigger="click">
+              <div>
+                <ContextIcon />
+              </div>
+            </Tippy>
+          )}
+          <div className={classes.labels}>
+            <div>{label}</div>
+            <PercentageBar
+              className={classes.percentage}
+              count={count}
+              size="tiny"
+              total={total}
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

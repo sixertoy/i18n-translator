@@ -5,10 +5,7 @@ import ApplicationFooter from './footer';
 import ApplicationHeader from './header';
 
 const useStyles = createUseStyles({
-  view: {
-    composes: ['flex-1'],
-    height: 'auto',
-  },
+  view: {},
 });
 
 const wittLayout = WrappedComponent => props => {

@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
     transition: 'color 0.5s',
   }),
   column: ({ theme }) => ({
-    composes: ['flex-0'],
+    composes: [],
     minWidth: theme.sizes.keycol,
     width: theme.sizes.keycol,
   }),
@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
     '&.even': { background: theme.even },
     '&.odd': { background: theme.odd },
     borderRadius: '4px 0 0 4px',
-    composes: ['flex-columns', 'items-center'],
+    composes: [],
     height: theme.sizes.line,
     marginBottom: 1,
   }),

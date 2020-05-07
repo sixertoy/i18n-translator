@@ -9,7 +9,7 @@ import { updateValue } from '../../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
-    composes: ['flex-1'],
+    composes: [],
     marginLeft: 1,
     maxWidth: '65%',
     minWidth: theme.sizes.colwidth,
@@ -31,9 +31,7 @@ const useStyles = createUseStyles({
   line: ({ theme }) => ({
     '&.even': { background: theme.even },
     '&.odd': { background: theme.odd },
-    // '.last &': { borderRadius: '0 4px 4px 0' },
-    // borderRadius: '4px 0 0 4px',
-    composes: ['flex-columns', 'items-center'],
+    composes: [],
     height: theme.sizes.line,
     marginBottom: 1,
   }),

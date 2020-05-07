@@ -19,12 +19,12 @@ import Intro from './steps/intro';
 import Select from './steps/select';
 
 const useStyles = createUseStyles({
-  import: {
-    composes: ['flex-rows', 'p24'],
+  container: {
+    composes: ['p24'],
     height: '100%',
   },
   wrapper: {
-    composes: ['mt24', 'flex-rows', 'flex-center', 'items-center'],
+    composes: ['mt24'],
   },
 });
 
@@ -68,7 +68,7 @@ const ImportViewComponent = () => {
   }, [content, dispatch, history, lang, location, step]);
 
   return (
-    <div className={classes.import}>
+    <div className={classes.container} id="import-view">
       <Steps current={step} steps={CREATE_STEPS} />
       <div className={classes.wrapper}>
         <Switch>

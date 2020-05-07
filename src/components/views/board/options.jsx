@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
     composes: ['fs24', 'ml12'],
   },
   labels: {
-    composes: ['flex-1'],
+    composes: [],
   },
   link: ({ theme }) => ({
     color: theme.font,
@@ -41,13 +41,7 @@ const useStyles = createUseStyles({
   options: ({ theme }) => ({
     background: theme.options,
     color: theme.font,
-    composes: [
-      'flex-columns',
-      'flex-between',
-      'items-center',
-      'flex-0',
-      'px32',
-    ],
+    composes: ['px32'],
     height: theme.sizes.options,
     maxHeight: theme.sizes.options,
     minHeight: theme.sizes.options,
@@ -61,7 +55,7 @@ const useStyles = createUseStyles({
   search: ({ theme }) => ({
     background: theme.colors.white,
     borderRadius: 16,
-    composes: ['flex-columns', 'flex-end', 'items-center', 'px12'],
+    composes: ['px12'],
     height: 32,
     maxWidth: 260,
     minWidth: 260,
@@ -80,7 +74,7 @@ const useStyles = createUseStyles({
     composes: ['is-bold'],
   }),
   wrapper: {
-    composes: ['flex-columns', 'items-center', 'flex-center'],
+    composes: [],
   },
 });
 

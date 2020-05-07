@@ -11,7 +11,7 @@ import Values from './values';
 
 const useStyles = createUseStyles({
   columns: {
-    composes: ['flex-1', 'flex-columns'],
+    composes: [],
   },
 });
 

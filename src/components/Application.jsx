@@ -8,7 +8,6 @@ import routes from '../routes';
 const useStyles = createUseStyles({
   application: ({ theme }) => ({
     background: theme.background,
-    composes: ['flex-rows', 'flex-stretch'],
     height: '100%',
   }),
 });

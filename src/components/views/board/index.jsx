@@ -8,12 +8,13 @@ import Options from './options';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows', 'flex-stretch'],
+    composes: [],
     height: '100%',
+    width: '100%',
   },
-  table: {},
-  wrapper: {
-    composes: ['flex-1'],
+  table: {
+    height: '100%',
+    width: '100%',
   },
 });
 
@@ -21,13 +22,11 @@ const BoardViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container}>
+    <div className={classes.container} id="board-view">
       <Options />
-      <div className={classes.wrapper}>
-        <div className={classes.table}>
-          <Headers />
-          <Columns />
-        </div>
+      <div className={classes.table}>
+        <Headers />
+        <Columns />
       </div>
     </div>
   );

@@ -7,19 +7,10 @@ import Menu from './menu';
 const useStyles = createUseStyles({
   header: ({ theme }) => ({
     background: theme.header,
-    composes: [
-      'flex-0',
-      'flex-columns',
-      'flex-between',
-      'items-center',
-      'px32',
-    ],
     height: 40,
     maxHeight: 40,
     minHeight: 40,
-    position: 'sticky',
-    top: 0,
-    zIndex: 999999,
+    width: '100%',
   }),
 });
 
@@ -28,9 +19,11 @@ const ApplicationHeader = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.header}>
-      <Menu />
-      <Logo />
-      <div className="blank">&nbsp;</div>
+      <div className={classes.inner}>
+        <Menu />
+        <Logo />
+        <div className="blank">&nbsp;</div>
+      </div>
     </div>
   );
 });

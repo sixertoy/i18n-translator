@@ -3,51 +3,32 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import { repository, version } from '../../../../package.json';
 import Credits from './credits';
-// import { rgba } from '../../../core/utils/colors';
-
-// import GithubStarButton from './github-star-button';
-// import TwitterShareButton from './twitter-share-button';
 
 const useStyles = createUseStyles({
   footer: ({ theme }) => ({
     background: theme.background,
-    bottom: 0,
-    composes: [
-      'flex-0',
-      'px32',
-      'pb0',
-      'pt12',
-      'fs8',
-      'is-uppercase',
-      'is-relative',
-    ],
+    composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase'],
     letterSpacing: '0.12em',
-    marginTop: 40,
-    position: 'sticky',
   }),
+  inner: {
+    composes: ['is-relative'],
+  },
   version: ({ theme }) => ({
     color: theme.colors.font,
   }),
 });
-
-// const { NODE_ENV } = process.env;
-// const isDevelopment = NODE_ENV === 'development';
 
 const ApplicationFooter = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.footer}>
-      <a className={classes.version} href={repository.url}>
-        <span>v{version} - i18n Online Translation Editor</span>
-      </a>
-      <Credits />
-      {/* {!isDevelopment && (
-        <div>
-          <TwitterShareButton homepage={homepage} />
-          <GithubStarButton name={name} repository={repository} />
-        </div>
-      )} */}
+      <div className={classes.inner}>
+        <a className={classes.version} href={repository.url}>
+          <span>v{version} - i18n Online Translation Editor</span>
+        </a>
+        <Credits />
+      </div>
     </div>
   );
 });

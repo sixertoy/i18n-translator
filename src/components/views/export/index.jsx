@@ -16,21 +16,14 @@ const useStyles = createUseStyles({
     background: 'transparent',
     composes: ['fs24'],
   },
-  export: {
-    composes: ['flex-rows', 'flex-center', 'items-center', 'is-full-height'],
+  container: {
+    composes: [],
   },
   line: ({ theme }) => ({
     '&:hover': { background: theme.header },
     background: theme.font,
     borderRadius: 12,
-    composes: [
-      'flex-columns',
-      'flex-between',
-      'items-center',
-      'py12',
-      'px12',
-      'my12',
-    ],
+    composes: ['py12', 'px12', 'my12'],
     height: 60,
     maxHeight: 60,
     maxWidth: '60%',
@@ -54,7 +47,7 @@ const ExportViewComponent = () => {
   const classes = useStyles({ theme });
   const { project, ...items } = useSelector(selectPercentages);
   return (
-    <div className={classes.export}>
+    <div className={classes.container} id="export-view">
       {USE_PROJECTS && (
         <div className={classes.line} type="button">
           <div className={classes.title}>

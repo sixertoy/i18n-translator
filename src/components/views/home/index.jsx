@@ -13,15 +13,9 @@ const useStyles = createUseStyles({
     letterSpacing: '0.08em',
     width: 60,
   },
-  home: ({ theme }) => ({
+  container: ({ theme }) => ({
     background: theme.header,
-    composes: [
-      'text-center',
-      'flex-columns',
-      'flex-center',
-      'items-center',
-      'is-full-layout',
-    ],
+    composes: [],
   }),
 });
 
@@ -29,7 +23,7 @@ const StartViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.home}>
+    <div className={classes.container} id="home-view">
       {/* <h6>
         <span>Create your first project</span>
       </h6> */}
