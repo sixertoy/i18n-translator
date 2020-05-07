@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { selectTranslations } from '../../../../redux/selectors';
-import Keys from '../columns/keys';
-import Values from './cells/values';
 import Header from './header';
+import Keys from './keys';
+import Values from './values';
 
 const useStyles = createUseStyles({
   // column: ({ theme }) => ({
