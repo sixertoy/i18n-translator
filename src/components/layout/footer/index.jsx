@@ -7,12 +7,8 @@ import Credits from './credits';
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
     background: theme.background,
-    bottom: 0,
-    composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase', 'is-fixed'],
-    left: 0,
+    composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase'],
     letterSpacing: '0.12em',
-    right: 0,
-    zIndex: theme.depths.footer,
   }),
   inner: {
     composes: ['is-relative'],

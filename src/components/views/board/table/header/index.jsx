@@ -11,13 +11,12 @@ import PercentageBar from '../../../../commons/percentage-bar';
 import ContextMenuComponent from './context-menu';
 
 const useStyles = createUseStyles({
-  header: ({ theme }) => ({
+  header: ({ index, theme }) => ({
     background: '#F1F1F1',
-    composes: ['fs14', 'px12', 'py18', 'is-bold'],
-    fontVariant: 'small-caps',
     height: theme.sizes.colheader,
     position: 'sticky',
     top: 0,
+    zIndex: theme.depths.colheader - index,
   }),
   icon: {
     composes: ['is-absolute'],
@@ -41,42 +40,46 @@ const useStyles = createUseStyles({
     left: '0 !important',
   },
   wrapper: {
-    composes: ['is-relative'],
+    composes: ['fs14', 'px12', 'py18', 'is-bold', 'is-relative'],
+    fontVariant: 'small-caps',
   },
 });
 
-const ColumnHeaderComponent = ({ label, lang, primary }) => {
+const ColumnHeaderComponent = ({ index, label, lang, primary }) => {
   const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles({ index, theme });
   return (
     <div className={classnames(classes.header, { [classes.primary]: primary })}>
-      {primary && <KeyIcon />}
-      {!primary && (
-        <div className={classes.wrapper}>
-          <div>{label}</div>
-          <PercentageBar
-            // NOTE do not mark 'className' as required
-            // in PercentageBar
-            className={classes.percentage}
-            count={30}
-            size="tiny"
-            total={40}
-          />
-          {USE_CONTEXT_LANG && (
-            <Tippy
-              hideOnClick
-              interactive
-              className={classes.tooltip}
-              content={<ContextMenuComponent lang={lang} />}
-              placement="bottom"
-              trigger="click">
-              <div className={classes.icon}>
-                <ContextIcon />
-              </div>
-            </Tippy>
-          )}
-        </div>
-      )}
+      <div className={classes.wrapper}>
+        {primary && <KeyIcon />}
+        {!primary && (
+          <React.Fragment>
+            <div>{label}</div>
+            <PercentageBar
+              // NOTE do not mark 'className' as required
+              // in PercentageBar
+              className={classes.percentage}
+              count={30}
+              size="tiny"
+              total={40}
+            />
+            {USE_CONTEXT_LANG && (
+              <Tippy
+                hideOnClick
+                interactive
+                className={classes.tooltip}
+                content={<ContextMenuComponent lang={lang} />}
+                placement="bottom"
+                trigger="click"
+                zIndex={999999999}>
+                <div className={classes.icon}>
+                  <ContextIcon />
+                </div>
+              </Tippy>
+            )}
+          </React.Fragment>
+        )}
+      </div>
     </div>
   );
 };
@@ -88,6 +91,7 @@ ColumnHeaderComponent.defaultProps = {
 };
 
 ColumnHeaderComponent.propTypes = {
+  index: PropTypes.number.isRequired,
   label: PropTypes.string,
   lang: PropTypes.string,
   primary: PropTypes.bool,

@@ -7,14 +7,13 @@ import Table from './table';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows', 'is-relative'],
-    height: 'auto',
-    maxWidth: '100%',
-    minWidth: '100%',
-    width: '100%',
+    composes: ['flex-rows', 'is-relative', 'is-full-layout'],
   },
-  table: {
-    composes: ['flex-columns', 'flex-start'],
+  wrapper: {
+    composes: ['is-relative', 'flex-1'],
+    height: 'auto',
+    overflow: 'scroll',
+    width: '100%',
   },
 });
 
@@ -24,7 +23,9 @@ const BoardViewComponent = () => {
   return (
     <div className={classes.container} id="board-view">
       <Menu />
-      <Table />
+      <div className={classes.wrapper}>
+        <Table />
+      </div>
     </div>
   );
 };

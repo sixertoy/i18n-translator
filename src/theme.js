@@ -71,9 +71,8 @@ const themes = {
 const themeBase = {
   colors,
   depths: {
-    columns: 999970,
-    footer: 999980,
-    header: 999990,
+    colheader: 999,
+    progressbar: 999,
   },
   sizes: {
     bottom: 80,

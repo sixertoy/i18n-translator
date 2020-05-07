@@ -21,6 +21,9 @@ const useStyles = createUseStyles({
     width: theme.sizes.colkey,
   }),
   table: {
+    composes: ['is-overlay'],
+  },
+  wrapper: {
     composes: ['flex-columns', 'flex-start'],
   },
 });
@@ -33,16 +36,18 @@ const TableComponent = () => {
   if (!hasItems) return <Redirect to="/" />;
   return (
     <div className={classes.table}>
-      <div className={classes.primary}>
-        <Header primary />
-        <Keys />
-      </div>
-      {items.map(({ label, lang, values }) => (
-        <div key={lang} className={classes.column}>
-          <Header label={label} lang={lang} />
-          <Values lang={lang} values={values} />
+      <div className={classes.wrapper}>
+        <div className={classes.primary}>
+          <Header primary />
+          <Keys />
         </div>
-      ))}
+        {items.map(({ label, lang, values }, index) => (
+          <div key={lang} className={classes.column}>
+            <Header index={index} label={label} lang={lang} />
+            <Values lang={lang} values={values} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

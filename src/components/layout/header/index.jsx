@@ -8,7 +8,6 @@ const useStyles = createUseStyles({
   container: ({ theme }) => ({
     background: theme.header,
     width: '100%',
-    zIndex: theme.depths.header,
   }),
   wrapper: ({ theme }) => ({
     composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
