@@ -13,9 +13,9 @@ const routes = [
   },
   {
     component: Import,
-    exact: true,
+    exact: false,
     id: ROUTES_ID.IMPORT,
-    path: '/import/:view(start|editor|select|finish)?',
+    path: '/import/:index',
   },
   {
     component: Board,

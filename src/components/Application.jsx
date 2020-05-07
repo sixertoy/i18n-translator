@@ -23,7 +23,7 @@ const Application = () => {
         {routes.map(obj => {
           return (
             <Route
-              key={obj.path}
+              key={obj.id}
               component={obj.component}
               exact={obj.exact}
               path={obj.path}

@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 import { createLanguage } from '../../../redux/actions/translations';
-import Steps from '../../commons/Steps';
+import Steps from '../../commons/steps';
 import withLayout from '../../layout';
 import Editor from './steps/editor';
 import Finish from './steps/finish';
 import Intro from './steps/intro';
 import Select from './steps/select';
-import useView from './useView';
+import useStep from './use-step';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
@@ -37,7 +37,7 @@ const ImportViewComponent = () => {
   const classes = useStyles({ theme });
   const history = useHistory();
   const dispatch = useDispatch();
-  const { path, step, steps } = useView(lang, content);
+  const { nextPath, step, steps } = useStep(lang, content);
 
   const clearState = () => {
     setContent(null);
@@ -45,54 +45,56 @@ const ImportViewComponent = () => {
   };
 
   const onIntroHandler = useCallback(() => {
-    history.push(path);
-  }, [history, path]);
+    history.push(nextPath);
+  }, [history, nextPath]);
 
   const onSelectHandler = useCallback(
     value => {
-      history.push(path);
+      history.push(nextPath);
       setLang(value);
     },
-    [history, path]
+    [history, nextPath]
   );
 
   const onEditorHandler = useCallback(
     value => {
-      history.push(path);
+      history.push(nextPath);
       setContent(value);
     },
-    [history, path]
+    [history, nextPath]
   );
 
   const onRestartHandler = useCallback(() => {
-    history.push(path);
+    history.push(nextPath);
     clearState();
-  }, [history, path]);
+  }, [history, nextPath]);
 
   const onSubmitHandler = useCallback(() => {
     dispatch(createLanguage(lang, content));
-    history.push(path);
-  }, [content, dispatch, history, lang, path]);
+    history.push('/board');
+  }, [content, dispatch, history, lang]);
 
   return (
     <div className={classes.container} id="import-view">
       <div className={classes.inner}>
-        <Steps current={step} steps={steps} />
+        <Steps current={step - 1} steps={steps} />
         <div className={classes.wrapper}>
           <Switch>
-            <Route exact path="/import/start">
+            <Route exact path="/import/1">
               <Intro onClick={onIntroHandler} />
             </Route>
-            <Route exact path="/import/select">
+            <Route exact path="/import/2">
               <Select lang={lang} onChange={onSelectHandler} />
             </Route>
-            <Route exact path="/import/editor">
+            <Route exact path="/import/3">
               <Editor value={content} onClick={onEditorHandler} />
             </Route>
-            <Route exact path="/import/finish">
+            <Route exact path="/import/4">
               <Finish onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
             </Route>
-            <Redirect exact from="/import" push={false} to="/import/start" />
+            <Route path="*">
+              <Redirect to="/import/1" />
+            </Route>
           </Switch>
         </div>
       </div>

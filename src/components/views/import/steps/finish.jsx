@@ -25,7 +25,7 @@ const FinishComponent = ({ onRestart, onSubmit }) => {
         <span>Ajouter un autre langage</span>
       </button>
       <button className={classes.button} type="button" onClick={onSubmit}>
-        <span>Voir les projets</span>
+        <span>Créer et Voir les projets</span>
       </button>
     </div>
   );

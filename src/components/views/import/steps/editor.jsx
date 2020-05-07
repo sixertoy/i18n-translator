@@ -41,7 +41,7 @@ const EditorStepComponent = ({ onClick, value }) => {
           disabled={disabled}
           type="button"
           onClick={() => onClick(content)}>
-          <span>Créer</span>
+          <span>Continuer</span>
           <ArrowIcon />
         </button>
       </div>
