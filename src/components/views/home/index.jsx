@@ -6,16 +6,16 @@ import { Link } from 'react-router-dom';
 const useStyles = createUseStyles({
   button: {
     background: '#FFFFFF',
-    borderRadius: 30,
+    borderRadius: 28,
     composes: ['text-center'],
-    fontSize: 30,
-    height: 60,
-    letterSpacing: '0.08em',
-    width: 60,
+    fontSize: 40,
+    height: 56,
+    lineHeight: '50px',
+    width: 56,
   },
   container: ({ theme }) => ({
     background: theme.header,
-    composes: [],
+    composes: ['flex-columns', 'items-center', 'flex-center'],
   }),
 });
 
