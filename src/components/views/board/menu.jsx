@@ -29,7 +29,6 @@ const useStyles = createUseStyles({
     color: theme.font,
     composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
     height: theme.sizes.options,
-    marginTop: theme.sizes.header,
     maxHeight: theme.sizes.options,
     minHeight: theme.sizes.options,
   }),

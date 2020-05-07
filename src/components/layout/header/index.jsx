@@ -7,8 +7,6 @@ import Menu from './menu';
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
     background: theme.header,
-    position: 'fixed',
-    top: 0,
     width: '100%',
     zIndex: theme.depths.header,
   }),
