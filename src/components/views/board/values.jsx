@@ -17,7 +17,7 @@ const useStyles = createUseStyles({
   }),
   header: {
     background: '#F1F1F1',
-    composes: ['text-center', 'py12'],
+    composes: ['py12'],
   },
   icon: ({ theme }) => ({
     '.notvalid &': { color: theme.red },

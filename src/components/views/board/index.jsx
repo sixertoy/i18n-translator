@@ -1,37 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
 
-import { selectTranslations } from '../../../redux/selectors';
 import withLayout from '../../layout';
-import Keys from './keys';
 import Options from './options';
-import Values from './values';
+import Table from './table';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows'],
-    height: '100%',
+    composes: ['flex-rows', 'is-relative'],
+    height: 'auto',
+    maxWidth: '100%',
+    minWidth: '100%',
     width: '100%',
-  },
-  table: {
-    composes: ['flex-columns', 'flex-start'],
   },
 });
 
 const BoardViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const translations = useSelector(selectTranslations);
   return (
     <div className={classes.container} id="board-view">
       <Options />
-      <div className={classes.table}>
-        <Keys />
-        {translations.map(obj => (
-          <Values key={obj.lang} data={obj} />
-        ))}
-      </div>
+      <Table scroll={{ x: 0, y: 0 }} />
     </div>
   );
 };
