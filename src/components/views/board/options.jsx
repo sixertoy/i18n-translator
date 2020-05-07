@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
     composes: ['fs24', 'ml12'],
   },
   labels: {
-    composes: [],
+    composes: ['no-flex'],
   },
   link: ({ theme }) => ({
     color: theme.font,
@@ -41,7 +41,7 @@ const useStyles = createUseStyles({
   options: ({ theme }) => ({
     background: theme.options,
     color: theme.font,
-    composes: ['px32'],
+    composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
     height: theme.sizes.options,
     maxHeight: theme.sizes.options,
     minHeight: theme.sizes.options,

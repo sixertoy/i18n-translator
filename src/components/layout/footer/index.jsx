@@ -5,10 +5,14 @@ import { repository, version } from '../../../../package.json';
 import Credits from './credits';
 
 const useStyles = createUseStyles({
-  footer: ({ theme }) => ({
+  container: ({ theme }) => ({
     background: theme.background,
-    composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase'],
+    bottom: 0,
+    composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase', 'is-fixed'],
+    left: 0,
     letterSpacing: '0.12em',
+    right: 0,
+    zIndex: theme.depths.footer,
   }),
   inner: {
     composes: ['is-relative'],
@@ -22,7 +26,7 @@ const ApplicationFooter = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.footer}>
+    <div className={classes.container} id="layout-footer">
       <div className={classes.inner}>
         <a className={classes.version} href={repository.url}>
           <span>v{version} - i18n Online Translation Editor</span>

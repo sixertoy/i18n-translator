@@ -70,9 +70,17 @@ const themes = {
 
 const themeBase = {
   colors,
+  depths: {
+    columns: 999970,
+    footer: 999980,
+    header: 999990,
+  },
   sizes: {
+    bottom: 80,
     colgutter: 12,
     colwidth: 300,
+    footer: 40,
+    header: 60,
     keycol: 220,
     line: 60,
     logo: 28,

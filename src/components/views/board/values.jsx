@@ -5,7 +5,7 @@ import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { updateValue } from '../../../../redux/actions/translations';
+import { updateValue } from '../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -15,6 +15,10 @@ const useStyles = createUseStyles({
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
+  header: {
+    background: '#F1F1F1',
+    composes: ['text-center', 'py12'],
+  },
   icon: ({ theme }) => ({
     '.notvalid &': { color: theme.red },
     color: theme.colors.gray,
@@ -31,25 +35,24 @@ const useStyles = createUseStyles({
   line: ({ theme }) => ({
     '&.even': { background: theme.even },
     '&.odd': { background: theme.odd },
-    composes: [],
+    composes: ['flex-columns', 'flex-start', 'items-center'],
     height: theme.sizes.line,
     marginBottom: 1,
   }),
 });
 
-const TranslationsComponent = ({ items }) => {
+const ColumnValuesComponent = ({ data: { label, lang, values } }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
-  const lastLang = items[items.length - 1].lang;
-  return items.map(({ lang, values }) => {
-    const last = lang === lastLang;
-    return (
-      <div key={lang} className={classnames(classes.column, { last })}>
-        {values.map(([key, translation], index) => {
+  return (
+    <div className={classes.column}>
+      <div className={classes.header}>{label}</div>
+      <div className={classes.list}>
+        {values.map(([key, value], index) => {
           const odd = index % 2;
           const even = !odd;
-          const notvalid = !translation || translation === '';
+          const notvalid = !value || value === '';
           return (
             <div
               key={key}
@@ -58,7 +61,7 @@ const TranslationsComponent = ({ items }) => {
                 className={classes.input}
                 placeholder="Enter a value"
                 type="text"
-                value={translation}
+                value={value}
                 onChange={evt => {
                   evt.preventDefault();
                   const update = evt.target.value;
@@ -72,12 +75,12 @@ const TranslationsComponent = ({ items }) => {
           );
         })}
       </div>
-    );
-  });
+    </div>
+  );
 };
 
-TranslationsComponent.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+ColumnValuesComponent.propTypes = {
+  data: PropTypes.shape().isRequired,
 };
 
-export default TranslationsComponent;
+export default ColumnValuesComponent;

@@ -5,7 +5,9 @@ import ApplicationFooter from './footer';
 import ApplicationHeader from './header';
 
 const useStyles = createUseStyles({
-  view: {},
+  views: {
+    composes: ['flex-1'],
+  },
 });
 
 const wittLayout = WrappedComponent => props => {
@@ -13,7 +15,7 @@ const wittLayout = WrappedComponent => props => {
   return (
     <React.Fragment>
       <ApplicationHeader />
-      <div className={classes.view}>
+      <div className={classes.views}>
         <WrappedComponent {...props} />
       </div>
       <ApplicationFooter />

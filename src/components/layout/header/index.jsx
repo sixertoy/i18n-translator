@@ -5,12 +5,15 @@ import Logo from './logo';
 import Menu from './menu';
 
 const useStyles = createUseStyles({
-  header: ({ theme }) => ({
+  container: ({ theme }) => ({
     background: theme.header,
-    height: 40,
-    maxHeight: 40,
-    minHeight: 40,
+    height: theme.sizes.header,
+    maxHeight: theme.sizes.header,
+    minHeight: theme.sizes.header,
+    position: 'sticky',
+    top: 0,
     width: '100%',
+    zIndex: theme.depths.header,
   }),
 });
 
@@ -18,7 +21,7 @@ const ApplicationHeader = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.header}>
+    <div className={classes.container} id="layout-header">
       <div className={classes.inner}>
         <Menu />
         <Logo />
