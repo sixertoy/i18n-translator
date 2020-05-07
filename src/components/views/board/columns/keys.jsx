@@ -5,7 +5,7 @@ import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { selectPrimaryKeys } from '../../../redux/selectors';
+import { selectPrimaryKeys } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -16,13 +16,14 @@ const useStyles = createUseStyles({
     transition: 'color 0.5s',
   }),
   column: ({ theme }) => ({
-    minWidth: theme.sizes.keycol,
-    width: theme.sizes.keycol,
+    minWidth: theme.sizes.colkey,
+    width: theme.sizes.colkey,
   }),
-  header: {
+  header: ({ theme }) => ({
     background: '#F1F1F1',
     composes: ['text-center', 'py12'],
-  },
+    height: theme.sizes.colheader,
+  }),
   input: {
     '&::placeholder': { composes: ['fs12'], opacity: 0.35 },
     composes: ['is-bold', 'px7', 'fs12', 'is-uppercase'],

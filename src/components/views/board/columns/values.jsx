@@ -5,22 +5,32 @@ import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { updateValue } from '../../../redux/actions/translations';
-import PercentageBar from '../../commons/percentage-bar';
+import { USE_CONTEXT_LANG } from '../../../../features.json';
+import { updateValue } from '../../../../redux/actions/translations';
+import PercentageBar from '../../../commons/percentage-bar';
+import Tooltip from './tooltip';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
-    composes: [],
     marginLeft: 1,
     maxWidth: '65%',
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
-  header: {
+  header: ({ theme }) => ({
     background: '#F1F1F1',
-    composes: ['fs14', 'pl7', 'py12', 'is-bold'],
+    composes: [
+      'fs14',
+      'pl7',
+      'py12',
+      'is-bold',
+      'flex-columns',
+      'flex-start',
+      'items-center',
+    ],
     fontVariant: 'small-caps',
-  },
+    height: theme.sizes.colheader,
+  }),
   icon: ({ theme }) => ({
     '.notvalid &': { color: theme.red },
     color: theme.colors.gray,
@@ -34,6 +44,9 @@ const useStyles = createUseStyles({
     textOverflow: 'ellipsis',
     width: '100%',
   }),
+  labels: {
+    composes: ['flex-1', 'ml12'],
+  },
   line: ({ theme }) => ({
     '&.even': { background: theme.even },
     '&.odd': { background: theme.odd },
@@ -55,13 +68,16 @@ const ColumnValuesComponent = ({ data: { label, lang, values } }) => {
   return (
     <div className={classes.column}>
       <div className={classes.header}>
-        <div>{label}</div>
-        <PercentageBar
-          className={classes.percentage}
-          count={20}
-          size="tiny"
-          total={40}
-        />
+        {USE_CONTEXT_LANG && <Tooltip lang={lang} />}
+        <div className={classes.labels}>
+          <div>{label}</div>
+          <PercentageBar
+            className={classes.percentage}
+            count={30}
+            size="tiny"
+            total={40}
+          />
+        </div>
       </div>
       <div className={classes.list}>
         {values.map(([key, value], index) => {

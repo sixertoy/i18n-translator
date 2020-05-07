@@ -78,10 +78,11 @@ const themeBase = {
   sizes: {
     bottom: 80,
     colgutter: 12,
+    colheader: 45,
+    colkey: 220,
     colwidth: 300,
     footer: 40,
     header: 60,
-    keycol: 220,
     line: 60,
     logo: 28,
     options: 112,
