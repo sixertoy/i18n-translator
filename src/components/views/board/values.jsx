@@ -6,6 +6,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { updateValue } from '../../../redux/actions/translations';
+import PercentageBar from '../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -17,7 +18,8 @@ const useStyles = createUseStyles({
   }),
   header: {
     background: '#F1F1F1',
-    composes: ['py12'],
+    composes: ['fs14', 'pl7', 'py12', 'is-bold'],
+    fontVariant: 'small-caps',
   },
   icon: ({ theme }) => ({
     '.notvalid &': { color: theme.red },
@@ -39,6 +41,11 @@ const useStyles = createUseStyles({
     height: theme.sizes.line,
     marginBottom: 1,
   }),
+  percentage: {
+    maxWidth: '65%',
+    minWidth: '65%',
+    width: '65%',
+  },
 });
 
 const ColumnValuesComponent = ({ data: { label, lang, values } }) => {
@@ -47,7 +54,15 @@ const ColumnValuesComponent = ({ data: { label, lang, values } }) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.column}>
-      <div className={classes.header}>{label}</div>
+      <div className={classes.header}>
+        <div>{label}</div>
+        <PercentageBar
+          className={classes.percentage}
+          count={20}
+          size="tiny"
+          total={40}
+        />
+      </div>
       <div className={classes.list}>
         {values.map(([key, value], index) => {
           const odd = index % 2;
