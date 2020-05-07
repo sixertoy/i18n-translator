@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useDispatch } from 'react-redux';
+
+import {
+  clearLanguage,
+  removeLanguage,
+} from '../../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
   container: {
@@ -11,8 +17,18 @@ const useStyles = createUseStyles({
   },
 });
 
-const ContextMenuComponent = ({ onClear, onRemove }) => {
+const ContextMenuComponent = ({ lang }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const onClear = useCallback(() => {
+    dispatch(clearLanguage(lang));
+  }, [dispatch, lang]);
+
+  const onRemove = useCallback(() => {
+    dispatch(removeLanguage(lang));
+  }, [dispatch, lang]);
+
   return (
     <div className={classes.container}>
       <button type="button" onClick={onClear}>
@@ -25,11 +41,8 @@ const ContextMenuComponent = ({ onClear, onRemove }) => {
   );
 };
 
-ContextMenuComponent.defaultProps = {};
-
 ContextMenuComponent.propTypes = {
-  onClear: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
+  lang: PropTypes.string.isRequired,
 };
 
 export default ContextMenuComponent;

@@ -5,10 +5,8 @@ import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { USE_CONTEXT_LANG } from '../../../../features.json';
 import { updateValue } from '../../../../redux/actions/translations';
-import PercentageBar from '../../../commons/percentage-bar';
-import Tooltip from './tooltip';
+import Header from './header';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -16,20 +14,6 @@ const useStyles = createUseStyles({
     maxWidth: '65%',
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
-  }),
-  header: ({ theme }) => ({
-    background: '#F1F1F1',
-    composes: [
-      'fs14',
-      'pl7',
-      'py12',
-      'is-bold',
-      'flex-columns',
-      'flex-start',
-      'items-center',
-    ],
-    fontVariant: 'small-caps',
-    height: theme.sizes.colheader,
   }),
   icon: ({ theme }) => ({
     '.notvalid &': { color: theme.red },
@@ -44,9 +28,6 @@ const useStyles = createUseStyles({
     textOverflow: 'ellipsis',
     width: '100%',
   }),
-  labels: {
-    composes: ['flex-1', 'ml12'],
-  },
   line: ({ theme }) => ({
     '&.even': { background: theme.even },
     '&.odd': { background: theme.odd },
@@ -54,11 +35,6 @@ const useStyles = createUseStyles({
     height: theme.sizes.line,
     marginBottom: 1,
   }),
-  percentage: {
-    maxWidth: '65%',
-    minWidth: '65%',
-    width: '65%',
-  },
 });
 
 const ColumnValuesComponent = ({ data: { label, lang, values } }) => {
@@ -67,18 +43,7 @@ const ColumnValuesComponent = ({ data: { label, lang, values } }) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.column}>
-      <div className={classes.header}>
-        {USE_CONTEXT_LANG && <Tooltip lang={lang} />}
-        <div className={classes.labels}>
-          <div>{label}</div>
-          <PercentageBar
-            className={classes.percentage}
-            count={30}
-            size="tiny"
-            total={40}
-          />
-        </div>
-      </div>
+      <Header label={label} lang={lang} />
       <div className={classes.list}>
         {values.map(([key, value], index) => {
           const odd = index % 2;
