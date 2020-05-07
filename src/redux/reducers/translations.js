@@ -30,9 +30,9 @@ export function updateValue(state, { key, lang, update }) {
   return next;
 }
 
-export function clearLang(state, action) {
+export function clearLanguage(state, { lang }) {
   const next = state.reduce((acc, obj) => {
-    const iscurrent = obj.lang === action.lang;
+    const iscurrent = obj.lang === lang;
     if (!iscurrent) return [...acc, obj];
     const dict = Object.entries(obj.dict).reduce(
       (ac, ar) => ({ ...ac, [ar[0]]: '' }),
@@ -43,8 +43,13 @@ export function clearLang(state, action) {
   return next;
 }
 
-export function removeLang(state, action) {
-  const next = state.filter(obj => obj.lang !== action.lang);
+export function createLanguage(state, { dict, label, lang }) {
+  const next = state.filter(obj => obj.lang !== lang);
+  return [...next, { dict, label, lang }];
+}
+
+export function removeLanguage(state, { lang }) {
+  const next = state.filter(obj => obj.lang !== lang);
   return next;
 }
 
@@ -59,14 +64,14 @@ const translations = (state = [], action) => {
   switch (action.type) {
     // NOTE -> Alls
     case EVENT_TYPES.TRANSLATIONS_PROJECT_CREATE:
-      return [...state, action.translation];
+      return createLanguage(state, action);
     // case EVENT_TYPES.TRANSLATIONS_PROJECT_TOGGLE_FAV:
     //   return state;
     // NOTE -> Values
     case EVENT_TYPES.TRANSLATIONS_LANG_CLEAR:
-      return clearLang(state, action);
+      return clearLanguage(state, action);
     case EVENT_TYPES.TRANSLATIONS_LANG_REMOVE:
-      return removeLang(state, action);
+      return removeLanguage(state, action);
     // case EVENT_TYPES.TRANSLATIONS_VALUE_ADD:
     // return state;
     case EVENT_TYPES.TRANSLATIONS_VALUE_UPDATE:
