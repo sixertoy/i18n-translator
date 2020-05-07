@@ -4,8 +4,8 @@ import React from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { USE_CONTEXT_LANG } from '../../../../features.json';
-import PercentageBar from '../../../commons/percentage-bar';
+import { USE_CONTEXT_LANG } from '../../../../../features.json';
+import PercentageBar from '../../../../commons/percentage-bar';
 import ContextMenuComponent from './context-menu';
 
 const useStyles = createUseStyles({

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import {
   clearLanguage,
   removeLanguage,
-} from '../../../../redux/actions/translations';
+} from '../../../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
   container: {
