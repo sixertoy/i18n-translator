@@ -126,7 +126,7 @@ const OptionsComponent = () => {
             content="Ajouter une langue"
             offset={[10, 10]}
             placement="bottom-end">
-            <Link className={classes.link} to="/board/create">
+            <Link className={classes.link} to="/import">
               <PlusIcon />
             </Link>
           </Tippy>

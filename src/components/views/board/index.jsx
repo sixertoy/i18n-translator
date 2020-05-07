@@ -7,7 +7,7 @@ import { selectTranslations } from '../../../redux/selectors';
 import withLayout from '../../layout';
 import Keys from './columns/keys';
 import Values from './columns/values';
-import Options from './options';
+import Menu from './menu';
 
 const useStyles = createUseStyles({
   container: {
@@ -30,7 +30,7 @@ const BoardViewComponent = () => {
   if (!hasItems) return <Redirect to="/" />;
   return (
     <div className={classes.container} id="board-view">
-      <Options />
+      <Menu />
       <div className={classes.table}>
         <Keys />
         {items.map(obj => (
