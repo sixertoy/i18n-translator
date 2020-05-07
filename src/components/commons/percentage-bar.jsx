@@ -76,12 +76,27 @@ const useStyles = createUseStyles({
   }),
 });
 
+function getPercent(count, total, rounded) {
+  let percent = (count * 100) / total;
+  percent = Math.round(percent * 10) / 10;
+  if (!rounded) return percent;
+  return Math.round(percent);
+}
+
 const PercentageBarComponent = React.memo(
-  ({ className, count, position, showCount, showPercent, size, total }) => {
+  ({
+    className,
+    count,
+    position,
+    rounded,
+    showCount,
+    showPercent,
+    size,
+    total,
+  }) => {
     const theme = useTheme();
     const classes = useStyles({ position, size, theme });
-    const percent = (count * 100) / total;
-    const right = `${100 - percent}%`;
+    const percent = getPercent(count, total, rounded);
     return (
       <div className={classnames(classes.percentage, className)}>
         {(showCount || showPercent) && position === POSITION_BEFORE && (
@@ -94,7 +109,10 @@ const PercentageBarComponent = React.memo(
         )}
         <div className={classes.wrapper}>
           <span className={classes.background} />
-          <span className={classes.progress} style={{ right }} />
+          <span
+            className={classes.progress}
+            style={{ right: `${100 - percent}%` }}
+          />
         </div>
         {(showCount || showPercent) && position === POSITION_AFTER && (
           <div className={classes.label}>
@@ -111,6 +129,7 @@ const PercentageBarComponent = React.memo(
 
 PercentageBarComponent.defaultProps = {
   position: 'after',
+  rounded: false,
   showCount: false,
   showPercent: false,
   size: 'normal',
@@ -120,6 +139,8 @@ PercentageBarComponent.propTypes = {
   className: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
   position: PropTypes.oneOf(['before', 'after']),
+  // TODO replace rounded by decimal
+  rounded: PropTypes.bool,
   showCount: PropTypes.bool,
   showPercent: PropTypes.bool,
   size: PropTypes.oneOf(['tiny', 'small', 'normal', 'large', 'big']),
