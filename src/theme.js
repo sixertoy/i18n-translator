@@ -78,7 +78,7 @@ const themeBase = {
   sizes: {
     bottom: 80,
     colgutter: 12,
-    colheader: 45,
+    colheader: 52,
     colkey: 220,
     colwidth: 300,
     footer: 40,

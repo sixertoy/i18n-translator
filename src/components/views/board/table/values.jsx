@@ -5,10 +5,9 @@ import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { updateValue } from '../../../../../redux/actions/translations';
+import { updateValue } from '../../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
-  container: {},
   icon: ({ theme }) => ({
     '.notvalid &': { color: theme.red },
     color: theme.colors.gray,
@@ -29,6 +28,7 @@ const useStyles = createUseStyles({
     height: theme.sizes.line,
     marginBottom: 1,
   }),
+  wrapper: {},
 });
 
 const ColumnValuesComponent = ({ lang, values }) => {
@@ -36,7 +36,7 @@ const ColumnValuesComponent = ({ lang, values }) => {
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container}>
+    <div className={classes.wrapper}>
       {values.map(([key, value], index) => {
         const odd = index % 2;
         const even = !odd;

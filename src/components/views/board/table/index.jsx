@@ -9,15 +9,16 @@ import Keys from './keys';
 import Values from './values';
 
 const useStyles = createUseStyles({
-  // column: ({ theme }) => ({
-  //   minWidth: theme.sizes.colkey,
-  //   width: theme.sizes.colkey,
-  // }),
   column: ({ theme }) => ({
     marginLeft: 1,
     maxWidth: '65%',
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
+  }),
+  primary: ({ theme }) => ({
+    maxWidth: theme.sizes.colkey,
+    minWidth: theme.sizes.colkey,
+    width: theme.sizes.colkey,
   }),
   table: {
     composes: ['flex-columns', 'flex-start'],
@@ -32,11 +33,14 @@ const TableComponent = () => {
   if (!hasItems) return <Redirect to="/" />;
   return (
     <div className={classes.table}>
-      <Keys />
+      <div className={classes.primary}>
+        <Header primary />
+        <Keys />
+      </div>
       {items.map(({ label, lang, values }) => (
-        <div className={classes.column}>
+        <div key={lang} className={classes.column}>
           <Header label={label} lang={lang} />
-          <Values key={lang} lang={lang} values={values} />
+          <Values lang={lang} values={values} />
         </div>
       ))}
     </div>
