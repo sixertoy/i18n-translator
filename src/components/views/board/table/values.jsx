@@ -68,7 +68,7 @@ const ColumnValuesComponent = ({ lang, values }) => {
 
 ColumnValuesComponent.propTypes = {
   lang: PropTypes.string.isRequired,
-  values: PropTypes.arrayOf(PropTypes.string).isRequired,
+  values: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
 };
 
 export default ColumnValuesComponent;

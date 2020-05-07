@@ -45,7 +45,9 @@ const useStyles = createUseStyles({
   },
 });
 
-const ColumnHeaderComponent = ({ index, label, lang, primary }) => {
+const ColumnHeaderComponent = ({ clearable, index, label, lang, primary }) => {
+  // TODO clearable doit passer par un custom hook
+  // plutot que de passer par les props
   const theme = useTheme();
   const classes = useStyles({ index, theme });
   return (
@@ -68,7 +70,9 @@ const ColumnHeaderComponent = ({ index, label, lang, primary }) => {
                 hideOnClick
                 interactive
                 className={classes.tooltip}
-                content={<ContextMenuComponent lang={lang} />}
+                content={
+                  <ContextMenuComponent clearable={clearable} lang={lang} />
+                }
                 placement="bottom"
                 trigger="click"
                 zIndex={999999999}>
@@ -85,12 +89,14 @@ const ColumnHeaderComponent = ({ index, label, lang, primary }) => {
 };
 
 ColumnHeaderComponent.defaultProps = {
+  clearable: false,
   label: null,
   lang: null,
   primary: false,
 };
 
 ColumnHeaderComponent.propTypes = {
+  clearable: PropTypes.bool,
   index: PropTypes.number.isRequired,
   label: PropTypes.string,
   lang: PropTypes.string,

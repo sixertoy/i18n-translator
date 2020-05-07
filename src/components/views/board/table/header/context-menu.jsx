@@ -1,6 +1,9 @@
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import { createUseStyles } from 'react-jss';
+import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
+import { MdDelete as DeleteIcon } from 'react-icons/md';
+import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -9,16 +12,36 @@ import {
 } from '../../../../../redux/actions/translations';
 
 const useStyles = createUseStyles({
+  button: {
+    borderRadius: 0,
+    composes: ['is-block', 'no-background', 'text-left', 'px7'],
+    height: 40,
+    lineHeight: '40px',
+    width: '100%',
+  },
   container: {
-    composes: ['p12'],
-    maxWidth: 240,
-    minWidth: 240,
-    width: 240,
+    maxWidth: 170,
+    minWidth: 170,
+    width: 170,
+  },
+  danger: ({ theme }) => ({
+    color: theme.red,
+  }),
+  icon: {
+    composes: ['mr7'],
+  },
+  splitter: {
+    background: '#FFFFFF',
+    border: 0,
+    composes: ['is-block'],
+    height: 1,
+    opacity: 0.15,
   },
 });
 
-const ContextMenuComponent = ({ lang }) => {
-  const classes = useStyles();
+const ContextMenuComponent = ({ clearable, lang }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   const dispatch = useDispatch();
 
   const onClear = useCallback(() => {
@@ -31,17 +54,28 @@ const ContextMenuComponent = ({ lang }) => {
 
   return (
     <div className={classes.container}>
-      <button type="button" onClick={onClear}>
-        <span>Clear</span>
+      <button
+        className={classes.button}
+        disabled={!clearable}
+        type="button"
+        onClick={onClear}>
+        <ClearIcon className={classes.icon} />
+        <span>Clear language</span>
       </button>
-      <button type="button" onClick={onRemove}>
-        <span>Remove</span>
+      <hr className={classes.splitter} />
+      <button
+        className={classnames(classes.button, classes.danger)}
+        type="button"
+        onClick={onRemove}>
+        <DeleteIcon className={classes.icon} />
+        <span>Remove language</span>
       </button>
     </div>
   );
 };
 
 ContextMenuComponent.propTypes = {
+  clearable: PropTypes.bool.isRequired,
   lang: PropTypes.string.isRequired,
 };
 
