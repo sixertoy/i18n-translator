@@ -1,6 +1,7 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { selectTranslations } from '../../../redux/selectors';
 import withLayout from '../../layout';
@@ -25,6 +26,8 @@ const BoardViewComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const items = useSelector(selectTranslations);
+  const hasItems = Boolean(items && items.length);
+  if (!hasItems) return <Redirect to="/" />;
   return (
     <div className={classes.container} id="board-view">
       <Options />
