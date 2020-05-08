@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/sixertoy/i18n-translator"
   },
+  "engines": {
+    "node": "^12.13.1"
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.3",
