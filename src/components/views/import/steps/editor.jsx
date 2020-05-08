@@ -25,7 +25,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const EditorStepComponent = ({ lang, onClick, value }) => {
+const EditorStepComponent = ({ onClick, value }) => {
   const classes = useStyles();
   const [content, setContent] = useState(value || '');
   const [disabled, setDisabled] = useState(true);
@@ -42,11 +42,6 @@ const EditorStepComponent = ({ lang, onClick, value }) => {
         }}
       />
       <div className={classes.wrapper}>
-        {lang && (
-          <div className={classes.infos}>
-            <span>Language : {lang}</span>
-          </div>
-        )}
         <div className={classes.controls}>
           <button
             className={classes.button}
@@ -70,12 +65,10 @@ const EditorStepComponent = ({ lang, onClick, value }) => {
 };
 
 EditorStepComponent.defaultProps = {
-  lang: null,
   value: null,
 };
 
 EditorStepComponent.propTypes = {
-  lang: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   value: PropTypes.string,
 };

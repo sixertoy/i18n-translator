@@ -1,5 +1,6 @@
 import { getName } from 'ikea-name-generator';
 import pick from 'lodash.pick';
+import ucFirst from 'lodash.upperfirst';
 import { v1 as uuidv1 } from 'uuid';
 
 import { EVENT_TYPES } from '../../constants';
@@ -8,7 +9,11 @@ export const MODEL = {
   ctime: () => Date.now(), // number
   id: () => uuidv1(), // string
   mtime: () => Date.now(), // number
-  name: () => getName(), // string
+  name: () => {
+    let value = getName();
+    value = ucFirst(value);
+    return value;
+  }, // string
 };
 
 export function hydrateModel(model, action, extend = {}) {

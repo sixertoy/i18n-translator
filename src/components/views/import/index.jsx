@@ -13,20 +13,16 @@ import Select from './steps/select';
 import useStep from './use-step';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    composes: ['p24'],
-    height: '100%',
-    paddingTop: theme.sizes.header,
-  }),
-  inner: {
-    composes: ['p32'],
+  container: {
+    composes: ['py24', 'px32'],
     height: '100%',
   },
-  wrapper: ({ theme }) => ({
-    composes: ['pt24', 'flex-1'],
+  routes: {
     height: '100%',
-    paddingBottom: theme.sizes.footer,
-  }),
+  },
+  wrapper: {
+    height: '100%',
+  },
 });
 
 const ImportViewComponent = () => {
@@ -37,7 +33,8 @@ const ImportViewComponent = () => {
   const classes = useStyles({ theme });
   const history = useHistory();
   const dispatch = useDispatch();
-  const { next, step, steps } = useStep(lang, content);
+  const { next, project, step, steps } = useStep(lang, content);
+  const { id } = project;
 
   const clearState = () => {
     setContent(null);
@@ -76,24 +73,27 @@ const ImportViewComponent = () => {
 
   return (
     <div className={classes.container} id="import-view">
-      <div className={classes.inner}>
+      <div className={classes.wrapper}>
         <Steps current={step - 1} steps={steps} />
-        <div className={classes.wrapper}>
+        <div className={classes.routes}>
           <Switch>
-            <Route exact path="/import/:project/step/1">
+            <Route exact path="/import/:id/step/1">
               <Intro onClick={onIntroHandler} />
             </Route>
-            <Route exact path="/import/:project/step/2">
+            <Route exact path="/import/:id/step/2">
               <Select lang={lang} onChange={onSelectHandler} />
             </Route>
-            <Route exact path="/import/:project/step/3">
+            <Route exact path="/import/:id/step/3">
               <Editor lang={lang} value={content} onClick={onEditorHandler} />
             </Route>
-            <Route exact path="/import/:project/step/4">
+            <Route exact path="/import/:id/step/4">
               <Finish onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
             </Route>
+            <Route path={['/import/:id', '/import/:id/step']}>
+              <Redirect to={`/import/${id}/step/1`} />
+            </Route>
             <Route path="*">
-              <Redirect to="/import/:project/step/1" />
+              <Redirect to="/home" />
             </Route>
           </Switch>
         </div>

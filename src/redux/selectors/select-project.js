@@ -1,9 +1,12 @@
 import { createSelector } from 'reselect';
 
-const getProject = state => state;
+const getId = (_, id) => id;
+const getProjects = state => state.projects;
 
-export const selectProject = createSelector([getProject], project => {
-  return project;
-});
+const makeSelectProjectSelector = () =>
+  createSelector(getProjects, getId, (projects, id) => {
+    const project = projects.find(obj => obj.id === id);
+    return project || {};
+  });
 
-export default selectProject;
+export default makeSelectProjectSelector;
