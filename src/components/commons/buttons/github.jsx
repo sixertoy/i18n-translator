@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { AiFillGithub as GithubIcon } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
@@ -10,14 +11,23 @@ const useStyles = createUseStyles({
   },
 });
 
-const GoogleButtonComponent = () => {
+const GoogleButtonComponent = ({ login }) => {
   const classes = useStyles();
   return (
     <LoginButton onClick={() => {}}>
       <GithubIcon className={classes.icon} />
-      <span>Sign in with GitHub</span>
+      {!login && <span>Sign in with GitHub</span>}
+      {login && <span>Login in with GitHub</span>}
     </LoginButton>
   );
+};
+
+GoogleButtonComponent.defaultProps = {
+  login: false,
+};
+
+GoogleButtonComponent.propTypes = {
+  login: PropTypes.bool,
 };
 
 export default GoogleButtonComponent;
