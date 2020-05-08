@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { AiOutlineArrowRight as RightArrow } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
+import { createProject } from '../../../redux/actions';
 import GithubLogin from '../../commons/buttons/github';
 import GoogleLogin from '../../commons/buttons/google';
 
@@ -10,6 +12,7 @@ const useStyles = createUseStyles({
   button: {
     background: '#FFFFFF',
     borderRadius: 4,
+    color: '#000000',
     composes: ['is-block', 'px24', 'py12', 'fs18', 'text-center'],
     width: 250,
   },
@@ -17,10 +20,15 @@ const useStyles = createUseStyles({
     background: theme.header,
     composes: ['flex-rows', 'items-center', 'flex-center'],
   }),
-  icon: {},
+  icon: {
+    composes: ['ml12'],
+  },
   signin: {
+    '& > p': { lineHeight: 1.15 },
+    '& > p + p': { marginTop: 7 },
     color: '#FFFFFF',
-    composes: ['fs20'],
+    composes: ['fs16', 'mt64', 'text-center'],
+    width: 350,
   },
   splitter: {
     composes: ['is-block', 'my24', 'text-center', 'fs18'],
@@ -29,7 +37,15 @@ const useStyles = createUseStyles({
 
 const StartViewComponent = () => {
   const theme = useTheme();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const classes = useStyles({ theme });
+
+  const onDemoClick = useCallback(() => {
+    dispatch(createProject());
+    history.push('/import');
+  }, [dispatch, history]);
+
   return (
     <div className={classes.container} id="home-view">
       {/* <div className={classes.logo}>
@@ -47,18 +63,26 @@ const StartViewComponent = () => {
       <span className={classes.splitter}>
         <span>-&nbsp;ou&nbsp;-</span>
       </span>
-      <Link className={classes.button} to="/import">
+      <button className={classes.button} type="button" onClick={onDemoClick}>
         <span>Créer un projet</span>
         <RightArrow className={classes.icon} />
-      </Link>
-      {/* <div className={classes.signin}>
+      </button>
+      <div className={classes.signin}>
+        <p className="is-bold">
+          <span>Besoin de plus de projets ?</span>
+        </p>
         <p>
-          <Link to="/home/signin">
+          <Link className="is-underline" to="/home/signin">
             <span>Enregistrez vous</span>
           </Link>
-          &nbsp;pour créer plus de projets
         </p>
-      </div> */}
+        <p className="is-italic">
+          <span>
+            Profitez de plus d&apos;espace pour gérer vos projets ainsi que de
+            lorem ipsum dolor sit amet.
+          </span>
+        </p>
+      </div>
     </div>
   );
 };
