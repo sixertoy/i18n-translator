@@ -79,9 +79,9 @@ const translations = (state = [], action) => {
       return clearLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_DELETE:
       return deleteLanguage(state, action);
-    case EVENT_TYPES.LANGUAGE_VALUE_UPDATE:
+    case EVENT_TYPES.LANGUAGE_UPDATE_VALUE:
       return updateValue(state, action);
-    case EVENT_TYPES.LANGUAGE_KEY_DELETE:
+    case EVENT_TYPES.LANGUAGE_DELETE_KEY:
       return deleteKey(state, action);
     default:
       return state;
