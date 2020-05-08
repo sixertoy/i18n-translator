@@ -4,6 +4,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import routes from '../routes';
+import NoMatch from './views/no-match';
 
 const useStyles = createUseStyles({
   application: ({ theme }) => ({
@@ -31,7 +32,7 @@ const Application = () => {
           );
         })}
         <Route path="*">
-          <Redirect to="/404" />
+          <NoMatch />
         </Route>
       </Switch>
     </div>

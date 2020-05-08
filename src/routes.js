@@ -23,19 +23,19 @@ const routes = [
     component: Import,
     exact: true,
     id: ROUTES_ID.IMPORT,
-    path: ['/import', '/import/:index'],
+    path: ['/import', '/import/:project', '/import/:project/step/:index'],
   },
   {
     component: Board,
     exact: true,
     id: ROUTES_ID.BOARD,
-    path: '/board',
+    path: ['/board', '/board/:project'],
   },
   {
     component: Export,
     exact: true,
     id: ROUTES_ID.EXPORT,
-    path: '/export',
+    path: ['/export', '/export/:project'],
   },
   {
     component: NotFound,

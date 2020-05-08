@@ -1,11 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { AiOutlineArrowRight as RightArrow } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
 import Logo from '../../../assets/logo';
 import { createProject } from '../../../redux/actions';
+import { selectLastProject } from '../../../redux/selectors';
 import GithubLogin from '../../commons/buttons/github';
 import GoogleLogin from '../../commons/buttons/google';
 
@@ -47,11 +48,17 @@ const StartViewComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
+  const { id: projectId } = useSelector(selectLastProject);
 
   const onDemoClick = useCallback(() => {
     dispatch(createProject());
-    history.push('/import');
-  }, [dispatch, history]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (projectId) {
+      history.push(`/import/${projectId}`);
+    }
+  }, [history, projectId]);
 
   return (
     <div className={classes.container} id="home-view">

@@ -80,20 +80,20 @@ const ImportViewComponent = () => {
         <Steps current={step - 1} steps={steps} />
         <div className={classes.wrapper}>
           <Switch>
-            <Route exact path="/import/1">
+            <Route exact path="/import/:project/step/1">
               <Intro onClick={onIntroHandler} />
             </Route>
-            <Route exact path="/import/2">
+            <Route exact path="/import/:project/step/2">
               <Select lang={lang} onChange={onSelectHandler} />
             </Route>
-            <Route exact path="/import/3">
+            <Route exact path="/import/:project/step/3">
               <Editor lang={lang} value={content} onClick={onEditorHandler} />
             </Route>
-            <Route exact path="/import/4">
+            <Route exact path="/import/:project/step/4">
               <Finish onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
             </Route>
             <Route path="*">
-              <Redirect to="/import/1" />
+              <Redirect to="/import/:project/step/1" />
             </Route>
           </Switch>
         </div>
