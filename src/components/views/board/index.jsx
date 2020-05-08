@@ -2,7 +2,7 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import withLayout from '../../layout';
-import Menu from './menu';
+import Options from './options';
 import Table from './table';
 
 const useStyles = createUseStyles({
@@ -22,7 +22,7 @@ const BoardViewComponent = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container} id="board-view">
-      <Menu />
+      <Options />
       <div className={classes.wrapper}>
         <Table />
       </div>

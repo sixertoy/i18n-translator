@@ -24,14 +24,6 @@ import { selectPercentages } from '../../../redux/selectors';
 import PercentageBar from '../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    background: theme.options,
-    color: theme.font,
-    composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
-    height: theme.sizes.options,
-    maxHeight: theme.sizes.options,
-    minHeight: theme.sizes.options,
-  }),
   context: {
     composes: ['fs18'],
   },
@@ -44,6 +36,14 @@ const useStyles = createUseStyles({
   link: ({ theme }) => ({
     color: theme.font,
     composes: ['fs24', 'ml7'],
+  }),
+  options: ({ theme }) => ({
+    background: theme.options,
+    color: theme.font,
+    composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
+    height: theme.sizes.options,
+    maxHeight: theme.sizes.options,
+    minHeight: theme.sizes.options,
   }),
   percentage: {
     composes: ['mt7'],
@@ -82,7 +82,7 @@ const OptionsComponent = () => {
   const classes = useStyles({ theme });
   const { project } = useSelector(selectPercentages);
   return (
-    <div className={classes.container}>
+    <div className={classes.options}>
       <div className={classes.labels}>
         {USE_PROJECTS && (
           <h3 className={classes.title}>

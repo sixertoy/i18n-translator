@@ -6,7 +6,7 @@ import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { USE_CONTEXT_LANG } from '../../../../../features.json';
+import { USE_LANGUAGE_CONTEXT_MENU } from '../../../../../features.json';
 import PercentageBar from '../../../../commons/percentage-bar';
 import ContextMenuComponent from './context-menu';
 
@@ -65,7 +65,7 @@ const ColumnHeaderComponent = ({ clearable, index, label, lang, primary }) => {
               size="tiny"
               total={40}
             />
-            {USE_CONTEXT_LANG && (
+            {USE_LANGUAGE_CONTEXT_MENU && (
               <Tippy
                 hideOnClick
                 interactive
