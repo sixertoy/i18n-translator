@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
 // import { MdAccountCircle as AccountIcon } from 'react-icons/md';
 import { RiHome2Line as HomeIcon } from 'react-icons/ri';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
+
+import Tooltip from '../../../commons/tooltip';
+import Login from './login';
+import Projects from './projects';
 
 const useStyles = createUseStyles({
   button: {
@@ -28,15 +32,18 @@ const useStyles = createUseStyles({
 const ReactDumbComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  // const [connected, setConnected] = useState(false);
   return (
     <div className={classes.menu}>
       <Link className={classes.button} to="/home">
         <HomeIcon />
       </Link>
-      <button className={classes.button} type="button">
-        <ProjectsIcon className={classes.label} />
-        <span>Projets</span>
-      </button>
+      <Tooltip component={<Login />} placement="bottom-start">
+        <button className={classes.button} type="button">
+          <ProjectsIcon className={classes.label} />
+          <span>Projets</span>
+        </button>
+      </Tooltip>
     </div>
   );
 });
