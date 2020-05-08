@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+// import { AiOutlineSave as SaveIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
@@ -7,12 +8,15 @@ const useStyles = createUseStyles({
     background: '#000000',
     borderRadius: 4,
     color: '#FFFFFF',
-    composes: ['use-pointer', 'py12', 'px24', 'mb12', 'text-center'],
-    width: 300,
+    composes: ['use-pointer', 'py12', 'px12', 'text-center', 'mx7'],
+    width: 250,
   },
   container: {
-    composes: ['flex-rows', 'flex-center', 'items-center'],
-    height: '100%',
+    composes: ['flex-columns', 'flex-center', 'flex-start'],
+    paddingTop: '10%',
+  },
+  splitter: {
+    composes: ['is-block', 'py12', 'text-center', 'mx7'],
   },
 });
 
@@ -21,11 +25,14 @@ const FinishComponent = ({ onRestart, onSubmit }) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      <button className={classes.button} type="button" onClick={onSubmit}>
-        <span>Créer</span>
-      </button>
       <button className={classes.button} type="button" onClick={onRestart}>
         <span>Ajouter un autre langage</span>
+      </button>
+      <span className={classes.splitter}>
+        <span>Ou</span>
+      </span>
+      <button className={classes.button} type="button" onClick={onSubmit}>
+        <span>Continuer</span>
       </button>
     </div>
   );

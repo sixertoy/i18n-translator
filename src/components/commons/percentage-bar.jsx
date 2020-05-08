@@ -96,13 +96,14 @@ const PercentageBarComponent = React.memo(
   }) => {
     const theme = useTheme();
     const classes = useStyles({ position, size, theme });
-    const percent = getPercent(count, total, rounded);
+    let percent = getPercent(count, total, rounded);
+    if (Number.isNaN(percent)) percent = 0;
     return (
       <div className={classnames(classes.percentage, className)}>
         {(showCount || showPercent) && position === POSITION_BEFORE && (
           <div className={classes.label}>
             <span>
-              {showPercent && `${percent}%`}
+              {showPercent && `${percent || '-'}%`}
               {showCount && `${count}/${total}`}
             </span>
           </div>
@@ -117,7 +118,7 @@ const PercentageBarComponent = React.memo(
         {(showCount || showPercent) && position === POSITION_AFTER && (
           <div className={classes.label}>
             <span>
-              {showPercent && `${percent}%`}
+              {showPercent && `${percent || '-'}%`}
               {showCount && `${count}/${total}`}
             </span>
           </div>

@@ -13,7 +13,6 @@ function useStep(lang, content) {
   const step = Number(index);
   const history = useHistory();
   const [next, setNext] = useState(null);
-
   useEffect(() => {
     if (Number.isNaN(step)) {
       history.replace(`/import/1`);
@@ -27,7 +26,6 @@ function useStep(lang, content) {
     }
     return () => {};
   }, [content, history, lang, index, step]);
-
   return { next, step, steps };
 }
 
