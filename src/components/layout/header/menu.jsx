@@ -57,7 +57,7 @@ const ReactDumbComponent = React.memo(() => {
   return (
     <div className={classes.menu}>
       {MENU_ITEMS.map(({ Icon, path, title, useLabel }) => (
-        <Link className={classes.link} to={path}>
+        <Link key={path} className={classes.link} to={path}>
           <Icon />
           {useLabel && <span className={classes.label}>{title}</span>}
         </Link>
