@@ -42,9 +42,11 @@ const EditorStepComponent = ({ lang, onClick, value }) => {
         }}
       />
       <div className={classes.wrapper}>
-        <div className={classes.infos}>
-          <span>Language : {lang}</span>
-        </div>
+        {lang && (
+          <div className={classes.infos}>
+            <span>Language : {lang}</span>
+          </div>
+        )}
         <div className={classes.controls}>
           <button
             className={classes.button}
@@ -68,11 +70,12 @@ const EditorStepComponent = ({ lang, onClick, value }) => {
 };
 
 EditorStepComponent.defaultProps = {
+  lang: null,
   value: null,
 };
 
 EditorStepComponent.propTypes = {
-  lang: PropTypes.string.isRequired,
+  lang: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   value: PropTypes.string,
 };
