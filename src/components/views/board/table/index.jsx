@@ -28,35 +28,42 @@ const useStyles = createUseStyles({
   },
 });
 
+function checkIfLanguagesAreEmpties(items) {
+  const isempty = Boolean(!items || !items.length);
+  return isempty;
+}
+
 const TableComponent = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const items = useSelector(selectTranslations);
-  const hasItems = Boolean(items && items.length);
-  if (!hasItems) return <Redirect to="/" />;
+  const isEmpty = checkIfLanguagesAreEmpties(items);
   return (
     <div className={classes.table}>
-      <div className={classes.wrapper}>
-        <div className={classes.primary}>
-          <Header primary index={0} />
-          <Keys />
+      {isEmpty && <Redirect to="/" />}
+      {!isEmpty && (
+        <div className={classes.wrapper}>
+          <div className={classes.primary}>
+            <Header primary index={0} />
+            <Keys />
+          </div>
+          {items.map(({ label, lang, values }, index) => {
+            const clearable =
+              values.map(arr => arr[1]).filter(v => v && v !== '').length > 0;
+            return (
+              <div key={lang} className={classes.column}>
+                <Header
+                  clearable={clearable}
+                  index={index}
+                  label={label}
+                  lang={lang}
+                />
+                <Values lang={lang} values={values} />
+              </div>
+            );
+          })}
         </div>
-        {items.map(({ label, lang, values }, index) => {
-          const clearable =
-            values.map(arr => arr[1]).filter(v => v && v !== '').length > 0;
-          return (
-            <div key={lang} className={classes.column}>
-              <Header
-                clearable={clearable}
-                index={index}
-                label={label}
-                lang={lang}
-              />
-              <Values lang={lang} values={values} />
-            </div>
-          );
-        })}
-      </div>
+      )}
     </div>
   );
 };

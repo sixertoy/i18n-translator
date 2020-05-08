@@ -7,7 +7,7 @@ import CodeEditor from '../../../commons/code-editor';
 
 const useStyles = createUseStyles({
   button: {
-    composes: ['use-pointer', 'py12', 'px24', 'mt12'],
+    composes: ['use-pointer', 'py12', 'px24', 'mt12', 'ml12'],
   },
   container: {
     composes: ['flex-rows'],
@@ -36,6 +36,13 @@ const EditorStepComponent = ({ onClick, value }) => {
         }}
       />
       <div className={classes.wrapper}>
+        <button
+          className={classes.button}
+          type="button"
+          onClick={() => onClick('{}')}>
+          <span>Créer un language vide</span>
+          <ArrowIcon />
+        </button>
         <button
           className={classes.button}
           disabled={disabled}
