@@ -1,16 +1,17 @@
 import { EVENT_TYPES } from '../../constants';
 
-// const sortByKeysAsc = (a, b) => {
-//   if (a[0] > b[0]) return 1;
-//   if (a[0] < b[0]) return -1;
-//   return 0;
-// };
-
-// const parseAndSortJSON = json => {
-//   const parsed = JSON.parse(json);
-//   const sorted = Object.entries(parsed).sort(sortByKeysAsc);
-//   return sorted;
-// };
+const MODEL = {
+  dict: [], // { [key]: 'value' }
+  label: null, // string
+  lang: null, // string
+  meta: {
+    collapsed: false, // bool
+    ctime: null, // number
+    fav: false, // bool
+    mtime: null, // number
+  },
+  project: null, // string
+};
 
 // export function createTranslation(action) {
 //   const { json, lang: id } = action;
@@ -66,10 +67,12 @@ export function deleteKey(state, { key }) {
 
 // NOTE Languages Data Model
 // {
-//    lang: string,
-//    fav: bool,
-//    dict: { ..key: string },
-//    label: string,
+//    lang: string
+//    fav: bool
+//    collapsed: bool
+//    project: string
+//    dict: { ..key: string }
+//    label: string
 // }
 const translations = (state = [], action) => {
   switch (action.type) {

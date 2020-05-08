@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { selectTranslations } from '../../../../redux/selectors';
+import Collapsed from './columns/collapsed';
+import Keys from './columns/keys';
+import Values from './columns/values';
 import Header from './header';
-import Keys from './keys';
-import Values from './values';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -47,10 +48,11 @@ const TableComponent = () => {
             <Header primary index={0} />
             <Keys />
           </div>
-          {items.map(({ label, lang, values }, index) => (
+          {items.map(({ collapsed, label, lang, values }, index) => (
             <div key={lang} className={classes.column}>
               <Header index={index} label={label} lang={lang} />
-              <Values lang={lang} values={values} />
+              {!collapsed && <Values lang={lang} values={values} />}
+              {collapsed && <Collapsed values={values} />}
             </div>
           ))}
         </div>

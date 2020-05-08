@@ -5,7 +5,7 @@ import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { updateValue } from '../../../../redux/actions';
+import { updateValue } from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
   icon: ({ theme }) => ({
@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
   wrapper: {},
 });
 
-const ColumnValuesComponent = ({ lang, values }) => {
+const ValuesColumnComponent = ({ lang, values }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
@@ -66,9 +66,9 @@ const ColumnValuesComponent = ({ lang, values }) => {
   );
 };
 
-ColumnValuesComponent.propTypes = {
+ValuesColumnComponent.propTypes = {
   lang: PropTypes.string.isRequired,
   values: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
 };
 
-export default ColumnValuesComponent;
+export default ValuesColumnComponent;
