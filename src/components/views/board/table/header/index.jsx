@@ -1,14 +1,10 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { USE_LANGUAGE_CONTEXT_MENU } from '../../../../../features.json';
-import PercentageBar from '../../../../commons/percentage-bar';
-import Tooltip from '../../../../commons/tooltip';
-import ContextMenu from './context-menu';
+import LangHeader from './lang';
 
 const useStyles = createUseStyles({
   header: ({ index, theme }) => ({
@@ -18,26 +14,9 @@ const useStyles = createUseStyles({
     top: 0,
     zIndex: theme.depths.colheader - index,
   }),
-  icon: {
-    composes: ['is-absolute'],
-    right: 12,
-    top: 12,
-  },
-  percentage: {
-    maxWidth: '65%',
-    minWidth: '65%',
-    width: '65%',
-  },
   primary: {
     background: '#F1F1F1',
     textAlign: 'center',
-  },
-  tooltip: {
-    borderLeft: '0 !important',
-    borderRadius: '4px 0 4px 4px !important',
-    borderRight: '0 !important',
-    borderTop: '0 !important',
-    left: '0 !important',
   },
   wrapper: {
     composes: ['fs14', 'px12', 'py18', 'is-bold', 'is-relative'],
@@ -45,37 +24,14 @@ const useStyles = createUseStyles({
   },
 });
 
-const ColumnHeaderComponent = ({ clearable, index, label, lang, primary }) => {
-  // TODO clearable doit passer par un custom hook
-  // plutot que de passer par les props
+const ColumnHeaderComponent = ({ index, label, lang, primary }) => {
   const theme = useTheme();
   const classes = useStyles({ index, theme });
   return (
     <div className={classnames(classes.header, { [classes.primary]: primary })}>
       <div className={classes.wrapper}>
         {primary && <KeyIcon />}
-        {!primary && (
-          <React.Fragment>
-            <div>{label}</div>
-            <PercentageBar
-              // NOTE do not mark 'className' as required
-              // in PercentageBar
-              className={classes.percentage}
-              count={30}
-              size="tiny"
-              total={40}
-            />
-            {USE_LANGUAGE_CONTEXT_MENU && (
-              <Tooltip
-                component={<ContextMenu clearable={clearable} lang={lang} />}
-                placement="bottom-end">
-                <div className={classes.icon}>
-                  <ContextIcon />
-                </div>
-              </Tooltip>
-            )}
-          </React.Fragment>
-        )}
+        {!primary && <LangHeader label={label} lang={lang} />}
       </div>
     </div>
   );

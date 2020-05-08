@@ -47,21 +47,12 @@ const TableComponent = () => {
             <Header primary index={0} />
             <Keys />
           </div>
-          {items.map(({ label, lang, values }, index) => {
-            const clearable =
-              values.map(arr => arr[1]).filter(v => v && v !== '').length > 0;
-            return (
-              <div key={lang} className={classes.column}>
-                <Header
-                  clearable={clearable}
-                  index={index}
-                  label={label}
-                  lang={lang}
-                />
-                <Values lang={lang} values={values} />
-              </div>
-            );
-          })}
+          {items.map(({ label, lang, values }, index) => (
+            <div key={lang} className={classes.column}>
+              <Header index={index} label={label} lang={lang} />
+              <Values lang={lang} values={values} />
+            </div>
+          ))}
         </div>
       )}
     </div>
