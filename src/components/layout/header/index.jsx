@@ -7,10 +7,11 @@ import Menu from './menu';
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
     background: theme.header,
+    composes: ['is-relative'],
     width: '100%',
   }),
   wrapper: ({ theme }) => ({
-    composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
+    composes: ['flex-columns', 'flex-center', 'items-center', 'px32'],
     height: theme.sizes.header,
     maxHeight: theme.sizes.header,
     minHeight: theme.sizes.header,
