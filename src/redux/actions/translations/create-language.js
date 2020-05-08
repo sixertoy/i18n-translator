@@ -7,7 +7,7 @@ const createLanguage = (lang, content) => {
     dict,
     label,
     lang,
-    type: EVENT_TYPES.TRANSLATIONS_PROJECT_CREATE,
+    type: EVENT_TYPES.PROJECT_CREATE,
   };
 };
 

@@ -7,7 +7,7 @@ const onThemeChange = action => {
   return theme;
 };
 
-export const theme = (state = null, action) => {
+const theme = (state = null, action) => {
   switch (action.type) {
     case EVENT_TYPES.THEME_CHANGE:
       return onThemeChange(action);

@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
 import * as app from './app';
-import * as theme from './theme';
-import translations from './translations';
+import translations from './languages';
+import projects from './projects';
+import theme from './theme';
 
 function createRootReducer() {
   return combineReducers({
     ...app,
-    ...theme,
+    projects,
+    theme,
     translations,
   });
 }

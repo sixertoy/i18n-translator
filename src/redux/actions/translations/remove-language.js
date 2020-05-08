@@ -2,7 +2,7 @@ import { EVENT_TYPES } from '../../../constants';
 
 const removeLanguage = lang => ({
   lang,
-  type: EVENT_TYPES.TRANSLATIONS_LANG_REMOVE,
+  type: EVENT_TYPES.LANGUAGE_DELETE,
 });
 
 export default removeLanguage;

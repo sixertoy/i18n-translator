@@ -11,4 +11,9 @@ export const loading = (state = false, action) => {
   }
 };
 
-export default loading;
+export const version = (state = false, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
