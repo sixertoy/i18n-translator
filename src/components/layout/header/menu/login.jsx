@@ -4,6 +4,8 @@ import { AiFillGithub as GithubIcon } from 'react-icons/ai';
 import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import LoginButton from '../../../commons/login-button';
+
 const useStyles = createUseStyles({
   button: {
     '& + &': { marginTop: 12 },
@@ -23,14 +25,14 @@ const LoginComponent = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.login}>
-      <button className={classes.button} type="button" onClick={() => {}}>
+      <LoginButton onClick={() => {}}>
         <GithubIcon className={classes.icon} />
         <span>Sign in with GitHub</span>
-      </button>
-      <button className={classes.button} type="button" onClick={() => {}}>
+      </LoginButton>
+      <LoginButton onClick={() => {}}>
         <GoogleIcon className={classes.icon} />
         <span>Sign in with Google</span>
-      </button>
+      </LoginButton>
     </div>
   );
 };
