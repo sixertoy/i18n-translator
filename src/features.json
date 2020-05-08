@@ -1,6 +1,6 @@
 {
   "USE_PROJECTS": true,
-  "USE_EXPORT": true,
+  "USE_EXPORT_PROJECT": true,
   "USE_ADD_LANGUAGE": true,
   "USE_LANGUAGE_CONTEXT_MENU": true,
   "USE_CONTEXT_PROJECT": false,
