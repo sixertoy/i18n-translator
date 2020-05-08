@@ -11,6 +11,9 @@ export const LANGS = {
 };
 
 export const EVENT_TYPES = {
+  APP_THEME_CHANGE: 'onThemeChange',
+  APP_USER_LOGIN: 'onUserLogin',
+  APP_USER_LOGOUT: 'onUserLogout',
   // Language
   LANGUAGE_CLEAR: 'onLanguageClear',
   LANGUAGE_CLONE: 'onLanguageClone',
@@ -26,14 +29,6 @@ export const EVENT_TYPES = {
   PROJECT_CREATE: 'onProjectCreate',
   PROJECT_DELETE: 'onProjectDelete',
   PROJECT_UPDATE: 'onProjectUpdate',
-  // Theme
-  THEME_CHANGE: 'onThemeChange',
-  // TRANSLATIONS_PROJECT_TOGGLE_FAV: 'onTranslationsProjectToggleFav',
-  // TRANSLATIONS_VALUE_ADD: 'onTranslationsValueAdd',
-  // TRANSLATIONS_VALUE_DELETE: 'onTranslationsValueDelete',
-  // TRANSLATIONS_PRIMARY_KEY_ADD: 'onTranslationsPrimaryKeyAdd',
-  // TRANSLATIONS_PRIMARY_KEY_DELETE: 'onTranslationsPrimaryKeyDelete',
-  // TRANSLATIONS_PRIMARY_KEY_UPDATE: 'onTranslationsPrimaryKeyUpdate',
 };
 
 export const DEFAULT_LANG = 'en-US';

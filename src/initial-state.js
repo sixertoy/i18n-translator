@@ -1,4 +1,3 @@
-// import uuidv1 from 'uuid/v1';
 import storage from 'redux-persist/lib/storage';
 
 import { PERSIST_STORAGE_KEY } from './constants';
@@ -14,7 +13,7 @@ export const reduxPersistConfig = {
   blacklist: ['loading'],
   key: PERSIST_STORAGE_KEY,
   storage,
-  whitelist: ['theme', 'translations', 'version', 'projects'],
+  whitelist: ['theme', 'translations', 'version', 'projects', 'logged'],
 };
 
 export const getInitialState = () => {

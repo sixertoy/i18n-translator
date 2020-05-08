@@ -4,14 +4,12 @@ import { v1 as uuidv1 } from 'uuid';
 import { EVENT_TYPES } from '../../../constants';
 
 const createProject = () => {
-  const id = uuidv1();
-  const name = getName();
-  const ctime = Date.now();
+  const now = Date.now();
   return {
-    ctime,
-    id,
-    mtime: ctime,
-    name,
+    ctime: now,
+    id: uuidv1(),
+    mtime: now,
+    name: getName(),
     type: EVENT_TYPES.PROJECT_CREATE,
   };
 };

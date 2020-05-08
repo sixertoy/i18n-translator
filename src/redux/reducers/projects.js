@@ -43,11 +43,11 @@ function onProjectLanguageUpdate(state, action) {
 const projects = (state = [], action) => {
   switch (action.type) {
     // CRUD
-    case EVENT_TYPES.PROJECTS_CREATE:
+    case EVENT_TYPES.PROJECT_CREATE:
       return onProjectCreate(state, action);
-    case EVENT_TYPES.PROJECTS_DELETE:
+    case EVENT_TYPES.PROJECT_DELETE:
       return onProjectDelete(state, action);
-    case EVENT_TYPES.PROJECTS_UPDATE:
+    case EVENT_TYPES.PROJECT_UPDATE:
       return onProjectUpdate(state, action);
     // Languages
     case EVENT_TYPES.LANGUAGE_CLEAR:
