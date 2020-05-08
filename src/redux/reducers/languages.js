@@ -48,7 +48,7 @@ export function createLanguage(state, { dict, label, lang }) {
   return [...next, { dict, label, lang }];
 }
 
-export function removeLanguage(state, { lang }) {
+export function deleteLanguage(state, { lang }) {
   const next = state.filter(obj => obj.lang !== lang);
   return next;
 }
@@ -73,31 +73,16 @@ export function deleteKey(state, { key }) {
 // }
 const translations = (state = [], action) => {
   switch (action.type) {
-    // NOTE -> Alls
     case EVENT_TYPES.PROJECT_CREATE:
       return createLanguage(state, action);
-    // case EVENT_TYPES.TRANSLATIONS_PROJECT_TOGGLE_FAV:
-    //   return state;
-    // NOTE -> Values
     case EVENT_TYPES.LANGUAGE_CLEAR:
       return clearLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_DELETE:
-      return removeLanguage(state, action);
-    // case EVENT_TYPES.TRANSLATIONS_VALUE_ADD:
-    // return state;
+      return deleteLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_VALUE_UPDATE:
       return updateValue(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_DELETE:
       return deleteKey(state, action);
-    // case EVENT_TYPES.TRANSLATIONS_VALUE_DELETE:
-    // return state;
-    // NOTE -> Keys
-    // case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_ADD:
-    // return state;
-    // case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_UPDATE:
-    // return state;
-    // case EVENT_TYPES.TRANSLATIONS_PRIMARY_KEY_DELETE:
-    // return state;
     default:
       return state;
   }
