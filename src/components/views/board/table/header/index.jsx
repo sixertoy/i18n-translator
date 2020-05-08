@@ -1,4 +1,3 @@
-import Tippy from '@tippyjs/react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -8,7 +7,8 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import { USE_LANGUAGE_CONTEXT_MENU } from '../../../../../features.json';
 import PercentageBar from '../../../../commons/percentage-bar';
-import ContextMenuComponent from './context-menu';
+import Tooltip from '../../../../commons/tooltip';
+import ContextMenu from './context-menu';
 
 const useStyles = createUseStyles({
   header: ({ index, theme }) => ({
@@ -66,20 +66,12 @@ const ColumnHeaderComponent = ({ clearable, index, label, lang, primary }) => {
               total={40}
             />
             {USE_LANGUAGE_CONTEXT_MENU && (
-              <Tippy
-                hideOnClick
-                interactive
-                className={classes.tooltip}
-                content={
-                  <ContextMenuComponent clearable={clearable} lang={lang} />
-                }
-                placement="bottom"
-                trigger="click"
-                zIndex={999999999}>
+              <Tooltip
+                component={<ContextMenu clearable={clearable} lang={lang} />}>
                 <div className={classes.icon}>
                   <ContextIcon />
                 </div>
-              </Tippy>
+              </Tooltip>
             )}
           </React.Fragment>
         )}
