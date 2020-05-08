@@ -14,12 +14,18 @@ const useStyles = createUseStyles({
     height: '100%',
     width: '100%',
   },
+  icon: {
+    composes: ['ml7'],
+  },
+  infos: {
+    composes: ['is-italic', 'fs10'],
+  },
   wrapper: {
-    composes: ['text-right'],
+    composes: ['flex-columns', 'flex-between', 'items-center'],
   },
 });
 
-const EditorStepComponent = ({ onClick, value }) => {
+const EditorStepComponent = ({ lang, onClick, value }) => {
   const classes = useStyles();
   const [content, setContent] = useState(value || '');
   const [disabled, setDisabled] = useState(true);
@@ -36,21 +42,26 @@ const EditorStepComponent = ({ onClick, value }) => {
         }}
       />
       <div className={classes.wrapper}>
-        <button
-          className={classes.button}
-          type="button"
-          onClick={() => onClick('{}')}>
-          <span>Créer un language vide</span>
-          <ArrowIcon />
-        </button>
-        <button
-          className={classes.button}
-          disabled={disabled}
-          type="button"
-          onClick={() => onClick(content)}>
-          <span>Continuer</span>
-          <ArrowIcon />
-        </button>
+        <div className={classes.infos}>
+          <span>Language : {lang}</span>
+        </div>
+        <div className={classes.controls}>
+          <button
+            className={classes.button}
+            type="button"
+            onClick={() => onClick('{}')}>
+            <span>Créer un language vide</span>
+            <ArrowIcon className={classes.icon} />
+          </button>
+          <button
+            className={classes.button}
+            disabled={disabled}
+            type="button"
+            onClick={() => onClick(content)}>
+            <span>Continuer</span>
+            <ArrowIcon className={classes.icon} />
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -61,6 +72,7 @@ EditorStepComponent.defaultProps = {
 };
 
 EditorStepComponent.propTypes = {
+  lang: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   value: PropTypes.string,
 };

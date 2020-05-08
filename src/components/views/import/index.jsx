@@ -37,7 +37,7 @@ const ImportViewComponent = () => {
   const classes = useStyles({ theme });
   const history = useHistory();
   const dispatch = useDispatch();
-  const { nextPath, step, steps } = useStep(lang, content);
+  const { next, step, steps } = useStep(lang, content);
 
   const clearState = () => {
     setContent(null);
@@ -45,29 +45,29 @@ const ImportViewComponent = () => {
   };
 
   const onIntroHandler = useCallback(() => {
-    history.push(nextPath);
-  }, [history, nextPath]);
+    history.push(next);
+  }, [history, next]);
 
   const onSelectHandler = useCallback(
     value => {
-      history.push(nextPath);
+      history.push(next);
       setLang(value);
     },
-    [history, nextPath]
+    [history, next]
   );
 
   const onEditorHandler = useCallback(
     value => {
-      history.push(nextPath);
+      history.push(next);
       setContent(value);
     },
-    [history, nextPath]
+    [history, next]
   );
 
   const onRestartHandler = useCallback(() => {
-    history.push(nextPath);
+    history.push(next);
     clearState();
-  }, [history, nextPath]);
+  }, [history, next]);
 
   const onSubmitHandler = useCallback(() => {
     dispatch(createLanguage(lang, content));
@@ -87,7 +87,7 @@ const ImportViewComponent = () => {
               <Select lang={lang} onChange={onSelectHandler} />
             </Route>
             <Route exact path="/import/3">
-              <Editor value={content} onClick={onEditorHandler} />
+              <Editor lang={lang} value={content} onClick={onEditorHandler} />
             </Route>
             <Route exact path="/import/4">
               <Finish onRestart={onRestartHandler} onSubmit={onSubmitHandler} />

@@ -12,7 +12,7 @@ const useStyles = createUseStyles({
   wrapper: {
     composes: ['is-relative', 'flex-1'],
     height: 'auto',
-    overflow: 'scroll',
+    overflow: 'auto',
     width: '100%',
   },
 });

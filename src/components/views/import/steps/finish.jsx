@@ -21,11 +21,11 @@ const FinishComponent = ({ onRestart, onSubmit }) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
+      <button className={classes.button} type="button" onClick={onSubmit}>
+        <span>Créer</span>
+      </button>
       <button className={classes.button} type="button" onClick={onRestart}>
         <span>Ajouter un autre langage</span>
-      </button>
-      <button className={classes.button} type="button" onClick={onSubmit}>
-        <span>Créer et Voir les projets</span>
       </button>
     </div>
   );
