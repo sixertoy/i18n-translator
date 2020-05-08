@@ -10,7 +10,7 @@ const createLanguage = (lang, content, project) => {
     label,
     lang,
     project,
-    type: EVENT_TYPES.PROJECT_CREATE,
+    type: EVENT_TYPES.LANGUAGE_CREATE,
   };
 };
 

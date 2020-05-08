@@ -14,14 +14,14 @@ const useStyles = createUseStyles({
     height: '100%',
     width: '100%',
   },
+  controls: {
+    composes: ['flex-columns', 'flex-end', 'items-center'],
+  },
   icon: {
     composes: ['ml7'],
   },
   infos: {
     composes: ['is-italic', 'fs10'],
-  },
-  wrapper: {
-    composes: ['flex-columns', 'flex-between', 'items-center'],
   },
 });
 
@@ -29,7 +29,6 @@ const EditorStepComponent = ({ onClick, value }) => {
   const classes = useStyles();
   const [content, setContent] = useState(value || '');
   const [disabled, setDisabled] = useState(true);
-
   return (
     <div className={classes.container}>
       <CodeEditor
@@ -41,24 +40,22 @@ const EditorStepComponent = ({ onClick, value }) => {
           setContent(editor);
         }}
       />
-      <div className={classes.wrapper}>
-        <div className={classes.controls}>
-          <button
-            className={classes.button}
-            type="button"
-            onClick={() => onClick('{}')}>
-            <span>Créer un language vide</span>
-            <ArrowIcon className={classes.icon} />
-          </button>
-          <button
-            className={classes.button}
-            disabled={disabled}
-            type="button"
-            onClick={() => onClick(content)}>
-            <span>Continuer</span>
-            <ArrowIcon className={classes.icon} />
-          </button>
-        </div>
+      <div className={classes.controls}>
+        <button
+          className={classes.button}
+          type="button"
+          onClick={() => onClick('{}')}>
+          <span>Créer un language vide</span>
+          <ArrowIcon className={classes.icon} />
+        </button>
+        <button
+          className={classes.button}
+          disabled={disabled}
+          type="button"
+          onClick={() => onClick(content)}>
+          <span>Continuer</span>
+          <ArrowIcon className={classes.icon} />
+        </button>
       </div>
     </div>
   );

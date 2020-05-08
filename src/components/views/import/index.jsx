@@ -14,13 +14,15 @@ import useStep from './use-step';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['py24', 'px32'],
+    composes: ['p24'],
     height: '100%',
   },
   routes: {
+    composes: ['mt24', 'flex-1'],
     height: '100%',
   },
   wrapper: {
+    composes: ['flex-rows', 'flex-start'],
     height: '100%',
   },
 });
@@ -34,7 +36,7 @@ const ImportViewComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { next, project, step, steps } = useStep(lang, content);
-  const { id } = project;
+  const pid = project.id;
 
   const clearState = () => {
     setContent(null);
@@ -43,14 +45,14 @@ const ImportViewComponent = () => {
 
   const onIntroHandler = useCallback(() => {
     history.push(next);
-  }, [history, next]);
+  }, [next, history]);
 
   const onSelectHandler = useCallback(
     value => {
       history.push(next);
       setLang(value);
     },
-    [history, next]
+    [next, history]
   );
 
   const onEditorHandler = useCallback(
@@ -58,18 +60,18 @@ const ImportViewComponent = () => {
       history.push(next);
       setContent(value);
     },
-    [history, next]
+    [next, history]
   );
 
   const onRestartHandler = useCallback(() => {
     history.push(next);
     clearState();
-  }, [history, next]);
+  }, [next, history]);
 
   const onSubmitHandler = useCallback(() => {
-    dispatch(createLanguage(lang, content));
-    history.push('/board');
-  }, [content, dispatch, history, lang]);
+    dispatch(createLanguage(lang, content, pid));
+    history.push(`/board/${pid}`);
+  }, [dispatch, lang, content, pid, history]);
 
   return (
     <div className={classes.container} id="import-view">
@@ -90,7 +92,7 @@ const ImportViewComponent = () => {
               <Finish onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
             </Route>
             <Route path={['/import/:id', '/import/:id/step']}>
-              <Redirect to={`/import/${id}/step/1`} />
+              <Redirect to={`/import/${pid}/step/1`} />
             </Route>
             <Route path="*">
               <Redirect to="/home" />

@@ -1,20 +1,7 @@
-import { getName } from 'ikea-name-generator';
 import pick from 'lodash.pick';
-import ucFirst from 'lodash.upperfirst';
-import { v1 as uuidv1 } from 'uuid';
 
 import { EVENT_TYPES } from '../../constants';
-
-export const MODEL = {
-  ctime: () => Date.now(), // number
-  id: () => uuidv1(), // string
-  mtime: () => Date.now(), // number
-  name: () => {
-    let value = getName();
-    value = ucFirst(value);
-    return value;
-  }, // string
-};
+import MODEL from '../models/project';
 
 export function hydrateModel(model, action, extend = {}) {
   const keys = Object.keys(model);
@@ -55,11 +42,12 @@ const projects = (state = [], action) => {
     case EVENT_TYPES.PROJECT_UPDATE:
       return onProjectUpdate(state, action);
     // Languages
-    case EVENT_TYPES.LANGUAGE_CLEAR:
-    case EVENT_TYPES.LANGUAGE_DELETE:
-    case EVENT_TYPES.LANGUAGE_KEY_DELETE:
-    case EVENT_TYPES.LANGUAGE_VALUE_UPDATE:
-      return onProjectLanguageUpdate(state, action);
+    // case EVENT_TYPES.LANGUAGE_CLEAR:
+    // case EVENT_TYPES.LANGUAGE_CREATE:
+    // case EVENT_TYPES.LANGUAGE_DELETE:
+    // case EVENT_TYPES.LANGUAGE_KEY_DELETE:
+    // case EVENT_TYPES.LANGUAGE_VALUE_UPDATE:
+    //   return onProjectLanguageUpdate(state, action);
     default:
       return state;
   }

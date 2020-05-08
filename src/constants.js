@@ -18,6 +18,7 @@ export const EVENT_TYPES = {
   LANGUAGE_CLEAR: 'onLanguageClear',
   LANGUAGE_CLONE: 'onLanguageClone',
   LANGUAGE_COLLAPSE: 'onLanguageCollapse',
+  LANGUAGE_CREATE: 'onLanguageCreate',
   LANGUAGE_DELETE: 'onLanguageDelete',
   LANGUAGE_DELETE_KEY: 'onLanguageDeleteKey',
   LANGUAGE_UPDATE_VALUE: 'onLanguageUpdateValue',

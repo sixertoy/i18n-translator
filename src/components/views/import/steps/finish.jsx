@@ -29,7 +29,7 @@ const FinishComponent = ({ onRestart, onSubmit }) => {
         <span>Ajouter un autre langage</span>
       </button>
       <span className={classes.splitter}>
-        <span>Ou</span>
+        <span>-&nbsp;Ou&nbsp;-</span>
       </span>
       <button className={classes.button} type="button" onClick={onSubmit}>
         <span>Continuer</span>
