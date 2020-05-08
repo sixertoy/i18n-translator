@@ -3,6 +3,9 @@ import { AiOutlineArrowRight as RightArrow } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
+import GithubLogin from '../../commons/buttons/github';
+import GoogleLogin from '../../commons/buttons/google';
+
 const useStyles = createUseStyles({
   button: {
     background: '#FFFFFF',
@@ -15,7 +18,7 @@ const useStyles = createUseStyles({
   },
   container: ({ theme }) => ({
     background: theme.header,
-    composes: ['flex-columns', 'items-center', 'flex-center'],
+    composes: ['flex-rows', 'items-center', 'flex-center'],
   }),
 });
 
@@ -24,9 +27,10 @@ const StartViewComponent = () => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container} id="home-view">
-      {/* <h6>
-        <span>Create your first project</span>
-      </h6> */}
+      <div className={classes.wrapper}>
+        <GithubLogin />
+        <GoogleLogin />
+      </div>
       <Link className={classes.button} to="/import">
         <RightArrow />
       </Link>
