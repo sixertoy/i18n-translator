@@ -67,7 +67,8 @@ const ColumnHeaderComponent = ({ clearable, index, label, lang, primary }) => {
             />
             {USE_LANGUAGE_CONTEXT_MENU && (
               <Tooltip
-                component={<ContextMenu clearable={clearable} lang={lang} />}>
+                component={<ContextMenu clearable={clearable} lang={lang} />}
+                placement="bottom-end">
                 <div className={classes.icon}>
                   <ContextIcon />
                 </div>

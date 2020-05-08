@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
+import { AiOutlinePlus as ContextIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import Tooltip from '../../../../commons/tooltip';
@@ -14,7 +14,10 @@ const useStyles = createUseStyles({
     lineHeight: '40px',
     width: 40,
   },
-  icon: {},
+  icon: {
+    color: '#FFFFFF',
+    composes: ['fs24'],
+  },
   menu: {},
 });
 

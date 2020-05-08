@@ -20,8 +20,9 @@ const useStyles = createUseStyles({
     minWidth: 40,
     transition: 'color 0.5s',
   },
+  icon: {},
   label: {
-    composes: ['ml7', 'is-normal', 'fs14'],
+    composes: ['ml7', 'is-normal', 'fs16'],
   },
   menu: {
     composes: ['is-absolute'],
@@ -36,12 +37,12 @@ const ReactDumbComponent = React.memo(() => {
   return (
     <div className={classes.menu}>
       <Link className={classes.button} to="/home">
-        <HomeIcon />
+        <HomeIcon className={classes.icon} />
       </Link>
       <Tooltip component={<Login />} placement="bottom-start">
         <button className={classes.button} type="button">
-          <ProjectsIcon className={classes.label} />
-          <span>Projets</span>
+          <ProjectsIcon className={classes.icon} />
+          <span className={classes.label}>Projets</span>
         </button>
       </Tooltip>
     </div>
