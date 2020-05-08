@@ -1,17 +1,28 @@
+import { getName } from 'ikea-name-generator';
+import pick from 'lodash.pick';
+
 import { EVENT_TYPES } from '../../constants';
 
 const MODEL = {
-  dict: {}, // { [key]: 'value' }
-  label: null, // string
+  collapsed: false, // { [key]: 'value' }
+  dict: {}, // string
+  fav: false, // string
+  label: () => getName(), // string
   lang: null, // string
-  meta: {
-    collapsed: false, // bool
-    ctime: () => Date.now(), // number
-    fav: false, // bool
-    mtime: () => Date.now(), // number
-  },
   project: null, // string
 };
+
+export function hydrateModel(model, action, extend = {}) {
+  const keys = Object.keys(model);
+  const picked = pick(action, keys);
+  const merged = { ...model, ...picked, ...extend };
+  const next = Object.entries(merged).reduce((acc, entry) => {
+    const [key, value] = entry;
+    const processed = typeof value === 'function' ? value() : value;
+    return { ...acc, [key]: processed };
+  }, {});
+  return next;
+}
 
 // export function createTranslation(action) {
 //   const { json, lang: id } = action;
@@ -65,16 +76,7 @@ export function deleteKey(state, { key }) {
   return next;
 }
 
-// NOTE Languages Data Model
-// {
-//    lang: string
-//    fav: bool
-//    collapsed: bool
-//    project: string
-//    dict: { ..key: string }
-//    label: string
-// }
-const translations = (state = [], action) => {
+const languages = (state = [], action) => {
   switch (action.type) {
     case EVENT_TYPES.PROJECT_CREATE:
       return createLanguage(state, action);
@@ -91,4 +93,4 @@ const translations = (state = [], action) => {
   }
 };
 
-export default translations;
+export default languages;

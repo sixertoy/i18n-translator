@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import * as app from './app';
-import translations from './languages';
+import languages from './languages';
 import projects from './projects';
 import theme from './theme';
 
@@ -10,7 +10,7 @@ function createRootReducer() {
     ...app,
     projects,
     theme,
-    translations,
+    translations: languages,
   });
 }
 
