@@ -11,9 +11,9 @@ import GoogleLogin from '../../commons/buttons/google';
 
 const useStyles = createUseStyles({
   button: {
-    background: '#FFFFFF',
+    background: '#000000',
     borderRadius: 4,
-    color: '#000000',
+    color: '#FFFFFF',
     composes: ['is-block', 'px24', 'py12', 'fs18', 'text-center'],
     width: 250,
   },
@@ -26,7 +26,8 @@ const useStyles = createUseStyles({
   },
   logo: {
     color: '#FFFFFF',
-    fontSize: 64,
+    composes: ['text-center'],
+    fontSize: 48,
     marginBottom: 48,
   },
   signin: {
