@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
   },
   menu: {
     composes: ['is-absolute'],
-    left: 12,
+    left: 0,
   },
 });
 

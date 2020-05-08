@@ -7,11 +7,11 @@ import Menu from './menu';
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
     background: theme.header,
-    composes: ['is-relative'],
+    composes: ['px32'],
     width: '100%',
   }),
   wrapper: ({ theme }) => ({
-    composes: ['flex-columns', 'flex-center', 'items-center', 'px32'],
+    composes: ['flex-columns', 'flex-center', 'items-center', 'is-relative'],
     height: theme.sizes.header,
     maxHeight: theme.sizes.header,
     minHeight: theme.sizes.header,
@@ -26,7 +26,6 @@ const ApplicationHeader = React.memo(() => {
       <div className={classes.wrapper}>
         <Menu />
         <Logo />
-        <div className="blank">&nbsp;</div>
       </div>
     </div>
   );
