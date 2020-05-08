@@ -2,8 +2,8 @@ import { applyMiddleware, createStore } from 'redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer, persistStore, purgeStoredState } from 'redux-persist';
+import thunk from 'redux-thunk';
 
-// import ReduxThunk from 'redux-thunk';
 import { reduxPersistConfig } from '../initial-state';
 import createRootReducer from './reducers';
 
@@ -36,8 +36,7 @@ export const configure = (history, initialState = {}) => {
   const store = createStore(
     persistedReducer,
     initialState,
-    bindMiddleware([])
-    // bindMiddleware([ReduxThunk])
+    bindMiddleware([thunk])
   );
   const persistor = persistStore(store, null, () => debugStored());
   return { persistor, store };
