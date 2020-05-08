@@ -13,13 +13,15 @@ export const LANGS = {
 export const EVENT_TYPES = {
   // Language
   LANGUAGE_CLEAR: 'onLanguageClear',
+  LANGUAGE_CLONE: 'onLanguageClone',
   LANGUAGE_DELETE: 'onLanguageDelete',
-  LANGUAGE_KEY_DELETE: 'onLanguageKeyDelete',
-  LANGUAGE_VALUE_UPDATE: 'onLanguageValueUpdate',
+  LANGUAGE_DELETE_KEY: 'onLanguageDeleteKey',
+  LANGUAGE_UPDATE_VALUE: 'onLanguageUpdateValue',
   // Loading
   LOADING_COMPLETE: 'onLoadingComplete',
   LOADING_START: 'onLoadingStart',
   // Projects
+  PROJECT_CLONE: 'onProjectClone',
   PROJECT_CREATE: 'onProjectCreate',
   PROJECT_DELETE: 'onProjectDelete',
   PROJECT_UPDATE: 'onProjectUpdate',

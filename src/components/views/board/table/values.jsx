@@ -5,7 +5,7 @@ import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { updateValue } from '../../../../redux/actions/translations';
+import { updateValue } from '../../../../redux/actions';
 
 const useStyles = createUseStyles({
   icon: ({ theme }) => ({

@@ -1,7 +1,7 @@
 import { getName } from 'ikea-name-generator';
 import { v1 as uuidv1 } from 'uuid';
 
-import { EVENT_TYPES } from '../../constants';
+import { EVENT_TYPES } from '../../../constants';
 
 const createProject = () => {
   const id = uuidv1();

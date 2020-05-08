@@ -3,7 +3,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
-import { createLanguage } from '../../../redux/actions/translations';
+import { createLanguage } from '../../../redux/actions';
 import Steps from '../../commons/steps';
 import withLayout from '../../layout';
 import Editor from './steps/editor';

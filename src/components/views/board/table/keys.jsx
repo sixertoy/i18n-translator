@@ -4,7 +4,7 @@ import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteKey } from '../../../../redux/actions/translations';
+import { deleteKey } from '../../../../redux/actions';
 import { selectPrimaryKeys } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({

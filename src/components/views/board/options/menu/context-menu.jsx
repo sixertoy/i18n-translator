@@ -10,7 +10,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 // import { useDispatch } from 'react-redux';
-// import { deleteProject } from '../../../redux/actions/translations';
+// import { deleteProject } from '../../../redux/actions';
 import {
   USE_ADD_LANGUAGE,
   USE_EXPORT_PROJECT,
@@ -53,7 +53,7 @@ const ContextMenuComponent = () => {
   // const history = useHistory();
   // const dispatch = useDispatch();
 
-  const onRemove = useCallback(() => {
+  const onDelete = useCallback(() => {
     // dispatch(deleteProject(lang));
     // history.replace('/')
   }, []);
@@ -86,7 +86,7 @@ const ContextMenuComponent = () => {
       <button
         className={classnames(classes.button, classes.danger)}
         type="button"
-        onClick={onRemove}>
+        onClick={onDelete}>
         <span>Supprimer le projet</span>
         <DeleteIcon className={classes.icon} />
       </button>
