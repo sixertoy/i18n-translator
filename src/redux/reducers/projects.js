@@ -1,8 +1,31 @@
-// import uuidv1 from 'uuid/v1';
+import { getName } from 'ikea-name-generator';
+import pick from 'lodash.pick';
+import { v1 as uuidv1 } from 'uuid';
+
 import { EVENT_TYPES } from '../../constants';
 
+export const MODEL = {
+  ctime: () => Date.now(), // number
+  id: () => uuidv1(), // string
+  mtime: () => Date.now(), // number
+  name: () => getName(), // string
+};
+
+export function hydrateModel(model, action, extend = {}) {
+  const keys = Object.keys(model);
+  const picked = pick(action, keys);
+  const merged = { ...model, ...picked, ...extend };
+  const next = Object.entries(merged).reduce((acc, entry) => {
+    const [key, value] = entry;
+    const processed = typeof value === 'function' ? value() : value;
+    return { ...acc, [key]: processed };
+  }, {});
+  return next;
+}
+
 function onProjectCreate(state, action) {
-  return state;
+  const next = hydrateModel(MODEL, action);
+  return [...state, next];
 }
 
 function onProjectDelete(state, action) {
@@ -17,13 +40,6 @@ function onProjectLanguageUpdate(state, action) {
   return state;
 }
 
-// NOTE Project Data Model
-// {
-//    ctime: number
-//    mtime: number
-//    id: string
-//    name: string
-// }
 const projects = (state = [], action) => {
   switch (action.type) {
     // CRUD

@@ -1,14 +1,14 @@
 import { EVENT_TYPES } from '../../constants';
 
 const MODEL = {
-  dict: [], // { [key]: 'value' }
+  dict: {}, // { [key]: 'value' }
   label: null, // string
   lang: null, // string
   meta: {
     collapsed: false, // bool
-    ctime: null, // number
+    ctime: () => Date.now(), // number
     fav: false, // bool
-    mtime: null, // number
+    mtime: () => Date.now(), // number
   },
   project: null, // string
 };

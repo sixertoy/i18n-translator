@@ -44,6 +44,7 @@
     "ikea-name-generator": "^1.0.3",
     "lodash.get": "^4.4.2",
     "lodash.isempty": "^4.4.0",
+    "lodash.pick": "^4.4.0",
     "lodash.uniq": "^4.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
