@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const ColumnHeaderComponent = ({ index, label, lang, primary }) => {
+const ColumnHeaderComponent = React.memo(({ index, label, lang, primary }) => {
   const theme = useTheme();
   const classes = useStyles({ index, theme });
   return (
@@ -35,7 +35,7 @@ const ColumnHeaderComponent = ({ index, label, lang, primary }) => {
       </div>
     </div>
   );
-};
+});
 
 ColumnHeaderComponent.defaultProps = {
   clearable: false,

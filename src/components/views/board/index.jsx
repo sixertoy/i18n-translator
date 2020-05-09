@@ -17,7 +17,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const BoardViewComponent = () => {
+const BoardViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -28,6 +28,6 @@ const BoardViewComponent = () => {
       </div>
     </div>
   );
-};
+});
 
 export default withLayout(BoardViewComponent);

@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
   menu: {},
 });
 
-const MenuComponent = () => {
+const MenuComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -33,10 +33,6 @@ const MenuComponent = () => {
       </Tooltip>
     </div>
   );
-};
-
-MenuComponent.defaultProps = {};
-
-MenuComponent.propTypes = {};
+});
 
 export default MenuComponent;

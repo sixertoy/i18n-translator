@@ -1,9 +1,8 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
 
-import { selectPercentages } from '../../../../redux/selectors';
 import PercentageBar from '../../../commons/percentage-bar';
+import { useProject } from '../../../hooks';
 
 const useStyles = createUseStyles({
   infos: {
@@ -21,14 +20,14 @@ const useStyles = createUseStyles({
   }),
 });
 
-const InfosComponent = () => {
+const InfosComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { project } = useSelector(selectPercentages);
+  const project = useProject();
   return (
     <div className={classes.infos}>
       <h3 className={classes.title}>
-        <span>Nom du projet</span>
+        <span>{project.name}</span>
       </h3>
       <PercentageBar
         showPercent
@@ -39,10 +38,6 @@ const InfosComponent = () => {
       />
     </div>
   );
-};
-
-InfosComponent.defaultProps = {};
-
-InfosComponent.propTypes = {};
+});
 
 export default InfosComponent;

@@ -2,19 +2,15 @@ import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import {
   AiOutlineDownload as ExportIcon,
-  AiOutlinePlus as PlusIcon,
+  AiOutlineTranslation as TranslationIcon,
 } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // import { useDispatch } from 'react-redux';
 // import { deleteProject } from '../../../redux/actions';
-import {
-  USE_ADD_LANGUAGE,
-  USE_EXPORT_PROJECT,
-} from '../../../../../features.json';
 
 const useStyles = createUseStyles({
   button: {
@@ -47,42 +43,45 @@ const useStyles = createUseStyles({
   },
 });
 
-const ContextMenuComponent = () => {
+const ContextMenuComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const { id } = useParams();
   // const history = useHistory();
   // const dispatch = useDispatch();
 
   const onDelete = useCallback(() => {
-    // dispatch(deleteProject(lang));
+    // dispatch(deleteProject(id));
+    // history.replace('/')
+  }, []);
+
+  const onExport = useCallback(() => {
+    // dispatch(deleteProject(id));
+    // history.replace('/')
+  }, []);
+
+  const onAddKey = useCallback(() => {
+    // dispatch(addPrimaryKey(id));
     // history.replace('/')
   }, []);
 
   return (
     <div className={classes.container}>
-      <Link className={classes.button} to="/import">
+      <button className={classes.button} type="button" onClick={onAddKey}>
         <span>Ajouter une clé</span>
         <KeyIcon className={classes.icon} />
+      </button>
+      <hr className={classes.splitter} />
+      <Link className={classes.button} to="/import">
+        <span>Ajouter une langue</span>
+        <TranslationIcon className={classes.icon} />
       </Link>
       <hr className={classes.splitter} />
-      {USE_ADD_LANGUAGE && (
-        <React.Fragment>
-          <Link className={classes.button} to="/import">
-            <span>Ajouter une langue</span>
-            <PlusIcon className={classes.icon} />
-          </Link>
-          <hr className={classes.splitter} />
-        </React.Fragment>
-      )}
-      {USE_EXPORT_PROJECT && (
-        <React.Fragment>
-          <Link className={classes.button} to="/export">
-            <span>Exporter</span>
-            <ExportIcon className={classes.icon} />
-          </Link>
-          <hr className={classes.splitter} />
-        </React.Fragment>
-      )}
+      <button className={classes.button} type="button" onClick={onExport}>
+        <span>Exporter</span>
+        <ExportIcon className={classes.icon} />
+      </button>
+      <hr className={classes.splitter} />
       <button
         className={classnames(classes.button, classes.danger)}
         type="button"
@@ -92,6 +91,6 @@ const ContextMenuComponent = () => {
       </button>
     </div>
   );
-};
+});
 
 export default ContextMenuComponent;

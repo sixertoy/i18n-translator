@@ -49,22 +49,22 @@ const useStyles = createUseStyles({
   },
 });
 
-const ContextMenuComponent = ({ clearable, lang }) => {
+const ContextMenuComponent = React.memo(({ clearable, lang }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const dispatch = useDispatch();
 
   const onClone = useCallback(() => {
     dispatch(cloneLanguage(lang));
-  }, [dispatch, lang]);
+  }, [lang, dispatch]);
 
   const onClear = useCallback(() => {
     dispatch(clearLanguage(lang));
-  }, [dispatch, lang]);
+  }, [lang, dispatch]);
 
   const onRemove = useCallback(() => {
     dispatch(deleteLanguage(lang));
-  }, [dispatch, lang]);
+  }, [lang, dispatch]);
 
   return (
     <div className={classes.container}>
@@ -91,7 +91,7 @@ const ContextMenuComponent = ({ clearable, lang }) => {
       </button>
     </div>
   );
-};
+});
 
 ContextMenuComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,

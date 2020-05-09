@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { deleteKey } from '../../../../../redux/actions';
 import { selectPrimaryKeys } from '../../../../../redux/selectors';
@@ -33,11 +34,12 @@ const useStyles = createUseStyles({
   wrapper: {},
 });
 
-const KeysColumnComponent = () => {
+const KeysColumnComponent = React.memo(() => {
   const theme = useTheme();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
-  const items = useSelector(selectPrimaryKeys);
+  const items = useSelector(state => selectPrimaryKeys(state, id));
 
   const onDeleteKey = useCallback(
     key => {
@@ -75,6 +77,6 @@ const KeysColumnComponent = () => {
       })}
     </div>
   );
-};
+});
 
 export default KeysColumnComponent;

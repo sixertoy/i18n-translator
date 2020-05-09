@@ -1,10 +1,10 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { selectTranslations } from '../../../../redux/selectors';
-import Collapsed from './columns/collapsed';
+// import Collapsed from './columns/collapsed';
 import Keys from './columns/keys';
 import Values from './columns/values';
 import Header from './header';
@@ -26,39 +26,34 @@ const useStyles = createUseStyles({
   },
   wrapper: {
     composes: ['flex-columns', 'flex-start'],
+    paddingBottom: 80,
   },
 });
 
-function checkIfLanguagesAreEmpties(items) {
-  const isempty = Boolean(!items || !items.length);
-  return isempty;
-}
-
-const TableComponent = () => {
+const TableComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const items = useSelector(selectTranslations);
-  const isEmpty = checkIfLanguagesAreEmpties(items);
+  const { id } = useParams();
+  const items = useSelector(state => selectTranslations(state, id));
   return (
     <div className={classes.table}>
-      {isEmpty && <Redirect to="/" />}
-      {!isEmpty && (
-        <div className={classes.wrapper}>
-          <div className={classes.primary}>
-            <Header primary index={0} />
-            <Keys />
-          </div>
-          {items.map(({ collapsed, label, lang, values }, index) => (
-            <div key={lang} className={classes.column}>
-              <Header index={index} label={label} lang={lang} />
-              {!collapsed && <Values lang={lang} values={values} />}
-              {collapsed && <Collapsed values={values} />}
-            </div>
-          ))}
+      <div className={classes.wrapper}>
+        <div className={classes.primary}>
+          <Header primary index={0} />
+          <Keys />
         </div>
-      )}
+        {items.map(({ dict, label, lang }, index) => (
+          <div key={lang} className={classes.column}>
+            <Header index={index} label={label} lang={lang} />
+            <Values dict={dict} lang={lang} />
+            {/*
+            {!collapsed && }
+            {collapsed && <Collapsed values={values} />} */}
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
+});
 
 export default TableComponent;

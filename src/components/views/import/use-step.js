@@ -1,15 +1,14 @@
 import get from 'lodash.get';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { LANGS } from '../../../constants';
-import { makeSelectProjectSelector } from '../../../redux/selectors';
+import { selectProject } from '../../../redux/selectors';
 
 const useStep = (lang, content) => {
   const history = useHistory();
   const { id, index } = useParams();
-  const selectProject = useMemo(makeSelectProjectSelector, []);
   const project = useSelector(_ => selectProject(_, id));
 
   const step = Number(index);
