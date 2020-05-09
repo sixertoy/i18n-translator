@@ -6,10 +6,10 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { createLanguageAsync } from '../../../redux/actions';
 import Steps from '../../commons/steps';
 import withLayout from '../../layout';
-import Create from './steps/create';
-import Editor from './steps/editor';
-import Finish from './steps/finish';
-import Select from './steps/select';
+import Step1 from './steps/step-1-project';
+import Step2 from './steps/step-2-select';
+import Step3 from './steps/step-3-editor';
+import Step4 from './steps/step-4-finish';
 import useStep from './use-step';
 
 const useStyles = createUseStyles({
@@ -88,16 +88,16 @@ const ImportViewComponent = () => {
         <div className={classes.routes}>
           <Switch>
             <Route exact path="/import/:id/step/1">
-              <Create name={pname} onClick={onCreateHandler} />
+              <Step1 name={pname} onClick={onCreateHandler} />
             </Route>
             <Route exact path="/import/:id/step/2">
-              <Select lang={lang} onChange={onSelectHandler} />
+              <Step2 lang={lang} onChange={onSelectHandler} />
             </Route>
             <Route exact path="/import/:id/step/3">
-              <Editor lang={lang} value={content} onClick={onEditorHandler} />
+              <Step3 lang={lang} value={content} onClick={onEditorHandler} />
             </Route>
             <Route exact path="/import/:id/step/4">
-              <Finish onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
+              <Step4 onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
             </Route>
             <Route path={['/import/:id', '/import/:id/step']}>
               <Redirect to={`/import/${pid}/step/1`} />

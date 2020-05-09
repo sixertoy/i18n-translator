@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
     width: theme.sizes.form,
   }),
   input: {
-    // '&::disabled': { userSelect: 'none' },
+    // TODO add disabled state
     composes: ['fs24', 'is-bold'],
     width: 290,
   },
@@ -40,10 +40,11 @@ const useStyles = createUseStyles({
   },
 });
 
-const IntroComponent = ({ name, onClick }) => {
+const StepProjectComponent = ({ name, onClick }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const isLogged = useSelector(selectIsLogged);
+
   return (
     <div className={classes.container}>
       <label className={classes.inner} htmlFor="project.name">
@@ -75,9 +76,9 @@ const IntroComponent = ({ name, onClick }) => {
   );
 };
 
-IntroComponent.propTypes = {
+StepProjectComponent.propTypes = {
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default IntroComponent;
+export default StepProjectComponent;

@@ -5,7 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { selectLanguagesLimit } from '../../../../redux/selectors';
+import { selectLimits } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -24,15 +24,19 @@ const useStyles = createUseStyles({
   },
 });
 
-const FinishComponent = ({ onRestart, onSubmit }) => {
+const StepFinishComponent = ({ onRestart, onSubmit }) => {
   const theme = useTheme();
-  const { id } = useParams();
   const classes = useStyles({ theme });
-  const countLangs = useSelector(state => selectLanguagesLimit(state, id));
-  const nextCount = countLangs - 1;
-  const hasNoLimit = countLangs < 0;
+
+  const { id } = useParams();
+  const count = useSelector(state => selectLimits(state, id));
+
+  // NOTE refactor sous forme d'objet
+  const nextCount = count - 1;
+  const hasNoLimit = count < 0;
   const canAddSomeMore = nextCount > 0;
   const enableAddButton = hasNoLimit || canAddSomeMore;
+
   return (
     <div className={classes.container}>
       {/* TODO ajouter une info quand l'utilisateur ne peux plus ajouter de langue */}
@@ -54,9 +58,9 @@ const FinishComponent = ({ onRestart, onSubmit }) => {
   );
 };
 
-FinishComponent.propTypes = {
+StepFinishComponent.propTypes = {
   onRestart: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default FinishComponent;
+export default StepFinishComponent;

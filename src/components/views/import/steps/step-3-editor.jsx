@@ -25,10 +25,11 @@ const useStyles = createUseStyles({
   },
 });
 
-const EditorStepComponent = ({ onClick, value }) => {
+const StepEditorComponent = ({ onClick, value }) => {
   const classes = useStyles();
-  const [content, setContent] = useState(value || '');
   const [disabled, setDisabled] = useState(true);
+  const [content, setContent] = useState(value || '');
+
   return (
     <div className={classes.container}>
       <CodeEditor
@@ -61,13 +62,13 @@ const EditorStepComponent = ({ onClick, value }) => {
   );
 };
 
-EditorStepComponent.defaultProps = {
+StepEditorComponent.defaultProps = {
   value: null,
 };
 
-EditorStepComponent.propTypes = {
+StepEditorComponent.propTypes = {
   onClick: PropTypes.func.isRequired,
   value: PropTypes.string,
 };
 
-export default EditorStepComponent;
+export default StepEditorComponent;

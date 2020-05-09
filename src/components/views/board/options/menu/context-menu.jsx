@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
 import { deleteProject } from '../../../../../redux/actions';
-import { selectLanguagesLimit } from '../../../../../redux/selectors';
+import { selectLimits } from '../../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -47,11 +47,12 @@ const useStyles = createUseStyles({
 const ContextMenuComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { id } = useParams();
 
-  const countLangs = useSelector(state => selectLanguagesLimit(state, id));
-  const nextCount = countLangs - 1;
-  const hasNoLimit = countLangs < 0;
+  const { id } = useParams();
+  const count = useSelector(state => selectLimits(state, id));
+
+  const nextCount = count - 1;
+  const hasNoLimit = count < 0;
   const canAddSomeMore = nextCount > 0;
   const enableAddButton = hasNoLimit || canAddSomeMore;
 

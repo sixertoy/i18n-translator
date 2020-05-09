@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const ButtonGoogleComponent = React.memo(({ login }) => {
+const GoogleButtonComponent = React.memo(({ login }) => {
   const classes = useStyles();
   return (
     <LoginButton onClick={() => {}}>
@@ -22,12 +22,12 @@ const ButtonGoogleComponent = React.memo(({ login }) => {
   );
 });
 
-ButtonGoogleComponent.defaultProps = {
+GoogleButtonComponent.defaultProps = {
   login: false,
 };
 
-ButtonGoogleComponent.propTypes = {
+GoogleButtonComponent.propTypes = {
   login: PropTypes.bool,
 };
 
-export default ButtonGoogleComponent;
+export default GoogleButtonComponent;

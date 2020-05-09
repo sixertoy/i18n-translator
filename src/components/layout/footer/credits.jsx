@@ -23,8 +23,4 @@ const CreditsComponents = React.memo(() => {
   );
 });
 
-CreditsComponents.defaultProps = {};
-
-CreditsComponents.propTypes = {};
-
 export default CreditsComponents;

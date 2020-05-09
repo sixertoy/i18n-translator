@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
   }),
 });
 
-const ApplicationHeader = React.memo(() => {
+const ApplicationHeaderComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -31,4 +31,4 @@ const ApplicationHeader = React.memo(() => {
   );
 });
 
-export default ApplicationHeader;
+export default ApplicationHeaderComponent;

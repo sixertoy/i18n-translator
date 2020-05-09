@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -6,7 +5,7 @@ import GithubLogin from '../../../commons/buttons/github';
 import GoogleLogin from '../../../commons/buttons/google';
 
 const useStyles = createUseStyles({
-  container: {},
+  login: {},
 });
 
 const LoginComponent = React.memo(() => {
@@ -19,9 +18,5 @@ const LoginComponent = React.memo(() => {
     </div>
   );
 });
-
-LoginComponent.defaultProps = {};
-
-LoginComponent.propTypes = {};
 
 export default LoginComponent;

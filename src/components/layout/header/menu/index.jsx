@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 import Tooltip from '../../../commons/tooltip';
 import Login from './login';
-// import Projects from './projects';
 
 const useStyles = createUseStyles({
   button: {
@@ -30,10 +29,9 @@ const useStyles = createUseStyles({
   },
 });
 
-const ReactDumbComponent = React.memo(() => {
+const ApplicationMenuComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  // const [connected, setConnected] = useState(false);
   return (
     <div className={classes.menu}>
       <Link className={classes.button} to="/home">
@@ -45,13 +43,8 @@ const ReactDumbComponent = React.memo(() => {
           <span className={classes.label}>Projets</span>
         </button>
       </Tooltip>
-      {/* <Account /> */}
     </div>
   );
 });
 
-ReactDumbComponent.defaultProps = {};
-
-ReactDumbComponent.propTypes = {};
-
-export default ReactDumbComponent;
+export default ApplicationMenuComponent;

@@ -19,7 +19,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const StartViewComponent = () => {
+const HomeViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -33,6 +33,6 @@ const StartViewComponent = () => {
       <Signin />
     </div>
   );
-};
+});
 
-export default StartViewComponent;
+export default HomeViewComponent;

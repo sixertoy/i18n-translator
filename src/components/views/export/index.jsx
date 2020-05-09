@@ -104,8 +104,4 @@ const ExportViewComponent = () => {
   );
 };
 
-ExportViewComponent.defaultProps = {};
-
-ExportViewComponent.propTypes = {};
-
 export default withLayout(ExportViewComponent);

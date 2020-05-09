@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const GoogleButtonComponent = React.memo(({ login }) => {
+const GithubButtonComponent = React.memo(({ login }) => {
   const classes = useStyles();
   return (
     <LoginButton onClick={() => {}}>
@@ -22,12 +22,12 @@ const GoogleButtonComponent = React.memo(({ login }) => {
   );
 });
 
-GoogleButtonComponent.defaultProps = {
+GithubButtonComponent.defaultProps = {
   login: false,
 };
 
-GoogleButtonComponent.propTypes = {
+GithubButtonComponent.propTypes = {
   login: PropTypes.bool,
 };
 
-export default GoogleButtonComponent;
+export default GithubButtonComponent;

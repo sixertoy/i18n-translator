@@ -1,8 +1,10 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { selectPercentages, selectProject } from '../../../../redux/selectors';
 import PercentageBar from '../../../commons/percentage-bar';
-import { useProject } from '../../../hooks';
 
 const useStyles = createUseStyles({
   infos: {
@@ -23,7 +25,11 @@ const useStyles = createUseStyles({
 const InfosComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const project = useProject();
+
+  const { id } = useParams();
+  const project = useSelector(state => selectProject(state, id));
+  const { overall } = useSelector(state => selectPercentages(state, id));
+
   return (
     <div className={classes.infos}>
       <h3 className={classes.title}>
@@ -32,9 +38,9 @@ const InfosComponent = React.memo(() => {
       <PercentageBar
         showPercent
         className={classes.percentage}
-        count={project.count}
+        count={overall.count}
         size="normal"
-        total={project.total}
+        total={overall.total}
       />
     </div>
   );

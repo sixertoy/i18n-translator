@@ -5,7 +5,7 @@ const useStyles = createUseStyles({
   container: {},
 });
 
-const ErrorViewComponent = () => {
+const ErrorViewComponent = React.memo(() => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -23,6 +23,6 @@ const ErrorViewComponent = () => {
       </p>
     </div>
   );
-};
+});
 
 export default ErrorViewComponent;

@@ -24,6 +24,7 @@ const useStyles = createUseStyles({
 const MenuComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+
   return (
     <div className={classes.menu}>
       <Tooltip component={<ContextMenu />}>

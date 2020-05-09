@@ -8,15 +8,6 @@ import 'ace-builds/src-min-noconflict/theme-github';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import AceEditor from 'react-ace';
-// import { createUseStyles } from 'react-jss';
-
-// const useStyles = createUseStyles({
-//   container: {
-//     height: '100%',
-//     position: 'relative',
-//     width: '100%',
-//   },
-// });
 
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';

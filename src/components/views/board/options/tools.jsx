@@ -33,9 +33,10 @@ const useStyles = createUseStyles({
   },
 });
 
-const ToolsComponent = () => {
+const ToolsComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+
   return (
     <div className={classes.tools}>
       {USE_SEARCH && (
@@ -55,6 +56,6 @@ const ToolsComponent = () => {
       )}
     </div>
   );
-};
+});
 
 export default ToolsComponent;

@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const ReactDumbComponent = React.memo(() => {
+const CreateComponent = React.memo(() => {
   const theme = useTheme();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -47,4 +47,4 @@ const ReactDumbComponent = React.memo(() => {
   );
 });
 
-export default ReactDumbComponent;
+export default CreateComponent;

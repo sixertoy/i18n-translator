@@ -3,7 +3,7 @@ import React from 'react';
 import GithubLogin from '../../commons/buttons/github';
 import GoogleLogin from '../../commons/buttons/google';
 
-const ReactDumbComponent = React.memo(() => {
+const LoginComponent = React.memo(() => {
   return (
     <div id="home-view-login">
       <GithubLogin login />
@@ -12,4 +12,4 @@ const ReactDumbComponent = React.memo(() => {
   );
 });
 
-export default ReactDumbComponent;
+export default LoginComponent;

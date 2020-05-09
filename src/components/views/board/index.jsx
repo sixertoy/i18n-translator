@@ -24,8 +24,10 @@ const BoardViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { id } = useParams();
+
   const languages = useSelector(state => selectLanguages(state, id));
   const hasNoLanguages = !languages || !languages.length;
+
   return (
     <div className={classes.container} id="board-view">
       <Options />

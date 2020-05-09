@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { LANGUAGES_FREE } from '../../../../constants';
-import { selectLanguages } from '../../../../redux/selectors';
+import { selectLangs } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   container: {
@@ -43,11 +43,11 @@ const languageAlphaSort = (a, b) => {
   return 0;
 };
 
-const SelectStepComponent = ({ lang, onChange }) => {
+const StepSelectComponent = ({ lang, onChange }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { id } = useParams();
-  const languages = useSelector(state => selectLanguages(state, id));
+  const langs = useSelector(state => selectLangs(state, id));
 
   const onSelect = useCallback(
     evt => {
@@ -77,7 +77,7 @@ const SelectStepComponent = ({ lang, onChange }) => {
           {Object.entries(LANGUAGES_FREE)
             .sort(languageAlphaSort)
             .map(([key, label]) => {
-              const isDisabled = languages.includes(key);
+              const isDisabled = langs.includes(key);
               return (
                 <option
                   key={key}
@@ -94,13 +94,13 @@ const SelectStepComponent = ({ lang, onChange }) => {
   );
 };
 
-SelectStepComponent.defaultProps = {
+StepSelectComponent.defaultProps = {
   lang: undefined,
 };
 
-SelectStepComponent.propTypes = {
+StepSelectComponent.propTypes = {
   lang: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-export default SelectStepComponent;
+export default StepSelectComponent;
