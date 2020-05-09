@@ -1,5 +1,6 @@
 const model = {
-  logged: false,
+  langs: [], // [{ [key]: label }]
+  logged: false, // bool
 };
 
 export default model;
