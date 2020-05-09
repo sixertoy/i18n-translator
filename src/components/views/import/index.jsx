@@ -36,7 +36,8 @@ const ImportViewComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { next, project, step, steps } = useStep(lang, content);
-  const pid = project.id;
+  const pid = (project && project.id) || null;
+  const pname = (project && project.name) || null;
 
   const clearState = () => {
     setContent(null);
@@ -80,7 +81,7 @@ const ImportViewComponent = () => {
         <div className={classes.routes}>
           <Switch>
             <Route exact path="/import/:id/step/1">
-              <Intro onClick={onIntroHandler} />
+              <Intro name={pname} onClick={onIntroHandler} />
             </Route>
             <Route exact path="/import/:id/step/2">
               <Select lang={lang} onChange={onSelectHandler} />

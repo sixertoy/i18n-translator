@@ -48,17 +48,16 @@ const StartViewComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
-  const { id: projectId } = useSelector(selectLastProject);
+  const project = useSelector(selectLastProject);
+  const { id } = project || {};
 
   const onDemoClick = useCallback(() => {
     dispatch(createProject());
   }, [dispatch]);
 
   useEffect(() => {
-    if (projectId) {
-      history.push(`/import/${projectId}`);
-    }
-  }, [history, projectId]);
+    if (id) history.push(`/import/${id}`);
+  }, [history, id]);
 
   return (
     <div className={classes.container} id="home-view">
