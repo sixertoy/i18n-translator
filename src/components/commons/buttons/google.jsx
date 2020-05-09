@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const ButtonGoogleComponent = ({ login }) => {
+const ButtonGoogleComponent = React.memo(({ login }) => {
   const classes = useStyles();
   return (
     <LoginButton onClick={() => {}}>
@@ -20,7 +20,7 @@ const ButtonGoogleComponent = ({ login }) => {
       {login && <span>Login in with Google</span>}
     </LoginButton>
   );
-};
+});
 
 ButtonGoogleComponent.defaultProps = {
   login: false,

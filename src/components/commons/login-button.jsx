@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const ReactDumbComponent = ({ children, className, onClick }) => {
+const LoginButtonComponent = React.memo(({ children, className, onClick }) => {
   const classes = useStyles();
   return (
     <button
@@ -23,16 +23,16 @@ const ReactDumbComponent = ({ children, className, onClick }) => {
       {children}
     </button>
   );
-};
+});
 
-ReactDumbComponent.defaultProps = {
+LoginButtonComponent.defaultProps = {
   className: null,
 };
 
-ReactDumbComponent.propTypes = {
+LoginButtonComponent.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };
 
-export default ReactDumbComponent;
+export default LoginButtonComponent;
