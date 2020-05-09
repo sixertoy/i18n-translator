@@ -1,23 +1,15 @@
-import React, { useCallback, useEffect } from 'react';
-import { AiOutlineArrowRight as RightArrow } from 'react-icons/ai';
+import React, { useEffect } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import Logo from '../../../assets/logo';
-import { createProject } from '../../../redux/actions';
 import { selectLastProject } from '../../../redux/selectors';
-import GithubLogin from '../../commons/buttons/github';
-import GoogleLogin from '../../commons/buttons/google';
+import Create from './create';
+import Login from './login';
+import Signin from './signin';
 
 const useStyles = createUseStyles({
-  button: {
-    background: '#000000',
-    borderRadius: 4,
-    color: '#FFFFFF',
-    composes: ['is-block', 'px24', 'py12', 'fs18', 'text-center'],
-    width: 250,
-  },
   container: ({ theme }) => ({
     background: theme.header,
     composes: ['flex-rows', 'items-center', 'flex-center'],
@@ -31,29 +23,14 @@ const useStyles = createUseStyles({
     fontSize: 48,
     marginBottom: 48,
   },
-  signin: {
-    '& > p': { lineHeight: 1.15 },
-    '& > p + p': { marginTop: 7 },
-    color: '#FFFFFF',
-    composes: ['fs16', 'mt64', 'text-center'],
-    width: 350,
-  },
-  splitter: {
-    composes: ['is-block', 'my24', 'text-center', 'fs18'],
-  },
 });
 
 const StartViewComponent = () => {
   const theme = useTheme();
   const history = useHistory();
-  const dispatch = useDispatch();
   const classes = useStyles({ theme });
   const project = useSelector(selectLastProject);
   const { id } = project || {};
-
-  const onDemoClick = useCallback(() => {
-    dispatch(createProject());
-  }, [dispatch]);
 
   useEffect(() => {
     if (id) history.push(`/import/${id}`);
@@ -64,33 +41,9 @@ const StartViewComponent = () => {
       <div className={classes.logo}>
         <Logo />
       </div>
-      <div className={classes.wrapper}>
-        <GithubLogin login />
-        <GoogleLogin login />
-      </div>
-      <span className={classes.splitter}>
-        <span>-&nbsp;ou&nbsp;-</span>
-      </span>
-      <button className={classes.button} type="button" onClick={onDemoClick}>
-        <span>Créer un projet</span>
-        <RightArrow className={classes.icon} />
-      </button>
-      <div className={classes.signin}>
-        <p className="is-bold">
-          <span>Besoin de plus de projets ?</span>
-        </p>
-        <p>
-          <Link className="is-underline" to="/home/signin">
-            <span>Enregistrez vous</span>
-          </Link>
-        </p>
-        <p className="is-italic">
-          <span>
-            Profitez de plus d&apos;espace pour gérer vos projets ainsi que de
-            lorem ipsum dolor sit amet.
-          </span>
-        </p>
-      </div>
+      <Login />
+      <Create />
+      <Signin />
     </div>
   );
 };
