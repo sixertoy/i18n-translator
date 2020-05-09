@@ -57,7 +57,9 @@ const useStyles = createUseStyles({
     bottom: 0,
     composes: ['is-absolute'],
     left: 0,
+    right: 0,
     top: 0,
+    transition: 'right 0.5s',
     zIndex: 20,
   }),
 });
