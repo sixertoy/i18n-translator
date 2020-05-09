@@ -45,11 +45,6 @@ const ImportViewComponent = () => {
   const pid = (project && project.id) || null;
   const pname = (project && project.name) || null;
 
-  const clearState = () => {
-    setContent(null);
-    setLang(undefined);
-  };
-
   const onCreateHandler = useCallback(() => {
     history.push(next);
   }, [next, history]);
@@ -72,7 +67,8 @@ const ImportViewComponent = () => {
 
   const onRestartHandler = useCallback(() => {
     history.push(next);
-    clearState();
+    setContent(null);
+    setLang(undefined);
   }, [next, history]);
 
   const onSubmitHandler = useCallback(() => {
