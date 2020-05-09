@@ -4,16 +4,16 @@ import { PERSIST_STORAGE_KEY } from '../constants';
 import { getThemeByThemeId } from '../theme';
 
 const INITIAL_VALUES = {
+  languages: [],
   loading: false,
   theme: getThemeByThemeId('bali'),
-  translations: [],
 };
 
 export const reduxPersistConfig = {
   blacklist: ['loading'],
   key: PERSIST_STORAGE_KEY,
   storage,
-  whitelist: ['theme', 'translations', 'version', 'projects', 'user'],
+  whitelist: ['theme', 'languages', 'version', 'projects', 'user'],
 };
 
 export const getInitialState = () => {

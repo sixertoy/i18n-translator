@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 import { uniq } from '../../core/utils/array';
 
-const mapKeys = ({ dict }) => Object.keys(dict);
+const mapKeys = ({ translations }) => Object.keys(translations);
 const mergeKeys = (acc, keys) => [...acc, ...keys];
 
 const selectPrimaryKeys = createSelector(

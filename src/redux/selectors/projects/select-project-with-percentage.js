@@ -23,8 +23,10 @@ export const getTotal = (translations, keys) => {
 };
 
 export const getCount = translations => {
-  const count = translations.reduce((acc, obj) => {
-    const fitrered = Object.values(obj.dict).filter(filterValidValues);
+  const count = translations.reduce((acc, language) => {
+    const fitrered = Object.values(language.translations).filter(
+      filterValidValues
+    );
     const subcount = fitrered.length;
     return acc + subcount;
   }, 0);

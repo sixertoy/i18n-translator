@@ -9,9 +9,9 @@ import user from './user';
 function createRootReducer() {
   return combineReducers({
     ...app,
+    languages,
     projects,
     theme,
-    translations: languages,
     user,
   });
 }

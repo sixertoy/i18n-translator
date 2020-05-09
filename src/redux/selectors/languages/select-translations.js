@@ -12,15 +12,16 @@ export const filterValidValues = value => {
   return true;
 };
 
-export const filterTranslationsByProject = id => obj => obj.project === id;
+export const filterTranslationsByProject = id => language =>
+  language.project === id;
 
 export const makeTranslations = (items, id) => {
   const filtered = items.filter(filterTranslationsByProject(id));
-  const translations = filtered.map(obj => {
-    const values = Object.values(obj.dict);
+  const translations = filtered.map(language => {
+    const values = Object.values(language.translations);
     const total = values.length;
     const count = values.filter(filterValidValues).length;
-    return { ...obj, count, total };
+    return { ...language, count, total };
   });
   return translations;
 };

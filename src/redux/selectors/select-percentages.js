@@ -13,8 +13,8 @@ const filterEmptyValues = v => v && v.trim() !== '';
 const reduceToCounts = (acc, { count }) => count + acc;
 
 const reduceToLangs = total => (acc, obj) => {
-  const { dict, label, lang } = obj;
-  const count = Object.values(dict).filter(filterEmptyValues).length;
+  const { label, lang, translations } = obj;
+  const count = Object.values(translations).filter(filterEmptyValues).length;
   const percent = (count * 100) / total;
   return [...acc, { count, label, lang, percent, total }];
 };

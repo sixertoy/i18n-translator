@@ -11,12 +11,12 @@ const sortDictByAsc = (a, b) => {
 const mergeKeys = (acc, key) => ({ ...acc, [key]: '' });
 
 const selectTranslations = createSelector(
-  state => state.translations,
+  state => state.languages,
   selectPrimaryKeys,
-  (translations, keys) => {
+  (languages, keys) => {
     const merged = keys.reduce(mergeKeys, {});
-    const items = translations.map(({ dict, label, lang }) => {
-      const entries = Object.entries({ ...merged, ...dict });
+    const items = languages.map(({ label, lang, translations }) => {
+      const entries = Object.entries({ ...merged, ...translations });
       const values = entries.sort(sortDictByAsc);
       return { label, lang, values };
     });

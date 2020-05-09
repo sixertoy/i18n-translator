@@ -4,8 +4,8 @@ import selectTranslations from './select-translations';
 
 const getTranslations = (_, id) => selectTranslations(_, id);
 
-export const makePrimaryKeys = translations => {
-  const keys = Object.keys(translations[0].dict);
+export const makePrimaryKeys = languages => {
+  const keys = Object.keys(languages[0].translations);
   return keys;
 };
 
