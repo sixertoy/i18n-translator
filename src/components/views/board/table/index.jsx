@@ -31,6 +31,7 @@ const useStyles = createUseStyles({
 const TableComponent = React.memo(({ languages }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+
   return (
     <div className={classes.table}>
       <div className={classes.wrapper}>

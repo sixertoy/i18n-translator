@@ -21,30 +21,18 @@ export function updateProjectMtime(state, action) {
   const next = state.reduce((acc, project) => {
     if (project.id !== id) return [...acc, project];
     const mtime = Date.now();
-    const nextProject = { ...project, mtime };
-    return [...acc, nextProject];
+    return [...acc, { ...project, mtime }];
   }, []);
   return next;
 }
 
-// function updateProjectMTime(state, action) {
-//   const { id } = action;
-//   const next = state.reduce((acc, obj) => {
-//     if (obj.id !== id) return [...acc, obj];
-//     const mtime = Date.now();
-//     return [...acc, { ...obj, mtime }];
-//   }, []);
-//   return next;
-// }
-
-export function updateProjectLangs(state, action) {
-  const { lang, project: id } = action;
-  const next = state.reduce((acc, project) => {
-    if (project.id !== id) return [...acc, project];
+export function updateProjectLang(state, action) {
+  const { lang, project } = action;
+  const next = state.reduce((acc, obj) => {
+    if (obj.id !== project) return [...acc, obj];
+    const langs = [...obj.langs, lang];
     const mtime = Date.now();
-    const langs = [...project.langs, lang];
-    const nextProject = { ...project, langs, mtime };
-    return [...acc, nextProject];
+    return [...acc, { ...obj, langs, mtime }];
   }, []);
   return next;
 }
@@ -52,23 +40,24 @@ export function updateProjectLangs(state, action) {
 export function deleteProjectLang(state, action) {
   const { lang, project } = action;
   const next = state.reduce((acc, obj) => {
-    if (obj.id !== project) return { ...acc, obj };
+    if (obj.id !== project) return [...acc, obj];
+    const langs = obj.langs.filter(l => l !== lang);
     const mtime = Date.now();
-    const langs = obj.langs.filter(v => v !== lang);
-    return { ...obj, langs, mtime };
+    return [...acc, { ...obj, langs, mtime }];
   }, []);
   return next;
 }
 
 const projects = (state = [], action) => {
   switch (action.type) {
-    // CRUD
     case EVENT_TYPES.PROJECT_CREATE:
       return createProject(state, action);
     case EVENT_TYPES.PROJECT_DELETE:
       return deleteProject(state, action);
+    case EVENT_TYPES.LANGUAGE_DELETE:
+      return deleteProjectLang(state, action);
     case EVENT_TYPES.LANGUAGE_CREATE:
-      return updateProjectLangs(state, action);
+      return updateProjectLang(state, action);
     case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:
       return updateProjectMtime(state, action);
     default:

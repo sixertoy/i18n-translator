@@ -38,15 +38,18 @@ export function updateTranslation(state, { key, lang, project, value }) {
 
 export function deleteLanguages(state, action) {
   const { id: project } = action;
-  const filtered = state.filter(obj => obj.project !== project);
+  const filtered = state.filter(obj => {
+    const notCurrentProject = obj.project !== project;
+    return notCurrentProject;
+  });
   return filtered;
 }
 
 export function deleteLanguage(state, { lang, project }) {
   const next = state.filter(obj => {
-    const hasLang = obj.lang === lang;
-    const hasProject = obj.project === project;
-    return !hasLang && !hasProject;
+    const isCurrentLang = obj.lang === lang;
+    const isCurrentProject = obj.project === project;
+    return !(isCurrentProject && isCurrentLang);
   });
   return next;
 }

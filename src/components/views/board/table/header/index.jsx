@@ -27,6 +27,7 @@ const useStyles = createUseStyles({
 const ColumnHeaderComponent = React.memo(({ index, label, lang, primary }) => {
   const theme = useTheme();
   const classes = useStyles({ index, theme });
+
   return (
     <div className={classnames(classes.header, { [classes.primary]: primary })}>
       <div className={classes.wrapper}>
