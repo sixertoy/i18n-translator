@@ -4,8 +4,9 @@ import React from 'react';
 import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { updateValue } from '../../../../../redux/actions';
+import { updateTranslation } from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
   icon: ({ theme }) => ({
@@ -34,8 +35,17 @@ const useStyles = createUseStyles({
 const ValuesColumnComponent = ({ lang, translations }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const { id: project } = useParams();
   const classes = useStyles({ theme });
   const values = Object.entries(translations);
+
+  const onInputChange = key => evt => {
+    evt.preventDefault();
+    const update = evt.target.value;
+    const next = { key, lang, project, value: update };
+    dispatch(updateTranslation(next));
+  };
+
   return (
     <div className={classes.wrapper}>
       {values.map(([key, value], index) => {
@@ -51,11 +61,7 @@ const ValuesColumnComponent = ({ lang, translations }) => {
               placeholder="Enter a value"
               type="text"
               value={value}
-              onChange={evt => {
-                evt.preventDefault();
-                const update = evt.target.value;
-                dispatch(updateValue({ key, lang, update }));
-              }}
+              onChange={onInputChange(key)}
             />
             <span className={classes.icon}>
               <CheckIcon />

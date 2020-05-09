@@ -17,21 +17,21 @@ export const EVENT_TYPES = {
   APP_USER_LOGIN: 'onUserLogin',
   APP_USER_LOGOUT: 'onUserLogout',
   // Language
-  LANGUAGE_CLEAR: 'onLanguageClear',
-  LANGUAGE_CLONE: 'onLanguageClone',
-  LANGUAGE_COLLAPSE: 'onLanguageCollapse',
+  // LANGUAGE_CLEAR: 'onLanguageClear',
+  // LANGUAGE_CLONE: 'onLanguageClone',
+  // LANGUAGE_COLLAPSE: 'onLanguageCollapse',
   LANGUAGE_CREATE: 'onLanguageCreate',
-  LANGUAGE_DELETE: 'onLanguageDelete',
-  LANGUAGE_DELETE_KEY: 'onLanguageDeleteKey',
-  LANGUAGE_UPDATE_VALUE: 'onLanguageUpdateValue',
+  // LANGUAGE_DELETE: 'onLanguageDelete',
+  // LANGUAGE_DELETE_KEY: 'onLanguageDeleteKey',
+  LANGUAGE_UPDATE_TRANSLATION: 'onLanguageUpdateTranslation',
   // Loading
   LOADING_COMPLETE: 'onLoadingComplete',
   LOADING_START: 'onLoadingStart',
   // Projects
-  PROJECT_CLONE: 'onProjectClone',
+  // PROJECT_CLONE: 'onProjectClone',
   PROJECT_CREATE: 'onProjectCreate',
   PROJECT_DELETE: 'onProjectDelete',
-  PROJECT_UPDATE: 'onProjectUpdate',
+  // PROJECT_UPDATE: 'onProjectUpdate',
 };
 
 export const DEFAULT_LANG = 'en-US';

@@ -2,11 +2,6 @@ import { EVENT_TYPES } from '../../constants';
 import hydrate from '../hydrate';
 import { project as model } from '../models';
 
-export function updateProjectModifcationTime(project) {
-  const mtime = Date.now();
-  return { ...project, mtime };
-}
-
 function createProject(state, action) {
   const { logged } = action;
   const next = hydrate(model, action);
@@ -21,9 +16,16 @@ function deleteProject(state, action) {
   return filtered;
 }
 
-// function updateProject(state, action) {
-//   return state;
-// }
+function updateProjectMtime(state, action) {
+  const { project: id } = action;
+  const next = state.reduce((acc, project) => {
+    if (project.id !== id) return [...acc, project];
+    const mtime = Date.now();
+    const nextProject = { ...project, mtime };
+    return [...acc, nextProject];
+  }, []);
+  return next;
+}
 
 // function updateProjectMTime(state, action) {
 //   const { id } = action;
@@ -39,9 +41,9 @@ function updateProjectLangs(state, action) {
   const { lang, project: id } = action;
   const next = state.reduce((acc, project) => {
     if (project.id !== id) return [...acc, project];
+    const mtime = Date.now();
     const langs = [...project.langs, lang];
-    let nextProject = { ...project, langs };
-    nextProject = updateProjectModifcationTime(nextProject);
+    const nextProject = { ...project, langs, mtime };
     return [...acc, nextProject];
   }, []);
   return next;
@@ -54,17 +56,11 @@ const projects = (state = [], action) => {
       return createProject(state, action);
     case EVENT_TYPES.PROJECT_DELETE:
       return deleteProject(state, action);
-    // case EVENT_TYPES.PROJECT_UPDATE:
-    //   return updateProject(state, action);
     case EVENT_TYPES.LANGUAGE_CREATE:
       return updateProjectLangs(state, action);
-    // Languages
-    // case EVENT_TYPES.LANGUAGE_CLEAR:
-    // case EVENT_TYPES.LANGUAGE_CREATE:
-    // case EVENT_TYPES.LANGUAGE_DELETE:
-    // case EVENT_TYPES.LANGUAGE_KEY_DELETE:
-    // case EVENT_TYPES.LANGUAGE_VALUE_UPDATE:
-    //   return updateProjectMTime(state, action);
+    // NOTE update only mtime property
+    case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:
+      return updateProjectMtime(state, action);
     default:
       return state;
   }
