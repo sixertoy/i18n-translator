@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {},
@@ -9,7 +9,11 @@ const useStyles = createUseStyles({
 const ReactDumbComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  return <div className={classes.container} />;
+  return (
+    <div className={classes.container}>
+      <span>&nbsp;</span>
+    </div>
+  );
 });
 
 ReactDumbComponent.defaultProps = {};
