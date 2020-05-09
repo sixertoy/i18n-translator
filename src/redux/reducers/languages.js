@@ -1,19 +1,6 @@
-import pick from 'lodash.pick';
-
 import { EVENT_TYPES } from '../../constants';
-import MODEL from '../models/language';
-
-export function hydrateModel(model, action, extend = {}) {
-  const keys = Object.keys(model);
-  const picked = pick(action, keys);
-  const merged = { ...model, ...picked, ...extend };
-  const next = Object.entries(merged).reduce((acc, entry) => {
-    const [key, value] = entry;
-    const processed = typeof value === 'function' ? value() : value;
-    return { ...acc, [key]: processed };
-  }, {});
-  return next;
-}
+import hydrate from '../hydrate';
+import { language as model } from '../models';
 
 // export function createTranslation(action) {
 //   const { json, lang: id } = action;
@@ -47,8 +34,14 @@ export function hydrateModel(model, action, extend = {}) {
 // }
 
 export function createLanguage(state, action) {
-  const next = hydrateModel(MODEL, action);
+  const next = hydrate(model, action);
   return [...state, next];
+}
+
+export function deleteProjectLanguages(state, action) {
+  const { id } = action;
+  const filtered = state.filter(obj => obj.project !== id);
+  return filtered;
 }
 
 // export function deleteLanguage(state, { lang }) {
@@ -71,18 +64,20 @@ const languages = (state = [], action) => {
   switch (action.type) {
     case EVENT_TYPES.LANGUAGE_CREATE:
       return createLanguage(state, action);
-    case EVENT_TYPES.LANGUAGE_CLEAR:
-      // return clearLanguage(state, action);
-      return state;
-    case EVENT_TYPES.LANGUAGE_DELETE:
-      // return deleteLanguage(state, action);
-      return state;
-    case EVENT_TYPES.LANGUAGE_UPDATE_VALUE:
-      // return updateValue(state, action);
-      return state;
-    case EVENT_TYPES.LANGUAGE_DELETE_KEY:
-      // return deleteKey(state, action);
-      return state;
+    case EVENT_TYPES.PROJECT_DELETE:
+      return deleteProjectLanguages(state, action);
+    // case EVENT_TYPES.LANGUAGE_CLEAR:
+    // return clearLanguage(state, action);
+    // return state;
+    // case EVENT_TYPES.LANGUAGE_DELETE:
+    // return deleteLanguage(state, action);
+    // return state;
+    // case EVENT_TYPES.LANGUAGE_UPDATE_VALUE:
+    // return updateValue(state, action);
+    // return state;
+    // case EVENT_TYPES.LANGUAGE_DELETE_KEY:
+    // return deleteKey(state, action);
+    // return state;
     default:
       return state;
   }

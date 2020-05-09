@@ -7,9 +7,10 @@ import {
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
+import { deleteProject } from '../../../../../redux/actions';
 import { selectLanguagesLimit } from '../../../../../redux/selectors';
 
 const useStyles = createUseStyles({
@@ -54,13 +55,13 @@ const ContextMenuComponent = React.memo(() => {
   const canAddSomeMore = nextCount > 0;
   const enableAddButton = hasNoLimit || canAddSomeMore;
 
-  // const history = useHistory();
-  // const dispatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const onDelete = useCallback(() => {
-    // dispatch(deleteProject(id));
-    // history.replace('/')
-  }, []);
+    dispatch(deleteProject(id));
+    history.replace('/home');
+  }, [dispatch, history, id]);
 
   const onExport = useCallback(() => {
     // dispatch(deleteProject(id));
