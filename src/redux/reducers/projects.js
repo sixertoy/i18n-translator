@@ -16,8 +16,11 @@ export function hydrateModel(model, action, extend = {}) {
 }
 
 function onProjectCreate(state, action) {
+  const { logged } = action;
   const next = hydrateModel(MODEL, action);
-  return [...state, next];
+  // NOTE Can create only one project
+  // if user is not connected
+  return (logged && [...state, next]) || [next];
 }
 
 function onProjectDelete(state, action) {

@@ -2,8 +2,9 @@ import React, { useCallback } from 'react';
 import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import { createProject } from '../../../redux/actions';
+import { createProjectAsync } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: {
@@ -23,12 +24,15 @@ const useStyles = createUseStyles({
 
 const ReactDumbComponent = React.memo(() => {
   const theme = useTheme();
+  const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
 
   const onDemoClick = useCallback(() => {
-    dispatch(createProject());
-  }, [dispatch]);
+    dispatch(createProjectAsync()).then(id => {
+      history.push(`/import/${id}/step/1`);
+    });
+  }, [dispatch, history]);
 
   return (
     <React.Fragment>
@@ -42,9 +46,5 @@ const ReactDumbComponent = React.memo(() => {
     </React.Fragment>
   );
 });
-
-ReactDumbComponent.defaultProps = {};
-
-ReactDumbComponent.propTypes = {};
 
 export default ReactDumbComponent;
