@@ -45,6 +45,7 @@
     "lodash.get": "^4.4.2",
     "lodash.isempty": "^4.4.0",
     "lodash.pick": "^4.4.0",
+    "lodash.sumby": "^4.6.0",
     "lodash.uniq": "^4.5.0",
     "lodash.upperfirst": "^4.3.1",
     "prop-types": "^15.7.2",

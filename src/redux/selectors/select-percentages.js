@@ -1,5 +1,6 @@
 import get from 'lodash.get';
 import isEmpty from 'lodash.isempty';
+import sumBy from 'lodash.sumby';
 import { createCachedSelector } from 're-reselect';
 
 const getId = (_, id) => id;
@@ -14,13 +15,15 @@ const selectPercentages = createCachedSelector(
       .reduce((acc, { lang, translations }) => {
         const entries = Object.entries(translations);
         const total = entries.length;
-        const count = entries.filter(arr => !isEmpty(arr[1]));
+        const count = entries.filter(arr => !isEmpty(arr[1])).length;
         const next = { [lang]: { count, total } };
         return { ...acc, ...next };
       }, {});
-    const overall = Object.entries(counts).reduce((acc, { count, total }) => {
-      return { count: acc.count + count, total: acc.total + total };
-    }, {});
+    const values = Object.values(counts);
+    const overall = {
+      count: sumBy(values, 'count'),
+      total: sumBy(values, 'total'),
+    };
     return { ...counts, overall };
   }
 )((_, id) => `percentage::${id}`);
