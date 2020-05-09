@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
     width: theme.sizes.form,
   }),
   input: {
-    '&::disabled': { userSelect: 'none' },
+    // '&::disabled': { userSelect: 'none' },
     composes: ['fs24', 'is-bold'],
     width: 290,
   },

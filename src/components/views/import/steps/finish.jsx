@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 // import { AiOutlineSave as SaveIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+import { selectLanguagesLimit } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -22,11 +26,23 @@ const useStyles = createUseStyles({
 
 const FinishComponent = ({ onRestart, onSubmit }) => {
   const theme = useTheme();
+  const { id } = useParams();
   const classes = useStyles({ theme });
+  const countLangs = useSelector(state => selectLanguagesLimit(state, id));
+  const nextCount = countLangs - 1;
+  const hasNoLimit = countLangs < 0;
+  const canAddSomeMore = nextCount > 0;
+  const enableAddButton = hasNoLimit || canAddSomeMore;
   return (
     <div className={classes.container}>
-      <button className={classes.button} type="button" onClick={onRestart}>
+      {/* TODO ajouter une info quand l'utilisateur ne peux plus ajouter de langue */}
+      <button
+        className={classes.button}
+        disabled={!enableAddButton}
+        type="button"
+        onClick={onRestart}>
         <span>Ajouter un autre langage</span>
+        {!hasNoLimit && <i>({nextCount}) langues restants</i>}
       </button>
       <span className={classes.splitter}>
         <span>-&nbsp;Ou&nbsp;-</span>

@@ -1,6 +1,8 @@
 export const PERSIST_STORAGE_KEY = 'i18n_translation_editor::';
 
-export const LANGS = {
+export const LANGUAGES_FREE_MAX = 3;
+
+export const LANGUAGES_FREE = {
   // using language keys RFC 3066
   'de-DE': 'Deutsch',
   'en-US': 'English',

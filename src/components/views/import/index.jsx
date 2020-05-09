@@ -3,7 +3,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
-import { createLanguage } from '../../../redux/actions';
+import { createLanguageAsync } from '../../../redux/actions';
 import Steps from '../../commons/steps';
 import withLayout from '../../layout';
 import Create from './steps/create';
@@ -66,14 +66,17 @@ const ImportViewComponent = () => {
   );
 
   const onRestartHandler = useCallback(() => {
-    history.push(next);
-    setContent(null);
-    setLang(undefined);
-  }, [next, history]);
+    dispatch(createLanguageAsync(lang, content, pid)).then(() => {
+      setLang(undefined);
+      setContent(null);
+      history.push(`/import/${pid}/step/2`);
+    });
+  }, [lang, content, pid, dispatch, history]);
 
   const onSubmitHandler = useCallback(() => {
-    dispatch(createLanguage(lang, content, pid));
-    history.push(`/board/${pid}`);
+    dispatch(createLanguageAsync(lang, content, pid)).then(() => {
+      history.push(`/board/${pid}`);
+    });
   }, [dispatch, lang, content, pid, history]);
 
   return (

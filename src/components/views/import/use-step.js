@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { LANGS } from '../../../constants';
+import { LANGUAGES_FREE } from '../../../constants';
 import { selectProject } from '../../../redux/selectors';
 
 const useStep = (lang, content) => {
@@ -17,7 +17,7 @@ const useStep = (lang, content) => {
 
   const steps = [
     get(project, 'name', 'Commencer'),
-    get(LANGS, [lang], 'Langue'),
+    get(LANGUAGES_FREE, [lang], 'Langue'),
     'Importer',
     'Créer',
   ];

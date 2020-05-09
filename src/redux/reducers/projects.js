@@ -1,7 +1,7 @@
 import pick from 'lodash.pick';
 
 import { EVENT_TYPES } from '../../constants';
-import MODEL from '../models/project';
+import { project } from '../models';
 
 export function hydrateModel(model, action, extend = {}) {
   const keys = Object.keys(model);
@@ -15,42 +15,62 @@ export function hydrateModel(model, action, extend = {}) {
   return next;
 }
 
-function onProjectCreate(state, action) {
+function createProject(state, action) {
   const { logged } = action;
-  const next = hydrateModel(MODEL, action);
-  // NOTE Can create only one project
-  // if user is not connected
-  return (logged && [...state, next]) || [next];
+  const next = hydrateModel(project, action);
+  // NOTE un user non connecté peut créer 1 seul projet
+  if (!logged) return [next];
+  return [...state, next];
 }
 
-function onProjectDelete(state, action) {
-  return state;
-}
+// function deleteProject(state, action) {
+//   const { id } = action;
+//   const filtered = state.filter(obj => obj.id !== id);
+//   return filtered;
+// }
 
-function onProjectUpdate(state, action) {
-  return state;
-}
+// function updateProject(state, action) {
+//   return state;
+// }
 
-function onProjectLanguageUpdate(state, action) {
-  return state;
+// function updateProjectMTime(state, action) {
+//   const { id } = action;
+//   const next = state.reduce((acc, obj) => {
+//     if (obj.id !== id) return [...acc, obj];
+//     const mtime = Date.now();
+//     return [...acc, { ...obj, mtime }];
+//   }, []);
+//   return next;
+// }
+
+function addLanguageToProject(state, action) {
+  const { lang, project: id } = action;
+  const next = state.reduce((acc, obj) => {
+    if (obj.id !== id) return [...acc, obj];
+    const langs = [...obj.langs, lang];
+    return [...acc, { ...obj, langs }];
+  }, []);
+  return next;
 }
 
 const projects = (state = [], action) => {
   switch (action.type) {
     // CRUD
     case EVENT_TYPES.PROJECT_CREATE:
-      return onProjectCreate(state, action);
-    case EVENT_TYPES.PROJECT_DELETE:
-      return onProjectDelete(state, action);
-    case EVENT_TYPES.PROJECT_UPDATE:
-      return onProjectUpdate(state, action);
+      return createProject(state, action);
+    // case EVENT_TYPES.PROJECT_DELETE:
+    //   return deleteProject(state, action);
+    // case EVENT_TYPES.PROJECT_UPDATE:
+    //   return updateProject(state, action);
+    case EVENT_TYPES.LANGUAGE_CREATE:
+      return addLanguageToProject(state, action);
     // Languages
     // case EVENT_TYPES.LANGUAGE_CLEAR:
     // case EVENT_TYPES.LANGUAGE_CREATE:
     // case EVENT_TYPES.LANGUAGE_DELETE:
     // case EVENT_TYPES.LANGUAGE_KEY_DELETE:
     // case EVENT_TYPES.LANGUAGE_VALUE_UPDATE:
-    //   return onProjectLanguageUpdate(state, action);
+    //   return updateProjectMTime(state, action);
     default:
       return state;
   }

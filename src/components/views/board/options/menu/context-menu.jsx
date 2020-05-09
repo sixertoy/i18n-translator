@@ -7,10 +7,10 @@ import {
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-// import { useDispatch } from 'react-redux';
-// import { deleteProject } from '../../../redux/actions';
+import { selectLanguagesLimit } from '../../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -47,6 +47,13 @@ const ContextMenuComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { id } = useParams();
+
+  const countLangs = useSelector(state => selectLanguagesLimit(state, id));
+  const nextCount = countLangs - 1;
+  const hasNoLimit = countLangs < 0;
+  const canAddSomeMore = nextCount > 0;
+  const enableAddButton = hasNoLimit || canAddSomeMore;
+
   // const history = useHistory();
   // const dispatch = useDispatch();
 
@@ -60,22 +67,30 @@ const ContextMenuComponent = React.memo(() => {
     // history.replace('/')
   }, []);
 
-  const onAddKey = useCallback(() => {
+  const onAddPrimaryKey = useCallback(() => {
     // dispatch(addPrimaryKey(id));
     // history.replace('/')
   }, []);
 
   return (
     <div className={classes.container}>
-      <button className={classes.button} type="button" onClick={onAddKey}>
+      <button
+        className={classes.button}
+        type="button"
+        onClick={onAddPrimaryKey}>
         <span>Ajouter une clé</span>
         <KeyIcon className={classes.icon} />
       </button>
       <hr className={classes.splitter} />
-      <Link className={classes.button} to={`/import/${id}/step/2`}>
-        <span>Ajouter une langue</span>
-        <TranslationIcon className={classes.icon} />
-      </Link>
+      {enableAddButton && (
+        <Link
+          className={classes.button}
+          disabled={enableAddButton}
+          to={`/import/${id}/step/2`}>
+          <span>Ajouter une langue</span>
+          <TranslationIcon className={classes.icon} />
+        </Link>
+      )}
       <hr className={classes.splitter} />
       <button className={classes.button} type="button" onClick={onExport}>
         <span>Exporter</span>

@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { LANGS } from '../../../../constants';
+import { LANGUAGES_FREE } from '../../../../constants';
+import { selectProjectLanguages } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   container: {
@@ -43,7 +46,10 @@ const languageAlphaSort = (a, b) => {
 const SelectStepComponent = ({ lang, onChange }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const callback = useCallback(
+  const { id } = useParams();
+  const languages = useSelector(state => selectProjectLanguages(state, id));
+
+  const onSelect = useCallback(
     evt => {
       evt.preventDefault();
       const { value } = evt.target || {};
@@ -53,9 +59,10 @@ const SelectStepComponent = ({ lang, onChange }) => {
     },
     [onChange]
   );
+
   return (
     <div className={classes.container}>
-      <label className={classes.inner} htmlForm="select.lang">
+      <label className={classes.inner} htmlFor="select.lang">
         <span className={classes.label}>
           <span>Séléctionner</span>
         </span>
@@ -63,17 +70,24 @@ const SelectStepComponent = ({ lang, onChange }) => {
           className={classes.input}
           name="select.lang"
           value={lang}
-          onChange={callback}>
+          onChange={onSelect}>
           <option className={classes.options} value="">
             -
           </option>
-          {Object.entries(LANGS)
+          {Object.entries(LANGUAGES_FREE)
             .sort(languageAlphaSort)
-            .map(([id, label]) => (
-              <option key={id} className={classes.options} value={id}>
-                {label}
-              </option>
-            ))}
+            .map(([key, label]) => {
+              const isDisabled = languages.includes(key);
+              return (
+                <option
+                  key={key}
+                  className={classes.options}
+                  disabled={isDisabled}
+                  value={key}>
+                  {label}
+                </option>
+              );
+            })}
         </select>
       </label>
     </div>
