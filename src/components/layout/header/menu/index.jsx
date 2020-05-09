@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
 // import { MdAccountCircle as AccountIcon } from 'react-icons/md';
 import { RiHome2Line as HomeIcon } from 'react-icons/ri';
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import Tooltip from '../../../commons/tooltip';
 import Login from './login';
-import Projects from './projects';
+// import Projects from './projects';
 
 const useStyles = createUseStyles({
   button: {
@@ -45,6 +45,7 @@ const ReactDumbComponent = React.memo(() => {
           <span className={classes.label}>Projets</span>
         </button>
       </Tooltip>
+      {/* <Account /> */}
     </div>
   );
 });

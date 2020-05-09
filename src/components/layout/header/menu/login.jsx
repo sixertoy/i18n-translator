@@ -9,7 +9,7 @@ const useStyles = createUseStyles({
   container: {},
 });
 
-const LoginComponent = () => {
+const LoginComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -18,7 +18,7 @@ const LoginComponent = () => {
       <GoogleLogin />
     </div>
   );
-};
+});
 
 LoginComponent.defaultProps = {};
 

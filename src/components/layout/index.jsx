@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const wittLayout = WrappedComponent => props => {
+const withLayout = WrappedComponent => props => {
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -23,4 +23,4 @@ const wittLayout = WrappedComponent => props => {
   );
 };
 
-export default wittLayout;
+export default withLayout;

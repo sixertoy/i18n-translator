@@ -1,8 +1,8 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import Logo from './logo';
 import Menu from './menu';
+import Title from './title';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
@@ -25,7 +25,7 @@ const ApplicationHeader = React.memo(() => {
     <div className={classes.container} id="layout-header">
       <div className={classes.wrapper}>
         <Menu />
-        <Logo />
+        <Title />
       </div>
     </div>
   );
