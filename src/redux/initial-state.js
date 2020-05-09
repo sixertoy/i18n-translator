@@ -1,7 +1,7 @@
 import storage from 'redux-persist/lib/storage';
 
-import { PERSIST_STORAGE_KEY } from './constants';
-import { getThemeByThemeId } from './theme';
+import { PERSIST_STORAGE_KEY } from '../constants';
+import { getThemeByThemeId } from '../theme';
 
 const INITIAL_VALUES = {
   loading: false,

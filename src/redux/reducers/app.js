@@ -17,14 +17,3 @@ export const version = (state = false, action) => {
       return state;
   }
 };
-
-export const project = (state = false, action) => {
-  switch (action.type) {
-    case EVENT_TYPES.PROJECT_CREATE:
-      return action.id;
-    case EVENT_TYPES.APP_USER_LOGOUT:
-      return false;
-    default:
-      return state;
-  }
-};
