@@ -1,7 +1,7 @@
 import { createCachedSelector } from 're-reselect';
 
-const getTranslations = state => state.translations;
 const getId = (_, id) => id;
+const getLanguages = state => state.languages;
 
 export const filterValidValues = value => {
   if (!value) return false;
@@ -12,22 +12,20 @@ export const filterValidValues = value => {
   return true;
 };
 
-export const filterTranslationsByProject = id => language =>
-  language.project === id;
-
-export const makeTranslations = (items, id) => {
-  const filtered = items.filter(filterTranslationsByProject(id));
-  const translations = filtered.map(language => {
-    const values = Object.values(language.translations);
-    const total = values.length;
-    const count = values.filter(filterValidValues).length;
-    return { ...language, count, total };
-  });
-  return translations;
-};
-
-export default createCachedSelector(
-  getTranslations,
+const selectProjectLanguages = createCachedSelector(
+  getLanguages,
   getId,
-  makeTranslations
-)((_, id) => `project::translations::${id}`);
+  (languages, id) => {
+    const items = languages
+      .filter(obj => obj.project === id)
+      .map(obj => {
+        const values = Object.values(obj.translations);
+        const total = values.length;
+        const count = values.filter(filterValidValues).length;
+        return { ...obj, count, total };
+      });
+    return items;
+  }
+)((_, id) => `project::language::${id}`);
+
+export default selectProjectLanguages;

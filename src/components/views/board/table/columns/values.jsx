@@ -31,11 +31,11 @@ const useStyles = createUseStyles({
   wrapper: {},
 });
 
-const ValuesColumnComponent = ({ dict, lang }) => {
+const ValuesColumnComponent = ({ lang, translations }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
-  const values = Object.entries(dict);
+  const values = Object.entries(translations);
   return (
     <div className={classes.wrapper}>
       {values.map(([key, value], index) => {
@@ -68,8 +68,8 @@ const ValuesColumnComponent = ({ dict, lang }) => {
 };
 
 ValuesColumnComponent.propTypes = {
-  dict: PropTypes.shape().isRequired,
   lang: PropTypes.string.isRequired,
+  translations: PropTypes.shape().isRequired,
 };
 
 export default ValuesColumnComponent;
