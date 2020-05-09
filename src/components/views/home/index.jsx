@@ -14,9 +14,6 @@ const useStyles = createUseStyles({
     background: theme.header,
     composes: ['flex-rows', 'items-center', 'flex-center'],
   }),
-  icon: {
-    composes: ['ml12'],
-  },
   logo: {
     color: '#FFFFFF',
     composes: ['text-center'],

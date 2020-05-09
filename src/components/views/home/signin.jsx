@@ -3,6 +3,10 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
+  link: {
+    color: '#FFFFFF',
+    composes: ['is-bold', 'is-underline'],
+  },
   signin: {
     '& > p': { lineHeight: 1.15 },
     '& > p + p': { marginTop: 7 },
@@ -17,11 +21,11 @@ const ReactDumbComponent = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.signin}>
-      <p className="is-bold">
+      <p>
         <span>Besoin de plus de projets ?</span>
       </p>
       <p>
-        <Link className="is-underline" to="/home/signin">
+        <Link className={classes.link} to="/home/signin">
           <span>Enregistrez vous</span>
         </Link>
       </p>
