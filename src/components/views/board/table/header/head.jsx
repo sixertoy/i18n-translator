@@ -1,3 +1,4 @@
+import get from 'lodash.get';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import {
@@ -5,9 +6,11 @@ import {
   AiOutlineShrink as CollapseIcon,
 } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { collapseLanguage } from '../../../../../redux/actions';
+import { selectPercentages } from '../../../../../redux/selectors';
 import PercentageBar from '../../../../commons/percentage-bar';
 import Tooltip from '../../../../commons/tooltip';
 import ContextMenu from './context-menu';
@@ -36,6 +39,10 @@ const LangHeaderComponent = React.memo(({ collapsed, label, lang }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const { id } = useParams();
+  const percentages = useSelector(state => selectPercentages(state, id));
+  const { count, total } = get(percentages, lang);
+
   const onToggleCollapse = useCallback(() => {
     const next = !collapsed;
     dispatch(collapseLanguage(next));
@@ -48,9 +55,9 @@ const LangHeaderComponent = React.memo(({ collapsed, label, lang }) => {
         // NOTE do not mark 'className' as required
         // in PercentageBar
         className={classes.percentage}
-        count={30}
+        count={count}
         size="tiny"
-        total={40}
+        total={total}
       />
       <div className={classes.context}>
         <Tooltip
