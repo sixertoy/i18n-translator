@@ -1,6 +1,15 @@
 import { getName } from 'ikea-name-generator';
 import ucFirst from 'lodash.upperfirst';
 
+// NOTE language dict entry
+// [key]: {
+//   string: string
+//   plurals: string
+//   context: string
+//   developer_comment: string
+//   character_limit: number
+// }
+
 const model = {
   collapsed: false, // string
   ctime: () => Date.now(), // { [key]: 'value' }
