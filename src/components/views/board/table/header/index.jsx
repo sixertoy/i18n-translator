@@ -4,7 +4,7 @@ import React from 'react';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import LangHeader from './lang';
+import Head from './head';
 
 const useStyles = createUseStyles({
   header: ({ index, theme }) => ({
@@ -31,7 +31,7 @@ const ColumnHeaderComponent = React.memo(({ index, label, lang, primary }) => {
     <div className={classnames(classes.header, { [classes.primary]: primary })}>
       <div className={classes.wrapper}>
         {primary && <KeyIcon />}
-        {!primary && <LangHeader label={label} lang={lang} />}
+        {!primary && <Head label={label} lang={lang} />}
       </div>
     </div>
   );
