@@ -17,13 +17,18 @@ const useStyles = createUseStyles({
     composes: ['p24'],
     height: '100%',
   },
+  inner: {
+    marginTop: 40,
+    width: 680,
+  },
   routes: {
     composes: ['mt24', 'flex-1'],
     height: '100%',
   },
   wrapper: {
-    composes: ['flex-rows', 'flex-start'],
+    composes: ['flex-rows', 'flex-start', 'items-center'],
     height: '100%',
+    width: '100%',
   },
 });
 
@@ -77,7 +82,9 @@ const ImportViewComponent = () => {
   return (
     <div className={classes.container} id="import-view">
       <div className={classes.wrapper}>
-        <Steps current={step - 1} steps={steps} />
+        <div className={classes.inner}>
+          <Steps current={step - 1} steps={steps} />
+        </div>
         <div className={classes.routes}>
           <Switch>
             <Route exact path="/import/:id/step/1">

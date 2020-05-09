@@ -13,7 +13,7 @@ export const reduxPersistConfig = {
   blacklist: ['loading'],
   key: PERSIST_STORAGE_KEY,
   storage,
-  whitelist: ['theme', 'translations', 'version', 'projects', 'logged'],
+  whitelist: ['theme', 'translations', 'version', 'projects', 'user'],
 };
 
 export const getInitialState = () => {

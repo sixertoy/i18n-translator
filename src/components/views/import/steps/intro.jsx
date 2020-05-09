@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
+
+import { selectIsLogged } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -31,15 +34,17 @@ const useStyles = createUseStyles({
 });
 
 const IntroComponent = ({ name, onClick }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+  const isLogged = useSelector(selectIsLogged);
   return (
     <div className={classes.container}>
       <label className={classes.inner} htmlFor="project.name">
         <span className={classes.label}>Nom du projet</span>
         <input
-          disabled
           className={classes.input}
           defaultValue={name}
+          disabled={!isLogged}
           id="project.name"
           type="text"
         />

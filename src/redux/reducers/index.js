@@ -4,6 +4,7 @@ import * as app from './app';
 import languages from './languages';
 import projects from './projects';
 import theme from './theme';
+import user from './user';
 
 function createRootReducer() {
   return combineReducers({
@@ -11,6 +12,7 @@ function createRootReducer() {
     projects,
     theme,
     translations: languages,
+    user,
   });
 }
 
