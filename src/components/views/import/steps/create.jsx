@@ -6,20 +6,20 @@ import { useSelector } from 'react-redux';
 import { selectIsLogged } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
-  button: {
+  button: ({ theme }) => ({
     composes: ['py12', 'px24', 'fs18'],
-    width: 350,
-  },
+    width: theme.sizes.form,
+  }),
   container: {
     composes: ['flex-rows', 'flex-center', 'items-center'],
     height: '70%',
   },
-  inner: {
+  inner: ({ theme }) => ({
     border: '1px solid #000000',
     borderRadius: 4,
     composes: ['is-block', 'mb12', 'is-relative', 'px24', 'py24'],
-    width: 350,
-  },
+    width: theme.sizes.form,
+  }),
   input: {
     '&::disabled': { userSelect: 'none' },
     composes: ['is-block', 'fs24', 'is-bold'],
@@ -40,12 +40,14 @@ const IntroComponent = ({ name, onClick }) => {
   return (
     <div className={classes.container}>
       <label className={classes.inner} htmlFor="project.name">
-        <span className={classes.label}>Nom du projet</span>
+        <span className={classes.label}>
+          <span>Nom du projet</span>
+        </span>
         <input
           className={classes.input}
           defaultValue={name}
           disabled={!isLogged}
-          id="project.name"
+          name="project.name"
           type="text"
         />
       </label>

@@ -6,9 +6,9 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { createLanguage } from '../../../redux/actions';
 import Steps from '../../commons/steps';
 import withLayout from '../../layout';
+import Create from './steps/create';
 import Editor from './steps/editor';
 import Finish from './steps/finish';
-import Intro from './steps/intro';
 import Select from './steps/select';
 import useStep from './use-step';
 
@@ -24,6 +24,7 @@ const useStyles = createUseStyles({
   routes: {
     composes: ['mt24', 'flex-1'],
     height: '100%',
+    width: '100%',
   },
   wrapper: {
     composes: ['flex-rows', 'flex-start', 'items-center'],
@@ -49,7 +50,7 @@ const ImportViewComponent = () => {
     setLang(undefined);
   };
 
-  const onIntroHandler = useCallback(() => {
+  const onCreateHandler = useCallback(() => {
     history.push(next);
   }, [next, history]);
 
@@ -88,7 +89,7 @@ const ImportViewComponent = () => {
         <div className={classes.routes}>
           <Switch>
             <Route exact path="/import/:id/step/1">
-              <Intro name={pname} onClick={onIntroHandler} />
+              <Create name={pname} onClick={onCreateHandler} />
             </Route>
             <Route exact path="/import/:id/step/2">
               <Select lang={lang} onChange={onSelectHandler} />

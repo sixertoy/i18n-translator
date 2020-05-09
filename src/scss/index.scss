@@ -5,24 +5,26 @@
 @import '_shadows';
 @import '_scrollbars';
 
-/* ---------------------------------------------------
-
- Table
-
---------------------------------------------------- */
-
-// .table-cell-ellipsis {
-//   overflow: hidden;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-// }
 .debug {
   border: 1px solid #000000;
   background: rgba(172, 229, 57, 0.15);
 }
 
-.ace-github .ace_gutter {
-  background: #FBFBFB !important;
+/* ----------------------------------------------------
+
+ ACE EDITOR
+
+---------------------------------------------------- */
+// .ace-github .ace_gutter {
+// background: #FBFBFB !important;
+// }
+
+.ace_scrollbar.ace_scrollbar-h {
+  overflow-x: hidden !important;
+}
+
+.ace_scroller.ace_scroll-left {
+  box-shadow: none !important;
 }
 
 // .is-full-viewport {

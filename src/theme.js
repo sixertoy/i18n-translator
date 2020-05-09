@@ -81,6 +81,7 @@ const themeBase = {
     colkey: 220,
     colwidth: 300,
     footer: 40,
+    form: 350,
     header: 50,
     line: 60,
     logo: 28,

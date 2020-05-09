@@ -17,9 +17,9 @@ const useStep = (lang, content) => {
 
   const steps = [
     get(project, 'name', 'Commencer'),
-    get(LANGS, [lang], 'Sélectionner'),
+    get(LANGS, [lang], 'Langue'),
     'Importer',
-    'Finaliser',
+    'Créer',
   ];
 
   useEffect(() => {

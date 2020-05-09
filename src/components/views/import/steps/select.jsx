@@ -7,31 +7,30 @@ import { LANGS } from '../../../../constants';
 const useStyles = createUseStyles({
   container: {
     composes: ['flex-columns', 'flex-center', 'items-center'],
-    height: '100%',
+    height: '70%',
   },
-  input: {
-    border: 0,
-    composes: ['fs14', 'm0', 'p0'],
-    cursor: 'pointer',
-    display: 'inline-block',
-    minWidth: '100%',
-    width: '100%',
-  },
-  options: {
-    cursor: 'pointer',
-    minWidth: '100%',
-    width: '100%',
-  },
-  select: {
-    '&.disabled': {
-      opacity: 0.45,
-    },
+  inner: ({ theme }) => ({
     border: '1px solid #000000',
     borderRadius: 4,
-    composes: ['fs12', 'text-left'],
-    display: 'inline-block',
-    padding: '9px 12px',
-    width: 200,
+    composes: ['fs12', 'text-left', 'is-relative', 'is-block', 'px24', 'py12'],
+    width: theme.sizes.form,
+  }),
+  input: {
+    border: 0,
+    composes: ['fs14', 'm0', 'p0', 'use-pointer', 'is-block'],
+    height: 48,
+    width: '100%',
+  },
+  label: {
+    background: '#F1F1F1',
+    composes: ['is-absolute', 'is-bold', 'px5', 'py5'],
+    left: 12,
+    top: -12,
+  },
+  options: {
+    composes: ['fs14', 'm0', 'p0', 'use-pointer'],
+    minWidth: '100%',
+    width: '100%',
   },
 });
 
@@ -56,8 +55,15 @@ const SelectStepComponent = ({ lang, onChange }) => {
   );
   return (
     <div className={classes.container}>
-      <span className={classes.select}>
-        <select className={classes.input} value={lang} onChange={callback}>
+      <label className={classes.inner} htmlForm="select.lang">
+        <span className={classes.label}>
+          <span>Séléctionner</span>
+        </span>
+        <select
+          className={classes.input}
+          name="select.lang"
+          value={lang}
+          onChange={callback}>
           <option className={classes.options} value="">
             -
           </option>
@@ -69,7 +75,7 @@ const SelectStepComponent = ({ lang, onChange }) => {
               </option>
             ))}
         </select>
-      </span>
+      </label>
     </div>
   );
 };
