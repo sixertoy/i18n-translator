@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { AiFillLock as LockIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { selectIsLogged } from '../../../../redux/selectors';
+import Tooltip from '../../../commons/tooltip';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -14,16 +16,21 @@ const useStyles = createUseStyles({
     composes: ['flex-rows', 'flex-center', 'items-center'],
     height: '70%',
   },
+  icon: {
+    color: '#DDDDDD',
+    composes: ['use-pointer', 'fs18', 'ml7'],
+  },
   inner: ({ theme }) => ({
     border: '1px solid #000000',
     borderRadius: 4,
-    composes: ['is-block', 'mb12', 'is-relative', 'px24', 'py24'],
+    composes: ['is-block', 'mb12', 'is-relative', 'pl24', 'px7', 'py24'],
+    height: 'auto',
     width: theme.sizes.form,
   }),
   input: {
     '&::disabled': { userSelect: 'none' },
-    composes: ['is-block', 'fs24', 'is-bold'],
-    width: '100%',
+    composes: ['fs24', 'is-bold'],
+    width: 290,
   },
   label: {
     background: '#F1F1F1',
@@ -50,6 +57,16 @@ const IntroComponent = ({ name, onClick }) => {
           name="project.name"
           type="text"
         />
+        <Tooltip
+          className="tooltip-help"
+          maxWidth={160}
+          placement="right-end"
+          title="Connectez-vous pour personnaliser le titre de ce projet"
+          trigger="mouseenter focus click">
+          <span className={classes.icon}>
+            <LockIcon />
+          </span>
+        </Tooltip>
       </label>
       <button className={classes.button} type="button" onClick={onClick}>
         <span>Créer</span>
