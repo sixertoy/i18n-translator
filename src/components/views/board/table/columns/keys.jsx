@@ -39,7 +39,7 @@ const KeysColumnComponent = React.memo(() => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
-  const items = useSelector(state => selectPrimaryKeys(state, id));
+  const primaryKeys = useSelector(state => selectPrimaryKeys(state, id));
 
   const onDeleteKey = useCallback(
     key => {
@@ -50,7 +50,7 @@ const KeysColumnComponent = React.memo(() => {
 
   return (
     <div className={classes.wrapper}>
-      {items.map((key, index) => {
+      {primaryKeys.map((key, index) => {
         const odd = index % 2;
         const even = !odd;
         return (

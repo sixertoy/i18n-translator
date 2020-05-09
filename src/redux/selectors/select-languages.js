@@ -12,7 +12,7 @@ export const filterValidValues = value => {
   return true;
 };
 
-const selectProjectLanguages = createCachedSelector(
+const selectLanguages = createCachedSelector(
   getLanguages,
   getId,
   (languages, id) => {
@@ -26,6 +26,6 @@ const selectProjectLanguages = createCachedSelector(
       });
     return items;
   }
-)((_, id) => `project::language::${id}`);
+)((_, id) => `languages::${id}`);
 
-export default selectProjectLanguages;
+export default selectLanguages;

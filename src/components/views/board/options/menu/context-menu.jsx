@@ -83,15 +83,13 @@ const ContextMenuComponent = React.memo(() => {
         <KeyIcon className={classes.icon} />
       </button>
       <hr className={classes.splitter} />
-      {enableAddButton && (
-        <Link
-          className={classes.button}
-          disabled={enableAddButton}
-          to={`/import/${id}/step/2`}>
-          <span>Ajouter une langue</span>
-          <TranslationIcon className={classes.icon} />
-        </Link>
-      )}
+      <Link
+        className={classes.button}
+        disabled={enableAddButton}
+        to={`/import/${id}/step/2`}>
+        <span>Ajouter une langue</span>
+        <TranslationIcon className={classes.icon} />
+      </Link>
       <hr className={classes.splitter} />
       <button className={classes.button} type="button" onClick={onExport}>
         <span>Exporter</span>

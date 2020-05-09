@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { LANGUAGES_FREE } from '../../../../constants';
-import { selectProjectLanguages } from '../../../../redux/selectors';
+import { selectLanguages } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   container: {
@@ -47,7 +47,7 @@ const SelectStepComponent = ({ lang, onChange }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { id } = useParams();
-  const languages = useSelector(state => selectProjectLanguages(state, id));
+  const languages = useSelector(state => selectLanguages(state, id));
 
   const onSelect = useCallback(
     evt => {

@@ -46,4 +46,4 @@ export default createCachedSelector(
   getPrimaryKeys,
   getTranslations,
   makeProjectWithPercentage
-)((_, id) => `project::with::percentage::${id}`);
+)((_, id) => `percentage::${id}`);

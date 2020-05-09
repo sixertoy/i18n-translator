@@ -2,7 +2,7 @@ import { EVENT_TYPES } from '../../constants';
 import hydrate from '../hydrate';
 import { project as model } from '../models';
 
-function createProject(state, action) {
+export function createProject(state, action) {
   const { logged } = action;
   const next = hydrate(model, action);
   // NOTE un user non connecté peut créer 1 seul projet
@@ -10,13 +10,13 @@ function createProject(state, action) {
   return [...state, next];
 }
 
-function deleteProject(state, action) {
+export function deleteProject(state, action) {
   const { id } = action;
   const filtered = state.filter(obj => obj.id !== id);
   return filtered;
 }
 
-function updateProjectMtime(state, action) {
+export function updateProjectMtime(state, action) {
   const { project: id } = action;
   const next = state.reduce((acc, project) => {
     if (project.id !== id) return [...acc, project];
@@ -37,7 +37,7 @@ function updateProjectMtime(state, action) {
 //   return next;
 // }
 
-function updateProjectLangs(state, action) {
+export function updateProjectLangs(state, action) {
   const { lang, project: id } = action;
   const next = state.reduce((acc, project) => {
     if (project.id !== id) return [...acc, project];
@@ -45,6 +45,17 @@ function updateProjectLangs(state, action) {
     const langs = [...project.langs, lang];
     const nextProject = { ...project, langs, mtime };
     return [...acc, nextProject];
+  }, []);
+  return next;
+}
+
+export function deleteProjectLang(state, action) {
+  const { lang, project } = action;
+  const next = state.reduce((acc, obj) => {
+    if (obj.id !== project) return { ...acc, obj };
+    const mtime = Date.now();
+    const langs = obj.langs.filter(v => v !== lang);
+    return { ...obj, langs, mtime };
   }, []);
   return next;
 }
@@ -58,7 +69,6 @@ const projects = (state = [], action) => {
       return deleteProject(state, action);
     case EVENT_TYPES.LANGUAGE_CREATE:
       return updateProjectLangs(state, action);
-    // NOTE update only mtime property
     case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:
       return updateProjectMtime(state, action);
     default:

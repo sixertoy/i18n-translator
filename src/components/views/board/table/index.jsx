@@ -1,9 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-import { selectTranslations } from '../../../../redux/selectors';
 // import Collapsed from './columns/collapsed';
 import Keys from './columns/keys';
 import Values from './columns/values';
@@ -30,11 +28,9 @@ const useStyles = createUseStyles({
   },
 });
 
-const TableComponent = React.memo(() => {
+const TableComponent = React.memo(({ languages }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { id } = useParams();
-  const items = useSelector(state => selectTranslations(state, id));
   return (
     <div className={classes.table}>
       <div className={classes.wrapper}>
@@ -42,18 +38,19 @@ const TableComponent = React.memo(() => {
           <Header primary index={0} />
           <Keys />
         </div>
-        {items.map(({ label, lang, translations }, index) => (
+        {languages.map(({ label, lang, translations }, index) => (
           <div key={lang} className={classes.column}>
             <Header index={index} label={label} lang={lang} />
             <Values lang={lang} translations={translations} />
-            {/*
-            {!collapsed && }
-            {collapsed && <Collapsed values={values} />} */}
           </div>
         ))}
       </div>
     </div>
   );
 });
+
+TableComponent.propTypes = {
+  languages: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+};
 
 export default TableComponent;

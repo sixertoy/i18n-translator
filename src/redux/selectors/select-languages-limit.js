@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
 
 import { LANGUAGES_FREE_MAX } from '../../constants';
-import selectProjectLanguages from './select-project-languages';
+import selectLanguages from './select-languages';
 
 const selectLanguagesLimit = createSelector(
   state => state.user,
-  selectProjectLanguages,
+  selectLanguages,
   (user, langs) => {
     if (user && user.logged) return -1;
     const countMore = LANGUAGES_FREE_MAX - langs.length;

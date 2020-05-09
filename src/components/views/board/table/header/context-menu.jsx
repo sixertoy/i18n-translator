@@ -8,10 +8,11 @@ import {
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import {
-  clearLanguage,
-  cloneLanguage,
+  // clearLanguage,
+  // cloneLanguage,
   deleteLanguage,
 } from '../../../../../redux/actions';
 
@@ -52,19 +53,20 @@ const useStyles = createUseStyles({
 const ContextMenuComponent = React.memo(({ clearable, lang }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const { id: project } = useParams();
   const dispatch = useDispatch();
 
   const onClone = useCallback(() => {
-    dispatch(cloneLanguage(lang));
-  }, [lang, dispatch]);
+    // dispatch(cloneLanguage(lang));
+  }, []);
 
   const onClear = useCallback(() => {
-    dispatch(clearLanguage(lang));
-  }, [lang, dispatch]);
+    // dispatch(clearLanguage(lang));
+  }, []);
 
-  const onRemove = useCallback(() => {
-    dispatch(deleteLanguage(lang));
-  }, [lang, dispatch]);
+  const onDelete = useCallback(() => {
+    dispatch(deleteLanguage({ lang, project }));
+  }, [lang, project, dispatch]);
 
   return (
     <div className={classes.container}>
@@ -85,7 +87,7 @@ const ContextMenuComponent = React.memo(({ clearable, lang }) => {
       <button
         className={classnames(classes.button, classes.danger)}
         type="button"
-        onClick={onRemove}>
+        onClick={onDelete}>
         <span>Remove language</span>
         <DeleteIcon className={classes.icon} />
       </button>
