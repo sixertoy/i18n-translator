@@ -1,10 +1,23 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect } from 'react';
 import { AiOutlineArrowRight as ArrowIcon } from 'react-icons/ai';
+import { createUseStyles, useTheme } from 'react-jss';
 
 import { useFile } from '../../../../hooks';
 
+const useStyles = createUseStyles({
+  button: {
+    composes: ['use-pointer', 'py12', 'px24', 'mt12', 'ml12'],
+  },
+  icon: {
+    composes: ['ml7'],
+  },
+});
+
 const FileUploadComponent = React.memo(({ disabled, onChange }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   const { json, ref: upload } = useFile();
 
   const onUploadHandler = useCallback(() => {
@@ -27,12 +40,12 @@ const FileUploadComponent = React.memo(({ disabled, onChange }) => {
         type="file"
       />
       <button
-        className="use-pointer py12 px24 mt12 ml12"
+        className={classes.button}
         disabled={disabled}
         type="button"
         onClick={onUploadHandler}>
         <span>Importer un fichier</span>
-        <ArrowIcon className="ml7" />
+        <ArrowIcon className={classes.icon} />
       </button>
     </React.Fragment>
   );

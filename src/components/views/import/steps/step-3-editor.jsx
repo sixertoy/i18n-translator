@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import { AiOutlineArrowRight as ArrowIcon } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { EDITOR_DEFAULT_CONTENT } from '../../../../constants';
 import { selectLimits } from '../../../../redux/selectors';
 import CodeEditor from '../../../commons/code-editor';
-import FileUploader from './editor/file-uploader';
+import SubmitButton from './editor/submit';
+import TemplateButton from './editor/template';
+import Upload from './editor/upload';
 
 const useStyles = createUseStyles({
   button: {
@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const StepEditorComponent = ({ onClick, value }) => {
+const StepEditorComponent = ({ onSubmit, value }) => {
   const { id } = useParams();
   const classes = useStyles();
 
@@ -40,27 +40,19 @@ const StepEditorComponent = ({ onClick, value }) => {
   const { hasReach, limited } = useSelector(state => selectLimits(state, id));
   const isLocked = limited && hasReach;
 
-  const onUploadHandler = useCallback(json => {
-    setContent(json);
-  }, []);
-
-  const onTemplateHandler = useCallback(() => {
-    setContent(EDITOR_DEFAULT_CONTENT);
-  }, []);
-
-  const onEmptyHandler = useCallback(() => {
-    onClick('{}');
-  }, [onClick]);
-
-  const onContinueHandler = useCallback(() => {
-    onClick(content);
-  }, [content, onClick]);
-
   const onEditorChange = useCallback((editor, valid) => {
     const isvalid = valid && editor && editor.trim() !== '';
     setDisabled(!isvalid);
     setContent(editor);
   }, []);
+
+  const onUpdateContent = useCallback(next => {
+    setContent(next);
+  }, []);
+
+  const onContinueHandler = useCallback(() => {
+    onSubmit(content);
+  }, [content, onSubmit]);
 
   return (
     <div className={classes.container}>
@@ -71,31 +63,12 @@ const StepEditorComponent = ({ onClick, value }) => {
         onChange={onEditorChange}
       />
       <div className={classes.controls}>
-        <FileUploader disabled={isLocked} onChange={onUploadHandler} />
-        <button
-          className={classes.button}
-          disabled={isLocked}
-          type="button"
-          onClick={onTemplateHandler}>
-          <span>Importer un template</span>
-          <ArrowIcon className={classes.icon} />
-        </button>
-        <button
-          className={classes.button}
-          disabled={isLocked}
-          type="button"
-          onClick={onEmptyHandler}>
-          <span>Créer un language vide</span>
-          <ArrowIcon className={classes.icon} />
-        </button>
-        <button
-          className={classes.button}
+        <Upload disabled={isLocked} onChange={onUpdateContent} />
+        <TemplateButton disabled={isLocked} onChange={onUpdateContent} />
+        <SubmitButton
           disabled={isLocked || disabled}
-          type="button"
-          onClick={onContinueHandler}>
-          <span>Continuer</span>
-          <ArrowIcon className={classes.icon} />
-        </button>
+          onClick={onContinueHandler}
+        />
       </div>
     </div>
   );
@@ -106,7 +79,7 @@ StepEditorComponent.defaultProps = {
 };
 
 StepEditorComponent.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   value: PropTypes.string,
 };
 

@@ -94,7 +94,7 @@ const ImportViewComponent = () => {
               <Step2 lang={lang} onChange={onSelectHandler} />
             </Route>
             <Route exact path="/import/:id/step/3">
-              <Step3 lang={lang} value={content} onClick={onEditorHandler} />
+              <Step3 lang={lang} value={content} onSubmit={onEditorHandler} />
             </Route>
             <Route exact path="/import/:id/step/4">
               <Step4 onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
