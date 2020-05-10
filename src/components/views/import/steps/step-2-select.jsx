@@ -46,10 +46,11 @@ const languageAlphaSort = (a, b) => {
 const StepSelectComponent = ({ lang, onChange }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+
   const { id } = useParams();
   const langs = useSelector(state => selectLangs(state, id));
   const { hasReach, limited } = useSelector(state => selectLimits(state, id));
-  const disabledAllOptions = limited && hasReach;
+  const isLocked = limited && hasReach;
 
   const onSelect = useCallback(
     evt => {
@@ -70,7 +71,7 @@ const StepSelectComponent = ({ lang, onChange }) => {
         </span>
         <select
           className={classes.input}
-          disabled={disabledAllOptions}
+          disabled={isLocked}
           name="select.lang"
           value={lang}
           onChange={onSelect}>
@@ -80,7 +81,7 @@ const StepSelectComponent = ({ lang, onChange }) => {
           {Object.entries(LANGUAGES_FREE)
             .sort(languageAlphaSort)
             .map(([key, label]) => {
-              const isDisabled = disabledAllOptions || langs.includes(key);
+              const isDisabled = isLocked || langs.includes(key);
               return (
                 <option
                   key={key}

@@ -35,13 +35,13 @@ const StepEditorComponent = ({ onClick, value }) => {
 
   const { id } = useParams();
   const { hasReach, limited } = useSelector(state => selectLimits(state, id));
-  const disableButton = limited && hasReach;
+  const isLocked = limited && hasReach;
 
   return (
     <div className={classes.container}>
       <CodeEditor
         content={content}
-        disabled={disableButton}
+        disabled={isLocked}
         mode="json"
         onChange={(editor, valid) => {
           const isvalid = valid && editor && editor.trim() !== '';
@@ -52,7 +52,7 @@ const StepEditorComponent = ({ onClick, value }) => {
       <div className={classes.controls}>
         <button
           className={classes.button}
-          disabled={disableButton}
+          disabled={isLocked}
           type="button"
           onClick={() => onClick('{}')}>
           <span>Créer un language vide</span>
@@ -60,7 +60,7 @@ const StepEditorComponent = ({ onClick, value }) => {
         </button>
         <button
           className={classes.button}
-          disabled={disableButton || disabled}
+          disabled={isLocked || disabled}
           type="button"
           onClick={() => onClick(content)}>
           <span>Continuer</span>

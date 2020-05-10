@@ -48,7 +48,7 @@ const StepProjectComponent = ({ name, onClick }) => {
 
   const { id } = useParams();
   const { hasReach, limited } = useSelector(state => selectLimits(state, id));
-  const disableButton = limited && hasReach;
+  const isLocked = limited && hasReach;
 
   return (
     <div className={classes.container}>
@@ -76,7 +76,7 @@ const StepProjectComponent = ({ name, onClick }) => {
       </label>
       <button
         className={classes.button}
-        disabled={disableButton}
+        disabled={isLocked}
         type="button"
         onClick={onClick}>
         <span>Créer</span>

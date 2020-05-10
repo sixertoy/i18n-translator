@@ -29,27 +29,32 @@ const StepFinishComponent = ({ onRestart, onSubmit }) => {
   const classes = useStyles({ theme });
 
   const { id } = useParams();
-  const { limited, nextCount, willReach } = useSelector(state =>
+  const { hasReach, limited, nextCount, willReach } = useSelector(state =>
     selectLimits(state, id)
   );
 
-  const enableAddButton = !limited || !willReach;
+  const isLocked = limited && hasReach;
+  const enableAddButton = !willReach && !limited;
 
   return (
     <div className={classes.container}>
       {/* TODO ajouter une info quand l'utilisateur ne peux plus ajouter de langue */}
       <button
         className={classes.button}
-        disabled={!enableAddButton}
+        disabled={isLocked || !enableAddButton}
         type="button"
         onClick={onRestart}>
         <span>Ajouter un autre langage</span>
-        {!limited && <i>({nextCount}) langues restants</i>}
+        {limited && <i>({nextCount}) langues restants</i>}
       </button>
       <span className={classes.splitter}>
         <span>-&nbsp;Ou&nbsp;-</span>
       </span>
-      <button className={classes.button} type="button" onClick={onSubmit}>
+      <button
+        className={classes.button}
+        disabled={isLocked}
+        type="button"
+        onClick={onSubmit}>
         <span>Continuer</span>
       </button>
     </div>

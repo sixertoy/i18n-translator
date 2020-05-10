@@ -17,8 +17,8 @@ const selectLimits = createCachedSelector(
     const count = get(project, 'langs.length', 0);
     const remaining = LANGUAGES_FREE_MAX - count;
     const nextCount = remaining - 1;
-    const willReach = nextCount <= 0;
-    const hasReach = remaining <= 0;
+    const hasReach = limited && remaining <= 0;
+    const willReach = limited && nextCount <= 0;
     return { count, hasReach, limited, remaining, willReach };
   }
 )((_, id) => `limits::${id}`);
