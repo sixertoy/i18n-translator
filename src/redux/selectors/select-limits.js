@@ -1,7 +1,7 @@
 import get from 'lodash.get';
 import { createCachedSelector } from 're-reselect';
 
-import { LANGUAGES_FREE_MAX } from '../../constants';
+import { MAX_FREE_LANGUAGES } from '../../constants';
 
 const getId = (_, id) => id;
 const getUser = state => get(state, 'user', {});
@@ -15,7 +15,7 @@ const selectLimits = createCachedSelector(
     const limited = !get(user, 'logged', false);
     const project = projects.find(obj => obj.id === id);
     const count = get(project, 'langs.length', 0);
-    const remaining = LANGUAGES_FREE_MAX - count;
+    const remaining = MAX_FREE_LANGUAGES - count;
     const nextCount = remaining - 1;
     const hasReach = limited && remaining <= 0;
     const willReach = limited && nextCount <= 0;

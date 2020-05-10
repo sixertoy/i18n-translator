@@ -1,10 +1,10 @@
 import get from 'lodash.get';
 
-import { EVENT_TYPES, LANGUAGES_FREE } from '../../constants';
+import { EVENT_TYPES, DEFAULT_LANGUAGES } from '../../constants';
 
 const createLanguageAsync = (lang, content, pid) => dispatch => {
   const project = pid;
-  const label = get(LANGUAGES_FREE, [lang]);
+  const label = get(DEFAULT_LANGUAGES, [lang]);
   const translations = JSON.parse(content);
   dispatch({
     label,

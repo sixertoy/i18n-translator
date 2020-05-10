@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { EDITOR_DEFAULT_CONTENT } from '../../../../constants';
 import { selectLimits } from '../../../../redux/selectors';
 import CodeEditor from '../../../commons/code-editor';
 
@@ -31,7 +32,7 @@ const useStyles = createUseStyles({
 const StepEditorComponent = ({ onClick, value }) => {
   const classes = useStyles();
   const [disabled, setDisabled] = useState(true);
-  const [content, setContent] = useState(value || '');
+  const [content, setContent] = useState(value || EDITOR_DEFAULT_CONTENT);
 
   const { id } = useParams();
   const { hasReach, limited } = useSelector(state => selectLimits(state, id));

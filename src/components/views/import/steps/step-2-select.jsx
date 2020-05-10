@@ -4,7 +4,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { LANGUAGES_FREE } from '../../../../constants';
+import { DEFAULT_LANGUAGES } from '../../../../constants';
 import { selectLangs, selectLimits } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
@@ -78,7 +78,7 @@ const StepSelectComponent = ({ lang, onChange }) => {
           <option className={classes.options} value="">
             -
           </option>
-          {Object.entries(LANGUAGES_FREE)
+          {Object.entries(DEFAULT_LANGUAGES)
             .sort(languageAlphaSort)
             .map(([key, label]) => {
               const isDisabled = isLocked || langs.includes(key);
