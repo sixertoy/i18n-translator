@@ -80,6 +80,7 @@ const themeBase = {
     colheader: 52,
     colkey: 220,
     colwidth: 300,
+    editor: 800,
     footer: 40,
     form: 350,
     header: 50,

@@ -4,6 +4,7 @@
 [-] Design de la page 404
 [-] Pouvoir éditer le nom du projet lors de la création ou dans la vue options du board
 [-] Blocker l'acces a la creation si le nombre de langage cree a ete atteint
+[-] Ajouter des transitions entre les écrans de transitions https://reacttraining.com/react-router/web/example/animated-transitions
 
 # ISSUES
 

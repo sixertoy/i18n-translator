@@ -12,7 +12,13 @@ import AceEditor from 'react-ace';
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
 
-const CodeEditorComponent = ({ content, disabled, mode, onChange }) => {
+const CodeEditorComponent = ({
+  className,
+  content,
+  disabled,
+  mode,
+  onChange,
+}) => {
   const editor = useRef(null);
   const [valid, setValid] = useState(false);
 
@@ -23,6 +29,7 @@ const CodeEditorComponent = ({ content, disabled, mode, onChange }) => {
       highlightActiveLine
       showGutter
       wrapEnabled
+      className={className}
       editorProps={{ $blockScrolling: true }}
       height="100%"
       mode={mode}
@@ -46,12 +53,14 @@ const CodeEditorComponent = ({ content, disabled, mode, onChange }) => {
 };
 
 CodeEditorComponent.defaultProps = {
+  className: '',
   content: null,
   disabled: false,
   mode: 'json',
 };
 
 CodeEditorComponent.propTypes = {
+  className: PropTypes.string,
   content: PropTypes.string,
   disabled: PropTypes.bool,
   mode: PropTypes.string,

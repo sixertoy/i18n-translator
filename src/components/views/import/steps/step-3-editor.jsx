@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -15,13 +15,17 @@ const useStyles = createUseStyles({
     composes: ['use-pointer', 'py12', 'px24', 'mt12', 'ml12'],
   },
   container: {
-    composes: ['flex-rows'],
+    composes: ['flex-rows', 'items-center'],
     height: '100%',
     width: '100%',
   },
   controls: {
     composes: ['flex-columns', 'flex-end', 'items-center'],
   },
+  editor: ({ theme }) => ({
+    borderRadius: 4,
+    maxWidth: theme.sizes.editor,
+  }),
   icon: {
     composes: ['ml7'],
   },
@@ -31,8 +35,10 @@ const useStyles = createUseStyles({
 });
 
 const StepEditorComponent = ({ onSubmit, value }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+
   const { id } = useParams();
-  const classes = useStyles();
 
   const [content, setContent] = useState(value);
   const [disabled, setDisabled] = useState(true);
@@ -57,6 +63,7 @@ const StepEditorComponent = ({ onSubmit, value }) => {
   return (
     <div className={classes.container}>
       <CodeEditor
+        className={classes.editor}
         content={content}
         disabled={isLocked}
         mode="json"
