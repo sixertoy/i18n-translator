@@ -9,7 +9,7 @@ const INITIAL_REDUCERS = {
     loading: false,
   },
   whitelist: {
-    keys: [],
+    keys: {},
     languages: [],
     projects: [],
     theme: getThemeByThemeId('bali'),
