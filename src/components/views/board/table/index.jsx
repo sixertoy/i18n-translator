@@ -2,10 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-// import Collapsed from './columns/collapsed';
-import Keys from './columns/keys';
 import Values from './columns/values';
 import Header from './header';
+import Sticky from './sticky';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -14,31 +13,24 @@ const useStyles = createUseStyles({
     minWidth: theme.sizes.colwidth,
     width: theme.sizes.colwidth,
   }),
-  primary: ({ theme }) => ({
-    maxWidth: theme.sizes.colkey,
-    minWidth: theme.sizes.colkey,
-    width: theme.sizes.colkey,
-  }),
   table: {
     composes: ['is-overlay'],
   },
-  wrapper: {
-    composes: ['flex-columns', 'flex-start'],
+  wrapper: ({ theme }) => ({
+    composes: ['flex-columns', 'flex-start', 'is-relative'],
     paddingBottom: 80,
-  },
+    paddingLeft: theme.sizes.colkey,
+  }),
 });
 
-const TableComponent = React.memo(({ languages }) => {
+const TableComponent = React.memo(({ languages, scroller }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
   return (
     <div className={classes.table}>
       <div className={classes.wrapper}>
-        <div className={classes.primary}>
-          <Header primary index={0} />
-          <Keys />
-        </div>
+        <Sticky scroller={scroller} />
         {languages.map(({ collapsed, label, lang, translations }, index) => (
           <div key={lang} className={classes.column}>
             <Header
@@ -57,6 +49,7 @@ const TableComponent = React.memo(({ languages }) => {
 
 TableComponent.propTypes = {
   languages: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  scroller: PropTypes.shape().isRequired,
 };
 
 export default TableComponent;
