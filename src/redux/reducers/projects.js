@@ -16,7 +16,7 @@ export function deleteProject(state, action) {
   return filtered;
 }
 
-export function updateProjectMtime(state, action) {
+export function updateProjectTime(state, action) {
   const { project: id } = action;
   const next = state.reduce((acc, project) => {
     if (project.id !== id) return [...acc, project];
@@ -60,8 +60,9 @@ const projects = (state = [], action) => {
       return updateProjectLang(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
     case EVENT_TYPES.LANGUAGE_CLEAR:
+    case EVENT_TYPES.LANGUAGE_DELETE_KEY:
     case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:
-      return updateProjectMtime(state, action);
+      return updateProjectTime(state, action);
     default:
       return state;
   }

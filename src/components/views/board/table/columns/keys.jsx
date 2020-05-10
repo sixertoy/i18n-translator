@@ -36,16 +36,17 @@ const useStyles = createUseStyles({
 
 const KeysColumnComponent = React.memo(() => {
   const theme = useTheme();
-  const { id } = useParams();
-  const dispatch = useDispatch();
   const classes = useStyles({ theme });
+
+  const { id } = useParams();
   const primaryKeys = useSelector(state => selectPrimaryKeys(state, id));
 
+  const dispatch = useDispatch();
   const onDeleteKey = useCallback(
     key => {
-      dispatch(deleteKey(key));
+      dispatch(deleteKey({ id, key }));
     },
-    [dispatch]
+    [dispatch, id]
   );
 
   return (

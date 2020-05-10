@@ -56,6 +56,18 @@ export function clearLanguage(state, { lang, project }) {
   return next;
 }
 
+export function deleteKey(state, { key, project }) {
+  const next = state.map(obj => {
+    if (obj.project !== project) return obj;
+    const translations = Object.entries(obj.translations)
+      .filter(([primary]) => primary !== key)
+      .reduce((acc, [primary, value]) => ({ ...acc, [primary]: value }), {});
+    const mtime = Date.now();
+    return { ...obj, mtime, translations };
+  });
+  return next;
+}
+
 export function clearLanguages(state, { project }) {
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
@@ -81,6 +93,8 @@ const languages = (state = [], action) => {
       return deleteLanguages(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
       return clearLanguages(state, action);
+    case EVENT_TYPES.LANGUAGE_DELETE_KEY:
+      return deleteKey(state, action);
     case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:
       return updateTranslation(state, action);
     default:
