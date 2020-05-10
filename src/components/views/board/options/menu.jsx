@@ -11,8 +11,8 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
-import { clearProject, deleteProject } from '../../../../../redux/actions';
-import { selectLimits } from '../../../../../redux/selectors';
+import { clearProject, deleteProject } from '../../../../redux/actions';
+import { selectLimits } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {

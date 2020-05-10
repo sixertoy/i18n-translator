@@ -19,7 +19,10 @@ const useStyles = createUseStyles({
     height: '100%',
     width: '100%',
   },
-  search: ({ theme }) => ({
+  search: {
+    composes: [],
+  },
+  wrapper: ({ theme }) => ({
     background: theme.colors.white,
     borderRadius: 16,
     composes: ['px12'],
@@ -28,19 +31,16 @@ const useStyles = createUseStyles({
     minWidth: 260,
     width: 260,
   }),
-  tools: {
-    composes: [],
-  },
 });
 
-const ToolsComponent = React.memo(() => {
+const SearchComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
   return (
-    <div className={classes.tools}>
+    <div className={classes.search}>
       {USE_SEARCH && (
-        <div className={classes.search}>
+        <div className={classes.wrapper}>
           <input
             className={classes.input}
             placeholder="Rechercher"
@@ -58,4 +58,4 @@ const ToolsComponent = React.memo(() => {
   );
 });
 
-export default ToolsComponent;
+export default SearchComponent;
