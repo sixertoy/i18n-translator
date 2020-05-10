@@ -1,6 +1,6 @@
 import { EVENT_TYPES } from '../../constants';
 
-export const loading = (state = false, action) => {
+const loading = (state = false, action) => {
   switch (action.type) {
     case EVENT_TYPES.LOADING_START:
       return true;
@@ -11,9 +11,4 @@ export const loading = (state = false, action) => {
   }
 };
 
-export const version = (state = false, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+export default loading;
