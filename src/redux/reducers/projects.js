@@ -58,6 +58,8 @@ const projects = (state = [], action) => {
       return deleteProjectLang(state, action);
     case EVENT_TYPES.LANGUAGE_CREATE:
       return updateProjectLang(state, action);
+    case EVENT_TYPES.PROJECT_CLEAR:
+    case EVENT_TYPES.LANGUAGE_CLEAR:
     case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:
       return updateProjectMtime(state, action);
     default:

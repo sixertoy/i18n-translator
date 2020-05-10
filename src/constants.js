@@ -16,11 +16,13 @@ export const EVENT_TYPES = {
   APP_THEME_CHANGE: 'onThemeChange',
   APP_USER_LOGIN: 'onUserLogin',
   APP_USER_LOGOUT: 'onUserLogout',
+  LANGUAGE_CLEAR: 'onLanguageClear',
   LANGUAGE_CREATE: 'onLanguageCreate',
   LANGUAGE_DELETE: 'onLanguageDelete',
   LANGUAGE_UPDATE_TRANSLATION: 'onLanguageUpdateTranslation',
   LOADING_COMPLETE: 'onLoadingComplete',
   LOADING_START: 'onLoadingStart',
+  PROJECT_CLEAR: 'onProjectClear',
   PROJECT_CREATE: 'onProjectCreate',
   PROJECT_DELETE: 'onProjectDelete',
 };

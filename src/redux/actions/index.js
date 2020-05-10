@@ -1,3 +1,5 @@
+export { default as clearLanguage } from './clear-language';
+export { default as clearProject } from './clear-project';
 export { default as collapseLanguage } from './collapse-language';
 export { default as createLanguageAsync } from './create-language';
 export { default as createProjectAsync } from './create-project';
