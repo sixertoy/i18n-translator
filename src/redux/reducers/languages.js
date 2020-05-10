@@ -68,6 +68,16 @@ export function deleteKey(state, { key, project }) {
   return next;
 }
 
+export function toggleCollapse(state, { lang, project }) {
+  const next = state.map(obj => {
+    if (obj.project !== project) return obj;
+    if (obj.lang !== lang) return obj;
+    const collapsed = !obj.collapsed;
+    return { ...obj, collapsed };
+  });
+  return next;
+}
+
 export function clearLanguages(state, { project }) {
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
@@ -93,6 +103,8 @@ const languages = (state = [], action) => {
       return deleteLanguages(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
       return clearLanguages(state, action);
+    case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
+      return toggleCollapse(state, action);
     case EVENT_TYPES.LANGUAGE_DELETE_KEY:
       return deleteKey(state, action);
     case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:

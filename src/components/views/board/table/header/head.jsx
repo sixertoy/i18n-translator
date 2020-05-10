@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import {
   AiOutlineEllipsis as ContextIcon,
-  AiOutlineShrink as CollapseIcon,
+  AiOutlineExpandAlt as ExpandIcon,
+  AiOutlineShrink as ShrinkIcon,
 } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { collapseLanguage } from '../../../../../redux/actions';
+import { toggleCollapseLanguage } from '../../../../../redux/actions';
 import { selectPercentages } from '../../../../../redux/selectors';
 import PercentageBar from '../../../../commons/percentage-bar';
 import Tooltip from '../../../../commons/tooltip';
@@ -44,9 +45,8 @@ const LangHeaderComponent = React.memo(({ collapsed, label, lang }) => {
   const { count, total } = get(percentages, lang);
 
   const onToggleCollapse = useCallback(() => {
-    const next = !collapsed;
-    dispatch(collapseLanguage(next));
-  }, [collapsed, dispatch]);
+    dispatch(toggleCollapseLanguage({ id, lang }));
+  }, [id, lang, dispatch]);
 
   return (
     <React.Fragment>
@@ -72,18 +72,15 @@ const LangHeaderComponent = React.memo(({ collapsed, label, lang }) => {
         className={classes.collapse}
         type="button"
         onClick={onToggleCollapse}>
-        <CollapseIcon />
+        {collapsed && <ExpandIcon />}
+        {!collapsed && <ShrinkIcon />}
       </button>
     </React.Fragment>
   );
 });
 
-LangHeaderComponent.defaultProps = {
-  collapsed: false,
-};
-
 LangHeaderComponent.propTypes = {
-  collapsed: PropTypes.bool,
+  collapsed: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
 };

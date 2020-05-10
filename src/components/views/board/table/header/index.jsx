@@ -24,19 +24,22 @@ const useStyles = createUseStyles({
   },
 });
 
-const ColumnHeaderComponent = React.memo(({ index, label, lang, primary }) => {
-  const theme = useTheme();
-  const classes = useStyles({ index, theme });
+const ColumnHeaderComponent = React.memo(
+  ({ collapsed, index, label, lang, primary }) => {
+    const theme = useTheme();
+    const classes = useStyles({ index, theme });
 
-  return (
-    <div className={classnames(classes.header, { [classes.primary]: primary })}>
-      <div className={classes.wrapper}>
-        {primary && <KeyIcon />}
-        {!primary && <Head label={label} lang={lang} />}
+    return (
+      <div
+        className={classnames(classes.header, { [classes.primary]: primary })}>
+        <div className={classes.wrapper}>
+          {primary && <KeyIcon />}
+          {!primary && <Head collapsed={collapsed} label={label} lang={lang} />}
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 ColumnHeaderComponent.defaultProps = {
   clearable: false,
@@ -47,6 +50,7 @@ ColumnHeaderComponent.defaultProps = {
 
 ColumnHeaderComponent.propTypes = {
   clearable: PropTypes.bool,
+  collapsed: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   label: PropTypes.string,
   lang: PropTypes.string,

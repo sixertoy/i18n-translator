@@ -39,9 +39,14 @@ const TableComponent = React.memo(({ languages }) => {
           <Header primary index={0} />
           <Keys />
         </div>
-        {languages.map(({ label, lang, translations }, index) => (
+        {languages.map(({ collapsed, label, lang, translations }, index) => (
           <div key={lang} className={classes.column}>
-            <Header index={index} label={label} lang={lang} />
+            <Header
+              collapsed={collapsed}
+              index={index}
+              label={label}
+              lang={lang}
+            />
             <Values lang={lang} translations={translations} />
           </div>
         ))}
