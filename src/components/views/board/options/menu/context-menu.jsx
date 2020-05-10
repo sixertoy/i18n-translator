@@ -1,8 +1,8 @@
 import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import {
+  AiOutlineClear as SwipeIcon,
   AiOutlineDownload as ExportIcon,
-  AiOutlineFormatPainter as SwipeIcon,
   AiOutlineTranslation as TranslationIcon,
 } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
@@ -35,6 +35,7 @@ const useStyles = createUseStyles({
   },
   danger: ({ theme }) => ({
     color: theme.red,
+    fontWeight: 'bold',
   }),
   splitter: {
     background: '#FFFFFF',
@@ -43,6 +44,9 @@ const useStyles = createUseStyles({
     height: 1,
     opacity: 0.15,
   },
+  warning: ({ theme }) => ({
+    color: theme.colors.orange,
+  }),
 });
 
 const ContextMenuComponent = React.memo(() => {
@@ -98,7 +102,7 @@ const ContextMenuComponent = React.memo(() => {
       </button>
       <hr className={classes.splitter} />
       <button
-        className={classnames(classes.button, classes.danger)}
+        className={classnames(classes.button, classes.warning)}
         type="button"
         onClick={onClearProject}>
         <span>Tout effacer</span>

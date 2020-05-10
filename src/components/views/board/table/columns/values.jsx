@@ -13,6 +13,7 @@ const useStyles = createUseStyles({
     '.notvalid &': { color: theme.red },
     color: theme.colors.gray,
     composes: ['px12', 'fs12'],
+    transition: 'color 0.5s',
   }),
   input: ({ theme }) => ({
     '&::placeholder': { composes: ['fs12'], opacity: 0.35 },

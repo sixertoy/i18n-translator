@@ -31,7 +31,7 @@ const TooltipComponent = ({
       className={classnames(classes.tooltip, className)}
       content={content}
       placement="bottom"
-      trigger="click"
+      trigger="mouseenter focus"
       zIndex={999999999}
       {...props}>
       {children}

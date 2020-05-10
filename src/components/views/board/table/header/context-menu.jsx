@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import {
-  AiOutlineClose as ClearIcon,
+  AiOutlineClear as SwipeIcon,
   AiOutlineCopy as CloneIcon,
 } from 'react-icons/ai';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
@@ -37,6 +37,7 @@ const useStyles = createUseStyles({
   },
   danger: ({ theme }) => ({
     color: theme.red,
+    fontWeight: 'bold',
   }),
   icon: {
     composes: ['mr7'],
@@ -48,6 +49,9 @@ const useStyles = createUseStyles({
     height: 1,
     opacity: 0.15,
   },
+  warning: ({ theme }) => ({
+    color: theme.colors.orange,
+  }),
 });
 
 const ContextMenuComponent = React.memo(({ clearable, lang }) => {
@@ -76,12 +80,12 @@ const ContextMenuComponent = React.memo(({ clearable, lang }) => {
       </button>
       <hr className={classes.splitter} />
       <button
-        className={classes.button}
+        className={classnames(classes.button, classes.warning)}
         disabled={!clearable}
         type="button"
         onClick={onClear}>
         <span>Clear language</span>
-        <ClearIcon className={classes.icon} />
+        <SwipeIcon className={classes.icon} />
       </button>
       <hr className={classes.splitter} />
       <button

@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
   button: {
     '& + &': { marginTop: 12 },
-    background: '#000000',
+    background: 'rgba(0, 0, 0, 0.45)',
     borderRadius: 4,
     composes: ['fs18', 'is-block', 'py12', 'px24'],
     width: 250,
