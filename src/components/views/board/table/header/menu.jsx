@@ -8,13 +8,8 @@ import {
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-import {
-  clearLanguage,
-  // cloneLanguage,
-  deleteLanguage,
-} from '../../../../../redux/actions';
+import { clearLanguage, deleteLanguage } from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: {
@@ -54,12 +49,11 @@ const useStyles = createUseStyles({
   }),
 });
 
-const ContextMenuComponent = React.memo(({ clearable, lang }) => {
+const ContextMenuComponent = React.memo(({ clearable, lang, project }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { id: project } = useParams();
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const onClone = useCallback(() => {
     // dispatch(cloneLanguage(lang));
   }, []);
@@ -102,6 +96,7 @@ const ContextMenuComponent = React.memo(({ clearable, lang }) => {
 ContextMenuComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
   lang: PropTypes.string.isRequired,
+  project: PropTypes.string.isRequired,
 };
 
 export default ContextMenuComponent;

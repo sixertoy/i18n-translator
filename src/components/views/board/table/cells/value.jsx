@@ -36,7 +36,6 @@ const ValueCellComponent = React.memo(({ id, lang, odd, project, value }) => {
   const classes = useStyles({ theme });
 
   const dispatch = useDispatch();
-
   const onInputChange = useCallback(
     evt => {
       evt.preventDefault();
@@ -68,6 +67,12 @@ const ValueCellComponent = React.memo(({ id, lang, odd, project, value }) => {
   );
 });
 
-ValueCellComponent.propTypes = {};
+ValueCellComponent.propTypes = {
+  id: PropTypes.string.isRequired,
+  lang: PropTypes.string.isRequired,
+  odd: PropTypes.bool.isRequired,
+  project: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default ValueCellComponent;

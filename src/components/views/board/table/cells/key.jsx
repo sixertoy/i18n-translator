@@ -35,7 +35,6 @@ const useStyles = createUseStyles({
 const KeyCellComponent = React.memo(({ odd, project, value }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-
   const dispatch = useDispatch();
 
   const onDeleteKey = useCallback(() => {
