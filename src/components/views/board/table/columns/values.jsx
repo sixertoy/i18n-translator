@@ -14,6 +14,14 @@ const useStyles = createUseStyles({
   }),
 });
 
+const sortByKeyAsc = (a, b) => {
+  // NOTE les clés doivent être triées
+  // dans le même ordre que dans le reducer 'keys'
+  if (a[0] > b[0]) return 1;
+  if (a[0] > b[0]) return -1;
+  return 0;
+};
+
 const ValuesColumnComponent = React.memo(
   ({
     clearable,
@@ -26,7 +34,7 @@ const ValuesColumnComponent = React.memo(
   }) => {
     const theme = useTheme();
     const classes = useStyles({ theme });
-    const entries = Object.entries(translations);
+    const entries = Object.entries(translations).sort(sortByKeyAsc);
     return (
       <div className={classes.column}>
         <Header

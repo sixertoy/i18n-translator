@@ -2,23 +2,32 @@ import get from 'lodash.get';
 import { createCachedSelector } from 're-reselect';
 
 const getId = (_, id) => id;
+const getKeys = (state, id) => get(state, ['keys', id]);
 const getLanguages = state => get(state, 'languages', []);
 
-const filterEmptyValues = v => v && v !== '';
+const filterNonEmptyValues = v => v && v !== '';
 
 const selectLanguages = createCachedSelector(
   getLanguages,
+  getKeys,
   getId,
-  (languages, id) => {
-    const items = languages
-      .filter(obj => obj.project === id)
-      .reduce((acc, { translations, ...rest }) => {
-        const values = Object.values(translations);
-        const filtered = values.filter(filterEmptyValues);
-        const clearable = filtered.length > 0;
-        const next = { ...rest, clearable, translations };
-        return [...acc, next];
-      }, []);
+  (languages, keys, id) => {
+    const filtered = languages.filter(obj => obj.project === id);
+
+    const base = keys.reduce((acc, key) => ({ ...acc, [key]: '' }), {});
+    const enhanced = filtered.reduce((acc, { translations, ...rest }) => {
+      const next = { ...base, ...translations };
+      return [...acc, { ...rest, translations: next }];
+    }, []);
+
+    const items = enhanced.reduce((acc, { translations, ...rest }) => {
+      const values = Object.values(translations);
+      const filled = values.filter(filterNonEmptyValues);
+      const clearable = filled.length > 0;
+      const next = { ...rest, clearable, translations };
+      return [...acc, next];
+    }, []);
+
     return items;
   }
 )((_, id) => `languages::${id}`);

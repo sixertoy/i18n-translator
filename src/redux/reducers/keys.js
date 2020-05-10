@@ -1,19 +1,20 @@
 import omit from 'lodash.omit';
+import uniq from 'lodash.uniq';
 
-// import uniq from 'lodash.uniq';
 import { EVENT_TYPES } from '../../constants';
 
 // export function deleteKey(state, action) {
 //   const { key, project } = action;
 // }
 
-// export function addKeysToProject(state, action) {
-//   const { project } = action;
-//   const update = action.keys || [action.key];
-//   const merged = [...state.project, ...update];
-//   const next = uniq(merged).sort();
-//   return { ...state, [project]: next };
-// }
+export function languageCreate(state, action) {
+  const { project, translations } = action;
+  const previous = state[project];
+  const next = Object.keys(translations);
+  const merged = [...previous, ...next];
+  const sorted = uniq(merged).sort();
+  return { ...state, [project]: sorted };
+}
 
 export function deleteProject(state, action) {
   const { project } = action;
@@ -30,11 +31,12 @@ const keys = (state = {}, action) => {
   switch (action.type) {
     case EVENT_TYPES.PROJECT_CREATE:
       return createProject(state, action);
-    // case EVENT_TYPES.PROJECT_DELETE:
-    //   return deleteProject(state, action);
+    case EVENT_TYPES.PROJECT_DELETE:
+      return deleteProject(state, action);
+    case EVENT_TYPES.LANGUAGE_CREATE:
+      return languageCreate(state, action);
     // case EVENT_TYPES.LANGUAGE_KEY_DELETE:
     //   return deleteKey(state, action);
-    // case EVENT_TYPES.LANGUAGE_CREATE:
     // case EVENT_TYPES.LANGUAGE_KEY_CREATE:
     //   return addKeysToProject(state, action);
     default:

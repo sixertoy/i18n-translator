@@ -1,3 +1,5 @@
+import fromPairs from 'lodash.frompairs';
+
 import { EVENT_TYPES } from '../../constants';
 import hydrate from '../hydrate';
 import { language as model } from '../models';
@@ -8,36 +10,30 @@ export function createLanguage(state, action) {
 }
 
 export function updateTranslation(state, { key, lang, project, value }) {
-  const next = state.reduce((acc, obj) => {
-    const shouldUpdate = obj.project === project && obj.lang === lang;
-    if (!shouldUpdate) return [...acc, obj];
-    const translations = Object.entries(obj.translations).reduce(
-      (ac, [primary, previous]) => {
-        const update = primary === key ? value : previous;
-        return { ...ac, [primary]: update };
-      },
-      {}
-    );
+  const nextState = state.reduce((acc, obj) => {
+    if (obj.project !== project) return [...acc, obj];
+    if (obj.lang !== lang) return [...acc, obj];
+    const update = { [key]: value };
+    const merged = { ...obj.translations, ...update };
     const mtime = Date.now();
-    return [...acc, { ...obj, mtime, translations }];
+    return [...acc, { ...obj, mtime, translations: merged }];
   }, []);
-  return next;
+  return nextState;
 }
 
 export function deleteProject(state, action) {
   const { project } = action;
   const filtered = state.filter(obj => {
-    const notCurrentProject = obj.project !== project;
-    return notCurrentProject;
+    return obj.project !== project;
   });
   return filtered;
 }
 
 export function deleteLanguage(state, { lang, project }) {
   const next = state.filter(obj => {
-    const isCurrentLang = obj.lang === lang;
-    const isCurrentProject = obj.project === project;
-    return !(isCurrentProject && isCurrentLang);
+    if (obj.project !== project) return true;
+    if (obj.lang !== lang) return true;
+    return false;
   });
   return next;
 }
@@ -46,12 +42,11 @@ export function clearLanguage(state, { lang, project }) {
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
     if (obj.lang !== lang) return obj;
-    const translations = Object.entries(obj.translations).reduce(
-      (acc, [key]) => ({ ...acc, [key]: '' }),
-      {}
-    );
+    const entries = Object.entries(obj.translations);
+    const remapped = entries.map(arr => [arr[0], '']);
+    const update = fromPairs(remapped);
     const mtime = Date.now();
-    return { ...obj, mtime, translations };
+    return { ...obj, mtime, translations: update };
   });
   return next;
 }
@@ -59,11 +54,11 @@ export function clearLanguage(state, { lang, project }) {
 export function deleteKey(state, { key, project }) {
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
-    const translations = Object.entries(obj.translations)
-      .filter(([primary]) => primary !== key)
-      .reduce((acc, [primary, value]) => ({ ...acc, [primary]: value }), {});
+    const entries = Object.entries(obj.translations);
+    const filtered = entries.filter(arr => arr[0] !== key);
+    const update = fromPairs(filtered);
     const mtime = Date.now();
-    return { ...obj, mtime, translations };
+    return { ...obj, mtime, translations: update };
   });
   return next;
 }
@@ -81,12 +76,11 @@ export function toggleCollapse(state, { lang, project }) {
 export function clearProject(state, { project }) {
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
-    const translations = Object.entries(obj.translations).reduce(
-      (acc, [key]) => ({ ...acc, [key]: '' }),
-      {}
-    );
+    const entries = Object.entries(obj.translations);
+    const remapped = entries.map(arr => [arr[0], '']);
+    const update = fromPairs(remapped);
     const mtime = Date.now();
-    return { ...obj, mtime, translations };
+    return { ...obj, mtime, translations: update };
   });
   return next;
 }
