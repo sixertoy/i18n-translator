@@ -26,6 +26,7 @@ export const EVENT_TYPES = {
   PROJECT_CLEAR: 'onProjectClear',
   PROJECT_CREATE: 'onProjectCreate',
   PROJECT_DELETE: 'onProjectDelete',
+  PROJECT_NAME_UPDATE: 'onProjectNameUpdate',
 };
 
 export const EDITOR_DEFAULT_CONTENT = JSON.stringify(

@@ -14,6 +14,17 @@ export function deleteProject(state, action) {
   return filtered;
 }
 
+export function updateProjectName(state, action) {
+  const { project, value } = action;
+  const nextState = state.reduce((acc, obj) => {
+    if (obj.id !== project) return [...acc, obj];
+    const mtime = Date.now();
+    const next = { ...obj, mtime, name: value };
+    return [...acc, next];
+  }, []);
+  return nextState;
+}
+
 export function updateProjectTime(state, action) {
   const { project } = action;
   const next = state.reduce((acc, obj) => {
@@ -52,6 +63,8 @@ const projects = (state = [], action) => {
       return createProject(state, action);
     case EVENT_TYPES.PROJECT_DELETE:
       return deleteProject(state, action);
+    case EVENT_TYPES.PROJECT_NAME_UPDATE:
+      return updateProjectName(state, action);
     case EVENT_TYPES.LANGUAGE_DELETE:
       return deleteLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_CREATE:
