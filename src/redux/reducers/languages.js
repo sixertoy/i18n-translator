@@ -8,17 +8,18 @@ export function createLanguage(state, action) {
 }
 
 export function updateTranslation(state, { key, lang, project, value }) {
-  const next = state.reduce((acc, language) => {
-    const shouldUpdate = language.project === project && language.lang === lang;
-    if (!shouldUpdate) return [...acc, language];
-    const translations = Object.entries(language.translations).reduce(
+  const next = state.reduce((acc, obj) => {
+    const shouldUpdate = obj.project === project && obj.lang === lang;
+    if (!shouldUpdate) return [...acc, obj];
+    const translations = Object.entries(obj.translations).reduce(
       (ac, [primary, previous]) => {
         const update = primary === key ? value : previous;
         return { ...ac, [primary]: update };
       },
       {}
     );
-    return [...acc, { ...language, translations }];
+    const mtime = Date.now();
+    return [...acc, { ...obj, mtime, translations }];
   }, []);
   return next;
 }
@@ -42,11 +43,30 @@ export function deleteLanguage(state, { lang, project }) {
 }
 
 export function clearLanguage(state, { lang, project }) {
-  return [];
+  const next = state.map(obj => {
+    if (obj.project !== project) return obj;
+    if (obj.lang !== lang) return obj;
+    const translations = Object.entries(obj.translations).reduce(
+      (acc, [key]) => ({ ...acc, [key]: '' }),
+      {}
+    );
+    const mtime = Date.now();
+    return { ...obj, mtime, translations };
+  });
+  return next;
 }
 
 export function clearLanguages(state, { project }) {
-  return [];
+  const next = state.map(obj => {
+    if (obj.project !== project) return obj;
+    const translations = Object.entries(obj.translations).reduce(
+      (acc, [key]) => ({ ...acc, [key]: '' }),
+      {}
+    );
+    const mtime = Date.now();
+    return { ...obj, mtime, translations };
+  });
+  return next;
 }
 
 const languages = (state = [], action) => {

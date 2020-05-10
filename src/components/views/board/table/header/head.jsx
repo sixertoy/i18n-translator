@@ -61,7 +61,7 @@ const LangHeaderComponent = React.memo(({ collapsed, label, lang }) => {
       />
       <div className={classes.context}>
         <Tooltip
-          component={<ContextMenu clearable={false} lang={lang} />}
+          component={<ContextMenu clearable lang={lang} />}
           placement="bottom-end">
           <span>
             <ContextIcon />

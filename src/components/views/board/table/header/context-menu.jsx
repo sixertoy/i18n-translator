@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  // clearLanguage,
+  clearLanguage,
   // cloneLanguage,
   deleteLanguage,
 } from '../../../../../redux/actions';
@@ -61,8 +61,8 @@ const ContextMenuComponent = React.memo(({ clearable, lang }) => {
   }, []);
 
   const onClear = useCallback(() => {
-    // dispatch(clearLanguage(lang));
-  }, []);
+    dispatch(clearLanguage({ lang, project }));
+  }, [lang, project, dispatch]);
 
   const onDelete = useCallback(() => {
     dispatch(deleteLanguage({ lang, project }));

@@ -1,7 +1,7 @@
 import { EVENT_TYPES } from '../../constants';
 
-const clearLanguage = ({ project }) => {
+const clearProject = ({ project }) => {
   return { project, type: EVENT_TYPES.PROJECT_CLEAR };
 };
 
-export default clearLanguage;
+export default clearProject;

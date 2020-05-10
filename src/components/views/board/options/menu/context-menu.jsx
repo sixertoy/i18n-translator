@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import {
   AiOutlineDownload as ExportIcon,
+  AiOutlineFormatPainter as SwipeIcon,
   AiOutlineTranslation as TranslationIcon,
 } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
@@ -10,7 +11,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
-import { deleteProject } from '../../../../../redux/actions';
+import { clearProject, deleteProject } from '../../../../../redux/actions';
 import { selectLimits } from '../../../../../redux/selectors';
 
 const useStyles = createUseStyles({
@@ -69,6 +70,10 @@ const ContextMenuComponent = React.memo(() => {
     // history.replace('/')
   }, []);
 
+  const onClearProject = useCallback(() => {
+    dispatch(clearProject({ project: id }));
+  }, [dispatch, id]);
+
   return (
     <div className={classes.container}>
       <button
@@ -90,6 +95,14 @@ const ContextMenuComponent = React.memo(() => {
       <button className={classes.button} type="button" onClick={onExport}>
         <span>Exporter</span>
         <ExportIcon className={classes.icon} />
+      </button>
+      <hr className={classes.splitter} />
+      <button
+        className={classnames(classes.button, classes.danger)}
+        type="button"
+        onClick={onClearProject}>
+        <span>Tout effacer</span>
+        <SwipeIcon className={classes.icon} />
       </button>
       <hr className={classes.splitter} />
       <button
