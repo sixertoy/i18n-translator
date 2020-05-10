@@ -1,6 +1,6 @@
 import { EVENT_TYPES } from '../../constants';
 
-const toggleCollapseLanguage = ({ id: project, lang }) => {
+const toggleCollapseLanguage = ({ lang, project }) => {
   return { lang, project, type: EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE };
 };
 
