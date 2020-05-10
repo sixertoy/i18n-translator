@@ -1,6 +1,6 @@
 import get from 'lodash.get';
 
-import { EVENT_TYPES, DEFAULT_LANGUAGES } from '../../constants';
+import { DEFAULT_LANGUAGES, EVENT_TYPES } from '../../constants';
 
 const createLanguageAsync = (lang, content, pid) => dispatch => {
   const project = pid;

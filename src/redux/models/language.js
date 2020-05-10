@@ -11,9 +11,9 @@ import ucFirst from 'lodash.upperfirst';
 // }
 
 const model = {
-  collapsed: false, // string
-  ctime: () => Date.now(), // { [key]: 'value' }
-  fav: false, // string
+  collapsed: false, // [string]
+  ctime: () => Date.now(), // string
+  fav: false, // { [key]: 'value' }
   label: () => ucFirst(getName()), // string
   lang: null, // string
   mtime: () => Date.now(), // string

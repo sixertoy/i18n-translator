@@ -1,6 +1,6 @@
 import { EVENT_TYPES } from '../../constants';
 
-const user = (state = false, action) => {
+const user = (state = {}, action) => {
   switch (action.type) {
     case EVENT_TYPES.APP_USER_LOGIN:
       return { ...state, logged: true };

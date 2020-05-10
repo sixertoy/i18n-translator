@@ -26,7 +26,7 @@ export function updateProjectTime(state, action) {
   return next;
 }
 
-export function updateProjectLang(state, action) {
+export function createLanguage(state, action) {
   const { lang, project } = action;
   const next = state.reduce((acc, obj) => {
     if (obj.id !== project) return [...acc, obj];
@@ -37,7 +37,7 @@ export function updateProjectLang(state, action) {
   return next;
 }
 
-export function deleteProjectLang(state, action) {
+export function deleteLanguage(state, action) {
   const { lang, project } = action;
   const next = state.reduce((acc, obj) => {
     if (obj.id !== project) return [...acc, obj];
@@ -55,13 +55,14 @@ const projects = (state = [], action) => {
     case EVENT_TYPES.PROJECT_DELETE:
       return deleteProject(state, action);
     case EVENT_TYPES.LANGUAGE_DELETE:
-      return deleteProjectLang(state, action);
+      return deleteLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_CREATE:
-      return updateProjectLang(state, action);
+      return createLanguage(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
     case EVENT_TYPES.LANGUAGE_CLEAR:
-    case EVENT_TYPES.LANGUAGE_DELETE_KEY:
-    case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:
+    case EVENT_TYPES.LANGUAGE_KEY_CREATE:
+    case EVENT_TYPES.LANGUAGE_KEY_DELETE:
+    case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
       return updateProjectTime(state, action);
     default:
       return state;

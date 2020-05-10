@@ -5,7 +5,7 @@ import { v1 as uuidv1 } from 'uuid';
 const model = {
   ctime: () => Date.now(), // number
   id: () => uuidv1(), // string
-  langs: [], // number
+  langs: [], // [string]
   mtime: () => Date.now(), // string
   name: () => ucFirst(getName()), // [string]
 };

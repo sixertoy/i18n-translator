@@ -24,7 +24,7 @@ export function updateTranslation(state, { key, lang, project, value }) {
   return next;
 }
 
-export function deleteLanguages(state, action) {
+export function deleteProject(state, action) {
   const { id: project } = action;
   const filtered = state.filter(obj => {
     const notCurrentProject = obj.project !== project;
@@ -78,7 +78,7 @@ export function toggleCollapse(state, { lang, project }) {
   return next;
 }
 
-export function clearLanguages(state, { project }) {
+export function clearProject(state, { project }) {
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
     const translations = Object.entries(obj.translations).reduce(
@@ -91,6 +91,10 @@ export function clearLanguages(state, { project }) {
   return next;
 }
 
+export function createKey(state) {
+  return state;
+}
+
 const languages = (state = [], action) => {
   switch (action.type) {
     case EVENT_TYPES.LANGUAGE_CLEAR:
@@ -100,14 +104,16 @@ const languages = (state = [], action) => {
     case EVENT_TYPES.LANGUAGE_DELETE:
       return deleteLanguage(state, action);
     case EVENT_TYPES.PROJECT_DELETE:
-      return deleteLanguages(state, action);
+      return deleteProject(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
-      return clearLanguages(state, action);
+      return clearProject(state, action);
     case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
       return toggleCollapse(state, action);
-    case EVENT_TYPES.LANGUAGE_DELETE_KEY:
+    case EVENT_TYPES.LANGUAGE_KEY_DELETE:
       return deleteKey(state, action);
-    case EVENT_TYPES.LANGUAGE_UPDATE_TRANSLATION:
+    case EVENT_TYPES.LANGUAGE_KEY_CREATE:
+      return createKey(state, action);
+    case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
       return updateTranslation(state, action);
     default:
       return state;
