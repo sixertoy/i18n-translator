@@ -32,7 +32,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const KeyCellComponent = React.memo(({ odd, project, value }) => {
+const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const dispatch = useDispatch();
@@ -45,9 +45,12 @@ const KeyCellComponent = React.memo(({ odd, project, value }) => {
     evt => {
       evt.preventDefault();
       const update = evt.target.value;
+      const exists = items.includes(update);
+      // NOTE renvoyer une notification d'erreur
+      if (exists) return;
       dispatch(updateKey({ previous: value, project, update }));
     },
-    [dispatch, project, value]
+    [dispatch, items, project, value]
   );
 
   const scrollId = `scroll::${value}`;
@@ -70,6 +73,7 @@ const KeyCellComponent = React.memo(({ odd, project, value }) => {
 });
 
 KeyCellComponent.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
   odd: PropTypes.bool.isRequired,
   project: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,

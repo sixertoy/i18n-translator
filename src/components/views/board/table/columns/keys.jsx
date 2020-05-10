@@ -52,7 +52,15 @@ const StickyComponent = React.memo(({ items, project, scroller }) => {
         </div>
         {items.map((key, index) => {
           const odd = Boolean(index % 2);
-          return <Key key={key} odd={odd} project={project} value={key} />;
+          return (
+            <Key
+              key={key}
+              items={items}
+              odd={odd}
+              project={project}
+              value={key}
+            />
+          );
         })}
       </div>
     </div>
