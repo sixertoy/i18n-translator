@@ -29,13 +29,11 @@ const StepFinishComponent = ({ onRestart, onSubmit }) => {
   const classes = useStyles({ theme });
 
   const { id } = useParams();
-  const count = useSelector(state => selectLimits(state, id));
+  const { limited, nextCount, willReach } = useSelector(state =>
+    selectLimits(state, id)
+  );
 
-  // NOTE refactor sous forme d'objet
-  const nextCount = count - 1;
-  const hasNoLimit = count < 0;
-  const canAddSomeMore = nextCount > 0;
-  const enableAddButton = hasNoLimit || canAddSomeMore;
+  const enableAddButton = !limited || !willReach;
 
   return (
     <div className={classes.container}>
@@ -46,7 +44,7 @@ const StepFinishComponent = ({ onRestart, onSubmit }) => {
         type="button"
         onClick={onRestart}>
         <span>Ajouter un autre langage</span>
-        {!hasNoLimit && <i>({nextCount}) langues restants</i>}
+        {!limited && <i>({nextCount}) langues restants</i>}
       </button>
       <span className={classes.splitter}>
         <span>-&nbsp;Ou&nbsp;-</span>

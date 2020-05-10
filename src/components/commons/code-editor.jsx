@@ -12,7 +12,7 @@ import AceEditor from 'react-ace';
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
 
-const CodeEditorComponent = ({ content, mode, onChange }) => {
+const CodeEditorComponent = ({ content, disabled, mode, onChange }) => {
   const [valid, setValid] = useState(false);
   const [value, setValue] = useState(content);
   useEffect(() => {
@@ -29,7 +29,7 @@ const CodeEditorComponent = ({ content, mode, onChange }) => {
       mode={mode}
       name="code-editor"
       placeholder={PLACEHOLDER_VALUE}
-      readOnly={false}
+      readOnly={disabled}
       showPrintMargin={false}
       tabSize={2}
       theme="github"
@@ -48,11 +48,13 @@ const CodeEditorComponent = ({ content, mode, onChange }) => {
 
 CodeEditorComponent.defaultProps = {
   content: null,
+  disabled: false,
   mode: 'json',
 };
 
 CodeEditorComponent.propTypes = {
   content: PropTypes.string,
+  disabled: PropTypes.bool,
   mode: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };

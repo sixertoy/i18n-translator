@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { AiOutlineArrowRight as ArrowIcon } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { selectLimits } from '../../../../redux/selectors';
 import CodeEditor from '../../../commons/code-editor';
 
 const useStyles = createUseStyles({
@@ -30,10 +33,15 @@ const StepEditorComponent = ({ onClick, value }) => {
   const [disabled, setDisabled] = useState(true);
   const [content, setContent] = useState(value || '');
 
+  const { id } = useParams();
+  const { hasReach, limited } = useSelector(state => selectLimits(state, id));
+  const disableButton = limited && hasReach;
+
   return (
     <div className={classes.container}>
       <CodeEditor
         content={content}
+        disabled={disableButton}
         mode="json"
         onChange={(editor, valid) => {
           const isvalid = valid && editor && editor.trim() !== '';
@@ -44,6 +52,7 @@ const StepEditorComponent = ({ onClick, value }) => {
       <div className={classes.controls}>
         <button
           className={classes.button}
+          disabled={disableButton}
           type="button"
           onClick={() => onClick('{}')}>
           <span>Créer un language vide</span>
@@ -51,7 +60,7 @@ const StepEditorComponent = ({ onClick, value }) => {
         </button>
         <button
           className={classes.button}
-          disabled={disabled}
+          disabled={disableButton || disabled}
           type="button"
           onClick={() => onClick(content)}>
           <span>Continuer</span>

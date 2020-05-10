@@ -3,8 +3,9 @@ import React from 'react';
 import { AiFillLock as LockIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { selectIsLogged } from '../../../../redux/selectors';
+import { selectIsLogged, selectLimits } from '../../../../redux/selectors';
 import Tooltip from '../../../commons/tooltip';
 
 const useStyles = createUseStyles({
@@ -45,6 +46,10 @@ const StepProjectComponent = ({ name, onClick }) => {
   const classes = useStyles({ theme });
   const isLogged = useSelector(selectIsLogged);
 
+  const { id } = useParams();
+  const { hasReach, limited } = useSelector(state => selectLimits(state, id));
+  const disableButton = limited && hasReach;
+
   return (
     <div className={classes.container}>
       <label className={classes.inner} htmlFor="project.name">
@@ -69,7 +74,11 @@ const StepProjectComponent = ({ name, onClick }) => {
           </span>
         </Tooltip>
       </label>
-      <button className={classes.button} type="button" onClick={onClick}>
+      <button
+        className={classes.button}
+        disabled={disableButton}
+        type="button"
+        onClick={onClick}>
         <span>Créer</span>
       </button>
     </div>

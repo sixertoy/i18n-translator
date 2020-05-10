@@ -12,12 +12,14 @@ const selectLimits = createCachedSelector(
   getProjects,
   getId,
   (user, projects, id) => {
-    const isUnlimited = get(user, 'logged', false);
-    if (isUnlimited) return -1;
+    const limited = !get(user, 'logged', false);
     const project = projects.find(obj => obj.id === id);
     const count = get(project, 'langs.length', 0);
     const remaining = LANGUAGES_FREE_MAX - count;
-    return remaining;
+    const nextCount = remaining - 1;
+    const willReach = nextCount <= 0;
+    const hasReach = remaining <= 0;
+    return { count, hasReach, limited, remaining, willReach };
   }
 )((_, id) => `limits::${id}`);
 

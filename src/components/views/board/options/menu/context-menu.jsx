@@ -49,20 +49,15 @@ const ContextMenuComponent = React.memo(() => {
   const classes = useStyles({ theme });
 
   const { id } = useParams();
-  const count = useSelector(state => selectLimits(state, id));
-
-  const nextCount = count - 1;
-  const hasNoLimit = count < 0;
-  const canAddSomeMore = nextCount > 0;
-  const enableAddButton = hasNoLimit || canAddSomeMore;
+  const { limited, willReach } = useSelector(state => selectLimits(state, id));
+  const enableAddButton = !limited || !willReach;
 
   const history = useHistory();
   const dispatch = useDispatch();
-
   const onDelete = useCallback(() => {
     dispatch(deleteProject(id));
     history.replace('/home');
-  }, [dispatch, history, id]);
+  }, [id, dispatch, history]);
 
   const onExport = useCallback(() => {
     // dispatch(deleteProject(id));
