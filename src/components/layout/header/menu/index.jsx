@@ -34,7 +34,7 @@ const ApplicationMenuComponent = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.menu}>
-      <Link className={classes.button} to="/home">
+      <Link className={classes.button} to="/">
         <HomeIcon className={classes.icon} />
       </Link>
       <Tooltip component={<Login />} placement="bottom-start">

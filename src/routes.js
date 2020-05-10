@@ -17,7 +17,7 @@ const routes = [
     component: Home,
     exact: true,
     id: ROUTES_ID.HOME,
-    path: '/home',
+    path: '/',
   },
   {
     component: Import,

@@ -103,7 +103,7 @@ const ImportViewComponent = () => {
               <Redirect to={`/import/${pid}/step/1`} />
             </Route>
             <Route path="*">
-              <Redirect to="/home" />
+              <Redirect to="/" />
             </Route>
           </Switch>
         </div>

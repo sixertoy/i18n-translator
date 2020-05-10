@@ -1,7 +1,6 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import routes from '../routes';
 import NoMatch from './views/no-match';
@@ -20,7 +19,6 @@ const Application = () => {
   return (
     <div className={classes.application}>
       <Switch>
-        <Redirect exact from="/" push={false} to="/home" />
         {routes.map(obj => {
           return (
             <Route

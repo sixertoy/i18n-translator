@@ -61,7 +61,7 @@ const ContextMenuComponent = React.memo(() => {
   const dispatch = useDispatch();
   const onDelete = useCallback(() => {
     dispatch(deleteProject(id));
-    history.replace('/home');
+    history.replace('/');
   }, [id, dispatch, history]);
 
   const onExport = useCallback(() => {
