@@ -1,7 +1,7 @@
 import { EVENT_TYPES } from '../../constants';
 
-const deleteProject = id => {
-  return { id, type: EVENT_TYPES.PROJECT_DELETE };
+const deleteProject = project => {
+  return { project, type: EVENT_TYPES.PROJECT_DELETE };
 };
 
 export default deleteProject;

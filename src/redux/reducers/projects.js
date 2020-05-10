@@ -11,17 +11,17 @@ export function createProject(state, action) {
 }
 
 export function deleteProject(state, action) {
-  const { id } = action;
-  const filtered = state.filter(obj => obj.id !== id);
+  const { project } = action;
+  const filtered = state.filter(obj => obj.id !== project);
   return filtered;
 }
 
 export function updateProjectTime(state, action) {
-  const { project: id } = action;
-  const next = state.reduce((acc, project) => {
-    if (project.id !== id) return [...acc, project];
+  const { project } = action;
+  const next = state.reduce((acc, obj) => {
+    if (obj.id !== project) return [...acc, obj];
     const mtime = Date.now();
-    return [...acc, { ...project, mtime }];
+    return [...acc, { ...obj, mtime }];
   }, []);
   return next;
 }

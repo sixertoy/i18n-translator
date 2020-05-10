@@ -25,7 +25,7 @@ export function updateTranslation(state, { key, lang, project, value }) {
 }
 
 export function deleteProject(state, action) {
-  const { id: project } = action;
+  const { project } = action;
   const filtered = state.filter(obj => {
     const notCurrentProject = obj.project !== project;
     return notCurrentProject;
