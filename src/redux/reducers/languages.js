@@ -1,4 +1,5 @@
 import fromPairs from 'lodash.frompairs';
+import get from 'lodash.get';
 
 import { EVENT_TYPES } from '../../constants';
 import hydrate from '../hydrate';
@@ -44,9 +45,9 @@ export function clearLanguage(state, { lang, project }) {
     if (obj.lang !== lang) return obj;
     const entries = Object.entries(obj.translations);
     const remapped = entries.map(arr => [arr[0], '']);
-    const update = fromPairs(remapped);
+    const pairs = fromPairs(remapped);
     const mtime = Date.now();
-    return { ...obj, mtime, translations: update };
+    return { ...obj, mtime, translations: pairs };
   });
   return next;
 }
@@ -56,9 +57,9 @@ export function deleteKey(state, { key, project }) {
     if (obj.project !== project) return obj;
     const entries = Object.entries(obj.translations);
     const filtered = entries.filter(arr => arr[0] !== key);
-    const update = fromPairs(filtered);
+    const pairs = fromPairs(filtered);
     const mtime = Date.now();
-    return { ...obj, mtime, translations: update };
+    return { ...obj, mtime, translations: pairs };
   });
   return next;
 }
@@ -78,9 +79,9 @@ export function clearProject(state, { project }) {
     if (obj.project !== project) return obj;
     const entries = Object.entries(obj.translations);
     const remapped = entries.map(arr => [arr[0], '']);
-    const update = fromPairs(remapped);
+    const pairs = fromPairs(remapped);
     const mtime = Date.now();
-    return { ...obj, mtime, translations: update };
+    return { ...obj, mtime, translations: pairs };
   });
   return next;
 }
@@ -91,9 +92,24 @@ export function createKey(state, action) {
     if (obj.project !== project) return obj;
     const entries = Object.entries(obj.translations);
     entries.push([key, '']);
-    const update = fromPairs(entries);
+    const pairs = fromPairs(entries);
     const mtime = Date.now();
-    return { ...obj, mtime, translations: update };
+    return { ...obj, mtime, translations: pairs };
+  });
+  return nextState;
+}
+
+export function updateKey(state, action) {
+  const { previous, project, update } = action;
+  const nextState = state.map(obj => {
+    if (obj.project !== project) return obj;
+    const value = get(obj, ['translations', previous]);
+    const entries = Object.entries(obj.translations);
+    entries.push([update, value]);
+    const filtered = entries.filter(arr => arr[0] !== previous);
+    const pairs = fromPairs(filtered);
+    const mtime = Date.now();
+    return { ...obj, mtime, translations: pairs };
   });
   return nextState;
 }
@@ -116,6 +132,8 @@ const languages = (state = [], action) => {
       return deleteKey(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_CREATE:
       return createKey(state, action);
+    case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
+      return updateKey(state, action);
     case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
       return updateTranslation(state, action);
     default:

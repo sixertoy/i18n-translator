@@ -1,18 +1,12 @@
+import get from 'lodash.get';
 import omit from 'lodash.omit';
 import uniq from 'lodash.uniq';
 
 import { EVENT_TYPES } from '../../constants';
 
-export function deleteKey(state, action) {
-  const { key, project } = action;
-  const previous = state[project];
-  const update = previous.filter(k => k !== key);
-  return { ...state, [project]: update };
-}
-
 export function languageCreate(state, action) {
   const { project, translations } = action;
-  const previous = state[project];
+  const previous = get(state, project);
   const next = Object.keys(translations);
   const merged = [...previous, ...next];
   const sorted = uniq(merged).sort();
@@ -32,9 +26,23 @@ export function createProject(state, action) {
 
 export function createKey(state, action) {
   const { key, project } = action;
-  const previous = state[project];
+  const previous = get(state, project);
   const update = [...previous, key].sort();
   return { ...state, [project]: update };
+}
+
+export function deleteKey(state, action) {
+  const { key, project } = action;
+  const keys = get(state, project);
+  const update = keys.filter(k => k !== key);
+  return { ...state, [project]: update };
+}
+
+export function updateKey(state, action) {
+  const { previous, project, update } = action;
+  const keys = get(state, project);
+  const next = keys.map(v => (v !== previous ? v : update));
+  return { ...state, [project]: next };
 }
 
 const keys = (state = {}, action) => {
@@ -49,6 +57,8 @@ const keys = (state = {}, action) => {
       return createKey(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_DELETE:
       return deleteKey(state, action);
+    case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
+      return updateKey(state, action);
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { deleteKey } from '../../../../../redux/actions';
+import { deleteKey, updateKey } from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -41,6 +41,15 @@ const KeyCellComponent = React.memo(({ odd, project, value }) => {
     dispatch(deleteKey({ key: value, project }));
   }, [project, value, dispatch]);
 
+  const onKeyBlur = useCallback(
+    evt => {
+      evt.preventDefault();
+      const update = evt.target.value;
+      dispatch(updateKey({ previous: value, project, update }));
+    },
+    [dispatch, project, value]
+  );
+
   const scrollId = `scroll::${value}`;
   return (
     <div
@@ -54,11 +63,7 @@ const KeyCellComponent = React.memo(({ odd, project, value }) => {
         defaultValue={value}
         placeholder="Enter a value"
         type="text"
-        onBlur={evt => {
-          evt.preventDefault();
-          // const udpate = evt.target.value;
-          // dispatch(updateValue({ id, lang, udpate }));
-        }}
+        onBlur={onKeyBlur}
       />
     </div>
   );
