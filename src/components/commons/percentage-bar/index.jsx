@@ -11,6 +11,8 @@ const POSITION_BEFORE = 'before';
 const POSITION_AFTER = 'after';
 
 const useStyles = createUseStyles({
+  after: { marginLeft: 7 },
+  before: { marginRight: 7 },
   percentage: {
     composes: ['flex-columns', 'items-center', 'flex-start'],
     maxWidth: '100%',
@@ -47,17 +49,17 @@ const PercentageBarComponent = React.memo(
     return (
       <div className={classnames(classes.percentage, className)}>
         {position === POSITION_BEFORE && (
-          <React.Fragment>
+          <div className={classes.before}>
             {showCount && <CountLabel count={count} total={total} />}
             {showPercent && <PercentLabel percent={percent} />}
-          </React.Fragment>
+          </div>
         )}
         {showBar && <Bar percent={percent} size={size} />}
         {position === POSITION_AFTER && (
-          <React.Fragment>
+          <div className={classes.after}>
             {showCount && <CountLabel count={count} total={total} />}
             {showPercent && <PercentLabel percent={percent} />}
-          </React.Fragment>
+          </div>
         )}
       </div>
     );
