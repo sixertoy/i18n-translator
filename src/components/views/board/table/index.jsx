@@ -5,9 +5,8 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { selectLanguages } from '../../../../redux/selectors';
-import Sticky from './column/sticky';
-import Values from './columns/values';
-import Header from './header';
+import KeysStickyColumn from './column/keys';
+import ValuesColumn from './column/values';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -36,16 +35,10 @@ const TableComponent = React.memo(({ scroller }) => {
   return (
     <div className={classes.table}>
       <div className={classes.wrapper}>
-        <Sticky scroller={scroller} />
-        {languages.map(({ collapsed, label, lang, translations }, index) => (
-          <div key={lang} className={classes.column}>
-            <Header
-              collapsed={collapsed}
-              index={index}
-              label={label}
-              lang={lang}
-            />
-            <Values lang={lang} translations={translations} />
+        <KeysStickyColumn scroller={scroller} />
+        {languages.map((item, index) => (
+          <div key={`col::${item.lang}`} className={classes.column}>
+            <ValuesColumn index={index} item={item} />
           </div>
         ))}
       </div>
