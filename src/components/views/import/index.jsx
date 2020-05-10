@@ -66,7 +66,7 @@ const ImportViewComponent = () => {
   );
 
   const onRestartHandler = useCallback(() => {
-    dispatch(createLanguageAsync(lang, content, pid)).then(() => {
+    dispatch(createLanguageAsync({ content, lang, project: pid })).then(() => {
       setLang(undefined);
       setContent(null);
       history.push(`/import/${pid}/step/2`);
@@ -74,7 +74,7 @@ const ImportViewComponent = () => {
   }, [lang, content, pid, dispatch, history]);
 
   const onSubmitHandler = useCallback(() => {
-    dispatch(createLanguageAsync(lang, content, pid)).then(() => {
+    dispatch(createLanguageAsync({ content, lang, project: pid })).then(() => {
       history.push(`/board/${pid}`);
     });
   }, [dispatch, lang, content, pid, history]);

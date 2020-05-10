@@ -2,8 +2,7 @@ import get from 'lodash.get';
 
 import { DEFAULT_LANGUAGES, EVENT_TYPES } from '../../constants';
 
-const createLanguageAsync = (lang, content, pid) => dispatch => {
-  const project = pid;
+const createLanguageAsync = ({ content, lang, project }) => dispatch => {
   const label = get(DEFAULT_LANGUAGES, [lang]);
   const translations = JSON.parse(content);
   dispatch({
