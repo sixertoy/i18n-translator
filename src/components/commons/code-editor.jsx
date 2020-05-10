@@ -6,7 +6,7 @@ import 'ace-builds/src-min-noconflict/mode-javascript';
 import 'ace-builds/src-min-noconflict/theme-github';
 
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import AceEditor from 'react-ace';
 
 const PLACEHOLDER_VALUE =
