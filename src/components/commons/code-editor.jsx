@@ -6,20 +6,19 @@ import 'ace-builds/src-min-noconflict/mode-javascript';
 import 'ace-builds/src-min-noconflict/theme-github';
 
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AceEditor from 'react-ace';
 
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
 
 const CodeEditorComponent = ({ content, disabled, mode, onChange }) => {
+  const editor = useRef(null);
   const [valid, setValid] = useState(false);
-  const [value, setValue] = useState(content);
-  useEffect(() => {
-    onChange(value, valid);
-  }, [value, valid, onChange]);
+
   return (
     <AceEditor
+      ref={editor}
       focus
       highlightActiveLine
       showGutter
@@ -33,10 +32,10 @@ const CodeEditorComponent = ({ content, disabled, mode, onChange }) => {
       showPrintMargin={false}
       tabSize={2}
       theme="github"
-      value={value || ''}
+      value={content || ''}
       width="100%"
-      onChange={editor => {
-        setValue(editor);
+      onChange={value => {
+        onChange(value, valid);
       }}
       onValidate={annotations => {
         const errors = annotations.filter(({ type }) => type === 'error');
