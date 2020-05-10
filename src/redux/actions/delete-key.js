@@ -1,6 +1,6 @@
 import { EVENT_TYPES } from '../../constants';
 
-const deleteKey = ({ id: project, key }) => {
+const deleteKey = ({ key, project }) => {
   return { key, project, type: EVENT_TYPES.LANGUAGE_DELETE_KEY };
 };
 

@@ -19,7 +19,7 @@ const useFile = () => {
     const { current } = ref;
     current.addEventListener('change', onUploadChange);
     return () => {
-      current.removeEventListener('change', onUploadChange);
+      current.removeEventListener('change', () => onUploadChange);
     };
   }, [onUploadChange]);
 

@@ -1,9 +1,6 @@
 import React, { useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-import { selectLanguages } from '../../../redux/selectors';
 import withLayout from '../../layout';
 import Options from './options';
 import Table from './table';
@@ -22,19 +19,15 @@ const useStyles = createUseStyles({
 
 const BoardViewComponent = React.memo(() => {
   const scroller = useRef(null);
+
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { id } = useParams();
-
-  const languages = useSelector(state => selectLanguages(state, id));
-  const hasNoLanguages = !languages || !languages.length;
 
   return (
     <div className={classes.container} id="board-view">
       <Options />
       <div ref={scroller} className={classes.scroller}>
-        {!hasNoLanguages && <Table languages={languages} scroller={scroller} />}
-        {hasNoLanguages && <span>Ajouter une langue</span>}
+        <Table scroller={scroller} />
       </div>
     </div>
   );

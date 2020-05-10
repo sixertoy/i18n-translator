@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { selectLanguages } from '../../../../redux/selectors';
+import Sticky from './column/sticky';
 import Values from './columns/values';
 import Header from './header';
-import Sticky from './sticky';
 
 const useStyles = createUseStyles({
   column: ({ theme }) => ({
@@ -23,9 +26,12 @@ const useStyles = createUseStyles({
   }),
 });
 
-const TableComponent = React.memo(({ languages, scroller }) => {
+const TableComponent = React.memo(({ scroller }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+
+  const { id } = useParams();
+  const languages = useSelector(state => selectLanguages(state, id));
 
   return (
     <div className={classes.table}>
@@ -48,7 +54,6 @@ const TableComponent = React.memo(({ languages, scroller }) => {
 });
 
 TableComponent.propTypes = {
-  languages: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   scroller: PropTypes.shape().isRequired,
 };
 
