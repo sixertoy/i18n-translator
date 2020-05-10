@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import withLayout from '../../layout';
+import BigButton from './big-button';
 import Options from './options';
 import Table from './table';
 
@@ -29,6 +30,7 @@ const BoardViewComponent = React.memo(() => {
       <div ref={scroller} className={classes.scroller}>
         <Table scroller={scroller} />
       </div>
+      <BigButton />
     </div>
   );
 });

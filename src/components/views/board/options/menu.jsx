@@ -1,18 +1,12 @@
 import classnames from 'classnames';
 import React, { useCallback } from 'react';
-import {
-  AiOutlineClear as SwipeIcon,
-  AiOutlineDownload as ExportIcon,
-  AiOutlineTranslation as TranslationIcon,
-} from 'react-icons/ai';
-import { IoMdKey as KeyIcon } from 'react-icons/io';
+import { AiOutlineClear as SwipeIcon } from 'react-icons/ai';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { clearProject, deleteProject } from '../../../../redux/actions';
-import { selectLimits } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -54,9 +48,6 @@ const ContextMenuComponent = React.memo(() => {
   const classes = useStyles({ theme });
 
   const { id } = useParams();
-  const { limited, willReach } = useSelector(state => selectLimits(state, id));
-  const enableAddButton = !limited || !willReach;
-
   const history = useHistory();
   const dispatch = useDispatch();
   const onDelete = useCallback(() => {
@@ -64,43 +55,12 @@ const ContextMenuComponent = React.memo(() => {
     history.replace('/');
   }, [id, dispatch, history]);
 
-  const onExport = useCallback(() => {
-    // dispatch(deleteProject(id));
-    // history.replace('/')
-  }, []);
-
-  const onAddPrimaryKey = useCallback(() => {
-    // dispatch(addPrimaryKey(id));
-    // history.replace('/')
-  }, []);
-
   const onClearProject = useCallback(() => {
     dispatch(clearProject({ project: id }));
   }, [dispatch, id]);
 
   return (
     <div className={classes.container}>
-      <button
-        className={classes.button}
-        type="button"
-        onClick={onAddPrimaryKey}>
-        <span>Ajouter une clé</span>
-        <KeyIcon className={classes.icon} />
-      </button>
-      <hr className={classes.splitter} />
-      <Link
-        className={classes.button}
-        disabled={enableAddButton}
-        to={`/import/${id}/step/2`}>
-        <span>Ajouter une langue</span>
-        <TranslationIcon className={classes.icon} />
-      </Link>
-      <hr className={classes.splitter} />
-      <button className={classes.button} type="button" onClick={onExport}>
-        <span>Exporter</span>
-        <ExportIcon className={classes.icon} />
-      </button>
-      <hr className={classes.splitter} />
       <button
         className={classnames(classes.button, classes.warning)}
         type="button"
