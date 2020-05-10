@@ -3,10 +3,8 @@ import hydrate from '../hydrate';
 import { project as model } from '../models';
 
 export function createProject(state, action) {
-  const { logged } = action;
   const next = hydrate(model, action);
   // NOTE un user non connecté peut créer 1 seul projet
-  if (!logged) return [next];
   return [...state, next];
 }
 
