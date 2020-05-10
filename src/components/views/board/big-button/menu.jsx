@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import {
   AiOutlineDownload as ExportIcon,
@@ -5,10 +6,11 @@ import {
 } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-import { selectLimits } from '../../../../redux/selectors';
+import { createKeyAsync } from '../../../../redux/actions';
+// import { selectLimits } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -45,25 +47,26 @@ const useStyles = createUseStyles({
   }),
 });
 
-const ContextMenuComponent = React.memo(() => {
+const ContextMenuComponent = React.memo(({ scrollTo }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
   const { id } = useParams();
-  const { limited, willReach } = useSelector(state => selectLimits(state, id));
-  const enableAddButton = !limited || !willReach;
+  // const { limited, willReach } = useSelector(state => selectLimits(state, id));
+  // const enableAddButton = !limited || !willReach;
 
   // const history = useHistory();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const onExport = useCallback(() => {
     // dispatch(deleteProject(id));
     // history.replace('/')
   }, []);
 
   const onAddPrimaryKey = useCallback(() => {
-    // dispatch(addPrimaryKey(id));
-    // history.replace('/')
-  }, []);
+    dispatch(createKeyAsync({ project: id })).then(key => {
+      scrollTo(key);
+    });
+  }, [id, scrollTo, dispatch]);
 
   return (
     <div className={classes.container}>
@@ -74,7 +77,7 @@ const ContextMenuComponent = React.memo(() => {
       <hr className={classes.splitter} />
       <Link
         className={classes.button}
-        disabled={enableAddButton}
+        // disabled={enableAddButton}
         to={`/import/${id}/step/2`}>
         <span>Ajouter une langue</span>
         <TranslationIcon className={classes.icon} />
@@ -90,5 +93,9 @@ const ContextMenuComponent = React.memo(() => {
     </div>
   );
 });
+
+ContextMenuComponent.propTypes = {
+  scrollTo: PropTypes.func.isRequired,
+};
 
 export default ContextMenuComponent;

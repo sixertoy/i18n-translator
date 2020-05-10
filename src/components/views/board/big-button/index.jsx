@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { AiOutlinePlus as PlusIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -24,12 +25,12 @@ const useStyles = createUseStyles({
   icon: {},
 });
 
-const BigButton = React.memo(() => {
+const BigButton = React.memo(({ scrollTo }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.bigbutton}>
-      <Tooltip component={<Menu />} placement="top-end">
+      <Tooltip component={<Menu scrollTo={scrollTo} />} placement="top-end">
         <div className={classes.button}>
           <PlusIcon className={classes.icon} />
         </div>
@@ -38,8 +39,8 @@ const BigButton = React.memo(() => {
   );
 });
 
-BigButton.defaultProps = {};
-
-BigButton.propTypes = {};
+BigButton.propTypes = {
+  scrollTo: PropTypes.func.isRequired,
+};
 
 export default BigButton;

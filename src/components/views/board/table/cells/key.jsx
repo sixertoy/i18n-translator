@@ -41,8 +41,11 @@ const KeyCellComponent = React.memo(({ odd, project, value }) => {
     dispatch(deleteKey({ key: value, project }));
   }, [project, value, dispatch]);
 
+  const scrollId = `scroll::${value}`;
   return (
-    <div className={classnames(classes.cell, { even: !odd, odd })}>
+    <div
+      className={classnames(classes.cell, { even: !odd, odd })}
+      id={scrollId}>
       <button className={classes.button} type="button" onClick={onDeleteKey}>
         <ClearIcon />
       </button>

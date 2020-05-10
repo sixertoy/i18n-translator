@@ -85,8 +85,17 @@ export function clearProject(state, { project }) {
   return next;
 }
 
-export function createKey(state) {
-  return state;
+export function createKey(state, action) {
+  const { key, project } = action;
+  const nextState = state.map(obj => {
+    if (obj.project !== project) return obj;
+    const entries = Object.entries(obj.translations);
+    entries.push([key, '']);
+    const update = fromPairs(entries);
+    const mtime = Date.now();
+    return { ...obj, mtime, translations: update };
+  });
+  return nextState;
 }
 
 const languages = (state = [], action) => {

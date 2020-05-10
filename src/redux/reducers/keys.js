@@ -30,6 +30,13 @@ export function createProject(state, action) {
   return { ...state, [id]: [] };
 }
 
+export function createKey(state, action) {
+  const { key, project } = action;
+  const previous = state[project];
+  const update = [...previous, key].sort();
+  return { ...state, [project]: update };
+}
+
 const keys = (state = {}, action) => {
   switch (action.type) {
     case EVENT_TYPES.PROJECT_CREATE:
@@ -38,6 +45,8 @@ const keys = (state = {}, action) => {
       return deleteProject(state, action);
     case EVENT_TYPES.LANGUAGE_CREATE:
       return languageCreate(state, action);
+    case EVENT_TYPES.LANGUAGE_KEY_CREATE:
+      return createKey(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_DELETE:
       return deleteKey(state, action);
     default:

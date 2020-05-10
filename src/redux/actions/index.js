@@ -1,5 +1,6 @@
 export { default as clearLanguage } from './clear-language';
 export { default as clearProject } from './clear-project';
+export { default as createKeyAsync } from './create-key';
 export { default as createLanguageAsync } from './create-language';
 export { default as createProjectAsync } from './create-project';
 export { default as deleteKey } from './delete-key';

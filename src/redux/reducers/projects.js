@@ -57,6 +57,8 @@ export function deleteLanguage(state, action) {
   return next;
 }
 
+export function createKey(state, action) {}
+
 const projects = (state = [], action) => {
   switch (action.type) {
     case EVENT_TYPES.PROJECT_CREATE:
