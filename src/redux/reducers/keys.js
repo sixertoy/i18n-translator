@@ -3,9 +3,12 @@ import uniq from 'lodash.uniq';
 
 import { EVENT_TYPES } from '../../constants';
 
-// export function deleteKey(state, action) {
-//   const { key, project } = action;
-// }
+export function deleteKey(state, action) {
+  const { key, project } = action;
+  const previous = state[project];
+  const update = previous.filter(k => k !== key);
+  return { ...state, [project]: update };
+}
 
 export function languageCreate(state, action) {
   const { project, translations } = action;
@@ -35,10 +38,8 @@ const keys = (state = {}, action) => {
       return deleteProject(state, action);
     case EVENT_TYPES.LANGUAGE_CREATE:
       return languageCreate(state, action);
-    // case EVENT_TYPES.LANGUAGE_KEY_DELETE:
-    //   return deleteKey(state, action);
-    // case EVENT_TYPES.LANGUAGE_KEY_CREATE:
-    //   return addKeysToProject(state, action);
+    case EVENT_TYPES.LANGUAGE_KEY_DELETE:
+      return deleteKey(state, action);
     default:
       return state;
   }

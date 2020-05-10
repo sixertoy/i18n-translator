@@ -39,7 +39,7 @@ const KeyCellComponent = React.memo(({ odd, project, value }) => {
 
   const onDeleteKey = useCallback(() => {
     dispatch(deleteKey({ key: value, project }));
-  }, [dispatch, project, value]);
+  }, [project, value, dispatch]);
 
   return (
     <div className={classnames(classes.cell, { even: !odd, odd })}>
