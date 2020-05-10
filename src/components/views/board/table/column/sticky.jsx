@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import Keys from './columns/keys';
-import Header from './header';
+import Keys from '../columns/keys';
+import Header from '../header';
 
 const useStyles = createUseStyles({
   primary: ({ theme }) => ({
