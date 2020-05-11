@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { DEFAULT_LANGUAGES } from '../../../constants';
-import { selectProject } from '../../../redux/selectors';
+import { DEFAULT_LANGUAGES } from '../../constants';
+import { selectProject } from '../../redux/selectors';
 
 const useStep = (lang, content) => {
   const history = useHistory();

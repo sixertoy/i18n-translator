@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
@@ -6,6 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import PercentageBar from '../../../../commons/percentage-bar';
 import Tooltip from '../../../../commons/tooltip';
+import { useTableStyles } from '../../../../hooks';
 import Menu from './menu';
 
 const useStyles = createUseStyles({
@@ -18,13 +18,6 @@ const useStyles = createUseStyles({
     right: 12,
     top: 12,
     width: 28,
-  }),
-  header: ({ depth, theme }) => ({
-    background: theme.colors.white,
-    height: theme.sizes.colheader,
-    position: 'sticky',
-    top: 0,
-    zIndex: theme.depths.colheader - depth,
   }),
   percentage: {
     maxWidth: '65%',
@@ -44,16 +37,17 @@ const useStyles = createUseStyles({
 const ColumnHeaderComponent = React.memo(
   ({ clearable, collapsed, depth, label, lang, percentage, project }) => {
     const theme = useTheme();
-    const classes = useStyles({ depth, theme });
-    const [visible, setVisible] = useState(false);
+    const classes = useStyles({ theme });
+    const tableClasses = useTableStyles({ depth, theme });
 
+    const [visible, setVisible] = useState(false);
     // const show = () => setVisible(true);
     const hide = () => setVisible(false);
     console.log('visible', visible);
 
     const { count, total } = percentage;
     return (
-      <div className={classnames(classes.header)}>
+      <div className={tableClasses.header}>
         <div className={classes.wrapper}>
           <div>{label}</div>
           <PercentageBar

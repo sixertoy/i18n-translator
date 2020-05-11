@@ -5,12 +5,12 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 import { createLanguageAsync } from '../../../redux/actions';
 import Steps from '../../commons/steps';
+import { useStep } from '../../hooks';
 import withLayout from '../../layout';
 import Step4 from './step-create';
 import Step3 from './step-editor';
 import Step1 from './step-project';
 import Step2 from './step-select';
-import useStep from './use-step';
 
 const useStyles = createUseStyles({
   container: {

@@ -1,140 +1,77 @@
+import get from 'lodash.get';
 // https://www.eggradients.com/linear-gradients?2dd4a736_page=3
 // https://cssgradient.io
 // https://color.adobe.com/fr/trends
-import get from 'lodash.get';
-// color: '#A0A0A0',
-// const gray = '#DDDDDD';
-// const gray = '#A0A0A0';
-// const black = '#394048';
-// const white = '#F2F2F2';
-// const grey = '#D9E3F2';
-// active: '#6494ED',
-// const velvet = '#661E75';
-// const blue = '#295772';
-// const dark = '#053158';
-// const blue = '#0F133F';
-// const dark = '#1C223F';
-// const indigo = '#1C223F';
-// const grey = '#454959';
-// const white = '#F2E4BD';
-// const body = '#D9C6B1';
-// const red = '#F06F55';
-// const white = '#FFFFFF';
+// #000000
+// #0D0D0D
+// #0D0D0D
+// #394048
+// #454959
+// #595959
+// #8C8C8C
+// #A0A0A0
+// #DDDDDD
+// #F7F7F7
+// #F1F1F1
+// #F2F2F2
+// #FFFFFF
+// #D9E3F2
+// #0F133F
+// #1C223F
+// #6494ED
+// #295772
+// #2980B9
+// #053158
+// #ACE539
+// #D9C6B1
+// #F2E4BD
+// #FFCB6A
+// #F0812F
+// #F06F55
+// #DA402B
+// #E5356F
+// #5C095A
+// #661E75
+// #661E75
+// #561A8B
+// #1E103C
 
-// const blue = '#2980B9';
-// const velvet = '#661E75';
-// const orange = '#F0812F';
-// const options = '#0D0D0D';
-// const header = '#595959';
-// const font = '#8C8C8C';
-// const gray = '#DDDDDD';
-// const white = '#FFFFFF';
-// const background = '#F1F1F1';
 // const gradients = {
 //   fullsunset:
 //     'linear-gradient(60deg, #1E103C 0%, #5C095A 37%, #F53844 78%, #FFCB6A 100%)',
 //   sunset: 'linear-gradient(60deg, #1E103C 26%, #F53844 100%)',
 // };
 
-// background: ,
-// const head = {
-//   active: '#FFFFFF',
-//   background: gradients.fullsunset,
-//   button: '#000000',
-//   color: '#561A8B',
-// };
-
-// const home = {
-//   background: gradients.fullsunset,
-// };
-
-const radius = {
-  big: 16,
-  large: 12,
-  normal: 8,
-  small: 4,
-};
-
-const depths = {
-  colheader: 999,
-  progressbar: 999,
-};
-
-const sizes = {};
-
-// const sizes = {
-//   bottom: 80,
-//   buttonSize: 32,
-//   colgutter: 12,
-//   colheader: 52,
-//   colkey: 220,
-//   colwidth: 300,
-//   footer: 40,
-//   line: 60,
-//   loginwidth: 250,
-//   logo: 28,
-//   options: 112,
-//   stepbutton: 290,
-//   stepinput: 350,
-//   stepsMaxWidth: 800,
-//   submit: 250,
-// };
-
 const colors = {
   black: '#000000',
   darker: '#0D0D0D',
+  even: '#F7F7F7',
   grey: '#8C8C8C',
   lighter: '#F1F1F1',
+  odd: '#FFFFFF',
   red: '#D94A38',
   white: '#FFFFFF',
-  // background,
-  // blue,
-  // font,
-  // gray,
-  // head,
-  // header,
-  // home,
-  // options,
-  // orange,
-  // velvet,
-  // white,
+};
+
+const base = {
+  colors,
+  radius: {
+    big: 16,
+    large: 12,
+    normal: 8,
+    small: 4,
+  },
+  sizes: {
+    colheader: 52,
+  },
 };
 
 const themes = {
-  bali: {
-    // black: '#000000',
-    // grey: '#8C8C8C',
-    // white: '#FFFFFF',
-    // active: '#E5356F',
-    // background: '#F1F1F1',
-    // even: '#F7F7F7',
-    // font: '#8C8C8C',
-    // header: gradients.fullsunset,
-    // love: '#DA402B',
-    // odd: '#FFFFFF',
-    // options: '#0D0D0D',
-    // red: '#E5356F',
-    // triangle: '#FFFFFF',
-    // valid: '#ACE539',
-  },
+  bali: {},
   bw: {},
-  day: {
-    // active: '#DA402B',
-    // background: '#F1F1F1',
-    // even: '#F7F7F7',
-    // font: '#8C8C8C',
-    // header: '#595959',
-    // love: '#DA402B',
-    // odd: '#FFFFFF',
-    // options: '#0D0D0D',
-    // red: '#E5356F',
-    // triangle: '#DA402B',
-    // valid: '#ACE539',
-  },
+  day: {},
   light: {},
 };
-
-const base = { colors, depths, radius, sizes };
 
 export const getAllThemes = () => themes;
 

@@ -14,8 +14,8 @@ const useStyles = createUseStyles({
     color: theme.colors.white,
     composes: ['is-inline-block', 'mr5'],
     fill: theme.colors.white,
-    height: theme.sizes.logo,
-    width: theme.sizes.logo,
+    height: 28,
+    width: 28,
   }),
 });
 

@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
   },
   editor: ({ theme }) => ({
     borderRadius: theme.radius.small,
-    maxWidth: theme.sizes.editor,
+    // maxWidth: theme.sizes.editor,
   }),
   submit: {
     composes: ['ml7'],
@@ -54,6 +54,9 @@ const StepEditorComponent = ({ onSubmit, value }) => {
     onSubmit(content);
   }, [content, onSubmit]);
 
+  // NOTE React-Ace documentation
+  // https://github.com/ajaxorg/ace/wiki/Configuring-Ace
+  // https://github.com/securingsincity/react-ace/blob/master/docs/Ace.md
   return (
     <div className={classes.container} id="step-editor">
       <CodeEditor

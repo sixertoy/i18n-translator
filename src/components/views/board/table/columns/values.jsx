@@ -1,17 +1,16 @@
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { useTableStyles } from '../../../../hooks';
 import ValueCell from '../cells/value';
 import Header from '../header';
 
 const useStyles = createUseStyles({
-  column: ({ theme }) => ({
+  column: {
     marginLeft: 1,
-    maxWidth: '65%',
-    minWidth: theme.sizes.colwidth,
-    width: theme.sizes.colwidth,
-  }),
+  },
 });
 
 const sortByKeyAsc = (a, b) => {
@@ -35,9 +34,11 @@ const ValuesColumnComponent = React.memo(
   }) => {
     const theme = useTheme();
     const classes = useStyles({ theme });
+    const tableClasses = useTableStyles({ primary: false, theme });
+
     const entries = Object.entries(translations).sort(sortByKeyAsc);
     return (
-      <div className={classes.column}>
+      <div className={classnames(classes.column, tableClasses.column)}>
         <Header
           clearable={clearable}
           collapsed={collapsed}

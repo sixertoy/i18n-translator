@@ -6,37 +6,30 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { deleteKey, updateKey } from '../../../../../redux/actions';
+import { useTableStyles } from '../../../../hooks';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    // '&:hover': { color: theme.active },
+    '&:hover': { color: theme.colors.red },
     background: 'transparent',
     color: theme.colors.white,
     composes: ['pr7', 'pl12', 'is-full-height', 'is-block', 'fs12'],
     transition: 'color 0.5s',
   }),
-  cell: ({ theme }) => ({
-    // '&.even': { background: theme.even },
-    // '&.odd': { background: theme.odd },
+  cell: {
     borderRadius: '4px 0 0 4px',
-    composes: ['flex-columns', 'flex-start', 'items-center'],
-    height: theme.sizes.line,
-    marginBottom: 1,
-  }),
+  },
   input: {
-    '&::placeholder': { fontSize: 12, opacity: 0.35 },
     composes: ['is-bold', 'px7', 'fs12', 'is-uppercase'],
-    height: '100%',
-    textOverflow: 'ellipsis',
-    width: '100%',
   },
 });
 
 const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const dispatch = useDispatch();
+  const tableClasses = useTableStyles({ primary: true, theme });
 
+  const dispatch = useDispatch();
   const onDeleteKey = useCallback(() => {
     dispatch(deleteKey({ key: value, project }));
   }, [project, value, dispatch]);
@@ -56,13 +49,16 @@ const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
   const scrollId = `scroll::${value}`;
   return (
     <div
-      className={classnames(classes.cell, { even: !odd, odd })}
+      className={classnames(classes.cell, tableClasses.cell, {
+        even: !odd,
+        odd,
+      })}
       id={scrollId}>
       <button className={classes.button} type="button" onClick={onDeleteKey}>
         <ClearIcon />
       </button>
       <input
-        className={classes.input}
+        className={classnames(classes.input, tableClasses.input)}
         defaultValue={value}
         placeholder="Enter a value"
         type="text"

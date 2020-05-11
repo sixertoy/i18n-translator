@@ -20,14 +20,13 @@ const useStyles = createUseStyles({
     color: theme.colors.white,
     composes: ['fs24'],
   }),
-  menu: {},
   options: ({ theme }) => ({
     background: theme.colors.black,
     color: theme.colors.white,
     composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
-    height: theme.sizes.options,
-    maxHeight: theme.sizes.options,
-    minHeight: theme.sizes.options,
+    height: 112,
+    maxHeight: 112,
+    minHeight: 112,
   }),
 });
 
@@ -39,7 +38,7 @@ const OptionsComponent = React.memo(() => {
     <div className={classes.options}>
       <Title />
       <Search />
-      <div className={classes.menu}>
+      <div>
         <Tooltip component={<ContextMenu />}>
           <div className={classes.button}>
             <ContextIcon className={classes.icon} />

@@ -8,7 +8,7 @@ import Table from './table';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows', 'is-relative', 'is-full-layout'],
+    composes: ['flex-rows', 'is-relative', 'flex-1'],
   },
   scroller: {
     composes: ['is-relative', 'flex-1'],

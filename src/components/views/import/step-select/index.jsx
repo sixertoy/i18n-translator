@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import { DEFAULT_LANGUAGES } from '../../../../constants';
 import { selectLangs } from '../../../../redux/selectors';
-import { useFormStyles } from '../styles';
+import { useStepStyles } from '../../../hooks';
 import { flagOptionsWithDisabled } from '../utils';
 
 const useStyles = createUseStyles({
@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
 const StepSelectComponent = ({ lang, onChange }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const formClasses = useFormStyles({ theme });
+  const stepStyles = useStepStyles({ theme });
 
   const { id } = useParams();
   const langs = useSelector(state => selectLangs(state, id));
@@ -38,25 +38,25 @@ const StepSelectComponent = ({ lang, onChange }) => {
 
   return (
     <div className={classes.container} id="step-select">
-      <div className={formClasses.form}>
-        <div className={formClasses.field}>
-          <span className={formClasses.label} htmlFor="select.lang">
+      <div className={stepStyles.form}>
+        <div className={stepStyles.field}>
+          <span className={stepStyles.label} htmlFor="select.lang">
             <span>Séléctionner</span>
           </span>
           <select
-            className={formClasses.select}
+            className={stepStyles.select}
             defaultValue=""
             name="select.lang"
             placeholder="Sélectionner une langue"
             value={lang}
             onChange={onSelect}>
-            <option className={formClasses.options} value="">
+            <option className={stepStyles.options} value="">
               Sélectionner une langue
             </option>
             {flaggedOptions.map(([key, label, disabled]) => (
               <option
                 key={key}
-                className={formClasses.options}
+                className={stepStyles.options}
                 disabled={disabled}
                 value={key}>
                 {label}

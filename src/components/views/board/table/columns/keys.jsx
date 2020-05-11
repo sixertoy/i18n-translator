@@ -4,30 +4,21 @@ import React from 'react';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { useScroller } from '../../../../hooks';
+import { useScroller, useTableStyles } from '../../../../hooks';
 import Key from '../cells/key';
 
 const useStyles = createUseStyles({
-  column: ({ theme }) => ({
+  column: {
     '&.shadow': {
       boxShadow: '10px 0 10px -10px rgba(0, 0, 0, 0.05);',
     },
     composes: ['is-absolute'],
     left: 0,
-    maxWidth: theme.sizes.colkey,
-    minWidth: theme.sizes.colkey,
     top: 0,
-    width: theme.sizes.colkey,
-    zIndex: theme.depths.colheader + 20,
-  }),
-  header: ({ theme }) => ({
-    background: theme.colors.white,
+  },
+  header: {
     composes: ['is-absolute', 'text-center'],
-    height: theme.sizes.colheader,
-    position: 'sticky',
-    top: 0,
-    zIndex: theme.depths.colheader + 10,
-  }),
+  },
   inner: {
     composes: ['fs14', 'px12', 'py18', 'is-bold', 'is-relative'],
     fontVariant: 'small-caps',
@@ -39,13 +30,17 @@ const useStyles = createUseStyles({
 
 const StickyComponent = React.memo(({ items, project, scroller }) => {
   const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
+  const tableClasses = useTableStyles({ primary: true, theme });
+
   const { left, shadow } = useScroller(scroller);
 
   return (
-    <div className={classnames(classes.column, { shadow })} style={{ left }}>
+    <div
+      className={classnames(classes.column, tableClasses.column, { shadow })}
+      style={{ left }}>
       <div className={classes.wrapper}>
-        <div className={classes.header}>
+        <div className={classnames(classes.header, tableClasses.header)}>
           <div className={classes.inner}>
             <KeyIcon />
           </div>

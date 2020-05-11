@@ -5,7 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import Button from '../../../commons/button';
 import Tooltip from '../../../commons/tooltip';
-import { useFormStyles } from '../styles';
+import { useStepStyles } from '../../../hooks';
 
 const useStyles = createUseStyles({
   button: {
@@ -28,17 +28,17 @@ const useStyles = createUseStyles({
 const StepProjectComponent = ({ name, onClick }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const formClasses = useFormStyles({ theme });
+  const stepStyles = useStepStyles({ theme });
 
   return (
     <div className={classes.container} id="step-project">
-      <div className={formClasses.form}>
-        <div className={formClasses.field}>
-          <label className={formClasses.label} htmlFor="project.name">
+      <div className={stepStyles.form}>
+        <div className={stepStyles.field}>
+          <label className={stepStyles.label} htmlFor="project.name">
             <span>Nom du projet</span>
           </label>
           <input
-            className={formClasses.input}
+            className={stepStyles.input}
             defaultValue={name}
             name="project.name"
             type="text"
