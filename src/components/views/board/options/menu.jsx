@@ -59,8 +59,15 @@ const ContextMenuComponent = React.memo(() => {
     dispatch(clearProject({ project: id }));
   }, [dispatch, id]);
 
+  const onCloneProject = useCallback(() => {}, []);
+
   return (
     <div className={classes.container}>
+      <button className={classes.button} type="button" onClick={onCloneProject}>
+        <span>Duplicate</span>
+        <SwipeIcon className={classes.icon} />
+      </button>
+      <hr className={classes.splitter} />
       <button
         className={classnames(classes.button, classes.warning)}
         type="button"

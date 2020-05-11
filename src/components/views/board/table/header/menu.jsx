@@ -4,31 +4,40 @@ import React, { useCallback } from 'react';
 import {
   AiOutlineClear as SwipeIcon,
   AiOutlineCopy as CloneIcon,
+  AiOutlineExpandAlt as ExpandIcon,
+  AiOutlineShrink as ShrinkIcon,
 } from 'react-icons/ai';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
-import { clearLanguage, deleteLanguage } from '../../../../../redux/actions';
+import {
+  clearLanguage,
+  deleteLanguage,
+  toggleCollapseLanguage,
+} from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: {
     borderRadius: 0,
+    color: '#000000',
     composes: [
       'is-block',
       'no-background',
-      'flex-columns',
-      'flex-between',
-      'items-center',
+      // 'flex-columns',
+      // 'flex-between',
+      // 'items-center',
+      'text-center',
+      'fs16',
     ],
     height: 40,
     lineHeight: '40px',
-    width: '100%',
+    width: 40,
+    // width: '100%',
   },
   container: {
-    maxWidth: 170,
-    minWidth: 170,
-    width: 170,
+    composes: ['flex-columns', 'flex-end', 'items-center'],
+    width: 175,
   },
   danger: ({ theme }) => ({
     color: theme.red,
@@ -50,47 +59,61 @@ const useStyles = createUseStyles({
 });
 
 const ContextMenuComponent = React.memo(
-  ({ clearable, lang, onClick, project }) => {
+  ({ clearable, collapsed, lang, onClick, project }) => {
     const theme = useTheme();
     const classes = useStyles({ theme });
 
     const dispatch = useDispatch();
-    const onClone = useCallback(() => {
+    const onCloneLanguage = useCallback(() => {
       // dispatch(cloneLanguage(lang));
     }, []);
 
-    const onClear = useCallback(() => {
+    const onClearLanguage = useCallback(() => {
       onClick();
       dispatch(clearLanguage({ lang, project }));
     }, [onClick, dispatch, lang, project]);
 
-    const onDelete = useCallback(() => {
+    const onDeleteLanguage = useCallback(() => {
       onClick();
       dispatch(deleteLanguage({ lang, project }));
     }, [onClick, dispatch, lang, project]);
 
+    const onToggleCollapse = useCallback(() => {
+      dispatch(toggleCollapseLanguage({ lang, project }));
+    }, [lang, project, dispatch]);
+
     return (
       <div className={classes.container}>
-        <button className={classes.button} type="button" onClick={onClone}>
-          <span>Clone language</span>
-          <CloneIcon className={classes.icon} />
+        <button
+          className={classnames(classes.button, classes.danger)}
+          type="button"
+          onClick={onDeleteLanguage}>
+          {/* <span>Remove language</span> */}
+          <DeleteIcon className={classes.icon} />
         </button>
-        <hr className={classes.splitter} />
+        {/* <hr className={classes.splitter} /> */}
         <button
           className={classnames(classes.button, classes.warning)}
           disabled={!clearable}
           type="button"
-          onClick={onClear}>
-          <span>Clear language</span>
+          onClick={onClearLanguage}>
+          {/* <span>Clear language</span> */}
           <SwipeIcon className={classes.icon} />
         </button>
-        <hr className={classes.splitter} />
+        {/* <hr className={classes.splitter} /> */}
         <button
-          className={classnames(classes.button, classes.danger)}
+          className={classes.button}
           type="button"
-          onClick={onDelete}>
-          <span>Remove language</span>
-          <DeleteIcon className={classes.icon} />
+          onClick={onCloneLanguage}>
+          {/* <span>Clone language</span> */}
+          <CloneIcon className={classes.icon} />
+        </button>
+        <button
+          className={classes.button}
+          type="button"
+          onClick={onToggleCollapse}>
+          {collapsed && <ExpandIcon className={classes.icon} />}
+          {!collapsed && <ShrinkIcon className={classes.icon} />}
         </button>
       </div>
     );
@@ -99,6 +122,7 @@ const ContextMenuComponent = React.memo(
 
 ContextMenuComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
+  collapsed: PropTypes.bool.isRequired,
   lang: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   project: PropTypes.string.isRequired,

@@ -6,7 +6,6 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import PercentageBar from '../../../../commons/percentage-bar';
 import Tooltip from '../../../../commons/tooltip';
-import CollapseButton from './collapse';
 import Menu from './menu';
 
 const useStyles = createUseStyles({
@@ -26,6 +25,10 @@ const useStyles = createUseStyles({
     maxWidth: '65%',
     minWidth: '65%',
     width: '65%',
+  },
+  tippy: {
+    '& .tippy-content': { padding: 0 },
+    padding: 0,
   },
   wrapper: {
     composes: ['fs14', 'px12', 'py18', 'is-bold', 'is-relative'],
@@ -56,25 +59,25 @@ const ColumnHeaderComponent = React.memo(
             size="tiny"
             total={total}
           />
-          <div className={classes.button}>
-            <Tooltip
-              component={
-                <Menu
-                  clearable={clearable}
-                  lang={lang}
-                  project={project}
-                  onClick={hide}
-                />
-              }
-              offset={[20, 5]}
-              placement="bottom-end">
-              <span>
-                {/* <span onClick={visible ? hide : show}> */}
-                <ContextIcon />
-              </span>
-            </Tooltip>
-          </div>
-          <CollapseButton collapsed={collapsed} lang={lang} project={project} />
+          <Tooltip
+            className={classes.tippy}
+            component={
+              <Menu
+                clearable={clearable}
+                collapsed={collapsed}
+                lang={lang}
+                project={project}
+                onClick={hide}
+              />
+            }
+            offset={[20, 5]}
+            placement="bottom-end"
+            theme="light">
+            <span className={classes.button}>
+              {/* <span onClick={visible ? hide : show}> */}
+              <ContextIcon />
+            </span>
+          </Tooltip>
         </div>
       </div>
     );

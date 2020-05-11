@@ -1,4 +1,5 @@
 import 'tippy.js/dist/tippy.css';
+import 'tippy.js/themes/light.css';
 import './scss/index.scss';
 
 import React, { StrictMode } from 'react';
