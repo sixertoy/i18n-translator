@@ -12,8 +12,8 @@ import {
   selectPrimaryKeys,
 } from '../../../../redux/selectors';
 import { useTableStyles } from '../../../hooks';
-import KeysColumn from './columns/keys';
-import ValuesColumn from './columns/values';
+import PrimaryColumn from './primary-col';
+import ValuesColumn from './values-col';
 
 const useStyles = createUseStyles({
   columns: {
@@ -38,7 +38,7 @@ const TableComponent = React.memo(({ scroller }) => {
   return (
     <div className={classes.table}>
       <div className={classnames(classes.columns, tableClasses.columns)}>
-        <KeysColumn items={keys} project={id} scroller={scroller} />
+        <PrimaryColumn items={keys} project={id} scroller={scroller} />
         {languages.map((language, index) => {
           const { lang } = language;
           const percentage = get(percentages, lang);

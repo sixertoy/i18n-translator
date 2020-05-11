@@ -4,8 +4,8 @@ import React from 'react';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { useScroller, useTableStyles } from '../../../../hooks';
-import Key from '../cells/key';
+import { useScroller, useTableStyles } from '../../../hooks';
+import Key from './cells/key';
 
 const useStyles = createUseStyles({
   column: {
@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const StickyComponent = React.memo(({ items, project, scroller }) => {
+const PrimaryColumnComponent = React.memo(({ items, project, scroller }) => {
   const theme = useTheme();
   const classes = useStyles();
   const tableClasses = useTableStyles({ primary: true, theme });
@@ -62,10 +62,10 @@ const StickyComponent = React.memo(({ items, project, scroller }) => {
   );
 });
 
-StickyComponent.propTypes = {
+PrimaryColumnComponent.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   project: PropTypes.string.isRequired,
   scroller: PropTypes.shape().isRequired,
 };
 
-export default StickyComponent;
+export default PrimaryColumnComponent;
