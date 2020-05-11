@@ -30,7 +30,6 @@ import get from 'lodash.get';
 // const gray = '#DDDDDD';
 // const white = '#FFFFFF';
 // const background = '#F1F1F1';
-
 // const gradients = {
 //   fullsunset:
 //     'linear-gradient(60deg, #1E103C 0%, #5C095A 37%, #F53844 78%, #FFCB6A 100%)',
@@ -83,7 +82,10 @@ const sizes = {
 
 const colors = {
   black: '#000000',
+  darker: '#0D0D0D',
   grey: '#8C8C8C',
+  lighter: '#F1F1F1',
+  red: '#D94A38',
   white: '#FFFFFF',
   // background,
   // blue,

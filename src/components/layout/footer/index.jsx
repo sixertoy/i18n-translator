@@ -2,19 +2,29 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { repository, version } from '../../../../package.json';
-import Credits from './credits';
+import { rgba } from '../../../core/utils';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: theme.colors.black,
+    background: theme.colors.grey,
     composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase'],
     letterSpacing: '0.12em',
+  }),
+  credits: ({ theme }) => ({
+    background: theme.colors.white,
+    borderRadius: `${theme.radius.small}px ${theme.radius.small}px 0 0`,
+    bottom: 0,
+    composes: ['is-uppercase', 'pb0', 'pt5', 'px12', 'is-absolute'],
+    right: 32,
   }),
   inner: {
     composes: ['is-relative'],
   },
+  love: ({ theme }) => ({
+    color: theme.colors.red,
+  }),
   version: ({ theme }) => ({
-    color: theme.colors.white,
+    color: theme.colors.darker,
   }),
 });
 
@@ -27,7 +37,9 @@ const ApplicationFooter = React.memo(() => {
         <a className={classes.version} href={repository.url}>
           <span>v{version} - i18n Online Translation Editor</span>
         </a>
-        <Credits />
+        <div className={classes.credits}>
+          Made with <span className={classes.love}>♥</span> and React
+        </div>
       </div>
     </div>
   );
