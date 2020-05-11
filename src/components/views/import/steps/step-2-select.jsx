@@ -7,36 +7,13 @@ import { useParams } from 'react-router-dom';
 import { DEFAULT_LANGUAGES } from '../../../../constants';
 import { selectLangs } from '../../../../redux/selectors';
 import { useFormStyles } from './styles';
+import { flagOptionsWithDisabled } from './utils';
 
 const useStyles = createUseStyles({
   container: {
     marginTop: '8%',
   },
 });
-
-const languageAlphaSort = (a, b) => {
-  if (a[1] > b[1]) return 1;
-  if (a[1] < b[1]) return -1;
-  return 0;
-};
-
-const languageDisabledSort = (a, b) => {
-  if (a[2] > b[2]) return 1;
-  if (a[2] < b[2]) return -1;
-  return 0;
-};
-
-const flagOptionsWithDisabled = langs => {
-  const grouped = Object.entries(DEFAULT_LANGUAGES)
-    .sort(languageAlphaSort)
-    .map(arr => {
-      const key = arr[0];
-      const disabled = langs.includes(key);
-      return [...arr, disabled];
-    })
-    .sort(languageDisabledSort);
-  return grouped;
-};
 
 const StepSelectComponent = ({ lang, onChange }) => {
   const theme = useTheme();
@@ -45,7 +22,7 @@ const StepSelectComponent = ({ lang, onChange }) => {
 
   const { id } = useParams();
   const langs = useSelector(state => selectLangs(state, id));
-  const flaggedOptions = flagOptionsWithDisabled(langs);
+  const flaggedOptions = flagOptionsWithDisabled(langs, DEFAULT_LANGUAGES);
 
   const onSelect = useCallback(
     evt => {
