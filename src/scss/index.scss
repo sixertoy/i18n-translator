@@ -5,6 +5,10 @@
 @import '_shadows';
 @import '_scrollbars';
 
+* {
+  outline: none;
+}
+
 .debug {
   border: 1px solid #000000;
   background: rgba(172, 229, 57, 0.15);

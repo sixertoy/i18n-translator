@@ -8,7 +8,7 @@ import Signin from './signin';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: theme.header,
+    background: theme.colors.home.background,
     composes: ['flex-rows', 'items-center', 'flex-center'],
   }),
   logo: {

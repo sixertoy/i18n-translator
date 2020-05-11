@@ -14,11 +14,11 @@ const useStyles = createUseStyles({
   input: ({ theme }) => ({
     '&:focus': {
       background: '#FFFFFF',
-      color: '#000000',
+      color: '#000000DD',
     },
-    borderRadius: 21,
+    borderRadius: theme.radius.normal,
     color: theme.triangle,
-    composes: ['is-bold', 'py7', 'px5'],
+    composes: ['is-bold', 'py7', 'px12'],
     fontSize: '1.6rem',
     maxWidth: '65%',
     minWidth: '65%',

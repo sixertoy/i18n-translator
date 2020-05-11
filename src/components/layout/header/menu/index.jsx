@@ -1,30 +1,33 @@
 import React from 'react';
-import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
-// import { MdAccountCircle as AccountIcon } from 'react-icons/md';
-import { RiHome2Line as HomeIcon } from 'react-icons/ri';
+import {
+  MdDashboard as ProjectsIcon,
+  MdHome as HomeIcon,
+} from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
+import { rgba } from '../../../../core/utils';
 import Tooltip from '../../../commons/tooltip';
 import Login from './login';
 
 const useStyles = createUseStyles({
-  button: {
-    '&:hover': { color: '#FFFFFF' },
-    background: '#000000',
-    borderRadius: 4,
-    composes: ['is-inline-block', 'fs18', 'mr7', 'text-center', 'px12'],
-    height: 40,
-    lineHeight: '38px',
-    minWidth: 40,
-    transition: 'color 0.5s',
-  },
-  icon: {},
+  button: ({ theme }) => ({
+    '& + &': { marginLeft: 4 },
+    '&:hover': { background: theme.colors.head.button },
+    background: rgba(theme.colors.head.button, 0.45),
+    borderRadius: theme.radius.small,
+    color: theme.colors.head.color,
+    composes: ['is-block', 'fs16', 'is-bold', 'text-center', 'p7'],
+    lineHeight: '1.25em',
+    transition: 'background 0.5s',
+    width: 'auto',
+  }),
+  icon: { composes: ['fs20'] },
   label: {
-    composes: ['ml7', 'is-normal', 'fs16'],
+    composes: ['ml7'],
   },
   menu: {
-    composes: ['is-absolute'],
+    composes: ['is-absolute', 'flex-columns', 'flex-start', 'items-center'],
     left: 0,
   },
 });
