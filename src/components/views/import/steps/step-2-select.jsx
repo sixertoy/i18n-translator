@@ -5,35 +5,12 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { DEFAULT_LANGUAGES } from '../../../../constants';
-import { selectLangs, selectLimits } from '../../../../redux/selectors';
+import { selectLangs } from '../../../../redux/selectors';
+import { useFormStyles } from './styles';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-columns', 'flex-center', 'items-center'],
-    height: '70%',
-  },
-  inner: ({ theme }) => ({
-    border: `1px solid ${theme.colors.black}`,
-    borderRadius: theme.radius.small,
-    composes: ['fs12', 'text-left', 'is-relative', 'is-block', 'px24', 'py12'],
-    width: theme.sizes.stepinput,
-  }),
-  input: {
-    border: 0,
-    composes: ['fs14', 'm0', 'p0', 'use-pointer', 'is-block'],
-    height: 48,
-    width: '100%',
-  },
-  inputLabel: ({ theme }) => ({
-    background: theme.colors.lighter,
-    composes: ['is-absolute', 'is-bold', 'p5'],
-    left: 12,
-    top: -12,
-  }),
-  options: {
-    composes: ['fs14', 'm0', 'p0', 'use-pointer'],
-    minWidth: '100%',
-    width: '100%',
+    marginTop: '8%',
   },
 });
 
@@ -43,57 +20,74 @@ const languageAlphaSort = (a, b) => {
   return 0;
 };
 
+const languageDisabledSort = (a, b) => {
+  if (a[2] > b[2]) return 1;
+  if (a[2] < b[2]) return -1;
+  return 0;
+};
+
+const flagOptionsWithDisabled = langs => {
+  const grouped = Object.entries(DEFAULT_LANGUAGES)
+    .sort(languageAlphaSort)
+    .map(arr => {
+      const key = arr[0];
+      const disabled = langs.includes(key);
+      return [...arr, disabled];
+    })
+    .sort(languageDisabledSort);
+  return grouped;
+};
+
 const StepSelectComponent = ({ lang, onChange }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const formClasses = useFormStyles({ theme });
 
   const { id } = useParams();
   const langs = useSelector(state => selectLangs(state, id));
-  const { hasReach, limited } = useSelector(state => selectLimits(state, id));
-  const isLocked = limited && hasReach;
+  const flaggedOptions = flagOptionsWithDisabled(langs);
 
   const onSelect = useCallback(
     evt => {
       evt.preventDefault();
       const { value } = evt.target || {};
-      const isvalid = value && value !== '';
+      const isvalid = value && value !== '' && !langs.includes(value);
+      // NOTE afficher une notification d'erreur
       if (!isvalid) return;
       onChange(value);
     },
-    [onChange]
+    [langs, onChange]
   );
 
   return (
-    <div className={classes.container}>
-      <label className={classes.inner} htmlFor="select.lang">
-        <span className={classes.inputLabel}>
-          <span>Séléctionner</span>
-        </span>
-        <select
-          className={classes.input}
-          disabled={isLocked}
-          name="select.lang"
-          value={lang}
-          onChange={onSelect}>
-          <option className={classes.options} value="">
-            -
-          </option>
-          {Object.entries(DEFAULT_LANGUAGES)
-            .sort(languageAlphaSort)
-            .map(([key, label]) => {
-              const isDisabled = isLocked || langs.includes(key);
-              return (
-                <option
-                  key={key}
-                  className={classes.options}
-                  disabled={isDisabled}
-                  value={key}>
-                  {label}
-                </option>
-              );
-            })}
-        </select>
-      </label>
+    <div className={classes.container} id="step-select">
+      <div className={formClasses.form}>
+        <div className={formClasses.field}>
+          <span className={formClasses.label} htmlFor="select.lang">
+            <span>Séléctionner</span>
+          </span>
+          <select
+            className={formClasses.select}
+            defaultValue=""
+            name="select.lang"
+            placeholder="Sélectionner une langue"
+            value={lang}
+            onChange={onSelect}>
+            <option className={formClasses.options} value="">
+              Sélectionner une langue
+            </option>
+            {flaggedOptions.map(([key, label, disabled]) => (
+              <option
+                key={key}
+                className={formClasses.options}
+                disabled={disabled}
+                value={key}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
     </div>
   );
 };
