@@ -5,7 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import Button from '../../../commons/button';
 import Tooltip from '../../../commons/tooltip';
-import { useFormStyles } from './styles';
+import { useFormStyles } from '../styles';
 
 const useStyles = createUseStyles({
   button: {

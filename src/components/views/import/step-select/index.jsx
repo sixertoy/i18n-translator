@@ -6,8 +6,8 @@ import { useParams } from 'react-router-dom';
 
 import { DEFAULT_LANGUAGES } from '../../../../constants';
 import { selectLangs } from '../../../../redux/selectors';
-import { useFormStyles } from './styles';
-import { flagOptionsWithDisabled } from './utils';
+import { useFormStyles } from '../styles';
+import { flagOptionsWithDisabled } from '../utils';
 
 const useStyles = createUseStyles({
   container: {

@@ -6,8 +6,8 @@ import {
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { EDITOR_DEFAULT_CONTENT } from '../../../../../constants';
-import { useFile } from '../../../../hooks';
+import { EDITOR_DEFAULT_CONTENT } from '../../../../constants';
+import { useFile } from '../../../hooks';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({

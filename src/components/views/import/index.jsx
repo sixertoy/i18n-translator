@@ -6,10 +6,10 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { createLanguageAsync } from '../../../redux/actions';
 import Steps from '../../commons/steps';
 import withLayout from '../../layout';
-import Step1 from './steps/step-1-project';
-import Step2 from './steps/step-2-select';
-import Step4 from './steps/step-4-finish';
-import Step3 from './steps/step-editor';
+import Step4 from './step-create';
+import Step3 from './step-editor';
+import Step1 from './step-project';
+import Step2 from './step-select';
 import useStep from './use-step';
 
 const useStyles = createUseStyles({

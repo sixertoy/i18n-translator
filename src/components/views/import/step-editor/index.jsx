@@ -6,9 +6,9 @@ import {
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import Button from '../../../../commons/button';
-import CodeEditor from '../../../../commons/code-editor';
-import Dropdown from '../../../../commons/dropdown';
+import Button from '../../../commons/button';
+import CodeEditor from '../../../commons/code-editor';
+import Dropdown from '../../../commons/dropdown';
 import EditorMenu from './menu';
 
 const useStyles = createUseStyles({
