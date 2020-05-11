@@ -10,9 +10,14 @@ import Menu from './menu';
 
 const useStyles = createUseStyles({
   button: {
-    composes: ['is-absolute'],
+    background: '#DDDDDD',
+    borderRadius: '50%',
+    composes: ['is-absolute', 'text-center', 'is-block', 'fs14', 'use-pointer'],
+    height: 28,
+    lineHeight: '1.6rem',
     right: 12,
-    top: 7,
+    top: 12,
+    width: 28,
   },
   header: ({ depth, theme }) => ({
     background: '#F1F1F1',
@@ -70,7 +75,7 @@ const ColumnHeaderComponent = React.memo(
                 onClick={hide}
               />
             }
-            offset={[20, 5]}
+            offset={[20, 10]}
             placement="bottom-end"
             theme="light">
             <span className={classes.button}>
