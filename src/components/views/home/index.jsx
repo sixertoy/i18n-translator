@@ -2,13 +2,14 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import Logo from '../../../assets/logo';
+import GithubLogin from '../../commons/buttons/github';
+import GoogleLogin from '../../commons/buttons/google';
 import Create from './create';
-import Login from './login';
 import Signin from './signin';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: theme.colors.black,
+    background: theme.colors.grey,
     composes: ['flex-rows', 'items-center', 'flex-center'],
   }),
   logo: ({ theme }) => ({
@@ -27,7 +28,10 @@ const HomeViewComponent = React.memo(() => {
       <div className={classes.logo}>
         <Logo />
       </div>
-      <Login />
+      <div>
+        <GithubLogin login />
+        <GoogleLogin login className="mt12" />
+      </div>
       <Create />
       <Signin />
     </div>

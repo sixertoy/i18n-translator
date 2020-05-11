@@ -5,15 +5,9 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { createProjectAsync } from '../../../redux/actions';
+import Button from '../../commons/button';
 
 const useStyles = createUseStyles({
-  button: ({ theme }) => ({
-    background: theme.colors.black,
-    borderRadius: 4,
-    color: theme.colors.white,
-    composes: ['is-block', 'px24', 'py12', 'fs18', 'text-center'],
-    width: 250,
-  }),
   icon: {
     composes: ['mr12'],
   },
@@ -39,10 +33,10 @@ const CreateComponent = React.memo(() => {
       <span className={classes.splitter}>
         <span>-&nbsp;ou&nbsp;-</span>
       </span>
-      <button className={classes.button} type="button" onClick={onDemoClick}>
+      <Button onClick={onDemoClick}>
         <ProjectsIcon className={classes.icon} />
         <span>Créer un projet</span>
-      </button>
+      </Button>
     </React.Fragment>
   );
 });

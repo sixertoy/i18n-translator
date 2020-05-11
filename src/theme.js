@@ -78,6 +78,7 @@ const sizes = {
   stepbutton: 290,
   stepinput: 350,
   stepswidth: 680,
+  submit: 250,
 };
 
 const colors = {

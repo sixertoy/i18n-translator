@@ -2,23 +2,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { AiFillGithub as GithubIcon } from 'react-icons/ai';
 
-import LoginButton from '../login-button';
+import Button from '../button';
 
-const GithubButtonComponent = React.memo(({ login }) => {
+const GithubButtonComponent = React.memo(({ className, login }) => {
   return (
-    <LoginButton onClick={() => {}}>
+    <Button className={className} onClick={() => {}}>
       <GithubIcon className="mr12" />
       {!login && <span>Sign in with GitHub</span>}
       {login && <span>Login in with GitHub</span>}
-    </LoginButton>
+    </Button>
   );
 });
 
 GithubButtonComponent.defaultProps = {
+  className: '',
   login: false,
 };
 
 GithubButtonComponent.propTypes = {
+  className: PropTypes.string,
   login: PropTypes.bool,
 };
 

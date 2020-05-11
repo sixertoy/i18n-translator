@@ -5,15 +5,15 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    '& + &': { marginTop: 12 },
     background: theme.colors.black,
     borderRadius: theme.radius.small,
+    color: theme.colors.white,
     composes: ['fs18', 'is-block', 'py12', 'px24'],
-    width: theme.sizes.loginwidth,
+    width: theme.sizes.submit,
   }),
 });
 
-const LoginButtonComponent = React.memo(({ children, className, onClick }) => {
+const ButtonComponent = React.memo(({ children, className, onClick }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -26,14 +26,14 @@ const LoginButtonComponent = React.memo(({ children, className, onClick }) => {
   );
 });
 
-LoginButtonComponent.defaultProps = {
+ButtonComponent.defaultProps = {
   className: null,
 };
 
-LoginButtonComponent.propTypes = {
+ButtonComponent.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };
 
-export default LoginButtonComponent;
+export default ButtonComponent;
