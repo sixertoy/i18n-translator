@@ -63,6 +63,7 @@ const base = {
   },
   sizes: {
     colheader: 52,
+    header: 64,
   },
 };
 

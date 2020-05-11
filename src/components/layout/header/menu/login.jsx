@@ -14,7 +14,7 @@ const LoginComponent = React.memo(() => {
   return (
     <div className={classes.login}>
       <GithubLogin />
-      <GoogleLogin />
+      <GoogleLogin className="mt7" />
     </div>
   );
 });
