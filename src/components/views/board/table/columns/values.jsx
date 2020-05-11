@@ -26,6 +26,7 @@ const ValuesColumnComponent = React.memo(
   ({
     clearable,
     collapsed,
+    depth,
     label,
     lang,
     percentage,
@@ -40,6 +41,7 @@ const ValuesColumnComponent = React.memo(
         <Header
           clearable={clearable}
           collapsed={collapsed}
+          depth={depth}
           label={label}
           lang={lang}
           percentage={percentage}
@@ -66,6 +68,7 @@ const ValuesColumnComponent = React.memo(
 ValuesColumnComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
   collapsed: PropTypes.bool.isRequired,
+  depth: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
   percentage: PropTypes.shape().isRequired,

@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -15,12 +15,12 @@ const useStyles = createUseStyles({
     right: 12,
     top: 7,
   },
-  header: ({ theme }) => ({
+  header: ({ depth, theme }) => ({
     background: '#F1F1F1',
     height: theme.sizes.colheader,
     position: 'sticky',
     top: 0,
-    zIndex: theme.depths.colheader,
+    zIndex: theme.depths.colheader - depth,
   }),
   percentage: {
     maxWidth: '65%',
@@ -34,9 +34,15 @@ const useStyles = createUseStyles({
 });
 
 const ColumnHeaderComponent = React.memo(
-  ({ clearable, collapsed, label, lang, percentage, project }) => {
+  ({ clearable, collapsed, depth, label, lang, percentage, project }) => {
     const theme = useTheme();
-    const classes = useStyles({ theme });
+    const classes = useStyles({ depth, theme });
+    const [visible, setVisible] = useState(false);
+
+    // const show = () => setVisible(true);
+    const hide = () => setVisible(false);
+    console.log('visible', visible);
+
     const { count, total } = percentage;
     return (
       <div className={classnames(classes.header)}>
@@ -53,10 +59,17 @@ const ColumnHeaderComponent = React.memo(
           <div className={classes.button}>
             <Tooltip
               component={
-                <Menu clearable={clearable} lang={lang} project={project} />
+                <Menu
+                  clearable={clearable}
+                  lang={lang}
+                  project={project}
+                  onClick={hide}
+                />
               }
+              offset={[20, 5]}
               placement="bottom-end">
               <span>
+                {/* <span onClick={visible ? hide : show}> */}
                 <ContextIcon />
               </span>
             </Tooltip>
@@ -71,6 +84,7 @@ const ColumnHeaderComponent = React.memo(
 ColumnHeaderComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
   collapsed: PropTypes.bool.isRequired,
+  depth: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
   percentage: PropTypes.shape({

@@ -37,12 +37,13 @@ const TableComponent = React.memo(({ scroller }) => {
     <div className={classes.table}>
       <div className={classes.columns}>
         <KeysColumn items={keys} project={id} scroller={scroller} />
-        {languages.map(language => {
+        {languages.map((language, index) => {
           const { lang } = language;
           const percentage = get(percentages, lang);
           return (
             <ValuesColumn
               key={lang}
+              depth={index}
               item={language}
               percentage={percentage}
               project={id}

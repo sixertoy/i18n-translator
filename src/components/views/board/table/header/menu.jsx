@@ -49,53 +49,58 @@ const useStyles = createUseStyles({
   }),
 });
 
-const ContextMenuComponent = React.memo(({ clearable, lang, project }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+const ContextMenuComponent = React.memo(
+  ({ clearable, lang, onClick, project }) => {
+    const theme = useTheme();
+    const classes = useStyles({ theme });
 
-  const dispatch = useDispatch();
-  const onClone = useCallback(() => {
-    // dispatch(cloneLanguage(lang));
-  }, []);
+    const dispatch = useDispatch();
+    const onClone = useCallback(() => {
+      // dispatch(cloneLanguage(lang));
+    }, []);
 
-  const onClear = useCallback(() => {
-    dispatch(clearLanguage({ lang, project }));
-  }, [lang, project, dispatch]);
+    const onClear = useCallback(() => {
+      onClick();
+      dispatch(clearLanguage({ lang, project }));
+    }, [onClick, dispatch, lang, project]);
 
-  const onDelete = useCallback(() => {
-    dispatch(deleteLanguage({ lang, project }));
-  }, [lang, project, dispatch]);
+    const onDelete = useCallback(() => {
+      onClick();
+      dispatch(deleteLanguage({ lang, project }));
+    }, [onClick, dispatch, lang, project]);
 
-  return (
-    <div className={classes.container}>
-      <button className={classes.button} type="button" onClick={onClone}>
-        <span>Clone language</span>
-        <CloneIcon className={classes.icon} />
-      </button>
-      <hr className={classes.splitter} />
-      <button
-        className={classnames(classes.button, classes.warning)}
-        disabled={!clearable}
-        type="button"
-        onClick={onClear}>
-        <span>Clear language</span>
-        <SwipeIcon className={classes.icon} />
-      </button>
-      <hr className={classes.splitter} />
-      <button
-        className={classnames(classes.button, classes.danger)}
-        type="button"
-        onClick={onDelete}>
-        <span>Remove language</span>
-        <DeleteIcon className={classes.icon} />
-      </button>
-    </div>
-  );
-});
+    return (
+      <div className={classes.container}>
+        <button className={classes.button} type="button" onClick={onClone}>
+          <span>Clone language</span>
+          <CloneIcon className={classes.icon} />
+        </button>
+        <hr className={classes.splitter} />
+        <button
+          className={classnames(classes.button, classes.warning)}
+          disabled={!clearable}
+          type="button"
+          onClick={onClear}>
+          <span>Clear language</span>
+          <SwipeIcon className={classes.icon} />
+        </button>
+        <hr className={classes.splitter} />
+        <button
+          className={classnames(classes.button, classes.danger)}
+          type="button"
+          onClick={onDelete}>
+          <span>Remove language</span>
+          <DeleteIcon className={classes.icon} />
+        </button>
+      </div>
+    );
+  }
+);
 
 ContextMenuComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
   lang: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
   project: PropTypes.string.isRequired,
 };
 
