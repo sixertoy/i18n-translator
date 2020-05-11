@@ -26,7 +26,7 @@ const TooltipComponent = ({
   ...overrides
 }) => {
   const classes = useStyles();
-  const content = (React.isValidElement(component) && component) || title;
+  const content = component || title;
   // const override = omit(props, ['useClick']);
   // let config = {};
   // if (useClick) {

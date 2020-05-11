@@ -8,8 +8,8 @@ import Steps from '../../commons/steps';
 import withLayout from '../../layout';
 import Step1 from './steps/step-1-project';
 import Step2 from './steps/step-2-select';
-import Step3 from './steps/step-3-editor';
 import Step4 from './steps/step-4-finish';
+import Step3 from './steps/step-editor';
 import useStep from './use-step';
 
 const useStyles = createUseStyles({
@@ -37,11 +37,11 @@ const ImportViewComponent = () => {
   const pid = (project && project.id) || null;
   const pname = (project && project.name) || null;
 
-  const onCreateHandler = useCallback(() => {
+  const createHandler = useCallback(() => {
     history.push(next);
   }, [next, history]);
 
-  const onSelectHandler = useCallback(
+  const selectHandler = useCallback(
     value => {
       history.push(next);
       setLang(value);
@@ -49,7 +49,7 @@ const ImportViewComponent = () => {
     [next, history]
   );
 
-  const onEditorHandler = useCallback(
+  const editorHandler = useCallback(
     value => {
       history.push(next);
       setContent(value);
@@ -65,7 +65,7 @@ const ImportViewComponent = () => {
     });
   }, [lang, content, pid, dispatch, history]);
 
-  const onSubmitHandler = useCallback(() => {
+  const onSubmit = useCallback(() => {
     dispatch(createLanguageAsync({ content, lang, project: pid })).then(() => {
       history.push(`/board/${pid}`);
     });
@@ -78,16 +78,16 @@ const ImportViewComponent = () => {
       </div>
       <Switch>
         <Route exact path="/import/:id/step/1">
-          <Step1 name={pname} onClick={onCreateHandler} />
+          <Step1 name={pname} onClick={createHandler} />
         </Route>
         <Route exact path="/import/:id/step/2">
-          <Step2 lang={lang} onChange={onSelectHandler} />
+          <Step2 lang={lang} onChange={selectHandler} />
         </Route>
         <Route exact path="/import/:id/step/3">
-          <Step3 lang={lang} value={content} onSubmit={onEditorHandler} />
+          <Step3 lang={lang} value={content} onSubmit={editorHandler} />
         </Route>
         <Route exact path="/import/:id/step/4">
-          <Step4 onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
+          <Step4 onRestart={onRestartHandler} onSubmit={onSubmit} />
         </Route>
         <Route path={['/import/:id', '/import/:id/step']}>
           <Redirect to={`/import/${pid}/step/1`} />

@@ -41,9 +41,7 @@ const CodeEditorComponent = ({
       theme="github"
       value={content || ''}
       width="100%"
-      onChange={value => {
-        onChange(value, valid);
-      }}
+      onChange={value => onChange(value, valid)}
       onValidate={annotations => {
         const errors = annotations.filter(({ type }) => type === 'error');
         setValid(!errors || !errors.length);

@@ -23,12 +23,12 @@ const useStep = (lang, content) => {
   ];
 
   useEffect(() => {
-    const hasNoLang = step > 2 && !lang;
-    const hasNoContent = step > 3 && !content;
-    const shouldRedirectIfmissingValues = hasNoLang || hasNoContent;
-    if (shouldRedirectIfmissingValues) {
-      history.replace(`${baseurl}/1`);
-    }
+    // const hasNoLang = step > 2 && !lang;
+    // const hasNoContent = step > 3 && !content;
+    // const shouldRedirectIfmissingValues = hasNoLang || hasNoContent;
+    // if (shouldRedirectIfmissingValues) {
+    //   history.replace(`${baseurl}/1`);
+    // }
     return () => {};
   }, [content, history, lang, step, baseurl]);
 

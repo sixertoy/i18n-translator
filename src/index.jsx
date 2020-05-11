@@ -1,5 +1,6 @@
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/light.css';
+import 'tippy.js/animations/shift-away-subtle.css';
 import './scss/index.scss';
 
 import React, { StrictMode } from 'react';
