@@ -36,15 +36,18 @@ const StepEditorComponent = ({ onSubmit, value }) => {
 
   const [content, setContent] = useState(value);
   const [disabled, setDisabled] = useState(true);
+  const [forceEditorUpdate, setForceEditorUpdate] = useState(false);
 
   const onEditorChange = useCallback((editor, valid) => {
     const isvalid = valid && editor && editor.trim() !== '';
+    setForceEditorUpdate(false);
     setDisabled(!isvalid);
     setContent(editor);
   }, []);
 
-  const updatContentHandler = useCallback(next => {
+  const onImportContent = useCallback(next => {
     setContent(next);
+    setForceEditorUpdate(true);
   }, []);
 
   const onSubmitHandler = useCallback(() => {
@@ -56,12 +59,13 @@ const StepEditorComponent = ({ onSubmit, value }) => {
       <CodeEditor
         className={classes.editor}
         content={content}
+        forceUpdate={forceEditorUpdate}
         mode="json"
         onChange={onEditorChange}
       />
       <div className={classes.controls}>
         <Dropdown
-          content={<EditorMenu onChange={updatContentHandler} />}
+          content={<EditorMenu onChange={onImportContent} />}
           icon={DownloadIcon}
           label="Importer"
         />

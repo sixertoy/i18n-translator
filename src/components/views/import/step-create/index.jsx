@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-import { selectLimits } from '../../../../redux/selectors';
+import Button from '../../../commons/button';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -27,35 +25,20 @@ const StepFinishComponent = ({ onRestart, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
-  const { id } = useParams();
-  const { hasReach, limited, nextCount, willReach } = useSelector(state =>
-    selectLimits(state, id)
-  );
-
-  const isLocked = limited && hasReach;
-  const enableAddButton = !willReach && !limited;
-
   return (
     <div className={classes.container}>
       {/* TODO ajouter une info quand l'utilisateur ne peux plus ajouter de langue */}
-      <button
-        className={classes.button}
-        disabled={isLocked || !enableAddButton}
-        type="button"
-        onClick={onRestart}>
+      <Button onClick={onRestart}>
         <span>Ajouter un autre langage</span>
-        {limited && <i>({nextCount}) langues restants</i>}
-      </button>
+        {/* {limited && <i>({nextCount}) langues restants</i>} */}
+      </Button>
       <span className={classes.splitter}>
         <span>-&nbsp;Ou&nbsp;-</span>
       </span>
-      <button
-        className={classes.button}
-        disabled={isLocked}
-        type="button"
-        onClick={onSubmit}>
+      <Button onClick={onRestart}>
         <span>Continuer</span>
-      </button>
+        {/* {limited && <i>({nextCount}) langues restants</i>} */}
+      </Button>
     </div>
   );
 };
