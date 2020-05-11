@@ -7,9 +7,7 @@ const withLayout = WrappedComponent => props => {
   return (
     <React.Fragment>
       <ApplicationHeader />
-      <div className="flex-1">
-        <WrappedComponent {...props} />
-      </div>
+      <WrappedComponent {...props} />
       <ApplicationFooter />
     </React.Fragment>
   );

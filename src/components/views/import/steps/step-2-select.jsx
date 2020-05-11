@@ -24,8 +24,8 @@ const useStyles = createUseStyles({
     height: 48,
     width: '100%',
   },
-  label: ({ theme }) => ({
-    background: theme.colors.white,
+  inputLabel: ({ theme }) => ({
+    background: theme.colors.lighter,
     composes: ['is-absolute', 'is-bold', 'p5'],
     left: 12,
     top: -12,
@@ -66,7 +66,7 @@ const StepSelectComponent = ({ lang, onChange }) => {
   return (
     <div className={classes.container}>
       <label className={classes.inner} htmlFor="select.lang">
-        <span className={classes.label}>
+        <span className={classes.inputLabel}>
           <span>Séléctionner</span>
         </span>
         <select

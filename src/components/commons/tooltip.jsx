@@ -1,17 +1,19 @@
 import Tippy from '@tippyjs/react';
 import classnames from 'classnames';
+// import omit from 'lodash.omit';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
+// .tippy-tooltip {
+//   background-color: #333333DD;
+// }
 const useStyles = createUseStyles({
   tooltip: {
-    borderLeft: '0 !important',
-    borderRadius: '18px !important',
-    borderRight: '0 !important',
-    borderTop: '0 !important',
+    border: 0,
+    borderRadius: 18,
     composes: ['p7'],
-    left: '0 !important',
+    left: 0,
   },
 });
 
@@ -19,28 +21,33 @@ const TooltipComponent = ({
   children,
   className,
   component,
-  onClickOutside,
   title,
-  ...props
+  useClick,
+  ...overrides
 }) => {
   const classes = useStyles();
   const content = (React.isValidElement(component) && component) || title;
-  const mergedProps = { ...props };
-  // if (!onClickOutside) {
-  //   mergedProps.trigger = 'click';
-  //   mergedProps.hideOnClick = true;
-  //   mergedProps.onClickOutside = true;
+  // const override = omit(props, ['useClick']);
+  // let config = {};
+  // if (useClick) {
+  //   config = {
+  //     hideOnClick: true,
+  //     onClickOutside: true,
+  //     trigger: 'click',
+  //   };
+  // } else {
+  //   config = { onClickOutside: false };
   // }
   return (
     <Tippy
-      hideOnClick
       interactive
       className={classnames(classes.tooltip, className)}
       content={content}
       placement="bottom"
       trigger="click"
       zIndex={999999999}
-      {...mergedProps}>
+      // {...config}
+      {...overrides}>
       {children}
     </Tippy>
   );
@@ -49,16 +56,16 @@ const TooltipComponent = ({
 TooltipComponent.defaultProps = {
   className: '',
   component: null,
-  onClickOutside: null,
   title: null,
+  useClick: false,
 };
 
 TooltipComponent.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   component: PropTypes.element,
-  onClickOutside: PropTypes.func,
   title: PropTypes.string,
+  useClick: PropTypes.bool,
 };
 
 export default TooltipComponent;

@@ -85,7 +85,14 @@ StepsComponent.propTypes = {
   current: PropTypes.number,
   steps: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
-    PropTypes.arrayOf(PropTypes.shape()),
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        path: PropTypes.string,
+        // onClick: PropTypes.func,
+        // icon: PropTypes.string,
+      })
+    ),
   ]).isRequired,
 };
 

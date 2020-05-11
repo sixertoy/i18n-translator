@@ -2,11 +2,10 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { repository, version } from '../../../../package.json';
-import { rgba } from '../../../core/utils';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: theme.colors.grey,
+    background: theme.colors.lighter,
     composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase'],
     letterSpacing: '0.12em',
   }),

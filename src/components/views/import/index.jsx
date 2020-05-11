@@ -14,22 +14,14 @@ import useStep from './use-step';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['p24'],
+    composes: ['flex-rows'],
     height: '100%',
+    margin: '48px auto 32px auto',
+    width: 800,
   },
-  inner: ({ theme }) => ({
-    marginTop: 40,
-    width: theme.sizes.stepswidth,
-  }),
-  routes: {
-    composes: ['mt24', 'flex-1'],
-    height: '100%',
-    width: '100%',
-  },
-  wrapper: {
-    composes: ['flex-rows', 'flex-start', 'items-center'],
-    height: '100%',
-    width: '100%',
+  stepper: {
+    margin: '24px auto',
+    width: '80%',
   },
 });
 
@@ -81,33 +73,29 @@ const ImportViewComponent = () => {
 
   return (
     <div className={classes.container} id="import-view">
-      <div className={classes.wrapper}>
-        <div className={classes.inner}>
-          <Steps current={step - 1} steps={steps} />
-        </div>
-        <div className={classes.routes}>
-          <Switch>
-            <Route exact path="/import/:id/step/1">
-              <Step1 name={pname} onClick={onCreateHandler} />
-            </Route>
-            <Route exact path="/import/:id/step/2">
-              <Step2 lang={lang} onChange={onSelectHandler} />
-            </Route>
-            <Route exact path="/import/:id/step/3">
-              <Step3 lang={lang} value={content} onSubmit={onEditorHandler} />
-            </Route>
-            <Route exact path="/import/:id/step/4">
-              <Step4 onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
-            </Route>
-            <Route path={['/import/:id', '/import/:id/step']}>
-              <Redirect to={`/import/${pid}/step/1`} />
-            </Route>
-            <Route path="*">
-              <Redirect to="/" />
-            </Route>
-          </Switch>
-        </div>
+      <div className={classes.stepper}>
+        <Steps current={step - 1} steps={steps} />
       </div>
+      <Switch>
+        <Route exact path="/import/:id/step/1">
+          <Step1 name={pname} onClick={onCreateHandler} />
+        </Route>
+        <Route exact path="/import/:id/step/2">
+          <Step2 lang={lang} onChange={onSelectHandler} />
+        </Route>
+        <Route exact path="/import/:id/step/3">
+          <Step3 lang={lang} value={content} onSubmit={onEditorHandler} />
+        </Route>
+        <Route exact path="/import/:id/step/4">
+          <Step4 onRestart={onRestartHandler} onSubmit={onSubmitHandler} />
+        </Route>
+        <Route path={['/import/:id', '/import/:id/step']}>
+          <Redirect to={`/import/${pid}/step/1`} />
+        </Route>
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
+      </Switch>
     </div>
   );
 };

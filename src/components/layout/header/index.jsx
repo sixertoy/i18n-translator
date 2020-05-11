@@ -10,12 +10,12 @@ const useStyles = createUseStyles({
     composes: ['px32'],
     width: '100%',
   }),
-  wrapper: ({ theme }) => ({
+  wrapper: {
     composes: ['flex-columns', 'flex-center', 'items-center', 'is-relative'],
-    height: theme.sizes.header,
-    maxHeight: theme.sizes.header,
-    minHeight: theme.sizes.header,
-  }),
+    height: 64,
+    maxHeight: 64,
+    minHeight: 64,
+  },
 });
 
 const ApplicationHeaderComponent = React.memo(() => {

@@ -60,25 +60,25 @@ const depths = {
   progressbar: 999,
 };
 
-const sizes = {
-  bottom: 80,
-  buttonSize: 32,
-  colgutter: 12,
-  colheader: 52,
-  colkey: 220,
-  colwidth: 300,
-  editor: 800,
-  footer: 40,
-  header: 64,
-  line: 60,
-  loginwidth: 250,
-  logo: 28,
-  options: 112,
-  stepbutton: 290,
-  stepinput: 350,
-  stepswidth: 680,
-  submit: 250,
-};
+const sizes = {};
+
+// const sizes = {
+//   bottom: 80,
+//   buttonSize: 32,
+//   colgutter: 12,
+//   colheader: 52,
+//   colkey: 220,
+//   colwidth: 300,
+//   footer: 40,
+//   line: 60,
+//   loginwidth: 250,
+//   logo: 28,
+//   options: 112,
+//   stepbutton: 290,
+//   stepinput: 350,
+//   stepsMaxWidth: 800,
+//   submit: 250,
+// };
 
 const colors = {
   black: '#000000',
@@ -102,9 +102,9 @@ const colors = {
 
 const themes = {
   bali: {
-    black: '#000000',
-    grey: '#8C8C8C',
-    white: '#FFFFFF',
+    // black: '#000000',
+    // grey: '#8C8C8C',
+    // white: '#FFFFFF',
     // active: '#E5356F',
     // background: '#F1F1F1',
     // even: '#F7F7F7',
@@ -117,6 +117,7 @@ const themes = {
     // triangle: '#FFFFFF',
     // valid: '#ACE539',
   },
+  bw: {},
   day: {
     // active: '#DA402B',
     // background: '#F1F1F1',
