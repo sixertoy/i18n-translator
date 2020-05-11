@@ -6,7 +6,7 @@ import Title from './title';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: theme.colors.head.background,
+    background: theme.colors.black,
     composes: ['px32'],
     width: '100%',
   }),

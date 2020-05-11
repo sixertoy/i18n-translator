@@ -1,20 +1,21 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
-  button: {
+  button: ({ theme }) => ({
     '& + &': { marginTop: 12 },
-    background: 'rgba(0, 0, 0, 0.45)',
-    borderRadius: 4,
+    background: theme.colors.black,
+    borderRadius: theme.radius.small,
     composes: ['fs18', 'is-block', 'py12', 'px24'],
-    width: 250,
-  },
+    width: theme.sizes.loginwidth,
+  }),
 });
 
 const LoginButtonComponent = React.memo(({ children, className, onClick }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <button
       className={classnames(classes.button, className)}

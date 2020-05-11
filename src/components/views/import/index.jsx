@@ -17,10 +17,10 @@ const useStyles = createUseStyles({
     composes: ['p24'],
     height: '100%',
   },
-  inner: {
+  inner: ({ theme }) => ({
     marginTop: 40,
-    width: 680,
-  },
+    width: theme.sizes.stepswidth,
+  }),
   routes: {
     composes: ['mt24', 'flex-1'],
     height: '100%',

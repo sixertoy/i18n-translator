@@ -9,22 +9,22 @@ import { updateTranslation } from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
   icon: ({ theme }) => ({
-    '.notvalid &': { color: theme.red },
-    color: theme.colors.gray,
+    '.notvalid &': { color: theme.colors.black },
+    color: theme.colors.white,
     composes: ['px12', 'fs12'],
     transition: 'color 0.5s',
   }),
   input: ({ theme }) => ({
     '&::placeholder': { composes: ['fs12'], opacity: 0.35 },
-    color: theme.font,
+    color: theme.colors.white,
     composes: ['px7', 'fs14'],
     height: '100%',
     textOverflow: 'ellipsis',
     width: '100%',
   }),
   line: ({ theme }) => ({
-    '&.even': { background: theme.even },
-    '&.odd': { background: theme.odd },
+    // '&.even': { background: theme.even },
+    // '&.odd': { background: theme.odd },
     composes: ['flex-columns', 'flex-start', 'items-center'],
     height: theme.sizes.line,
     marginBottom: 1,

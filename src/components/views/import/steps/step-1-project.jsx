@@ -11,34 +11,34 @@ import Tooltip from '../../../commons/tooltip';
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
     composes: ['py12', 'px24', 'fs18'],
-    width: theme.sizes.form,
+    width: theme.sizes.stepinput,
   }),
   container: {
     composes: ['flex-rows', 'flex-center', 'items-center'],
     height: '70%',
   },
-  icon: {
-    color: '#DDDDDD',
+  icon: ({ theme }) => ({
+    color: theme.colors.grey,
     composes: ['use-pointer', 'fs18', 'ml7'],
-  },
+  }),
   inner: ({ theme }) => ({
-    border: '1px solid #000000',
-    borderRadius: 4,
+    border: `1px solid ${theme.colors.black}`,
+    borderRadius: theme.radius.small,
     composes: ['is-block', 'mb12', 'is-relative', 'pl24', 'px7', 'py24'],
     height: 'auto',
-    width: theme.sizes.form,
+    width: theme.sizes.stepinput,
   }),
-  input: {
+  input: ({ theme }) => ({
     // TODO add disabled state
     composes: ['fs24', 'is-bold'],
-    width: 290,
-  },
-  label: {
-    background: '#F1F1F1',
-    composes: ['is-absolute', 'is-bold', 'px5', 'py5'],
+    width: theme.sizes.stepbutton,
+  }),
+  label: ({ theme }) => ({
+    background: theme.colors.white,
+    composes: ['is-absolute', 'is-bold', 'p5'],
     left: 12,
     top: -12,
-  },
+  }),
 });
 
 const StepProjectComponent = ({ name, onClick }) => {

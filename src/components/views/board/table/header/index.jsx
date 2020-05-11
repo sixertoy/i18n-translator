@@ -9,18 +9,18 @@ import Tooltip from '../../../../commons/tooltip';
 import Menu from './menu';
 
 const useStyles = createUseStyles({
-  button: {
-    background: '#DDDDDD',
-    borderRadius: '50%',
+  button: ({ theme }) => ({
+    background: theme.colors.grey,
+    borderRadius: '100%',
     composes: ['is-absolute', 'text-center', 'is-block', 'fs14', 'use-pointer'],
     height: 28,
     lineHeight: '1.6rem',
     right: 12,
     top: 12,
     width: 28,
-  },
+  }),
   header: ({ depth, theme }) => ({
-    background: '#F1F1F1',
+    background: theme.colors.white,
     height: theme.sizes.colheader,
     position: 'sticky',
     top: 0,

@@ -8,22 +8,22 @@ import Search from './search';
 import Title from './title';
 
 const useStyles = createUseStyles({
-  button: {
-    background: 'rgba(255, 255, 255, 0.05)',
+  button: ({ theme }) => ({
+    background: theme.colors.white,
     borderRadius: 20,
     composes: ['text-center', 'use-pointer'],
     height: 40,
     lineHeight: '40px',
     width: 40,
-  },
-  icon: {
-    color: '#FFFFFF',
+  }),
+  icon: ({ theme }) => ({
+    color: theme.colors.white,
     composes: ['fs24'],
-  },
+  }),
   menu: {},
   options: ({ theme }) => ({
-    background: theme.options,
-    color: theme.font,
+    background: theme.colors.black,
+    color: theme.colors.white,
     composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
     height: theme.sizes.options,
     maxHeight: theme.sizes.options,

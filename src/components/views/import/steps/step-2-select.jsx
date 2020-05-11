@@ -13,10 +13,10 @@ const useStyles = createUseStyles({
     height: '70%',
   },
   inner: ({ theme }) => ({
-    border: '1px solid #000000',
-    borderRadius: 4,
+    border: `1px solid ${theme.colors.black}`,
+    borderRadius: theme.radius.small,
     composes: ['fs12', 'text-left', 'is-relative', 'is-block', 'px24', 'py12'],
-    width: theme.sizes.form,
+    width: theme.sizes.stepinput,
   }),
   input: {
     border: 0,
@@ -24,12 +24,12 @@ const useStyles = createUseStyles({
     height: 48,
     width: '100%',
   },
-  label: {
-    background: '#F1F1F1',
-    composes: ['is-absolute', 'is-bold', 'px5', 'py5'],
+  label: ({ theme }) => ({
+    background: theme.colors.white,
+    composes: ['is-absolute', 'is-bold', 'p5'],
     left: 12,
     top: -12,
-  },
+  }),
   options: {
     composes: ['fs14', 'm0', 'p0', 'use-pointer'],
     minWidth: '100%',

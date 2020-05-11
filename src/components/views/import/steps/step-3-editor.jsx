@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
     composes: ['flex-columns', 'flex-end', 'items-center'],
   },
   editor: ({ theme }) => ({
-    borderRadius: 4,
+    borderRadius: theme.radius.mall,
     maxWidth: theme.sizes.editor,
   }),
   icon: {

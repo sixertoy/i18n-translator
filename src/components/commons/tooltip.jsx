@@ -10,8 +10,8 @@ const useStyles = createUseStyles({
     borderRadius: '18px !important',
     borderRight: '0 !important',
     borderTop: '0 !important',
+    composes: ['p7'],
     left: '0 !important',
-    padding: 7,
   },
 });
 

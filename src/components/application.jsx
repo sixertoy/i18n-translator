@@ -7,7 +7,7 @@ import NoMatch from './views/no-match';
 
 const useStyles = createUseStyles({
   application: ({ theme }) => ({
-    background: theme.background,
+    background: theme.colors.grey,
     composes: ['flex-rows', 'is-relative'],
     height: '100%',
   }),

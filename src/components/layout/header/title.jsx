@@ -8,11 +8,12 @@ const useStyles = createUseStyles({
   },
   logo: {
     composes: ['text-center', 'fs24'],
-    'line-height': 'inherit',
+    lineHeight: 'inherit',
   },
   svg: ({ theme }) => ({
+    color: theme.colors.white,
     composes: ['is-inline-block', 'mr5'],
-    fill: theme.triangle,
+    fill: theme.colors.white,
     height: theme.sizes.logo,
     width: theme.sizes.logo,
   }),

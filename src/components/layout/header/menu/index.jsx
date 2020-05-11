@@ -6,26 +6,24 @@ import {
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import { rgba } from '../../../../core/utils';
+// import { rgba } from '../../../../core/utils';
 import Tooltip from '../../../commons/tooltip';
 import Login from './login';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
     '& + &': { marginLeft: 4 },
-    '&:hover': { background: theme.colors.head.button },
-    background: rgba(theme.colors.head.button, 0.45),
+    // '&:hover': { background: theme.colors.head.button },
+    background: theme.colors.black,
     borderRadius: theme.radius.small,
-    color: theme.colors.head.color,
+    color: theme.colors.white,
     composes: ['is-block', 'fs16', 'is-bold', 'text-center', 'p7'],
     lineHeight: '1.25em',
     transition: 'background 0.5s',
     width: 'auto',
   }),
   icon: { composes: ['fs20'] },
-  label: {
-    composes: ['ml7'],
-  },
+  label: { composes: ['ml7'] },
   menu: {
     composes: ['is-absolute', 'flex-columns', 'flex-start', 'items-center'],
     left: 0,

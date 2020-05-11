@@ -39,12 +39,8 @@ const getSizeObject = size => {
 const useStyles = createUseStyles({
   background: ({ size, theme }) => ({
     ...getSizeObject(size),
-    background: theme.triangle,
-    bottom: 0,
-    composes: ['is-absolute'],
-    left: 0,
-    right: 0,
-    top: 0,
+    background: theme.colors.white,
+    composes: ['is-overlay'],
     zIndex: 10,
   }),
   bar: ({ size }) => ({
@@ -53,12 +49,8 @@ const useStyles = createUseStyles({
   }),
   progress: ({ size, theme }) => ({
     ...getSizeObject(size),
-    background: theme.header,
-    bottom: 0,
-    composes: ['is-absolute'],
-    left: 0,
-    right: 0,
-    top: 0,
+    background: theme.colors.grey,
+    composes: ['is-overlay'],
     transition: 'right 0.5s',
     zIndex: 20,
   }),

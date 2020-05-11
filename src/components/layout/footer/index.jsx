@@ -6,7 +6,7 @@ import Credits from './credits';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: theme.background,
+    background: theme.colors.black,
     composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase'],
     letterSpacing: '0.12em',
   }),
@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
     composes: ['is-relative'],
   },
   version: ({ theme }) => ({
-    color: theme.colors.font,
+    color: theme.colors.white,
   }),
 });
 

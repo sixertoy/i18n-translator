@@ -18,43 +18,34 @@ import {
 } from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
-  button: {
+  button: ({ theme }) => ({
     borderRadius: 0,
-    color: '#000000',
-    composes: [
-      'is-block',
-      'no-background',
-      // 'flex-columns',
-      // 'flex-between',
-      // 'items-center',
-      'text-center',
-      'fs16',
-    ],
+    color: theme.colors.black,
+    composes: ['is-block', 'no-background', 'text-center', 'fs16'],
     height: 40,
     lineHeight: '40px',
     width: 40,
-    // width: '100%',
-  },
+  }),
   container: {
     composes: ['flex-columns', 'flex-end', 'items-center'],
     width: 175,
   },
   danger: ({ theme }) => ({
-    color: theme.red,
-    fontWeight: 'bold',
+    color: theme.colors.black,
+    composes: ['is-bold'],
   }),
   icon: {
     composes: ['mr7'],
   },
-  splitter: {
-    background: '#FFFFFF',
+  splitter: ({ theme }) => ({
+    background: theme.colors.white,
     border: 0,
     composes: ['is-block'],
     height: 1,
     opacity: 0.15,
-  },
+  }),
   warning: ({ theme }) => ({
-    color: theme.colors.orange,
+    color: theme.colors.black,
   }),
 });
 

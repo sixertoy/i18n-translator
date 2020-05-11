@@ -8,13 +8,13 @@ import { useParams } from 'react-router-dom';
 import { selectLimits } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
-  button: {
-    background: '#000000',
-    borderRadius: 4,
-    color: '#FFFFFF',
-    composes: ['use-pointer', 'py12', 'px12', 'text-center', 'mx7'],
-    width: 250,
-  },
+  button: ({ theme }) => ({
+    background: theme.colors.black,
+    borderRadius: theme.radius.small,
+    color: theme.colors.white,
+    composes: ['use-pointer', 'p12', 'text-center', 'mx7'],
+    width: theme.sizes.stepbutton,
+  }),
   container: {
     composes: ['flex-columns', 'flex-center', 'flex-start'],
     paddingTop: '10%',

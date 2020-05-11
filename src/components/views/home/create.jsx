@@ -7,13 +7,13 @@ import { useHistory } from 'react-router-dom';
 import { createProjectAsync } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
-  button: {
-    background: '#000000',
+  button: ({ theme }) => ({
+    background: theme.colors.black,
     borderRadius: 4,
-    color: '#FFFFFF',
+    color: theme.colors.white,
     composes: ['is-block', 'px24', 'py12', 'fs18', 'text-center'],
     width: 250,
-  },
+  }),
   icon: {
     composes: ['mr12'],
   },
@@ -24,10 +24,10 @@ const useStyles = createUseStyles({
 
 const CreateComponent = React.memo(() => {
   const theme = useTheme();
-  const history = useHistory();
-  const dispatch = useDispatch();
   const classes = useStyles({ theme });
 
+  const history = useHistory();
+  const dispatch = useDispatch();
   const onDemoClick = useCallback(() => {
     dispatch(createProjectAsync()).then(id => {
       history.push(`/import/${id}/step/1`);

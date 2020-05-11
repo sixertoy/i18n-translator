@@ -9,22 +9,22 @@ import { deleteKey, updateKey } from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    '&:hover': { color: theme.active },
+    // '&:hover': { color: theme.active },
     background: 'transparent',
-    color: theme.colors.gray,
+    color: theme.colors.white,
     composes: ['pr7', 'pl12', 'is-full-height', 'is-block', 'fs12'],
     transition: 'color 0.5s',
   }),
   cell: ({ theme }) => ({
-    '&.even': { background: theme.even },
-    '&.odd': { background: theme.odd },
+    // '&.even': { background: theme.even },
+    // '&.odd': { background: theme.odd },
     borderRadius: '4px 0 0 4px',
     composes: ['flex-columns', 'flex-start', 'items-center'],
     height: theme.sizes.line,
     marginBottom: 1,
   }),
   input: {
-    '&::placeholder': { composes: ['fs12'], opacity: 0.35 },
+    '&::placeholder': { fontSize: 12, opacity: 0.35 },
     composes: ['is-bold', 'px7', 'fs12', 'is-uppercase'],
     height: '100%',
     textOverflow: 'ellipsis',

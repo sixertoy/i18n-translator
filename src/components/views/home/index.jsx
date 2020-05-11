@@ -8,15 +8,14 @@ import Signin from './signin';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    background: theme.colors.home.background,
+    background: theme.colors.black,
     composes: ['flex-rows', 'items-center', 'flex-center'],
   }),
-  logo: {
-    color: '#FFFFFF',
-    composes: ['text-center'],
-    fontSize: 48,
+  logo: ({ theme }) => ({
+    color: theme.colors.white,
+    composes: ['text-center', 'fs48'],
     marginBottom: 48,
-  },
+  }),
 });
 
 const HomeViewComponent = React.memo(() => {

@@ -14,10 +14,7 @@ const useStyles = createUseStyles({
   after: { marginLeft: 7 },
   before: { marginRight: 7 },
   percentage: {
-    composes: ['flex-columns', 'items-center', 'flex-start'],
-    maxWidth: '100%',
-    minWidth: '100%',
-    width: '100%',
+    composes: ['flex-columns', 'items-center', 'flex-start', 'is-full-width'],
   },
 });
 

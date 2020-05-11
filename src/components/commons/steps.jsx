@@ -2,30 +2,31 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
+
+import { px } from '../../core/utils';
 
 const useStyles = createUseStyles({
   item: {
     '&.after': { opacity: 0.45 },
     '&.last': { flex: 'none' },
-    composes: ['mr12', 'no-overflow', 'flex-1'],
-    lineHeight: '28px',
-    whiteSpace: 'nowrap',
+    composes: ['mr12', 'no-overflow', 'flex-1', 'no-wrap'],
+    lineHeight: px(28),
   },
-  itemCircle: {
-    '.active &': { background: '#000000', color: '#FFFFFF' },
+  itemCircle: ({ theme }) => ({
+    '.active &': { background: theme.colors.black, color: theme.colors.white },
     background: 'transparent',
-    border: '1px solid #000000',
-    borderRadius: 14,
+    border: `1px solid ${theme.colors.black}`,
+    borderRadius: '100%',
     color: '#000000',
     composes: ['fs10', 'mr5', 'is-inline-block', 'text-center'],
     height: 28,
-    lineHeight: '28px',
+    lineHeight: px(28),
     width: 28,
-  },
-  itemLabel: {
+  }),
+  itemLabel: ({ theme }) => ({
     '&:after': {
-      background: '#000000',
+      background: theme.colors.black,
       content: '""',
       height: 1,
       left: '100%',
@@ -34,9 +35,9 @@ const useStyles = createUseStyles({
       top: 16,
       width: '9999px',
     },
-    color: '#000000',
+    color: theme.colors.black,
     composes: ['fs16', 'is-inline-block', 'is-relative', 'pr7'],
-  },
+  }),
   items: {
     composes: ['flex-columns', 'flex-between', 'items-center'],
   },
@@ -44,7 +45,7 @@ const useStyles = createUseStyles({
 });
 
 const StepsComponent = React.memo(({ current, steps }) => {
-  const theme = useStyles();
+  const theme = useTheme();
   const classes = useStyles({ theme });
   const lastIndex = steps.length - 1;
   return (
