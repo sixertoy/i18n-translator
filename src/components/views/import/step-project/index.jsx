@@ -31,7 +31,7 @@ const StepProjectComponent = ({ name, onClick }) => {
   const formClasses = useFormStyles({ theme });
 
   return (
-    <div className={classes.container} id="step-create">
+    <div className={classes.container} id="step-project">
       <div className={formClasses.form}>
         <div className={formClasses.field}>
           <label className={formClasses.label} htmlFor="project.name">
