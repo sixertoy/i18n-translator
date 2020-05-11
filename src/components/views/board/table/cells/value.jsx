@@ -36,7 +36,7 @@ const ValueCellComponent = React.memo(({ id, lang, odd, project, value }) => {
   const classes = useStyles({ theme });
 
   const dispatch = useDispatch();
-  const onInputChange = useCallback(
+  const onValueUpdate = useCallback(
     evt => {
       evt.preventDefault();
       const update = evt.target.value;
@@ -55,10 +55,10 @@ const ValueCellComponent = React.memo(({ id, lang, odd, project, value }) => {
       })}>
       <input
         className={classes.input}
+        defaultValue={value}
         placeholder="Enter a value"
         type="text"
-        value={value}
-        onChange={onInputChange}
+        onBlur={onValueUpdate}
       />
       <span className={classes.icon}>
         <CheckIcon />

@@ -41,7 +41,7 @@ const InfosComponent = React.memo(() => {
   const project = useSelector(state => selectProject(state, id));
   const { overall } = useSelector(state => selectPercentages(state, id));
 
-  const onChange = useCallback(
+  const onTitleUpdate = useCallback(
     evt => {
       evt.preventDefault();
       const { value } = evt.target;
@@ -58,9 +58,9 @@ const InfosComponent = React.memo(() => {
       <div className={classes.title}>
         <input
           className={classes.input}
+          defaultValue={project.name}
           type="text"
-          value={project.name}
-          onChange={onChange}
+          onBlur={onTitleUpdate}
         />
       </div>
       <PercentageBar
