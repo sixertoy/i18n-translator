@@ -15,11 +15,11 @@ export function deleteProject(state, action) {
 }
 
 export function updateProjectName(state, action) {
-  const { project, value } = action;
+  const { name, project } = action;
   const nextState = state.reduce((acc, obj) => {
     if (obj.id !== project) return [...acc, obj];
     const mtime = Date.now();
-    const next = { ...obj, mtime, name: value };
+    const next = { ...obj, mtime, name };
     return [...acc, next];
   }, []);
   return nextState;

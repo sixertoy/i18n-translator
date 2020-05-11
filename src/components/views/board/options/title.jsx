@@ -16,12 +16,13 @@ const useStyles = createUseStyles({
       background: '#FFFFFF',
       color: '#000000',
     },
-    borderRadius: 4,
+    borderRadius: 21,
     color: theme.triangle,
     composes: ['is-bold', 'py7', 'px5'],
     fontSize: '1.6rem',
     maxWidth: '65%',
     minWidth: '65%',
+    transition: 'color 0.5s, background 0.2s',
     width: '65%',
   }),
   percentage: {
@@ -48,7 +49,7 @@ const InfosComponent = React.memo(() => {
       const empty = !value || value.trim() === '';
       // NOTE doit renvoyer une info bulle d'erreur
       if (empty) return;
-      dispatch(updateProjectName({ project: id, value }));
+      dispatch(updateProjectName({ name: value, project: id }));
     },
     [dispatch, id]
   );
