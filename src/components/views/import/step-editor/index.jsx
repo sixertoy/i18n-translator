@@ -51,26 +51,27 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
 
   const project = useSelector(state => selectProject(state, id));
 
-  const onEditorChange = useCallback((editor, valid) => {
+  const onImportHandler = useCallback(value => {
+    setContent(value);
+    setForceEditorUpdate(true);
+  }, []);
+
+  const onEditorHandler = useCallback((editor, valid) => {
     const isvalid = valid && editor && editor.trim() !== '';
     setForceEditorUpdate(false);
     setDisabled(!isvalid);
     setContent(editor);
   }, []);
 
-  const onImportContent = useCallback(next => {
-    setContent(next);
-    setForceEditorUpdate(true);
-  }, []);
-
   const onSubmitHandler = useCallback(() => {
-    onSubmit(content);
-  }, [content, onSubmit]);
+    onSubmit({ ...draft, content });
+  }, [content, draft, onSubmit]);
 
   useEffect(() => {
     if (!content) {
       const blank = createDefaultValue(project.keys);
       setContent(blank);
+      setForceEditorUpdate(true);
     }
   }, [content, id, project, project.keys]);
 
@@ -84,11 +85,11 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
         content={content}
         forceUpdate={forceEditorUpdate}
         mode="json"
-        onChange={onEditorChange}
+        onChange={onEditorHandler}
       />
       <div className={classes.controls}>
         <Dropdown
-          content={<EditorMenu onChange={onImportContent} />}
+          content={<EditorMenu onChange={onImportHandler} />}
           icon={DownloadIcon}
           label="Importer"
         />

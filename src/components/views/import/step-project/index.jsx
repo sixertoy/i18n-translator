@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { AiFillLock as LockIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -35,6 +35,10 @@ const StepProjectComponent = ({ onSubmit }) => {
   const stepStyles = useStepStyles({ theme });
   const project = useSelector(state => selectProject(state, id));
 
+  const onClickHandler = useCallback(() => {
+    onSubmit();
+  }, [onSubmit]);
+
   return (
     <div className={classes.container} id="step-project">
       <div className={stepStyles.form}>
@@ -59,7 +63,7 @@ const StepProjectComponent = ({ onSubmit }) => {
             </span>
           </Tooltip>
         </div>
-        <Button className={classes.button} onClick={onSubmit}>
+        <Button className={classes.button} onClick={onClickHandler}>
           <span>Créer</span>
         </Button>
       </div>
