@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   AiOutlineDeliveredProcedure as ChevronIcon,
   AiOutlineDownload as DownloadIcon,
@@ -43,14 +43,13 @@ function createDefaultValue(keys) {
 const StepEditorComponent = ({ draft, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-
   const { id } = useParams();
-  const { keys } = useSelector(state => selectProject(state, id));
-  const blank = createDefaultValue(keys);
 
   const [disabled, setDisabled] = useState(true);
-  const [content, setContent] = useState(draft.content || blank || '{}');
+  const [content, setContent] = useState(draft.content);
   const [forceEditorUpdate, setForceEditorUpdate] = useState(false);
+
+  const project = useSelector(state => selectProject(state, id));
 
   const onEditorChange = useCallback((editor, valid) => {
     const isvalid = valid && editor && editor.trim() !== '';
@@ -67,6 +66,13 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
   const onSubmitHandler = useCallback(() => {
     onSubmit(content);
   }, [content, onSubmit]);
+
+  useEffect(() => {
+    if (!content) {
+      const blank = createDefaultValue(project.keys);
+      setContent(blank);
+    }
+  }, [content, id, project, project.keys]);
 
   // NOTE React-Ace documentation
   // https://github.com/ajaxorg/ace/wiki/Configuring-Ace
