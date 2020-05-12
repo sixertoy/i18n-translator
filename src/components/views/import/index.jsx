@@ -32,8 +32,7 @@ const ImportViewComponent = () => {
   const classes = useStyles({ theme });
   const history = useHistory();
   const dispatch = useDispatch();
-  const { next, project, step, steps } = useStep(draft);
-  const pid = (project && project.id) || null;
+  const { id, next, step, steps } = useStep(draft);
 
   const createHandler = useCallback(() => {
     history.push(next);
@@ -57,13 +56,13 @@ const ImportViewComponent = () => {
 
   const onSubmit = useCallback(
     addLanguage => {
-      dispatch(createLanguageAsync({ ...draft, project: pid })).then(() => {
+      dispatch(createLanguageAsync({ ...draft, project: id })).then(() => {
         setDraft({});
-        const pathto = addLanguage ? `/import/${pid}/step/2` : `/board/${pid}`;
+        const pathto = addLanguage ? `/import/${id}/step/2` : `/board/${id}`;
         history.push(pathto);
       });
     },
-    [dispatch, draft, pid, history]
+    [dispatch, draft, id, history]
   );
 
   return (
@@ -89,7 +88,7 @@ const ImportViewComponent = () => {
           <Step4 onSubmit={onSubmit} />
         </Route>
         <Route path="/import/:id/(.*)?">
-          <Redirect to={`/import/${pid}/step/1`} />
+          <Redirect to={`/import/${id}/step/1`} />
         </Route>
       </Switch>
     </div>

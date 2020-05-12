@@ -1,12 +1,13 @@
 import get from 'lodash.get';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { DEFAULT_LANGUAGES } from '../../constants';
 import { selectProject } from '../../redux/selectors';
 
 const useStep = draft => {
-  // const history = useHistory();
+  const history = useHistory();
   const { id, index } = useParams();
   const project = useSelector(_ => selectProject(_, id));
 
@@ -21,6 +22,10 @@ const useStep = draft => {
     'Créer',
   ];
 
+  useEffect(() => {
+    if (!project) history.replace('/404');
+  }, [history, id, project]);
+
   // useEffect(() => {
   // const hasNoLang = step > 2 && !lang;
   // const hasNoContent = step > 3 && !content;
@@ -31,7 +36,7 @@ const useStep = draft => {
   // return () => {};
   // }, [history, step, baseurl]);
 
-  return { next, project, step, steps };
+  return { id, next, step, steps };
 };
 
 export default useStep;
