@@ -7,12 +7,24 @@ import 'ace-builds/src-min-noconflict/theme-monokai';
 import 'ace-builds/src-min-noconflict/ext-searchbox';
 import 'ace-builds/src-min-noconflict/ext-language_tools';
 
+import debounce from 'lodash.debounce';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import AceEditor from 'react-ace';
 
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
+
+function validateJSON(string, allowEmpty = true) {
+  try {
+    const parsed = JSON.parse(string);
+    if (allowEmpty) return true;
+    // NOTE do not validate if JSON is empty
+    return Object.keys(parsed).length > 0;
+  } catch (err) {
+    return false;
+  }
+}
 
 const CodeEditorComponent = ({
   className,
@@ -34,19 +46,12 @@ const CodeEditorComponent = ({
 
   const onEditorChange = useCallback(
     json => {
-      let valid = false;
-      try {
-        const parsed = JSON.parse(json);
-        // NOTE do not validate if JSON is empty
-        valid = Object.keys(parsed).length > 0;
-      } catch {
-        valid = false;
-      } finally {
-        onChange(json, valid);
-      }
+      const valid = validateJSON(json, false);
+      onChange(json, valid);
     },
     [onChange]
   );
+  const debounceEditorChange = debounce(onEditorChange, 1000);
 
   useEffect(() => {
     if (forceUpdate) onEditorChange(content);
@@ -61,7 +66,7 @@ const CodeEditorComponent = ({
       showGutter
       wrapEnabled
       className={className}
-      debounceChangePeriod={1000}
+      debounceChangePeriod={0}
       editorProps={{ $blockScrolling: true }}
       enableLiveAutocompletion={false}
       enableSnippets={false}
@@ -81,7 +86,7 @@ const CodeEditorComponent = ({
       value={content || ''}
       width="100%"
       onBeforeLoad={onReactAceBeforeLoad}
-      onChange={onEditorChange}
+      onChange={debounceEditorChange}
       onLoad={onReactAceLoad}
       // onInput={() => {}}
     />

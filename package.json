@@ -44,6 +44,7 @@
     "firebase": "^7.14.3",
     "history": "^4.10.1",
     "ikea-name-generator": "^1.0.3",
+    "lodash.debounce": "^4.0.8",
     "lodash.frompairs": "^4.0.1",
     "lodash.get": "^4.4.2",
     "lodash.isempty": "^4.4.0",
