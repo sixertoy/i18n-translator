@@ -5,7 +5,10 @@ import {
   AiOutlineDownload as DownloadIcon,
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { selectProject } from '../../../../redux/selectors';
 import Button from '../../../commons/button';
 import CodeEditor from '../../../commons/code-editor';
 import Dropdown from '../../../commons/dropdown';
@@ -30,12 +33,22 @@ const useStyles = createUseStyles({
   },
 });
 
+function createDefaultValue(keys) {
+  const json = keys.sort().reduce((acc, key) => ({ ...acc, [key]: '' }), {});
+  const value = JSON.stringify(json, null, 2);
+  return value;
+}
+
 const StepEditorComponent = ({ onSubmit, value }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
-  const [content, setContent] = useState(value);
+  const { id } = useParams();
+  const { keys } = useSelector(state => selectProject(state, id));
+  const blank = createDefaultValue(keys);
+
   const [disabled, setDisabled] = useState(true);
+  const [content, setContent] = useState(value || blank);
   const [forceEditorUpdate, setForceEditorUpdate] = useState(false);
 
   const onEditorChange = useCallback((editor, valid) => {
@@ -85,7 +98,7 @@ const StepEditorComponent = ({ onSubmit, value }) => {
 };
 
 StepEditorComponent.defaultProps = {
-  value: null,
+  value: '{}',
 };
 
 StepEditorComponent.propTypes = {
