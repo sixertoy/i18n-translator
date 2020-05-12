@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { AiFillLock as LockIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { selectProject } from '../../../../redux/selectors';
 import Button from '../../../commons/button';
 import Tooltip from '../../../commons/tooltip';
 import { useStepStyles } from '../../../hooks';
@@ -25,10 +28,12 @@ const useStyles = createUseStyles({
   }),
 });
 
-const StepProjectComponent = ({ name, onSubmit }) => {
+const StepProjectComponent = ({ onSubmit }) => {
   const theme = useTheme();
+  const { id } = useParams();
   const classes = useStyles({ theme });
   const stepStyles = useStepStyles({ theme });
+  const project = useSelector(state => selectProject(state, id));
 
   return (
     <div className={classes.container} id="step-project">
@@ -39,7 +44,7 @@ const StepProjectComponent = ({ name, onSubmit }) => {
           </label>
           <input
             className={stepStyles.input}
-            defaultValue={name}
+            defaultValue={project.name}
             name="project.name"
             type="text"
           />
@@ -63,7 +68,6 @@ const StepProjectComponent = ({ name, onSubmit }) => {
 };
 
 StepProjectComponent.propTypes = {
-  name: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

@@ -34,7 +34,6 @@ const ImportViewComponent = () => {
   const dispatch = useDispatch();
   const { next, project, step, steps } = useStep(draft);
   const pid = (project && project.id) || null;
-  const pname = (project && project.name) || null;
 
   const createHandler = useCallback(() => {
     history.push(next);
@@ -74,7 +73,7 @@ const ImportViewComponent = () => {
       </div>
       <Switch>
         <Route exact path="/import/:id/step/1">
-          <Step1 name={pname} onSubmit={createHandler} />
+          <Step1 onSubmit={createHandler} />
         </Route>
         <Route exact path="/import/:id/step/2">
           <Step2 lang={draft.lang} onSubmit={selectHandler} />
