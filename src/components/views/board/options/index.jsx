@@ -2,6 +2,7 @@ import React from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { px, rgba } from '../../../../core/utils';
 import Tooltip from '../../../commons/tooltip';
 import ContextMenu from './menu';
 import Search from './search';
@@ -9,17 +10,17 @@ import Title from './title';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    background: theme.colors.white,
+    background: rgba(theme.colors.white, 0.15),
     borderRadius: 20,
-    composes: ['text-center', 'use-pointer'],
+    color: theme.colors.white,
+    composes: ['text-center', 'use-pointer', 'fs24'],
     height: 40,
-    lineHeight: '40px',
+    lineHeight: px(40),
     width: 40,
   }),
-  icon: ({ theme }) => ({
-    color: theme.colors.white,
-    composes: ['fs24'],
-  }),
+  icon: {
+    composes: [],
+  },
   options: ({ theme }) => ({
     background: theme.colors.black,
     color: theme.colors.white,
