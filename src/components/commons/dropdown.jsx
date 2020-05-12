@@ -29,6 +29,7 @@ const DropdownComponent = React.memo(
     return (
       <div className={classes.dropdown}>
         <Tooltip
+          useHover
           animation="shift-away-subtle"
           arrow={false}
           className={classes.tooltip}

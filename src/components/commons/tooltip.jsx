@@ -22,32 +22,25 @@ const TooltipComponent = ({
   className,
   component,
   title,
-  useClick,
-  ...overrides
+  useHover,
+  ...rest
 }) => {
   const classes = useStyles();
   const content = component || title;
-  // const override = omit(props, ['useClick']);
-  // let config = {};
-  // if (useClick) {
-  //   config = {
-  //     hideOnClick: true,
-  //     onClickOutside: true,
-  //     trigger: 'click',
-  //   };
-  // } else {
-  //   config = { onClickOutside: false };
-  // }
+
+  const overrides = {
+    hideOnClick: !useHover,
+    trigger: (!useHover && 'click') || 'mouseenter focus',
+  };
   return (
     <Tippy
       interactive
       className={classnames(classes.tooltip, className)}
       content={content}
       placement="bottom"
-      trigger="click"
       zIndex={999999999}
-      // {...config}
-      {...overrides}>
+      {...overrides}
+      {...rest}>
       {children}
     </Tippy>
   );
@@ -57,7 +50,7 @@ TooltipComponent.defaultProps = {
   className: '',
   component: null,
   title: null,
-  useClick: false,
+  useHover: false,
 };
 
 TooltipComponent.propTypes = {
@@ -65,7 +58,7 @@ TooltipComponent.propTypes = {
   className: PropTypes.string,
   component: PropTypes.element,
   title: PropTypes.string,
-  useClick: PropTypes.bool,
+  useHover: PropTypes.bool,
 };
 
 export default TooltipComponent;
