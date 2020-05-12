@@ -2,10 +2,9 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import Logo from '../../../assets/logo';
-import GithubLogin from '../../commons/buttons/github';
-import GoogleLogin from '../../commons/buttons/google';
+import Login from '../../commons/login';
 import Create from './create';
-import Signin from './signin';
+import Help from './help';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
@@ -16,6 +15,13 @@ const useStyles = createUseStyles({
     color: theme.colors.white,
     composes: ['text-center', 'fs48'],
     marginBottom: 48,
+  }),
+  splitter: ({ theme }) => ({
+    background: theme.colors.black,
+    border: 0,
+    composes: ['is-block', 'my12'],
+    height: 1,
+    opacity: 0.15,
   }),
 });
 
@@ -28,12 +34,10 @@ const HomeViewComponent = React.memo(() => {
       <div className={classes.logo}>
         <Logo />
       </div>
-      <div>
-        <GithubLogin login />
-        <GoogleLogin login className="mt12" />
-      </div>
+      <Login login />
+      <hr className={classes.splitter} />
       <Create />
-      <Signin />
+      <Help />
     </div>
   );
 });
