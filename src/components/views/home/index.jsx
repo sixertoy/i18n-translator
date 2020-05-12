@@ -18,13 +18,13 @@ const useStyles = createUseStyles({
     composes: ['text-center', 'fs48'],
     marginBottom: 48,
   }),
-  splitter: ({ theme }) => ({
-    background: theme.colors.black,
-    border: 0,
-    composes: ['is-block', 'my12'],
-    height: 1,
-    opacity: 0.15,
-  }),
+  // splitter: ({ theme }) => ({
+  //   background: theme.colors.black,
+  //   border: 0,
+  //   composes: ['is-block', 'my12'],
+  //   height: 1,
+  //   opacity: 0.15,
+  // }),
 });
 
 const HomeViewComponent = React.memo(() => {
@@ -42,12 +42,11 @@ const HomeViewComponent = React.memo(() => {
                 <Logo />
               </div>
               <Login login />
-              <hr className={classes.splitter} />
+              {/* <hr className={classes.splitter} /> */}
               <Create />
               <Help />
             </div>
           )}
-          )
         </React.Fragment>
       )}
     </FirebaseAuthConsumer>
