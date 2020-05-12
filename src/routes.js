@@ -23,12 +23,7 @@ const routes = [
     component: Import,
     exact: true,
     id: ROUTES_ID.IMPORT,
-    path: [
-      '/import',
-      '/import/:id',
-      '/import/:id/step',
-      '/import/:id/step/:index(\\d)',
-    ],
+    path: ['/import/:id/step/:index(\\d)', '/import/:id?/(.*)?'],
   },
   {
     component: Board,

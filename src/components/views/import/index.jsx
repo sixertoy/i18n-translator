@@ -89,11 +89,8 @@ const ImportViewComponent = () => {
         <Route exact path="/import/:id/step/4">
           <Step4 onRestart={onRestartHandler} onSubmit={onSubmit} />
         </Route>
-        <Route path={['/import/:id', '/import/:id/step']}>
+        <Route path="/import/:id/(.*)?">
           <Redirect to={`/import/${pid}/step/1`} />
-        </Route>
-        <Route path="*">
-          <Redirect to="/" />
         </Route>
       </Switch>
     </div>
