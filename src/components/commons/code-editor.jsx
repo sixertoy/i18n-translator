@@ -1,14 +1,14 @@
 import 'ace-builds';
 import 'ace-builds/webpack-resolver';
-// import 'ace-builds/src-noconflict/ace';
-import 'ace-builds/src-noconflict/mode-jsx';
-import 'ace-builds/src-noconflict/theme-github';
-import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-min-noconflict/ace';
+import 'ace-builds/src-min-noconflict/mode-jsx';
+import 'ace-builds/src-min-noconflict/theme-github';
+import 'ace-builds/src-min-noconflict/theme-monokai';
 import 'ace-builds/src-min-noconflict/ext-searchbox';
 import 'ace-builds/src-min-noconflict/ext-language_tools';
 
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import AceEditor from 'react-ace';
 
 const PLACEHOLDER_VALUE =
@@ -22,13 +22,23 @@ const CodeEditorComponent = ({
   onChange,
 }) => {
   const editor = useRef(null);
+  const [isReady, setIsReady] = useState(false);
+
+  const onReactAceBeforeLoad = useCallback(() => {
+    setIsReady(false);
+  }, []);
+
+  const onReactAceLoad = useCallback(() => {
+    setIsReady(true);
+  }, []);
 
   const onEditorChange = useCallback(
     json => {
       let valid = false;
       try {
-        JSON.parse(json);
-        valid = true;
+        const parsed = JSON.parse(json);
+        // NOTE do not validate if JSON is empty
+        valid = Object.keys(parsed).length > 0;
       } catch {
         valid = false;
       } finally {
@@ -45,6 +55,7 @@ const CodeEditorComponent = ({
   return (
     <AceEditor
       ref={editor}
+      enableBasicAutocompletion
       focus
       highlightActiveLine
       showGutter
@@ -52,16 +63,15 @@ const CodeEditorComponent = ({
       className={className}
       debounceChangePeriod={1000}
       editorProps={{ $blockScrolling: true }}
+      enableLiveAutocompletion={false}
+      enableSnippets={false}
       fontSize={14}
       height="100%"
       mode="json"
       name="code-editor"
       placeholder={PLACEHOLDER_VALUE}
-      readOnly={disabled}
+      readOnly={!isReady || disabled}
       setOptions={{
-        enableBasicAutocompletion: true,
-        enableLiveAutocompletion: false,
-        enableSnippets: false,
         showLineNumbers: true,
         useWorker: false,
       }}
@@ -70,7 +80,9 @@ const CodeEditorComponent = ({
       theme="github"
       value={content || ''}
       width="100%"
+      onBeforeLoad={onReactAceBeforeLoad}
       onChange={onEditorChange}
+      onLoad={onReactAceLoad}
       // onInput={() => {}}
     />
   );
