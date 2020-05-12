@@ -30,35 +30,35 @@ const ImportViewComponent = () => {
 
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const history = useHistory();
-  const dispatch = useDispatch();
   const { id, next, step, steps } = useStep(draft);
 
+  const history = useHistory();
+  const dispatch = useDispatch();
   const createHandler = useCallback(() => {
+    setDraft({});
     history.push(next);
   }, [next, history]);
 
   const selectHandler = useCallback(
     lang => {
-      history.push(next);
       setDraft({ ...draft, lang });
+      history.push(next);
     },
     [next, draft, history]
   );
 
   const editorHandler = useCallback(
     content => {
-      history.push(next);
       setDraft({ ...draft, content });
+      history.push(next);
     },
     [next, draft, history]
   );
 
   const onSubmit = useCallback(
-    addLanguage => {
+    pathto => {
       dispatch(createLanguageAsync({ ...draft, project: id })).then(() => {
         setDraft({});
-        const pathto = addLanguage ? `/import/${id}/step/2` : `/board/${id}`;
         history.push(pathto);
       });
     },
