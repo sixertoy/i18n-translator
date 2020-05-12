@@ -5,6 +5,7 @@ import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import { rgba } from '../../../../../core/utils';
 import { deleteKey, updateKey } from '../../../../../redux/actions';
 import { useTableStyles } from '../../../../hooks';
 
@@ -12,7 +13,7 @@ const useStyles = createUseStyles({
   button: ({ theme }) => ({
     '&:hover': { color: theme.colors.red },
     background: 'transparent',
-    color: theme.colors.white,
+    color: rgba(theme.colors.black, 0.25),
     composes: ['pr7', 'pl12', 'is-full-height', 'is-block', 'fs12'],
     transition: 'color 0.5s',
   }),
