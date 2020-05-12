@@ -9,6 +9,7 @@ const INITIAL_REDUCERS = {
     loading: false,
   },
   whitelist: {
+    favorites: [],
     keys: {},
     languages: [],
     projects: [],
