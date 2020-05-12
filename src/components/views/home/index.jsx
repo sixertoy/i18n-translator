@@ -1,3 +1,4 @@
+import { FirebaseAuthConsumer } from '@react-firebase/auth';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -5,6 +6,7 @@ import Logo from '../../../assets/logo';
 import Login from '../../commons/login';
 import Create from './create';
 import Help from './help';
+import BoardRedirect from './redirect';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
@@ -30,15 +32,25 @@ const HomeViewComponent = React.memo(() => {
   const classes = useStyles({ theme });
 
   return (
-    <div className={classes.container} id="home-view">
-      <div className={classes.logo}>
-        <Logo />
-      </div>
-      <Login login />
-      <hr className={classes.splitter} />
-      <Create />
-      <Help />
-    </div>
+    <FirebaseAuthConsumer>
+      {({ isSignedIn }) => (
+        <React.Fragment>
+          {isSignedIn && <BoardRedirect />}
+          {!isSignedIn && (
+            <div className={classes.container} id="home-view">
+              <div className={classes.logo}>
+                <Logo />
+              </div>
+              <Login login />
+              <hr className={classes.splitter} />
+              <Create />
+              <Help />
+            </div>
+          )}
+          )
+        </React.Fragment>
+      )}
+    </FirebaseAuthConsumer>
   );
 });
 
