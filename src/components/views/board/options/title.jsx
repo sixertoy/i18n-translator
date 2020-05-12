@@ -26,6 +26,7 @@ const useStyles = createUseStyles({
     width: '65%',
   }),
   percentage: {
+    composes: ['ml12'],
     maxWidth: '65%',
     minWidth: '65%',
     width: '65%',
@@ -70,6 +71,7 @@ const InfosComponent = React.memo(() => {
         count={overall.count}
         size="normal"
         total={overall.total}
+        useCount="percent"
       />
     </div>
   );

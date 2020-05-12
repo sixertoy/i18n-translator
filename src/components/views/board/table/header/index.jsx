@@ -41,7 +41,7 @@ const ColumnHeaderComponent = React.memo(
     const tableClasses = useTableStyles({ depth, theme });
 
     const [visible, setVisible] = useState(false);
-    // const show = () => setVisible(true);
+    const show = () => setVisible(true);
     const hide = () => setVisible(false);
     console.log('visible', visible);
 
@@ -57,6 +57,7 @@ const ColumnHeaderComponent = React.memo(
             count={count}
             size="tiny"
             total={total}
+            useCount={false}
           />
           <Tooltip
             className={classes.tippy}
@@ -66,7 +67,7 @@ const ColumnHeaderComponent = React.memo(
                 collapsed={collapsed}
                 lang={lang}
                 project={project}
-                onClick={hide}
+                onClick={visible ? hide : show}
               />
             }
             offset={[20, 10]}

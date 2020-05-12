@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -37,46 +38,45 @@ const getSizeObject = size => {
 };
 
 const useStyles = createUseStyles({
-  background: ({ size, theme }) => ({
-    ...getSizeObject(size),
-    background: theme.colors.white,
-    composes: ['is-overlay'],
-    zIndex: 10,
-  }),
-  bar: ({ size }) => ({
+  progress: ({ size }) => ({
     ...getSizeObject(size),
     composes: ['is-relative', 'no-overflow', 'flex-1'],
   }),
-  progress: ({ size, theme }) => ({
+  thumb: ({ size, theme }) => ({
     ...getSizeObject(size),
     background: theme.colors.grey,
     composes: ['is-overlay'],
     transition: 'right 0.5s',
     zIndex: 20,
   }),
+  track: ({ size, theme }) => ({
+    ...getSizeObject(size),
+    background: theme.colors.white,
+    composes: ['is-overlay'],
+    zIndex: 10,
+  }),
 });
 
-const ReactDumbComponent = React.memo(({ percent, size }) => {
+const ProgresBarComponent = React.memo(({ className, percent, size }) => {
   const theme = useTheme();
   const classes = useStyles({ size, theme });
   return (
-    <div className={classes.bar}>
-      <span className={classes.background} />
-      <span
-        className={classes.progress}
-        style={{ right: `${100 - percent}%` }}
-      />
+    <div className={classnames(classes.progress, className)}>
+      <span className={classes.track} />
+      <span className={classes.thumb} style={{ right: `${100 - percent}%` }} />
     </div>
   );
 });
 
-ReactDumbComponent.defaultProps = {
+ProgresBarComponent.defaultProps = {
+  className: '',
   size: 'normal',
 };
 
-ReactDumbComponent.propTypes = {
+ProgresBarComponent.propTypes = {
+  className: PropTypes.string,
   percent: PropTypes.number.isRequired,
   size: PropTypes.string,
 };
 
-export default ReactDumbComponent;
+export default ProgresBarComponent;

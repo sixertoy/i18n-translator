@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
   options: ({ theme }) => ({
     background: theme.colors.black,
     color: theme.colors.white,
-    composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
+    composes: ['flex-columns', 'flex-between', 'items-center', 'pl20', 'pr32'],
     height: 112,
     maxHeight: 112,
     minHeight: 112,
