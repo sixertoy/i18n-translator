@@ -1,13 +1,12 @@
 import get from 'lodash.get';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { DEFAULT_LANGUAGES } from '../../constants';
 import { selectProject } from '../../redux/selectors';
 
-const useStep = (lang, content) => {
-  const history = useHistory();
+const useStep = draft => {
+  // const history = useHistory();
   const { id, index } = useParams();
   const project = useSelector(_ => selectProject(_, id));
 
@@ -17,20 +16,20 @@ const useStep = (lang, content) => {
 
   const steps = [
     get(project, 'name', 'Commencer'),
-    get(DEFAULT_LANGUAGES, [lang], 'Langue'),
+    get(DEFAULT_LANGUAGES, [draft.lang], 'Langue'),
     'Importer',
     'Créer',
   ];
 
-  useEffect(() => {
-    // const hasNoLang = step > 2 && !lang;
-    // const hasNoContent = step > 3 && !content;
-    // const shouldRedirectIfmissingValues = hasNoLang || hasNoContent;
-    // if (shouldRedirectIfmissingValues) {
-    //   history.replace(`${baseurl}/1`);
-    // }
-    return () => {};
-  }, [content, history, lang, step, baseurl]);
+  // useEffect(() => {
+  // const hasNoLang = step > 2 && !lang;
+  // const hasNoContent = step > 3 && !content;
+  // const shouldRedirectIfmissingValues = hasNoLang || hasNoContent;
+  // if (shouldRedirectIfmissingValues) {
+  //   history.replace(`${baseurl}/1`);
+  // }
+  // return () => {};
+  // }, [history, step, baseurl]);
 
   return { next, project, step, steps };
 };

@@ -26,14 +26,13 @@ const useStyles = createUseStyles({
 });
 
 const ImportViewComponent = () => {
-  const [lang, setLang] = useState(undefined);
-  const [content, setContent] = useState(null);
+  const [draft, setDraft] = useState({});
 
   const theme = useTheme();
   const classes = useStyles({ theme });
   const history = useHistory();
   const dispatch = useDispatch();
-  const { next, project, step, steps } = useStep(lang, content);
+  const { next, project, step, steps } = useStep(draft);
   const pid = (project && project.id) || null;
   const pname = (project && project.name) || null;
 
@@ -42,35 +41,30 @@ const ImportViewComponent = () => {
   }, [next, history]);
 
   const selectHandler = useCallback(
-    value => {
+    lang => {
       history.push(next);
-      setLang(value);
+      setDraft({ ...draft, lang });
     },
-    [next, history]
+    [next, draft, history]
   );
 
   const editorHandler = useCallback(
-    value => {
+    content => {
       history.push(next);
-      setContent(value);
+      setDraft({ ...draft, content });
     },
-    [next, history]
+    [next, draft, history]
   );
 
   const onSubmit = useCallback(
     addLanguage => {
-      dispatch(createLanguageAsync({ content, lang, project: pid })).then(
-        () => {
-          setLang(undefined);
-          setContent(null);
-          const pathto = addLanguage
-            ? `/import/${pid}/step/2`
-            : `/board/${pid}`;
-          history.push(pathto);
-        }
-      );
+      dispatch(createLanguageAsync({ ...draft, project: pid })).then(() => {
+        setDraft({});
+        const pathto = addLanguage ? `/import/${pid}/step/2` : `/board/${pid}`;
+        history.push(pathto);
+      });
     },
-    [dispatch, lang, content, pid, history]
+    [dispatch, draft, pid, history]
   );
 
   return (
@@ -83,10 +77,14 @@ const ImportViewComponent = () => {
           <Step1 name={pname} onSubmit={createHandler} />
         </Route>
         <Route exact path="/import/:id/step/2">
-          <Step2 lang={lang} onSubmit={selectHandler} />
+          <Step2 lang={draft.lang} onSubmit={selectHandler} />
         </Route>
         <Route exact path="/import/:id/step/3">
-          <Step3 lang={lang} value={content} onSubmit={editorHandler} />
+          <Step3
+            lang={draft.lang}
+            value={draft.content}
+            onSubmit={editorHandler}
+          />
         </Route>
         <Route exact path="/import/:id/step/4">
           <Step4 onSubmit={onSubmit} />
