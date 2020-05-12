@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const StepSelectComponent = ({ lang, onSubmit }) => {
+const StepSelectComponent = ({ draft, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const stepStyles = useStepStyles({ theme });
@@ -48,7 +48,7 @@ const StepSelectComponent = ({ lang, onSubmit }) => {
             defaultValue=""
             name="select.lang"
             placeholder="Sélectionner une langue"
-            value={lang}
+            value={draft.lang}
             onChange={onSelect}>
             <option className={stepStyles.options} value="">
               Sélectionner une langue
@@ -69,12 +69,11 @@ const StepSelectComponent = ({ lang, onSubmit }) => {
   );
 };
 
-StepSelectComponent.defaultProps = {
-  lang: undefined,
-};
-
 StepSelectComponent.propTypes = {
-  lang: PropTypes.string,
+  draft: PropTypes.shape({
+    content: PropTypes.string,
+    lang: PropTypes.string,
+  }).isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

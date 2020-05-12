@@ -34,12 +34,13 @@ const useStyles = createUseStyles({
 });
 
 function createDefaultValue(keys) {
+  if (!keys || !keys.length) return null;
   const json = keys.sort().reduce((acc, key) => ({ ...acc, [key]: '' }), {});
   const value = JSON.stringify(json, null, 2);
   return value;
 }
 
-const StepEditorComponent = ({ onSubmit, value }) => {
+const StepEditorComponent = ({ draft, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -48,7 +49,7 @@ const StepEditorComponent = ({ onSubmit, value }) => {
   const blank = createDefaultValue(keys);
 
   const [disabled, setDisabled] = useState(true);
-  const [content, setContent] = useState(value || blank);
+  const [content, setContent] = useState(draft.content || blank || '{}');
   const [forceEditorUpdate, setForceEditorUpdate] = useState(false);
 
   const onEditorChange = useCallback((editor, valid) => {
@@ -97,13 +98,12 @@ const StepEditorComponent = ({ onSubmit, value }) => {
   );
 };
 
-StepEditorComponent.defaultProps = {
-  value: '{}',
-};
-
 StepEditorComponent.propTypes = {
+  draft: PropTypes.shape({
+    content: PropTypes.string,
+    lang: PropTypes.string,
+  }).isRequired,
   onSubmit: PropTypes.func.isRequired,
-  value: PropTypes.string,
 };
 
 export default StepEditorComponent;
