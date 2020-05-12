@@ -14,7 +14,7 @@ const INITIAL_REDUCERS = {
     languages: [],
     projects: [],
     recents: [],
-    theme: getThemeByThemeId('bali'),
+    theme: getThemeByThemeId('bw'),
     user: {},
     version,
   },

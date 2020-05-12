@@ -3,6 +3,7 @@ import React from 'react';
 import { AiOutlinePlus as PlusIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { px } from '../../../../core/utils';
 import Tooltip from '../../../commons/tooltip';
 import Menu from './menu';
 
@@ -19,7 +20,7 @@ const useStyles = createUseStyles({
     composes: ['text-center', 'use-pointer'],
     fontSize: '2.2rem',
     height: 56,
-    lineHeight: '3rem',
+    lineHeight: px(51),
     width: 56,
   }),
   icon: {},

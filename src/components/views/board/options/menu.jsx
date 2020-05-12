@@ -1,6 +1,9 @@
 import classnames from 'classnames';
 import React, { useCallback } from 'react';
-import { AiOutlineClear as SwipeIcon } from 'react-icons/ai';
+import {
+  AiOutlineClear as SwipeIcon,
+  AiOutlineCopy as CloneIcon,
+} from 'react-icons/ai';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -28,7 +31,7 @@ const useStyles = createUseStyles({
     width: 170,
   },
   danger: ({ theme }) => ({
-    color: theme.colors.white,
+    color: theme.colors.danger,
     fontWeight: 'bold',
   }),
   splitter: ({ theme }) => ({
@@ -39,7 +42,7 @@ const useStyles = createUseStyles({
     opacity: 0.15,
   }),
   warning: ({ theme }) => ({
-    color: theme.colors.white,
+    color: theme.colors.warning,
   }),
 });
 
@@ -65,7 +68,7 @@ const ContextMenuComponent = React.memo(() => {
     <div className={classes.container}>
       <button className={classes.button} type="button" onClick={onCloneProject}>
         <span>Duplicate</span>
-        <SwipeIcon className={classes.icon} />
+        <CloneIcon className={classes.icon} />
       </button>
       <hr className={classes.splitter} />
       <button

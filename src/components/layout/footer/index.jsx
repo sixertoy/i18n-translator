@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
     composes: ['is-relative'],
   },
   love: ({ theme }) => ({
-    color: theme.colors.red,
+    color: theme.colors.love,
   }),
   version: ({ theme }) => ({
     color: theme.colors.darker,

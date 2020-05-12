@@ -4,7 +4,7 @@ import React, { useCallback } from 'react';
 import {
   AiOutlineClear as SwipeIcon,
   AiOutlineCopy as CloneIcon,
-  AiOutlineExpandAlt as ExpandIcon,
+  AiOutlineFullscreen as ExpandIcon,
   AiOutlineShrink as ShrinkIcon,
 } from 'react-icons/ai';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
     width: 175,
   },
   danger: ({ theme }) => ({
-    color: theme.colors.black,
+    color: theme.colors.danger,
     composes: ['is-bold'],
   }),
   icon: {
@@ -45,7 +45,7 @@ const useStyles = createUseStyles({
     opacity: 0.15,
   }),
   warning: ({ theme }) => ({
-    color: theme.colors.black,
+    color: theme.colors.warning,
   }),
 });
 

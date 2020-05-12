@@ -10,12 +10,12 @@ import Title from './title';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    background: rgba(theme.colors.white, 0.15),
+    background: rgba(theme.colors.white, 0.1),
     borderRadius: 20,
     color: theme.colors.white,
     composes: ['text-center', 'use-pointer', 'fs24'],
     height: 40,
-    lineHeight: px(40),
+    lineHeight: px(37),
     width: 40,
   }),
   icon: {

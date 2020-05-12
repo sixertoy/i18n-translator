@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { px, rgba } from '../../../../../core/utils';
 import PercentageBar from '../../../../commons/percentage-bar';
 import Tooltip from '../../../../commons/tooltip';
 import { useTableStyles } from '../../../../hooks';
@@ -10,20 +11,22 @@ import Menu from './menu';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    background: theme.colors.grey,
+    background: rgba(theme.colors.darker, 0.05),
     borderRadius: '100%',
     composes: ['is-absolute', 'text-center', 'is-block', 'fs14', 'use-pointer'],
     height: 28,
-    lineHeight: '1.6rem',
+    lineHeight: px(27),
     right: 12,
     top: 12,
     width: 28,
   }),
-  percentage: {
+  percentage: ({ theme }) => ({
+    '& .progress-thumb': { background: theme.colors.green },
+    '& .progress-track': { background: rgba(theme.colors.grey, 0.1) },
     maxWidth: '65%',
     minWidth: '65%',
     width: '65%',
-  },
+  }),
   tippy: {
     '& .tippy-content': { padding: 0 },
     padding: 0,

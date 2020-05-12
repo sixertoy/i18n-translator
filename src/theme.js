@@ -18,16 +18,21 @@ import get from 'lodash.get';
 // #D9E3F2
 // #0F133F
 // #1C223F
+// #053158
 // #6494ED
 // #295772
 // #2980B9
-// #053158
+// #00AE9F
+// #398F68
+// #72AE72
 // #ACE539
 // #D9C6B1
 // #F2E4BD
 // #FFCB6A
 // #F0812F
 // #F06F55
+// #A05154
+// #CD0000
 // #DA402B
 // #E5356F
 // #5C095A
@@ -44,17 +49,19 @@ import get from 'lodash.get';
 
 const colors = {
   black: '#000000',
+  danger: '#F53844',
   darker: '#0D0D0D',
   even: '#F7F7F7',
+  green: '#72AE72',
   grey: '#8C8C8C',
   lighter: '#F1F1F1',
+  love: '#CD0000',
   odd: '#FFFFFF',
-  red: '#D94A38',
+  warning: '#F0812F',
   white: '#FFFFFF',
 };
 
 const base = {
-  colors,
   radius: {
     big: 16,
     large: 12,
@@ -78,5 +85,6 @@ export const getAllThemes = () => themes;
 
 export const getThemeByThemeId = id => {
   const selectedTheme = get(themes, id, {});
-  return { ...base, ...selectedTheme, themeid: id };
+  const overrides = { ...colors, ...selectedTheme };
+  return { ...base, colors: overrides, themeid: id };
 };

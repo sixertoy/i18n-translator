@@ -11,7 +11,7 @@ import { useTableStyles } from '../../../../hooks';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    '&:hover': { color: theme.colors.red },
+    '&:hover': { color: theme.colors.danger },
     background: 'transparent',
     color: rgba(theme.colors.black, 0.25),
     composes: ['pr7', 'pl12', 'is-full-height', 'is-block', 'fs12'],

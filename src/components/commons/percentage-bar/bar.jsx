@@ -62,8 +62,11 @@ const ProgresBarComponent = React.memo(({ className, percent, size }) => {
   const classes = useStyles({ size, theme });
   return (
     <div className={classnames(classes.progress, className)}>
-      <span className={classes.track} />
-      <span className={classes.thumb} style={{ right: `${100 - percent}%` }} />
+      <span className={classnames(classes.track, 'progress-track')} />
+      <span
+        className={classnames(classes.thumb, 'progress-thumb')}
+        style={{ right: `${100 - percent}%` }}
+      />
     </div>
   );
 });

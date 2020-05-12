@@ -5,14 +5,15 @@ import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import { rgba } from '../../../../../core/utils';
 import { updateTranslation } from '../../../../../redux/actions';
 import { useTableStyles } from '../../../../hooks';
 
 const useStyles = createUseStyles({
   cell: {},
   icon: ({ theme }) => ({
-    '.notvalid &': { color: theme.colors.red },
-    color: theme.colors.white,
+    '.notvalid &': { color: theme.colors.danger },
+    color: rgba(theme.colors.black, 0.25),
     composes: ['px12', 'fs12'],
     transition: 'color 0.5s',
   }),

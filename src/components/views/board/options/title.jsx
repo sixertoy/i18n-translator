@@ -3,6 +3,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { rgba } from '../../../../core/utils';
 import { updateProjectName } from '../../../../redux/actions';
 import { selectPercentages, selectProject } from '../../../../redux/selectors';
 import PercentageBar from '../../../commons/percentage-bar';
@@ -25,12 +26,14 @@ const useStyles = createUseStyles({
     transition: 'color 0.5s, background 0.2s',
     width: '65%',
   }),
-  percentage: {
+  percentage: ({ theme }) => ({
+    '& .progress-thumb': { background: theme.colors.grey },
+    '& .progress-track': { background: rgba(theme.colors.white, 0.15) },
     composes: ['ml12'],
     maxWidth: '65%',
     minWidth: '65%',
     width: '65%',
-  },
+  }),
   title: {},
 });
 
