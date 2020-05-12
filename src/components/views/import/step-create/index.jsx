@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const StepFinishComponent = ({ onRestart, onSubmit }) => {
+const StepFinishComponent = ({ onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -24,14 +24,14 @@ const StepFinishComponent = ({ onRestart, onSubmit }) => {
     <div className={classes.container} id="step-create">
       <div className={classes.inner}>
         {/* TODO ajouter une info quand l'utilisateur ne peux plus ajouter de langue */}
-        <Button onClick={onRestart}>
+        <Button onClick={() => onSubmit(true)}>
           <span>Ajouter un autre langage</span>
           {/* {limited && <i>({nextCount}) langues restants</i>} */}
         </Button>
         <span className={classes.splitter}>
           <span>-&nbsp;Ou&nbsp;-</span>
         </span>
-        <Button onClick={onSubmit}>
+        <Button onClick={() => onSubmit(false)}>
           <span>Continuer</span>
         </Button>
       </div>
@@ -40,7 +40,6 @@ const StepFinishComponent = ({ onRestart, onSubmit }) => {
 };
 
 StepFinishComponent.propTypes = {
-  onRestart: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

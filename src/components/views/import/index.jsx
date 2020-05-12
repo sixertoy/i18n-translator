@@ -57,19 +57,21 @@ const ImportViewComponent = () => {
     [next, history]
   );
 
-  const onRestartHandler = useCallback(() => {
-    dispatch(createLanguageAsync({ content, lang, project: pid })).then(() => {
-      setLang(undefined);
-      setContent(null);
-      history.push(`/import/${pid}/step/2`);
-    });
-  }, [lang, content, pid, dispatch, history]);
-
-  const onSubmit = useCallback(() => {
-    dispatch(createLanguageAsync({ content, lang, project: pid })).then(() => {
-      history.push(`/board/${pid}`);
-    });
-  }, [dispatch, lang, content, pid, history]);
+  const onSubmit = useCallback(
+    addLanguage => {
+      dispatch(createLanguageAsync({ content, lang, project: pid })).then(
+        () => {
+          setLang(undefined);
+          setContent(null);
+          const pathto = addLanguage
+            ? `/import/${pid}/step/2`
+            : `/board/${pid}`;
+          history.push(pathto);
+        }
+      );
+    },
+    [dispatch, lang, content, pid, history]
+  );
 
   return (
     <div className={classes.container} id="import-view">
@@ -87,7 +89,7 @@ const ImportViewComponent = () => {
           <Step3 lang={lang} value={content} onSubmit={editorHandler} />
         </Route>
         <Route exact path="/import/:id/step/4">
-          <Step4 onRestart={onRestartHandler} onSubmit={onSubmit} />
+          <Step4 onSubmit={onSubmit} />
         </Route>
         <Route path="/import/:id/(.*)?">
           <Redirect to={`/import/${pid}/step/1`} />
