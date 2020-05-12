@@ -1,5 +1,7 @@
 import { createUseStyles } from 'react-jss';
 
+import { rgba } from '../../core/utils';
+
 const COL_WIDTH = 300;
 const DEPTHS_HEADER = 999;
 const PRIMARY_COL_WIDTH = 220;
@@ -12,6 +14,7 @@ export const useTableStyles = createUseStyles({
     composes: ['flex-columns', 'flex-start', 'items-center'],
     height: 60,
     marginBottom: 1,
+    padding: 7,
   }),
   column: ({ primary }) => ({
     maxWidth: primary ? PRIMARY_COL_WIDTH : '65%',
@@ -29,12 +32,17 @@ export const useTableStyles = createUseStyles({
     top: 0,
     zIndex: primary ? DEPTHS_HEADER + 10 : DEPTHS_HEADER - depth,
   }),
-  input: {
+  input: ({ theme }) => ({
     '&::placeholder': { fontSize: 12, opacity: 0.35 },
+    '&:focus': { background: rgba(theme.colors.black, 0.05), paddingLeft: 7 },
+    background: rgba(theme.colors.black, 0),
+    borderRadius: theme.radius.small,
     height: '100%',
+    paddingLeft: 0,
     textOverflow: 'ellipsis',
+    transition: 'background 0.5s 0.1s, padding-left 0.3s',
     width: '100%',
-  },
+  }),
 });
 
 export default useTableStyles;

@@ -2,6 +2,7 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { repository, version } from '../../../../package.json';
+import { rgba } from '../../../core/utils';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
@@ -23,7 +24,7 @@ const useStyles = createUseStyles({
     color: theme.colors.love,
   }),
   version: ({ theme }) => ({
-    color: theme.colors.darker,
+    color: rgba(theme.colors.darker, 0.35),
   }),
 });
 
