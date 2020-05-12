@@ -78,10 +78,10 @@ const ImportViewComponent = () => {
       </div>
       <Switch>
         <Route exact path="/import/:id/step/1">
-          <Step1 name={pname} onClick={createHandler} />
+          <Step1 name={pname} onSubmit={createHandler} />
         </Route>
         <Route exact path="/import/:id/step/2">
-          <Step2 lang={lang} onChange={selectHandler} />
+          <Step2 lang={lang} onSubmit={selectHandler} />
         </Route>
         <Route exact path="/import/:id/step/3">
           <Step3 lang={lang} value={content} onSubmit={editorHandler} />

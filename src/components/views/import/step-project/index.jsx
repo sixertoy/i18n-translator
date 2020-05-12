@@ -25,7 +25,7 @@ const useStyles = createUseStyles({
   }),
 });
 
-const StepProjectComponent = ({ name, onClick }) => {
+const StepProjectComponent = ({ name, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const stepStyles = useStepStyles({ theme });
@@ -54,7 +54,7 @@ const StepProjectComponent = ({ name, onClick }) => {
             </span>
           </Tooltip>
         </div>
-        <Button className={classes.button} onClick={onClick}>
+        <Button className={classes.button} onClick={onSubmit}>
           <span>Créer</span>
         </Button>
       </div>
@@ -64,7 +64,7 @@ const StepProjectComponent = ({ name, onClick }) => {
 
 StepProjectComponent.propTypes = {
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default StepProjectComponent;

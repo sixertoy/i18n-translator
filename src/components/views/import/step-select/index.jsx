@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const StepSelectComponent = ({ lang, onChange }) => {
+const StepSelectComponent = ({ lang, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const stepStyles = useStepStyles({ theme });
@@ -31,9 +31,9 @@ const StepSelectComponent = ({ lang, onChange }) => {
       const isvalid = value && value !== '' && !langs.includes(value);
       // NOTE afficher une notification d'erreur
       if (!isvalid) return;
-      onChange(value);
+      onSubmit(value);
     },
-    [langs, onChange]
+    [langs, onSubmit]
   );
 
   return (
@@ -75,7 +75,7 @@ StepSelectComponent.defaultProps = {
 
 StepSelectComponent.propTypes = {
   lang: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default StepSelectComponent;
