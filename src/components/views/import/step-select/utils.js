@@ -1,10 +1,10 @@
-export function languageAlphaSort(a, b) {
+function languageAlphaSort(a, b) {
   if (a[1] > b[1]) return 1;
   if (a[1] < b[1]) return -1;
   return 0;
 }
 
-export function languageDisabledSort(a, b) {
+function languageDisabledSort(a, b) {
   if (a[2] > b[2]) return 1;
   if (a[2] < b[2]) return -1;
   return 0;
@@ -21,3 +21,5 @@ export function flagOptionsWithDisabled(langs, defaults) {
     .sort(languageDisabledSort);
   return grouped;
 }
+
+export default { flagOptionsWithDisabled };
