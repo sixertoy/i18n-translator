@@ -3,21 +3,31 @@ import Board from './components/views/board';
 import Export from './components/views/export';
 import Home from './components/views/home';
 import Import from './components/views/import';
+import Landing from './components/views/landing';
+import LogOut from './components/views/logout';
 
 const ROUTES_ID = {
   BOARD: 'board',
   EXPORT: 'export',
   HOME: 'home',
   IMPORT: 'import',
+  LANDING: 'landing',
+  LOG_OUT: 'logout',
   NOT_FOUND: 'not-found',
 };
 
 const routes = [
   {
+    component: Landing,
+    exact: true,
+    id: ROUTES_ID.LANDING,
+    path: '/',
+  },
+  {
     component: Home,
     exact: true,
     id: ROUTES_ID.HOME,
-    path: '/',
+    path: '/home',
   },
   {
     component: Import,
@@ -36,6 +46,12 @@ const routes = [
     exact: true,
     id: ROUTES_ID.EXPORT,
     path: ['/export', '/export/:id'],
+  },
+  {
+    component: LogOut,
+    exact: true,
+    id: ROUTES_ID.LOG_OUT,
+    path: '/logout',
   },
   {
     component: NotFound,

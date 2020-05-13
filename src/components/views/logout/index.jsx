@@ -6,18 +6,18 @@ const useStyles = createUseStyles({
   container: {},
 });
 
-const HomeViewComponent = React.memo(() => {
+const LogOutViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.container} id="home-view">
+    <div className={classes.container} id="logout-view">
       <span>&nbsp;</span>
     </div>
   );
 });
 
-HomeViewComponent.defaultProps = {};
+LogOutViewComponent.defaultProps = {};
 
-HomeViewComponent.propTypes = {};
+LogOutViewComponent.propTypes = {};
 
-export default HomeViewComponent;
+export default LogOutViewComponent;
