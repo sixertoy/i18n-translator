@@ -27,8 +27,9 @@ const useStyles = createUseStyles({
     minWidth: '65%',
     width: '65%',
   }),
-  tippy: {
+  tooltip: {
     '& .tippy-content': { padding: 0 },
+    borderRadius: 27,
     padding: 0,
   },
   wrapper: {
@@ -64,7 +65,7 @@ const ColumnHeaderComponent = React.memo(
           />
           <Tooltip
             useHover
-            className={classes.tippy}
+            className={classes.tooltip}
             component={
               <Menu
                 clearable={clearable}

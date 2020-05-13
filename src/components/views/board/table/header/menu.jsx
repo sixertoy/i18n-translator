@@ -11,6 +11,7 @@ import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import { rgba } from '../../../../../core/utils';
 import {
   clearLanguage,
   deleteLanguage,
@@ -19,24 +20,24 @@ import {
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    borderRadius: 0,
+    '&:hover': { background: rgba(theme.colors.grey, 0.07) },
+    background: 'transparent',
+    borderRadius: 20,
     color: theme.colors.black,
-    composes: ['is-block', 'no-background', 'text-center', 'fs16'],
+    composes: ['is-block', 'text-center', 'fs16'],
     height: 40,
     lineHeight: '40px',
+    transition: 'background 0.5s',
     width: 40,
   }),
   container: {
-    composes: ['flex-columns', 'flex-end', 'items-center'],
+    composes: ['flex-columns', 'flex-between', 'items-center', 'p7'],
     width: 175,
   },
   danger: ({ theme }) => ({
     color: theme.colors.danger,
     composes: ['is-bold'],
   }),
-  icon: {
-    composes: ['mr7'],
-  },
   splitter: ({ theme }) => ({
     background: theme.colors.white,
     border: 0,
@@ -79,32 +80,27 @@ const ContextMenuComponent = React.memo(
           className={classnames(classes.button, classes.danger)}
           type="button"
           onClick={onDeleteLanguage}>
-          {/* <span>Remove language</span> */}
-          <DeleteIcon className={classes.icon} />
+          <DeleteIcon />
         </button>
-        {/* <hr className={classes.splitter} /> */}
         <button
           className={classnames(classes.button, classes.warning)}
           disabled={!clearable}
           type="button"
           onClick={onClearLanguage}>
-          {/* <span>Clear language</span> */}
-          <SwipeIcon className={classes.icon} />
+          <SwipeIcon />
         </button>
-        {/* <hr className={classes.splitter} /> */}
         <button
           className={classes.button}
           type="button"
           onClick={onCloneLanguage}>
-          {/* <span>Clone language</span> */}
-          <CloneIcon className={classes.icon} />
+          <CloneIcon />
         </button>
         <button
           className={classes.button}
           type="button"
           onClick={onToggleCollapse}>
-          {collapsed && <ExpandIcon className={classes.icon} />}
-          {!collapsed && <ShrinkIcon className={classes.icon} />}
+          {collapsed && <ExpandIcon />}
+          {!collapsed && <ShrinkIcon />}
         </button>
       </div>
     );
