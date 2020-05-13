@@ -1,15 +1,22 @@
 import React, { useCallback, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { rgba } from '../../../core/utils';
 import withLayout from '../../layout';
 import BigButton from './big-button';
 import Options from './options';
 import Table from './table';
 
 const useStyles = createUseStyles({
-  container: {
-    composes: ['flex-rows', 'is-relative', 'flex-1'],
-  },
+  container: ({ theme }) => ({
+    background: theme.app.container,
+    composes: ['flex-1'],
+  }),
+  layer: ({ theme }) => ({
+    background: rgba(theme.app.layer, 0.95),
+    composes: ['flex-rows', 'is-relative'],
+    height: '100%',
+  }),
   scroller: {
     composes: ['is-relative', 'flex-1'],
     height: 'auto',
@@ -44,11 +51,13 @@ const BoardViewComponent = React.memo(() => {
 
   return (
     <div className={classes.container} id="board-view">
-      <Options />
-      <div ref={scroller} className={classes.scroller}>
-        <Table scroller={scroller} />
+      <div className={classes.layer}>
+        <Options />
+        <div ref={scroller} className={classes.scroller}>
+          <Table scroller={scroller} />
+        </div>
+        <BigButton scrollTo={scrollTo} />
       </div>
-      <BigButton scrollTo={scrollTo} />
     </div>
   );
 });

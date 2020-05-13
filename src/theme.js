@@ -47,30 +47,43 @@ import get from 'lodash.get';
 //   sunset: 'linear-gradient(60deg, #1E103C 26%, #F53844 100%)',
 // };
 
+const red = '#CD0000';
+const black = '#000000';
+const white = '#FFFFFF';
+
 const colors = {
-  black: '#000000',
+  black,
   danger: '#F53844',
   darker: '#0D0D0D',
-  even: '#F7F7F7',
   green: '#72AE72',
   grey: '#8C8C8C',
   lighter: '#F1F1F1',
-  love: '#CD0000',
-  odd: '#FFFFFF',
+  red,
   warning: '#F0812F',
-  white: '#FFFFFF',
+  white,
 };
 
-const base = {
-  radius: {
-    big: 16,
-    large: 12,
-    normal: 8,
-    small: 4,
+const radius = {
+  big: 16,
+  large: 12,
+  normal: 8,
+  small: 4,
+};
+
+const sizes = {
+  colheader: 52,
+  header: 64,
+};
+
+const themeBase = {
+  app: {
+    container: black,
+    layer: white,
   },
-  sizes: {
-    colheader: 52,
-    header: 64,
+  table: {
+    even: '#F7F7F7',
+    font: black,
+    odd: white,
   },
 };
 
@@ -85,6 +98,6 @@ export const getAllThemes = () => themes;
 
 export const getThemeByThemeId = id => {
   const selectedTheme = get(themes, id, {});
-  const overrides = { ...colors, ...selectedTheme };
-  return { ...base, colors: overrides, themeid: id };
+  const themeWithBase = { ...themeBase, ...selectedTheme };
+  return { colors, radius, sizes, ...themeWithBase, themeid: id };
 };

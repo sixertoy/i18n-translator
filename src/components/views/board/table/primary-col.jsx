@@ -37,7 +37,12 @@ const PrimaryColumnComponent = React.memo(({ items, project, scroller }) => {
 
   return (
     <div
-      className={classnames(classes.column, tableClasses.column, { shadow })}
+      className={classnames(
+        classes.column,
+        tableClasses.column,
+        'primary-keys',
+        { shadow }
+      )}
       style={{ left }}>
       <div className={classes.wrapper}>
         <div className={classnames(classes.header, tableClasses.header)}>
