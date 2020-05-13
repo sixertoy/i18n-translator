@@ -1,13 +1,17 @@
 import React from 'react';
-import { AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import Tooltip from '../../../commons/tooltip';
+import UserButton from './button';
+import UserAccount from './user';
 
 const useStyles = createUseStyles({
-  container: {
-    composes: [],
-  },
+  container: {},
+  tooltip: ({ theme }) => ({
+    borderRadius: theme.radius.small,
+    padding: 8,
+  }),
+  wrapper: {},
 });
 
 const AccountComponent = React.memo(() => {
@@ -16,13 +20,12 @@ const AccountComponent = React.memo(() => {
   return (
     <div className={classes.container} id="header-account">
       <Tooltip
-        arrow={false}
         className={classes.tooltip}
-        component={<div>toto</div>}
-        placement="bottom-start">
-        <button className={classes.button} type="button">
-          <UserIcon />
-        </button>
+        component={<UserAccount />}
+        placement="bottom-end">
+        <div className={classes.wrapper}>
+          <UserButton />
+        </div>
       </Tooltip>
     </div>
   );

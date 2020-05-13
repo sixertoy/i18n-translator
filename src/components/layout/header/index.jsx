@@ -2,8 +2,8 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import Account from './account';
-import Logo from './logo';
 import Menu from './menu';
+import Title from './title';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
@@ -12,7 +12,13 @@ const useStyles = createUseStyles({
   }),
   layer: ({ theme }) => ({
     background: theme.colors.grey,
-    composes: ['px32', 'flex-columns', 'flex-between', 'items-center'],
+    composes: [
+      'px32',
+      'flex-columns',
+      'flex-between',
+      'items-center',
+      'is-relative',
+    ],
     height: theme.sizes.header,
     maxHeight: theme.sizes.header,
     minHeight: theme.sizes.header,
@@ -26,7 +32,7 @@ const ApplicationHeaderComponent = React.memo(() => {
     <div className={classes.container} id="layout-header">
       <div className={classes.layer}>
         <Menu />
-        <Logo />
+        <Title />
         <Account />
       </div>
     </div>

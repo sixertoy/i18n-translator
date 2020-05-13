@@ -20,8 +20,8 @@ const useStyles = createUseStyles({
     transition: 'background 0.5s',
     width: 'auto',
   }),
-  menu: {
-    composes: ['flex-columns', 'flex-start', 'items-center'],
+  container: {
+    composes: ['no-flex'],
   },
   tooltip: ({ theme }) => ({
     '& .tippy-content': { padding: 0 },
@@ -31,26 +31,31 @@ const useStyles = createUseStyles({
     padding: 8,
     top: 7,
   }),
+  wrapper: {
+    composes: ['flex-columns', 'flex-start', 'items-center'],
+  },
 });
 
 const ApplicationMenuComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.menu}>
-      <Link className={classes.button} to="/">
-        <HomeIcon className="fs20" />
-      </Link>
-      <Tooltip
-        arrow={false}
-        className={classes.tooltip}
-        component={<Projects />}
-        placement="bottom-start">
-        <button className={classes.button} type="button">
-          <ProjectsIcon className="fs20" />
-          <span className="ml7">Projets</span>
-        </button>
-      </Tooltip>
+    <div className={classes.container} id="header-menu">
+      <div className={classes.wrapper}>
+        <Link className={classes.button} to="/">
+          <HomeIcon className="fs20" />
+        </Link>
+        <Tooltip
+          arrow={false}
+          className={classes.tooltip}
+          component={<Projects />}
+          placement="bottom-start">
+          <button className={classes.button} type="button">
+            <ProjectsIcon className="fs20" />
+            <span className="ml7">Projets</span>
+          </button>
+        </Tooltip>
+      </div>
     </div>
   );
 });
