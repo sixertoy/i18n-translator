@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -28,23 +28,41 @@ const useStyles = createUseStyles({
 const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const [error, setError] = useState(false);
+  const [content, setContent] = useState(value);
   const tableClasses = useTableStyles({ primary: true, theme });
 
   const dispatch = useDispatch();
   const onDeleteKey = useCallback(() => {
     dispatch(deleteKey({ key: value, project }));
-  }, [project, value, dispatch]);
+  }, [dispatch, value, project]);
 
-  const onKeyBlur = useCallback(
+  const onInputChange = useCallback(
     evt => {
       evt.preventDefault();
       const update = evt.target.value;
-      const exists = items.includes(update);
-      // NOTE renvoyer une notification d'erreur
-      if (exists) return;
-      dispatch(updateKey({ previous: value, project, update }));
+      const isEmpty = update.trim() === '';
+      const isDuplicate = items.includes(update);
+      setError(isDuplicate || isEmpty);
+      setContent(update);
     },
-    [dispatch, items, project, value]
+    [items]
+  );
+
+  const onInputBlur = useCallback(
+    evt => {
+      evt.preventDefault();
+      const update = evt.target.value;
+      const isEqual = update === value;
+      const isEmpty = update.trim() === '';
+      const isDuplicate = items.includes(update);
+      const hasError = !isEqual && (isEmpty || isDuplicate);
+      setError(hasError);
+      if (!hasError) {
+        dispatch(updateKey({ previous: value, project, update }));
+      }
+    },
+    [value, project, items, dispatch]
   );
 
   const scrollId = `scroll::${value}`;
@@ -55,15 +73,20 @@ const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
         odd,
       })}
       id={scrollId}>
-      <button className={classes.button} type="button" onClick={onDeleteKey}>
+      <button
+        className={classes.button}
+        disabled={error}
+        type="button"
+        onClick={onDeleteKey}>
         <ClearIcon />
       </button>
       <input
-        className={classnames(classes.input, tableClasses.input)}
-        defaultValue={value}
+        className={classnames(classes.input, tableClasses.input, { error })}
         placeholder="Enter a value"
         type="text"
-        onBlur={onKeyBlur}
+        value={content}
+        onBlur={onInputBlur}
+        onChange={onInputChange}
       />
     </div>
   );
