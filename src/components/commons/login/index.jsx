@@ -1,9 +1,10 @@
-import { FirebaseAuthConsumer } from '@react-firebase/auth';
+import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import Signin from './signin';
+import GithubLogin from '../buttons/github';
+import GoogleLogin from '../buttons/google';
 import Signout from './signout';
 
 const useStyles = createUseStyles({
@@ -15,14 +16,17 @@ const LoginComponent = React.memo(({ login }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <FirebaseAuthConsumer>
-      {({ firebase, isSignedIn }) => (
-        <div className={classes.login}>
-          {!isSignedIn && <Signin firebase={firebase} login={login} />}
-          {isSignedIn && <Signout firebase={firebase} />}
-        </div>
-      )}
-    </FirebaseAuthConsumer>
+    <div className={classes.login}>
+      <IfFirebaseUnAuthed>
+        {() => (
+          <React.Fragment>
+            <GithubLogin login={login} />
+            <GoogleLogin className="mt7" login={login} />
+          </React.Fragment>
+        )}
+      </IfFirebaseUnAuthed>
+      <IfFirebaseAuthed>{() => <Signout />}</IfFirebaseAuthed>
+    </div>
   );
 });
 

@@ -1,15 +1,15 @@
+import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { AiFillGithub as GithubIcon } from 'react-icons/ai';
 
 import Button from '../button';
 
-const GithubButtonComponent = React.memo(({ className, firebase, login }) => {
+const GithubButtonComponent = React.memo(({ className, login }) => {
   return (
     <Button
       className={className}
       onClick={() => {
-        if (!firebase) return;
         const githubAuthProvider = new firebase.auth.GithubAuthProvider();
         firebase.auth().signInWithPopup(githubAuthProvider);
       }}>
@@ -22,13 +22,11 @@ const GithubButtonComponent = React.memo(({ className, firebase, login }) => {
 
 GithubButtonComponent.defaultProps = {
   className: '',
-  firebase: null,
   login: false,
 };
 
 GithubButtonComponent.propTypes = {
   className: PropTypes.string,
-  firebase: PropTypes.shape(),
   login: PropTypes.bool,
 };
 

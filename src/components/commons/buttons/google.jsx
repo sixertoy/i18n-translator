@@ -1,15 +1,15 @@
+import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 
 import Button from '../button';
 
-const GoogleButtonComponent = React.memo(({ className, firebase, login }) => {
+const GoogleButtonComponent = React.memo(({ className, login }) => {
   return (
     <Button
       className={className}
       onClick={() => {
-        if (!firebase) return;
         const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(googleAuthProvider);
       }}>
@@ -22,13 +22,11 @@ const GoogleButtonComponent = React.memo(({ className, firebase, login }) => {
 
 GoogleButtonComponent.defaultProps = {
   className: '',
-  firebase: false,
   login: false,
 };
 
 GoogleButtonComponent.propTypes = {
   className: PropTypes.string,
-  firebase: PropTypes.shape(),
   login: PropTypes.bool,
 };
 

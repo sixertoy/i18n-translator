@@ -1,15 +1,20 @@
-import PropTypes from 'prop-types';
+import firebase from 'firebase/app';
 import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Button from '../button';
 
-const SignoutComponent = React.memo(({ firebase }) => {
+const SignoutComponent = React.memo(() => {
+  const history = useHistory();
+
   const onSignOut = useCallback(() => {
     firebase
       .auth()
       .signOut()
-      .then(() => {});
-  }, [firebase]);
+      .then(() => {
+        history.push('/');
+      });
+  }, [history]);
 
   return (
     <Button onClick={onSignOut}>
@@ -18,8 +23,6 @@ const SignoutComponent = React.memo(({ firebase }) => {
   );
 });
 
-SignoutComponent.propTypes = {
-  firebase: PropTypes.shape().isRequired,
-};
+SignoutComponent.propTypes = {};
 
 export default SignoutComponent;
