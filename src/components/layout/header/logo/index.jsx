@@ -10,7 +10,6 @@ const useStyles = createUseStyles({
     composes: ['text-center', 'fs24'],
     lineHeight: 'inherit',
   },
-  // logo: { fontFamily: `'Lobster Two', cursive`, },
   svg: ({ theme }) => ({
     color: theme.colors.white,
     composes: ['is-inline-block', 'mr5'],
