@@ -18,12 +18,12 @@ const AccountUserComponent = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <FirebaseAuthConsumer>
-      {({ user }) => {
+      {({ providerId, user }) => {
         const email = get(user, 'email');
         const username = get(user, 'displayName');
         const lastSignin = get(user, 'metadata.lastSignInTime');
-        const providerId = get(user, 'providerData.0.providerId');
         // console.log('user', user);
+        // const uid = get(user, 'uid');
         // const anonymous = get(user, 'isAnonymous');
         // const emailVerified = get(user, 'emailVerified');
         return (
