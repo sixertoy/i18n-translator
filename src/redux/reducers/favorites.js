@@ -1,24 +1,18 @@
 import { EVENT_TYPES } from '../../constants';
 
-export function createProject(state, action) {
-  const { id } = action;
-  return [...state, id];
-}
-
-export function deleteProject(state, action) {
+function toggleFavorite(state, action) {
   const { project } = action;
-  const filtered = state.filter(obj => obj.id !== project);
+  console.log('project', project);
+  const isInclude = state.includes(project);
+  if (!isInclude) return [...state, project];
+  const filtered = state.filter(id => id !== project);
   return filtered;
 }
 
 const favorites = (state = [], action) => {
   switch (action.type) {
-    // case EVENT_TYPES.RECENTS_FLUSH:
-    //   return [];
-    case EVENT_TYPES.PROJECT_CREATE:
-      return createProject(state, action);
-    case EVENT_TYPES.PROJECT_DELETE:
-      return deleteProject(state, action);
+    case EVENT_TYPES.PROJECT_TOGGLE_FAV:
+      return toggleFavorite(state, action);
     default:
       return state;
   }

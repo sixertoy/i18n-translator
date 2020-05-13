@@ -28,6 +28,7 @@ export const EVENT_TYPES = {
   PROJECT_CREATE: 'onProjectCreate',
   PROJECT_DELETE: 'onProjectDelete',
   PROJECT_NAME_UPDATE: 'onProjectNameUpdate',
+  PROJECT_TOGGLE_FAV: 'onProjectToggleFav',
   // RECENTS_FLUSH: 'onRecentsFlush',
 };
 

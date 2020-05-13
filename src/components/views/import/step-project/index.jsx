@@ -53,6 +53,7 @@ const StepProjectComponent = ({ onSubmit }) => {
             type="text"
           />
           <Tooltip
+            useHover
             className={classes.tooltip}
             maxWidth={240}
             offset={[3, 0]}

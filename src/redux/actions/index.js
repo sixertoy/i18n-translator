@@ -7,6 +7,7 @@ export { default as deleteKey } from './delete-key';
 export { default as deleteLanguage } from './delete-language';
 export { default as deleteProject } from './delete-project';
 export { default as toggleCollapseLanguage } from './toggle-collapse-language';
+export { default as toggleFavorite } from './toggle-favorite';
 export { default as updateKey } from './update-key';
 export { default as updateProjectName } from './update-project-name';
 export { default as updateTranslation } from './update-translation';

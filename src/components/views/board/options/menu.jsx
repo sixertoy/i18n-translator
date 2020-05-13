@@ -1,15 +1,22 @@
 import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import {
+  AiFillStar as FavOn,
   AiOutlineClear as SwipeIcon,
   AiOutlineCopy as CloneIcon,
+  AiOutlineStar as FavOff,
 } from 'react-icons/ai';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { clearProject, deleteProject } from '../../../../redux/actions';
+import {
+  clearProject,
+  deleteProject,
+  toggleFavorite,
+} from '../../../../redux/actions';
+import { selectProject } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -51,12 +58,19 @@ const ContextMenuComponent = React.memo(() => {
   const classes = useStyles({ theme });
 
   const { id } = useParams();
+  const project = useSelector(state => selectProject(state, id));
+  const { isFavorite } = project;
+
   const history = useHistory();
   const dispatch = useDispatch();
   const onDelete = useCallback(() => {
     dispatch(deleteProject(id));
     history.replace('/');
   }, [id, dispatch, history]);
+
+  const onTogglFavorite = useCallback(() => {
+    dispatch(toggleFavorite({ project: id }));
+  }, [dispatch, id]);
 
   const onClearProject = useCallback(() => {
     dispatch(clearProject({ project: id }));
@@ -66,6 +80,24 @@ const ContextMenuComponent = React.memo(() => {
 
   return (
     <div className={classes.container}>
+      <button
+        className={classes.button}
+        type="button"
+        onClick={onTogglFavorite}>
+        {!isFavorite && (
+          <React.Fragment>
+            <span>Ajouter aux favoris</span>
+            <FavOff className={classes.icon} />
+          </React.Fragment>
+        )}
+        {isFavorite && (
+          <React.Fragment>
+            <span>Supprimer des favoris</span>
+            <FavOn className={classes.icon} />
+          </React.Fragment>
+        )}
+      </button>
+      <hr className={classes.splitter} />
       <button className={classes.button} type="button" onClick={onCloneProject}>
         <span>Duplicate</span>
         <CloneIcon className={classes.icon} />
