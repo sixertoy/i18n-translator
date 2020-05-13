@@ -1,3 +1,7 @@
+// NOTE Documentation pour SyntaxError
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError
+// NOTE Tous les messages d'erreur de JSON.parse
+// https://airbrake.io/blog/javascript-error-handling/syntaxerror-json-parse-bad-parsing
 const groups = [
   'SyntaxError: JSON.parse: unterminated string literal',
   'SyntaxError: JSON.parse: bad control character in string literal',

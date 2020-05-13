@@ -38,7 +38,8 @@ const CodeEditorComponent = ({
   const onEditorChange = useCallback(
     json => {
       const errors = validate(json, false);
-      onChange(json, errors);
+      const hasErrors = Array.isArray(errors) && errors.length;
+      onChange(json, (hasErrors && errors) || null);
     },
     [onChange]
   );

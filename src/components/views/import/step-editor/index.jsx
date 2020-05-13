@@ -12,8 +12,8 @@ import { selectProject } from '../../../../redux/selectors';
 import Button from '../../../commons/button';
 import CodeEditor from '../../../commons/code-editor';
 import Dropdown from '../../../commons/dropdown';
-import { createEditorDefaultValue } from '../utils';
 import EditorMenu from './menu';
+import { createEditorDefaultValue } from './utils';
 
 const useStyles = createUseStyles({
   container: {
@@ -51,8 +51,8 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
   }, []);
 
   const onEditorHandler = useCallback((editor, errors) => {
-    const hasErrors = errors && errors.length;
-    const isvalid = hasErrors && editor && editor.trim() !== '';
+    console.log('errors => ', errors);
+    const isvalid = !errors && editor && editor.trim() !== '';
     setForceEditorUpdate(false);
     setDisabled(!isvalid);
     setContent(editor);
