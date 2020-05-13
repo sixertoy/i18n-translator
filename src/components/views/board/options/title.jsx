@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { rgba } from '../../../../core/utils';
 import { updateProjectName } from '../../../../redux/actions';
 import { selectPercentages, selectProject } from '../../../../redux/selectors';
+import FavoriteButton from '../../../commons/buttons/favorite';
 import PercentageBar from '../../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
@@ -45,6 +46,7 @@ const InfosComponent = React.memo(() => {
   const dispatch = useDispatch();
   const project = useSelector(state => selectProject(state, id));
   const { overall } = useSelector(state => selectPercentages(state, id));
+  const { isFavorite } = project;
 
   const onTitleUpdate = useCallback(
     evt => {
@@ -61,6 +63,7 @@ const InfosComponent = React.memo(() => {
   return (
     <div className={classes.infos}>
       <div className={classes.title}>
+        <FavoriteButton id={id} isFavorite={isFavorite} />
         <input
           className={classes.input}
           defaultValue={project.name}

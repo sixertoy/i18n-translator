@@ -68,7 +68,7 @@ const ContextMenuComponent = React.memo(() => {
     history.replace('/');
   }, [id, dispatch, history]);
 
-  const onTogglFavorite = useCallback(() => {
+  const onToggleFavorite = useCallback(() => {
     dispatch(toggleFavorite({ project: id }));
   }, [dispatch, id]);
 
@@ -83,7 +83,7 @@ const ContextMenuComponent = React.memo(() => {
       <button
         className={classes.button}
         type="button"
-        onClick={onTogglFavorite}>
+        onClick={onToggleFavorite}>
         {!isFavorite && (
           <React.Fragment>
             <span>Ajouter aux favoris</span>

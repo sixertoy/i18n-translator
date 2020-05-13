@@ -2,7 +2,6 @@ import { EVENT_TYPES } from '../../constants';
 
 function toggleFavorite(state, action) {
   const { project } = action;
-  console.log('project', project);
   const isInclude = state.includes(project);
   if (!isInclude) return [...state, project];
   const filtered = state.filter(id => id !== project);
