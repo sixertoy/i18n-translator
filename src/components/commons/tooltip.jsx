@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
-// .tippy-tooltip {
-//   background-color: #333333DD;
-// }
 const useStyles = createUseStyles({
   tooltip: {
     border: 0,

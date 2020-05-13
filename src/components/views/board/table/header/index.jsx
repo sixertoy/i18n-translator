@@ -63,6 +63,7 @@ const ColumnHeaderComponent = React.memo(
             useCount={false}
           />
           <Tooltip
+            useHover
             className={classes.tippy}
             component={
               <Menu

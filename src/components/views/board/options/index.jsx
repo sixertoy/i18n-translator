@@ -18,13 +18,18 @@ const useStyles = createUseStyles({
     lineHeight: px(37),
     width: 40,
   }),
-  options: ({ theme }) => ({
+  container: ({ theme }) => ({
     background: theme.colors.black,
-    color: theme.colors.white,
-    composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
     height: 112,
     maxHeight: 112,
     minHeight: 112,
+  }),
+  layer: ({ theme }) => ({
+    background: rgba(theme.colors.white, 0.01),
+    color: theme.colors.white,
+    composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
+    height: '100%',
+    width: '100%',
   }),
 });
 
@@ -33,15 +38,17 @@ const OptionsComponent = React.memo(() => {
   const classes = useStyles({ theme });
 
   return (
-    <div className={classes.options}>
-      <Title />
-      <Search />
-      <div>
-        <Tooltip component={<ContextMenu />}>
-          <div className={classes.button}>
-            <ContextIcon />
-          </div>
-        </Tooltip>
+    <div className={classes.container} id="board-options">
+      <div className={classes.layer}>
+        <Title />
+        <Search />
+        <div>
+          <Tooltip useHover component={<ContextMenu />}>
+            <div className={classes.button}>
+              <ContextIcon />
+            </div>
+          </Tooltip>
+        </div>
       </div>
     </div>
   );
