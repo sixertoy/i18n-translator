@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { useTableStyles } from '../../../hooks';
 import ValueCell from './cells/value';
 import Header from './header';
+import useTableStyles from './use-table-styles';
 
 const useStyles = createUseStyles({
   column: {

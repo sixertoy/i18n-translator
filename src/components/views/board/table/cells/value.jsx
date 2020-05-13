@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 import { rgba } from '../../../../../core/utils';
 import { updateTranslation } from '../../../../../redux/actions';
-import { useTableStyles } from '../../../../hooks';
+import useTableStyles from '../use-table-styles';
 
 const useStyles = createUseStyles({
   cell: {},

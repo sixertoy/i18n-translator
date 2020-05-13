@@ -11,8 +11,8 @@ import {
   selectPercentages,
   selectPrimaryKeys,
 } from '../../../../redux/selectors';
-import { useTableStyles } from '../../../hooks';
 import PrimaryColumn from './primary-col';
+import useTableStyles from './use-table-styles';
 import ValuesColumn from './values-col';
 
 const useStyles = createUseStyles({

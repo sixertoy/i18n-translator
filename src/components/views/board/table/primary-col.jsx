@@ -4,8 +4,9 @@ import React from 'react';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { useScroller, useTableStyles } from '../../../hooks';
+import { useScroller } from '../../../hooks';
 import Key from './cells/key';
+import useTableStyles from './use-table-styles';
 
 const useStyles = createUseStyles({
   column: {

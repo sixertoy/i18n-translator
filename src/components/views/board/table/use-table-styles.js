@@ -1,12 +1,12 @@
 import { createUseStyles } from 'react-jss';
 
-import { rgba } from '../../core/utils';
+import { rgba } from '../../../../core/utils';
 
 const COL_WIDTH = 300;
 const DEPTHS_HEADER = 999;
 const PRIMARY_COL_WIDTH = 220;
 
-export const useTableStyles = createUseStyles({
+const useTableStyles = createUseStyles({
   cell: ({ theme }) => ({
     '&.even': { background: theme.table.even },
     '&.odd': { background: theme.table.odd },
@@ -34,23 +34,24 @@ export const useTableStyles = createUseStyles({
   }),
   input: ({ theme }) => ({
     '&.error': {
-      background: rgba(theme.colors.black, 0.05),
-      color: theme.colors.danger,
-      paddingLeft: 7,
+      background: theme.colors.danger,
+      color: `${theme.colors.white} !important`,
+      padding: 7,
     },
+    '&.error::placeholder': { color: theme.colors.white },
     '&::placeholder': { fontSize: 12, opacity: 0.35 },
-    '&:focus': {
+    '&:focus:not(.error)': {
       background: rgba(theme.colors.black, 0.05),
       color: rgba(theme.table.font, 0.85),
       paddingLeft: 7,
     },
-    '.primary-keys &': { color: rgba(theme.table.font, 1) },
-    background: rgba(theme.colors.black, 0),
+    '.primary-keys &': {
+      color: rgba(theme.table.font, 1),
+    },
     borderColor: 'transparent',
     borderRadius: theme.radius.small,
     borderStyle: 'solid',
     borderWidth: 1,
-    color: rgba(theme.table.font, 0.5),
     height: '100%',
     paddingLeft: 0,
     textOverflow: 'ellipsis',

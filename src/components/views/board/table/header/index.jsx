@@ -6,7 +6,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { px, rgba } from '../../../../../core/utils';
 import PercentageBar from '../../../../commons/percentage-bar';
 import Tooltip from '../../../../commons/tooltip';
-import { useTableStyles } from '../../../../hooks';
+import useTableStyles from '../use-table-styles';
 import Menu from './menu';
 
 const useStyles = createUseStyles({

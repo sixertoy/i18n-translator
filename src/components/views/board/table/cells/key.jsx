@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 
 import { rgba } from '../../../../../core/utils';
 import { deleteKey, updateKey } from '../../../../../redux/actions';
-import { useTableStyles } from '../../../../hooks';
+import useTableStyles from '../use-table-styles';
+import { checkIfIsDuplicated, checkIfIsEmpty, checkIfIsEqual } from '../utils';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -21,7 +22,7 @@ const useStyles = createUseStyles({
     borderRadius: '4px 0 0 4px',
   },
   input: {
-    composes: ['is-bold', 'px7', 'fs12', 'is-uppercase'],
+    composes: ['is-bold', 'px7', 'fs12'],
   },
 });
 
@@ -41,28 +42,26 @@ const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
     evt => {
       evt.preventDefault();
       const update = evt.target.value;
-      const isEmpty = update.trim() === '';
-      const isDuplicate = items.includes(update);
-      setError(isDuplicate || isEmpty);
+      const isEmpty = checkIfIsEmpty(update);
+      const isDuplicate = checkIfIsDuplicated(update, value, items);
+      setError(isEmpty || isDuplicate);
       setContent(update);
     },
-    [items]
+    [items, value]
   );
 
   const onInputBlur = useCallback(
     evt => {
       evt.preventDefault();
       const update = evt.target.value;
-      const isEqual = update === value;
-      const isEmpty = update.trim() === '';
-      const isDuplicate = items.includes(update);
-      const hasError = !isEqual && (isEmpty || isDuplicate);
-      setError(hasError);
-      if (!hasError) {
+      const isEmpty = checkIfIsEmpty(update);
+      const isEqual = checkIfIsEqual(update, value);
+      const isDuplicate = checkIfIsDuplicated(update, value, items);
+      if (!isEqual && !isEmpty && !isDuplicate) {
         dispatch(updateKey({ previous: value, project, update }));
       }
     },
-    [value, project, items, dispatch]
+    [dispatch, items, project, value]
   );
 
   const scrollId = `scroll::${value}`;
@@ -81,7 +80,10 @@ const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
         <ClearIcon />
       </button>
       <input
-        className={classnames(classes.input, tableClasses.input, { error })}
+        className={classnames(classes.input, tableClasses.input, {
+          error,
+          valid: !error,
+        })}
         placeholder="Enter a value"
         type="text"
         value={content}
