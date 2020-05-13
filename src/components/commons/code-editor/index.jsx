@@ -12,19 +12,10 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import AceEditor from 'react-ace';
 
+import validate from './validator';
+
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
-
-function validateJSON(string, allowEmpty = true) {
-  try {
-    const parsed = JSON.parse(string);
-    if (allowEmpty) return true;
-    // NOTE do not validate if JSON is empty
-    return Object.keys(parsed).length > 0;
-  } catch (err) {
-    return false;
-  }
-}
 
 const CodeEditorComponent = ({
   className,
@@ -46,8 +37,8 @@ const CodeEditorComponent = ({
 
   const onEditorChange = useCallback(
     json => {
-      const valid = validateJSON(json, false);
-      onChange(json, valid);
+      const errors = validate(json, false);
+      onChange(json, errors);
     },
     [onChange]
   );

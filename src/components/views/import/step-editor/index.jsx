@@ -12,6 +12,7 @@ import { selectProject } from '../../../../redux/selectors';
 import Button from '../../../commons/button';
 import CodeEditor from '../../../commons/code-editor';
 import Dropdown from '../../../commons/dropdown';
+import { createEditorDefaultValue } from '../utils';
 import EditorMenu from './menu';
 
 const useStyles = createUseStyles({
@@ -33,13 +34,6 @@ const useStyles = createUseStyles({
   },
 });
 
-function createDefaultValue(keys) {
-  if (!keys || !keys.length) return null;
-  const json = keys.sort().reduce((acc, key) => ({ ...acc, [key]: '' }), {});
-  const value = JSON.stringify(json, null, 2);
-  return value;
-}
-
 const StepEditorComponent = ({ draft, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -56,8 +50,9 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
     setForceEditorUpdate(true);
   }, []);
 
-  const onEditorHandler = useCallback((editor, valid) => {
-    const isvalid = valid && editor && editor.trim() !== '';
+  const onEditorHandler = useCallback((editor, errors) => {
+    const hasErrors = errors && errors.length;
+    const isvalid = hasErrors && editor && editor.trim() !== '';
     setForceEditorUpdate(false);
     setDisabled(!isvalid);
     setContent(editor);
@@ -69,7 +64,7 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
 
   useEffect(() => {
     if (!content) {
-      const blank = createDefaultValue(project.keys);
+      const blank = createEditorDefaultValue(project.keys);
       setContent(blank);
       setForceEditorUpdate(true);
     }
