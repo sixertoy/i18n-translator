@@ -14,7 +14,6 @@ const INITIAL_REDUCERS = {
     keys: {},
     languages: [],
     projects: [],
-    recents: [],
     theme: getThemeByThemeId('bw'),
     user: {},
     version,
