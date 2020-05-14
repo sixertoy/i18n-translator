@@ -12,7 +12,7 @@
   "ACTION_TO_LIKE_NAME": "liker {name}",
   "ACTION_TO_BOOKMARK_NAME": "bookmarker {name}",
   "ACTION_FOLLOW_USERNAME": "Suivre {username}",
-  "ACTION_FOLLOW": "Suivre",
+  "ACTION_FOLLOW": "Suivre"
   "ACTION_UNFOLLOW_USERNAME": "Ne plus suivre {username}",
   "ACTION_UNFOLLOW": "Ne plus suivre"
 }

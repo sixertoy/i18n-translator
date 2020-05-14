@@ -6,13 +6,17 @@ const useFile = () => {
 
   const onUploadChange = useCallback(evt => {
     evt.preventDefault();
-    const file = evt.target.files[0];
-    const reader = new FileReader();
-    reader.onload = e => {
-      e.preventDefault();
-      setJson(e.target.result);
-    };
-    reader.readAsText(file);
+    try {
+      const [file] = evt.target.files;
+      const reader = new FileReader();
+      reader.onload = e => {
+        e.preventDefault();
+        setJson(e.target.result);
+      };
+      reader.readAsText(file);
+    } catch (error) {
+      setJson(null);
+    }
   }, []);
 
   useEffect(() => {

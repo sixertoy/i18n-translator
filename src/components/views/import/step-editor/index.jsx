@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   AiOutlineDeliveredProcedure as ChevronIcon,
   AiOutlineDownload as DownloadIcon,
@@ -40,36 +40,36 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
   const classes = useStyles({ theme });
   const { id } = useParams();
 
-  const [disabled, setDisabled] = useState(true);
-  const [content, setContent] = useState(draft.content);
+  const project = useSelector(state => selectProject(state, id));
+  const blank = createEditorDefaultValue(project.keys);
+
+  const update = draft.content || blank;
+  const [content, setContent] = useState(update);
+  const [disabled, setDisabled] = useState(!update);
   const [forceEditorUpdate, setForceEditorUpdate] = useState(false);
 
-  const project = useSelector(state => selectProject(state, id));
+  const onEditorHandler = useCallback(
+    (editor, errs = []) => {
+      const isEqual = editor === content;
+      const hasError = errs && errs.length;
+      const isEmpty = !editor || editor.trim() === '';
+      const isDisabled = Boolean(hasError || isEmpty);
+      if (hasError) errs.forEach(m => toast.error(m));
+      setDisabled(isDisabled);
+      if (!isEqual) setContent(editor);
+      if (forceEditorUpdate) setForceEditorUpdate(false);
+    },
+    [content, forceEditorUpdate]
+  );
 
   const onImportHandler = useCallback(value => {
     setContent(value);
     setForceEditorUpdate(true);
   }, []);
 
-  const onEditorHandler = useCallback((editor, errs) => {
-    const isvalid = !errs && editor && editor.trim() !== '';
-    if (!isvalid) errs.forEach(m => toast.error(m));
-    setForceEditorUpdate(false);
-    setDisabled(!isvalid);
-    setContent(editor);
-  }, []);
-
   const onSubmitHandler = useCallback(() => {
     onSubmit({ ...draft, content });
   }, [content, draft, onSubmit]);
-
-  useEffect(() => {
-    if (!content) {
-      const blank = createEditorDefaultValue(project.keys);
-      setContent(blank);
-      // setForceEditorUpdate(true);
-    }
-  }, [content, id, project, project.keys]);
 
   // NOTE React-Ace documentation
   // https://github.com/ajaxorg/ace/wiki/Configuring-Ace
