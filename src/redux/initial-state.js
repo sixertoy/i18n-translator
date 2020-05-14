@@ -2,7 +2,6 @@ import storage from 'redux-persist/lib/storage';
 
 import { version } from '../../package.json';
 import { PERSIST_STORAGE_KEY } from '../constants';
-import { getThemeByThemeId } from '../theme';
 
 const INITIAL_REDUCERS = {
   blacklist: {
@@ -14,7 +13,7 @@ const INITIAL_REDUCERS = {
     keys: {},
     languages: [],
     projects: [],
-    theme: getThemeByThemeId('bw'),
+    theme: 'bw',
     user: {},
     version,
   },

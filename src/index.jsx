@@ -22,6 +22,7 @@ import getRouterHistory from './core/history';
 import { getFirebaseConfig } from './core/utils';
 import { getInitialState } from './redux/initial-state';
 import { configure } from './redux/store';
+import { getThemeByKey } from './theme';
 
 const { PUBLIC_URL } = process.env;
 const history = getRouterHistory();
@@ -41,7 +42,7 @@ const Root = () => (
       <PersistGate loading={null} persistor={persistor}>
         <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
           <BrowserRouter basename={PUBLIC_URL}>
-            <ThemeProvider theme={store.getState().theme}>
+            <ThemeProvider theme={getThemeByKey(store.getState().theme)}>
               {/* eslint-disable-next-line */}
               {console.log('version : ', version)}
               <IconContext.Provider value={{ style: globalIconStyle }}>

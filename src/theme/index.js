@@ -77,8 +77,18 @@ const sizes = {
 
 const themeBase = {
   app: {
+    color: black,
     container: black,
     layer: white,
+  },
+  button: {
+    disabled: { background: '', color: '' },
+    hover: { background: '', color: '' },
+    idle: { background: '', color: '' },
+  },
+  percentage: {
+    track: '',
+    tumb: '',
   },
   table: {
     even: '#F7F7F7',
@@ -94,10 +104,10 @@ const themes = {
   light: {},
 };
 
-export const getAllThemes = () => themes;
+export const getThemes = () => Object.keys(themes);
 
-export const getThemeByThemeId = id => {
-  const selectedTheme = get(themes, id, {});
-  const themeWithBase = { ...themeBase, ...selectedTheme };
-  return { colors, radius, sizes, ...themeWithBase, themeid: id };
+export const getThemeByKey = key => {
+  const selectedTheme = get(themes, key, {});
+  const withBase = { ...themeBase, ...selectedTheme };
+  return { colors, key, radius, ...withBase, sizes };
 };
