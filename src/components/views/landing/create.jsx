@@ -21,7 +21,7 @@ const CreateComponent = React.memo(() => {
   const dispatch = useDispatch();
   const onDemoClick = useCallback(() => {
     dispatch(updateDemo(true));
-    dispatch(createProjectAsync(updateDemo)).then(() => {
+    dispatch(createProjectAsync()).then(() => {
       history.push(`/import/demo/step/1`);
     });
   }, [dispatch, history]);

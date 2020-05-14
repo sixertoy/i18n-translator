@@ -11,10 +11,25 @@ describe('src | redux | hydrate', () => {
       mtime: expect.any(Number),
       name: expect.any(String),
     };
-    const len = Object.keys(expected);
     const result = hydrate(model, value);
-    expect(Object.keys(result)).toHaveLength(len);
-    expect(result).toStrictEqual(expect.objectContaining(expected));
+    const rkeys = Object.keys(result);
+    const ekeys = Object.keys(expected);
+    expect(rkeys).toStrictEqual(ekeys);
+  });
+
+  it('teste que les valeurs ne soient pas overridées si elles existent', () => {
+    const id = 'demo';
+    const name = 'Demo';
+    const value = { id, name };
+    const expected = {
+      ctime: expect.any(Number),
+      id,
+      langs: expect.any(Array),
+      mtime: expect.any(Number),
+      name,
+    };
+    const result = hydrate(model, value);
+    expect(result).toStrictEqual(expected);
   });
 
   it('retourne si ctime et mtime sont égaux', () => {
