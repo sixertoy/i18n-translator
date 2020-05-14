@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2020 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="flame" unicode="&#x61;" d="M316 831c50-136 25-212-33-270-61-65-159-114-227-210-90-128-106-408 221-481-138 72-167 283-19 413-38-127 33-208 121-179 87 30 144-33 142-104-1-49-19-90-70-113 213 37 298 214 298 347 0 178-158 202-78 351-95-8-127-71-118-172 6-67-64-112-116-83-42 26-41 74-4 111 78 77 110 256-117 389l-2 1 2 0z" horiz-adv-x="750" />
+</font>
+</defs>
+</svg>
