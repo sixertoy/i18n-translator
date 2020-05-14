@@ -1,6 +1,9 @@
-import PropTypes from 'prop-types';
+import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { Redirect } from 'react-router-dom';
+
+import SignOut from '../../commons/buttons/signout';
 
 const useStyles = createUseStyles({
   container: {},
@@ -11,7 +14,8 @@ const HomeViewComponent = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container} id="home-view">
-      <span>&nbsp;</span>
+      <IfFirebaseUnAuthed>{() => <Redirect to="/" />}</IfFirebaseUnAuthed>
+      <IfFirebaseAuthed>{() => <SignOut />}</IfFirebaseAuthed>
     </div>
   );
 });

@@ -12,8 +12,6 @@ export const DEFAULT_LANGUAGES = {
 
 export const EVENT_TYPES = {
   APP_THEME_CHANGE: 'onThemeChange',
-  APP_USER_LOGIN: 'onUserLogin',
-  APP_USER_LOGOUT: 'onUserLogout',
   LANGUAGE_CLEAR: 'onLanguageClear',
   LANGUAGE_CREATE: 'onLanguageCreate',
   LANGUAGE_DELETE: 'onLanguageDelete',
@@ -29,7 +27,7 @@ export const EVENT_TYPES = {
   PROJECT_DELETE: 'onProjectDelete',
   PROJECT_NAME_UPDATE: 'onProjectNameUpdate',
   PROJECT_TOGGLE_FAV: 'onProjectToggleFav',
-  // RECENTS_FLUSH: 'onRecentsFlush',
+  USER_UPDATE: 'onUserUpdate',
 };
 
 export const EDITOR_DEFAULT_CONTENT = JSON.stringify(

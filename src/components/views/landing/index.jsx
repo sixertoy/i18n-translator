@@ -1,12 +1,11 @@
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { Redirect } from 'react-router-dom';
 
 import Logo from '../../../assets/logo';
-import Login from '../../commons/login';
 import Create from './create';
 import Help from './help';
-import BoardRedirect from './redirect';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
@@ -33,20 +32,18 @@ const LandingViewComponent = React.memo(() => {
 
   return (
     <React.Fragment>
-      {/* <IfFirebaseAuthed>{() => <BoardRedirect />}</IfFirebaseAuthed>
+      <IfFirebaseAuthed>{() => <Redirect to="/home" />}</IfFirebaseAuthed>
       <IfFirebaseUnAuthed>
-      {() => ( */}
-      <div className={classes.container} id="landing-view">
-        <div className={classes.logo}>
-          <Logo />
-        </div>
-        <Login login />
-        {/* <hr className={classes.splitter} /> */}
-        <Create />
-        <Help />
-      </div>
-      {/* )}
-      </IfFirebaseUnAuthed> */}
+        {() => (
+          <div className={classes.container} id="landing-view">
+            <div className={classes.logo}>
+              <Logo />
+            </div>
+            <Create />
+            <Help />
+          </div>
+        )}
+      </IfFirebaseUnAuthed>
     </React.Fragment>
   );
 });

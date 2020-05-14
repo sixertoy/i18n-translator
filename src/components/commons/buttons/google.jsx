@@ -3,19 +3,26 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 
+import { useLogin } from '../../hooks';
 import Button from '../button';
 
 const GoogleButtonComponent = React.memo(({ className, login }) => {
+  const label = (login && 'Login') || 'Signup';
+  const { onLoginError, onLoginSuccess } = useLogin();
+
   return (
     <Button
       className={className}
       onClick={() => {
-        const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(googleAuthProvider);
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then(onLoginSuccess)
+          .catch(onLoginError);
       }}>
       <GoogleIcon className="mr12" />
-      {!login && <span>Sign in with Google</span>}
-      {login && <span>Login in with Google</span>}
+      <span>{label}&nbsp;with Google</span>
     </Button>
   );
 });

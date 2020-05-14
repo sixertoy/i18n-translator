@@ -3,19 +3,26 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { AiFillGithub as GithubIcon } from 'react-icons/ai';
 
+import { useLogin } from '../../hooks';
 import Button from '../button';
 
 const GithubButtonComponent = React.memo(({ className, login }) => {
+  const label = (login && 'Login') || 'Signup';
+  const { onLoginError, onLoginSuccess } = useLogin();
+
   return (
     <Button
       className={className}
       onClick={() => {
-        const githubAuthProvider = new firebase.auth.GithubAuthProvider();
-        firebase.auth().signInWithPopup(githubAuthProvider);
+        const provider = new firebase.auth.GithubAuthProvider();
+        firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then(onLoginSuccess)
+          .catch(onLoginError);
       }}>
       <GithubIcon className="mr12" />
-      {!login && <span>Sign in with GitHub</span>}
-      {login && <span>Login in with GitHub</span>}
+      <span>{label}&nbsp;with GitHub</span>
     </Button>
   );
 });

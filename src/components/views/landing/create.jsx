@@ -11,9 +11,6 @@ const useStyles = createUseStyles({
   icon: {
     composes: ['mr12'],
   },
-  splitter: {
-    composes: ['is-block', 'my24', 'text-center', 'fs18'],
-  },
 });
 
 const CreateComponent = React.memo(() => {
@@ -29,15 +26,10 @@ const CreateComponent = React.memo(() => {
   }, [dispatch, history]);
 
   return (
-    <React.Fragment>
-      <span className={classes.splitter}>
-        <span>-&nbsp;ou&nbsp;-</span>
-      </span>
-      <Button onClick={onDemoClick}>
-        <ProjectsIcon className={classes.icon} />
-        <span>Créer un projet</span>
-      </Button>
-    </React.Fragment>
+    <Button onClick={onDemoClick}>
+      <ProjectsIcon className={classes.icon} />
+      <span>Créer un projet</span>
+    </Button>
   );
 });
 

@@ -26,8 +26,8 @@ const ReactDumbComponent = React.memo(() => {
         <span>Besoin de plus de projets ?</span>
       </p>
       <p>
-        <Link className={classes.link} to="/signin">
-          <span>Enregistrez vous</span>
+        <Link className={classes.link} to="/signup">
+          <span>Inscrivez-vous</span>&nbsp;gratuitement
         </Link>
       </p>
       <p className="is-italic">

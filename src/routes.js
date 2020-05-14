@@ -5,6 +5,7 @@ import Home from './components/views/home';
 import Import from './components/views/import';
 import Landing from './components/views/landing';
 import LogOut from './components/views/logout';
+import SignIn from './components/views/signin';
 
 const ROUTES_ID = {
   BOARD: 'board',
@@ -12,8 +13,9 @@ const ROUTES_ID = {
   HOME: 'home',
   IMPORT: 'import',
   LANDING: 'landing',
-  LOG_OUT: 'logout',
+  LOGOUT: 'logout',
   NOT_FOUND: 'not-found',
+  SIGNIN: 'signin',
 };
 
 const routes = [
@@ -50,8 +52,14 @@ const routes = [
   {
     component: LogOut,
     exact: true,
-    id: ROUTES_ID.LOG_OUT,
+    id: ROUTES_ID.LOGOUT,
     path: '/logout',
+  },
+  {
+    component: SignIn,
+    exact: true,
+    id: ROUTES_ID.SIGNIN,
+    path: ['/login', '/signup'],
   },
   {
     component: NotFound,
