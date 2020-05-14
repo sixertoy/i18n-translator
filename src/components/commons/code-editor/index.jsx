@@ -53,7 +53,6 @@ const CodeEditorComponent = ({
     <AceEditor
       ref={editor}
       enableBasicAutocompletion
-      focus
       highlightActiveLine
       showGutter
       wrapEnabled
@@ -62,6 +61,7 @@ const CodeEditorComponent = ({
       editorProps={{ $blockScrolling: true }}
       enableLiveAutocompletion={false}
       enableSnippets={false}
+      focus={false}
       fontSize={14}
       height="100%"
       mode="json"
@@ -80,14 +80,13 @@ const CodeEditorComponent = ({
       onBeforeLoad={onReactAceBeforeLoad}
       onChange={debounceEditorChange}
       onLoad={onReactAceLoad}
-      // onInput={() => {}}
     />
   );
 };
 
 CodeEditorComponent.defaultProps = {
   className: '',
-  content: null,
+  content: '',
   disabled: false,
   forceUpdate: false,
 };

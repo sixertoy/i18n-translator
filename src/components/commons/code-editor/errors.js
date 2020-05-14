@@ -35,3 +35,5 @@ const groups = [
   'SyntaxError: JSON.parse: unexpected character',
   'SyntaxError: JSON.parse: unexpected non-whitespace character after JSON data',
 ];
+
+export default groups;

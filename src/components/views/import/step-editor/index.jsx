@@ -7,6 +7,7 @@ import {
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { selectProject } from '../../../../redux/selectors';
 import Button from '../../../commons/button';
@@ -17,7 +18,7 @@ import { createEditorDefaultValue } from './utils';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows', 'mt24'],
+    composes: ['flex-rows', 'mt24', 'is-relative'],
     height: '100%',
     width: '100%',
   },
@@ -50,9 +51,9 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
     setForceEditorUpdate(true);
   }, []);
 
-  const onEditorHandler = useCallback((editor, errors) => {
-    console.log('errors => ', errors);
-    const isvalid = !errors && editor && editor.trim() !== '';
+  const onEditorHandler = useCallback((editor, errs) => {
+    const isvalid = !errs && editor && editor.trim() !== '';
+    if (!isvalid) errs.forEach(m => toast.error(m));
     setForceEditorUpdate(false);
     setDisabled(!isvalid);
     setContent(editor);
@@ -66,7 +67,7 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
     if (!content) {
       const blank = createEditorDefaultValue(project.keys);
       setContent(blank);
-      setForceEditorUpdate(true);
+      // setForceEditorUpdate(true);
     }
   }, [content, id, project, project.keys]);
 

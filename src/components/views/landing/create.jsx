@@ -22,7 +22,7 @@ const CreateComponent = React.memo(() => {
   const onDemoClick = useCallback(() => {
     dispatch(updateDemo(true));
     dispatch(createProjectAsync()).then(() => {
-      history.push(`/import/demo/step/1`);
+      history.push(`/import/demo/step/2`);
     });
   }, [dispatch, history]);
 

@@ -1,0 +1,96 @@
+.Toastify__toast-container {
+  width: 300px;
+  max-width: 300px;
+}
+
+.Toastify__toast {
+  float: right;
+  clear: right;
+  border-radius: 3px;
+  min-height: 45px;
+  font-size: 13px;
+  margin-bottom: 2px;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    width: 30px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding-top: 10px;
+    text-align: center;
+    position: absolute;
+  }
+}
+
+.Toastify__toast-body {
+  margin: 7px 28px 7px 42px;
+}
+
+.Toastify__close-button {
+  top: 7px;
+  right: 7px;
+  position: absolute;
+}
+
+.Toastify__toast--error {
+  color: #7A1200;
+  background-color: #E89D96;
+
+  &::before {
+    color: #F2C8C4;
+    content: '\61';
+    font-family: 'fontello', serif;
+    background-color: #D13B2E;
+  }
+}
+
+.Toastify__close-button--error {
+  color: #8B5E5A;
+}
+
+@keyframes Toastify__custom-flipIn {
+  from {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    transform: perspective(400px);
+  }
+}
+
+@keyframes Toastify__custom-flipOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.Toastify__custom-flip-enter {
+  animation-name: Toastify__custom-flipIn;
+}
+
+.Toastify__custom-flip-exit {
+  animation-name: Toastify__custom-flipOut;
+}
