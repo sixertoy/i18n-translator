@@ -12,7 +12,6 @@ import {
 import { rgba } from '../../../core/utils';
 import { createLanguageAsync } from '../../../redux/actions';
 import { selectProject } from '../../../redux/selectors';
-import AuthRedirect from '../../commons/auth-redirect';
 import Steps from '../../commons/steps';
 import withLayout from '../../layout';
 import Step4 from './step-create';
@@ -37,6 +36,7 @@ const useStyles = createUseStyles({
     width: '80%',
   },
   wrapper: {
+    composes: ['flex-rows', 'flex-start'],
     height: '100%',
     maxWidth: 800,
     width: '100%',
@@ -85,7 +85,7 @@ const ImportViewComponent = () => {
 
   return (
     <React.Fragment>
-      {!project && <AuthRedirect />}
+      {!project && <Redirect to="/404" />}
       {project && (
         <div className={classes.container} id="import-view">
           <div className={classes.layer}>

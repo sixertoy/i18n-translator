@@ -17,7 +17,7 @@ import { createEditorDefaultValue } from './utils';
 
 const useStyles = createUseStyles({
   container: {
-    composes: ['flex-rows'],
+    composes: ['flex-rows', 'mt24'],
     height: '100%',
     width: '100%',
   },
@@ -27,7 +27,7 @@ const useStyles = createUseStyles({
   },
   editor: ({ theme }) => ({
     borderRadius: theme.radius.small,
-    // maxWidth: theme.sizes.editor,
+    boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.05)',
   }),
   submit: {
     composes: ['ml7'],

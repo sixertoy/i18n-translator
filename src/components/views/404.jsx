@@ -21,6 +21,11 @@ const ErrorViewComponent = React.memo(() => {
         learn how to set up GitHub Pages for your repository, organization, or
         user account.
       </p>
+      <p>
+        Le lien que vous avez entré ne semble pas être un lien Trello valide. Si
+        quelqu&apos;un vous l&apos;a transmis, nous vous conseillons de lui
+        demander de vérifier son exactitude.
+      </p>
     </div>
   );
 });

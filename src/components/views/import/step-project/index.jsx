@@ -68,7 +68,7 @@ const StepProjectComponent = ({ onSubmit }) => {
           )}
         </div>
         <Button className={classes.button} onClick={onClickHandler}>
-          <span>Créer</span>
+          <span>Suivant</span>
         </Button>
       </div>
     </div>
