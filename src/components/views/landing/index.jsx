@@ -4,7 +4,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect } from 'react-router-dom';
 
 import Logo from '../../../assets/logo';
-import Create from './create';
+import CreateButton from './create';
 import Help from './help';
 
 const useStyles = createUseStyles({
@@ -12,18 +12,16 @@ const useStyles = createUseStyles({
     background: theme.colors.grey,
     composes: ['flex-rows', 'items-center', 'flex-center'],
   }),
-  logo: ({ theme }) => ({
+  icon: {
+    composes: ['mr12'],
+  },
+  link: ({ theme }) => ({
     color: theme.colors.white,
-    composes: ['text-center', 'fs48'],
-    marginBottom: 48,
+    composes: ['is-bold', 'is-underline'],
   }),
-  // splitter: ({ theme }) => ({
-  //   background: theme.colors.black,
-  //   border: 0,
-  //   composes: ['is-block', 'my12'],
-  //   height: 1,
-  //   opacity: 0.15,
-  // }),
+  // splitter: {
+  //   composes: ['is-block', 'my24', 'text-center', 'fs18'],
+  // },
 });
 
 const LandingViewComponent = React.memo(() => {
@@ -39,7 +37,10 @@ const LandingViewComponent = React.memo(() => {
             <div className={classes.logo}>
               <Logo />
             </div>
-            <Create />
+            <CreateButton />
+            {/* <span className={classes.splitter}>
+              <span>-&nbsp;ou&nbsp;-</span>
+            </span> */}
             <Help />
           </div>
         )}

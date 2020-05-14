@@ -4,7 +4,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { createProjectAsync } from '../../../redux/actions';
+import { createProjectAsync, updateDemo } from '../../../redux/actions';
 import Button from '../../commons/button';
 
 const useStyles = createUseStyles({
@@ -20,8 +20,9 @@ const CreateComponent = React.memo(() => {
   const history = useHistory();
   const dispatch = useDispatch();
   const onDemoClick = useCallback(() => {
-    dispatch(createProjectAsync()).then(id => {
-      history.push(`/import/${id}/step/1`);
+    dispatch(updateDemo(true));
+    dispatch(createProjectAsync(updateDemo)).then(() => {
+      history.push(`/import/demo/step/1`);
     });
   }, [dispatch, history]);
 
