@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -15,9 +14,5 @@ const LogOutViewComponent = React.memo(() => {
     </div>
   );
 });
-
-LogOutViewComponent.defaultProps = {};
-
-LogOutViewComponent.propTypes = {};
 
 export default LogOutViewComponent;

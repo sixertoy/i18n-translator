@@ -13,6 +13,7 @@ export default createCachedSelector(
   getId,
   (projects, primarykeys, favorites, id) => {
     const project = projects.find(obj => obj.id === id);
+    if (!project) return null;
     const keys = get(primarykeys, id, []);
     const isFavorite = favorites.includes(id);
     return { ...project, isFavorite, keys };

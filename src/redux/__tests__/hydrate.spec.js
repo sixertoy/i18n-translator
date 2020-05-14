@@ -6,14 +6,15 @@ describe('src | redux | hydrate', () => {
     const value = {};
     const expected = {
       ctime: expect.any(Number),
+      demo: expect.any(Boolean),
       id: expect.any(String),
       langs: expect.any(Array),
       mtime: expect.any(Number),
       name: expect.any(String),
     };
     const result = hydrate(model, value);
-    const rkeys = Object.keys(result);
-    const ekeys = Object.keys(expected);
+    const rkeys = Object.keys(result).sort();
+    const ekeys = Object.keys(expected).sort();
     expect(rkeys).toStrictEqual(ekeys);
   });
 
@@ -23,6 +24,7 @@ describe('src | redux | hydrate', () => {
     const value = { id, name };
     const expected = {
       ctime: expect.any(Number),
+      demo: false,
       id,
       langs: expect.any(Array),
       mtime: expect.any(Number),

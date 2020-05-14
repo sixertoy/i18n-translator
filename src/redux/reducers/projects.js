@@ -3,9 +3,10 @@ import hydrate from '../hydrate';
 import { project as model } from '../models';
 
 export function createProject(state, action) {
+  const { demo } = action;
   const next = hydrate(model, action);
-  // NOTE un user non connecté peut créer 1 seul projet
-  return [...state, next];
+  // NOTE un user non connecté peut créer 1 seul projet-
+  return (demo && [next]) || [...state, next];
 }
 
 export function deleteProject(state, action) {

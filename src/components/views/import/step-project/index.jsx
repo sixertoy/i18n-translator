@@ -49,20 +49,23 @@ const StepProjectComponent = ({ onSubmit }) => {
           <input
             className={stepStyles.input}
             defaultValue={project.name}
+            disabled={project.demo}
             name="project.name"
             type="text"
           />
-          <Tooltip
-            useHover
-            className={classes.tooltip}
-            maxWidth={240}
-            offset={[3, 0]}
-            placement="right-end"
-            title="Vous devez être connecté pour personnaliser le titre de ce projet">
-            <span className={classes.icon}>
-              <LockIcon />
-            </span>
-          </Tooltip>
+          {project.demo && (
+            <Tooltip
+              useHover
+              className={classes.tooltip}
+              maxWidth={240}
+              offset={[3, 0]}
+              placement="right-end"
+              title="Vous devez être connecté pour personnaliser le titre de ce projet">
+              <span className={classes.icon}>
+                <LockIcon />
+              </span>
+            </Tooltip>
+          )}
         </div>
         <Button className={classes.button} onClick={onClickHandler}>
           <span>Créer</span>

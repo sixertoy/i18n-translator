@@ -44,10 +44,11 @@ const useStyles = createUseStyles({
   steps: {},
 });
 
-const StepsComponent = React.memo(({ current, steps }) => {
+const StepsComponent = React.memo(({ step, steps, useZero }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const lastIndex = steps.length - 1;
+  const current = useZero ? step : step - 1;
   return (
     <div className={classes.steps}>
       <div className={classes.items}>
@@ -78,11 +79,12 @@ const StepsComponent = React.memo(({ current, steps }) => {
 });
 
 StepsComponent.defaultProps = {
-  current: 0,
+  step: 0,
+  useZero: false,
 };
 
 StepsComponent.propTypes = {
-  current: PropTypes.number,
+  step: PropTypes.number,
   steps: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.arrayOf(
@@ -94,6 +96,7 @@ StepsComponent.propTypes = {
       })
     ),
   ]).isRequired,
+  useZero: PropTypes.bool,
 };
 
 export default StepsComponent;
