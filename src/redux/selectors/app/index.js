@@ -1,1 +1,1 @@
-export { default as selectMail } from './select-mail';
+export { default as selectSubscribingEmail } from './select-subscribing-email';

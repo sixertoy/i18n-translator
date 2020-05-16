@@ -5,7 +5,7 @@ import { EVENT_TYPES } from '../../constants';
 // vers/depuis/entre la page '/' et la page '/signup'
 const landing = (state = {}, action) => {
   switch (action.type) {
-    case EVENT_TYPES.LANDING_UPDATE_MAIL:
+    case EVENT_TYPES.APP_UPDATE_SUBSCRIBING_EMAIL:
       return { ...state, mail: action.mail };
     default:
       return state;

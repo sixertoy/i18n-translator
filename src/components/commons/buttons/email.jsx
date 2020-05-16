@@ -1,4 +1,5 @@
 // import firebase from 'firebase/app';
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -8,7 +9,7 @@ const useStyles = createUseStyles({
   container: {},
 });
 
-const EmailButtonComponent = React.memo(() => {
+const EmailButtonComponent = React.memo(({ email }) => {
   const input = useRef(null);
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -16,7 +17,8 @@ const EmailButtonComponent = React.memo(() => {
     <div className={classes.container}>
       <input
         ref={input}
-        placeholder="Saisissez une adresse e-mail"
+        defaultValue={email}
+        placeholder="e-mail"
         type="email"
       />
       <Button onClick={() => {}}>
@@ -25,5 +27,13 @@ const EmailButtonComponent = React.memo(() => {
     </div>
   );
 });
+
+EmailButtonComponent.defaultProps = {
+  email: null,
+};
+
+EmailButtonComponent.propTypes = {
+  email: PropTypes.string,
+};
 
 export default EmailButtonComponent;

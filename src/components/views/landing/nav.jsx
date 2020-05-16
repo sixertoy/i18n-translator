@@ -2,15 +2,9 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import Logo from '../../../assets/logo';
 import Brand from '../../layout/brand';
 
 const useStyles = createUseStyles({
-  logo: ({ theme }) => ({
-    '&:hover': { textDecoration: 'none !important' },
-    color: theme.colors.white,
-    composes: ['ff-lobster', 'is-relative', 'is-block'],
-  }),
   nav: {
     background: 'transparent',
     composes: ['pb16', 'flex-columns', 'flex-between', 'items-center'],
@@ -35,7 +29,7 @@ const LandingNavComponent = React.memo(() => {
   return (
     <nav className={classes.nav}>
       <Brand />
-      <div className={classes.buttons}>
+      <div>
         <Link className={classes.signin} to="/signin">
           <span>Connexion</span>
         </Link>

@@ -1,1 +1,1 @@
-export { default as updateMail } from './update-mail';
+export { default as updateSubscribingEmail } from './update-subscribing-email';

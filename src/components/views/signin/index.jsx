@@ -1,11 +1,11 @@
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
-import get from 'lodash.get';
-import { parse as parseSearch } from 'query-string';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { Link, Redirect, useLocation } from 'react-router-dom';
 
 import Logo from '../../../assets/logo';
+import { selectSubscribingEmail } from '../../../redux/selectors';
 import EmailSignin from '../../commons/buttons/email';
 import GithubLogin from '../../commons/buttons/github';
 import GoogleLogin from '../../commons/buttons/google';
@@ -37,18 +37,17 @@ const useStyles = createUseStyles({
 
 const SigninViewComponent = React.memo(() => {
   const label = useRef('');
-  const mail = useRef(null);
   const useLogin = useRef(false);
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { pathname, search } = useLocation();
+  const { pathname } = useLocation();
+
+  const mail = useSelector(selectSubscribingEmail);
 
   useEffect(() => {
-    const queryObj = parseSearch(search);
-    mail.current = get(queryObj, 'mail', null);
     useLogin.current = pathname.indexOf('/signin') !== -1;
     label.current = (useLogin.current && 'Se connecter') || "s'inscrire";
-  }, [pathname, search]);
+  }, [mail, pathname]);
 
   return (
     <React.Fragment>

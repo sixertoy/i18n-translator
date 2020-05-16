@@ -12,8 +12,8 @@ export const DEFAULT_LANGUAGES = {
 
 export const EVENT_TYPES = {
   APP_THEME_CHANGE: 'onThemeChange',
+  APP_UPDATE_SUBSCRIBING_EMAIL: 'onAppUpdateSubscribingEmail',
   DEMO_UPDATE: 'onDemoUpdate',
-  LANDING_UPDATE_MAIL: 'onLandingUpdateMail',
   LANGUAGE_CLEAR: 'onLanguageClear',
   LANGUAGE_CREATE: 'onLanguageCreate',
   LANGUAGE_DELETE: 'onLanguageDelete',

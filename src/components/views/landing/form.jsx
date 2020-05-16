@@ -4,7 +4,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { updateMail } from '../../../redux/actions';
+import { updateSubscribingEmail } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -35,23 +35,19 @@ function checkIfEmailIsValid(email) {
 
 const LandingFormComponent = React.memo(({ mail }) => {
   const theme = useTheme();
-  const email = useRef(mail);
+  const emailInput = useRef(null);
   const classes = useStyles({ theme });
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const onInputChange = useCallback(evt => {
-    evt.preventDefault();
-    email.current = evt.target.value;
-  }, []);
-
   const onFormSubmit = useCallback(
     evt => {
       evt.preventDefault();
+      const email = emailInput.current.value;
       const isvalid = checkIfEmailIsValid(email);
-      dispatch(updateMail(email.current));
-      const pathto = !isvalid ? '/signup' : `/signup?mail=${email.current}`;
+      dispatch(updateSubscribingEmail(email));
+      const pathto = !isvalid ? '/signup' : `/signup?mail=${email}`;
       history.push(pathto);
     },
     [dispatch, history]
@@ -60,12 +56,12 @@ const LandingFormComponent = React.memo(({ mail }) => {
   return (
     <form className={classes.form} onSubmit={onFormSubmit}>
       <input
+        ref={emailInput}
         className={classes.input}
-        defaultValue={email.current}
+        defaultValue={mail}
         name="landing.email"
         placeholder="e-mail"
         type="text"
-        onChange={onInputChange}
       />
       <button className={classes.button} type="submit">
         <span>Inscrivez-vous,</span>
