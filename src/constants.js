@@ -11,9 +11,10 @@ export const DEFAULT_LANGUAGES = {
 };
 
 export const EVENT_TYPES = {
-  APP_THEME_CHANGE: 'onThemeChange',
+  APP_UPDATE_ANON: 'onAppUpdateAnonymous',
   APP_UPDATE_SUBSCRIBING_EMAIL: 'onAppUpdateSubscribingEmail',
-  DEMO_UPDATE: 'onDemoUpdate',
+  APP_UPDATE_THEME: 'onAppUpdateTheme',
+  APP_UPDATE_VERSION: 'onAppUpdateVersion',
   LANGUAGE_CLEAR: 'onLanguageClear',
   LANGUAGE_CREATE: 'onLanguageCreate',
   LANGUAGE_DELETE: 'onLanguageDelete',

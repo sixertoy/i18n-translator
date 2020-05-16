@@ -5,18 +5,20 @@ import { PERSIST_STORAGE_KEY } from '../constants';
 
 const INITIAL_REDUCERS = {
   blacklist: {
-    app: {},
     loading: false,
   },
   whitelist: {
-    demo: false,
+    app: {
+      anon: false,
+      mail: null,
+      theme: 'bw',
+      version,
+    },
     favorites: [],
     keys: {},
     languages: [],
     projects: [],
-    theme: 'bw',
     user: {},
-    version,
   },
 };
 
