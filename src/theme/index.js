@@ -46,22 +46,23 @@ import get from 'lodash.get';
 const red = '#CD0000';
 const black = '#000000';
 const white = '#FFFFFF';
+const transparent = 'transparent';
 // -> Default Theme
+const layer = '#F2F2F2';
 const active = '#362760';
 const inactive = '#F0812F';
-const transparent = 'transparent';
 const gradient = ['#EE256B', '#FD7822'];
 
 const colors = {
   active,
   black,
   danger: '#F53844',
-  darker: '#0D0D0D',
+  // darker: '#0D0D0D',
   gradient,
-  green: '#72AE72',
-  grey: '#8C8C8C',
+  // green: '#72AE72',
   inactive,
-  lighter: '#F1F1F1',
+  layer,
+  // lighter: '#F1F1F1',
   red,
   transparent,
   warning: '#F0812F',
