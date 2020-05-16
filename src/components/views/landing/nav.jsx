@@ -3,11 +3,9 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 import Logo from '../../../assets/logo';
+import Brand from '../../layout/brand';
 
 const useStyles = createUseStyles({
-  brand: {
-    composes: ['fs42', 'ml42'],
-  },
   logo: ({ theme }) => ({
     '&:hover': { textDecoration: 'none !important' },
     color: theme.colors.white,
@@ -29,10 +27,6 @@ const useStyles = createUseStyles({
     color: theme.colors.gradient[1],
     composes: ['px24', 'py12', 'fs18', 'ml3', 'no-underline', 'rnd3'],
   }),
-  svg: {
-    composes: ['fs38', 'mr5', 'is-absolute'],
-    top: -10,
-  },
 });
 
 const LandingNavComponent = React.memo(() => {
@@ -40,10 +34,7 @@ const LandingNavComponent = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <nav className={classes.nav}>
-      <Link className={classes.logo} to="/">
-        <Logo outlined className={classes.svg} />
-        <span className={classes.brand}>Typpo</span>
-      </Link>
+      <Brand />
       <div className={classes.buttons}>
         <Link className={classes.signin} to="/signin">
           <span>Connexion</span>
