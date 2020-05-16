@@ -2,7 +2,7 @@ import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { selectMail } from '../../../redux/selectors';
 import Form from './form';
@@ -72,6 +72,9 @@ const LandingViewComponent = React.memo(() => {
             </div>
             <div className={classes.bottom}>
               <Form mail={mail} />
+              <Link to="/">
+                <span>Continuer sans s&apos;inscrire</span>
+              </Link>
             </div>
           </div>
         )}
