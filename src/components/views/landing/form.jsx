@@ -1,6 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import React, { useCallback, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+import { updateMail } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -13,7 +17,6 @@ const useStyles = createUseStyles({
   form: {
     composes: ['flex-columns', 'flex-start', 'items-center'],
   },
-
   input: ({ theme }) => ({
     background: theme.colors.white,
     composes: ['p15', 'fs24', 'rnd3', 'mr7'],
@@ -21,43 +24,57 @@ const useStyles = createUseStyles({
   }),
 });
 
-const LandingFormComponent = React.memo(() => {
+const LandingFormComponent = React.memo(({ mail }) => {
   const theme = useTheme();
-  const pathto = useRef('/signup');
+  const email = useRef(mail);
   const classes = useStyles({ theme });
-  const [email, setEmail] = useState('');
+
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const onInputChange = useCallback(evt => {
     evt.preventDefault();
-    setEmail(evt.target.value);
+    email.current = evt.target.value;
   }, []);
 
-  useEffect(() => {
-    const hasemail = email && typeof email === 'string' && email.trim() !== '';
-    pathto.current = hasemail ? '/signup' : `/signup?mail=${email}`;
-  });
+  const onFormSubmit = useCallback(
+    evt => {
+      evt.preventDefault();
+      const hasemail =
+        email.current &&
+        typeof email.current === 'string' &&
+        email.current.trim() !== '';
+      dispatch(updateMail(email.current));
+      const pathto = !hasemail ? '/signup' : `/signup?mail=${email.current}`;
+      history.push(pathto);
+    },
+    [dispatch, history]
+  );
 
   return (
-    <div className={classes.form}>
+    <form className={classes.form} onSubmit={onFormSubmit}>
       <input
         className={classes.input}
+        defaultValue={email.current}
         name="landing.email"
         placeholder="e-mail"
         type="text"
         onChange={onInputChange}
       />
-      <Link className={classes.button} to={pathto.current}>
-        <span>
-          <span>Inscrivez-vous</span>
-          <i> c&apos;est gratuit</i>
-        </span>
-      </Link>
-    </div>
+      <button className={classes.button} type="submit">
+        <span>Inscrivez-vous</span>
+        <i> c&apos;est gratuit</i>
+      </button>
+    </form>
   );
 });
 
-LandingFormComponent.defaultProps = {};
+LandingFormComponent.defaultProps = {
+  mail: null,
+};
 
-LandingFormComponent.propTypes = {};
+LandingFormComponent.propTypes = {
+  mail: PropTypes.string,
+};
 
 export default LandingFormComponent;

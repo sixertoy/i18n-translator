@@ -1,8 +1,10 @@
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import { selectMail } from '../../../redux/selectors';
 import Form from './form';
 import Nav from './nav';
 
@@ -39,6 +41,8 @@ const LandingViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
+  const mail = useSelector(selectMail);
+
   return (
     <React.Fragment>
       <IfFirebaseAuthed>{() => <Redirect to="/home" />}</IfFirebaseAuthed>
@@ -56,7 +60,7 @@ const LandingViewComponent = React.memo(() => {
                 </p>
               </div>
               <div className={classes.right}>
-                <Form />
+                <Form mail={mail} />
               </div>
             </div>
             <div className={classes.bottom} />

@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import demo from './demo';
 import favorites from './favorites';
 import keys from './keys';
+import landing from './landing';
 import languages from './languages';
 import loading from './loading';
 import projects from './projects';
@@ -15,6 +16,7 @@ function createRootReducer() {
     demo,
     favorites,
     keys,
+    landing,
     languages,
     loading,
     projects,
