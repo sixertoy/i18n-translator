@@ -11,18 +11,27 @@ const useStyles = createUseStyles({
     '&:hover': { textDecoration: 'none' },
     background: theme.colors.active,
     color: theme.colors.white,
-    composes: ['is-inline-block', 'p15', 'fs24', 'rnd3', 'is-normal'],
-    lineHeight: 1.1,
+    composes: ['is-inline-block', 'px32', 'py15', 'fs20', 'rnd3', 'is-normal'],
+    lineHeight: 1.3,
   }),
   form: {
     composes: ['flex-columns', 'flex-start', 'items-center'],
   },
   input: ({ theme }) => ({
+    '&::placeholder': { opacity: 0.25 },
     background: theme.colors.white,
     composes: ['p15', 'fs24', 'rnd3', 'mr7'],
     width: 400,
   }),
 });
+
+function checkIfEmailIsValid(email) {
+  return (
+    email.current &&
+    typeof email.current === 'string' &&
+    email.current.trim() !== ''
+  );
+}
 
 const LandingFormComponent = React.memo(({ mail }) => {
   const theme = useTheme();
@@ -40,12 +49,9 @@ const LandingFormComponent = React.memo(({ mail }) => {
   const onFormSubmit = useCallback(
     evt => {
       evt.preventDefault();
-      const hasemail =
-        email.current &&
-        typeof email.current === 'string' &&
-        email.current.trim() !== '';
+      const isvalid = checkIfEmailIsValid(email);
       dispatch(updateMail(email.current));
-      const pathto = !hasemail ? '/signup' : `/signup?mail=${email.current}`;
+      const pathto = !isvalid ? '/signup' : `/signup?mail=${email.current}`;
       history.push(pathto);
     },
     [dispatch, history]
@@ -62,8 +68,8 @@ const LandingFormComponent = React.memo(({ mail }) => {
         onChange={onInputChange}
       />
       <button className={classes.button} type="submit">
-        <span>Inscrivez-vous</span>
-        <i> c&apos;est gratuit</i>
+        <span>Inscrivez-vous,</span>
+        <i> c&apos;est gratuit !</i>
       </button>
     </form>
   );

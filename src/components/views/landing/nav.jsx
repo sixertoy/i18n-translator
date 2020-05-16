@@ -6,12 +6,12 @@ import Logo from '../../../assets/logo';
 
 const useStyles = createUseStyles({
   brand: {
-    composes: ['fs42'],
+    composes: ['fs42', 'ml42'],
   },
   logo: ({ theme }) => ({
     '&:hover': { textDecoration: 'none !important' },
     color: theme.colors.white,
-    composes: ['ff-lobster', 'is-block'],
+    composes: ['ff-lobster', 'is-relative', 'is-block'],
   }),
   nav: {
     background: 'transparent',
@@ -20,16 +20,18 @@ const useStyles = createUseStyles({
     marginBottom: 100,
   },
   signin: ({ theme }) => ({
+    background: theme.colors.transparent,
     color: theme.colors.white,
-    composes: ['fs18'],
+    composes: ['px24', 'py12', 'fs18'],
   }),
   signup: ({ theme }) => ({
     background: theme.colors.white,
-    color: theme.colors.black,
-    composes: ['px24', 'py12', 'fs18', 'ml24', 'no-underline', 'rnd3'],
+    color: theme.colors.gradient[1],
+    composes: ['px24', 'py12', 'fs18', 'ml3', 'no-underline', 'rnd3'],
   }),
   svg: {
-    composes: ['fs38', 'mr5'],
+    composes: ['fs38', 'mr5', 'is-absolute'],
+    top: -10,
   },
 });
 

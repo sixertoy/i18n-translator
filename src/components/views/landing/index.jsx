@@ -9,7 +9,11 @@ import Form from './form';
 import Nav from './nav';
 
 const useStyles = createUseStyles({
-  bottom: {},
+  bottom: {
+    margin: '0 auto',
+    marginTop: 24,
+    width: 800,
+  },
   container: ({ theme }) => ({
     background: theme.app.landing,
     composes: ['ff-roboto', 'p16'],
@@ -17,23 +21,25 @@ const useStyles = createUseStyles({
     minHeight: 650,
   }),
   description: {
-    composes: ['pb12', 'fs24', 'is-light'],
+    composes: ['fs24', 'is-light'],
     lineHeight: 1.4,
   },
   left: {
-    width: 450,
+    width: 600,
   },
   right: {
     composes: ['flex-columns', 'flex-start', 'items-center'],
   },
   title: {
-    composes: ['is-medium', 'mb24', 'fs48'],
+    composes: ['is-medium', 'mb12', 'fs48'],
     letterSpacing: 0.025,
     lineHeight: 1.05,
   },
   wrapper: ({ theme }) => ({
     color: theme.colors.white,
     composes: ['flex-columns', 'flex-center', 'items-start'],
+    margin: '0 auto',
+    width: 800,
   }),
 });
 
@@ -53,17 +59,20 @@ const LandingViewComponent = React.memo(() => {
             <div className={classes.wrapper}>
               <div className={classes.left}>
                 <h1 className={classes.title}>
-                  Gagnez du temps dans la gestion de vos traductions avec Typpo.
+                  Avec Typpo, vous gagnez du temps dans la gestion de vos
+                  traductions pour vos applications.
                 </h1>
                 <p className={classes.description}>
-                  Typpo permet de classer facilement vos traductions
+                  Typpo permet d&apos;éditer, de dupliquer, d&apos;orchestrer,
+                  et d&apos;exporter en un clin d&apos;oeil vos fichiers
+                  d&apos;internationalisation pour tous vos projets.
                 </p>
               </div>
-              <div className={classes.right}>
-                <Form mail={mail} />
-              </div>
+              <div className={classes.right} />
             </div>
-            <div className={classes.bottom} />
+            <div className={classes.bottom}>
+              <Form mail={mail} />
+            </div>
           </div>
         )}
       </IfFirebaseUnAuthed>
