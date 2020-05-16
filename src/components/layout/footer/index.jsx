@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
     color: theme.colors.red,
   }),
   version: ({ theme }) => ({
-    color: rgba(theme.colors.darker, 0.35),
+    color: rgba(theme.colors.black, 0.35),
   }),
 });
 

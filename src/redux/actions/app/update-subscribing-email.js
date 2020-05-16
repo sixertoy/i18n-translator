@@ -1,7 +1,7 @@
 import { EVENT_TYPES } from '../../../constants';
 
 const updateSubscribingEmail = mail => {
-  return { mail, type: EVENT_TYPES.APP_UPDATE_SUBSCRIBING_EMAIL };
+  return { type: EVENT_TYPES.APP_UPDATE_SUBSCRIBING_EMAIL, value: mail };
 };
 
 export default updateSubscribingEmail;

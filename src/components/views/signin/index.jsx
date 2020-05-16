@@ -2,53 +2,46 @@ import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import React, { useEffect, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
-import { Redirect, useLocation } from 'react-router-dom';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 
 import { selectSubscribingEmail } from '../../../redux/selectors';
+import GithubLogin from '../../commons/buttons/github';
+import GoogleLogin from '../../commons/buttons/google';
 import Brand from '../../layout/brand';
-// import EmailSignin from '../../commons/buttons/email';
-// import GithubLogin from '../../commons/buttons/github';
-// import GoogleLogin from '../../commons/buttons/google';
+import Form from './form';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
     background: theme.colors.layer,
-    composes: ['flex-1', 'p42'],
+    composes: ['flex-1', 'p42', 'text-center'],
+  }),
+  divider: ({ theme }) => ({
+    background: theme.colors.black,
+    border: 0,
+    composes: ['is-block', 'my12'],
+    height: 1,
   }),
   logo: ({ theme }) => ({
     color: theme.colors.gradient[0],
     textAlign: 'center',
   }),
+  signin: {},
+  splitter: {},
   wrapper: ({ theme }) => ({
     background: theme.colors.white,
-    composes: [
-      'flex-rows',
-      'flex-between',
-      'items-center',
-      'p42',
-      'rnd3',
-      'shadow-around',
-    ],
-    margin: '42px auto',
+    composes: ['p42', 'rnd3', 'shadow-around'],
+    margin: '42px auto 0 auto',
     width: 400,
   }),
 });
 
 const SigninViewComponent = React.memo(() => {
-  // const label = useRef('');
-  // const useLogin = useRef(false);
   const theme = useTheme();
   const classes = useStyles({ theme });
-  // const { pathname } = useLocation();
-
+  const { state } = useLocation();
+  const { subscribe } = state;
+  const label = (subscribe && 'Se connecter') || "s'inscrire";
   const mail = useSelector(selectSubscribingEmail);
-  console.log('mail', mail);
-
-  // useEffect(() => {
-  //   useLogin.current = pathname.indexOf('/signin') !== -1;
-  //   label.current = (useLogin.current && 'Se connecter') || "s'inscrire";
-  // }, [mail, pathname]);
-
   return (
     <React.Fragment>
       <IfFirebaseAuthed>{() => <Redirect to="/" />}</IfFirebaseAuthed>
@@ -57,18 +50,21 @@ const SigninViewComponent = React.memo(() => {
           <div className={classes.container} id="signin-view">
             <Brand className={classes.logo} />
             <div className={classes.wrapper}>
-              {/* <GithubLogin login={useLogin.current} />
-              <GoogleLogin className="mt7" login={useLogin.current} /> */}
-              {/* <div className={classes.title}>
-                <span>{label.current}</span>
-              </div>
-              <EmailSignin email={mail} login={useLogin.current} />
-              <div>
-                <span>Vous n&apos;arrivez pas à vous connecter </span>?
-              </div>
-              <div>
-                <span>Inscrivez-vous</span>
-              </div> */}
+              <Form mail={mail} />
+              <span className={classes.splitter}>
+                <span>-&nbsp;ou&nbsp;-</span>
+              </span>
+              <GithubLogin login={label} />
+              <GoogleLogin className="mt7" login={subscribe} />
+              <hr className={classes.divider} />
+              <Link
+                className={classes.signin}
+                to={{
+                  pathname: '/signin',
+                  state: { subscribe: false },
+                }}>
+                <span>Vous avez déjà un compte ? Connectez-vous</span>
+              </Link>
             </div>
           </div>
         )}

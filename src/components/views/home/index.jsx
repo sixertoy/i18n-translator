@@ -4,6 +4,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect } from 'react-router-dom';
 
 import SignOut from '../../commons/buttons/signout';
+import withLayout from '../../layout';
 
 const useStyles = createUseStyles({
   container: {},
@@ -24,4 +25,4 @@ HomeViewComponent.defaultProps = {};
 
 HomeViewComponent.propTypes = {};
 
-export default HomeViewComponent;
+export default withLayout(HomeViewComponent);

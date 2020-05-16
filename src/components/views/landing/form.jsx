@@ -11,8 +11,9 @@ const useStyles = createUseStyles({
     '&:hover': { textDecoration: 'none' },
     background: theme.colors.active,
     color: theme.colors.white,
-    composes: ['is-inline-block', 'px32', 'py15', 'fs20', 'rnd3', 'is-normal'],
+    composes: ['is-inline-block', 'px24', 'py15', 'fs20', 'rnd3'],
     lineHeight: 1.3,
+    width: 320,
   }),
   form: {
     composes: ['flex-columns', 'flex-start', 'items-center'],
@@ -45,10 +46,8 @@ const LandingFormComponent = React.memo(({ mail }) => {
     evt => {
       evt.preventDefault();
       const email = emailInput.current.value;
-      const isvalid = checkIfEmailIsValid(email);
       dispatch(updateSubscribingEmail(email));
-      const pathto = !isvalid ? '/signup' : `/signup?mail=${email}`;
-      history.push(pathto);
+      history.push('/signup', { subscribe: true });
     },
     [dispatch, history]
   );

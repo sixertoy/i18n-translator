@@ -7,7 +7,7 @@ export const useButtonStyles = createUseStyles({
     background: theme.colors.black,
     borderRadius: theme.radius.small,
     color: theme.colors.white,
-    composes: ['is-block', 'fs18', 'py12', 'px24', 'use-pointer'],
+    composes: ['is-block', 'fs18', 'py12', 'px24'],
     transition:
       'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
     width: 250,
@@ -18,7 +18,7 @@ export const useButtonStyles = createUseStyles({
     background: theme.colors.transparent,
     borderRadius: 0,
     color: theme.colors.white,
-    composes: ['is-block', 'fs18', 'py12', 'px24', 'use-pointer'],
+    composes: ['is-block', 'fs18', 'py12', 'px24'],
     transition:
       'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
     width: 250,

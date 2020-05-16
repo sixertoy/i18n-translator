@@ -7,7 +7,7 @@ import Brand from '../../layout/brand';
 const useStyles = createUseStyles({
   nav: {
     background: 'transparent',
-    composes: ['pb16', 'flex-columns', 'flex-between', 'items-center'],
+    composes: ['p16', 'flex-columns', 'flex-between', 'items-center'],
     height: 90,
     marginBottom: 100,
   },
@@ -30,10 +30,14 @@ const LandingNavComponent = React.memo(() => {
     <nav className={classes.nav}>
       <Brand />
       <div>
-        <Link className={classes.signin} to="/signin">
+        <Link
+          className={classes.signin}
+          to={{ pathname: '/signin', state: { subscribe: false } }}>
           <span>Connexion</span>
         </Link>
-        <Link className={classes.signup} to="/signup">
+        <Link
+          className={classes.signup}
+          to={{ pathname: '/signup', state: { subscribe: true } }}>
           <span>S&apos;inscrire</span>
         </Link>
       </div>
