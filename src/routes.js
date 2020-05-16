@@ -26,6 +26,12 @@ const routes = [
     path: '/',
   },
   {
+    component: SignIn,
+    exact: true,
+    id: ROUTES_ID.SIGNIN,
+    path: ['/signin', '/signup'],
+  },
+  {
     component: Home,
     exact: true,
     id: ROUTES_ID.HOME,
@@ -54,12 +60,6 @@ const routes = [
     exact: true,
     id: ROUTES_ID.LOGOUT,
     path: '/logout',
-  },
-  {
-    component: SignIn,
-    exact: true,
-    id: ROUTES_ID.SIGNIN,
-    path: ['/login', '/signup'],
   },
   {
     component: NotFound,

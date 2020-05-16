@@ -41,17 +41,14 @@ import get from 'lodash.get';
 // #561A8B
 // #1E103C
 
-// const gradients = {
-//   fullsunset:
-//     'linear-gradient(60deg, #1E103C 0%, #5C095A 37%, #F53844 78%, #FFCB6A 100%)',
-//   sunset: 'linear-gradient(60deg, #1E103C 26%, #F53844 100%)',
-// };
-
 const red = '#CD0000';
 const black = '#000000';
 const white = '#FFFFFF';
+const transparent = 'transparent';
+const fullsunset = 'linear-gradient(0deg, #190625 0%, #3F073B 100%)';
 
 const colors = {
+  active: '#8C26F2',
   black,
   danger: '#F53844',
   darker: '#0D0D0D',
@@ -59,6 +56,7 @@ const colors = {
   grey: '#8C8C8C',
   lighter: '#F1F1F1',
   red,
+  transparent,
   warning: '#F0812F',
   white,
 };
@@ -66,8 +64,8 @@ const colors = {
 const radius = {
   big: 16,
   large: 12,
-  normal: 8,
-  small: 4,
+  normal: '0.4rem',
+  small: '0.2rem',
 };
 
 const sizes = {
@@ -79,7 +77,9 @@ const themeBase = {
   app: {
     color: black,
     container: black,
+    landing: fullsunset,
     layer: white,
+    logo: white,
   },
   button: {
     disabled: { background: '', color: '' },

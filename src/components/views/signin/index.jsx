@@ -1,5 +1,7 @@
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
-import React, { useEffect, useState } from 'react';
+import get from 'lodash.get';
+import { parse as parseSearch } from 'query-string';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect, useLocation } from 'react-router-dom';
 
@@ -27,18 +29,27 @@ const useStyles = createUseStyles({
 });
 
 const SigninViewComponent = React.memo(() => {
+  const label = useRef('');
+  const mail = useRef(null);
+  const useLogin = useRef(false);
+  const [email, setEmail] = useState(null);
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { pathname } = useLocation();
-  const [title, setTitle] = useState(false);
-  const [useLogin, setUseLogin] = useState(false);
+  const { pathname, search } = useLocation();
+
+  const onInputChange = useCallback(evt => {
+    evt.preventDefault();
+    const { value } = evt.target;
+    // const isempty = !value || typeof value !== 'string' || value.trim() === ''
+    setEmail(value);
+  }, []);
 
   useEffect(() => {
-    const uselogin = pathname.indexOf('/login') !== -1;
-    const label = (uselogin && 'Se connecter') || "s'inscrire";
-    setTitle(label);
-    setUseLogin(uselogin);
-  }, [pathname, title]);
+    const queryObj = parseSearch(search);
+    mail.current = get(queryObj, 'mail', null);
+    useLogin.current = pathname.indexOf('/signin') !== -1;
+    label.current = (useLogin.current && 'Se connecter') || "s'inscrire";
+  }, [email, pathname, search]);
 
   return (
     <React.Fragment>
@@ -50,11 +61,11 @@ const SigninViewComponent = React.memo(() => {
               <div className={classes.form}>
                 <div>logo</div>
                 <div>
-                  <span>{title}</span>
+                  <span>{label.current}</span>
                 </div>
-                <EmailSignin login={useLogin} />
-                <GithubLogin login={useLogin} />
-                <GoogleLogin className="mt7" login={useLogin} />
+                <EmailSignin email={email || mail} login={useLogin.current} />
+                <GithubLogin login={useLogin.current} />
+                <GoogleLogin className="mt7" login={useLogin.current} />
                 <div>
                   <span>Vous n&apos;arrivez pas à vous connecter </span>?
                 </div>

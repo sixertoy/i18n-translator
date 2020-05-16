@@ -1,7 +1,5 @@
 @import '_variables';
 @import '~@nappr/nappr-styles/styles.scss';
-// @import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import '_html';
 @import '_shadows';
 @import '_fontello';
@@ -17,8 +15,16 @@
   background: rgba(172, 229, 57, 0.15);
 }
 
-.use-lobster {
+.ff-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.ff-lobster {
   font-family: 'Lobster', cursive;
+}
+
+.is-medium {
+  font-weight: 500;
 }
 
 .ace_scrollbar.ace_scrollbar-h {
