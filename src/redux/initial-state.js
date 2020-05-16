@@ -5,7 +5,7 @@ import { PERSIST_STORAGE_KEY } from '../constants';
 
 const INITIAL_REDUCERS = {
   blacklist: {
-    landing: {},
+    app: {},
     loading: false,
   },
   whitelist: {

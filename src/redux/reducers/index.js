@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
+import app from './app';
 import demo from './demo';
 import favorites from './favorites';
 import keys from './keys';
-import landing from './landing';
 import languages from './languages';
 import loading from './loading';
 import projects from './projects';
@@ -13,10 +13,10 @@ import version from './version';
 
 function createRootReducer() {
   return combineReducers({
+    app,
     demo,
     favorites,
     keys,
-    landing,
     languages,
     loading,
     projects,
