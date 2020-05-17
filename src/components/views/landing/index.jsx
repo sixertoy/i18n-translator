@@ -1,10 +1,10 @@
-import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import firebase from 'firebase/app';
 import React, { useCallback } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import { updateAnonymous } from '../../../redux/actions';
 import { selectSubscribingEmail } from '../../../redux/selectors';
 import Form from './form';
@@ -53,8 +53,9 @@ const LandingViewComponent = React.memo(() => {
     <React.Fragment>
       <IfFirebaseAuthed>{() => <Redirect to="/home" />}</IfFirebaseAuthed>
       <IfFirebaseUnAuthed>
-        {() => (
+        {(...rest) => (
           <div className={classes.container} id="landing-view">
+            {console.log('rest', rest)}
             <Nav />
             <div className={classes.wrapper}>
               <Help />

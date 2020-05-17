@@ -1,9 +1,9 @@
-import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import React, { useEffect, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Link, Redirect, useLocation } from 'react-router-dom';
 
+import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import { selectSubscribingEmail } from '../../../redux/selectors';
 import GithubLogin from '../../commons/buttons/github';
 import GoogleLogin from '../../commons/buttons/google';

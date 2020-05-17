@@ -1,8 +1,8 @@
-import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect } from 'react-router-dom';
 
+import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import SignOut from '../../commons/buttons/signout';
 import withLayout from '../../layout';
 
