@@ -6,7 +6,7 @@ import { FirebaseAuthContext } from '../core';
 const FirebaseAuthConsumer = ({ children }) => {
   return (
     <FirebaseAuthContext.Consumer>
-      {authState => children(authState)}
+      {state => children(state)}
     </FirebaseAuthContext.Consumer>
   );
 };

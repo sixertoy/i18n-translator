@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FirebaseAuthContext } from '../core';
+import { FirebaseAuthContext, renderWithProps } from '../core';
 
-const IfFirebaseLoading = React.memo(({ loader: Loader }) => (
+const IfFirebaseLoading = React.memo(({ loader }) => (
   <FirebaseAuthContext.Consumer>
     {state => {
       const { isReady } = state;
       if (isReady) return null;
-      const isFunction = typeof Loader === 'function';
-      if (isFunction) return Loader(state);
-      return Loader;
+      return renderWithProps(loader, state);
     }}
   </FirebaseAuthContext.Consumer>
 ));
