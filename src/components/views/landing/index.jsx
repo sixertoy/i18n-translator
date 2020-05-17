@@ -36,12 +36,6 @@ const useStyles = createUseStyles({
     background: theme.app.landing,
     composes: ['ff-roboto'],
     height: '100%',
-    minHeight: 650,
-  }),
-  wrapper: ({ theme }) => ({
-    color: theme.colors.white,
-    margin: '0 auto',
-    width: 680,
   }),
 });
 
@@ -75,9 +69,7 @@ const LandingViewComponent = React.memo(() => {
         {() => (
           <div className={classes.container} id="landing-view">
             <Nav />
-            <div className={classes.wrapper}>
-              <Help />
-            </div>
+            <Help />
             <div className={classes.bottom}>
               <Form mail={mail} />
               <button
@@ -85,7 +77,7 @@ const LandingViewComponent = React.memo(() => {
                 disabled={disabled}
                 type="button"
                 onClick={onDemoClick}>
-                <span>Testez sans m&apos;inscrire</span>
+                <span>Testez sans vous inscrire</span>
               </button>
             </div>
           </div>

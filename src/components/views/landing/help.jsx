@@ -11,13 +11,18 @@ const useStyles = createUseStyles({
     letterSpacing: 0.025,
     lineHeight: 1.05,
   },
+  wrapper: ({ theme }) => ({
+    color: theme.colors.white,
+    margin: '0 auto',
+    width: 680,
+  }),
 });
 
 const ReactDumbComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <React.Fragment>
+    <div className={classes.wrapper}>
       <h1 className={classes.title}>
         Avec Typpo, vous gagnez du temps dans la gestion de vos traductions pour
         vos applications.
@@ -27,7 +32,7 @@ const ReactDumbComponent = React.memo(() => {
         d&apos;exporter en un clin d&apos;oeil vos fichiers
         d&apos;internationalisation pour tous vos projets.
       </p>
-    </React.Fragment>
+    </div>
   );
 });
 
