@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -12,7 +12,23 @@ import Help from './help';
 import Nav from './nav';
 
 const useStyles = createUseStyles({
+  anonymous: ({ theme }) => ({
+    '&:disabled': { opacity: 1, textDecoration: 'none' },
+    background: theme.colors.transparent,
+    clear: 'right',
+    color: theme.colors.white,
+    composes: [
+      'float-right',
+      'text-center',
+      'fs18',
+      'is-block',
+      'mt12',
+      'is-underline',
+    ],
+    width: 300,
+  }),
   bottom: {
+    composes: ['clearfix'],
     margin: '24px auto 32px auto',
     width: 680,
   },
@@ -21,10 +37,6 @@ const useStyles = createUseStyles({
     composes: ['ff-roboto'],
     height: '100%',
     minHeight: 650,
-  }),
-  link: ({ theme }) => ({
-    background: theme.colors.transparent,
-    color: theme.colors.white,
   }),
   wrapper: ({ theme }) => ({
     color: theme.colors.white,
@@ -37,18 +49,20 @@ const LandingViewComponent = React.memo(() => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
+  const [disabled, setDisabled] = useState(false);
 
   const mail = useSelector(selectSubscribingEmail);
 
   const onDemoClick = useCallback(() => {
+    setDisabled(true);
     firebase
       .auth()
       .signInAnonymously()
       .then(() => {
         dispatch(updateAnonymous());
       })
-      .catch(err => {
-        console.log('err', err);
+      .catch(() => {
+        setDisabled(false);
       });
   }, [dispatch]);
 
@@ -66,8 +80,12 @@ const LandingViewComponent = React.memo(() => {
             </div>
             <div className={classes.bottom}>
               <Form mail={mail} />
-              <button type="button" onClick={onDemoClick}>
-                <span>Continuer sans s&apos;inscrire</span>
+              <button
+                className={classes.anonymous}
+                disabled={disabled}
+                type="button"
+                onClick={onDemoClick}>
+                <span>Testez sans m&apos;inscrire</span>
               </button>
             </div>
           </div>

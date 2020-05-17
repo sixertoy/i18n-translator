@@ -19,7 +19,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const Application = () => {
+const Application = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -43,6 +43,6 @@ const Application = () => {
       )}
     </IfFirebaseReady>
   );
-};
+});
 
 export default Application;
