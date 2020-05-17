@@ -1,7 +1,8 @@
-import { FirebaseAuthConsumer } from '@react-firebase/auth';
 import React from 'react';
 import { AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+
+import { FirebaseAuthConsumer } from '../../../../core/firebase';
 
 const useStyles = createUseStyles({
   button: {

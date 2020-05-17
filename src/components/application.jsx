@@ -3,7 +3,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Route, Switch } from 'react-router-dom';
 
 import Loader from '../assets/loader';
-import { IfFirebaseLoading, IfFirebaseReady } from '../core/firebase';
+import { IfFirebaseReady } from '../core/firebase';
 import routes from '../routes';
 import NoMatch from './views/no-match';
 
@@ -23,8 +23,8 @@ const Application = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <React.Fragment>
-      <IfFirebaseReady>
+    <IfFirebaseReady loader={<Loader className={classes.loader} />}>
+      {() => (
         <div className={classes.application}>
           <Switch>
             {routes.map(obj => (
@@ -40,9 +40,8 @@ const Application = () => {
             </Route>
           </Switch>
         </div>
-      </IfFirebaseReady>
-      <IfFirebaseLoading loader={<Loader className={classes.loader} />} />
-    </React.Fragment>
+      )}
+    </IfFirebaseReady>
   );
 };
 

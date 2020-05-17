@@ -1,8 +1,8 @@
-import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import GithubLogin from '../buttons/github';
 import GoogleLogin from '../buttons/google';
 import Signout from './signout';

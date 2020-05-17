@@ -22,7 +22,10 @@ const useStyles = createUseStyles({
     height: '100%',
     minHeight: 650,
   }),
-  link: {},
+  link: ({ theme }) => ({
+    background: theme.colors.transparent,
+    color: theme.colors.white,
+  }),
   wrapper: ({ theme }) => ({
     color: theme.colors.white,
     margin: '0 auto',
@@ -51,11 +54,12 @@ const LandingViewComponent = React.memo(() => {
 
   return (
     <React.Fragment>
-      <IfFirebaseAuthed>{() => <Redirect to="/home" />}</IfFirebaseAuthed>
+      <IfFirebaseAuthed>
+        <Redirect to="/home" />
+      </IfFirebaseAuthed>
       <IfFirebaseUnAuthed>
-        {(...rest) => (
+        {() => (
           <div className={classes.container} id="landing-view">
-            {console.log('rest', rest)}
             <Nav />
             <div className={classes.wrapper}>
               <Help />

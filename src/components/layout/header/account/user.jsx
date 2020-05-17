@@ -1,4 +1,3 @@
-import { FirebaseAuthConsumer } from '@react-firebase/auth';
 import get from 'lodash.get';
 import React from 'react';
 import {
@@ -7,6 +6,7 @@ import {
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { FirebaseAuthConsumer } from '../../../../core/firebase';
 import Login from '../../../commons/login';
 
 const useStyles = createUseStyles({

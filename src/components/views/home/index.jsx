@@ -15,8 +15,12 @@ const HomeViewComponent = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.container} id="home-view">
-      <IfFirebaseUnAuthed>{() => <Redirect to="/" />}</IfFirebaseUnAuthed>
-      <IfFirebaseAuthed>{() => <SignOut />}</IfFirebaseAuthed>
+      <IfFirebaseUnAuthed>
+        <Redirect to="/" />
+      </IfFirebaseUnAuthed>
+      <IfFirebaseAuthed>
+        <SignOut />
+      </IfFirebaseAuthed>
     </div>
   );
 });

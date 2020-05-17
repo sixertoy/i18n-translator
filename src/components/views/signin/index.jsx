@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Link, Redirect, useLocation } from 'react-router-dom';
