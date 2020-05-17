@@ -26,14 +26,6 @@ const useStyles = createUseStyles({
   }),
 });
 
-function checkIfEmailIsValid(email) {
-  return (
-    email.current &&
-    typeof email.current === 'string' &&
-    email.current.trim() !== ''
-  );
-}
-
 const LandingFormComponent = React.memo(({ mail }) => {
   const theme = useTheme();
   const emailInput = useRef(null);
@@ -60,7 +52,7 @@ const LandingFormComponent = React.memo(({ mail }) => {
         defaultValue={mail}
         name="landing.email"
         placeholder="e-mail"
-        type="text"
+        type="email"
       />
       <button className={classes.button} type="submit">
         <span>Inscrivez-vous,</span>
