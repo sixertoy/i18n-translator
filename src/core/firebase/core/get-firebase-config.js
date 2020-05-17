@@ -1,7 +1,8 @@
 const ENV = process.env;
-const FIREBASE_KEY_PREFIX = 'FIREBASE_';
 
-export const getFirebaseConfig = () => {
+export const FIREBASE_KEY_PREFIX = 'FIREBASE_';
+
+const getFirebaseConfig = () => {
   const keys = Object.entries(ENV);
   const filtered = keys.filter(a => a[0].indexOf(FIREBASE_KEY_PREFIX) !== -1);
   if (!filtered.length) {
