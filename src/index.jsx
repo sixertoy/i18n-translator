@@ -17,6 +17,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { version } from '../package.json';
 import Application from './components/application';
+import { FIREBASE_AUTH_LOCAL } from './constants';
 import { FirebaseAuthProvider } from './core/firebase';
 import getRouterHistory from './core/history';
 import { getInitialState } from './redux/initial-state';
@@ -38,7 +39,9 @@ const Root = () => (
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <FirebaseAuthProvider firebase={firebase}>
+        <FirebaseAuthProvider
+          firebase={firebase}
+          persistence={FIREBASE_AUTH_LOCAL}>
           <BrowserRouter basename={PUBLIC_URL}>
             <ThemeProvider theme={getThemeByKey(store.getState().theme)}>
               {/* eslint-disable-next-line */}

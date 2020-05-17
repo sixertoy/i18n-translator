@@ -1,3 +1,6 @@
+export const FIREBASE_AUTH_LOCAL = 'local';
+export const FIREBASE_AUTH_SESSION = 'session';
+
 export const MAX_FREE_LANGUAGES = 3;
 
 export const DEFAULT_LANGUAGES = {

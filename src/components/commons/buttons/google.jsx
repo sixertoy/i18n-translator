@@ -5,6 +5,7 @@ import React, { useCallback } from 'react';
 import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { FIREBASE_AUTH_LOCAL } from '../../../constants';
 import { useButtonStyles, useLogin } from '../../hooks';
 
 const useStyles = createUseStyles({
@@ -22,6 +23,7 @@ const GoogleButtonComponent = React.memo(({ className, subscribe }) => {
   const { onLoginError, onLoginSuccess } = useLogin();
 
   const onClickHandler = useCallback(() => {
+    firebase.auth().setPersistence(FIREBASE_AUTH_LOCAL);
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase
       .auth()

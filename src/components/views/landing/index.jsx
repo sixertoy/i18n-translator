@@ -1,9 +1,10 @@
 import firebase from 'firebase/app';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import { FIREBASE_AUTH_SESSION } from '../../../constants';
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import { updateAnonymous } from '../../../redux/actions';
 import { selectSubscribingEmail } from '../../../redux/selectors';
@@ -43,21 +44,16 @@ const LandingViewComponent = React.memo(() => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const classes = useStyles({ theme });
-  const [disabled, setDisabled] = useState(false);
 
   const mail = useSelector(selectSubscribingEmail);
 
   const onDemoClick = useCallback(() => {
-    setDisabled(true);
+    firebase.auth().setPersistence(FIREBASE_AUTH_SESSION);
     firebase
       .auth()
       .signInAnonymously()
-      .then(() => {
-        dispatch(updateAnonymous());
-      })
-      .catch(() => {
-        setDisabled(false);
-      });
+      .then(() => dispatch(updateAnonymous()))
+      .catch(() => {});
   }, [dispatch]);
 
   return (
@@ -74,7 +70,6 @@ const LandingViewComponent = React.memo(() => {
               <Form mail={mail} />
               <button
                 className={classes.anonymous}
-                disabled={disabled}
                 type="button"
                 onClick={onDemoClick}>
                 <span>Testez sans vous inscrire</span>

@@ -5,6 +5,7 @@ import React, { useCallback } from 'react';
 import { AiOutlineGithub as GithubIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { FIREBASE_AUTH_LOCAL } from '../../../constants';
 import { useButtonStyles, useLogin } from '../../hooks';
 
 const useStyles = createUseStyles({
@@ -22,6 +23,7 @@ const GithubButtonComponent = React.memo(({ className, subscribe }) => {
   const { onLoginError, onLoginSuccess } = useLogin();
 
   const onClickHandler = useCallback(() => {
+    firebase.auth().setPersistence(FIREBASE_AUTH_LOCAL);
     const provider = new firebase.auth.GithubAuthProvider();
     firebase
       .auth()

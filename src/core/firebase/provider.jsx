@@ -14,6 +14,7 @@ const FirebaseAuthProvider = ({ children, config, firebase, persistence }) => {
 
   const [state, setState] = useState({
     firebase: app,
+    isAnonymous: true,
     isReady: false,
     isSignedIn: false,
     providerId: null,
@@ -24,8 +25,16 @@ const FirebaseAuthProvider = ({ children, config, firebase, persistence }) => {
     user => {
       const isReady = true;
       const isSignedIn = Boolean(user);
+      const isAnonymous = get(user, 'isAnonymous', true);
       const providerId = get(user, 'providerData.0.providerId', null);
-      setState({ firebase: app, isReady, isSignedIn, providerId, user });
+      setState({
+        firebase: app,
+        isAnonymous,
+        isReady,
+        isSignedIn,
+        providerId,
+        user,
+      });
     },
     [app]
   );
