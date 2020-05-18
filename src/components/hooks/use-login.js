@@ -27,7 +27,7 @@ const getProviderById = (providerId = null) => {
 
 const useLogin = (providerId = null) => {
   // const dispatch = useDispatch();
-  const provoderRef = useRef(getProviderById(providerId));
+  const providerRef = useRef(getProviderById(providerId));
 
   const onLogoutError = useCallback(() => {
     //
@@ -88,7 +88,7 @@ const useLogin = (providerId = null) => {
       firebase
         .auth()
         .setPersistence(FIREBASE_AUTH_LOCAL)
-        .then(() => firebase.auth().signInWithPopup(provoderRef.current))
+        .then(() => firebase.auth().signInWithPopup(providerRef.current))
         .then(onLoginSuccess)
         .catch(onLoginError);
     },

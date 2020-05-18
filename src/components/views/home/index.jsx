@@ -3,11 +3,19 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect } from 'react-router-dom';
 
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
-import SignOut from '../../commons/buttons/signout';
+import { rgba } from '../../../core/utils';
 import withLayout from '../../layout';
 
 const useStyles = createUseStyles({
-  container: {},
+  container: ({ theme }) => ({
+    background: theme.app.container,
+    composes: ['flex-1'],
+  }),
+  layer: ({ theme }) => ({
+    background: rgba(theme.app.layer, 0.95),
+    composes: ['flex-rows', 'is-relative'],
+    height: '100%',
+  }),
 });
 
 const HomeViewComponent = React.memo(() => {
@@ -19,7 +27,7 @@ const HomeViewComponent = React.memo(() => {
         <Redirect to="/" />
       </IfFirebaseUnAuthed>
       <IfFirebaseAuthed>
-        <SignOut />
+        {() => <div className={classes.layer} />}
       </IfFirebaseAuthed>
     </div>
   );

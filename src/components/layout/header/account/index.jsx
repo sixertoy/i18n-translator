@@ -3,13 +3,14 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import Tooltip from '../../../commons/tooltip';
 import UserButton from './button';
-import UserAccount from './user';
+import Menu from './menu';
 
 const useStyles = createUseStyles({
   container: {},
   tooltip: ({ theme }) => ({
     borderRadius: theme.radius.small,
     padding: 8,
+    width: 400,
   }),
   wrapper: {},
 });
@@ -21,8 +22,9 @@ const AccountComponent = React.memo(() => {
     <div className={classes.container} id="header-account">
       <Tooltip
         className={classes.tooltip}
-        component={<UserAccount />}
-        placement="bottom-end">
+        component={<Menu />}
+        placement="bottom-end"
+        theme="light">
         <div className={classes.wrapper}>
           <UserButton />
         </div>

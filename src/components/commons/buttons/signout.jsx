@@ -8,8 +8,8 @@ const SignOutComponent = React.memo(() => {
   const { onLogoutError, onLogoutSuccess } = useLogin();
 
   const onSignoutClick = useCallback(() => {
-    firebase.auth().signOut()
-.then(onLogoutSuccess)
+    const auth = firebase.auth();
+    auth.signOut().then(onLogoutSuccess)
 .catch(onLogoutError);
   }, [onLogoutError, onLogoutSuccess]);
 

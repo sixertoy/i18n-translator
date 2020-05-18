@@ -1,8 +1,9 @@
+import get from 'lodash.get';
 import React from 'react';
 import { AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { FirebaseAuthConsumer } from '../../../../core/firebase';
+import { IfFirebaseAuthed } from '../../../../core/firebase';
 
 const useStyles = createUseStyles({
   button: {
@@ -24,16 +25,21 @@ const AccountButtonComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <FirebaseAuthConsumer>
-      {({ user }) => (
-        <button className={classes.button} type="button">
-          <React.Fragment>
-            {!user && <UserIcon />}
-            {user && <img alt="user avatar" src={user.photoURL} />}
-          </React.Fragment>
-        </button>
-      )}
-    </FirebaseAuthConsumer>
+    <IfFirebaseAuthed>
+      {state => {
+        const photoURL = get(state, 'user.photoURL', null);
+        const isAnonymous = get(state, 'user.isAnonymous', null);
+        const showIcon = !isAnonymous || !photoURL;
+        return (
+          <button className={classes.button} type="button">
+            <React.Fragment>
+              {showIcon && <UserIcon />}
+              {!showIcon && <img alt="user avatar" src={photoURL} />}
+            </React.Fragment>
+          </button>
+        );
+      }}
+    </IfFirebaseAuthed>
   );
 });
 
