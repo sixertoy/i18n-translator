@@ -1,9 +1,19 @@
+import get from 'lodash.get';
+
 const model = {
-  email: null, // [{ [key]: label }]
-  langs: [], // number
-  lastActive: () => Date.now(), // bool
-  logged: false, // bool
-  provider: null, // string -> voir les providers firebase
+  ctime: () => Date.now(),
+  displayName: null,
+  email: null,
+  emailVerified: false,
+  isAnonymous: true,
+  isLogged: false,
+  langs: [],
+  mtime: () => Date.now(),
+  photoURL: null,
+  provider: user => {
+    return get(user, 'providerData.0.providerId');
+  },
+  uid: null,
 };
 
 export default model;

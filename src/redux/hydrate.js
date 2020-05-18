@@ -6,7 +6,7 @@ function hydrateModel(model, action, extend = {}) {
   const merged = { ...model, ...picked, ...extend };
   const next = Object.entries(merged).reduce((acc, entry) => {
     const [key, value] = entry;
-    const processed = typeof value === 'function' ? value() : value;
+    const processed = typeof value === 'function' ? value(action) : value;
     return { ...acc, [key]: processed };
   }, {});
   return next;

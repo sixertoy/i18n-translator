@@ -1,9 +1,38 @@
+import isEmpty from 'lodash.isempty';
+
 import { EVENT_TYPES } from '../../constants';
+import hydrate from '../hydrate';
+import { user as model } from '../models';
+
+const createUser = (state, user) => {
+  const next = hydrate(model, user, { isLogged: true });
+  return next;
+};
+
+const updateUserTime = state => {
+  const mtime = Date.now();
+  return { ...state, mtime };
+};
 
 const user = (state = {}, action) => {
+  let isempty = true;
   switch (action.type) {
     case EVENT_TYPES.USER_UPDATE:
-      return action.user || {};
+      isempty = isEmpty(action.user);
+      if (!isempty) return state;
+      return createUser(state, action.user);
+    case EVENT_TYPES.PROJECT_CLEAR:
+    case EVENT_TYPES.PROJECT_CREATE:
+    case EVENT_TYPES.PROJECT_DELETE:
+    case EVENT_TYPES.LANGUAGE_CLEAR:
+    case EVENT_TYPES.LANGUAGE_CREATE:
+    case EVENT_TYPES.LANGUAGE_DELETE:
+    case EVENT_TYPES.PROJECT_NAME_UPDATE:
+    case EVENT_TYPES.LANGUAGE_KEY_CREATE:
+    case EVENT_TYPES.LANGUAGE_KEY_DELETE:
+    case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
+    case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
+      return updateUserTime(state);
     default:
       return state;
   }
