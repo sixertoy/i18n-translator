@@ -5,6 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
+import { FIREBASE_EMAIL_SIGNIN_FALLBACK } from '../../../constants';
 import { updateSubscribingEmail } from '../../../redux/actions';
 import { selectSubscribingEmail } from '../../../redux/selectors';
 
@@ -51,7 +52,7 @@ const SigninFormComponent = React.memo(() => {
         .auth()
         .sendSignInLinkToEmail(value, {
           handleCodeInApp: true,
-          url: 'https://typpo.space',
+          url: FIREBASE_EMAIL_SIGNIN_FALLBACK,
         })
         .then(() => {
           toast.success('ok');

@@ -6,6 +6,7 @@ export const MAX_FREE_TRANSLATIONS = 50;
 
 export const FIREBASE_AUTH_LOCAL = 'local';
 export const FIREBASE_AUTH_SESSION = 'session';
+export const FIREBASE_EMAIL_SIGNIN_FALLBACK = 'https://typpo.space';
 
 export const FIREBASE_PROVIDER_EMAIL = 'email';
 export const FIREBASE_PROVIDER_GOOGLE = 'google.com';
