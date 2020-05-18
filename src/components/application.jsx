@@ -27,14 +27,16 @@ const Application = React.memo(() => {
       {() => (
         <div className={classes.application}>
           <Switch>
-            {routes.map(obj => (
-              <Route
-                key={obj.id}
-                component={obj.component}
-                exact={obj.exact}
-                path={obj.path}
-              />
-            ))}
+            {routes.map(obj => {
+              return (
+                <Route
+                  key={obj.id}
+                  component={obj.component}
+                  exact={obj.exact}
+                  path={obj.path}
+                />
+              );
+            })}
             <Route path="*">
               <NoMatch />
             </Route>

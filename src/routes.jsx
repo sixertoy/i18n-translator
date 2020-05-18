@@ -4,8 +4,8 @@ import Export from './components/views/export';
 import Home from './components/views/home';
 import Import from './components/views/import';
 import Landing from './components/views/landing';
-import LogOut from './components/views/logout';
-import SignIn from './components/views/signin';
+import Login from './components/views/login';
+import Logout from './components/views/logout';
 
 const ROUTES_ID = {
   BOARD: 'board',
@@ -13,9 +13,9 @@ const ROUTES_ID = {
   HOME: 'home',
   IMPORT: 'import',
   LANDING: 'landing',
+  LOGIN: 'login',
   LOGOUT: 'logout',
   NOT_FOUND: 'not-found',
-  SIGNIN: 'signin',
 };
 
 const routes = [
@@ -26,10 +26,10 @@ const routes = [
     path: '/',
   },
   {
-    component: SignIn,
+    component: Login,
     exact: true,
-    id: ROUTES_ID.SIGNIN,
-    path: ['/signin', '/signup'],
+    id: ROUTES_ID.LOGIN,
+    path: ['/login'],
   },
   {
     component: Home,
@@ -56,7 +56,7 @@ const routes = [
     path: ['/export', '/export/:id'],
   },
   {
-    component: LogOut,
+    component: Logout,
     exact: true,
     id: ROUTES_ID.LOGOUT,
     path: '/logout',
