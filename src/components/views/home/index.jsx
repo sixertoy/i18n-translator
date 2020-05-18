@@ -27,7 +27,11 @@ const HomeViewComponent = React.memo(() => {
         <Redirect to="/" />
       </IfFirebaseUnAuthed>
       <IfFirebaseAuthed>
-        {() => <div className={classes.layer} />}
+        <div className={classes.layer}>
+          <div className={classes.favorites} />
+          <div className={classes.recents} />
+          <div className={classes.projects} />
+        </div>
       </IfFirebaseAuthed>
     </div>
   );

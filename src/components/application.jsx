@@ -24,27 +24,25 @@ const Application = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <IfFirebaseReady loader={<Loader className={classes.loader} />}>
-      {() => (
-        <div className={classes.application}>
-          <Switch>
-            {routes.map(obj => {
-              // const isvalid = obj.id && obj.path && obj.component;
-              // TODO add to debug logger if route not valid
-              return (
-                <Route
-                  key={obj.id}
-                  component={obj.component}
-                  exact={obj.exact}
-                  path={obj.path}
-                />
-              );
-            })}
-            <Route path="*">
-              <NoMatch />
-            </Route>
-          </Switch>
-        </div>
-      )}
+      <div className={classes.application}>
+        <Switch>
+          {routes.map(obj => {
+            // const isvalid = obj.id && obj.path && obj.component;
+            // TODO add to debug logger if route not valid
+            return (
+              <Route
+                key={obj.id}
+                component={obj.component}
+                exact={obj.exact}
+                path={obj.path}
+              />
+            );
+          })}
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
+      </div>
     </IfFirebaseReady>
   );
 });

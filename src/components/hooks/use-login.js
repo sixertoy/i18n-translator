@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import { useCallback, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-// import { useDispatch } from 'react-redux';
 import {
   FIREBASE_AUTH_LOCAL,
   FIREBASE_AUTH_SESSION,
@@ -9,7 +9,7 @@ import {
   FIREBASE_PROVIDER_GITHUB,
   FIREBASE_PROVIDER_GOOGLE,
 } from '../../constants';
-// import { updateUser } from '../../redux/actions';
+import { updateUser } from '../../redux/actions';
 
 const ACCOUNT_EXISTS_CODE = 'auth/account-exists-with-different-credential';
 
@@ -26,7 +26,7 @@ const getProviderById = (providerId = null) => {
 };
 
 const useLogin = (providerId = null) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const providerRef = useRef(getProviderById(providerId));
 
   const onLogoutError = useCallback(() => {
@@ -37,10 +37,12 @@ const useLogin = (providerId = null) => {
     // dispatch(updateUser());
   }, []);
 
-  const onLoginSuccess = useCallback((...rest) => {
-    // dispatch(updateUser(user));
-    console.log('rest => ', rest);
-  }, []);
+  const onLoginSuccess = useCallback(
+    ({ user }) => {
+      dispatch(updateUser(user));
+    },
+    [dispatch]
+  );
 
   // NOTE documentation auth
   // https://firebase.google.com/docs/auth/web/google-signin#expandable-1-label
