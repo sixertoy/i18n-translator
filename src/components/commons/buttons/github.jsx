@@ -1,11 +1,10 @@
 import classnames from 'classnames';
-import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { AiOutlineGithub as GithubIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { FIREBASE_AUTH_LOCAL } from '../../../constants';
+import { FIREBASE_PROVIDER_GITHUB } from '../../../constants';
 import { useButtonStyles, useLogin } from '../../hooks';
 
 const useStyles = createUseStyles({
@@ -16,42 +15,32 @@ const useStyles = createUseStyles({
   },
 });
 
-const GithubButtonComponent = React.memo(({ className, subscribe }) => {
+const GithubButtonComponent = React.memo(({ className, useSignin }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const buttonClasses = useButtonStyles({ theme });
-  const { onLoginError, onLoginSuccess } = useLogin();
-
-  const onClickHandler = useCallback(() => {
-    firebase.auth().setPersistence(FIREBASE_AUTH_LOCAL);
-    const provider = new firebase.auth.GithubAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(onLoginSuccess)
-      .catch(onLoginError);
-  }, [onLoginError, onLoginSuccess]);
+  const { onSigninClick } = useLogin(FIREBASE_PROVIDER_GITHUB);
 
   return (
     <button
       className={classnames(buttonClasses.btn, classes.button, className)}
       type="button"
-      onClick={onClickHandler}>
+      onClick={onSigninClick}>
       <GithubIcon className="mr12" />
-      {!subscribe && <span>Signin with Github</span>}
-      {subscribe && <span>Signup with Github</span>}
+      {useSignin && <span>Signin with Github</span>}
+      {!useSignin && <span>Signup with Github</span>}
     </button>
   );
 });
 
 GithubButtonComponent.defaultProps = {
   className: '',
-  subscribe: false,
+  useSignin: false,
 };
 
 GithubButtonComponent.propTypes = {
   className: PropTypes.string,
-  subscribe: PropTypes.bool,
+  useSignin: PropTypes.bool,
 };
 
 export default GithubButtonComponent;

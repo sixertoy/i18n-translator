@@ -18,14 +18,12 @@ const LoginComponent = React.memo(({ login }) => {
   return (
     <div className={classes.login}>
       <IfFirebaseUnAuthed>
-        {() => (
-          <React.Fragment>
-            <GithubLogin login={login} />
-            <GoogleLogin className="mt7" login={login} />
-          </React.Fragment>
-        )}
+        <GithubLogin useSignin={login} />
+        <GoogleLogin className="mt7" useSignin={login} />
       </IfFirebaseUnAuthed>
-      <IfFirebaseAuthed>{() => <Signout />}</IfFirebaseAuthed>
+      <IfFirebaseAuthed>
+        <Signout />
+      </IfFirebaseAuthed>
     </div>
   );
 });

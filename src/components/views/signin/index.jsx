@@ -38,7 +38,7 @@ const SigninViewComponent = React.memo(() => {
   const { state } = useLocation();
   const { subscribe } = state;
 
-  const mail = useSelector(selectSubscribingEmail);
+  const email = useSelector(selectSubscribingEmail);
   return (
     <React.Fragment>
       <IfFirebaseAuthed>{() => <Redirect to="/" />}</IfFirebaseAuthed>
@@ -51,7 +51,7 @@ const SigninViewComponent = React.memo(() => {
                 {!subscribe && <span>Connectez-vous à votre compte</span>}
                 {subscribe && <span>Créez votre compte</span>}
               </h1>
-              <Form mail={mail} subscribe={subscribe} />
+              <Form email={email} />
               <Splitter />
               <GithubLogin login={subscribe} />
               <GoogleLogin className="mt7" login={subscribe} />

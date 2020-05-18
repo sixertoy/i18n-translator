@@ -1,7 +1,16 @@
+export const PERSIST_STORAGE_KEY = 'i18n_translation_editor::';
+
+export const MAX_FREE_PROJECTS = 1;
+export const MAX_FREE_LANGUAGES = 3;
+export const MAX_FREE_TRANSLATIONS = 50;
+
 export const FIREBASE_AUTH_LOCAL = 'local';
 export const FIREBASE_AUTH_SESSION = 'session';
 
-export const MAX_FREE_LANGUAGES = 3;
+export const FIREBASE_PROVIDER_EMAIL = 'email';
+export const FIREBASE_PROVIDER_GOOGLE = 'google.com';
+export const FIREBASE_PROVIDER_GITHUB = 'github.com';
+export const FIREBASE_PROVIDER_ANON = 'anonymous';
 
 export const DEFAULT_LANGUAGES = {
   // using language keys RFC 3066
@@ -53,5 +62,3 @@ export const EDITOR_DEFAULT_CONTENT = JSON.stringify(
   null,
   2
 );
-
-export const PERSIST_STORAGE_KEY = 'i18n_translation_editor::';

@@ -1,10 +1,13 @@
+import firebase from 'firebase/app';
+import isEmpty from 'lodash.isempty';
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-// import { useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
-// import { updateSubscribingEmail } from '../../../redux/actions';
+// import { useHistory } from 'react-router-dom';
+import { updateSubscribingEmail } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -16,7 +19,7 @@ const useStyles = createUseStyles({
   form: {},
   input: ({ theme }) => ({
     '&::placeholder': { opacity: 0.25 },
-    borderColor: '#ACE539',
+    borderColor: theme.colors.black,
     borderStyle: 'solid',
     borderWidth: 1,
     color: theme.colors.black,
@@ -25,42 +28,54 @@ const useStyles = createUseStyles({
   }),
 });
 
-// function checkIfEmailIsValid(email) {
-//   return (
-//     email.current &&
-//     typeof email.current === 'string' &&
-//     email.current.trim() !== ''
-//   );
-// }
+function checkIfEmailIsValid(value) {
+  return value && typeof value === 'string' && !isEmpty(value.trim());
+}
 
-const SigninFormComponent = React.memo(({ mail }) => {
+const SigninFormComponent = React.memo(({ email }) => {
+  const emailInput = useRef(email);
   const theme = useTheme();
-  const emailInput = useRef(mail);
   const classes = useStyles({ theme });
+  const dispatch = useDispatch();
 
-  // const history = useHistory();
-  // const dispatch = useDispatch();
-
-  const onFormSubmit = useCallback(evt => {
-    evt.preventDefault();
-    // const email = emailInput.current.value;
-    // const isvalid = checkIfEmailIsValid(email);
-    // dispatch(updateSubscribingEmail(email));
-    // const pathto = !isvalid ? '/signup' : `/signup?mail=${email}`;
-    // history.push(pathto);
-  }, []);
+  const onFormSubmit = useCallback(
+    evt => {
+      evt.preventDefault();
+      const { value } = emailInput.current;
+      const isvalid = checkIfEmailIsValid(value);
+      if (!isvalid) {
+        toast.error('Please provide any valid email');
+        return;
+      }
+      firebase
+        .auth()
+        .sendSignInLinkToEmail(value, {
+          handleCodeInApp: true,
+          url: 'https://typpo.space',
+        })
+        .then(() => {
+          toast.success('ok');
+          // dispatch temporary item
+          dispatch(updateSubscribingEmail());
+        })
+        .catch(({ message }) => {
+          toast.error(message);
+        });
+    },
+    [dispatch]
+  );
 
   return (
     <form className={classes.form} onSubmit={onFormSubmit}>
       <input
         ref={emailInput}
         className={classes.input}
-        defaultValue={mail}
+        defaultValue={email}
         name="landing.email"
         placeholder="e-mail"
-        type="text"
+        type="email"
       />
-      <button className={classes.button} type="submit" onClick={() => {}}>
+      <button className={classes.button} type="submit">
         <span>Continuer</span>
       </button>
     </form>
@@ -68,11 +83,11 @@ const SigninFormComponent = React.memo(({ mail }) => {
 });
 
 SigninFormComponent.defaultProps = {
-  mail: null,
+  email: null,
 };
 
 SigninFormComponent.propTypes = {
-  mail: PropTypes.string,
+  email: PropTypes.string,
 };
 
 export default SigninFormComponent;

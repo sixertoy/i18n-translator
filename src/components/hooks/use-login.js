@@ -1,70 +1,123 @@
 import firebase from 'firebase/app';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateUser } from '../../redux/actions';
+import {
+  FIREBASE_AUTH_LOCAL,
+  FIREBASE_AUTH_SESSION,
+  // FIREBASE_PROVIDER_EMAIL,
+  FIREBASE_PROVIDER_GITHUB,
+  FIREBASE_PROVIDER_GOOGLE,
+} from '../../constants';
+// import { updateUser } from '../../redux/actions';
 
-const getProviderForProviderId = provider => {
-  switch (provider) {
-    case 'google.com':
+const ACCOUNT_EXISTS_CODE = 'auth/account-exists-with-different-credential';
+
+const getProviderById = (providerId = null) => {
+  if (!providerId) return null;
+  switch (providerId) {
+    case FIREBASE_PROVIDER_GOOGLE:
       return new firebase.auth.GoogleAuthProvider();
-    case 'github.com':
+    case FIREBASE_PROVIDER_GITHUB:
       return new firebase.auth.GithubAuthProvider();
     default:
       return null;
   }
 };
 
-const useLogin = () => {
+const useLogin = (providerId = null) => {
   const dispatch = useDispatch();
+  const provoderRef = useRef(getProviderById(providerId));
 
-  const onLogoutError = useCallback(() => {}, []);
+  const onLogoutError = useCallback(() => {
+    //
+  }, []);
 
   const onLogoutSuccess = useCallback(() => {
-    dispatch(updateUser());
-  }, [dispatch]);
+    // dispatch(updateUser());
+  }, []);
 
-  const onLoginSuccess = useCallback(
-    ({ user }) => {
-      dispatch(updateUser(user));
-    },
-    [dispatch]
-  );
+  const onLoginSuccess = useCallback((...rest) => {
+    // dispatch(updateUser(user));
+    console.log('rest => ', rest);
+  }, []);
 
+  // NOTE documentation auth
+  // https://firebase.google.com/docs/auth/web/google-signin#expandable-1-label
   const onLoginError = useCallback(
     err => {
       const auth = firebase.auth();
       const { code, credential, email, message } = err;
-      if (code === 'auth/account-exists-with-different-credential') {
-        // NOTE documentation auth
-        // https://firebase.google.com/docs/auth/web/google-signin#expandable-1-label
-        auth.fetchSignInMethodsForEmail(email).then(methods => {
-          console.log('methods', methods);
-          const [method] = methods;
-          console.log('method', method);
-          if (method === 'email') {
-            // TODO something
-            return;
-          }
-          const provider = getProviderForProviderId(method);
-          if (!provider) {
-            // TODO throw error
-            return;
-          }
-          auth.signInWithPopup(provider).then(({ user }) => {
-            user
-              .linkAndRetrieveDataWithCredential(credential)
-              .then(onLoginSuccess);
-          });
-        });
-      } else {
+      if (code !== ACCOUNT_EXISTS_CODE) {
         throw new Error(message);
       }
+      auth.fetchSignInMethodsForEmail(email).then(methods => {
+        console.log('methods', methods);
+        const [method] = methods;
+        if (method === 'email') {
+          // TODO something
+          return;
+        }
+        const pid = getProviderById(method);
+        if (!pid) {
+          // TODO throw error
+          return;
+        }
+        auth.signInWithPopup(pid).then(({ user }) => {
+          user
+            .linkAndRetrieveDataWithCredential(credential)
+            .then(onLoginSuccess);
+        });
+      });
     },
     [onLoginSuccess]
   );
 
-  return { onLoginError, onLoginSuccess, onLogoutError, onLogoutSuccess };
+  const onSigninWithEmail = useCallback(() => {
+    // NOTE
+    // https://firebase.google.com/docs/auth/web/email-link-auth
+  }, []);
+
+  const onSignoutClick = useCallback(evt => {
+    evt.preventDefault();
+  }, []);
+
+  const onSigninClick = useCallback(
+    evt => {
+      evt.preventDefault();
+      firebase
+        .auth()
+        .setPersistence(FIREBASE_AUTH_LOCAL)
+        .then(() => firebase.auth().signInWithPopup(provoderRef.current))
+        .then(onLoginSuccess)
+        .catch(onLoginError);
+    },
+    [onLoginError, onLoginSuccess]
+  );
+
+  const onAnonymousClick = useCallback(
+    evt => {
+      evt.preventDefault();
+      firebase
+        .auth()
+        .setPersistence(FIREBASE_AUTH_SESSION)
+        .then(() => firebase.auth().signInAnonymously())
+        .then(onLoginSuccess)
+        .catch(onLoginError);
+    },
+    [onLoginError, onLoginSuccess]
+  );
+
+  return {
+    onAnonymousClick,
+    onLoginError,
+    onLoginSuccess,
+    onLogoutError,
+    onLogoutSuccess,
+    onSigninClick,
+    onSigninWithEmail,
+    onSignoutClick,
+  };
 };
 
 export default useLogin;

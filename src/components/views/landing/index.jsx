@@ -1,33 +1,16 @@
-import firebase from 'firebase/app';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { FIREBASE_AUTH_SESSION } from '../../../constants';
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
-import { updateAnonymous } from '../../../redux/actions';
 import { selectSubscribingEmail } from '../../../redux/selectors';
+import Demo from './demo';
 import Form from './form';
-import Help from './help';
 import Nav from './nav';
+import Text from './text';
 
 const useStyles = createUseStyles({
-  anonymous: ({ theme }) => ({
-    '&:disabled': { opacity: 1, textDecoration: 'none' },
-    background: theme.colors.transparent,
-    clear: 'right',
-    color: theme.colors.white,
-    composes: [
-      'float-right',
-      'text-center',
-      'fs18',
-      'is-block',
-      'mt12',
-      'is-underline',
-    ],
-    width: 300,
-  }),
   bottom: {
     composes: ['clearfix'],
     margin: '24px auto 32px auto',
@@ -42,20 +25,8 @@ const useStyles = createUseStyles({
 
 const LandingViewComponent = React.memo(() => {
   const theme = useTheme();
-  const dispatch = useDispatch();
   const classes = useStyles({ theme });
-
   const mail = useSelector(selectSubscribingEmail);
-
-  const onDemoClick = useCallback(() => {
-    firebase.auth().setPersistence(FIREBASE_AUTH_SESSION);
-    firebase
-      .auth()
-      .signInAnonymously()
-      .then(() => dispatch(updateAnonymous()))
-      .catch(() => {});
-  }, [dispatch]);
-
   return (
     <React.Fragment>
       <IfFirebaseAuthed>
@@ -65,15 +36,10 @@ const LandingViewComponent = React.memo(() => {
         {() => (
           <div className={classes.container} id="landing-view">
             <Nav />
-            <Help />
+            <Text />
             <div className={classes.bottom}>
               <Form mail={mail} />
-              <button
-                className={classes.anonymous}
-                type="button"
-                onClick={onDemoClick}>
-                <span>Testez sans vous inscrire</span>
-              </button>
+              <Demo />
             </div>
           </div>
         )}

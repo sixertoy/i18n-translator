@@ -5,15 +5,16 @@ import { useLogin } from '../../hooks';
 import Button from '../button';
 
 const SignOutComponent = React.memo(() => {
-  const { onLogoutSuccess } = useLogin();
+  const { onLogoutError, onLogoutSuccess } = useLogin();
 
-  const onClick = useCallback(() => {
-    const auth = firebase.auth();
-    auth.signOut().then(onLogoutSuccess);
-  }, [onLogoutSuccess]);
+  const onSignoutClick = useCallback(() => {
+    firebase.auth().signOut()
+.then(onLogoutSuccess)
+.catch(onLogoutError);
+  }, [onLogoutError, onLogoutSuccess]);
 
   return (
-    <Button onClick={onClick}>
+    <Button onClick={onSignoutClick}>
       <span>Signout</span>
     </Button>
   );

@@ -16,9 +16,6 @@ const useStyles = createUseStyles({
     lineHeight: px(53),
     width: 'auto',
   }),
-  label: {
-    composes: ['fs42', 'ml42'],
-  },
   svg: {
     composes: ['fs38', 'mr5', 'is-absolute'],
     top: 10,
@@ -31,7 +28,7 @@ const BrandComponent = React.memo(({ className }) => {
   return (
     <Link className={classnames(classes.brand, className)} to="/">
       <Logo outlined className={classes.svg} />
-      <span className={classes.label}>Typpo</span>
+      <span className="fs42 ml42">Typpo</span>
     </Link>
   );
 });

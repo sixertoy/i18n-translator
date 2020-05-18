@@ -1,11 +1,10 @@
 import classnames from 'classnames';
-import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { FIREBASE_AUTH_LOCAL } from '../../../constants';
+import { FIREBASE_PROVIDER_GOOGLE } from '../../../constants';
 import { useButtonStyles, useLogin } from '../../hooks';
 
 const useStyles = createUseStyles({
@@ -16,42 +15,32 @@ const useStyles = createUseStyles({
   },
 });
 
-const GoogleButtonComponent = React.memo(({ className, subscribe }) => {
+const GoogleButtonComponent = React.memo(({ className, useSignin }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const buttonClasses = useButtonStyles({ theme });
-  const { onLoginError, onLoginSuccess } = useLogin();
-
-  const onClickHandler = useCallback(() => {
-    firebase.auth().setPersistence(FIREBASE_AUTH_LOCAL);
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(onLoginSuccess)
-      .catch(onLoginError);
-  }, [onLoginError, onLoginSuccess]);
+  const { onSigninClick } = useLogin(FIREBASE_PROVIDER_GOOGLE);
 
   return (
     <button
       className={classnames(buttonClasses.btn, classes.button, className)}
       type="button"
-      onClick={onClickHandler}>
+      onClick={onSigninClick}>
       <GoogleIcon className="mr12" />
-      {!subscribe && <span>Signin with Google</span>}
-      {subscribe && <span>Signup with Google</span>}
+      {useSignin && <span>Signin with Google</span>}
+      {!useSignin && <span>Signup with Google</span>}
     </button>
   );
 });
 
 GoogleButtonComponent.defaultProps = {
   className: '',
-  subscribe: false,
+  useSignin: false,
 };
 
 GoogleButtonComponent.propTypes = {
   className: PropTypes.string,
-  subscribe: PropTypes.bool,
+  useSignin: PropTypes.bool,
 };
 
 export default GoogleButtonComponent;
