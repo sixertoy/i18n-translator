@@ -46,9 +46,7 @@ const LandingFormComponent = React.memo(({ email }) => {
 
   return (
     <React.Fragment>
-      {submitted && (
-        <Redirect to={{ pathname: '/signin', state: { useSignup: true } }} />
-      )}
+      {submitted && <Redirect to={{ pathname: '/signup' }} />}
       <form className={classes.form} onSubmit={onFormSubmit}>
         <input
           ref={emailInput}

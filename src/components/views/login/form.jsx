@@ -55,7 +55,6 @@ const SigninFormComponent = React.memo(() => {
         })
         .then(() => {
           toast.success('ok');
-          // dispatch temporary item
           dispatch(updateSubscribingEmail());
         })
         .catch(({ message }) => {

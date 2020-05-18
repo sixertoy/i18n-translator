@@ -29,7 +29,7 @@ const routes = [
     component: Login,
     exact: true,
     id: ROUTES_ID.LOGIN,
-    path: ['/login'],
+    path: ['/login', '/signin', '/signup'],
   },
   {
     component: Home,
