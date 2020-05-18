@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { updateSubscribingEmail } from '../../../redux/actions';
 
@@ -26,48 +26,53 @@ const useStyles = createUseStyles({
   }),
 });
 
-const LandingFormComponent = React.memo(({ mail }) => {
+const LandingFormComponent = React.memo(({ email }) => {
   const theme = useTheme();
-  const emailInput = useRef(null);
+  const emailInput = useRef(email);
   const classes = useStyles({ theme });
+  const [submitted, setSubmitted] = useState(false);
 
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const onFormSubmit = useCallback(
     evt => {
       evt.preventDefault();
-      const email = emailInput.current.value;
-      dispatch(updateSubscribingEmail(email));
-      history.push('/signup', { subscribe: true });
+      const { value } = emailInput.current;
+      dispatch(updateSubscribingEmail(value));
+      setSubmitted(true);
     },
-    [dispatch, history]
+    [dispatch]
   );
 
   return (
-    <form className={classes.form} onSubmit={onFormSubmit}>
-      <input
-        ref={emailInput}
-        className={classes.input}
-        defaultValue={mail}
-        name="landing.email"
-        placeholder="e-mail"
-        type="email"
-      />
-      <button className={classes.button} type="submit">
-        <span>Inscrivez-vous,</span>
-        <i> c&apos;est gratuit !</i>
-      </button>
-    </form>
+    <React.Fragment>
+      {submitted && (
+        <Redirect to={{ pathname: '/signin', state: { useSignup: true } }} />
+      )}
+      <form className={classes.form} onSubmit={onFormSubmit}>
+        <input
+          ref={emailInput}
+          className={classes.input}
+          defaultValue={email}
+          name="landing.email"
+          placeholder="e-mail"
+          type="email"
+        />
+        <button className={classes.button} type="submit">
+          <span>Inscrivez-vous,</span>
+          <i> c&apos;est gratuit !</i>
+        </button>
+      </form>
+    </React.Fragment>
   );
 });
 
 LandingFormComponent.defaultProps = {
-  mail: null,
+  email: null,
 };
 
 LandingFormComponent.propTypes = {
-  mail: PropTypes.string,
+  email: PropTypes.string,
 };
 
 export default LandingFormComponent;

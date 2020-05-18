@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import { useCallback, useRef } from 'react';
-import { useDispatch } from 'react-redux';
 
+// import { useDispatch } from 'react-redux';
 import {
   FIREBASE_AUTH_LOCAL,
   FIREBASE_AUTH_SESSION,
@@ -26,7 +26,7 @@ const getProviderById = (providerId = null) => {
 };
 
 const useLogin = (providerId = null) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const provoderRef = useRef(getProviderById(providerId));
 
   const onLogoutError = useCallback(() => {

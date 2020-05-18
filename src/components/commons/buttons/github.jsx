@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const GithubButtonComponent = React.memo(({ className, useSignin }) => {
+const GithubButtonComponent = React.memo(({ className }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const buttonClasses = useButtonStyles({ theme });
@@ -27,20 +27,18 @@ const GithubButtonComponent = React.memo(({ className, useSignin }) => {
       type="button"
       onClick={onSigninClick}>
       <GithubIcon className="mr12" />
-      {useSignin && <span>Signin with Github</span>}
-      {!useSignin && <span>Signup with Github</span>}
+      <span>Signin with Github</span>
+      {/* <span>Signup with Github</span> */}
     </button>
   );
 });
 
 GithubButtonComponent.defaultProps = {
   className: '',
-  useSignin: false,
 };
 
 GithubButtonComponent.propTypes = {
   className: PropTypes.string,
-  useSignin: PropTypes.bool,
 };
 
 export default GithubButtonComponent;

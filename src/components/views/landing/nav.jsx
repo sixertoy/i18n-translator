@@ -32,12 +32,12 @@ const LandingNavComponent = React.memo(() => {
       <div>
         <Link
           className={classes.signin}
-          to={{ pathname: '/signin', state: { subscribe: false } }}>
+          to={{ pathname: '/signin', state: { useSignup: false } }}>
           <span>Connexion</span>
         </Link>
         <Link
           className={classes.signup}
-          to={{ pathname: '/signup', state: { subscribe: true } }}>
+          to={{ pathname: '/signup', state: { useSignup: true } }}>
           <span>S&apos;inscrire</span>
         </Link>
       </div>

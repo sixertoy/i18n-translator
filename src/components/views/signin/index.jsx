@@ -1,10 +1,8 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
 import { Redirect, useLocation } from 'react-router-dom';
 
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
-import { selectSubscribingEmail } from '../../../redux/selectors';
 import GithubLogin from '../../commons/buttons/github';
 import GoogleLogin from '../../commons/buttons/google';
 import Brand from '../../layout/brand';
@@ -36,9 +34,7 @@ const SigninViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { state } = useLocation();
-  const { subscribe } = state;
-
-  const email = useSelector(selectSubscribingEmail);
+  const { useSignup } = state;
   return (
     <React.Fragment>
       <IfFirebaseAuthed>{() => <Redirect to="/" />}</IfFirebaseAuthed>
@@ -48,14 +44,14 @@ const SigninViewComponent = React.memo(() => {
             <Brand className={classes.logo} />
             <div className={classes.wrapper}>
               <h1 className={classes.title}>
-                {!subscribe && <span>Connectez-vous à votre compte</span>}
-                {subscribe && <span>Créez votre compte</span>}
+                {!useSignup && <span>Connectez-vous à votre compte</span>}
+                {useSignup && <span>Créez votre compte</span>}
               </h1>
-              <Form email={email} />
+              <Form />
               <Splitter />
-              <GithubLogin login={subscribe} />
-              <GoogleLogin className="mt7" login={subscribe} />
-              <Login subscribe={subscribe} />
+              <GithubLogin />
+              <GoogleLogin className="mt7" />
+              <Login />
             </div>
           </div>
         )}

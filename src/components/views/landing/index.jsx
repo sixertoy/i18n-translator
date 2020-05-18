@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
 const LandingViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const mail = useSelector(selectSubscribingEmail);
+  const email = useSelector(selectSubscribingEmail);
   return (
     <React.Fragment>
       <IfFirebaseAuthed>
@@ -38,7 +38,7 @@ const LandingViewComponent = React.memo(() => {
             <Nav />
             <Text />
             <div className={classes.bottom}>
-              <Form mail={mail} />
+              <Form email={email} />
               <Demo />
             </div>
           </div>

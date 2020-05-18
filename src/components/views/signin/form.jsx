@@ -1,13 +1,12 @@
 import firebase from 'firebase/app';
 import isEmpty from 'lodash.isempty';
-import PropTypes from 'prop-types';
 import React, { useCallback, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-// import { useHistory } from 'react-router-dom';
 import { updateSubscribingEmail } from '../../../redux/actions';
+import { selectSubscribingEmail } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -32,7 +31,8 @@ function checkIfEmailIsValid(value) {
   return value && typeof value === 'string' && !isEmpty(value.trim());
 }
 
-const SigninFormComponent = React.memo(({ email }) => {
+const SigninFormComponent = React.memo(() => {
+  const email = useSelector(selectSubscribingEmail);
   const emailInput = useRef(email);
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -81,13 +81,5 @@ const SigninFormComponent = React.memo(({ email }) => {
     </form>
   );
 });
-
-SigninFormComponent.defaultProps = {
-  email: null,
-};
-
-SigninFormComponent.propTypes = {
-  email: PropTypes.string,
-};
 
 export default SigninFormComponent;
