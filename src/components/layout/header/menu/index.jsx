@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import {
   MdDashboard as ProjectsIcon,
@@ -19,6 +20,10 @@ const useStyles = createUseStyles({
     lineHeight: '1.25em',
     transition: 'background 0.5s',
     width: 'auto',
+  }),
+  colored: ({ theme }) => ({
+    background: '#FFFFFF',
+    color: theme.colors.gradient[0],
   }),
   container: {
     composes: ['no-flex'],
@@ -43,15 +48,18 @@ const ApplicationMenuComponent = React.memo(() => {
   return (
     <div className={classes.container} id="header-menu">
       <div className={classes.wrapper}>
-        <Link className={classes.button} to="/">
+        <Link className={classnames(classes.button, classes.colored)} to="/">
           <HomeIcon className="fs20" />
         </Link>
         <Tooltip
           arrow={false}
           className={classes.tooltip}
           component={<Projects />}
-          placement="bottom-start">
-          <button className={classes.button} type="button">
+          placement="bottom-start"
+          theme="light">
+          <button
+            className={classnames(classes.button, classes.colored)}
+            type="button">
             <ProjectsIcon className="fs20" />
             <span className="ml7">Projets</span>
           </button>
