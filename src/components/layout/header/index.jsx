@@ -1,17 +1,19 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import Brand from '../brand';
 import Account from './account';
 import Menu from './menu';
-import Title from './title';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    background: theme.colors.grey,
+  brand: {
+    fontSize: 10,
+  },
+  container: {
+    background: `linear-gradient(90deg, #EE256B 0%, #FD7822 100%)`,
     width: '100%',
-  }),
+  },
   layer: ({ theme }) => ({
-    background: theme.colors.grey,
     composes: [
       'px32',
       'flex-columns',
@@ -32,7 +34,7 @@ const ApplicationHeaderComponent = React.memo(() => {
     <div className={classes.container} id="layout-header">
       <div className={classes.layer}>
         <Menu />
-        <Title />
+        <Brand className={classes.brand} />
         <Account />
       </div>
     </div>

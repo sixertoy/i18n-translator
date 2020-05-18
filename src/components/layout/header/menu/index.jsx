@@ -25,11 +25,12 @@ const useStyles = createUseStyles({
   },
   tooltip: ({ theme }) => ({
     '& .tippy-content': { padding: 0 },
-    borderRadius: theme.radius.small,
+    borderRadius: 3,
     height: `calc(100vh - ${theme.sizes.header + 7}px)`,
     left: -70,
     padding: 8,
     top: 7,
+    width: 280,
   }),
   wrapper: {
     composes: ['flex-columns', 'flex-start', 'items-center'],

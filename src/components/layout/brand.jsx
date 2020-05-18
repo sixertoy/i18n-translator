@@ -12,13 +12,18 @@ const useStyles = createUseStyles({
     '&:hover': { textDecoration: 'none !important' },
     color: theme.colors.white,
     composes: ['ff-lobster', 'is-relative', 'is-block'],
-    height: 53,
-    lineHeight: px(53),
+    height: '3.4em',
+    lineHeight: '3.4em',
     width: 'auto',
   }),
   svg: {
-    composes: ['fs38', 'mr5', 'is-absolute'],
-    top: 10,
+    composes: ['is-absolute'],
+    fontSize: '2.375em',
+    top: '0.3em',
+  },
+  title: {
+    fontSize: '2.625em',
+    marginLeft: '1em',
   },
 });
 
@@ -28,7 +33,7 @@ const BrandComponent = React.memo(({ className }) => {
   return (
     <Link className={classnames(classes.brand, className)} to="/">
       <Logo outlined className={classes.svg} />
-      <span className="fs42 ml42">Typpo</span>
+      <span className={classes.title}>Typpo</span>
     </Link>
   );
 });

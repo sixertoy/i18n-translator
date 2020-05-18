@@ -29,7 +29,7 @@ const AccountButtonComponent = React.memo(() => {
       {state => {
         const photoURL = get(state, 'user.photoURL', null);
         const isAnonymous = get(state, 'user.isAnonymous', null);
-        const showIcon = !isAnonymous || !photoURL;
+        const showIcon = isAnonymous || !photoURL;
         return (
           <button className={classes.button} type="button">
             <React.Fragment>
