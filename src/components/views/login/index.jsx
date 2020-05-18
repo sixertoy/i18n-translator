@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
 
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import GithubLogin from '../../commons/buttons/github';
@@ -31,6 +31,8 @@ const useStyles = createUseStyles({
 const SigninViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const { pathname } = useLocation();
+  const useSignup = pathname === '/signup';
   return (
     <React.Fragment>
       <IfFirebaseAuthed>
@@ -44,8 +46,8 @@ const SigninViewComponent = React.memo(() => {
               <Title />
               <Form />
               <Splitter />
-              <GithubLogin />
-              <GoogleLogin className="mt7" />
+              <GithubLogin useSignup={useSignup} />
+              <GoogleLogin className="mt7" useSignup={useSignup} />
               <Bottom />
             </div>
           </div>

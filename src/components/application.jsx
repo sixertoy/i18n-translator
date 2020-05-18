@@ -28,6 +28,8 @@ const Application = React.memo(() => {
         <div className={classes.application}>
           <Switch>
             {routes.map(obj => {
+              // const isvalid = obj.id && obj.path && obj.component;
+              // TODO add to debug logger if route not valid
               return (
                 <Route
                   key={obj.id}

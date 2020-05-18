@@ -7,7 +7,7 @@ import {
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { FirebaseAuthConsumer } from '../../../../core/firebase';
-import Login from '../../../commons/login';
+// import Login from '../../../commons/login';
 
 const useStyles = createUseStyles({
   container: {},
@@ -45,7 +45,7 @@ const AccountUserComponent = React.memo(() => {
                 </div>
               </div>
             )}
-            <Login />
+            {/* <Login /> */}
           </div>
         );
       }}

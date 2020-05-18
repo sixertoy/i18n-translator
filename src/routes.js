@@ -13,9 +13,10 @@ const ROUTES_ID = {
   HOME: 'home',
   IMPORT: 'import',
   LANDING: 'landing',
-  LOGIN: 'login',
-  LOGOUT: 'logout',
   NOT_FOUND: 'not-found',
+  SIGN_IN: 'signin',
+  SIGN_OUT: 'signout',
+  SIGN_UP: 'signup',
 };
 
 const routes = [
@@ -28,8 +29,14 @@ const routes = [
   {
     component: Login,
     exact: true,
-    id: ROUTES_ID.LOGIN,
-    path: ['/login', '/signin', '/signup'],
+    id: ROUTES_ID.SIGN_UP,
+    path: '/signup',
+  },
+  {
+    component: Login,
+    exact: true,
+    id: ROUTES_ID.SIGN_IN,
+    path: '/signin',
   },
   {
     component: Home,
@@ -58,8 +65,8 @@ const routes = [
   {
     component: Logout,
     exact: true,
-    id: ROUTES_ID.LOGOUT,
-    path: '/logout',
+    id: ROUTES_ID.SIGN_OUT,
+    path: '/signout',
   },
   {
     component: NotFound,

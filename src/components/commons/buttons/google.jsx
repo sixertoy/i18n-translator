@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const GoogleButtonComponent = React.memo(({ className }) => {
+const GoogleButtonComponent = React.memo(({ className, useSignup }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const buttonClasses = useButtonStyles({ theme });
@@ -27,18 +27,20 @@ const GoogleButtonComponent = React.memo(({ className }) => {
       type="button"
       onClick={onSigninClick}>
       <GoogleIcon className="mr12" />
-      {/* <span>Signin with Google</span> */}
-      <span>Signup with Google</span>
+      {!useSignup && <span>Signin with Google</span>}
+      {useSignup && <span>Signup with Google</span>}
     </button>
   );
 });
 
 GoogleButtonComponent.defaultProps = {
   className: '',
+  useSignup: false,
 };
 
 GoogleButtonComponent.propTypes = {
   className: PropTypes.string,
+  useSignup: PropTypes.bool,
 };
 
 export default GoogleButtonComponent;
