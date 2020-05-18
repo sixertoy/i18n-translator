@@ -1,23 +1,30 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   container: {},
 });
 
-const ReactDumbComponent = React.memo(() => {
+const ProjectItemComponent = React.memo(({ data }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const url = `/board/${data.id}`;
   return (
     <div className={classes.container}>
-      <span>&nbsp;</span>
+      <Link to={url}>
+        <span>{data.name}</span>
+      </Link>
     </div>
   );
 });
 
-ReactDumbComponent.defaultProps = {};
+ProjectItemComponent.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
+};
 
-ReactDumbComponent.propTypes = {};
-
-export default ReactDumbComponent;
+export default ProjectItemComponent;

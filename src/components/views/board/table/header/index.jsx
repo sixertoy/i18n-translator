@@ -11,7 +11,7 @@ import Menu from './menu';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    background: rgba(theme.colors.darker, 0.05),
+    background: rgba(theme.colors.black, 0.05),
     borderRadius: '100%',
     composes: ['is-absolute', 'text-center', 'is-block', 'fs14', 'use-pointer'],
     height: 28,
@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
   }),
   percentage: ({ theme }) => ({
     '& .progress-thumb': { background: theme.colors.green },
-    '& .progress-track': { background: rgba(theme.colors.grey, 0.1) },
+    '& .progress-track': { background: rgba(theme.colors.white, 0.1) },
     maxWidth: '65%',
     minWidth: '65%',
     width: '65%',

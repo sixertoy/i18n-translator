@@ -17,9 +17,11 @@ const ProjectsComponent = React.memo(() => {
     <div className={classes.container}>
       {projects.map(obj => {
         return (
-          <Link key={obj.id} to={`/board/${obj.id}`}>
-            <span>{obj.name}</span>
-          </Link>
+          <div key={obj.id}>
+            <Link to={`/board/${obj.id}`}>
+              <span>{obj.name}</span>
+            </Link>
+          </div>
         );
       })}
     </div>

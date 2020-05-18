@@ -5,6 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { selectFavorites } from '../../../redux/selectors';
+import Item from './item';
 
 const useStyles = createUseStyles({
   container: {},
@@ -25,9 +26,9 @@ const FavoritesComponent = React.memo(() => {
       </h3>
       <div className={classes.wrapper}>
         {isEmpty(items) && <span>Aucun projets</span>}
-        {items.map(obj => {
-          return <div key={obj.id}>{obj.name}</div>;
-        })}
+        {items.map(obj => (
+          <Item key={obj.id} data={obj} />
+        ))}
       </div>
     </div>
   );

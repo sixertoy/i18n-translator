@@ -1,7 +1,7 @@
 import isEmpty from 'lodash.isempty';
 import uniq from 'lodash.uniq';
 import React from 'react';
-import { AiOutlineStar as StarIcon } from 'react-icons/ai';
+import { MdDashboard as ProjectsIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
@@ -10,6 +10,7 @@ import {
   selectProjects,
   selectRecents,
 } from '../../../redux/selectors';
+import Item from './item';
 
 const useStyles = createUseStyles({
   container: {},
@@ -20,6 +21,7 @@ const useStyles = createUseStyles({
 const FavoritesComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+
   const recents = useSelector(selectRecents).map(obj => obj.id);
   const favorites = useSelector(selectFavorites).map(obj => obj.id);
   const mapped = uniq([...recents, ...favorites]);
@@ -29,14 +31,14 @@ const FavoritesComponent = React.memo(() => {
   return (
     <div className={classes.favorites}>
       <h3 className={classes.title}>
-        <StarIcon />
-        <span>Récemment modifiés</span>
+        <ProjectsIcon />
+        <span>Tous vos projets</span>
       </h3>
       <div className={classes.wrapper}>
-        {isEmpty(items) && <span>Aucun projets</span>}
-        {items.map(obj => {
-          return <div key={obj.id}>{obj.name}</div>;
-        })}
+        {isEmpty(items) && <span>Aucun projet</span>}
+        {items.map(obj => (
+          <Item key={obj.id} data={obj} />
+        ))}
       </div>
     </div>
   );

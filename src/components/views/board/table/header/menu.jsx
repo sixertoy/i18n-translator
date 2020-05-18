@@ -20,7 +20,7 @@ import {
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    '&:hover': { background: rgba(theme.colors.grey, 0.07) },
+    '&:hover': { background: rgba(theme.colors.white, 0.07) },
     background: 'transparent',
     borderRadius: 20,
     color: theme.colors.black,
