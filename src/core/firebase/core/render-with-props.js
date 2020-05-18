@@ -1,8 +1,10 @@
 import { Children, cloneElement, isValidElement } from 'react';
 
 const cloneChildWithProps = (child, props) => {
+  const isFunctionType = typeof child.type === 'function';
   // NOTE Throw if child is a DOM Element instead of a React Component
   // Custom Props cannot be passed to DOM Element
+  if (!isFunctionType) return child;
   return cloneElement(child, props);
 };
 
@@ -14,7 +16,8 @@ export const renderWithProps = (children, props) => {
 
   const isListOfChildrens = Children.count(children).length > 0;
   if (isListOfChildrens) {
-    return Children.map((parent, child) => cloneChildWithProps(child, props));
+    // return Children.map((p, child) => cloneChildWithProps(child, props));
+    return children;
   }
 
   const isElement = isValidElement(children);
