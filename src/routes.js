@@ -7,7 +7,7 @@ import Landing from './components/views/landing';
 import Login from './components/views/login';
 import Logout from './components/views/logout';
 
-const ROUTES_ID = {
+export const ROUTES_ID = {
   BOARD: 'board',
   EXPORT: 'export',
   HOME: 'home',

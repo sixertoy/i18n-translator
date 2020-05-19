@@ -3,7 +3,7 @@ import React from 'react';
 import { AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { IfFirebaseAuthed } from '../../../../core/firebase';
+import { FirebaseAuthConsumer } from '../../../../core/firebase';
 
 const useStyles = createUseStyles({
   button: {
@@ -25,7 +25,7 @@ const AccountButtonComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <IfFirebaseAuthed>
+    <FirebaseAuthConsumer>
       {state => {
         const photoURL = get(state, 'user.photoURL', null);
         const isAnonymous = get(state, 'user.isAnonymous', null);
@@ -39,7 +39,7 @@ const AccountButtonComponent = React.memo(() => {
           </button>
         );
       }}
-    </IfFirebaseAuthed>
+    </FirebaseAuthConsumer>
   );
 });
 

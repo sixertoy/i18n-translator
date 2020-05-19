@@ -8,9 +8,8 @@ import List from './list';
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
     '& + &': { marginLeft: 4 },
-    // background: theme.colors.black,
+    '&:hover': { background: 'hsla(0,0%,100%,.2)' },
     background: 'hsla(0,0%,100%,.3)',
-    // color: theme.colors.white,
     borderRadius: theme.radius.small,
     color: theme.colors.white,
     composes: ['is-block', 'fs16', 'is-bold', 'text-center', 'p7'],

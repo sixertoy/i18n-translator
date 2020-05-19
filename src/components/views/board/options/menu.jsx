@@ -64,8 +64,8 @@ const ContextMenuComponent = React.memo(() => {
   const history = useHistory();
   const dispatch = useDispatch();
   const onDelete = useCallback(() => {
-    dispatch(deleteProject(id));
-    history.replace('/');
+    dispatch(deleteProject({ project: id }));
+    history.replace('/home');
   }, [id, dispatch, history]);
 
   const onToggleFavorite = useCallback(() => {
