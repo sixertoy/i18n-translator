@@ -1,10 +1,11 @@
 import debounce from 'lodash.debounce';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-// import React, { useCallback, useEffect, useRef, useState } from 'react';
+// NOTE DOcumentation
+// https://github.com/react-monaco-editor/react-monaco-editor
 import MonacoEditor from 'react-monaco-editor';
 
-// import validate from './validator';
+import validate from './validator';
 
 const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
@@ -13,14 +14,16 @@ const MonacoEditorComponent = ({
   // className,
   content,
   disabled,
-  // onChange,
+  onChange,
 }) => {
-  const onEditorChange = useCallback(json => {
-    console.log('json => ', json);
-    // const errors = validate(json, false);
-    // const hasErrors = Array.isArray(errors) && errors.length;
-    // onChange(json, (hasErrors && errors) || null);
-  }, []);
+  const onEditorChange = useCallback(
+    json => {
+      const errors = validate(json, false);
+      const hasErrors = Array.isArray(errors) && errors.length;
+      onChange(json, (hasErrors && errors) || null);
+    },
+    [onChange]
+  );
   const debounceEditorChange = debounce(onEditorChange, 1000);
 
   const editorDidMount = useCallback(editor => {
@@ -71,7 +74,7 @@ MonacoEditorComponent.propTypes = {
   // className: PropTypes.string,
   content: PropTypes.string,
   disabled: PropTypes.bool,
-  // onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default MonacoEditorComponent;
