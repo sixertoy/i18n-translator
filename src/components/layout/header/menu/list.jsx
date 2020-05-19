@@ -4,6 +4,7 @@ import { MdDashboard as ProjectsIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import Tooltip from '../../../commons/tooltip';
+import { useTooltip } from '../../../hooks';
 import Projects from './projects';
 
 const useStyles = createUseStyles({
@@ -20,19 +21,8 @@ const useStyles = createUseStyles({
 
 const ListComponent = React.memo(({ className }) => {
   const theme = useTheme();
-  const tooltip = useRef(null);
   const classes = useStyles({ theme });
-
-  const onCreateTooltip = useCallback(
-    tippy => {
-      tooltip.current = tippy;
-    },
-    [tooltip]
-  );
-
-  const closeTooltip = useCallback(() => {
-    tooltip.current.hide();
-  }, [tooltip]);
+  const { closeTooltip, createTooltip } = useTooltip();
 
   return (
     <Tooltip
@@ -41,7 +31,7 @@ const ListComponent = React.memo(({ className }) => {
       component={<Projects onItemClick={closeTooltip} />}
       offset={[-41, 7]}
       placement="right"
-      onCreate={onCreateTooltip}>
+      onCreate={createTooltip}>
       <button className={className} type="button">
         <ProjectsIcon className="fs20" />
         <span className="ml7">Projets</span>
