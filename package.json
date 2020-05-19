@@ -79,6 +79,7 @@
     "cleanup": "rm -rf ./node_modules && rm yarn.lock",
     "lint": "eslint ./src/**/*.{js,jsx,json}",
     "dev": "react-scripts start",
+    "prebuild": "cp -R src/font public/font",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

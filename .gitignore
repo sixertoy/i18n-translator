@@ -202,3 +202,4 @@ $RECYCLE.BIN/
 .netlify
 build
 config.build.json
+public/font
