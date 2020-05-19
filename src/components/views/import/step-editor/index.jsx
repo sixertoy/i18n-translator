@@ -7,12 +7,13 @@ import {
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
+// import { toast } from 'react-toastify';
 import { selectProject } from '../../../../redux/selectors';
 import Button from '../../../commons/button';
-import CodeEditor from '../../../commons/code-editor';
 import Dropdown from '../../../commons/dropdown';
+// import CodeEditor from '../../../commons/code-editor';
+import MonacoEditor from '../../../commons/monaco-editor';
 import EditorMenu from './menu';
 import { createEditorDefaultValue } from './utils';
 
@@ -45,26 +46,26 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
 
   const update = draft.content || blank;
   const [content, setContent] = useState(update);
-  const [disabled, setDisabled] = useState(!update);
-  const [forceEditorUpdate, setForceEditorUpdate] = useState(false);
+  // const [disabled, setDisabled] = useState(!update);
+  // const [forceEditorUpdate, setForceEditorUpdate] = useState(false);
 
-  const onEditorHandler = useCallback(
-    (editor, errs = []) => {
-      const isEqual = editor === content;
-      const hasError = errs && errs.length;
-      const isEmpty = !editor || editor.trim() === '';
-      const isDisabled = Boolean(hasError || isEmpty);
-      if (hasError) errs.forEach(m => toast.error(m));
-      setDisabled(isDisabled);
-      if (!isEqual) setContent(editor);
-      if (forceEditorUpdate) setForceEditorUpdate(false);
-    },
-    [content, forceEditorUpdate]
-  );
+  // const onEditorHandler = useCallback(
+  //   (editor, errs = []) => {
+  //     const isEqual = editor === content;
+  //     const hasError = errs && errs.length;
+  //     const isEmpty = !editor || editor.trim() === '';
+  //     const isDisabled = Boolean(hasError || isEmpty);
+  //     if (hasError) errs.forEach(m => toast.error(m));
+  //     setDisabled(isDisabled);
+  //     if (!isEqual) setContent(editor);
+  //     if (forceEditorUpdate) setForceEditorUpdate(false);
+  //   },
+  //   [content, forceEditorUpdate]
+  // );
 
   const onImportHandler = useCallback(value => {
     setContent(value);
-    setForceEditorUpdate(true);
+    // setForceEditorUpdate(true);
   }, []);
 
   const onSubmitHandler = useCallback(() => {
@@ -76,13 +77,14 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
   // https://github.com/securingsincity/react-ace/blob/master/docs/Ace.md
   return (
     <div className={classes.container} id="step-editor">
-      <CodeEditor
+      {/* <CodeEditor
         className={classes.editor}
         content={content}
         forceUpdate={forceEditorUpdate}
         mode="json"
         onChange={onEditorHandler}
-      />
+      /> */}
+      <MonacoEditor content={content} />
       <div className={classes.controls}>
         <Dropdown
           content={<EditorMenu onChange={onImportHandler} />}
@@ -91,7 +93,7 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
         />
         <Button
           className={classes.submit}
-          disabled={disabled}
+          // disabled={disabled}
           onClick={onSubmitHandler}>
           <span>Continuer</span>
           <ChevronIcon className="ml7" />
