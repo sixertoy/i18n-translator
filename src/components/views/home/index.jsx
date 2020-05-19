@@ -7,6 +7,7 @@ import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import { rgba } from '../../../core/utils';
 import { createProjectAsync } from '../../../redux/actions';
 import withLayout from '../../layout';
+import BigButton from './big-button';
 import Favorites from './favorites';
 import Projects from './projects';
 import Recents from './recents';
@@ -50,6 +51,7 @@ const HomeViewComponent = React.memo(() => {
           <Favorites />
           <Recents />
           <Projects />
+          <BigButton />
         </div>
       </IfFirebaseAuthed>
     </div>

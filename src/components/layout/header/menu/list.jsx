@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import { MdDashboard as ProjectsIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -22,16 +22,16 @@ const useStyles = createUseStyles({
 const ListComponent = React.memo(({ className }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { closeTooltip, createTooltip } = useTooltip();
+  const { closeTooltipHandler, onCreateHandler } = useTooltip();
 
   return (
     <Tooltip
       useHover
       className={classes.tooltip}
-      component={<Projects onItemClick={closeTooltip} />}
+      component={<Projects onItemClick={closeTooltipHandler} />}
       offset={[-41, 7]}
       placement="right"
-      onCreate={createTooltip}>
+      onCreate={onCreateHandler}>
       <button className={className} type="button">
         <ProjectsIcon className="fs20" />
         <span className="ml7">Projets</span>

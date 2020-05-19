@@ -18,6 +18,7 @@ const TooltipComponent = ({
   children,
   className,
   component,
+  interactive,
   title,
   useHover,
   ...rest
@@ -29,13 +30,13 @@ const TooltipComponent = ({
     hideOnClick: !useHover,
     trigger: (!useHover && 'click') || 'mouseenter focus',
   };
-
   return (
     <Tippy
-      interactive
       className={classnames(classes.tooltip, className)}
       content={content}
+      interactive={interactive}
       placement="bottom"
+      theme={!interactive ? 'light' : ''}
       zIndex={999999999}
       {...overrides}
       {...rest}>
@@ -47,6 +48,7 @@ const TooltipComponent = ({
 TooltipComponent.defaultProps = {
   className: '',
   component: null,
+  interactive: true,
   title: null,
   useHover: false,
 };
@@ -55,6 +57,7 @@ TooltipComponent.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   component: PropTypes.element,
+  interactive: PropTypes.bool,
   title: PropTypes.string,
   useHover: PropTypes.bool,
 };

@@ -3,18 +3,18 @@ import { useCallback, useRef } from 'react';
 const useTooltip = () => {
   const tooltip = useRef(null);
 
-  const createTooltip = useCallback(
+  const onCreateHandler = useCallback(
     tippy => {
       tooltip.current = tippy;
     },
     [tooltip]
   );
 
-  const closeTooltip = useCallback(() => {
+  const closeTooltipHandler = useCallback(() => {
     tooltip.current.hide();
   }, [tooltip]);
 
-  return { closeTooltip, createTooltip, tooltip };
+  return { closeTooltipHandler, onCreateHandler };
 };
 
 export default useTooltip;
