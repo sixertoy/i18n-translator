@@ -57,6 +57,7 @@ const StepProjectComponent = ({ onSubmit }) => {
             <Tooltip
               useHover
               className={classes.tooltip}
+              interactive={false}
               maxWidth={240}
               offset={[3, 0]}
               placement="right-end"

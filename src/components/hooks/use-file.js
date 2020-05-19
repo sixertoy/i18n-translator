@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 const useFile = () => {
   const ref = useRef(null);
   const [json, setJson] = useState(null);
+  // useDebugValue(json);
 
   const onUploadChange = useCallback(evt => {
     evt.preventDefault();

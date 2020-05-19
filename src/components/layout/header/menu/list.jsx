@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { MdDashboard as ProjectsIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -20,12 +20,19 @@ const useStyles = createUseStyles({
 
 const ListComponent = React.memo(({ className }) => {
   const theme = useTheme();
+  const tooltip = useRef(null);
   const classes = useStyles({ theme });
-  // const [visible, setVisible] = useState(true);
+
+  const onCreateTooltip = useCallback(
+    tippy => {
+      tooltip.current = tippy;
+    },
+    [tooltip]
+  );
 
   const closeTooltip = useCallback(() => {
-    // setVisible(false);
-  }, []);
+    tooltip.current.hide();
+  }, [tooltip]);
 
   return (
     <Tooltip
@@ -33,7 +40,8 @@ const ListComponent = React.memo(({ className }) => {
       className={classes.tooltip}
       component={<Projects onItemClick={closeTooltip} />}
       offset={[-41, 7]}
-      placement="right">
+      placement="right"
+      onCreate={onCreateTooltip}>
       <button className={className} type="button">
         <ProjectsIcon className="fs20" />
         <span className="ml7">Projets</span>
