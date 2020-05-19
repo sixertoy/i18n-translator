@@ -48,6 +48,7 @@
     "lodash.isempty": "^4.4.0",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
+    "lodash.sortby": "^4.7.0",
     "lodash.sumby": "^4.6.0",
     "lodash.uniq": "^4.5.0",
     "lodash.upperfirst": "^4.3.1",

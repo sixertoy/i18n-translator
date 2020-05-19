@@ -23,8 +23,7 @@ const AccountComponent = React.memo(() => {
       <Tooltip
         className={classes.tooltip}
         component={<Menu />}
-        placement="bottom-end"
-        theme="light">
+        placement="bottom-end">
         <div className={classes.wrapper}>
           <UserButton />
         </div>

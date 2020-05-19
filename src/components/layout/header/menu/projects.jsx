@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
 const ProjectsComponent = React.memo(({ onItemClick }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const projects = useSelector(selectProjects);
+  const { favorites, projects, recents } = useSelector(selectProjects);
   return (
     <div className={classes.container}>
       {projects.map(obj => {

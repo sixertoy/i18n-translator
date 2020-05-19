@@ -30,7 +30,7 @@ const ListComponent = React.memo(({ className }) => {
       className={classes.tooltip}
       component={<Projects onItemClick={closeTooltipHandler} />}
       offset={[-41, 7]}
-      placement="right"
+      placement="bottom-start"
       onCreate={onCreateHandler}>
       <button className={className} type="button">
         <ProjectsIcon className="fs20" />

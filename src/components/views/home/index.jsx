@@ -7,10 +7,7 @@ import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import { rgba } from '../../../core/utils';
 import { createProjectAsync } from '../../../redux/actions';
 import withLayout from '../../layout';
-import BigButton from './big-button';
-import Favorites from './favorites';
 import Projects from './projects';
-import Recents from './recents';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
@@ -48,10 +45,7 @@ const HomeViewComponent = React.memo(() => {
           <button type="button" onClick={onCreateClick}>
             <span>Créer un projet</span>
           </button>
-          <Favorites />
-          <Recents />
           <Projects />
-          <BigButton />
         </div>
       </IfFirebaseAuthed>
     </div>
