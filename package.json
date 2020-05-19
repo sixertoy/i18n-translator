@@ -39,7 +39,7 @@
     "react-select": "1.0.0-rc.3",
     "rus-diff": "1.1.0",
     "slug": "0.9.1",
-    "url-parse": "1.1.7"
+    "url-parse": "1.4.7"
   },
   "scripts": {
     "start": "react-scripts start",
