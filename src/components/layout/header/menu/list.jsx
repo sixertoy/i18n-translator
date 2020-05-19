@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { MdDashboard as ProjectsIcon } from 'react-icons/md';
+import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import Tooltip from '../../../commons/tooltip';

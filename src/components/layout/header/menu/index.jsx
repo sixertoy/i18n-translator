@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdHome as HomeIcon } from 'react-icons/md';
+import { AiFillHome as HomeIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 

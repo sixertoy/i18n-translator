@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
     background: `linear-gradient(90deg, #EE256B 0%, #FD7822 100%)`,
     width: '100%',
   },
-  layer: ({ theme }) => ({
+  layer: {
     composes: [
       'p7',
       'flex-columns',
@@ -21,10 +21,7 @@ const useStyles = createUseStyles({
       'items-center',
       'is-relative',
     ],
-    // height: theme.sizes.header,
-    // maxHeight: theme.sizes.header,
-    // minHeight: theme.sizes.header,
-  }),
+  },
 });
 
 const ApplicationHeaderComponent = React.memo(() => {

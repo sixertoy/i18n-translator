@@ -1,7 +1,10 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import { AiFillStar as FavOn, AiOutlineStar as FavOff } from 'react-icons/ai';
+import {
+  AiFillPushpin as PinOnIcon,
+  AiOutlinePushpin as PinOffIcon,
+} from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
@@ -25,8 +28,8 @@ const FavoriteButtonComponent = React.memo(({ className, id, isFavorite }) => {
       className={classnames(classes.button, className)}
       type="button"
       onClick={onToggleFavorite}>
-      {!isFavorite && <FavOff className={classes.icon} />}
-      {isFavorite && <FavOn className={classes.icon} />}
+      {!isFavorite && <PinOffIcon className={classes.icon} />}
+      {isFavorite && <PinOnIcon className={classes.icon} />}
     </button>
   );
 });

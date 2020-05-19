@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import {
-  AiFillStar as FavOn,
+  AiFillPushpin as PinOnIcon,
   AiOutlineClear as SwipeIcon,
   AiOutlineCopy as CloneIcon,
-  AiOutlineStar as FavOff,
+  AiOutlinePushpin as PinOffIcon,
 } from 'react-icons/ai';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -87,13 +87,13 @@ const ContextMenuComponent = React.memo(() => {
         {!isFavorite && (
           <React.Fragment>
             <span>Ajouter aux favoris</span>
-            <FavOff className={classes.icon} />
+            <PinOffIcon className={classes.icon} />
           </React.Fragment>
         )}
         {isFavorite && (
           <React.Fragment>
             <span>Supprimer des favoris</span>
-            <FavOn className={classes.icon} />
+            <PinOnIcon className={classes.icon} />
           </React.Fragment>
         )}
       </button>
