@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
@@ -9,7 +10,7 @@ const useStyles = createUseStyles({
   container: {},
 });
 
-const ProjectsComponent = React.memo(() => {
+const ProjectsComponent = React.memo(({ onItemClick }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const projects = useSelector(selectProjects);
@@ -18,7 +19,7 @@ const ProjectsComponent = React.memo(() => {
       {projects.map(obj => {
         return (
           <div key={obj.id}>
-            <Link to={`/board/${obj.id}`}>
+            <Link to={`/board/${obj.id}`} onClick={onItemClick}>
               <span>{obj.name}</span>
             </Link>
           </div>
@@ -27,5 +28,9 @@ const ProjectsComponent = React.memo(() => {
     </div>
   );
 });
+
+ProjectsComponent.propTypes = {
+  onItemClick: PropTypes.func.isRequired,
+};
 
 export default ProjectsComponent;

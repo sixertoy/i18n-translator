@@ -5,7 +5,6 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/logo';
-import { px } from '../../core/utils';
 
 const useStyles = createUseStyles({
   brand: ({ theme }) => ({

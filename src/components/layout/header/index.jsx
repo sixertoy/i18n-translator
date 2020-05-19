@@ -15,15 +15,15 @@ const useStyles = createUseStyles({
   },
   layer: ({ theme }) => ({
     composes: [
-      'px32',
+      'p7',
       'flex-columns',
       'flex-between',
       'items-center',
       'is-relative',
     ],
-    height: theme.sizes.header,
-    maxHeight: theme.sizes.header,
-    minHeight: theme.sizes.header,
+    // height: theme.sizes.header,
+    // maxHeight: theme.sizes.header,
+    // minHeight: theme.sizes.header,
   }),
 });
 

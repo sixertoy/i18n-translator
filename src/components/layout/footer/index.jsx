@@ -35,7 +35,7 @@ const ApplicationFooter = React.memo(() => {
     <div className={classes.container} id="layout-footer">
       <div className={classes.layer}>
         <a className={classes.version} href={repository.url}>
-          <span>v{version} - i18n Online Translation Editor</span>
+          <span>v{version} - Typpo - i18n online translation editor</span>
         </a>
         <div className={classes.credits}>
           Made with <span className={classes.love}>♥</span> and React

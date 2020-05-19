@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -44,11 +44,6 @@ const ColumnHeaderComponent = React.memo(
     const classes = useStyles({ theme });
     const tableClasses = useTableStyles({ depth, theme });
 
-    const [visible, setVisible] = useState(false);
-    const show = () => setVisible(true);
-    const hide = () => setVisible(false);
-    console.log('visible', visible);
-
     const { count, total } = percentage;
     return (
       <div className={tableClasses.header}>
@@ -72,14 +67,12 @@ const ColumnHeaderComponent = React.memo(
                 collapsed={collapsed}
                 lang={lang}
                 project={project}
-                onClick={visible ? hide : show}
               />
             }
             offset={[20, 10]}
             placement="bottom-end"
             theme="light">
             <span className={classes.button}>
-              {/* <span onClick={visible ? hide : show}> */}
               <ContextIcon />
             </span>
           </Tooltip>
