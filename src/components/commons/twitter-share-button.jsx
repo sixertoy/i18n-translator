@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { homepage } from '../../package.json';
+import { homepage } from '../../../package.json';
 
 const HELMET_OPTIONS = [
   {

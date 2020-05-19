@@ -2,9 +2,9 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import Loader from '../assets/loader';
 import { IfFirebaseReady } from '../core/firebase';
 import routes from '../routes';
+import Loader from './commons/loader';
 
 const useStyles = createUseStyles({
   application: ({ theme }) => ({
