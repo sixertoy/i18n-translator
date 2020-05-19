@@ -1,11 +1,10 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Loader from '../assets/loader';
 import { IfFirebaseReady } from '../core/firebase';
 import routes from '../routes';
-import NoMatch from './views/no-match';
 
 const useStyles = createUseStyles({
   application: ({ theme }) => ({
@@ -39,7 +38,7 @@ const Application = React.memo(() => {
             );
           })}
           <Route path="*">
-            <NoMatch />
+            <Redirect push={false} to="/404" />
           </Route>
         </Switch>
       </div>
