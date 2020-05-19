@@ -12,7 +12,7 @@ import { useFile } from '../../../hooks';
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
     borderRadius: 0,
-    color: theme.colors.black,
+    color: theme.colors.white,
     composes: [
       'is-block',
       'no-background',

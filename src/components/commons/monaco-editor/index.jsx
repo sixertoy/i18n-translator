@@ -11,9 +11,9 @@ const PLACEHOLDER_VALUE =
   '// Put your JSON code to start working with your translations';
 
 const MonacoEditorComponent = ({
-  // className,
+  className,
   content,
-  disabled,
+  // disabled,
   onChange,
 }) => {
   const onEditorChange = useCallback(
@@ -34,6 +34,7 @@ const MonacoEditorComponent = ({
   // theme="vs-dark"
   return (
     <MonacoEditor
+      className={className}
       defaultValue={PLACEHOLDER_VALUE}
       editorDidMount={editorDidMount}
       height="100%"
@@ -49,8 +50,7 @@ const MonacoEditorComponent = ({
         links: false,
         matchBrackets: 'never',
         minimap: { enabled: false },
-        // quickSuggestions: false,
-        readOnly: disabled,
+        // readOnly: disabled,
         renderWhitespace: 'all',
         wordWrap: 'wordWrapColumn',
         wordWrapColumn: 80,
@@ -65,15 +65,15 @@ const MonacoEditorComponent = ({
 };
 
 MonacoEditorComponent.defaultProps = {
-  // className: '',
+  className: '',
   content: '',
-  disabled: false,
+  // disabled: false,
 };
 
 MonacoEditorComponent.propTypes = {
-  // className: PropTypes.string,
+  className: PropTypes.string,
   content: PropTypes.string,
-  disabled: PropTypes.bool,
+  // disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
 };
 

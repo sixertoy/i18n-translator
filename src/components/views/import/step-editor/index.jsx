@@ -72,9 +72,9 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
   return (
     <div className={classes.container} id="step-editor">
       <MonacoEditor
+        className={classes.editor}
         content={content}
-        // className={classes.editor}
-        disabled={disabled}
+        // disabled={disabled}
         onChange={onEditorHandler}
       />
       <div className={classes.controls}>
