@@ -5,7 +5,8 @@ import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { FIREBASE_PROVIDER_GOOGLE } from '../../../constants';
-import { useButtonStyles, useLogin } from '../../hooks';
+import { useLogin } from '../../hooks';
+import { useButtonStyles } from '../../styles';
 
 const useStyles = createUseStyles({
   button: {

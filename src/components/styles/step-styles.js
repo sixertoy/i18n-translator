@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useFormStyles = createUseStyles({
+export const useStepStyles = createUseStyles({
   field: ({ theme }) => ({
     borderColor: theme.colors.black,
     borderRadius: theme.radius.small,
@@ -45,4 +45,4 @@ export const useFormStyles = createUseStyles({
   },
 });
 
-export default useFormStyles;
+export default useStepStyles;

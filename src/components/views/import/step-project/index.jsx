@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { selectProject } from '../../../../redux/selectors';
 import Button from '../../../commons/button';
 import Tooltip from '../../../commons/tooltip';
-import { useStepStyles } from '../../../hooks';
+import { useStepStyles } from '../../../styles';
 
 const useStyles = createUseStyles({
   button: {

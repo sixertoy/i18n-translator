@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { useButtonStyles } from '../hooks';
+import { useButtonStyles } from '../styles';
 import Tooltip from './tooltip';
 
 const useStyles = createUseStyles({

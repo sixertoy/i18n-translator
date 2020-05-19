@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import { DEFAULT_LANGUAGES } from '../../../../constants';
 import { selectLangs } from '../../../../redux/selectors';
-import { useStepStyles } from '../../../hooks';
+import { useStepStyles } from '../../../styles';
 import { flagOptionsWithDisabled } from './utils';
 
 const useStyles = createUseStyles({

@@ -5,7 +5,8 @@ import { AiOutlineGithub as GithubIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { FIREBASE_PROVIDER_GITHUB } from '../../../constants';
-import { useButtonStyles, useLogin } from '../../hooks';
+import { useLogin } from '../../hooks';
+import { useButtonStyles } from '../../styles';
 
 const useStyles = createUseStyles({
   button: {
