@@ -34,6 +34,7 @@
     "stylelint-scss": "^3.17.1"
   },
   "dependencies": {
+    "@craco/craco": "^5.6.4",
     "@nappr/nappr-styles": "^0.2.15",
     "@tippyjs/react": "^4.0.2",
     "ace-builds": "^1.4.11",
@@ -77,11 +78,10 @@
   "scripts": {
     "cleanup": "rm -rf ./node_modules && rm yarn.lock",
     "lint": "eslint ./src/**/*.{js,jsx,json}",
-    "dev": "react-scripts start",
+    "dev": "craco start",
     "prebuild": "cp -R src/font public/font",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "craco build",
+    "test": "craco test --env=jsdom"
   },
   "browserslist": {
     "production": [
