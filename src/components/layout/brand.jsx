@@ -4,7 +4,7 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import Logo from '../../assets/logo';
+import { ReactComponent as Logo } from '../../assets/logo-outline.svg';
 
 const useStyles = createUseStyles({
   brand: ({ theme }) => ({
@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
   svg: {
     composes: ['is-absolute'],
     fontSize: '2.375em',
-    top: '0.3em',
+    top: '0.2em',
   },
   title: {
     fontSize: '2.625em',
@@ -31,7 +31,7 @@ const BrandComponent = React.memo(({ className }) => {
   const classes = useStyles({ theme });
   return (
     <Link className={classnames(classes.brand, className)} to="/">
-      <Logo outlined className={classes.svg} />
+      <Logo className={classes.svg} />
       <span className={classes.title}>Typpo</span>
     </Link>
   );
