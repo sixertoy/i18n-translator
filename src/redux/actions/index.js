@@ -11,6 +11,7 @@ export { default as toggleCollapseLanguage } from './toggle-collapse-language';
 export { default as toggleFavorite } from './toggle-favorite';
 export { default as updateKey } from './update-key';
 export { default as updateProjectName } from './update-project-name';
+export { default as updateProjectTime } from './update-project-time';
 export { default as updateTranslation } from './update-translation';
 export { default as updateUser } from './update-user';
 export * from './app';

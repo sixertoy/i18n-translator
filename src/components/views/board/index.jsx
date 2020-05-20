@@ -1,9 +1,10 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { rgba } from '../../../core/utils';
+import { updateProjectTime } from '../../../redux/actions';
 import { selectProject } from '../../../redux/selectors';
 import Loader from '../../commons/loader';
 import { useMounted } from '../../hooks';
@@ -42,6 +43,7 @@ const BoardViewComponent = React.memo(() => {
   const scroller = useRef(null);
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const dispatch = useDispatch();
   const { id } = useParams();
   const { mounted } = useMounted();
 
@@ -56,6 +58,12 @@ const BoardViewComponent = React.memo(() => {
     },
     [theme.sizes.colheader]
   );
+
+  useEffect(() => {
+    if (!mounted) {
+      dispatch(updateProjectTime({ project: id }));
+    }
+  });
 
   return (
     <React.Fragment>
