@@ -3,13 +3,12 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import Brand from '../brand';
 import Account from './account';
+import Add from './add';
 import Home from './home';
 import Projects from './projects';
 
 const useStyles = createUseStyles({
-  brand: {
-    fontSize: 10,
-  },
+  brand: { composes: ['fs10'] },
   container: {
     background: `linear-gradient(90deg, #EE256B 0%, #FD7822 100%)`,
     width: '100%',
@@ -23,7 +22,7 @@ const useStyles = createUseStyles({
       'is-relative',
     ],
   },
-  menu: {
+  outter: {
     composes: ['no-flex'],
   },
   wrapper: {
@@ -37,14 +36,19 @@ const ApplicationHeaderComponent = React.memo(() => {
   return (
     <div className={classes.container} id="layout-header">
       <div className={classes.layer}>
-        <div className={classes.menu}>
+        <div className={classes.outter} id="header-menu">
           <div className={classes.wrapper}>
             <Home />
             <Projects />
           </div>
         </div>
         <Brand className={classes.brand} />
-        <Account />
+        <div className={classes.outter} id="header-account">
+          <div className={classes.wrapper}>
+            <Add />
+            <Account />
+          </div>
+        </div>
       </div>
     </div>
   );

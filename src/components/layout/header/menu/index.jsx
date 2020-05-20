@@ -7,10 +7,7 @@ import { selectRecents } from '../../../../redux/selectors';
 import List from './list';
 
 const useStyles = createUseStyles({
-  list: {
-    '& .listItem': { background: 'transparent' },
-    '& .listItem + .listItem': { borderTop: '1px solid #FFFFFF' },
-  },
+  list: {},
   lists: {},
 });
 
