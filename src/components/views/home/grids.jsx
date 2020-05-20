@@ -6,7 +6,7 @@ import {
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { selectProjects } from '../../../redux/selectors';
+import { selectFavorites, selectProjects } from '../../../redux/selectors';
 import Grid from '../../commons/projects/grid';
 
 const useStyles = createUseStyles({
@@ -21,8 +21,8 @@ const useStyles = createUseStyles({
 const GridsComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { favorites, projects } = useSelector(selectProjects);
-
+  const projects = useSelector(selectProjects);
+  const favorites = useSelector(selectFavorites);
   return (
     <div className={classes.grids}>
       <Grid icon={PinIcon} items={favorites} label="Projets épinglés" />
