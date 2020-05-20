@@ -45,7 +45,6 @@ const ProjectItemComponent = React.memo(({ data }) => {
       <Link className={classes.link} to={url}>
         <div className={classes.wrapper}>
           <span className={classes.name}>{data.name}</span>
-          <span>{data.langs.length}</span>
         </div>
       </Link>
       <div className={classes.favorite}>

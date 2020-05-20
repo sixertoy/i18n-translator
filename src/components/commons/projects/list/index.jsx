@@ -7,35 +7,32 @@ import { createUseStyles, useTheme } from 'react-jss';
 import Item from './item';
 
 const useStyles = createUseStyles({
-  list: {
-    marginBottom: 24,
-  },
+  icon: {},
+  label: {},
   title: {
-    marginBottom: 24,
+    '& span': { marginLeft: 5, verticalAlign: 'middle' },
+    '& svg': { fontSize: '1.15em' },
+    composes: ['is-bold', 'mb7', 'fs16'],
   },
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
+  wrapper: {},
 });
 
 const ProjectsGridComponent = React.memo(({ icon: Icon, items, label }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.list}>
-      <h3 className={classes.title}>
+    <React.Fragment>
+      <h6 className={classes.title}>
         <Icon />
         <span>{label}</span>
-      </h3>
+      </h6>
       <ul className={classnames(classes.wrapper)}>
         {isEmpty(items) && <span>Aucun projet</span>}
         {items.map(obj => (
           <Item key={obj.id} data={obj} />
         ))}
       </ul>
-    </div>
+    </React.Fragment>
   );
 });
 

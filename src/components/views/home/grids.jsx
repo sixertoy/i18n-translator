@@ -11,10 +11,8 @@ import Grid from '../../commons/projects/grid';
 
 const useStyles = createUseStyles({
   grids: {
-    composes: ['flex-rows', 'is-relative'],
+    composes: ['flex-1', 'is-relative'],
     height: '100%',
-    margin: '0 auto',
-    maxWidth: 720,
   },
 });
 

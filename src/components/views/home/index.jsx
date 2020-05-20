@@ -10,20 +10,13 @@ import Lists from './lists';
 const useStyles = createUseStyles({
   container: {
     background: '#F1F1F1',
-    composes: ['flex-1'],
-  },
-  grids: {
-    composes: ['flex-rows', 'is-relative'],
     height: '100%',
-    margin: '0 auto',
-    maxWidth: 720,
-  },
-  lists: {
-    height: '100%',
-    maxWidth: 250,
+    width: '100%',
   },
   wrapper: {
-    composes: ['flex-columns', 'is-relative'],
+    composes: ['flex-columns', 'is-relative', 'p24'],
+    margin: '0 auto',
+    maxWidth: 960,
   },
 });
 

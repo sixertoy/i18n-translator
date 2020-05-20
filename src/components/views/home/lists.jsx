@@ -8,8 +8,11 @@ import List from '../../commons/projects/list';
 
 const useStyles = createUseStyles({
   lists: {
+    composes: ['flex-0'],
     height: '100%',
     maxWidth: 250,
+    minWidth: 250,
+    width: 250,
   },
 });
 

@@ -7,6 +7,10 @@ import { createUseStyles, useTheme } from 'react-jss';
 import Item from './item';
 
 const useStyles = createUseStyles({
+  icon: {},
+  label: {
+    composes: ['is-bold'],
+  },
   list: {
     marginBottom: 24,
   },
@@ -21,27 +25,34 @@ const useStyles = createUseStyles({
   },
 });
 
-const ProjectsGridComponent = React.memo(({ icon: Icon, items, label }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+const ProjectsGridComponent = React.memo(
+  ({ children, icon: Icon, items, label }) => {
+    const theme = useTheme();
+    const classes = useStyles({ theme });
+    const isempty = isEmpty(items);
+    return (
+      <div className={classes.list}>
+        <h3 className={classes.title}>
+          <Icon className={classes.icon} />
+          <span className={classes.label}>{label}</span>
+        </h3>
+        <ul className={classnames(classes.wrapper)}>
+          {isempty && children}
+          {items.map(obj => (
+            <Item key={obj.id} data={obj} />
+          ))}
+        </ul>
+      </div>
+    );
+  }
+);
 
-  return (
-    <div className={classes.list}>
-      <h3 className={classes.title}>
-        <Icon />
-        <span>{label}</span>
-      </h3>
-      <ul className={classnames(classes.wrapper)}>
-        {isEmpty(items) && <span>Aucun projet</span>}
-        {items.map(obj => (
-          <Item key={obj.id} data={obj} />
-        ))}
-      </ul>
-    </div>
-  );
-});
+ProjectsGridComponent.defaultProps = {
+  children: null,
+};
 
 ProjectsGridComponent.propTypes = {
+  children: PropTypes.node,
   icon: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   label: PropTypes.string.isRequired,

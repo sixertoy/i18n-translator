@@ -9,11 +9,8 @@ import FavoriteButton from '../../buttons/favorite';
 const useStyles = createUseStyles({
   container: {
     background: '#000000',
-    composes: ['is-relative', 'rnd3', 'flex-1'],
-    margin: '0 1% 1% 0',
-    maxWidth: '32%',
-    minWidth: '32%',
-    width: '32%',
+    composes: ['is-relative', 'rnd3', 'flex-1', 'mt0'],
+    marginBottom: 3,
   },
   favorite: {
     height: 34,
@@ -25,12 +22,11 @@ const useStyles = createUseStyles({
   link: {
     '&:hover': { textDecoration: 'none' },
     color: '#FFFFFF',
-    composes: ['is-bold', 'is-block', 'fs20', 'p12'],
-    height: 96,
+    composes: ['is-bold', 'is-block', 'fs16', 'p12'],
     width: '100%',
   },
   name: {
-    marginRight: 40,
+    composes: ['no-wrap', 'text-overflow', 'fs18', 'pr42', 'no-overflow'],
   },
 });
 
@@ -43,9 +39,8 @@ const ProjectItemComponent = React.memo(({ data }) => {
   return (
     <li className={classnames(classes.container, 'fadein')}>
       <Link className={classes.link} to={url}>
-        <div className={classes.wrapper}>
-          <span className={classes.name}>{data.name}</span>
-          <span>{data.langs.length}</span>
+        <div className={classes.name}>
+          {data.name} sjdjsl djs jdlksjq dhsq kjdsqkdh{' '}
         </div>
       </Link>
       <div className={classes.favorite}>
