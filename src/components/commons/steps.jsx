@@ -4,6 +4,7 @@ import React from 'react';
 import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { RESPONSIVE_BREAKPOINT } from '../../constants';
 import { px } from '../../core/utils';
 
 const useStyles = createUseStyles({
@@ -42,6 +43,14 @@ const useStyles = createUseStyles({
     composes: ['flex-columns', 'flex-between', 'items-center'],
   },
   steps: {},
+  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+    itemLabel: {
+      '&:not(.active)': {
+        display: 'none',
+        visibility: 'hidden',
+      },
+    },
+  },
 });
 
 const StepsComponent = React.memo(({ step, steps, useZero }) => {

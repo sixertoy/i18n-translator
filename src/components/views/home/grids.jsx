@@ -6,13 +6,19 @@ import {
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import { RESPONSIVE_BREAKPOINT } from '../../../constants';
 import { selectFavorites, selectProjects } from '../../../redux/selectors';
 import Grid from '../../commons/projects/grid';
 
 const useStyles = createUseStyles({
   grids: {
+    '& > * + *': { marginTop: 24 },
     composes: ['flex-1', 'is-relative', 'mr24'],
-    height: '100%',
+  },
+  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+    grids: {
+      marginRight: 0,
+    },
   },
 });
 
@@ -23,14 +29,8 @@ const GridsComponent = React.memo(() => {
   const favorites = useSelector(selectFavorites);
   return (
     <div className={classes.grids}>
-      {(favorites && favorites.length && (
-        <Grid icon={PinIcon} items={favorites} label="Projets épinglés" />
-      )) ||
-        null}
-      {(projects && projects.length && (
-        <Grid icon={ProjectsIcon} items={projects} label="Tous vos projets" />
-      )) ||
-        null}
+      <Grid icon={PinIcon} items={favorites} label="Projets épinglés" />
+      <Grid icon={ProjectsIcon} items={projects} label="Tous vos projets" />
     </div>
   );
 });

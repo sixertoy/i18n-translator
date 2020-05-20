@@ -2,6 +2,7 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { repository, version } from '../../../../package.json';
+import { RESPONSIVE_BREAKPOINT } from '../../../constants';
 import { rgba } from '../../../core/utils';
 
 const useStyles = createUseStyles({
@@ -26,6 +27,14 @@ const useStyles = createUseStyles({
   version: ({ theme }) => ({
     color: rgba(theme.colors.black, 0.35),
   }),
+  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+    version: {
+      '& small': {
+        display: 'none',
+        visibility: 'hidden',
+      },
+    },
+  },
 });
 
 const ApplicationFooter = React.memo(() => {
@@ -35,7 +44,9 @@ const ApplicationFooter = React.memo(() => {
     <div className={classes.container} id="layout-footer">
       <div className={classes.layer}>
         <a className={classes.version} href={repository.url}>
-          <span>v{version} - Typpo - i18n online translation editor</span>
+          <span>
+            v{version} - Typpo <small>- i18n online translation editor</small>
+          </span>
         </a>
         <div className={classes.credits}>
           Made with <span className={classes.love}>♥</span> and React

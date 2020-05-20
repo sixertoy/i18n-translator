@@ -3,16 +3,24 @@ import { AiOutlineClockCircle as ClockIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import { RESPONSIVE_BREAKPOINT } from '../../../constants';
 import { selectRecents } from '../../../redux/selectors';
 import List from '../../commons/projects/list';
 
 const useStyles = createUseStyles({
   lists: {
     composes: ['flex-0'],
-    height: '100%',
     maxWidth: 250,
     minWidth: 250,
     width: 250,
+  },
+  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+    lists: {
+      '& > *': { marginBottom: 24 },
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%',
+    },
   },
 });
 

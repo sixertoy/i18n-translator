@@ -4,24 +4,31 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
 import Item from './item';
 
 const useStyles = createUseStyles({
-  icon: {},
-  label: {},
+  container: {},
   title: {
     '& span': { marginLeft: 5, verticalAlign: 'middle' },
     '& svg': { fontSize: '1.15em' },
-    composes: ['is-bold', 'mb7', 'fs16'],
+    composes: ['is-bold', 'fs16'],
   },
-  wrapper: {},
+  wrapper: { composes: ['mt7'] },
+  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+    wrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
+  },
 });
 
 const ProjectsGridComponent = React.memo(({ icon: Icon, items, label }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <React.Fragment>
+    <div className={classes.container}>
       <h6 className={classes.title}>
         <Icon />
         <span>{label}</span>
@@ -32,7 +39,7 @@ const ProjectsGridComponent = React.memo(({ icon: Icon, items, label }) => {
           <Item key={obj.id} data={obj} />
         ))}
       </ul>
-    </React.Fragment>
+    </div>
   );
 });
 

@@ -6,6 +6,7 @@ import {
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
+import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
 import Tooltip from '../../../commons/tooltip';
 import { useTooltip } from '../../../hooks';
 import Projects from './projects';
@@ -36,6 +37,15 @@ const useStyles = createUseStyles({
   },
   wrapper: {
     composes: ['flex-columns', 'flex-start', 'items-center'],
+  },
+  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+    button: {
+      '& span': {
+        display: 'none',
+        margin: 0,
+        visibility: 'hidden',
+      },
+    },
   },
 });
 
