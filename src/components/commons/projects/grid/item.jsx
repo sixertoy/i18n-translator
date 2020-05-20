@@ -8,20 +8,20 @@ import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
 import FavoriteButton from '../../buttons/favorite';
 
 const useStyles = createUseStyles({
-  container: {
-    background: '#000000',
-    composes: ['is-relative', 'rnd3', 'flex-1'],
-    margin: '0 1% 1% 0',
-    maxWidth: '32%',
-    minWidth: '32%',
-    width: '32%',
-  },
   favorite: {
     height: 34,
     position: 'absolute',
     right: 0,
     top: 0,
     width: 34,
+  },
+  item: {
+    background: '#000000',
+    composes: ['is-relative', 'rnd3', 'flex-1'],
+    margin: '0 1% 1% 0',
+    maxWidth: '32%',
+    minWidth: '32%',
+    width: '32%',
   },
   link: {
     '&:hover': { textDecoration: 'none' },
@@ -34,7 +34,7 @@ const useStyles = createUseStyles({
     marginRight: 40,
   },
   [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
-    container: {
+    item: {
       maxWidth: '49%',
       minWidth: '49%',
       width: '49%',
@@ -49,7 +49,7 @@ const ProjectItemComponent = React.memo(({ data }) => {
   const url = `/board/${data.id}`;
 
   return (
-    <li className={classnames(classes.container, 'fadein')}>
+    <li className={classnames(classes.item, 'fadein')}>
       <Link className={classes.link} to={url}>
         <div className={classes.wrapper}>
           <span className={classes.name}>{data.name}</span>

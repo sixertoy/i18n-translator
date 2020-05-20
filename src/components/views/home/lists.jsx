@@ -16,7 +16,6 @@ const useStyles = createUseStyles({
   },
   [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
     lists: {
-      '& > *': { marginBottom: 24 },
       maxWidth: '100%',
       minWidth: '100%',
       width: '100%',

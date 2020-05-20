@@ -7,7 +7,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import Item from './item';
 
 const useStyles = createUseStyles({
-  container: {},
+  container: { composes: ['mb24'] },
   title: {
     '& span': { marginLeft: 5, verticalAlign: 'middle' },
     '& svg': { fontSize: '1.15em' },

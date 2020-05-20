@@ -8,7 +8,7 @@ import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
 import Item from './item';
 
 const useStyles = createUseStyles({
-  container: {},
+  container: { composes: ['mb24'] },
   title: {
     '& span': { marginLeft: 5, verticalAlign: 'middle' },
     '& svg': { fontSize: '1.15em' },

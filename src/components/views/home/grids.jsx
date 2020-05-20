@@ -12,7 +12,6 @@ import Grid from '../../commons/projects/grid';
 
 const useStyles = createUseStyles({
   grids: {
-    '& > * + *': { marginTop: 24 },
     composes: ['flex-1', 'is-relative', 'mr24'],
   },
   [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
