@@ -56,20 +56,13 @@ const AccountComponent = React.memo(() => {
   return (
     <div className={classes.container} id="header-account">
       <div className={classes.wrapper}>
-        <Tooltip
-          useHover
-          className={classes.tooltip}
-          interactive={false}
-          placement="bottom-end"
-          title="Ajouter un projet">
-          <button
-            className={classes.button}
-            disabled={!canAddProject}
-            type="button"
-            onClick={onCreateClick}>
-            <PlusIcon />
-          </button>
-        </Tooltip>
+        <button
+          className={classes.button}
+          disabled={!canAddProject}
+          type="button"
+          onClick={onCreateClick}>
+          <PlusIcon />
+        </button>
         <Tooltip
           className={classes.menu}
           component={<Menu />}

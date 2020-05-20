@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-  AiFillHome as HomeIcon,
-  AiOutlineProject as ProjectsIcon,
-} from 'react-icons/ai';
+import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
-import { Link } from 'react-router-dom';
 
 import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
 import Tooltip from '../../../commons/tooltip';
 import { useTooltip } from '../../../hooks';
-import Projects from './projects';
+import Menu from './menu';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
@@ -25,18 +21,12 @@ const useStyles = createUseStyles({
     transition: 'background 0.5s',
     width: 'auto',
   }),
-  container: {
-    composes: ['no-flex'],
-  },
   tooltip: {
     '& .tippy-content': { padding: 0 },
     borderRadius: 3,
     height: 480,
     padding: 8,
     width: 280,
-  },
-  wrapper: {
-    composes: ['flex-columns', 'flex-start', 'items-center'],
   },
   [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
     button: {
@@ -54,25 +44,18 @@ const ApplicationMenuComponent = React.memo(() => {
   const classes = useStyles({ theme });
   const { closeTooltipHandler, onCreateHandler } = useTooltip();
   return (
-    <div className={classes.container} id="header-menu">
-      <div className={classes.wrapper}>
-        <Link className={classes.button} to="/">
-          <HomeIcon />
-        </Link>
-        <Tooltip
-          useHover
-          className={classes.tooltip}
-          component={<Projects onItemClick={closeTooltipHandler} />}
-          offset={[-41, 7]}
-          placement="bottom-start"
-          onCreate={onCreateHandler}>
-          <button className={classes.button} type="button">
-            <ProjectsIcon />
-            <span>Projets</span>
-          </button>
-        </Tooltip>
-      </div>
-    </div>
+    <Tooltip
+      useHover
+      className={classes.tooltip}
+      component={<Menu onItemClick={closeTooltipHandler} />}
+      offset={[-41, 7]}
+      placement="bottom-start"
+      onCreate={onCreateHandler}>
+      <button className={classes.button} type="button">
+        <ProjectsIcon />
+        <span>Projets</span>
+      </button>
+    </Tooltip>
   );
 });
 

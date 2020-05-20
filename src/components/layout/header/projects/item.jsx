@@ -5,7 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
-import FavoriteButton from '../../buttons/favorite';
+import FavoriteButton from '../../../commons/buttons/favorite';
 
 const useStyles = createUseStyles({
   favorite: {

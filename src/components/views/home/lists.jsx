@@ -28,7 +28,7 @@ const ListsComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const recents = useSelector(selectRecents);
-  const historics = recents.slice(0, 10);
+  const historics = recents.slice(0, 8);
 
   return (
     <div className={classes.lists}>

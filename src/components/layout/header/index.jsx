@@ -3,7 +3,8 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import Brand from '../brand';
 import Account from './account';
-import Menu from './menu';
+import Home from './home';
+import Projects from './projects';
 
 const useStyles = createUseStyles({
   brand: {
@@ -22,6 +23,12 @@ const useStyles = createUseStyles({
       'is-relative',
     ],
   },
+  menu: {
+    composes: ['no-flex'],
+  },
+  wrapper: {
+    composes: ['flex-columns', 'flex-start', 'items-center'],
+  },
 });
 
 const ApplicationHeaderComponent = React.memo(() => {
@@ -30,7 +37,12 @@ const ApplicationHeaderComponent = React.memo(() => {
   return (
     <div className={classes.container} id="layout-header">
       <div className={classes.layer}>
-        <Menu />
+        <div className={classes.menu}>
+          <div className={classes.wrapper}>
+            <Home />
+            <Projects />
+          </div>
+        </div>
         <Brand className={classes.brand} />
         <Account />
       </div>
