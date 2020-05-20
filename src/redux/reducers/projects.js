@@ -72,6 +72,7 @@ const projects = (state = [], action) => {
       return createLanguage(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
     case EVENT_TYPES.LANGUAGE_CLEAR:
+    case EVENT_TYPES.PROJECT_TOGGLE_FAV:
     case EVENT_TYPES.LANGUAGE_KEY_CREATE:
     case EVENT_TYPES.LANGUAGE_KEY_DELETE:
     case EVENT_TYPES.LANGUAGE_KEY_UPDATE:

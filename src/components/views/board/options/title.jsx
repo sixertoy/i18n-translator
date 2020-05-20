@@ -46,7 +46,7 @@ const InfosComponent = React.memo(() => {
   const dispatch = useDispatch();
   const project = useSelector(state => selectProject(state, id));
   const { overall } = useSelector(state => selectPercentages(state, id));
-  const { isFavorite } = project;
+  const { isFavorite, name } = project;
 
   const onTitleUpdate = useCallback(
     evt => {
@@ -66,7 +66,7 @@ const InfosComponent = React.memo(() => {
         <FavoriteButton id={id} isFavorite={isFavorite} />
         <input
           className={classes.input}
-          defaultValue={project.name}
+          defaultValue={name}
           type="text"
           onBlur={onTitleUpdate}
         />

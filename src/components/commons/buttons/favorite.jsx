@@ -11,7 +11,12 @@ import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
-  button: {},
+  button: {
+    display: 'block',
+    height: 34,
+    textAlign: 'center',
+    width: 34,
+  },
 });
 
 const FavoriteButtonComponent = React.memo(({ className, id, isFavorite }) => {

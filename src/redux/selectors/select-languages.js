@@ -2,8 +2,8 @@ import get from 'lodash.get';
 import { createCachedSelector } from 're-reselect';
 
 const getId = (_, id) => id;
-const getKeys = (state, id) => get(state, ['keys', id]);
 const getLanguages = state => get(state, 'languages', []);
+const getKeys = (state, id) => get(state, ['keys', id], []);
 
 const filterNonEmptyValues = v => v && v !== '';
 

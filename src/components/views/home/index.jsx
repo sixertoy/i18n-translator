@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  AiOutlineClockCircle as ClockIcon,
   AiOutlineProject as ProjectsIcon,
   AiOutlinePushpin as PinIcon,
 } from 'react-icons/ai';
@@ -8,28 +9,27 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
-import { rgba } from '../../../core/utils';
 import { selectProjects } from '../../../redux/selectors';
 import withLayout from '../../layout';
 import List from './list';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    background: theme.app.container,
+  container: {
+    background: '#F1F1F1',
     composes: ['flex-1'],
-  }),
-  layer: ({ theme }) => ({
-    background: rgba(theme.app.layer, 0.95),
+  },
+  layer: {
     composes: ['flex-rows', 'is-relative'],
     height: '100%',
-    paddingLeft: 300,
-  }),
+    margin: '0 auto',
+    maxWidth: 720,
+  },
 });
 
 const HomeViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { favorites, projects } = useSelector(selectProjects);
+  const { favorites, projects, recents } = useSelector(selectProjects);
 
   return (
     <div className={classes.container} id="home-view">
@@ -39,15 +39,12 @@ const HomeViewComponent = React.memo(() => {
       <IfFirebaseAuthed>
         <div className={classes.layer}>
           <List icon={PinIcon} items={favorites} label="Projets épinglés" />
+          <List icon={ClockIcon} items={recents} label="Récemment consultés" />
           <List icon={ProjectsIcon} items={projects} label="Tous vos projets" />
         </div>
       </IfFirebaseAuthed>
     </div>
   );
 });
-
-HomeViewComponent.defaultProps = {};
-
-HomeViewComponent.propTypes = {};
 
 export default withLayout(HomeViewComponent);
