@@ -19,7 +19,7 @@ const selectProjects = createSelector(
     let favorites = projects.filter(obj => obj.isFavorite);
     favorites = orderBy(favorites, ['mtime'], 'asc');
 
-    const recents = orderBy(projects, ['mtime']).slice(0, 4);
+    const recents = orderBy(projects, ['mtime'], 'desc');
 
     return { favorites, projects, recents };
   }

@@ -4,7 +4,7 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import FavoriteButton from '../../commons/buttons/favorite';
+import FavoriteButton from '../../buttons/favorite';
 
 const useStyles = createUseStyles({
   container: {

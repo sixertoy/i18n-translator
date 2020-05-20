@@ -10,23 +10,19 @@ const useStyles = createUseStyles({
   list: {
     marginBottom: 24,
   },
-  reversed: {
-    flexDirection: 'row-reverse',
-  },
   title: {
     marginBottom: 24,
   },
   wrapper: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     justifyContent: 'flex-start',
   },
 });
 
-const ListComponent = React.memo(({ icon: Icon, items, label }) => {
+const ProjectsGridComponent = React.memo(({ icon: Icon, items, label }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-
   return (
     <div className={classes.list}>
       <h3 className={classes.title}>
@@ -43,10 +39,10 @@ const ListComponent = React.memo(({ icon: Icon, items, label }) => {
   );
 });
 
-ListComponent.propTypes = {
+ProjectsGridComponent.propTypes = {
   icon: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   label: PropTypes.string.isRequired,
 };
 
-export default ListComponent;
+export default ProjectsGridComponent;
