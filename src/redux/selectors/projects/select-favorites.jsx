@@ -1,3 +1,4 @@
+import sortBy from 'lodash.sortby';
 import { createSelector } from 'reselect';
 
 import selectProjects from './select-projects';
@@ -8,7 +9,8 @@ const selectFavorites = createSelector(
   getFavorites,
   selectProjects,
   (favs, projs) => {
-    const favorites = projs.filter(obj => obj.isFavorite);
+    let favorites = projs.filter(obj => obj.isFavorite);
+    favorites = sortBy(favorites, obj => favs.indexOf(obj.id));
     return favorites;
   }
 );

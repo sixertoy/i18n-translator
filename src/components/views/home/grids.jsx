@@ -11,7 +11,7 @@ import Grid from '../../commons/projects/grid';
 
 const useStyles = createUseStyles({
   grids: {
-    composes: ['flex-1', 'is-relative'],
+    composes: ['flex-1', 'is-relative', 'mr24'],
     height: '100%',
   },
 });
@@ -23,8 +23,14 @@ const GridsComponent = React.memo(() => {
   const favorites = useSelector(selectFavorites);
   return (
     <div className={classes.grids}>
-      <Grid icon={PinIcon} items={favorites} label="Projets épinglés" />
-      <Grid icon={ProjectsIcon} items={projects} label="Tous vos projets" />
+      {(favorites && favorites.length && (
+        <Grid icon={PinIcon} items={favorites} label="Projets épinglés" />
+      )) ||
+        null}
+      {(projects && projects.length && (
+        <Grid icon={ProjectsIcon} items={projects} label="Tous vos projets" />
+      )) ||
+        null}
     </div>
   );
 });
