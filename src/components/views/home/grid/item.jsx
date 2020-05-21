@@ -19,25 +19,35 @@ const useStyles = createUseStyles({
     background: '#000000',
     composes: ['is-relative', 'rnd3', 'flex-1'],
     margin: '0 1% 1% 0',
-    maxWidth: '32%',
-    minWidth: '32%',
-    width: '32%',
+    maxWidth: '49%',
+    minWidth: '49%',
+    width: '49%',
   },
   link: {
     '&:hover': { textDecoration: 'none' },
     color: '#FFFFFF',
-    composes: ['is-bold', 'is-block', 'fs20', 'p12'],
-    height: 96,
+    composes: ['is-bold', 'is-block'],
+    fontSize: 14,
+    lineHeight: '1.3em',
     width: '100%',
   },
   name: {
-    marginRight: 40,
+    composes: ['is-block', 'no-overflow'],
+    maxHeight: '100%',
   },
-  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+  wrapper: {
+    composes: ['py12', 'pl12', 'no-overflow'],
+    height: 96,
+    paddingRight: 30,
+  },
+  [`@media (min-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
     item: {
-      maxWidth: '49%',
-      minWidth: '49%',
-      width: '49%',
+      maxWidth: '32%',
+      minWidth: '32%',
+      width: '32%',
+    },
+    link: {
+      fontSize: 20,
     },
   },
 });
@@ -52,7 +62,10 @@ const ProjectItemComponent = React.memo(({ data }) => {
     <li className={classnames(classes.item, 'fadein')}>
       <Link className={classes.link} to={url}>
         <div className={classes.wrapper}>
-          <span className={classes.name}>{data.name}</span>
+          <span className={classes.name}>
+            {data.name} lorem ipsum dolot sit amet consectuer lorem ipsum dolor
+            sit amet consectuer
+          </span>
         </div>
       </Link>
       <div className={classes.favorite}>

@@ -17,27 +17,45 @@ const useStyles = createUseStyles({
   },
   item: {
     background: '#000000',
-    composes: ['is-relative', 'rnd3', 'flex-1', 'mt0'],
-    marginBottom: 3,
+    composes: ['is-relative', 'rnd3', 'flex-1'],
+    margin: '0 1% 1% 0',
+    maxWidth: '49%',
+    minWidth: '49%',
+    width: '49%',
   },
   link: {
     '&:hover': { textDecoration: 'none' },
     color: '#FFFFFF',
-    composes: ['is-bold', 'is-block', 'fs16', 'p12'],
+    composes: ['is-bold', 'is-block'],
+    fontSize: 14,
+    lineHeight: '1.3em',
     width: '100%',
   },
   name: {
-    composes: ['no-wrap', 'text-overflow', 'fs18', 'pr42', 'no-overflow'],
+    composes: ['is-block', 'no-overflow'],
+    maxHeight: '100%',
   },
-  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+  wrapper: {
+    composes: ['py12', 'pl12', 'no-overflow'],
+    height: 96,
+    paddingRight: 30,
+  },
+  [`@media (min-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
     item: {
-      margin: '0 1% 1% 0',
-      maxWidth: '49%',
-      minWidth: '49%',
-      width: '49%',
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%',
     },
     link: {
-      height: 96,
+      fontSize: 18,
+    },
+    name: {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
+    wrapper: {
+      height: 'auto',
     },
   },
 });
@@ -51,8 +69,11 @@ const ProjectItemComponent = React.memo(({ data }) => {
   return (
     <li className={classnames(classes.item, 'fadein')}>
       <Link className={classes.link} to={url}>
-        <div className={classes.name}>
-          {data.name} sjdjsl djs jdlksjq dhsq kjdsqkdh{' '}
+        <div className={classes.wrapper}>
+          <span className={classes.name}>
+            {data.name} sjdjsl djs jdlksjq dhsq kjdsqkd kjdsqkdkdhkjdsqkdh hq
+            sjdjsl djs jdlksjq dhsq kjdsqkd
+          </span>
         </div>
       </Link>
       <div className={classes.favorite}>
