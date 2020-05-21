@@ -18,7 +18,8 @@ const useStyles = createUseStyles({
   }),
   logo: ({ theme }) => ({
     color: theme.colors.gradient[0],
-    textAlign: 'center',
+    display: 'inline',
+    margin: '0 auto',
   }),
   wrapper: ({ theme }) => ({
     background: theme.colors.white,
@@ -26,6 +27,21 @@ const useStyles = createUseStyles({
     margin: '42px auto 0 auto',
     width: 400,
   }),
+  [`@media (max-width: ${480}px)`]: {
+    container: {
+      paddingBottom: 24,
+      paddingLeft: 0,
+      paddingRight: 0,
+      paddingTOP: 42,
+    },
+    wrapper: ({ theme }) => ({
+      background: theme.colors.layer,
+      boxShadow: 'none',
+      marginTop: 24,
+      padding: 24,
+      width: '100%',
+    }),
+  },
 });
 
 const SigninViewComponent = React.memo(() => {
@@ -36,22 +52,20 @@ const SigninViewComponent = React.memo(() => {
   return (
     <React.Fragment>
       <IfFirebaseAuthed>
-        <Redirect to="/" />
+        <Redirect to="/home" />
       </IfFirebaseAuthed>
       <IfFirebaseUnAuthed>
-        {() => (
-          <div className={classes.container} id="signin-view">
-            <Brand className={classes.logo} />
-            <div className={classes.wrapper}>
-              <Title />
-              <Form />
-              <Splitter />
-              <GithubLogin useSignup={useSignup} />
-              <GoogleLogin className="mt7" useSignup={useSignup} />
-              <Bottom />
-            </div>
+        <div className={classes.container} id="signin-view">
+          <Brand className={classes.logo} />
+          <div className={classes.wrapper}>
+            <Title />
+            <Form />
+            <Splitter />
+            <GithubLogin useSignup={useSignup} />
+            <GoogleLogin className="mt7" useSignup={useSignup} />
+            <Bottom />
           </div>
-        )}
+        </div>
       </IfFirebaseUnAuthed>
     </React.Fragment>
   );
