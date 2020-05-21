@@ -4,21 +4,31 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useLogin } from '../../hooks';
 
 const useStyles = createUseStyles({
-  anonymous: ({ theme }) => ({
-    '&:disabled': { opacity: 1, textDecoration: 'none' },
+  button: ({ theme }) => ({
     background: theme.colors.transparent,
-    clear: 'right',
     color: theme.colors.white,
     composes: [
-      'float-right',
-      'text-center',
-      'fs18',
+      'text-right',
+      'fs14',
       'is-block',
       'mt12',
       'is-underline',
+      'px12',
     ],
-    width: 300,
+    width: '100%',
   }),
+  wrapper: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: 680,
+    paddingTop: 7,
+    width: '80%',
+  },
+  [`@media (max-width: ${580}px)`]: {
+    button: {
+      textAlign: 'center !important',
+    },
+  },
 });
 
 const DemoComponent = React.memo(() => {
@@ -26,12 +36,14 @@ const DemoComponent = React.memo(() => {
   const classes = useStyles({ theme });
   const { onAnonymousClick } = useLogin();
   return (
-    <button
-      className={classes.anonymous}
-      type="button"
-      onClick={onAnonymousClick}>
-      <span>Testez sans vous inscrire</span>
-    </button>
+    <div className={classes.wrapper}>
+      <button
+        className={classes.button}
+        type="button"
+        onClick={onAnonymousClick}>
+        <span>Testez sans vous inscrire</span>
+      </button>
+    </div>
   );
 });
 

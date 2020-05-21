@@ -11,16 +11,20 @@ import Nav from './nav';
 import Text from './text';
 
 const useStyles = createUseStyles({
-  bottom: {
-    composes: ['clearfix'],
-    margin: '24px auto 32px auto',
-    width: 680,
-  },
-  container: ({ theme }) => ({
-    background: theme.app.landing,
-    composes: ['ff-roboto'],
+  container: {
+    composes: ['ff-roboto', 'no-flex'],
     height: '100%',
+    width: '100%',
+  },
+  layer: ({ theme }) => ({
+    background: theme.app.landing,
+    composes: ['flex-rows', 'flex-start', 'p16'],
+    minHeight: '100%',
+    paddingBottom: 32,
   }),
+  [`@media (max-width: ${600}px)`]: {
+    layer: { padding: 12 },
+  },
 });
 
 const LandingViewComponent = React.memo(() => {
@@ -33,16 +37,14 @@ const LandingViewComponent = React.memo(() => {
         <Redirect to="/home" />
       </IfFirebaseAuthed>
       <IfFirebaseUnAuthed>
-        {() => (
-          <div className={classes.container} id="landing-view">
+        <div className={classes.container} id="landing-view">
+          <div className={classes.layer}>
             <Nav />
             <Text />
-            <div className={classes.bottom}>
-              <Form email={email} />
-              <Demo />
-            </div>
+            <Form email={email} />
+            <Demo />
           </div>
-        )}
+        </div>
       </IfFirebaseUnAuthed>
     </React.Fragment>
   );

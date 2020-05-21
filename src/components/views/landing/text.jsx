@@ -3,19 +3,33 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
   description: {
-    composes: ['fs24', 'is-light'],
+    composes: ['is-light'],
+    fontSize: 24,
     lineHeight: 1.4,
   },
   title: {
-    composes: ['is-medium', 'mb12', 'fs48'],
+    composes: ['is-medium', 'mb12'],
+    fontSize: 48,
     letterSpacing: 0.025,
     lineHeight: 1.05,
   },
   wrapper: ({ theme }) => ({
     color: theme.colors.white,
-    margin: '0 auto',
-    width: 680,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 100,
+    maxWidth: 680,
+    width: '80%',
   }),
+  [`@media (max-width: ${600}px)`]: {
+    description: { fontSize: 18 },
+    title: { fontSize: 32 },
+  },
+  [`@media (max-width: ${420}px)`]: {
+    description: { fontSize: 16 },
+    title: { fontSize: 28 },
+    wrapper: { marginTop: '60px !important', width: '95% !important' },
+  },
 });
 
 const ReactDumbComponent = React.memo(() => {

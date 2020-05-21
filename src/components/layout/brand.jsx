@@ -8,22 +8,19 @@ import { ReactComponent as Logo } from '../../assets/logo-outline.svg';
 
 const useStyles = createUseStyles({
   brand: ({ theme }) => ({
+    '& span': {
+      fontSize: '2.625em',
+      marginLeft: 3,
+      verticalAlign: 'middle',
+    },
+    '& svg': {
+      fontSize: '2.375em',
+      verticalAlign: 'middle',
+    },
     '&:hover': { textDecoration: 'none !important' },
     color: theme.colors.white,
-    composes: ['ff-lobster', 'is-relative', 'is-block'],
-    height: '3.4em',
-    lineHeight: '3.4em',
-    width: 'auto',
+    composes: ['ff-lobster', 'flex-columns', 'flex-start', 'items-center'],
   }),
-  svg: {
-    composes: ['is-absolute'],
-    fontSize: '2.375em',
-    top: '0.2em',
-  },
-  title: {
-    fontSize: '2.625em',
-    marginLeft: '1em',
-  },
 });
 
 const BrandComponent = React.memo(({ className }) => {
@@ -31,8 +28,8 @@ const BrandComponent = React.memo(({ className }) => {
   const classes = useStyles({ theme });
   return (
     <Link className={classnames(classes.brand, className)} to="/">
-      <Logo className={classes.svg} />
-      <span className={classes.title}>Typpo</span>
+      <Logo />
+      <span>Typpo</span>
     </Link>
   );
 });

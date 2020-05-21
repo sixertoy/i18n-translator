@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
@@ -5,22 +6,39 @@ import { Link } from 'react-router-dom';
 import Brand from '../../layout/brand';
 
 const useStyles = createUseStyles({
+  link: {
+    composes: ['is-block', 'ml3', 'py12', 'px24', 'fs18'],
+  },
   nav: {
     background: 'transparent',
-    composes: ['p16', 'flex-columns', 'flex-between', 'items-center'],
-    height: 90,
-    marginBottom: 100,
+    boxSizing: 'content-box',
+    composes: ['flex-columns', 'flex-between', 'items-center'],
+    height: 50,
+    maxHeight: 50,
+    minHeight: 50,
+    position: 'sticky',
+    top: 0,
   },
   signin: ({ theme }) => ({
     background: theme.colors.transparent,
     color: theme.colors.white,
-    composes: ['px24', 'py12', 'fs18'],
   }),
   signup: ({ theme }) => ({
     background: theme.colors.white,
     color: theme.colors.gradient[1],
-    composes: ['px24', 'py12', 'fs18', 'ml3', 'no-underline', 'rnd3'],
+    composes: ['no-underline', 'rnd3'],
   }),
+  title: {
+    composes: ['fs12', 'flex-1'],
+  },
+  wrapper: {
+    alignSelf: 'flex-end',
+    composes: ['flex-columns', 'flex-end', 'items-center'],
+  },
+  [`@media (max-width: ${600}px)`]: {
+    link: { fontSize: 12, padding: 12 },
+    title: { fontSize: 10 },
+  },
 });
 
 const LandingNavComponent = React.memo(() => {
@@ -28,12 +46,12 @@ const LandingNavComponent = React.memo(() => {
   const classes = useStyles({ theme });
   return (
     <nav className={classes.nav}>
-      <Brand />
-      <div>
-        <Link className={classes.signin} to="/signin">
+      <Brand className={classes.title} />
+      <div className={classes.wrapper}>
+        <Link className={classnames(classes.signin, classes.link)} to="/signin">
           <span>Connexion</span>
         </Link>
-        <Link className={classes.signup} to="/signup">
+        <Link className={classnames(classes.signup, classes.link)} to="/signup">
           <span>S&apos;inscrire</span>
         </Link>
       </div>
