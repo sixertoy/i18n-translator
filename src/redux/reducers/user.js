@@ -4,8 +4,8 @@ import { EVENT_TYPES } from '../../constants';
 import hydrate from '../hydrate';
 import { user as model } from '../models';
 
-const createUser = (state, user) => {
-  const next = hydrate(model, user, { isLogged: true });
+const createUser = (state, { user }) => {
+  const next = hydrate(model, user);
   return next;
 };
 
@@ -17,10 +17,12 @@ const updateUserTime = state => {
 const user = (state = {}, action) => {
   let isempty = true;
   switch (action.type) {
+    case EVENT_TYPES.USER_DELETE:
+      return {};
     case EVENT_TYPES.USER_UPDATE:
       isempty = isEmpty(action.user);
-      if (!isempty) return state;
-      return createUser(state, action.user);
+      if (isempty) return state;
+      return createUser(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
     case EVENT_TYPES.PROJECT_CREATE:
     case EVENT_TYPES.PROJECT_DELETE:

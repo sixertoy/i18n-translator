@@ -1,6 +1,6 @@
 import { EVENT_TYPES } from '../../constants';
 
-const updateUser = user => {
+const updateUser = ({ user }) => {
   return { type: EVENT_TYPES.USER_UPDATE, user };
 };
 

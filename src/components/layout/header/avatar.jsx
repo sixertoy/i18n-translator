@@ -2,8 +2,9 @@ import get from 'lodash.get';
 import React from 'react';
 import { AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
 
-import { FirebaseAuthConsumer } from '../../../core/firebase';
+import { selectUser } from '../../../redux/selectors';
 import Tooltip from '../../commons/tooltip';
 import Account from './account';
 
@@ -31,25 +32,20 @@ const useStyles = createUseStyles({
 const AvatarComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const user = useSelector(selectUser);
+  const photoURL = get(user, 'photoURL', null);
+  const isAnonymous = get(user, 'isAnonymous', null);
+  const showIcon = isAnonymous || !photoURL;
   return (
-    <FirebaseAuthConsumer>
-      {({ user }) => {
-        const photoURL = get(user, 'userphotoURL', null);
-        const isAnonymous = get(user, 'userisAnonymous', null);
-        const showIcon = isAnonymous || !photoURL;
-        return (
-          <Tooltip
-            className={classes.tooltip}
-            component={<Account user={user} />}
-            placement="bottom-end">
-            <button className={classes.button} type="button">
-              {showIcon && <UserIcon />}
-              {!showIcon && <img alt="user avatar" src={photoURL} />}
-            </button>
-          </Tooltip>
-        );
-      }}
-    </FirebaseAuthConsumer>
+    <Tooltip
+      className={classes.tooltip}
+      component={<Account user={user} />}
+      placement="bottom-end">
+      <button className={classes.button} type="button">
+        {showIcon && <UserIcon />}
+        {!showIcon && <img alt="user avatar" src={photoURL} />}
+      </button>
+    </Tooltip>
   );
 });
 

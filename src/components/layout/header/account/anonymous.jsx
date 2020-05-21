@@ -3,7 +3,6 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import GithubLogin from '../../../commons/buttons/github';
 import GoogleLogin from '../../../commons/buttons/google';
-import SignOut from '../../../commons/buttons/signout';
 
 const useStyles = createUseStyles({
   container: {
@@ -40,7 +39,6 @@ const AnonymousUserComponent = React.memo(() => {
       <GithubLogin useSignup />
       <GoogleLogin useSignup className="mt7" />
       <hr className={classes.splitter} />
-      <SignOut />
     </div>
   );
 });

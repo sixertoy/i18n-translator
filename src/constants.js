@@ -45,6 +45,7 @@ export const EVENT_TYPES = {
   PROJECT_NAME_UPDATE: 'onProjectNameUpdate',
   PROJECT_TIME_UPDATE: 'onProjectTimeUpdate',
   PROJECT_TOGGLE_FAV: 'onProjectToggleFav',
+  USER_DELETE: 'onUserDelete',
   USER_UPDATE: 'onUserUpdate',
 };
 

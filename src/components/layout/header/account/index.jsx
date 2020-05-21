@@ -1,14 +1,28 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
+
+import Signout from './signout';
 
 const useStyles = createUseStyles({
   container: {},
 });
 
-const MenuComponent = React.memo(() => {
+const AccountComponent = React.memo(({ user }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  return <div className={classes.container} />;
+
+  console.log('user', user);
+
+  return (
+    <div className={classes.container}>
+      <Signout />
+    </div>
+  );
 });
 
-export default MenuComponent;
+AccountComponent.propTypes = {
+  user: PropTypes.shape().isRequired,
+};
+
+export default AccountComponent;

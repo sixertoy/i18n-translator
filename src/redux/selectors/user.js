@@ -7,9 +7,4 @@ export const selectUser = createSelector(
   }
 );
 
-export const selectIsLogged = createSelector(
-  state => state.user,
-  user => {
-    return user.logged;
-  }
-);
+export default selectUser;

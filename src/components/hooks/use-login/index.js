@@ -8,8 +8,9 @@ import {
   // FIREBASE_PROVIDER_EMAIL,
   FIREBASE_PROVIDER_GITHUB,
   FIREBASE_PROVIDER_GOOGLE,
-} from '../../constants';
-import { updateUser } from '../../redux/actions';
+} from '../../../constants';
+import { deleteUser, updateUser } from '../../../redux/actions';
+import getProvider from './get-provider';
 
 const ACCOUNT_EXISTS_CODE = 'auth/account-exists-with-different-credential';
 
@@ -27,7 +28,7 @@ const getProviderById = (providerId = null) => {
 
 const useLogin = (providerId = null) => {
   const dispatch = useDispatch();
-  const providerRef = useRef(getProviderById(providerId));
+  const providerRef = useRef(getProvider(providerId));
 
   const onLogoutError = useCallback(() => {
     // TODO
@@ -39,7 +40,7 @@ const useLogin = (providerId = null) => {
 
   const onLoginSuccess = useCallback(
     ({ user }) => {
-      dispatch(updateUser(user));
+      dispatch(updateUser({ user }));
     },
     [dispatch]
   );
@@ -80,9 +81,17 @@ const useLogin = (providerId = null) => {
     // https://firebase.google.com/docs/auth/web/email-link-auth
   }, []);
 
-  const onSignoutClick = useCallback(evt => {
-    evt.preventDefault();
-  }, []);
+  const onSignoutClick = useCallback(
+    evt => {
+      evt.preventDefault();
+      firebase
+        .auth()
+        .signOut()
+        .then(() => dispatch(deleteUser()))
+        .catch(() => {});
+    },
+    [dispatch]
+  );
 
   const onSigninClick = useCallback(
     evt => {
@@ -114,8 +123,6 @@ const useLogin = (providerId = null) => {
     onAnonymousClick,
     onLoginError,
     onLoginSuccess,
-    onLogoutError,
-    onLogoutSuccess,
     onSigninClick,
     onSigninWithEmail,
     onSignoutClick,

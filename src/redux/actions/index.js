@@ -6,6 +6,7 @@ export { default as createProjectAsync } from './create-project';
 export { default as deleteKey } from './delete-key';
 export { default as deleteLanguage } from './delete-language';
 export { default as deleteProject } from './delete-project';
+export { default as deleteUser } from './delete-user';
 export { default as updateDemo } from './update-demo';
 export { default as toggleCollapseLanguage } from './toggle-collapse-language';
 export { default as toggleFavorite } from './toggle-favorite';

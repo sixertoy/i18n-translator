@@ -12,7 +12,6 @@ import {
   FIREBASE_PROVIDER_GITHUB,
   FIREBASE_PROVIDER_GOOGLE,
 } from '../../../../constants';
-import SignOut from '../../../commons/buttons/signout';
 
 const useStyles = createUseStyles({
   container: {},
@@ -42,9 +41,6 @@ const LoggedUserComponent = React.memo(({ provider, user }) => {
       </div>
       <div>
         <span>{lastSignin}</span>
-      </div>
-      <div>
-        <SignOut />
       </div>
     </div>
   );
