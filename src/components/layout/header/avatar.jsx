@@ -3,7 +3,9 @@ import React from 'react';
 import { AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { FirebaseAuthConsumer } from '../../../../core/firebase';
+import { FirebaseAuthConsumer } from '../../../core/firebase';
+import Tooltip from '../../commons/tooltip';
+import Account from './account';
 
 const useStyles = createUseStyles({
   button: {
@@ -19,28 +21,36 @@ const useStyles = createUseStyles({
     overflow: 'hidden',
     width: 34,
   },
+  tooltip: ({ theme }) => ({
+    borderRadius: theme.radius.small,
+    padding: 8,
+    width: 400,
+  }),
 });
 
-const AccountButtonComponent = React.memo(() => {
+const AvatarComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <FirebaseAuthConsumer>
-      {state => {
-        const photoURL = get(state, 'user.photoURL', null);
-        const isAnonymous = get(state, 'user.isAnonymous', null);
+      {({ user }) => {
+        const photoURL = get(user, 'userphotoURL', null);
+        const isAnonymous = get(user, 'userisAnonymous', null);
         const showIcon = isAnonymous || !photoURL;
         return (
-          <button className={classes.button} type="button">
-            <React.Fragment>
+          <Tooltip
+            className={classes.tooltip}
+            component={<Account user={user} />}
+            placement="bottom-end">
+            <button className={classes.button} type="button">
               {showIcon && <UserIcon />}
               {!showIcon && <img alt="user avatar" src={photoURL} />}
-            </React.Fragment>
-          </button>
+            </button>
+          </Tooltip>
         );
       }}
     </FirebaseAuthConsumer>
   );
 });
 
-export default AccountButtonComponent;
+export default AvatarComponent;

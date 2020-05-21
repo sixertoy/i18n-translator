@@ -1,9 +1,9 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import GithubLogin from '../../../../commons/buttons/github';
-import GoogleLogin from '../../../../commons/buttons/google';
-import SignOut from '../../../../commons/buttons/signout';
+import GithubLogin from '../../../commons/buttons/github';
+import GoogleLogin from '../../../commons/buttons/google';
+import SignOut from '../../../commons/buttons/signout';
 
 const useStyles = createUseStyles({
   container: {

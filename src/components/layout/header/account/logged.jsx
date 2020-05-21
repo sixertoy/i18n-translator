@@ -11,8 +11,8 @@ import {
   FIREBASE_PROVIDER_EMAIL,
   FIREBASE_PROVIDER_GITHUB,
   FIREBASE_PROVIDER_GOOGLE,
-} from '../../../../../constants';
-import SignOut from '../../../../commons/buttons/signout';
+} from '../../../../constants';
+import SignOut from '../../../commons/buttons/signout';
 
 const useStyles = createUseStyles({
   container: {},
