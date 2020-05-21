@@ -8,6 +8,8 @@ import FavoriteButton from '../../../commons/buttons/favorite';
 
 const useStyles = createUseStyles({
   favorite: {
+    '& button': { background: 'transparent' },
+    '& svg': { color: '#000000' },
     height: 34,
     position: 'absolute',
     right: 0,
@@ -15,8 +17,8 @@ const useStyles = createUseStyles({
     width: 34,
   },
   item: {
-    background: '#000000',
-    composes: ['is-relative', 'rnd3', 'flex-1'],
+    borderRadius: 3,
+    composes: ['is-relative', 'flex-1', 'no-overflow'],
     margin: '0 1% 1% 0',
     maxWidth: '49%',
     minWidth: '49%',
@@ -24,7 +26,8 @@ const useStyles = createUseStyles({
   },
   link: {
     '&:hover': { textDecoration: 'none' },
-    color: '#FFFFFF',
+    background: '#FFFFFF',
+    color: '#000000',
     composes: ['is-bold', 'is-block'],
     fontSize: 14,
     lineHeight: '1.3em',
