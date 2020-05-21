@@ -1,18 +1,38 @@
 import React from 'react';
+import {
+  AiOutlineClockCircle as ClockIcon,
+  AiOutlineProject as ProjectsIcon,
+  AiOutlinePushpin as PinIcon,
+} from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { RESPONSIVE_BREAKPOINT } from '../../../constants';
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
+import {
+  selectFavorites,
+  selectProjects,
+  selectRecents,
+} from '../../../redux/selectors';
 import withLayout from '../../layout';
-import Grids from './grids';
-import Lists from './lists';
+import Grid from './grid';
+import List from './list';
 
 const useStyles = createUseStyles({
   container: {
     background: '#F1F1F1',
     composes: ['flex-1'],
     width: '100%',
+  },
+  grids: {
+    composes: ['flex-1', 'is-relative', 'mr24'],
+  },
+  lists: {
+    composes: ['flex-0'],
+    maxWidth: 250,
+    minWidth: 250,
+    width: 250,
   },
   wrapper: {
     composes: ['flex-columns', 'is-relative'],
@@ -21,6 +41,14 @@ const useStyles = createUseStyles({
     padding: 24,
   },
   [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+    grids: {
+      marginRight: 0,
+    },
+    lists: {
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%',
+    },
     wrapper: {
       flexDirection: 'column-reverse',
       padding: 12,
@@ -31,6 +59,10 @@ const useStyles = createUseStyles({
 const HomeViewComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const projects = useSelector(selectProjects);
+  const favorites = useSelector(selectFavorites);
+  const recents = useSelector(selectRecents);
+  const historics = recents.slice(0, 8);
   return (
     <div className={classes.container} id="home-view">
       <IfFirebaseUnAuthed>
@@ -38,8 +70,21 @@ const HomeViewComponent = React.memo(() => {
       </IfFirebaseUnAuthed>
       <IfFirebaseAuthed>
         <div className={classes.wrapper}>
-          <Grids />
-          <Lists />
+          <div className={classes.grids}>
+            <Grid icon={PinIcon} items={favorites} label="Projets épinglés" />
+            <Grid
+              icon={ProjectsIcon}
+              items={projects}
+              label="Tous vos projets"
+            />
+          </div>
+          <div className={classes.lists}>
+            <List
+              icon={ClockIcon}
+              items={historics}
+              label="Récemment consultés"
+            />
+          </div>
         </div>
       </IfFirebaseAuthed>
     </div>
