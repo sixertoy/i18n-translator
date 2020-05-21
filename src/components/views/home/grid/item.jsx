@@ -4,7 +4,6 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
 import FavoriteButton from '../../../commons/buttons/favorite';
 
 const useStyles = createUseStyles({
@@ -40,7 +39,7 @@ const useStyles = createUseStyles({
     height: 96,
     paddingRight: 30,
   },
-  [`@media (min-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+  [`@media (min-width: ${861}px)`]: {
     item: {
       maxWidth: '32%',
       minWidth: '32%',
@@ -48,6 +47,11 @@ const useStyles = createUseStyles({
     },
     link: {
       fontSize: 20,
+    },
+  },
+  [`@media (max-width: ${981}px)`]: {
+    link: {
+      fontSize: 18,
     },
   },
 });

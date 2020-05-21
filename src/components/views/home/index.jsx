@@ -8,7 +8,6 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { RESPONSIVE_BREAKPOINT } from '../../../constants';
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import {
   selectFavorites,
@@ -40,7 +39,7 @@ const useStyles = createUseStyles({
     maxWidth: 960,
     padding: 24,
   },
-  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
+  [`@media (max-width: ${680}px)`]: {
     grids: {
       marginRight: 0,
     },

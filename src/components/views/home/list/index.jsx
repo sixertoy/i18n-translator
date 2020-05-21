@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
 import Item from './item';
 
 const useStyles = createUseStyles({
@@ -14,13 +13,8 @@ const useStyles = createUseStyles({
     '& svg': { fontSize: '1.15em' },
     composes: ['is-bold', 'fs16'],
   },
-  wrapper: { composes: ['mt7'] },
-  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
-    wrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-    },
+  wrapper: {
+    composes: ['mt7', 'flex-columns', 'flex-wrap'],
   },
 });
 
