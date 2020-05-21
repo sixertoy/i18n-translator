@@ -15,8 +15,7 @@ import {
   selectRecents,
 } from '../../../redux/selectors';
 import withLayout from '../../layout';
-import Grid from './grid';
-import List from './list';
+import Factory from './item-factory';
 
 const useStyles = createUseStyles({
   container: {
@@ -62,6 +61,7 @@ const HomeViewComponent = React.memo(() => {
   const favorites = useSelector(selectFavorites);
   const recents = useSelector(selectRecents);
   const historics = recents.slice(0, 8);
+  const showFavorites = projects && projects.length > 0;
   return (
     <div className={classes.container} id="home-view">
       <IfFirebaseUnAuthed>
@@ -70,18 +70,28 @@ const HomeViewComponent = React.memo(() => {
       <IfFirebaseAuthed>
         <div className={classes.wrapper}>
           <div className={classes.grids}>
-            <Grid icon={PinIcon} items={favorites} label="Projets épinglés" />
-            <Grid
+            {showFavorites && (
+              <Factory
+                useGrid
+                icon={PinIcon}
+                items={favorites}
+                label="Épinglés"
+              />
+            )}
+            <Factory
+              useBlank
+              useGrid
               icon={ProjectsIcon}
               items={projects}
               label="Tous vos projets"
             />
           </div>
           <div className={classes.lists}>
-            <List
+            <Factory
               icon={ClockIcon}
               items={historics}
               label="Récemment consultés"
+              useEmpty={!historics || historics.length <= 0}
             />
           </div>
         </div>

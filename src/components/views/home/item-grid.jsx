@@ -4,7 +4,7 @@ import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import FavoriteButton from '../../../commons/buttons/favorite';
+import FavoriteButton from '../../commons/buttons/favorite';
 
 const useStyles = createUseStyles({
   favorite: {
@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
   },
   link: {
     '&:hover': { textDecoration: 'none' },
-    background: '#FFFFFF',
+    background: '#FAFBFC',
     color: '#000000',
     composes: ['is-bold', 'is-block'],
     fontSize: 14,
@@ -43,28 +43,23 @@ const useStyles = createUseStyles({
     paddingRight: 30,
   },
   [`@media (min-width: ${861}px)`]: {
+    item: {
+      maxWidth: '32%',
+      minWidth: '32%',
+      width: '32%',
+    },
     link: {
-      fontSize: 16,
+      fontSize: 20,
     },
   },
-  [`@media (min-width: ${681}px)`]: {
-    item: {
-      maxWidth: '100%',
-      minWidth: '100%',
-      width: '100%',
-    },
-    name: {
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-    },
-    wrapper: {
-      height: 'auto',
+  [`@media (max-width: ${981}px)`]: {
+    link: {
+      fontSize: 18,
     },
   },
 });
 
-const ProjectItemComponent = React.memo(({ data }) => {
+const GridComponent = React.memo(({ data }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -84,7 +79,7 @@ const ProjectItemComponent = React.memo(({ data }) => {
   );
 });
 
-ProjectItemComponent.propTypes = {
+GridComponent.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string,
     isFavorite: PropTypes.bool,
@@ -93,4 +88,4 @@ ProjectItemComponent.propTypes = {
   }).isRequired,
 };
 
-export default ProjectItemComponent;
+export default GridComponent;
