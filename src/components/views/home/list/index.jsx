@@ -1,5 +1,3 @@
-import classnames from 'classnames';
-import isEmpty from 'lodash.isempty';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -18,33 +16,25 @@ const useStyles = createUseStyles({
   },
 });
 
-const ProjectsGridComponent = React.memo(
-  ({ className, icon: Icon, items, label }) => {
-    const theme = useTheme();
-    const classes = useStyles({ theme });
-    return (
-      <div className={classes.container}>
-        <h6 className={classes.title}>
-          <Icon />
-          <span>{label}</span>
-        </h6>
-        <ul className={classnames(classes.wrapper, className)}>
-          {isEmpty(items) && <span>Aucun projet</span>}
-          {items.map(obj => (
-            <Item key={obj.id} data={obj} />
-          ))}
-        </ul>
-      </div>
-    );
-  }
-);
-
-ProjectsGridComponent.defaultProps = {
-  className: '',
-};
+const ProjectsGridComponent = React.memo(({ icon: Icon, items, label }) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+  return (
+    <div className={classes.container}>
+      <h3 className={classes.title}>
+        <Icon />
+        <span>{label}</span>
+      </h3>
+      <ul className={classes.wrapper}>
+        {items.map(obj => (
+          <Item key={obj.id} data={obj} />
+        ))}
+      </ul>
+    </div>
+  );
+});
 
 ProjectsGridComponent.propTypes = {
-  className: PropTypes.string,
   icon: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   label: PropTypes.string.isRequired,

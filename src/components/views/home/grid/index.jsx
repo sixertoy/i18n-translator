@@ -1,5 +1,3 @@
-import classnames from 'classnames';
-// import isEmpty from 'lodash.isempty';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -21,14 +19,13 @@ const useStyles = createUseStyles({
 const ProjectsGridComponent = React.memo(({ icon: Icon, items, label }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  // const isempty = isEmpty(items);
   return (
     <div className={classes.container}>
       <h3 className={classes.title}>
         <Icon />
         <span>{label}</span>
       </h3>
-      <ul className={classnames(classes.wrapper)}>
+      <ul className={classes.wrapper}>
         {items.map(obj => (
           <Item key={obj.id} data={obj} />
         ))}
@@ -36,8 +33,6 @@ const ProjectsGridComponent = React.memo(({ icon: Icon, items, label }) => {
     </div>
   );
 });
-
-ProjectsGridComponent.defaultProps = {};
 
 ProjectsGridComponent.propTypes = {
   icon: PropTypes.func.isRequired,

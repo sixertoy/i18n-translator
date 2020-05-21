@@ -69,10 +69,7 @@ const ProjectItemComponent = React.memo(({ data }) => {
     <li className={classnames(classes.item, 'fadein')}>
       <Link className={classes.link} to={url}>
         <div className={classes.wrapper}>
-          <span className={classes.name}>
-            {data.name} lorem ipsum dolot sit amet consectuer lorem ipsum dolor
-            sit amet consectuer
-          </span>
+          <span className={classes.name}>{data.name}</span>
         </div>
       </Link>
       <div className={classes.favorite}>

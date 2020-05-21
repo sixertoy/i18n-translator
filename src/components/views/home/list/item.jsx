@@ -74,10 +74,7 @@ const ProjectItemComponent = React.memo(({ data }) => {
     <li className={classnames(classes.item, 'fadein')}>
       <Link className={classes.link} to={url}>
         <div className={classes.wrapper}>
-          <span className={classes.name}>
-            {data.name} sjdjsl djs jdlksjq dhsq kjdsqkd kjdsqkdkdhkjdsqkdh hq
-            sjdjsl djs jdlksjq dhsq kjdsqkd
-          </span>
+          <span className={classes.name}>{data.name}</span>
         </div>
       </Link>
       <div className={classes.favorite}>
