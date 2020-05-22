@@ -5,16 +5,24 @@ import { AiOutlineGoogle, AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { GoGistSecret, GoMail, GoMarkGithub } from 'react-icons/go';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { rgba } from '../../../../core/utils';
 import Signout from './signout';
+
+const img = {
+  borderRadius: '50%',
+  height: 92,
+  margin: '0 auto',
+  width: 92,
+};
 
 const useStyles = createUseStyles({
   avatar: {
-    '& img': {
-      borderRadius: '50%',
-      height: 92,
-      margin: '0 auto',
-      width: 92,
+    '& .anon': {
+      background: '#000000',
+      color: rgba('#FFFFFF', 0.25),
+      extend: img,
     },
+    '& img': { extend: img },
     composes: ['is-flex', 'is-relative'],
   },
   container: {
@@ -36,9 +44,9 @@ const useStyles = createUseStyles({
     borderRadius: '50%',
     bottom: 0,
     color: '#FFFFFF',
-    composes: ['is-absolute', 'fs20', 'ml24', 'text-center'],
+    composes: ['is-absolute', 'fs20', 'text-center'],
     height: 32,
-    left: '50%',
+    left: '56%',
     width: 32,
   },
 });
@@ -71,7 +79,7 @@ const AccountComponent = React.memo(({ user }) => {
   return (
     <div className={classes.container}>
       <div className={classes.avatar}>
-        {showIcon && <UserIcon />}
+        {showIcon && <UserIcon className="anon" />}
         {!showIcon && <img alt="user avatar" src={photoURL} />}
         <div className={classes.provider}>
           <ProviderIcon />
