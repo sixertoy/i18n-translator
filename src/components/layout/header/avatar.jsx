@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { selectUser } from '../../../redux/selectors';
 import Tooltip from '../../commons/tooltip';
-import Account from './account';
+import IdCard from './idcard';
 
 const useStyles = createUseStyles({
   button: {
@@ -24,8 +24,8 @@ const useStyles = createUseStyles({
   },
   tooltip: ({ theme }) => ({
     borderRadius: theme.radius.small,
-    padding: 8,
-    width: 400,
+    composes: ['no-padding'],
+    width: 280,
   }),
 });
 
@@ -39,8 +39,9 @@ const AvatarComponent = React.memo(() => {
   return (
     <Tooltip
       className={classes.tooltip}
-      component={<Account user={user} />}
-      placement="bottom-end">
+      component={<IdCard user={user} />}
+      placement="bottom-end"
+      theme="material">
       <button className={classes.button} type="button">
         {showIcon && <UserIcon />}
         {!showIcon && <img alt="user avatar" src={photoURL} />}
