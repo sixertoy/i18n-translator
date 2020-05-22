@@ -6,7 +6,6 @@ describe('src | redux | hydrate', () => {
     const value = {};
     const expected = {
       ctime: expect.any(Number),
-      demo: expect.any(Boolean),
       id: expect.any(String),
       langs: expect.any(Array),
       mtime: expect.any(Number),
@@ -19,12 +18,11 @@ describe('src | redux | hydrate', () => {
   });
 
   it('teste que les valeurs ne soient pas overridées si elles existent', () => {
-    const id = 'demo';
-    const name = 'Demo';
+    const id = 'mock';
+    const name = 'Mock';
     const value = { id, name };
     const expected = {
       ctime: expect.any(Number),
-      demo: false,
       id,
       langs: expect.any(Array),
       mtime: expect.any(Number),

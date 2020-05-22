@@ -9,11 +9,11 @@ const INITIAL_REDUCERS = {
   },
   whitelist: {
     app: {
-      anon: false,
       mail: null,
       theme: 'bw',
       version,
     },
+    draft: {},
     favorites: [],
     keys: {},
     languages: [],

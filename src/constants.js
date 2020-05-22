@@ -25,7 +25,6 @@ export const DEFAULT_LANGUAGES = {
 };
 
 export const EVENT_TYPES = {
-  APP_UPDATE_ANON: 'onAppUpdateAnonymous',
   APP_UPDATE_SUBSCRIBING_EMAIL: 'onAppUpdateSubscribingEmail',
   APP_UPDATE_THEME: 'onAppUpdateTheme',
   APP_UPDATE_VERSION: 'onAppUpdateVersion',

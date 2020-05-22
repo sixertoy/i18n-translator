@@ -5,9 +5,9 @@ import { Redirect } from 'react-router-dom';
 
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import { selectSubscribingEmail } from '../../../redux/selectors';
-import Demo from './demo';
 import Form from './form';
 import Nav from './nav';
+import Restricted from './restricted';
 import Text from './text';
 
 const useStyles = createUseStyles({
@@ -42,7 +42,7 @@ const LandingViewComponent = React.memo(() => {
             <Nav />
             <Text />
             <Form email={email} />
-            <Demo />
+            <Restricted />
           </div>
         </div>
       </IfFirebaseUnAuthed>

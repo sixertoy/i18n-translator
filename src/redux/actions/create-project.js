@@ -4,11 +4,10 @@ import { v1 as uuidv1 } from 'uuid';
 
 import { EVENT_TYPES } from '../../constants';
 
-const createProjectAsync = () => (dispatch, getState) => {
-  const { demo } = getState();
-  const id = (demo && `demo`) || uuidv1();
-  const name = (demo && 'Demo') || ucFirst(getName());
-  dispatch({ demo, id, name, type: EVENT_TYPES.PROJECT_CREATE });
+const createProjectAsync = () => dispatch => {
+  const id = uuidv1();
+  const name = ucFirst(getName());
+  dispatch({ id, name, type: EVENT_TYPES.DRAFT_CREATE });
   return Promise.resolve(id);
 };
 

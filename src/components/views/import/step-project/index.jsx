@@ -38,7 +38,7 @@ const StepProjectComponent = ({ onSubmit }) => {
   const onClickHandler = useCallback(() => {
     onSubmit();
   }, [onSubmit]);
-
+  const restricted = false;
   return (
     <div className={classes.container} id="step-project">
       <div className={stepStyles.form}>
@@ -49,11 +49,11 @@ const StepProjectComponent = ({ onSubmit }) => {
           <input
             className={stepStyles.input}
             defaultValue={project.name}
-            disabled={project.demo}
+            disabled={restricted}
             name="project.name"
             type="text"
           />
-          {project.demo && (
+          {restricted && (
             <Tooltip
               useHover
               className={classes.tooltip}
