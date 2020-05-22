@@ -14,9 +14,10 @@ const useStyles = createUseStyles({
 const EmptyComponent = React.memo(({ label }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const lcLabel = label.toLowerCase();
   return (
     <div className={classes.empty}>
-      <span>Les projets {label} s&apos;afficheront ici</span>
+      <span>Vos projets {lcLabel} s&apos;afficheront ici</span>
     </div>
   );
 });

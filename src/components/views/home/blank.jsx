@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import { AiOutlinePlus as PlusIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
@@ -8,25 +7,14 @@ import { useHistory } from 'react-router-dom';
 import { createProjectAsync } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
-  item: {
-    borderRadius: 3,
-    composes: ['is-relative', 'flex-1', 'no-overflow'],
-    margin: '0 1% 1% 0',
-    maxWidth: '49%',
-    minWidth: '49%',
-    width: '49%',
-  },
-  name: {
-    composes: ['is-block', 'no-overflow'],
-    maxHeight: '100%',
-  },
-  wrapper: {
+  button: {
+    '& svg': { marginRight: 5 },
     background: '#FAFBFC',
     color: '#42526E',
     composes: ['is-block', 'py12', 'pl12', 'no-overflow'],
     fontSize: 14,
     height: 96,
-    paddingRight: 30,
+    lineHeight: '1.3em',
     width: '100%',
   },
   [`@media (min-width: ${861}px)`]: {
@@ -60,8 +48,8 @@ const BlankComponent = React.memo(() => {
   }, [dispatch, history]);
 
   return (
-    <li className={classnames(classes.item, 'fadein')}>
-      <button className={classes.wrapper} type="button" onClick={onCreateClick}>
+    <li className={classes.item}>
+      <button className={classes.button} type="button" onClick={onCreateClick}>
         <PlusIcon />
         <span>Ajouter un projet</span>
       </button>

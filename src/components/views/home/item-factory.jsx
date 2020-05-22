@@ -8,7 +8,7 @@ import GridItem from './item-grid';
 import ListItem from './item-list';
 
 const useStyles = createUseStyles({
-  container: { composes: ['mb24'] },
+  factory: { composes: ['mb24'] },
   title: {
     '& span': { marginLeft: 5, verticalAlign: 'middle' },
     '& svg': { fontSize: '1.15em' },
@@ -24,20 +24,20 @@ const ListComponent = React.memo(
     const theme = useTheme();
     const classes = useStyles({ theme });
     return (
-      <div className={classes.container}>
+      <div className={classes.factory}>
         <h3 className={classes.title}>
           <Icon />
           <span>{label}</span>
         </h3>
-        {useEmpty && <Empty />}
+        {useEmpty && <Empty label={label} />}
         <ul className={classes.wrapper}>
           {items.map(obj => (
-            <React.Fragment>
-              {useGrid && <GridItem key={obj.id} data={obj} />}
-              {!useGrid && <ListItem key={obj.id} data={obj} />}
+            <React.Fragment key={obj.id}>
+              {useGrid && <GridItem data={obj} />}
+              {!useGrid && <ListItem data={obj} />}
             </React.Fragment>
           ))}
-          {useBlank && <Blank />}
+          {useBlank && <Blank key="blank" />}
         </ul>
       </div>
     );

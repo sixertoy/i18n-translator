@@ -5,48 +5,9 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 import FavoriteButton from '../../commons/buttons/favorite';
+import useListStyles from './styles';
 
 const useStyles = createUseStyles({
-  favorite: {
-    '& button': { background: 'transparent' },
-    '& svg': { color: '#000000' },
-    height: 34,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    width: 34,
-  },
-  item: {
-    borderRadius: 3,
-    composes: ['is-relative', 'flex-1', 'no-overflow'],
-    margin: '0 1% 1% 0',
-    maxWidth: '49%',
-    minWidth: '49%',
-    width: '49%',
-  },
-  link: {
-    '&:hover': { textDecoration: 'none' },
-    background: '#FAFBFC',
-    color: '#000000',
-    composes: ['is-bold', 'is-block'],
-    fontSize: 14,
-    lineHeight: '1.3em',
-    width: '100%',
-  },
-  name: {
-    composes: ['is-block', 'no-overflow'],
-    maxHeight: '100%',
-  },
-  wrapper: {
-    composes: ['py12', 'pl12', 'no-overflow'],
-    height: 96,
-    paddingRight: 30,
-  },
-  [`@media (min-width: ${861}px)`]: {
-    link: {
-      fontSize: 16,
-    },
-  },
   [`@media (min-width: ${681}px)`]: {
     item: {
       maxWidth: '100%',
@@ -62,19 +23,27 @@ const useStyles = createUseStyles({
       height: 'auto',
     },
   },
+  [`@media (min-width: ${861}px)`]: {
+    link: {
+      fontSize: 16,
+    },
+  },
 });
 
 const ProjectItemComponent = React.memo(({ data }) => {
   const theme = useTheme();
-  const classes = useStyles({ theme });
+  const queries = useStyles({ theme });
+  const classes = useListStyles({ theme });
 
   const url = `/board/${data.id}`;
 
   return (
-    <li className={classnames(classes.item, 'fadein')}>
-      <Link className={classes.link} to={url}>
-        <div className={classes.wrapper}>
-          <span className={classes.name}>{data.name}</span>
+    <li className={classnames(classes.item, queries.item, 'fadein')}>
+      <Link className={classnames(classes.link, queries.link)} to={url}>
+        <div className={classnames(classes.wrapper, queries.wrapper)}>
+          <span className={classnames(classes.name, queries.name)}>
+            {data.name}
+          </span>
         </div>
       </Link>
       <div className={classes.favorite}>
