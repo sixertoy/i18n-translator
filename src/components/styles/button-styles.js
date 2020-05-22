@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 export const useButtonStyles = createUseStyles({
   btn: ({ theme }) => ({
     '&:disabled': { cursor: 'not-allowed', opacity: 0.45 },
-    '&:hover': { background: theme.colors.danger },
+    '&:hover': { background: '#EB7392' },
     background: theme.colors.black,
     borderRadius: theme.radius.small,
     color: theme.colors.white,

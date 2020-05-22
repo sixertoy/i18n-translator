@@ -1,5 +1,15 @@
 $font: 'Roboto', -apple-system, blinkmacsystemfont, segoe ui, roboto, noto sans, ubuntu, droid sans, helvetica neue, sans-serif;
 
+b,
+strong {
+  font-weight: bold;
+}
+
+em,
+small {
+  font-style: italic;
+}
+
 input,
 textarea,
 button,

@@ -1,11 +1,17 @@
 import get from 'lodash.get';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { AiOutlineGoogle, AiOutlineUser as UserIcon } from 'react-icons/ai';
+import {
+  AiOutlineGoogle,
+  AiOutlineLike as LikeIcon,
+  AiOutlineUser as UserIcon,
+} from 'react-icons/ai';
 import { GoGistSecret, GoMail, GoMarkGithub } from 'react-icons/go';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { rgba } from '../../../../core/utils';
+import GithubLogin from '../../../commons/buttons/github';
+import GoogleLogin from '../../../commons/buttons/google';
 import Signout from './signout';
 
 const img = {
@@ -32,8 +38,29 @@ const useStyles = createUseStyles({
     color: '#959AA0',
     composes: ['is-block', 'fs14'],
   },
+  help: {
+    '& .icon': {
+      fontSize: 24,
+      left: 12,
+      position: 'absolute',
+      top: 12,
+    },
+    borderColor: rgba('#000000', 0.25),
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    color: '#959AA0',
+    composes: [
+      'mb24',
+      'is-normal',
+      'fs14',
+      'p12',
+      'text-left',
+      'is-relative',
+      'pl48',
+    ],
+  },
   infos: {
-    composes: ['my24', 'py24', 'text-center'],
+    composes: ['py24', 'text-center'],
     letterSpacing: '0.02em',
   },
   name: {
@@ -91,7 +118,18 @@ const AccountComponent = React.memo(({ user }) => {
           <span className={classes.email}>{email}</span>
         </div>
       )}
-      {isAnonymous && <div className={classes.logins} />}
+      {isAnonymous && (
+        <div className={classes.infos}>
+          <p className={classes.help}>
+            Profitez de tous les avantages de <strong>Typpo</strong> en vous
+            inscrivant, sauvegarder vos projets, ajouter des langues, exporter
+            dans plusieurs formats
+            <LikeIcon className="icon" />
+          </p>
+          <GithubLogin useSignup />
+          <GoogleLogin useSignup className="mt7" />
+        </div>
+      )}
       <Signout />
     </div>
   );

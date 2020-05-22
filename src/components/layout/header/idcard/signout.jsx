@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
     borderStyle: 'solid',
     borderWidth: 1,
     color: '#959AA0',
-    composes: ['is-block', 'p12', 'no-background', 'fs14', 'mt12'],
+    composes: ['is-block', 'p12', 'no-background', 'fs14'],
     transition: 'color 0.5s, background 0.5s',
     width: '100%',
   },

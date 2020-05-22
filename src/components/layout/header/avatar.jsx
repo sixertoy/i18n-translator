@@ -4,22 +4,22 @@ import { AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
 
+import { rgba } from '../../../core/utils';
 import { selectUser } from '../../../redux/selectors';
 import Tooltip from '../../commons/tooltip';
 import IdCard from './idcard';
 
 const useStyles = createUseStyles({
   button: {
+    '& .anon': { color: rgba('#FFFFFF', 0.55) },
     '& img': {
       composes: ['is-block'],
       height: 34,
       width: 34,
     },
     borderRadius: '50%',
-    composes: ['is-block'],
-    fontSize: 16,
+    composes: ['is-block', 'fs16', 'no-overflow'],
     height: 34,
-    overflow: 'hidden',
     width: 34,
   },
   tooltip: ({ theme }) => ({
@@ -43,7 +43,7 @@ const AvatarComponent = React.memo(() => {
       placement="bottom-end"
       theme="material">
       <button className={classes.button} type="button">
-        {showIcon && <UserIcon />}
+        {showIcon && <UserIcon className="anon" />}
         {!showIcon && <img alt="user avatar" src={photoURL} />}
       </button>
     </Tooltip>
