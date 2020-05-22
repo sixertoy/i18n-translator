@@ -29,6 +29,7 @@ const ProjectsButtonComponent = React.memo(() => {
       component={<Menu onItemClick={closeTooltipHandler} />}
       offset={[-41, 7]}
       placement="bottom-start"
+      theme="material"
       onCreate={onCreateHandler}>
       <button className={buttonClasses.button} type="button">
         <ProjectsIcon />
