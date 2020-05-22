@@ -11,15 +11,16 @@ const useStyles = createUseStyles({
     fontSize: 12,
     opacity: 0.55,
   },
-  brand: {
-    color: '#787878',
-  },
   container: {
     background: '#F1F1F1',
     color: '#787878',
     minHeight: '100%',
     minWidth: '100%',
     padding: '50px 0 40px 0',
+  },
+  logo: {
+    color: '#787878',
+    display: 'block',
   },
   subtitle: {
     fontWeight: 700,
@@ -110,7 +111,7 @@ const ErrorViewComponent = React.memo(() => {
             <span>Retour à l&apos;acceuil</span>
           </Link>
         </div>
-        <Brand className={classes.brand} />
+        <Brand className={classes.logo} />
       </div>
     </div>
   );
