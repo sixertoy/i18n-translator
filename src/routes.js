@@ -1,11 +1,11 @@
-import NotFound from './components/views/404';
-import Board from './components/views/board';
-import Export from './components/views/export';
-import Home from './components/views/home';
-import Import from './components/views/import';
-import Landing from './components/views/landing';
-import Login from './components/views/login';
-import Logout from './components/views/logout';
+import NotFound from './components/pages/404';
+import Board from './components/pages/board';
+import Export from './components/pages/export';
+import Home from './components/pages/home';
+import Import from './components/pages/import';
+import Landing from './components/pages/landing';
+import Login from './components/pages/login';
+import Logout from './components/pages/logout';
 
 export const ROUTES_ID = {
   BOARD: 'board',
