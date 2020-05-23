@@ -1,13 +1,14 @@
 import fromPairs from 'lodash.frompairs';
 import get from 'lodash.get';
 
-// import { EVENT_TYPES } from '../../constants';
+import { EVENT_TYPES } from '../../constants';
 import hydrate from '../hydrate';
 import { language as model } from '../models';
 
 export const createProject = (state, action) => {
-  const next = hydrate(model, action);
-  return [...state, next];
+  const { draft } = action;
+  console.log('draft', draft);
+  return state;
 };
 
 export function createLanguage(state, action) {
@@ -135,8 +136,8 @@ const languages = (state = [], action) => {
     //   return deleteLanguage(state, action);
     // case EVENT_TYPES.PROJECT_CLEAR:
     //   return clearProject(state, action);
-    // case EVENT_TYPES.PROJECT_CREATE:
-    //   return createProject(state, action);
+    case EVENT_TYPES.PROJECT_CREATE:
+      return createProject(state, action);
     // case EVENT_TYPES.PROJECT_DELETE:
     //   return deleteProject(state, action);
     // case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
