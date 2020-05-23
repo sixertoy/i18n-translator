@@ -6,7 +6,7 @@ import { rgba } from '../../../core/utils';
 import withLayout from '../../layout';
 import StepCommit from './step-commit';
 import StepContent from './step-content';
-import StepLang from './step-lang';
+import StepLangs from './step-langs';
 import StepName from './step-name';
 import Stepper from './stepper';
 
@@ -36,9 +36,9 @@ const useStyles = createUseStyles({
 
 const steps = [
   { Component: StepName, key: 'name', label: 'Commencer' },
-  { Component: StepLang, key: 'lang', label: 'Langue' },
-  { Component: StepContent, label: 'Importer' },
-  { Component: StepCommit, label: 'Créer' },
+  { Component: StepLangs, key: 'langs', label: 'Langue' },
+  { Component: StepContent, key: 'content', label: 'Importer' },
+  { Component: StepCommit, key: 'commit', label: 'Créer' },
 ];
 
 const ImportViewComponent = () => {

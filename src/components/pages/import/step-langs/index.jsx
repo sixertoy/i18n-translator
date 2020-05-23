@@ -29,7 +29,7 @@ const StepLangComponent = ({ index }) => {
     evt => {
       evt.preventDefault();
       const lang = input.current.value;
-      onStepChange({ lang });
+      onStepChange({ langs: [lang] });
     },
     [onStepChange]
   );

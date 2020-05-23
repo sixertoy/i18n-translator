@@ -7,7 +7,7 @@ import { EVENT_TYPES } from '../../constants';
 const createDraftAsync = () => dispatch => {
   const id = uuidv1();
   const name = ucFirst(getName());
-  const draft = { content: '', id, lang: null, name };
+  const draft = { content: '', id, langs: [], name };
   dispatch({ draft, type: EVENT_TYPES.DRAFT_CREATE });
   return Promise.resolve(id);
 };

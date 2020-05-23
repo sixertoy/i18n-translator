@@ -36,7 +36,8 @@ const DropdownComponent = React.memo(
           content={Content}
           maxWidth={250}
           offset={[0, 1]}
-          placement="top">
+          placement="top"
+          theme="light">
           <span className={classnames(buttonClasses.btn, classes.button)}>
             {label && <span>{label}</span>}
             {Icon && <Icon className="ml7" />}

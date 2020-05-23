@@ -52,6 +52,7 @@ const layer = '#F2F2F2';
 const active = '#362760';
 const inactive = '#F0812F';
 const gradient = ['#EE256B', '#FD7822'];
+// 'linear-gradient(0deg, #EE256B 0%, #FD7822 100%)'
 
 const colors = {
   active,

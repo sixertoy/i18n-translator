@@ -10,9 +10,9 @@ import { EDITOR_DEFAULT_CONTENT } from '../../../../constants';
 import { useFile } from '../../../hooks';
 
 const useStyles = createUseStyles({
-  button: ({ theme }) => ({
+  button: {
     borderRadius: 0,
-    color: theme.colors.white,
+    color: '#000000',
     composes: [
       'is-block',
       'no-background',
@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
     ],
     height: 40,
     width: '100%',
-  }),
+  },
   menu: {},
   splitter: ({ theme }) => ({
     background: theme.colors.black,

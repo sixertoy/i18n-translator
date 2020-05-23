@@ -21,7 +21,8 @@ export function deleteProject(state, action) {
 
 export function createProject(state, action) {
   const { draft } = action;
-  return { ...state, [draft.id]: [] };
+  const keys = Object.keys(draft.content);
+  return { ...state, [draft.id]: keys };
 }
 
 export function createKey(state, action) {

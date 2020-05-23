@@ -2,10 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
+import { rgba } from '../../../core/utils';
+
 const useStyles = createUseStyles({
   empty: {
-    background: '#FAFBFC',
-    border: '1px dashed #42526E',
+    background: 'transparent',
+    borderColor: rgba('#000000', 0.2),
+    borderStyle: 'dashed',
+    borderWidth: 1,
+    color: rgba('#000000', 0.2),
     composes: ['mt7', 'p24', 'rnd3'],
     width: '100%',
   },

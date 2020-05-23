@@ -42,7 +42,7 @@ const ProjectsComponent = React.memo(() => {
   const classes = useStyles({ theme });
   const recents = useSelector(selectRecents);
   const favorites = useSelector(selectFavorites);
-  const { onCreateDraft } = useCreateDraft();
+  const onCreateDraft = useCreateDraft();
 
   const showRecents = recents && recents.length > 0;
   const showFavorites = favorites && favorites.length > 0;
