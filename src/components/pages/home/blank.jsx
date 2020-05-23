@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { AiOutlinePlus as PlusIcon } from 'react-icons/ai';
+import { FiPlus as PlusIcon } from 'react-icons/fi';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 

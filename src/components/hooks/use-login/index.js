@@ -30,13 +30,13 @@ const useLogin = (providerId = null) => {
   const dispatch = useDispatch();
   const providerRef = useRef(getProvider(providerId));
 
-  const onLogoutError = useCallback(() => {
-    // TODO
-  }, []);
+  // const onLogoutError = useCallback(() => {
+  // TODO
+  // }, []);
 
-  const onLogoutSuccess = useCallback(() => {
-    // TODO
-  }, []);
+  // const onLogoutSuccess = useCallback(() => {
+  // TODO
+  // }, []);
 
   const onLoginSuccess = useCallback(
     ({ user }) => {

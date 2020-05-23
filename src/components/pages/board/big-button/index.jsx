@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { AiOutlinePlus as PlusIcon } from 'react-icons/ai';
+import { FiPlus as PlusIcon } from 'react-icons/fi';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { px } from '../../../../core/utils';
