@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import Button from '../../../commons/button';
 import useStep from '../use-step';
 
 const useStyles = createUseStyles({
@@ -36,9 +35,9 @@ const StepCommitComponent = () => {
           <p>{draft.name}</p>
           <p>{draft.lang}</p>
         </div>
-        <Button onClick={onSubmitHandler}>
+        <button type="button" onClick={onSubmitHandler}>
           <span>Ajouter</span>
-        </Button>
+        </button>
       </div>
     </div>
   );

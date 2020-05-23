@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import {
-  AiOutlineDeliveredProcedure as ChevronIcon,
-  AiOutlineDownload as DownloadIcon,
-} from 'react-icons/ai';
+import { AiOutlineDownload as DownloadIcon } from 'react-icons/ai';
+import { IoIosSave as DiskIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 
 // import { toast } from 'react-toastify';
@@ -74,7 +72,7 @@ const StepContentComponent = ({ index }) => {
         />
         <Button className={classes.submit} onClick={onSubmit}>
           <span>Continuer</span>
-          <ChevronIcon className="ml7" />
+          <DiskIcon className="ml7" />
         </Button>
       </div>
     </div>

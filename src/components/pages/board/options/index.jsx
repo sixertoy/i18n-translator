@@ -43,7 +43,7 @@ const OptionsComponent = React.memo(() => {
         <Title />
         <Search />
         <div>
-          <Tooltip useHover component={<ContextMenu />}>
+          <Tooltip useHover component={<ContextMenu />} theme="material">
             <div className={classes.button}>
               <ContextIcon />
             </div>

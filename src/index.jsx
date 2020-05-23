@@ -2,8 +2,6 @@ import 'firebase/auth';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/light.css';
 import 'tippy.js/themes/material.css';
-import 'tippy.js/themes/translucent.css';
-import 'tippy.js/themes/light-border.css';
 import 'tippy.js/animations/shift-away-subtle.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './scss/index.scss';

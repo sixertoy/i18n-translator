@@ -34,7 +34,8 @@ const BigButton = React.memo(({ scrollTo }) => {
       <Tooltip
         useHover
         component={<Menu scrollTo={scrollTo} />}
-        placement="top-end">
+        placement="top-end"
+        theme="material">
         <div className={classes.button}>
           <PlusIcon className={classes.icon} />
         </div>

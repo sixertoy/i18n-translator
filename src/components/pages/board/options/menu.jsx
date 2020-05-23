@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import {
   AiFillPushpin as PinOnIcon,
-  AiOutlineClear as SwipeIcon,
   AiOutlineCopy as CloneIcon,
   AiOutlinePushpin as PinOffIcon,
 } from 'react-icons/ai';
@@ -11,6 +10,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
+import { SwipeIcon } from '../../../../assets/icons';
 import {
   clearProject,
   deleteProject,

@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import {
-  AiOutlineDownload as ExportIcon,
-  AiOutlineTranslation as TranslationIcon,
-} from 'react-icons/ai';
+import { AiOutlineDownload as ExportIcon } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
+import { LanguageIcon } from '../../../../assets/icons';
 import { createKeyAsync } from '../../../../redux/actions';
 // import { selectLimits } from '../../../../redux/selectors';
 
@@ -80,7 +78,7 @@ const ContextMenuComponent = React.memo(({ scrollTo }) => {
         // disabled={enableAddButton}
         to={`/import/${id}/step/2`}>
         <span>Ajouter une langue</span>
-        <TranslationIcon className={classes.icon} />
+        <LanguageIcon className={classes.icon} />
       </Link>
       <hr className={classes.splitter} />
       <button

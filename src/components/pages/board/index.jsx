@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 
+import { IfFirebaseUnAuthed } from '../../../core/firebase';
 import { rgba } from '../../../core/utils';
 import { updateProjectTime } from '../../../redux/actions';
 import { selectProject } from '../../../redux/selectors';
@@ -66,23 +67,24 @@ const BoardViewComponent = React.memo(() => {
   });
 
   return (
-    <React.Fragment>
-      <div className={classes.container} id="board-view">
-        <div className={classes.layer}>
-          {!mounted && <Loader />}
-          {mounted && !project && <span>Show an unicorn</span>}
-          {mounted && project && (
-            <React.Fragment>
-              <Options />
-              <div ref={scroller} className={classes.scroller}>
-                <Table scroller={scroller} />
-              </div>
-              <BigButton scrollTo={scrollTo} />
-            </React.Fragment>
-          )}
-        </div>
+    <div className={classes.container} id="board-view">
+      <IfFirebaseUnAuthed>
+        <Redirect to="/" />
+      </IfFirebaseUnAuthed>
+      <div className={classes.layer}>
+        {!mounted && <Loader />}
+        {mounted && !project && <span>Show an unicorn</span>}
+        {mounted && project && (
+          <React.Fragment>
+            <Options />
+            <div ref={scroller} className={classes.scroller}>
+              <Table scroller={scroller} />
+            </div>
+            <BigButton scrollTo={scrollTo} />
+          </React.Fragment>
+        )}
       </div>
-    </React.Fragment>
+    </div>
   );
 });
 

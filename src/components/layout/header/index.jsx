@@ -11,9 +11,7 @@ import Projects from './projects';
 const useStyles = createUseStyles({
   aside: {
     '&.left': { justifyContent: 'flex-start' },
-    '&.left > *': { marginRight: 5 },
     '&.right': { justifyContent: 'flex-end' },
-    '&.right > *': { marginLeft: 5 },
     composes: ['flex-columns', 'items-center'],
   },
   container: {
@@ -21,6 +19,9 @@ const useStyles = createUseStyles({
   },
   logo: {
     composes: ['fs10', 'mx12'],
+  },
+  spacer: {
+    composes: ['mr3'],
   },
   wrapper: {
     composes: ['flex-columns', 'flex-between', 'items-center', 'p3'],
@@ -35,6 +36,7 @@ const ApplicationHeaderComponent = React.memo(() => {
       <div className={classes.wrapper}>
         <div className={classnames(classes.aside, 'left')}>
           <Home />
+          <span className={classes.spacer} />
           <Projects />
         </div>
         <div className={classes.logo}>
@@ -42,6 +44,7 @@ const ApplicationHeaderComponent = React.memo(() => {
         </div>
         <div className={classnames(classes.aside, 'right')}>
           <Add />
+          <span className={classes.spacer} />
           <Avatar />
         </div>
       </div>

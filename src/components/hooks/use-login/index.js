@@ -88,7 +88,9 @@ const useLogin = (providerId = null) => {
         .auth()
         .signOut()
         .then(() => dispatch(deleteUser()))
-        .catch(() => {});
+        .catch(err => {
+          console.log('err => ', err);
+        });
     },
     [dispatch]
   );

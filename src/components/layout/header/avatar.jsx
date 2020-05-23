@@ -24,8 +24,8 @@ const useStyles = createUseStyles({
   },
   tooltip: ({ theme }) => ({
     borderRadius: theme.radius.small,
-    composes: ['no-padding'],
-    width: 280,
+    // composes: ['no-padding'],
+    // width: 280,
   }),
 });
 
@@ -38,6 +38,7 @@ const AvatarComponent = React.memo(() => {
   const showIcon = isAnonymous || !photoURL;
   return (
     <Tooltip
+      useHover
       className={classes.tooltip}
       component={<IdCard user={user} />}
       placement="bottom-end"

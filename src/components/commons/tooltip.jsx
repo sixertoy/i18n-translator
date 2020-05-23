@@ -36,7 +36,6 @@ const TooltipComponent = ({
       content={content}
       interactive={interactive}
       placement="bottom"
-      theme={!interactive ? 'light' : ''}
       zIndex={999999999}
       {...overrides}
       {...rest}>
