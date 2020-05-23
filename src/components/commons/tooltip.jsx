@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
+import { roundArrow } from 'tippy.js';
 
 const useStyles = createUseStyles({
   tooltip: {
@@ -32,6 +33,7 @@ const TooltipComponent = ({
   };
   return (
     <Tippy
+      arrow={roundArrow}
       className={classnames(classes.tooltip, className)}
       content={content}
       interactive={interactive}

@@ -22,11 +22,9 @@ const useStyles = createUseStyles({
     height: 34,
     width: 34,
   },
-  tooltip: ({ theme }) => ({
-    borderRadius: theme.radius.small,
-    // composes: ['no-padding'],
-    // width: 280,
-  }),
+  tooltip: {
+    borderRadius: '30px 9px 30px 30px',
+  },
 });
 
 const AvatarComponent = React.memo(() => {
@@ -41,8 +39,9 @@ const AvatarComponent = React.memo(() => {
       useHover
       className={classes.tooltip}
       component={<IdCard user={user} />}
+      offset={[0, 12]}
       placement="bottom-end"
-      theme="material">
+      theme="light">
       <button className={classes.button} type="button">
         {showIcon && <UserIcon className="anon" />}
         {!showIcon && <img alt="user avatar" src={photoURL} />}

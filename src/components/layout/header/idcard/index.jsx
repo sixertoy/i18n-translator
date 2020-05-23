@@ -32,7 +32,7 @@ const useStyles = createUseStyles({
     composes: ['is-flex', 'is-relative'],
   },
   container: {
-    composes: ['pt24', 'px7', 'pb7', 'fs16'],
+    composes: ['pt24', 'px7', 'pb24', 'fs16'],
   },
   email: {
     color: '#959AA0',

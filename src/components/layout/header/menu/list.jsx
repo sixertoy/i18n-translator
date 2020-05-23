@@ -1,54 +1,52 @@
-import classnames from 'classnames';
-import isEmpty from 'lodash.isempty';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { RESPONSIVE_BREAKPOINT } from '../../../../constants';
+import { rgba } from '../../../../core/utils';
 import Item from './item';
 
 const useStyles = createUseStyles({
-  container: {},
-  title: {
-    '& span': { marginLeft: 5, verticalAlign: 'middle' },
-    '& svg': { fontSize: '1.15em' },
-    composes: ['is-bold', 'fs16'],
+  container: {
+    composes: ['p12', 'no-overflow'],
   },
-  wrapper: { composes: ['mt7'] },
-  [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
-    wrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
+  list: {
+    height: '100%',
+    maxHeight: '100%',
+    minHeight: '100%',
+  },
+  title: {
+    '& span': {
+      letterSpacing: '0.075em',
+      marginLeft: 5,
+      verticalAlign: 'bottom',
     },
+    '& svg': { fontSize: '1.15em' },
+    color: rgba('#FFFFFF', 0.45),
+    composes: ['is-normal', 'fs12', 'is-uppercase', 'mb7'],
   },
 });
 
-const ListComponent = React.memo(({ className, icon: Icon, items, label }) => {
+const ListComponent = React.memo(({ icon: Icon, items, label }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.container}>
-      <h6 className={classes.title}>
-        <Icon />
-        <span>{label}</span>
-      </h6>
-      <ul className={classnames(classes.wrapper, className)}>
-        {isEmpty(items) && <span>Aucun projet</span>}
-        {items.map(obj => (
-          <Item key={obj.id} data={obj} />
-        ))}
-      </ul>
+      <div className={classes.wrapper}>
+        <h6 className={classes.title}>
+          <Icon />
+          <span>{label}</span>
+        </h6>
+        <ul className={classes.list}>
+          {items.map(obj => (
+            <Item key={obj.id} data={obj} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 });
 
-ListComponent.defaultProps = {
-  className: '',
-};
-
 ListComponent.propTypes = {
-  className: PropTypes.string,
   icon: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   label: PropTypes.string.isRequired,
