@@ -62,6 +62,7 @@ const HomeViewComponent = React.memo(() => {
   const recents = useSelector(selectRecents);
   const historics = recents.slice(0, 8);
   const showFavorites = projects && projects.length > 0;
+
   return (
     <div className={classes.container} id="home-view">
       <IfFirebaseUnAuthed>

@@ -4,7 +4,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { createProjectAsync } from '../../../redux/actions';
+import { createDraftAsync } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: {
@@ -41,7 +41,7 @@ const BlankComponent = React.memo(() => {
   const history = useHistory();
 
   const onCreateClick = useCallback(() => {
-    dispatch(createProjectAsync()).then(id => {
+    dispatch(createDraftAsync()).then(id => {
       const url = `/import/${id}/step/1`;
       history.push(url);
     });

@@ -4,7 +4,8 @@ import { EVENT_TYPES } from '../../constants';
 import hydrate from '../hydrate';
 import { user as model } from '../models';
 
-const createUser = (state, { user }) => {
+const createUser = (state, action) => {
+  const { user } = action;
   const next = hydrate(model, user);
   return next;
 };

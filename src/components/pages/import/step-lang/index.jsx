@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { DEFAULT_LANGUAGES } from '../../../../constants';
 import { selectLangs } from '../../../../redux/selectors';
 import { useStepStyles } from '../../../styles';
+import useStep from '../use-step';
 import { flagOptionsWithDisabled } from './utils';
 
 const useStyles = createUseStyles({
@@ -15,32 +15,24 @@ const useStyles = createUseStyles({
   },
 });
 
-const StepSelectComponent = ({ draft, onSubmit }) => {
+const StepLangComponent = ({ index }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const stepStyles = useStepStyles({ theme });
-  const { id } = useParams();
+  const { draft, onStepChange } = useStep(index);
+  const input = useRef(draft.lang);
 
-  const [value, setValue] = useState(undefined);
-
-  const langs = useSelector(state => selectLangs(state, id));
+  const langs = useSelector(state => selectLangs(state, draft.id));
   const flaggedOptions = flagOptionsWithDisabled(langs, DEFAULT_LANGUAGES);
 
-  const onSelect = useCallback(
+  const onChange = useCallback(
     evt => {
       evt.preventDefault();
-      const lang = evt.target.value;
-      const isvalid = lang && lang !== '' && !langs.includes(lang);
-      // NOTE afficher une notification d'erreur
-      if (!isvalid) return;
-      onSubmit({ ...draft, lang });
+      const lang = input.current.value;
+      onStepChange({ lang });
     },
-    [draft, langs, onSubmit]
+    [onStepChange]
   );
-
-  useEffect(() => {
-    setValue(draft.lang);
-  }, [draft]);
 
   return (
     <div className={classes.container} id="step-select">
@@ -50,12 +42,12 @@ const StepSelectComponent = ({ draft, onSubmit }) => {
             <span>Séléctionner</span>
           </span>
           <select
+            ref={input}
             className={stepStyles.select}
-            defaultValue=""
+            defaultValue={input.current}
             name="select.lang"
             placeholder="Sélectionner une langue"
-            value={value}
-            onChange={onSelect}>
+            onChange={onChange}>
             <option className={stepStyles.options} value="">
               Sélectionner une langue
             </option>
@@ -75,12 +67,8 @@ const StepSelectComponent = ({ draft, onSubmit }) => {
   );
 };
 
-StepSelectComponent.propTypes = {
-  draft: PropTypes.shape({
-    content: PropTypes.string,
-    lang: PropTypes.string,
-  }).isRequired,
-  onSubmit: PropTypes.func.isRequired,
+StepLangComponent.propTypes = {
+  index: PropTypes.number.isRequired,
 };
 
-export default StepSelectComponent;
+export default StepLangComponent;

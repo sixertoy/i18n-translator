@@ -4,7 +4,7 @@ import { useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import { createProjectAsync } from '../../../redux/actions';
+import { createDraftAsync } from '../../../redux/actions';
 import useButtonStyles from './styles';
 
 const AddButtonComponent = React.memo(() => {
@@ -16,7 +16,7 @@ const AddButtonComponent = React.memo(() => {
   const canAddProject = !(pathname.indexOf('/import') === 0);
 
   const onCreateClick = useCallback(() => {
-    dispatch(createProjectAsync()).then(id => {
+    dispatch(createDraftAsync()).then(id => {
       const url = `/import/${id}/step/1`;
       history.push(url);
     });

@@ -3,7 +3,8 @@ import hydrate from '../hydrate';
 import { project as model } from '../models';
 
 export function createProject(state, action) {
-  const next = hydrate(model, action);
+  const { draft } = action;
+  const next = hydrate(model, draft);
   return [...state, next];
 }
 

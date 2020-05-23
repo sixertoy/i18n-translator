@@ -5,16 +5,14 @@ import {
   AiOutlineDownload as DownloadIcon,
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
-import { selectProject } from '../../../../redux/selectors';
+// import { toast } from 'react-toastify';
 import Button from '../../../commons/button';
 import Dropdown from '../../../commons/dropdown';
 import MonacoEditor from '../../../commons/monaco-editor';
+import useStep from '../use-step';
 import EditorMenu from './menu';
-import { createEditorDefaultValue } from './utils';
+// import { createEditorDefaultValue } from './utils';
 
 const useStyles = createUseStyles({
   container: {
@@ -35,39 +33,30 @@ const useStyles = createUseStyles({
   },
 });
 
-const StepEditorComponent = ({ draft, onSubmit }) => {
+const StepContentComponent = ({ index }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { id } = useParams();
+  const { draft, onStepChange } = useStep(index);
+  const [content, setContent] = useState(draft.content);
 
-  const project = useSelector(state => selectProject(state, id));
-  const blank = createEditorDefaultValue(project.keys);
-
-  const update = draft.content || blank;
-  const [content, setContent] = useState(update);
-  const [disabled, setDisabled] = useState(!update);
-
-  const onEditorHandler = useCallback(
-    (editor, errs = []) => {
-      const isEqual = editor === content;
-      const hasError = errs && errs.length;
-      const isEmpty = !editor || editor.trim() === '';
-      const isDisabled = Boolean(hasError || isEmpty);
-      if (hasError) errs.forEach(m => toast.error(m));
-      setDisabled(isDisabled);
-      if (isEqual) return;
-      setContent(editor);
-    },
-    [content]
-  );
+  const onEditorHandler = useCallback(value => {
+    // const isEqual = value === content;
+    // const hasError = errs && errs.length;
+    // const isEmpty = !value || value.trim() === '';
+    // const isDisabled = Boolean(hasError || isEmpty);
+    // if (hasError) errs.forEach(m => toast.error(m));
+    // setDisabled(isDisabled);
+    // if (isEqual) return;
+    setContent(value);
+  }, []);
 
   const onImportHandler = useCallback(value => {
     setContent(value);
   }, []);
 
-  const onSubmitHandler = useCallback(() => {
-    onSubmit({ ...draft, content });
-  }, [content, draft, onSubmit]);
+  const onSubmit = useCallback(() => {
+    onStepChange({ content });
+  }, [content, onStepChange]);
 
   return (
     <div className={classes.container} id="step-editor">
@@ -83,10 +72,7 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
           icon={DownloadIcon}
           label="Importer"
         />
-        <Button
-          className={classes.submit}
-          disabled={disabled}
-          onClick={onSubmitHandler}>
+        <Button className={classes.submit} onClick={onSubmit}>
           <span>Continuer</span>
           <ChevronIcon className="ml7" />
         </Button>
@@ -95,12 +81,8 @@ const StepEditorComponent = ({ draft, onSubmit }) => {
   );
 };
 
-StepEditorComponent.propTypes = {
-  draft: PropTypes.shape({
-    content: PropTypes.string,
-    lang: PropTypes.string,
-  }).isRequired,
-  onSubmit: PropTypes.func.isRequired,
+StepContentComponent.propTypes = {
+  index: PropTypes.number.isRequired,
 };
 
-export default StepEditorComponent;
+export default StepContentComponent;

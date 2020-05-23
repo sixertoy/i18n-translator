@@ -10,7 +10,8 @@ export function createLanguage(state, action) {
   return [...state, next];
 }
 
-export function updateTranslation(state, { key, lang, project, value }) {
+export function updateTranslation(state, action) {
+  const { key, lang, project, value } = action;
   const nextState = state.reduce((acc, obj) => {
     if (obj.project !== project) return [...acc, obj];
     if (obj.lang !== lang) return [...acc, obj];
@@ -30,7 +31,8 @@ export function deleteProject(state, action) {
   return filtered;
 }
 
-export function deleteLanguage(state, { lang, project }) {
+export function deleteLanguage(state, action) {
+  const { lang, project } = action;
   const next = state.filter(obj => {
     if (obj.project !== project) return true;
     if (obj.lang !== lang) return true;
@@ -39,7 +41,8 @@ export function deleteLanguage(state, { lang, project }) {
   return next;
 }
 
-export function clearLanguage(state, { lang, project }) {
+export function clearLanguage(state, action) {
+  const { lang, project } = action;
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
     if (obj.lang !== lang) return obj;
@@ -52,7 +55,8 @@ export function clearLanguage(state, { lang, project }) {
   return next;
 }
 
-export function deleteKey(state, { key, project }) {
+export function deleteKey(state, action) {
+  const { key, project } = action;
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
     const entries = Object.entries(obj.translations);
@@ -64,7 +68,8 @@ export function deleteKey(state, { key, project }) {
   return next;
 }
 
-export function toggleCollapse(state, { lang, project }) {
+export function toggleCollapse(state, action) {
+  const { lang, project } = action;
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
     if (obj.lang !== lang) return obj;
@@ -74,7 +79,8 @@ export function toggleCollapse(state, { lang, project }) {
   return next;
 }
 
-export function clearProject(state, { project }) {
+export function clearProject(state, action) {
+  const { project } = action;
   const next = state.map(obj => {
     if (obj.project !== project) return obj;
     const entries = Object.entries(obj.translations);

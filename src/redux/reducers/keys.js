@@ -20,8 +20,8 @@ export function deleteProject(state, action) {
 }
 
 export function createProject(state, action) {
-  const { id } = action;
-  return { ...state, [id]: [] };
+  const { draft } = action;
+  return { ...state, [draft.id]: [] };
 }
 
 export function createKey(state, action) {

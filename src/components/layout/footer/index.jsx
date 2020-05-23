@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
   }),
   [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
     version: {
-      '& small': {
+      '& span span': {
         display: 'none',
         visibility: 'hidden',
       },
@@ -41,7 +41,7 @@ const ApplicationFooter = React.memo(() => {
     <div className={classes.container} id="layout-footer">
       <a className={classes.version} href={repository.url}>
         <span>
-          v{version} - Typpo <small>- i18n online translation editor</small>
+          v{version} - Typpo <span>- i18n online translation editor</span>
         </span>
       </a>
       <div className={classes.credits}>
