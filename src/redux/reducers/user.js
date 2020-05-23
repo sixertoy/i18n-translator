@@ -10,6 +10,12 @@ const createUser = (state, action) => {
   return next;
 };
 
+const createProject = (state, action) => {
+  const { draft } = action;
+  const mtime = Date.now();
+  return { ...state, mtime, projects: [draft.id] };
+};
+
 const updateUserTime = state => {
   const mtime = Date.now();
   return { ...state, mtime };
@@ -24,8 +30,9 @@ const user = (state = {}, action) => {
       isempty = isEmpty(action.user);
       if (isempty) return state;
       return createUser(state, action);
-    case EVENT_TYPES.PROJECT_CLEAR:
     case EVENT_TYPES.PROJECT_CREATE:
+      return createProject(state, action);
+    case EVENT_TYPES.PROJECT_CLEAR:
     case EVENT_TYPES.PROJECT_DELETE:
     case EVENT_TYPES.LANGUAGE_CLEAR:
     case EVENT_TYPES.LANGUAGE_CREATE:

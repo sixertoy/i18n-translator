@@ -32,7 +32,6 @@ const StepperComponent = React.memo(({ step, steps, useZero }) => {
           const before = current > index;
           const active = current === index;
           const last = index === lastIndex;
-          console.log('obj.key', obj.key);
           return (
             <Item
               key={obj.key}
@@ -59,10 +58,9 @@ StepperComponent.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.arrayOf(
       PropTypes.shape({
+        Component: PropTypes.func,
+        key: PropTypes.string,
         label: PropTypes.string,
-        path: PropTypes.string,
-        // onClick: PropTypes.func,
-        // icon: PropTypes.string,
       })
     ),
   ]).isRequired,

@@ -8,6 +8,7 @@ const model = {
   mtime: () => Date.now(),
   name: user => get(user, 'displayName', null),
   photoURL: null,
+  projects: [],
   provider: user => get(user, 'providerData.0.providerId', null),
   uid: null,
 };

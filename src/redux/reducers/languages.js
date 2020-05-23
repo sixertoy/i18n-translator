@@ -1,9 +1,14 @@
 import fromPairs from 'lodash.frompairs';
 import get from 'lodash.get';
 
-import { EVENT_TYPES } from '../../constants';
+// import { EVENT_TYPES } from '../../constants';
 import hydrate from '../hydrate';
 import { language as model } from '../models';
+
+export const createProject = (state, action) => {
+  const next = hydrate(model, action);
+  return [...state, next];
+};
 
 export function createLanguage(state, action) {
   const next = hydrate(model, action);
@@ -122,26 +127,28 @@ export function updateKey(state, action) {
 
 const languages = (state = [], action) => {
   switch (action.type) {
-    case EVENT_TYPES.LANGUAGE_CLEAR:
-      return clearLanguage(state, action);
-    case EVENT_TYPES.LANGUAGE_CREATE:
-      return createLanguage(state, action);
-    case EVENT_TYPES.LANGUAGE_DELETE:
-      return deleteLanguage(state, action);
-    case EVENT_TYPES.PROJECT_DELETE:
-      return deleteProject(state, action);
-    case EVENT_TYPES.PROJECT_CLEAR:
-      return clearProject(state, action);
-    case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
-      return toggleCollapse(state, action);
-    case EVENT_TYPES.LANGUAGE_KEY_DELETE:
-      return deleteKey(state, action);
-    case EVENT_TYPES.LANGUAGE_KEY_CREATE:
-      return createKey(state, action);
-    case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
-      return updateKey(state, action);
-    case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
-      return updateTranslation(state, action);
+    // case EVENT_TYPES.LANGUAGE_CLEAR:
+    //   return clearLanguage(state, action);
+    // case EVENT_TYPES.LANGUAGE_CREATE:
+    //   return createLanguage(state, action);
+    // case EVENT_TYPES.LANGUAGE_DELETE:
+    //   return deleteLanguage(state, action);
+    // case EVENT_TYPES.PROJECT_CLEAR:
+    //   return clearProject(state, action);
+    // case EVENT_TYPES.PROJECT_CREATE:
+    //   return createProject(state, action);
+    // case EVENT_TYPES.PROJECT_DELETE:
+    //   return deleteProject(state, action);
+    // case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
+    //   return toggleCollapse(state, action);
+    // case EVENT_TYPES.LANGUAGE_KEY_DELETE:
+    //   return deleteKey(state, action);
+    // case EVENT_TYPES.LANGUAGE_KEY_CREATE:
+    //   return createKey(state, action);
+    // case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
+    //   return updateKey(state, action);
+    // case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
+    //   return updateTranslation(state, action);
     default:
       return state;
   }
