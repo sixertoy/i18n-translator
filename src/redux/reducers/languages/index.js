@@ -6,29 +6,13 @@ import hydrate from '../../hydrate';
 import { language as model } from '../../models';
 import clearLanguage from './clear-language';
 import createProject from './create-project';
+import deleteLanguage from './delete-language';
+import deleteProject from './delete-project';
 import updateTranslation from './update-translation';
 
 export function createLanguage(state, action) {
   const next = hydrate(model, action);
   return [...state, next];
-}
-
-export function deleteProject(state, action) {
-  const { project } = action;
-  const filtered = state.filter(obj => {
-    return obj.project !== project;
-  });
-  return filtered;
-}
-
-export function deleteLanguage(state, action) {
-  const { lang, project } = action;
-  const next = state.filter(obj => {
-    if (obj.project !== project) return true;
-    if (obj.lang !== lang) return true;
-    return false;
-  });
-  return next;
 }
 
 export function deleteKey(state, action) {
@@ -102,14 +86,14 @@ const languages = (state = [], action) => {
       return clearLanguage(state, action);
     // case EVENT_TYPES.LANGUAGE_CREATE:
     //   return createLanguage(state, action);
-    // case EVENT_TYPES.LANGUAGE_DELETE:
-    //   return deleteLanguage(state, action);
+    case EVENT_TYPES.LANGUAGE_DELETE:
+      return deleteLanguage(state, action);
     // case EVENT_TYPES.PROJECT_CLEAR:
     //   return clearProject(state, action);
     case EVENT_TYPES.PROJECT_CREATE:
       return createProject(state, action);
-    // case EVENT_TYPES.PROJECT_DELETE:
-    //   return deleteProject(state, action);
+    case EVENT_TYPES.PROJECT_DELETE:
+      return deleteProject(state, action);
     // case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
     //   return toggleCollapse(state, action);
     // case EVENT_TYPES.LANGUAGE_KEY_DELETE:
