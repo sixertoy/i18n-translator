@@ -12,10 +12,10 @@ const useStyles = createUseStyles({
   title: {
     '& span': { marginLeft: 5, verticalAlign: 'middle' },
     '& svg': { fontSize: '1.15em' },
-    composes: ['is-bold', 'fs16'],
+    composes: ['is-bold', 'fs16', 'mb16'],
   },
   wrapper: {
-    composes: ['mt7', 'flex-columns', 'flex-wrap'],
+    composes: ['flex-columns', 'flex-wrap'],
   },
 });
 

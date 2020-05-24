@@ -7,7 +7,7 @@ import { DEFAULT_LANGUAGES } from '../../../../constants';
 import { selectLangs } from '../../../../redux/selectors';
 import { useStepStyles } from '../../../styles';
 import useStep from '../use-step';
-import { flagOptionsWithDisabled } from './utils';
+import { getDisableLanguages } from './utils';
 
 const useStyles = createUseStyles({
   container: {
@@ -23,13 +23,13 @@ const StepLangComponent = ({ index }) => {
   const input = useRef(draft.lang);
 
   const langs = useSelector(state => selectLangs(state, draft.id));
-  const flaggedOptions = flagOptionsWithDisabled(langs, DEFAULT_LANGUAGES);
+  const options = getDisableLanguages(langs, DEFAULT_LANGUAGES);
 
   const onChange = useCallback(
     evt => {
       evt.preventDefault();
       const lang = input.current.value;
-      onStepChange({ langs: [lang] });
+      onStepChange({ lang });
     },
     [onStepChange]
   );
@@ -51,7 +51,7 @@ const StepLangComponent = ({ index }) => {
             <option className={stepStyles.options} value="">
               Sélectionner une langue
             </option>
-            {flaggedOptions.map(([key, label, disabled]) => (
+            {options.map(([key, label, disabled]) => (
               <option
                 key={key}
                 className={stepStyles.options}

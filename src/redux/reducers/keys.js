@@ -20,9 +20,8 @@ export function deleteProject(state, action) {
 }
 
 export function createProject(state, action) {
-  const { draft } = action;
-  const obj = JSON.parse(draft.content);
-  const keys = Object.keys(obj);
+  const { draft, json } = action;
+  const keys = Object.keys(json);
   return { ...state, [draft.id]: keys };
 }
 

@@ -4,7 +4,8 @@ import { project as model } from '../models';
 
 export function createProject(state, action) {
   const { draft } = action;
-  const next = hydrate(model, draft);
+  const extend = { langs: [draft.lang] };
+  const next = hydrate(model, draft, extend);
   return [...state, next];
 }
 

@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
     borderStyle: 'dashed',
     borderWidth: 1,
     color: rgba('#000000', 0.2),
-    composes: ['mt7', 'p24', 'rnd3'],
+    composes: ['p24', 'rnd3'],
     width: '100%',
   },
 });

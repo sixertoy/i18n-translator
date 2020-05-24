@@ -8,13 +8,14 @@
 // }
 
 const model = {
-  collapsed: false, // [string]
-  ctime: () => Date.now(), // string
-  fav: false, // { [key]: 'value' }
-  lang: null, // string
-  mtime: () => Date.now(), // string
-  project: null, // string
-  translations: {}, // string
+  collapsed: false,
+  ctime: () => Date.now(),
+  fav: false,
+  label: null,
+  lang: null,
+  mtime: () => Date.now(),
+  project: null,
+  translations: {},
 };
 
 export default model;

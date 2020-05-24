@@ -10,7 +10,7 @@ function languageDisabledSort(a, b) {
   return 0;
 }
 
-export function flagOptionsWithDisabled(langs, defaults) {
+export function getDisableLanguages(langs, defaults) {
   const grouped = Object.entries(defaults)
     .sort(languageAlphaSort)
     .map(arr => {
@@ -22,4 +22,4 @@ export function flagOptionsWithDisabled(langs, defaults) {
   return grouped;
 }
 
-export default { flagOptionsWithDisabled };
+export default { getDisableLanguages };

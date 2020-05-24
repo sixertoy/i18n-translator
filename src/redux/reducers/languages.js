@@ -6,9 +6,10 @@ import hydrate from '../hydrate';
 import { language as model } from '../models';
 
 export const createProject = (state, action) => {
-  const { draft } = action;
-  console.log('draft', draft);
-  return state;
+  const { draft, json, label } = action;
+  const extend = { label, project: draft.id, translations: json };
+  const next = hydrate(model, draft, extend);
+  return [...state, next];
 };
 
 export function createLanguage(state, action) {

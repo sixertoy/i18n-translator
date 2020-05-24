@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import {
-  AiOutlineClear as SwipeIcon,
   AiOutlineCopy as CloneIcon,
   AiOutlineFullscreen as ExpandIcon,
   AiOutlineShrink as ShrinkIcon,
@@ -11,6 +10,7 @@ import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import { SwipeIcon } from '../../../../../assets/icons';
 import { rgba } from '../../../../../core/utils';
 import {
   clearLanguage,
@@ -51,7 +51,7 @@ const useStyles = createUseStyles({
 });
 
 const ContextMenuComponent = React.memo(
-  ({ clearable, collapsed, lang, onClick, project }) => {
+  ({ clearable, collapsed, lang, project }) => {
     const theme = useTheme();
     const classes = useStyles({ theme });
 
@@ -61,14 +61,12 @@ const ContextMenuComponent = React.memo(
     }, []);
 
     const onClearLanguage = useCallback(() => {
-      onClick();
       dispatch(clearLanguage({ lang, project }));
-    }, [onClick, dispatch, lang, project]);
+    }, [dispatch, lang, project]);
 
     const onDeleteLanguage = useCallback(() => {
-      onClick();
       dispatch(deleteLanguage({ lang, project }));
-    }, [onClick, dispatch, lang, project]);
+    }, [dispatch, lang, project]);
 
     const onToggleCollapse = useCallback(() => {
       dispatch(toggleCollapseLanguage({ lang, project }));
@@ -111,7 +109,6 @@ ContextMenuComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
   collapsed: PropTypes.bool.isRequired,
   lang: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
   project: PropTypes.string.isRequired,
 };
 
