@@ -1,33 +1,16 @@
 import fromPairs from 'lodash.frompairs';
 import get from 'lodash.get';
 
-import { EVENT_TYPES } from '../../constants';
-import hydrate from '../hydrate';
-import { language as model } from '../models';
-
-export const createProject = (state, action) => {
-  const { draft, json, label } = action;
-  const extend = { label, project: draft.id, translations: json };
-  const next = hydrate(model, draft, extend);
-  return [...state, next];
-};
+import { EVENT_TYPES } from '../../../constants';
+import hydrate from '../../hydrate';
+import { language as model } from '../../models';
+import clearLanguage from './clear-language';
+import createProject from './create-project';
+import updateTranslation from './update-translation';
 
 export function createLanguage(state, action) {
   const next = hydrate(model, action);
   return [...state, next];
-}
-
-export function updateTranslation(state, action) {
-  const { key, lang, project, value } = action;
-  const nextState = state.reduce((acc, obj) => {
-    if (obj.project !== project) return [...acc, obj];
-    if (obj.lang !== lang) return [...acc, obj];
-    const update = { [key]: value };
-    const merged = { ...obj.translations, ...update };
-    const mtime = Date.now();
-    return [...acc, { ...obj, mtime, translations: merged }];
-  }, []);
-  return nextState;
 }
 
 export function deleteProject(state, action) {
@@ -44,20 +27,6 @@ export function deleteLanguage(state, action) {
     if (obj.project !== project) return true;
     if (obj.lang !== lang) return true;
     return false;
-  });
-  return next;
-}
-
-export function clearLanguage(state, action) {
-  const { lang, project } = action;
-  const next = state.map(obj => {
-    if (obj.project !== project) return obj;
-    if (obj.lang !== lang) return obj;
-    const entries = Object.entries(obj.translations);
-    const remapped = entries.map(arr => [arr[0], '']);
-    const pairs = fromPairs(remapped);
-    const mtime = Date.now();
-    return { ...obj, mtime, translations: pairs };
   });
   return next;
 }
@@ -129,8 +98,8 @@ export function updateKey(state, action) {
 
 const languages = (state = [], action) => {
   switch (action.type) {
-    // case EVENT_TYPES.LANGUAGE_CLEAR:
-    //   return clearLanguage(state, action);
+    case EVENT_TYPES.LANGUAGE_CLEAR:
+      return clearLanguage(state, action);
     // case EVENT_TYPES.LANGUAGE_CREATE:
     //   return createLanguage(state, action);
     // case EVENT_TYPES.LANGUAGE_DELETE:
@@ -149,8 +118,8 @@ const languages = (state = [], action) => {
     //   return createKey(state, action);
     // case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
     //   return updateKey(state, action);
-    // case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
-    //   return updateTranslation(state, action);
+    case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
+      return updateTranslation(state, action);
     default:
       return state;
   }

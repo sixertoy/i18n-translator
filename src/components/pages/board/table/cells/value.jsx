@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -26,17 +26,23 @@ const ValueCellComponent = React.memo(({ id, lang, odd, project, value }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const tableClasses = useTableStyles({ primary: false, theme });
+  const [translation, setTranslation] = useState(value);
 
   const dispatch = useDispatch();
-  const onValueUpdate = useCallback(
+  const onInputBlur = useCallback(
     evt => {
       evt.preventDefault();
-      const update = evt.target.value;
-      const next = { key: id, lang, project, value: update };
+      const next = { key: id, lang, project, value: translation };
       dispatch(updateTranslation(next));
     },
-    [id, lang, project, dispatch]
+    [id, lang, project, translation, dispatch]
   );
+
+  const onInputChange = useCallback(evt => {
+    evt.preventDefault();
+    const update = evt.target.value;
+    setTranslation(update);
+  }, []);
 
   return (
     <div
@@ -47,10 +53,11 @@ const ValueCellComponent = React.memo(({ id, lang, odd, project, value }) => {
       })}>
       <input
         className={classnames(classes.input, tableClasses.input)}
-        defaultValue={value}
         placeholder="Enter a value"
         type="text"
-        onBlur={onValueUpdate}
+        value={translation}
+        onBlur={onInputBlur}
+        onChange={onInputChange}
       />
       <span className={classes.icon}>
         <CheckIcon />

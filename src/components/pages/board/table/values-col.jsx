@@ -35,8 +35,8 @@ const ValuesColumnComponent = React.memo(
     const theme = useTheme();
     const classes = useStyles({ theme });
     const tableClasses = useTableStyles({ primary: false, theme });
-
     const entries = Object.entries(translations).sort(sortByKeyAsc);
+
     return (
       <div className={classnames(classes.column, tableClasses.column)}>
         <Header
