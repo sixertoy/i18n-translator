@@ -4,7 +4,7 @@ import { checkIsLanguage, updateTime } from './utils';
 
 const pairsToObject = arr => fromPairs(arr);
 const objectToPairs = obj => Object.entries(obj);
-const clearValuesFromPairs = pairs => pairs.map(([key]) => [key, '']);
+const clearValuesFromPairs = pairs => pairs.map(([id]) => [id, '']);
 
 function clearLanguage(state, action) {
   const { lang, project } = action;
