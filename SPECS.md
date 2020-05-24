@@ -1,4 +1,8 @@
-Home > [project] > Menu Options > Supprimer un projet
--> doit rediriger vers la page `/home`
--> le projet ne doit plus être présent dans le menu déroulant `Projets`
--> le projet ne doit plus être présent dans les listes `Projets/Favoris/Récents`
+**User Anonyme**
+
+-> Depuis la home je peux accéder à la page de création des projets
+-> Dans Je peux créer un seul projet
+-> Je ne peux pas choisir le nom du projet
+-> Je peux créer 3 langages maximum
+-> Quand je ferme l'onglet toutes mes infos sont effacées
+->

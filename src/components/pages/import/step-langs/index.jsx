@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { DEFAULT_LANGUAGES } from '../../../../constants';
 import { selectLangs } from '../../../../redux/selectors';
-import { useStepStyles } from '../../../styles';
+import useStepStyles from '../styles';
 import useStep from '../use-step';
 import { getDisableLanguages } from './utils';
 
@@ -18,9 +18,9 @@ const useStyles = createUseStyles({
 const StepLangComponent = ({ index }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const stepStyles = useStepStyles({ theme });
+  const stepClasses = useStepStyles({ theme });
   const { draft, onStepChange } = useStep(index);
-  const input = useRef(draft.lang);
+  const input = useRef(null);
 
   const langs = useSelector(state => selectLangs(state, draft.id));
   const options = getDisableLanguages(langs, DEFAULT_LANGUAGES);
@@ -36,25 +36,25 @@ const StepLangComponent = ({ index }) => {
 
   return (
     <div className={classes.container} id="step-select">
-      <div className={stepStyles.form}>
-        <div className={stepStyles.field}>
-          <span className={stepStyles.label} htmlFor="select.lang">
+      <div className={stepClasses.form}>
+        <div className={stepClasses.field}>
+          <span className={stepClasses.label} htmlFor="select.lang">
             <span>Séléctionner</span>
           </span>
           <select
             ref={input}
-            className={stepStyles.select}
+            className={stepClasses.select}
             defaultValue={input.current}
             name="select.lang"
             placeholder="Sélectionner une langue"
             onChange={onChange}>
-            <option className={stepStyles.options} value="">
+            <option className={stepClasses.options} value="">
               Sélectionner une langue
             </option>
             {options.map(([key, label, disabled]) => (
               <option
                 key={key}
-                className={stepStyles.options}
+                className={stepClasses.options}
                 disabled={disabled}
                 value={key}>
                 {label}
