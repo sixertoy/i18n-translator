@@ -54,9 +54,10 @@ const ValuesColumnComponent = React.memo(
         {pairs.map(([key, value], index) => {
           const tabIndex = index + 1;
           const odd = Boolean(index % 2);
+          const uniqkey = `${project}::value::${key}`;
           return (
             <ValueCell
-              key={key}
+              key={uniqkey}
               id={key}
               lang={lang}
               odd={odd}

@@ -42,9 +42,10 @@ const TableComponent = React.memo(({ scroller }) => {
         {languages.map((language, index) => {
           const { lang } = language;
           const percentage = get(percentages, lang);
+          const uniqkey = `${id}::lang::${lang}`;
           return (
             <ValuesColumn
-              key={lang}
+              key={uniqkey}
               depth={index}
               item={language}
               percentage={percentage}

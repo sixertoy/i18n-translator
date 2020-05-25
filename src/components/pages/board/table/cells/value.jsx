@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -28,7 +28,7 @@ const ValueCellComponent = React.memo(
     const theme = useTheme();
     const classes = useStyles({ theme });
     const tableClasses = useTableStyles({ primary: false, theme });
-    const [content, setContent] = useState(value);
+    const [content, setContent] = useState('');
 
     const dispatch = useDispatch();
     const onInputBlur = useCallback(
@@ -56,6 +56,10 @@ const ValueCellComponent = React.memo(
       const update = evt.target.value;
       setContent(update);
     }, []);
+
+    useEffect(() => {
+      setContent(value);
+    }, [value]);
 
     return (
       <div

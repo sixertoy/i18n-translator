@@ -54,9 +54,10 @@ const PrimaryColumnComponent = React.memo(({ items, project, scroller }) => {
         {items.map((key, index) => {
           const tabIndex = index + 1;
           const odd = Boolean(index % 2);
+          const uniqkey = `${project}::key::${index.toString()}`;
           return (
             <KeyCell
-              key={index.toString()}
+              key={uniqkey}
               items={items}
               odd={odd}
               project={project}
