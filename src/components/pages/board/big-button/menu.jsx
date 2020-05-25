@@ -8,7 +8,6 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import { LanguageIcon } from '../../../../assets/icons';
 import { createKeyAsync, hydrateDraftAsync } from '../../../../redux/actions';
-// import { selectLimits } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({

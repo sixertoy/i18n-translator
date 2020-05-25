@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 
 import { IfFirebaseUnAuthed } from '../../../core/firebase';
-import { rgba } from '../../../core/utils';
 import { updateProjectTime } from '../../../redux/actions';
 import { selectProject } from '../../../redux/selectors';
 import Loader from '../../commons/loader';
@@ -15,15 +14,14 @@ import Options from './options';
 import Table from './table';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    background: theme.app.container,
+  container: {
+    background: '#F1F1F1',
     composes: ['flex-1'],
-  }),
-  layer: ({ theme }) => ({
-    background: rgba(theme.app.layer, 0.95),
+  },
+  layer: {
     composes: ['flex-rows', 'is-relative'],
     height: '100%',
-  }),
+  },
   scroller: {
     composes: ['is-relative', 'flex-1'],
     height: 'auto',

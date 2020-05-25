@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { KEY_CODE_ENTER } from '../../../../../constants';
 import { rgba } from '../../../../../core/utils';
 import { deleteKey, updateKey } from '../../../../../redux/actions';
-import useTableStyles from '../use-table-styles';
+import useTableStyles from '../styles';
 import { checkIfIsDuplicated, checkIfIsEmpty, checkIfIsEqual } from '../utils';
 
 const useStyles = createUseStyles({

@@ -5,7 +5,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import ValueCell from './cells/value';
 import Header from './header';
-import useTableStyles from './use-table-styles';
+import useTableStyles from './styles';
 
 const useStyles = createUseStyles({
   column: {

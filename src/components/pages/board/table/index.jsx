@@ -12,7 +12,7 @@ import {
   selectPrimaryKeys,
 } from '../../../../redux/selectors';
 import PrimaryColumn from './primary-col';
-import useTableStyles from './use-table-styles';
+import useTableStyles from './styles';
 import ValuesColumn from './values-col';
 
 const useStyles = createUseStyles({

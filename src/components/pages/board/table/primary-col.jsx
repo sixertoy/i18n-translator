@@ -6,7 +6,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 
 import { useScroller } from '../../../hooks';
 import KeyCell from './cells/key';
-import useTableStyles from './use-table-styles';
+import useTableStyles from './styles';
 
 const useStyles = createUseStyles({
   column: {
