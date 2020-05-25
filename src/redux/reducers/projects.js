@@ -68,7 +68,7 @@ const projects = (state = [], action) => {
       return updateProjectName(state, action);
     case EVENT_TYPES.LANGUAGE_DELETE:
       return deleteLanguage(state, action);
-    case EVENT_TYPES.LANGUAGE_CREATE:
+    case EVENT_TYPES.LANGUAGE_ADD:
       return createLanguage(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
     case EVENT_TYPES.LANGUAGE_CLEAR:

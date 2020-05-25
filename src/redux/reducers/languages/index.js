@@ -72,7 +72,7 @@ const languages = (state = [], action) => {
   switch (action.type) {
     case EVENT_TYPES.LANGUAGE_CLEAR:
       return clearLanguage(state, action);
-    // case EVENT_TYPES.LANGUAGE_CREATE:
+    // case EVENT_TYPES.LANGUAGE_ADD:
     //   return createLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_DELETE:
       return deleteLanguage(state, action);

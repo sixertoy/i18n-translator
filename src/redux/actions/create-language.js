@@ -10,7 +10,7 @@ const createLanguageAsync = ({ content, lang, project }) => dispatch => {
     lang,
     project,
     translations,
-    type: EVENT_TYPES.LANGUAGE_CREATE,
+    type: EVENT_TYPES.LANGUAGE_ADD,
   });
   return Promise.resolve();
 };
