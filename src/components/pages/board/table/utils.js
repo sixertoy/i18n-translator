@@ -1,9 +1,12 @@
 export function checkIfIsDuplicated(value, current, items) {
-  if (!items.length) return false;
-  if (value === current) return false;
+  const hasItems = items.length > 0;
+  if (!hasItems) return false;
+  const isEqual = value.toLowerCase() === current.toLowerCase();
+  if (isEqual) return false;
   const lowerCase = value.toLowerCase();
   const lowersCase = items.map(v => v.toLowerCase());
-  return lowersCase.includes(lowerCase);
+  const isDuplicated = lowersCase.includes(lowerCase);
+  return isDuplicated;
 }
 
 export function checkIfIsEmpty(value) {
