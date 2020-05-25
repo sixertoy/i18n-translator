@@ -4,6 +4,7 @@ import { EVENT_TYPES } from '../../../constants';
 import hydrate from '../../hydrate';
 import { language as model } from '../../models';
 import clearLanguage from './clear-language';
+import createKey from './create-key';
 import createProject from './create-project';
 import deleteKey from './delete-key';
 import deleteLanguage from './delete-language';
@@ -40,23 +41,12 @@ export function clearProject(state, action) {
   return next;
 }
 
-export function createKey(state, action) {
-  const { key, project } = action;
-  const nextState = state.map(obj => {
-    if (obj.project !== project) return obj;
-    const entries = Object.entries(obj.translations);
-    entries.push([key, '']);
-    const pairs = fromPairs(entries);
-    const mtime = Date.now();
-    return { ...obj, mtime, translations: pairs };
-  });
-  return nextState;
-}
-
 const languages = (state = [], action) => {
   switch (action.type) {
     case EVENT_TYPES.LANGUAGE_CLEAR:
       return clearLanguage(state, action);
+    case EVENT_TYPES.LANGUAGE_KEY_CREATE:
+      return createKey(state, action);
     case EVENT_TYPES.PROJECT_CREATE:
       return createProject(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_DELETE:
@@ -74,8 +64,6 @@ const languages = (state = [], action) => {
     //   return clearProject(state, action);
     // case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
     //   return toggleCollapse(state, action);
-    // case EVENT_TYPES.LANGUAGE_KEY_CREATE:
-    //   return createKey(state, action);
     case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
       return updateTranslation(state, action);
     default:
