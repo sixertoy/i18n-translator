@@ -19,12 +19,12 @@ const useStyles = createUseStyles({
     position: 'sticky',
     top: 0,
   },
-  signin: ({ theme }) => ({
-    background: theme.colors.transparent,
-    color: theme.colors.white,
-  }),
+  signin: {
+    color: '#FFFFFF',
+    composes: ['no-background'],
+  },
   signup: ({ theme }) => ({
-    background: theme.colors.white,
+    background: '#FFFFFF',
     color: theme.colors.gradient[1],
     composes: ['no-underline', 'rnd3'],
   }),

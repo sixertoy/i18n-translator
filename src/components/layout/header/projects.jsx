@@ -17,7 +17,7 @@ const useStyles = createUseStyles({
 
 const ProjectsButtonComponent = React.memo(() => {
   const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const buttonClasses = useButtonStyles({ theme });
   const { closeTooltipHandler, onCreateHandler } = useTooltip();
   return (

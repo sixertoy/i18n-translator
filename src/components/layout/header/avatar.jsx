@@ -1,7 +1,7 @@
 import get from 'lodash.get';
 import React from 'react';
 import { AiOutlineUser as UserIcon } from 'react-icons/ai';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { rgba } from '../../../core/utils';
@@ -28,8 +28,7 @@ const useStyles = createUseStyles({
 });
 
 const AvatarComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const user = useSelector(selectUser);
   const photoURL = get(user, 'photoURL', null);
   const isAnonymous = get(user, 'isAnonymous', null);

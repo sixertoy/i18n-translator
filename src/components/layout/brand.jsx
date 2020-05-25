@@ -1,13 +1,13 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Logo } from '../../assets/logo-outline.svg';
 
 const useStyles = createUseStyles({
-  brand: ({ theme }) => ({
+  brand: {
     '& span': {
       fontSize: '2.625em',
       marginLeft: 3,
@@ -18,14 +18,13 @@ const useStyles = createUseStyles({
       verticalAlign: 'middle',
     },
     '&:hover': { textDecoration: 'none !important' },
-    color: theme.colors.white,
+    color: '#FFFFFF',
     composes: ['ff-lobster', 'flex-columns', 'flex-start', 'items-center'],
-  }),
+  },
 });
 
 const BrandComponent = React.memo(({ className }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <Link className={classnames(classes.brand, className)} to="/">
       <Logo />

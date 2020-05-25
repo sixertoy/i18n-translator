@@ -12,7 +12,7 @@ import { selectSubscribingEmail } from '../../../redux/selectors';
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
     background: theme.colors.black,
-    color: theme.colors.white,
+    color: '#FFFFFF',
     composes: ['is-block', 'rnd3', 'px7', 'py12', 'fs16', 'mt7'],
     width: '100%',
   }),

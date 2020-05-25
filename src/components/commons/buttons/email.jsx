@@ -1,7 +1,7 @@
 // import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import Button from '../button';
 
@@ -11,8 +11,7 @@ const useStyles = createUseStyles({
 
 const EmailButtonComponent = React.memo(({ email }) => {
   const input = useRef(null);
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <div className={classes.container}>
       <input

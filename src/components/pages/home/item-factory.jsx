@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import Blank from './blank';
 import Empty from './empty';
@@ -21,8 +21,7 @@ const useStyles = createUseStyles({
 
 const ListComponent = React.memo(
   ({ icon: Icon, items, label, useBlank, useEmpty, useGrid }) => {
-    const theme = useTheme();
-    const classes = useStyles({ theme });
+    const classes = useStyles();
     return (
       <div className={classes.factory}>
         <h3 className={classes.title}>

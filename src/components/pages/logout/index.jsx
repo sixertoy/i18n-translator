@@ -1,13 +1,12 @@
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {},
 });
 
 const LogOutViewComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <div className={classes.container} id="logout-view">
       <span>&nbsp;</span>

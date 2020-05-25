@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 import { rgba } from '../../../../core/utils';
@@ -23,8 +23,7 @@ const useStyles = createUseStyles({
 });
 
 const ProjectItemComponent = React.memo(({ data, onClick }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const url = `/board/${data.id}`;
   return (
     <li className={classes.item}>

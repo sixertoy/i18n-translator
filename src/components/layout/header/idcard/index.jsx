@@ -7,7 +7,7 @@ import {
   AiOutlineUser as UserIcon,
 } from 'react-icons/ai';
 import { GoGistSecret, GoMail, GoMarkGithub } from 'react-icons/go';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { rgba } from '../../../../core/utils';
 import GithubLogin from '../../../commons/buttons/github';
@@ -92,8 +92,7 @@ function getProviderIcon(providerid) {
 }
 
 const AccountComponent = React.memo(({ user }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
 
   const name = get(user, 'name', null);
   const email = get(user, 'email', null);

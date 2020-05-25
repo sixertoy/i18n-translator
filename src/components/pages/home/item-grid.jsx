@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
 import FavoriteButton from '../../commons/buttons/favorite';
@@ -24,9 +24,8 @@ const useStyles = createUseStyles({
 });
 
 const GridComponent = React.memo(({ data }) => {
-  const theme = useTheme();
-  const queries = useStyles({ theme });
-  const classes = useListStyles({ theme });
+  const queries = useStyles();
+  const classes = useListStyles();
 
   const url = `/board/${data.id}`;
 

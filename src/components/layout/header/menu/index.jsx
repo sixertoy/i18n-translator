@@ -5,7 +5,7 @@ import {
   AiOutlineClockCircle as ClockIcon,
 } from 'react-icons/ai';
 import { FiPlus as PlusIcon } from 'react-icons/fi';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { rgba } from '../../../../core/utils';
@@ -43,8 +43,7 @@ const useStyles = createUseStyles({
 });
 
 const ProjectsComponent = React.memo(({ onClick }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const recents = useSelector(selectRecents);
   const favorites = useSelector(selectFavorites);
   const onCreateDraft = useCreateDraft();

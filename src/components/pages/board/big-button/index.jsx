@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FiPlus as PlusIcon } from 'react-icons/fi';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { px } from '../../../../core/utils';
 import Tooltip from '../../../commons/tooltip';
@@ -27,8 +27,7 @@ const useStyles = createUseStyles({
 });
 
 const BigButton = React.memo(({ scrollTo }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <div className={classes.bigbutton}>
       <Tooltip

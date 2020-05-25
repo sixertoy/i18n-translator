@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { AiOutlineDownload as DownloadIcon } from 'react-icons/ai';
 import { IoIosSave as DiskIcon } from 'react-icons/io';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 // import { toast } from 'react-toastify';
 import Button from '../../../commons/button';
@@ -22,18 +22,17 @@ const useStyles = createUseStyles({
     composes: ['flex-columns', 'flex-end', 'items-center', 'mt12'],
     width: '100%',
   },
-  editor: ({ theme }) => ({
-    borderRadius: theme.radius.small,
+  editor: {
+    borderRadius: 3,
     boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.05)',
-  }),
+  },
   submit: {
     composes: ['ml7'],
   },
 });
 
 const StepContentComponent = ({ index }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const { draft, onStepChange } = useStep(index);
   const [content, setContent] = useState(draft.content);
 

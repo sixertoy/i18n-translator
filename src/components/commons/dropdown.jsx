@@ -15,10 +15,10 @@ const useStyles = createUseStyles({
   dropdown: {
     width: 200,
   },
-  tooltip: ({ theme }) => ({
-    borderRadius: theme.radius.small,
+  tooltip: {
+    borderRadius: 3,
     width: 200,
-  }),
+  },
 });
 
 const DropdownComponent = React.memo(

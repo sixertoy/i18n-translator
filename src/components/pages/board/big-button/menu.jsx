@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import { AiOutlineDownload as ExportIcon } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -11,9 +11,9 @@ import { LanguageIcon } from '../../../../assets/icons';
 import { createKeyAsync, hydrateDraftAsync } from '../../../../redux/actions';
 
 const useStyles = createUseStyles({
-  button: ({ theme }) => ({
+  button: {
     borderRadius: 0,
-    color: theme.colors.white,
+    color: '#FFFFFF',
     composes: [
       'is-block',
       'no-background',
@@ -23,31 +23,30 @@ const useStyles = createUseStyles({
     ],
     height: 40,
     width: '100%',
-  }),
+  },
   container: {
     maxWidth: 170,
     minWidth: 170,
     width: 170,
   },
-  danger: ({ theme }) => ({
-    color: theme.colors.black,
+  danger: {
+    color: '#000000',
     fontWeight: 'bold',
-  }),
-  splitter: ({ theme }) => ({
-    background: theme.colors.white,
+  },
+  splitter: {
+    background: '#FFFFFF',
     border: 0,
     composes: ['is-block'],
     height: 1,
     opacity: 0.15,
-  }),
-  warning: ({ theme }) => ({
-    color: theme.colors.white,
-  }),
+  },
+  warning: {
+    color: '#FFFFFF',
+  },
 });
 
 const ContextMenuComponent = React.memo(({ scrollTo }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
 
   const { id } = useParams();
   const history = useHistory();

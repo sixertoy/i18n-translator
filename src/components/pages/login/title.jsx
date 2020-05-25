@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useLocation } from 'react-router-dom';
 
 const useStyles = createUseStyles({
@@ -10,8 +10,7 @@ const useStyles = createUseStyles({
 
 const TitleComponent = React.memo(() => {
   const label = useRef('');
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const { pathname } = useLocation();
   const useSignup = pathname === '/signup';
 

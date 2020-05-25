@@ -5,7 +5,7 @@ import {
   AiFillPushpin as PinOnIcon,
   AiOutlinePushpin as PinOffIcon,
 } from 'react-icons/ai';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { toggleFavorite } from '../../../redux/actions';
@@ -21,8 +21,7 @@ const useStyles = createUseStyles({
 
 const FavoriteButtonComponent = React.memo(
   ({ className, id: project, isFavorite }) => {
-    const theme = useTheme();
-    const classes = useStyles({ theme });
+    const classes = useStyles();
     const dispatch = useDispatch();
 
     const onToggleFavorite = useCallback(() => {

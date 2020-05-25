@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import { FiPlus as PlusIcon } from 'react-icons/fi';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -23,11 +23,10 @@ const useStyles = createUseStyles({
 });
 
 const BlankComponent = React.memo(() => {
-  const theme = useTheme();
   const dispatch = useDispatch();
   const history = useHistory();
-  const queries = useStyles({ theme });
-  const classes = useListStyles({ theme });
+  const queries = useStyles();
+  const classes = useListStyles();
 
   const onCreateClick = useCallback(() => {
     dispatch(createDraftAsync()).then(id => {

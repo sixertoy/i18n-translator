@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef } from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { DEFAULT_LANGUAGES } from '../../../../constants';
@@ -16,9 +16,8 @@ const useStyles = createUseStyles({
 });
 
 const StepLangComponent = ({ index }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
-  const stepClasses = useStepStyles({ theme });
+  const classes = useStyles();
+  const stepClasses = useStepStyles();
   const { draft, onStepChange } = useStep(index);
   const input = useRef(null);
 

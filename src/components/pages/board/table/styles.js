@@ -35,10 +35,10 @@ const useTableStyles = createUseStyles({
   input: ({ theme }) => ({
     '&.error': {
       background: theme.colors.danger,
-      color: `${theme.colors.white} !important`,
+      color: '#FFFFFF !important',
       padding: 7,
     },
-    '&.error::placeholder': { color: theme.colors.white },
+    '&.error::placeholder': { color: '#FFFFFF' },
     '&::placeholder': { fontSize: 12, opacity: 0.35 },
     '&:focus:not(.error)': {
       background: rgba(theme.colors.black, 0.05),

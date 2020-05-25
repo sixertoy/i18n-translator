@@ -41,7 +41,7 @@ export function getScrollPositionY(key, margin = 0) {
 const BoardViewComponent = React.memo(() => {
   const scroller = useRef(null);
   const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
   const { mounted } = useMounted();

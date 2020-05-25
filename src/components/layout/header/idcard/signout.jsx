@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoSignOut as LogoutIcon } from 'react-icons/go';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { rgba } from '../../../../core/utils';
 import { useLogin } from '../../../hooks';
@@ -20,8 +20,7 @@ const useStyles = createUseStyles({
 });
 
 const SignoutComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const { onSignoutClick } = useLogin();
   return (
     <button className={classes.button} type="button" onClick={onSignoutClick}>

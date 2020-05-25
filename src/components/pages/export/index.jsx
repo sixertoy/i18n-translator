@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import withLayout from '../../layout';
 
@@ -10,8 +10,7 @@ const useStyles = createUseStyles({
 });
 
 const ExportViewComponent = () => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return <div className={classes.container} id="export-view" />;
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   description: {
@@ -13,14 +13,14 @@ const useStyles = createUseStyles({
     letterSpacing: 0.025,
     lineHeight: 1.05,
   },
-  wrapper: ({ theme }) => ({
-    color: theme.colors.white,
+  wrapper: {
+    color: '#FFFFFF',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 100,
     maxWidth: 680,
     width: '80%',
-  }),
+  },
   [`@media (max-width: ${600}px)`]: {
     description: { fontSize: 18 },
     title: { fontSize: 32 },
@@ -33,8 +33,7 @@ const useStyles = createUseStyles({
 });
 
 const ReactDumbComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.title}>

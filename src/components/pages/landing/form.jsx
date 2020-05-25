@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
   button: ({ theme }) => ({
     '&:hover': { textDecoration: 'none' },
     background: theme.colors.active,
-    color: theme.colors.white,
+    color: '#FFFFFF',
     composes: ['is-light', 'py15', 'px24', 'fs24', 'rnd3', 'flex-0'],
     whiteSpace: 'nowrap',
   }),
@@ -22,13 +22,13 @@ const useStyles = createUseStyles({
     paddingTop: 24,
     width: '80%',
   },
-  input: ({ theme }) => ({
+  input: {
     '&::placeholder': { opacity: 0.25 },
-    background: theme.colors.white,
+    background: '#FFFFFF',
     border: 0,
     composes: ['p15', 'fs24', 'rnd3', 'text-overflow'],
     width: '100%',
-  }),
+  },
   wrapper: {
     composes: ['flex-1', 'no-overflow', 'mr3'],
   },

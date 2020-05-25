@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { rgba } from '../../../../core/utils';
 import Item from './item';
@@ -27,8 +27,7 @@ const useStyles = createUseStyles({
 });
 
 const ListComponent = React.memo(({ icon: Icon, items, label, onClick }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>

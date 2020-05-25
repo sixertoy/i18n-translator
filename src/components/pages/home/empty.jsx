@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { rgba } from '../../../core/utils';
 
@@ -16,8 +16,7 @@ const useStyles = createUseStyles({
 });
 
 const EmptyComponent = React.memo(({ label }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const lcLabel = label.toLowerCase();
   return (
     <div className={classes.empty}>

@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { px, rgba } from '../../../../core/utils';
 
@@ -48,8 +48,7 @@ const useStyles = createUseStyles({
 });
 
 const StepComponent = React.memo(({ className, index, isBefore, item }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const label = item.label || item;
   return (
     <div className={classnames(classes.item, className)}>

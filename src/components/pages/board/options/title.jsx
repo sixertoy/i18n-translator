@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -19,28 +19,28 @@ const useStyles = createUseStyles({
   infos: {
     composes: ['flex-1'],
   },
-  input: ({ theme }) => ({
+  input: {
     '&:focus': {
-      background: rgba(theme.colors.white, 0.1),
-      color: theme.colors.white,
+      background: rgba('#FFFFFF', 0.1),
+      color: '#FFFFFF',
       paddingLeft: 12,
     },
-    borderRadius: theme.radius.normal,
-    color: theme.colors.white,
+    borderRadius: 3,
+    color: '#FFFFFF',
     composes: ['is-bold', 'py7'],
     fontSize: '1.6rem',
     transition: 'color 0.5s, background 0.2s, padding-left 0.5s',
     width: '100%',
-  }),
-  percentage: ({ theme }) => ({
+  },
+  percentage: {
     '& .progress-thumb': {
       background: '#362760',
     },
-    '& .progress-track': { background: rgba(theme.colors.white, 0.15) },
+    '& .progress-track': { background: rgba('#FFFFFF', 0.15) },
     maxWidth: '65%',
     minWidth: '65%',
     width: '65%',
-  }),
+  },
   title: {
     composes: ['flex-columns', 'flex-start', 'items-center'],
   },
@@ -51,8 +51,7 @@ const useStyles = createUseStyles({
 });
 
 const InfosComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const [content, setContent] = useState('');
 
   const { id } = useParams();

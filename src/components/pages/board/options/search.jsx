@@ -20,15 +20,15 @@ const useStyles = createUseStyles({
   search: {
     composes: [],
   },
-  wrapper: ({ theme }) => ({
-    background: theme.colors.white,
+  wrapper: {
+    background: '#FFFFFF',
     borderRadius: 16,
     composes: ['px12'],
     height: 32,
     maxWidth: 260,
     minWidth: 260,
     width: 260,
-  }),
+  },
 });
 
 const SearchComponent = React.memo(() => {

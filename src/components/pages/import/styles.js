@@ -1,9 +1,9 @@
 import { createUseStyles } from 'react-jss';
 
 const useStepStyles = createUseStyles({
-  field: ({ theme }) => ({
-    borderColor: theme.colors.black,
-    borderRadius: theme.radius.small,
+  field: {
+    borderColor: '#000000',
+    borderRadius: 3,
     borderStyle: 'solid',
     borderWidth: 1,
     composes: [
@@ -17,7 +17,7 @@ const useStepStyles = createUseStyles({
     ],
     height: 'auto',
     width: '100%',
-  }),
+  },
   form: {
     margin: '0 auto',
     width: 350,

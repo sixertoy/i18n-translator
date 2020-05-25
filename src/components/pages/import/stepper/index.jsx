@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import Item from './item';
 
@@ -20,8 +20,7 @@ const useStyles = createUseStyles({
 });
 
 const StepperComponent = React.memo(({ step, steps, useZero }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const lastIndex = steps.length - 1;
   const current = useZero ? step : step - 1;
   return (

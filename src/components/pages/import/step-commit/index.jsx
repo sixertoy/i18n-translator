@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import useStep from '../use-step';
 
@@ -16,8 +16,7 @@ const useStyles = createUseStyles({
 });
 
 const StepCommitComponent = () => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const { draft, onCommitDraft } = useStep();
 
   const onSubmitHandler = useCallback(

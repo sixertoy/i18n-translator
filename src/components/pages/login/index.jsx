@@ -21,12 +21,12 @@ const useStyles = createUseStyles({
     display: 'inline',
     margin: '0 auto',
   }),
-  wrapper: ({ theme }) => ({
-    background: theme.colors.white,
+  wrapper: {
+    background: '#FFFFFF',
     composes: ['p42', 'rnd3', 'shadow-around'],
     margin: '42px auto 0 auto',
     width: 400,
-  }),
+  },
   [`@media (max-width: ${480}px)`]: {
     container: {
       paddingBottom: 24,

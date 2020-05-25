@@ -21,16 +21,16 @@ const useStyles = createUseStyles({
     composes: ['use-pointer', 'fs18', 'ml7', 'text-center'],
     width: 30,
   }),
-  tooltip: ({ theme }) => ({
-    borderRadius: theme.radius.small,
+  tooltip: {
+    borderRadius: 3,
     width: 120,
-  }),
+  },
 });
 
 const StepNameComponent = ({ index }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const stepClasses = useStepStyles({ theme });
+  const stepClasses = useStepStyles();
   const { draft, onStepChange } = useStep(index);
   const input = useRef(draft.name);
 

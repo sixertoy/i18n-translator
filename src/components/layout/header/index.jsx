@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import Brand from '../brand';
 import Add from './add';
@@ -29,8 +29,7 @@ const useStyles = createUseStyles({
 });
 
 const ApplicationHeaderComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <div className={classes.container} id="layout-header">
       <div className={classes.wrapper}>

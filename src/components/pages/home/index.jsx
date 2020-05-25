@@ -4,7 +4,7 @@ import {
   AiOutlineProject as ProjectsIcon,
   AiOutlinePushpin as PinIcon,
 } from 'react-icons/ai';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -55,8 +55,7 @@ const useStyles = createUseStyles({
 });
 
 const HomeViewComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const projects = useSelector(selectProjects);
   const favorites = useSelector(selectFavorites);
   const recents = useSelector(selectRecents);

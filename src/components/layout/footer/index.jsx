@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
   },
   credits: ({ theme }) => ({
     background: theme.table.odd,
-    borderRadius: `${theme.radius.small}px ${theme.radius.small}px 0 0`,
+    borderRadius: `3px 3px 0 0`,
     bottom: 0,
     composes: ['is-uppercase', 'pb0', 'pt5', 'px12', 'is-absolute'],
     right: 32,
