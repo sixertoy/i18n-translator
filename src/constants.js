@@ -1,3 +1,4 @@
+export const KEY_CODE_ENTER = 13;
 export const PERSIST_STORAGE_KEY = 'i18n_translation_editor::';
 
 export const MAX_FREE_PROJECTS = 1;

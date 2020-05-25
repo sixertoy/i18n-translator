@@ -5,6 +5,7 @@ import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import { KEY_CODE_ENTER } from '../../../../../constants';
 import { rgba } from '../../../../../core/utils';
 import { deleteKey, updateKey } from '../../../../../redux/actions';
 import useTableStyles from '../use-table-styles';
@@ -57,9 +58,25 @@ const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
       const isEmpty = checkIfIsEmpty(update);
       const isEqual = checkIfIsEqual(update, value);
       const isDuplicate = checkIfIsDuplicated(update, value, items);
-      if (!isEqual && !isEmpty && !isDuplicate) {
-        dispatch(updateKey({ previous: value, project, update }));
-      }
+      const shouldUpdate = !isEqual && !isEmpty && !isDuplicate;
+      if (!shouldUpdate) return;
+      dispatch(updateKey({ previous: value, project, update }));
+    },
+    [dispatch, items, project, value]
+  );
+
+  const onKeyDown = useCallback(
+    evt => {
+      const code = evt.keyCode;
+      const isEnterKey = code === KEY_CODE_ENTER;
+      if (!isEnterKey) return;
+      const update = evt.target.value;
+      const isEmpty = checkIfIsEmpty(update);
+      const isEqual = checkIfIsEqual(update, value);
+      const isDuplicate = checkIfIsDuplicated(update, value, items);
+      const shouldUpdate = !isEqual && !isEmpty && !isDuplicate;
+      if (!shouldUpdate) return;
+      dispatch(updateKey({ previous: value, project, update }));
     },
     [dispatch, items, project, value]
   );
@@ -89,6 +106,7 @@ const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
         value={content}
         onBlur={onInputBlur}
         onChange={onInputChange}
+        onKeyDown={onKeyDown}
       />
     </div>
   );

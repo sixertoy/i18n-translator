@@ -3,6 +3,7 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { KEY_CODE_ENTER } from '../../../../constants';
 import { rgba } from '../../../../core/utils';
 import { updateProjectName } from '../../../../redux/actions';
 import { selectPercentages, selectProject } from '../../../../redux/selectors';
@@ -60,9 +61,23 @@ const InfosComponent = React.memo(() => {
   const { overall } = useSelector(state => selectPercentages(state, id));
   const { isFavorite, name } = project;
 
-  const onTitleUpdate = useCallback(
+  const onInputBlur = useCallback(
     evt => {
       evt.preventDefault();
+      const { value } = evt.target;
+      const empty = !value || value.trim() === '';
+      // NOTE doit renvoyer une info bulle d'erreur
+      if (empty) return;
+      dispatch(updateProjectName({ name: value, project: id }));
+    },
+    [dispatch, id]
+  );
+
+  const onKeyDown = useCallback(
+    evt => {
+      const code = evt.keyCode;
+      const isEnterKey = code === KEY_CODE_ENTER;
+      if (!isEnterKey) return;
       const { value } = evt.target;
       const empty = !value || value.trim() === '';
       // NOTE doit renvoyer une info bulle d'erreur
@@ -85,7 +100,8 @@ const InfosComponent = React.memo(() => {
             className={classes.input}
             defaultValue={name}
             type="text"
-            onBlur={onTitleUpdate}
+            onBlur={onInputBlur}
+            onKeyDown={onKeyDown}
           />
         </div>
       </div>

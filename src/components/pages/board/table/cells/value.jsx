@@ -5,6 +5,7 @@ import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
+import { KEY_CODE_ENTER } from '../../../../../constants';
 import { rgba } from '../../../../../core/utils';
 import { updateTranslation } from '../../../../../redux/actions';
 import useTableStyles from '../use-table-styles';
@@ -26,22 +27,33 @@ const ValueCellComponent = React.memo(({ id, lang, odd, project, value }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const tableClasses = useTableStyles({ primary: false, theme });
-  const [translation, setTranslation] = useState(value);
+  const [content, setContent] = useState(value);
 
   const dispatch = useDispatch();
   const onInputBlur = useCallback(
     evt => {
       evt.preventDefault();
-      const next = { key: id, lang, project, value: translation };
+      const next = { key: id, lang, project, value: content };
       dispatch(updateTranslation(next));
     },
-    [id, lang, project, translation, dispatch]
+    [id, lang, project, content, dispatch]
+  );
+
+  const onKeyDown = useCallback(
+    evt => {
+      const code = evt.keyCode;
+      const isEnterKey = code === KEY_CODE_ENTER;
+      if (!isEnterKey) return;
+      const next = { key: id, lang, project, value: content };
+      dispatch(updateTranslation(next));
+    },
+    [id, lang, project, content, dispatch]
   );
 
   const onInputChange = useCallback(evt => {
     evt.preventDefault();
     const update = evt.target.value;
-    setTranslation(update);
+    setContent(update);
   }, []);
 
   return (
@@ -55,9 +67,10 @@ const ValueCellComponent = React.memo(({ id, lang, odd, project, value }) => {
         className={classnames(classes.input, tableClasses.input)}
         placeholder="Enter a value"
         type="text"
-        value={translation}
+        value={content}
         onBlur={onInputBlur}
         onChange={onInputChange}
+        onKeyDown={onKeyDown}
       />
       <span className={classes.icon}>
         <CheckIcon />
