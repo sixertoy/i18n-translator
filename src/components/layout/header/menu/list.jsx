@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
       verticalAlign: 'bottom',
     },
     '& svg': { fontSize: '1.15em' },
-    color: rgba('#FFFFFF', 0.45),
+    color: rgba('#000000', 0.45),
     composes: ['is-normal', 'fs12', 'is-uppercase', 'mb7'],
   },
 });

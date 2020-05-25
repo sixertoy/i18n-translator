@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
   },
   link: {
     '&:hover': { textDecoration: 'none' },
-    color: '#FFFFFF',
+    color: '#959AA0',
     composes: ['fs16', 'is-bold'],
   },
   name: {},
