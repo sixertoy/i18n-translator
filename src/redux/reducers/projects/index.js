@@ -19,8 +19,8 @@ const projects = (state = [], action) => {
     case EVENT_TYPES.PROJECT_NAME_UPDATE:
       return updateProjectName(state, action);
     case EVENT_TYPES.PROJECT_CLEAR:
-    case EVENT_TYPES.LANGUAGE_CLEAR:
     case EVENT_TYPES.PROJECT_TIME_UPDATE:
+    case EVENT_TYPES.LANGUAGE_CLEAR:
     case EVENT_TYPES.LANGUAGE_KEY_CREATE:
     case EVENT_TYPES.LANGUAGE_KEY_DELETE:
     case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
