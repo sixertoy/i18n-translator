@@ -20,13 +20,16 @@ const useStyles = createUseStyles({
     top: 12,
     width: 28,
   }),
-  percentage: ({ theme }) => ({
-    '& .progress-thumb': { background: theme.colors.green },
-    '& .progress-track': { background: rgba(theme.colors.white, 0.1) },
+  percentage: {
+    '& .progress-thumb': {
+      background: 'linear-gradient(0deg, #EE256B 0%, #FD7822 100%)',
+    },
+    '& .progress-track': { background: '#EAEAEA' },
+    marginTop: 3,
     maxWidth: '65%',
     minWidth: '65%',
     width: '65%',
-  }),
+  },
   tooltip: {
     '& .tippy-content': { padding: 0 },
     borderRadius: 27,

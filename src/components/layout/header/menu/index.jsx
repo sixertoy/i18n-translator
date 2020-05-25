@@ -16,15 +16,19 @@ import List from './list';
 
 const useStyles = createUseStyles({
   bottom: {
+    borderRadius: 20,
     composes: ['flex-0', 'p12'],
   },
   button: {
     '& svg': { marginLeft: 7 },
-    '&:hover': { background: rgba('#000000', 0.45), color: '#FFFFFF' },
+    '&:hover': {
+      background: rgba('#000000', 0.45),
+      color: rgba('#000000', 0.45),
+    },
     borderColor: rgba('#000000', 0.25),
     borderStyle: 'solid',
     borderWidth: 1,
-    color: '#959AA0',
+    color: rgba('#000000', 0.25),
     composes: ['is-block', 'p12', 'no-background', 'fs14'],
     transition: 'color 0.5s, background 0.5s',
     width: '100%',
@@ -56,7 +60,7 @@ const ProjectsComponent = React.memo(({ onClick }) => {
         {showFavorites && (
           <List
             icon={PinOnIcon}
-            items={favorites}
+            items={favorites.slice(0, 3)}
             label="Épinglés"
             onClick={onClick}
           />
@@ -64,7 +68,7 @@ const ProjectsComponent = React.memo(({ onClick }) => {
         {showRecents && (
           <List
             icon={ClockIcon}
-            items={recents}
+            items={recents.slice(0, 3)}
             label="Récemment consultés"
             onClick={onClick}
           />

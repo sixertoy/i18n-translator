@@ -8,7 +8,7 @@ import { rgba } from '../../../../core/utils';
 const useStyles = createUseStyles({
   item: {
     '& + $item': {
-      borderTopColor: rgba('#000000', 0.25),
+      borderTopColor: rgba('#000000', 0.45),
       borderTopStyle: 'solid',
       borderTopWidth: 1,
     },
@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
   },
   link: {
     '&:hover': { textDecoration: 'none' },
-    color: '#959AA0',
+    color: rgba('#000000', 0.45),
     composes: ['fs16', 'is-bold'],
   },
   name: {},

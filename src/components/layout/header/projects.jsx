@@ -10,8 +10,7 @@ import useButtonStyles from './styles';
 const useStyles = createUseStyles({
   tooltip: {
     '& .tippy-content': { padding: 0 },
-    borderRadius: 20,
-    padding: 8,
+    padding: 0,
     width: 280,
   },
 });
@@ -23,7 +22,7 @@ const ProjectsButtonComponent = React.memo(() => {
   const { closeTooltipHandler, onCreateHandler } = useTooltip();
   return (
     <Tooltip
-      useHover
+      // useHover
       className={classes.tooltip}
       component={<Menu onClick={closeTooltipHandler} />}
       offset={[-41, 12]}
