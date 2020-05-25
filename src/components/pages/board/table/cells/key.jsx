@@ -27,95 +27,99 @@ const useStyles = createUseStyles({
   },
 });
 
-const KeyCellComponent = React.memo(({ items, odd, project, value }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
-  const [error, setError] = useState(false);
-  const [content, setContent] = useState(value);
-  const tableClasses = useTableStyles({ primary: true, theme });
+const KeyCellComponent = React.memo(
+  ({ items, odd, project, tabIndex, value }) => {
+    const theme = useTheme();
+    const classes = useStyles({ theme });
+    const [error, setError] = useState(false);
+    const [content, setContent] = useState(value);
+    const tableClasses = useTableStyles({ primary: true, theme });
 
-  const dispatch = useDispatch();
-  const onDeleteKey = useCallback(() => {
-    dispatch(deleteKey({ key: value, project }));
-  }, [dispatch, value, project]);
+    const dispatch = useDispatch();
+    const onDeleteKey = useCallback(() => {
+      dispatch(deleteKey({ key: value, project }));
+    }, [dispatch, value, project]);
 
-  const onInputChange = useCallback(
-    evt => {
-      evt.preventDefault();
-      const update = evt.target.value;
-      const isEmpty = checkIfIsEmpty(update);
-      const isDuplicate = checkIfIsDuplicated(update, value, items);
-      setError(isEmpty || isDuplicate);
-      setContent(update);
-    },
-    [items, value]
-  );
+    const onInputChange = useCallback(
+      evt => {
+        evt.preventDefault();
+        const update = evt.target.value;
+        const isEmpty = checkIfIsEmpty(update);
+        const isDuplicate = checkIfIsDuplicated(update, value, items);
+        setError(isEmpty || isDuplicate);
+        setContent(update);
+      },
+      [items, value]
+    );
 
-  const onInputBlur = useCallback(
-    evt => {
-      evt.preventDefault();
-      const update = evt.target.value;
-      const isEmpty = checkIfIsEmpty(update);
-      const isEqual = checkIfIsEqual(update, value);
-      const isDuplicate = checkIfIsDuplicated(update, value, items);
-      const shouldUpdate = !isEqual && !isEmpty && !isDuplicate;
-      if (!shouldUpdate) return;
-      dispatch(updateKey({ previous: value, project, update }));
-    },
-    [dispatch, items, project, value]
-  );
+    const onInputBlur = useCallback(
+      evt => {
+        evt.preventDefault();
+        const update = evt.target.value;
+        const isEmpty = checkIfIsEmpty(update);
+        const isEqual = checkIfIsEqual(update, value);
+        const isDuplicate = checkIfIsDuplicated(update, value, items);
+        const shouldUpdate = !isEqual && !isEmpty && !isDuplicate;
+        if (!shouldUpdate) return;
+        dispatch(updateKey({ previous: value, project, update }));
+      },
+      [dispatch, items, project, value]
+    );
 
-  const onKeyDown = useCallback(
-    evt => {
-      const code = evt.keyCode;
-      const isEnterKey = code === KEY_CODE_ENTER;
-      if (!isEnterKey) return;
-      const update = evt.target.value;
-      const isEmpty = checkIfIsEmpty(update);
-      const isEqual = checkIfIsEqual(update, value);
-      const isDuplicate = checkIfIsDuplicated(update, value, items);
-      const shouldUpdate = !isEqual && !isEmpty && !isDuplicate;
-      if (!shouldUpdate) return;
-      dispatch(updateKey({ previous: value, project, update }));
-    },
-    [dispatch, items, project, value]
-  );
+    const onKeyDown = useCallback(
+      evt => {
+        const code = evt.keyCode;
+        const isEnterKey = code === KEY_CODE_ENTER;
+        if (!isEnterKey) return;
+        const update = evt.target.value;
+        const isEmpty = checkIfIsEmpty(update);
+        const isEqual = checkIfIsEqual(update, value);
+        const isDuplicate = checkIfIsDuplicated(update, value, items);
+        const shouldUpdate = !isEqual && !isEmpty && !isDuplicate;
+        if (!shouldUpdate) return;
+        dispatch(updateKey({ previous: value, project, update }));
+      },
+      [dispatch, items, project, value]
+    );
 
-  const scrollId = `scroll::${value}`;
-  return (
-    <div
-      className={classnames(classes.cell, tableClasses.cell, {
-        even: !odd,
-        odd,
-      })}
-      id={scrollId}>
-      <button
-        className={classes.button}
-        disabled={error}
-        type="button"
-        onClick={onDeleteKey}>
-        <ClearIcon />
-      </button>
-      <input
-        className={classnames(classes.input, tableClasses.input, {
-          error,
-          valid: !error,
+    const scrollId = `scroll::${value}`;
+    return (
+      <div
+        className={classnames(classes.cell, tableClasses.cell, {
+          even: !odd,
+          odd,
         })}
-        placeholder="Enter a value"
-        type="text"
-        value={content}
-        onBlur={onInputBlur}
-        onChange={onInputChange}
-        onKeyDown={onKeyDown}
-      />
-    </div>
-  );
-});
+        id={scrollId}>
+        <button
+          className={classes.button}
+          disabled={error}
+          type="button"
+          onClick={onDeleteKey}>
+          <ClearIcon />
+        </button>
+        <input
+          className={classnames(classes.input, tableClasses.input, {
+            error,
+            valid: !error,
+          })}
+          placeholder="Enter a value"
+          tabIndex={tabIndex}
+          type="text"
+          value={content}
+          onBlur={onInputBlur}
+          onChange={onInputChange}
+          onKeyDown={onKeyDown}
+        />
+      </div>
+    );
+  }
+);
 
 KeyCellComponent.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   odd: PropTypes.bool.isRequired,
   project: PropTypes.string.isRequired,
+  tabIndex: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired,
 };
 

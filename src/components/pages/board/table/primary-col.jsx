@@ -5,7 +5,7 @@ import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { useScroller } from '../../../hooks';
-import Key from './cells/key';
+import KeyCell from './cells/key';
 import useTableStyles from './use-table-styles';
 
 const useStyles = createUseStyles({
@@ -52,13 +52,15 @@ const PrimaryColumnComponent = React.memo(({ items, project, scroller }) => {
           </div>
         </div>
         {items.map((key, index) => {
+          const tabIndex = index + 1;
           const odd = Boolean(index % 2);
           return (
-            <Key
+            <KeyCell
               key={key}
               items={items}
               odd={odd}
               project={project}
+              tabIndex={tabIndex}
               value={key}
             />
           );

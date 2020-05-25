@@ -48,8 +48,9 @@ const ValuesColumnComponent = React.memo(
           percentage={percentage}
           project={project}
         />
-        {entries.map(([key, value], ind) => {
-          const odd = Boolean(ind % 2);
+        {entries.map(([key, value], index) => {
+          const tabIndex = index + 1;
+          const odd = Boolean(index % 2);
           return (
             <ValueCell
               key={key}
@@ -57,6 +58,7 @@ const ValuesColumnComponent = React.memo(
               lang={lang}
               odd={odd}
               project={project}
+              tabIndex={tabIndex}
               value={value}
             />
           );
