@@ -8,20 +8,18 @@ import FavoriteButton from '../../commons/buttons/favorite';
 import useListStyles from './styles';
 
 const useStyles = createUseStyles({
+  item: {},
+  link: {},
   [`@media (min-width: ${861}px)`]: {
-    queryItem: {
+    item: {
       maxWidth: '32%',
       minWidth: '32%',
       width: '32%',
     },
-    queryLink: {
-      fontSize: 20,
-    },
+    link: { fontSize: 20 },
   },
   [`@media (max-width: ${981}px)`]: {
-    queryLink: {
-      fontSize: 18,
-    },
+    link: { fontSize: 18 },
   },
 });
 

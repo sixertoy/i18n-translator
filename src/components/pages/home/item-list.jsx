@@ -8,6 +8,10 @@ import FavoriteButton from '../../commons/buttons/favorite';
 import useListStyles from './styles';
 
 const useStyles = createUseStyles({
+  item: {},
+  link: {},
+  name: {},
+  wrapper: {},
   [`@media (min-width: ${681}px)`]: {
     item: {
       maxWidth: '100%',
@@ -19,14 +23,10 @@ const useStyles = createUseStyles({
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
     },
-    wrapper: {
-      height: 'auto',
-    },
+    wrapper: { height: 'auto' },
   },
   [`@media (min-width: ${861}px)`]: {
-    link: {
-      fontSize: 16,
-    },
+    link: { fontSize: 16 },
   },
 });
 

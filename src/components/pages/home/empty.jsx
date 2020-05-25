@@ -6,12 +6,11 @@ import { rgba } from '../../../core/utils';
 
 const useStyles = createUseStyles({
   empty: {
-    background: 'transparent',
     borderColor: rgba('#000000', 0.2),
     borderStyle: 'dashed',
     borderWidth: 1,
     color: rgba('#000000', 0.2),
-    composes: ['p24', 'rnd3'],
+    composes: ['p24', 'rnd3', 'no-background'],
     width: '100%',
   },
 });
