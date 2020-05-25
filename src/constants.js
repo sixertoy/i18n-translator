@@ -31,6 +31,7 @@ export const EVENT_TYPES = {
   APP_UPDATE_VERSION: 'onAppUpdateVersion',
   DRAFT_COMMIT: 'onDraftCommit',
   DRAFT_CREATE: 'onDraftCreate',
+  DRAFT_HYDRATE: 'onDraftHydrate',
   DRAFT_UPDATE: 'onDraftUpdate',
   LANGUAGE_ADD: 'onLanguageAdd',
   LANGUAGE_CLEAR: 'onLanguageClear',

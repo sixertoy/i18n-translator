@@ -23,13 +23,14 @@ const StepLangComponent = ({ index }) => {
   const input = useRef(null);
 
   const langs = useSelector(state => selectLangs(state, draft.id));
-  const options = getDisableLanguages(langs, DEFAULT_LANGUAGES);
+  const options = getDisableLanguages(langs);
 
   const onChange = useCallback(
     evt => {
       evt.preventDefault();
       const lang = input.current.value;
-      onStepChange({ lang });
+      const label = DEFAULT_LANGUAGES[lang];
+      onStepChange({ label, langs: [lang] });
     },
     [onStepChange]
   );

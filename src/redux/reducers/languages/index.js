@@ -1,8 +1,7 @@
 import fromPairs from 'lodash.frompairs';
 
 import { EVENT_TYPES } from '../../../constants';
-import hydrate from '../../hydrate';
-import { language as model } from '../../models';
+import addLanguage from './add-language';
 import clearLanguage from './clear-language';
 import createKey from './create-key';
 import createProject from './create-project';
@@ -11,11 +10,6 @@ import deleteLanguage from './delete-language';
 import deleteProject from './delete-project';
 import updateKey from './update-key';
 import updateTranslation from './update-translation';
-
-export function addLanguage(state, action) {
-  const next = hydrate(model, action);
-  return [...state, next];
-}
 
 export function toggleCollapse(state, action) {
   const { lang, project } = action;
@@ -43,6 +37,8 @@ export function clearProject(state, action) {
 
 const languages = (state = [], action) => {
   switch (action.type) {
+    case EVENT_TYPES.LANGUAGE_ADD:
+      return addLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_CLEAR:
       return clearLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_CREATE:
@@ -58,8 +54,6 @@ const languages = (state = [], action) => {
     case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
       return updateKey(state, action);
 
-    // case EVENT_TYPES.LANGUAGE_ADD:
-    //   return addLanguage(state, action);
     // case EVENT_TYPES.PROJECT_CLEAR:
     //   return clearProject(state, action);
     // case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:

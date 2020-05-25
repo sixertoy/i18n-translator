@@ -4,10 +4,10 @@ import { AiOutlineDownload as ExportIcon } from 'react-icons/ai';
 import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { LanguageIcon } from '../../../../assets/icons';
-import { createKeyAsync } from '../../../../redux/actions';
+import { createKeyAsync, hydrateDraftAsync } from '../../../../redux/actions';
 // import { selectLimits } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
@@ -50,15 +50,16 @@ const ContextMenuComponent = React.memo(({ scrollTo }) => {
   const classes = useStyles({ theme });
 
   const { id } = useParams();
-  // const { limited, willReach } = useSelector(state => selectLimits(state, id));
-  // const enableAddButton = !limited || !willReach;
+  const history = useHistory();
 
-  // const history = useHistory();
   const dispatch = useDispatch();
-  const onExport = useCallback(() => {
-    // dispatch(deleteProject(id));
-    // history.replace('/')
-  }, []);
+  const onExport = useCallback(() => {}, []);
+
+  const onAddLanguage = useCallback(() => {
+    dispatch(hydrateDraftAsync({ project: id })).then(() => {
+      history.push(`/import/${id}/step/2`);
+    });
+  }, [dispatch, id, history]);
 
   const onAddPrimaryKey = useCallback(() => {
     dispatch(createKeyAsync({ project: id })).then(key => {
@@ -73,13 +74,15 @@ const ContextMenuComponent = React.memo(({ scrollTo }) => {
         <ExportIcon className={classes.icon} />
       </button>
       <hr className={classes.splitter} />
-      <Link
-        className={classes.button}
-        // disabled={enableAddButton}
-        to={`/import/${id}/step/2`}>
+      <button className={classes.button} type="button" onClick={onAddLanguage}>
         <span>Ajouter une langue</span>
         <LanguageIcon className={classes.icon} />
-      </Link>
+      </button>
+      {/* <Link
+        className={classes.button}
+        // disabled={enableAddButton}
+        to={}>
+      </Link> */}
       <hr className={classes.splitter} />
       <button
         className={classes.button}

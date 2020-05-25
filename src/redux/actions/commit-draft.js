@@ -1,9 +1,14 @@
-import { DEFAULT_LANGUAGES, EVENT_TYPES } from '../../constants';
+import get from 'lodash.get';
 
-const commitDraft = draft => {
-  const label = DEFAULT_LANGUAGES[draft.lang];
+import { EVENT_TYPES } from '../../constants';
+
+const commitDraftAsync = draft => (dispatch, getState) => {
+  const stage = getState();
+  const projects = get(stage, 'projects');
+  const found = projects.find(obj => obj.id === draft.id);
+  const type = !found ? EVENT_TYPES.PROJECT_CREATE : EVENT_TYPES.LANGUAGE_ADD;
   const json = JSON.parse(draft.content);
-  return { draft, json, label, type: EVENT_TYPES.PROJECT_CREATE };
+  return { draft, json, type };
 };
 
-export default commitDraft;
+export default commitDraftAsync;

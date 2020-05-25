@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { commitDraft, updateDraft } from '../../../redux/actions';
+import { commitDraftAsync, updateDraft } from '../../../redux/actions';
 import { selectDraft } from '../../../redux/selectors';
 
 const useStep = current => {
@@ -12,9 +12,10 @@ const useStep = current => {
   const { id } = draft;
 
   const onCommitDraft = useCallback(() => {
-    dispatch(commitDraft(draft));
-    const next = `/board/${draft.id}`;
-    history.replace(next);
+    dispatch(commitDraftAsync(draft)).then(() => {
+      const next = `/board/${draft.id}`;
+      history.replace(next);
+    });
   }, [dispatch, draft, history]);
 
   const onStepChange = useCallback(
