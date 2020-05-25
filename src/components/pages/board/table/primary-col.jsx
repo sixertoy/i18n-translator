@@ -56,7 +56,7 @@ const PrimaryColumnComponent = React.memo(({ items, project, scroller }) => {
           const odd = Boolean(index % 2);
           return (
             <KeyCell
-              key={key}
+              key={index.toString()}
               items={items}
               odd={odd}
               project={project}

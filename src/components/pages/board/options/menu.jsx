@@ -58,15 +58,14 @@ const ContextMenuComponent = React.memo(() => {
   const classes = useStyles({ theme });
 
   const { id } = useParams();
-  const project = useSelector(state => selectProject(state, id));
-  const { isFavorite } = project;
+  const { isFavorite } = useSelector(state => selectProject(state, id));
 
   const history = useHistory();
   const dispatch = useDispatch();
   const onDelete = useCallback(() => {
     dispatch(deleteProject({ project: id }));
     history.replace('/home');
-  }, [id, dispatch, history]);
+  }, [dispatch, id, history]);
 
   const onToggleFavorite = useCallback(() => {
     dispatch(toggleFavorite({ project: id }));

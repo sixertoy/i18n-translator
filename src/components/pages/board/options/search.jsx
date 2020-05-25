@@ -5,8 +5,6 @@ import {
 } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { USE_SEARCH, USE_SORT } from '../../../../features.json';
-
 const useStyles = createUseStyles({
   filter: {
     composes: ['fs24', 'ml12'],
@@ -39,21 +37,13 @@ const SearchComponent = React.memo(() => {
 
   return (
     <div className={classes.search}>
-      {USE_SEARCH && (
-        <div className={classes.wrapper}>
-          <input
-            className={classes.input}
-            placeholder="Rechercher"
-            type="text"
-          />
-          <SearchIcon className={classes.icon} />
-        </div>
-      )}
-      {USE_SORT && (
-        <button className={classes.filter} type="button" onClick={() => {}}>
-          <SortIcon className={classes.icon} />
-        </button>
-      )}
+      <div className={classes.wrapper}>
+        <input className={classes.input} placeholder="Rechercher" type="text" />
+        <SearchIcon className={classes.icon} />
+      </div>
+      <button className={classes.filter} type="button" onClick={() => {}}>
+        <SortIcon className={classes.icon} />
+      </button>
     </div>
   );
 });

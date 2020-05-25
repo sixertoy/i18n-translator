@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AiOutlineClose as ClearIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -31,26 +31,15 @@ const KeyCellComponent = React.memo(
   ({ items, odd, project, tabIndex, value }) => {
     const theme = useTheme();
     const classes = useStyles({ theme });
+
     const [error, setError] = useState(false);
-    const [content, setContent] = useState(value);
+    const [content, setContent] = useState('');
     const tableClasses = useTableStyles({ primary: true, theme });
 
     const dispatch = useDispatch();
     const onDeleteKey = useCallback(() => {
       dispatch(deleteKey({ key: value, project }));
     }, [dispatch, value, project]);
-
-    const onInputChange = useCallback(
-      evt => {
-        evt.preventDefault();
-        const update = evt.target.value;
-        const isEmpty = checkIfIsEmpty(update);
-        const isDuplicate = checkIfIsDuplicated(update, value, items);
-        setError(isEmpty || isDuplicate);
-        setContent(update);
-      },
-      [items, value]
-    );
 
     const onInputBlur = useCallback(
       evt => {
@@ -81,6 +70,19 @@ const KeyCellComponent = React.memo(
       },
       [dispatch, items, project, value]
     );
+
+    const onInputChange = useCallback(evt => {
+      evt.preventDefault();
+      const update = evt.target.value;
+      // const isEmpty = checkIfIsEmpty(update);
+      // const isDuplicate = checkIfIsDuplicated(update, value, items);
+      setContent(update);
+      // setError(isEmpty || isDuplicate);
+    }, []);
+
+    useEffect(() => {
+      setContent(value);
+    }, [value]);
 
     const scrollId = `scroll::${value}`;
     return (

@@ -22,13 +22,13 @@ const useStyles = createUseStyles({
   name: {},
 });
 
-const ProjectItemComponent = React.memo(({ data }) => {
+const ProjectItemComponent = React.memo(({ data, onClick }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const url = `/board/${data.id}`;
   return (
     <li className={classes.item}>
-      <Link className={classes.link} to={url}>
+      <Link className={classes.link} to={url} onClick={onClick}>
         <div className={classes.name}>{data.name}</div>
       </Link>
     </li>
@@ -42,6 +42,7 @@ ProjectItemComponent.propTypes = {
     langs: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ProjectItemComponent;

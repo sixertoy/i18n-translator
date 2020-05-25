@@ -23,9 +23,9 @@ const ProjectsButtonComponent = React.memo(() => {
   const { closeTooltipHandler, onCreateHandler } = useTooltip();
   return (
     <Tooltip
-      // useHover
+      useHover
       className={classes.tooltip}
-      component={<Menu onItemClick={closeTooltipHandler} />}
+      component={<Menu onClick={closeTooltipHandler} />}
       offset={[-41, 12]}
       placement="bottom-start"
       theme="material"

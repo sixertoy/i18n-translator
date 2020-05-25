@@ -34,8 +34,8 @@ const ValueCellComponent = React.memo(
     const onInputBlur = useCallback(
       evt => {
         evt.preventDefault();
-        const next = { key: id, lang, project, value: content };
-        dispatch(updateTranslation(next));
+        const update = { key: id, lang, project, value: content };
+        dispatch(updateTranslation(update));
       },
       [id, lang, project, content, dispatch]
     );
@@ -45,8 +45,8 @@ const ValueCellComponent = React.memo(
         const code = evt.keyCode;
         const isEnterKey = code === KEY_CODE_ENTER;
         if (!isEnterKey) return;
-        const next = { key: id, lang, project, value: content };
-        dispatch(updateTranslation(next));
+        const update = { key: id, lang, project, value: content };
+        dispatch(updateTranslation(update));
       },
       [id, lang, project, content, dispatch]
     );

@@ -21,6 +21,9 @@ const sortByKeyAsc = (a, b) => {
   return 0;
 };
 
+const valuesToPairs = translations =>
+  Object.entries(translations).sort(sortByKeyAsc);
+
 const ValuesColumnComponent = React.memo(
   ({
     clearable,
@@ -35,7 +38,7 @@ const ValuesColumnComponent = React.memo(
     const theme = useTheme();
     const classes = useStyles({ theme });
     const tableClasses = useTableStyles({ primary: false, theme });
-    const entries = Object.entries(translations).sort(sortByKeyAsc);
+    const pairs = valuesToPairs(translations);
 
     return (
       <div className={classnames(classes.column, tableClasses.column)}>
@@ -48,7 +51,7 @@ const ValuesColumnComponent = React.memo(
           percentage={percentage}
           project={project}
         />
-        {entries.map(([key, value], index) => {
+        {pairs.map(([key, value], index) => {
           const tabIndex = index + 1;
           const odd = Boolean(index % 2);
           return (

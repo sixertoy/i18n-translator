@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import {
   AiFillPushpin as PinOnIcon,
@@ -37,7 +38,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const ProjectsComponent = React.memo(() => {
+const ProjectsComponent = React.memo(({ onClick }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const recents = useSelector(selectRecents);
@@ -53,10 +54,20 @@ const ProjectsComponent = React.memo(() => {
       <div className={classes.lists}>
         {noItems && <Blank />}
         {showFavorites && (
-          <List icon={PinOnIcon} items={favorites} label="Épinglés" />
+          <List
+            icon={PinOnIcon}
+            items={favorites}
+            label="Épinglés"
+            onClick={onClick}
+          />
         )}
         {showRecents && (
-          <List icon={ClockIcon} items={recents} label="Récemment consultés" />
+          <List
+            icon={ClockIcon}
+            items={recents}
+            label="Récemment consultés"
+            onClick={onClick}
+          />
         )}
       </div>
       <div className={classes.bottom}>
@@ -71,5 +82,9 @@ const ProjectsComponent = React.memo(() => {
     </div>
   );
 });
+
+ProjectsComponent.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default ProjectsComponent;

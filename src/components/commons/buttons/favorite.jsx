@@ -19,25 +19,27 @@ const useStyles = createUseStyles({
   },
 });
 
-const FavoriteButtonComponent = React.memo(({ className, id, isFavorite }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
-  const dispatch = useDispatch();
+const FavoriteButtonComponent = React.memo(
+  ({ className, id: project, isFavorite }) => {
+    const theme = useTheme();
+    const classes = useStyles({ theme });
+    const dispatch = useDispatch();
 
-  const onToggleFavorite = useCallback(() => {
-    dispatch(toggleFavorite({ project: id }));
-  }, [dispatch, id]);
+    const onToggleFavorite = useCallback(() => {
+      dispatch(toggleFavorite({ project }));
+    }, [dispatch, project]);
 
-  return (
-    <button
-      className={classnames(classes.button, className)}
-      type="button"
-      onClick={onToggleFavorite}>
-      {!isFavorite && <PinOffIcon className={classes.icon} />}
-      {isFavorite && <PinOnIcon className={classes.icon} />}
-    </button>
-  );
-});
+    return (
+      <button
+        className={classnames(classes.button, className)}
+        type="button"
+        onClick={onToggleFavorite}>
+        {!isFavorite && <PinOffIcon className={classes.icon} />}
+        {isFavorite && <PinOnIcon className={classes.icon} />}
+      </button>
+    );
+  }
+);
 
 FavoriteButtonComponent.defaultProps = {
   className: '',

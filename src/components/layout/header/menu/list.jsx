@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const ListComponent = React.memo(({ icon: Icon, items, label }) => {
+const ListComponent = React.memo(({ icon: Icon, items, label, onClick }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -38,7 +38,7 @@ const ListComponent = React.memo(({ icon: Icon, items, label }) => {
         </h6>
         <ul className={classes.list}>
           {items.map(obj => (
-            <Item key={obj.id} data={obj} />
+            <Item key={obj.id} data={obj} onClick={onClick} />
           ))}
         </ul>
       </div>
@@ -50,6 +50,7 @@ ListComponent.propTypes = {
   icon: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ListComponent;

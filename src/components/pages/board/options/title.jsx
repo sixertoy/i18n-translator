@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -45,30 +45,28 @@ const useStyles = createUseStyles({
   wrapper: {
     display: 'inline-block',
     width: 'auto',
-    // maxWidth: '65%',
-    // minWidth: '65%',
-    // width: '65%',
   },
 });
 
 const InfosComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const [content, setContent] = useState('');
 
   const { id } = useParams();
-  const dispatch = useDispatch();
   const project = useSelector(state => selectProject(state, id));
   const { overall } = useSelector(state => selectPercentages(state, id));
   const { isFavorite, name } = project;
 
+  const dispatch = useDispatch();
   const onInputBlur = useCallback(
     evt => {
       evt.preventDefault();
-      const { value } = evt.target;
-      const empty = !value || value.trim() === '';
+      const update = evt.target.value;
+      const empty = !update || update.trim() === '';
       // NOTE doit renvoyer une info bulle d'erreur
       if (empty) return;
-      dispatch(updateProjectName({ name: value, project: id }));
+      dispatch(updateProjectName({ name: update, project: id }));
     },
     [dispatch, id]
   );
@@ -78,14 +76,24 @@ const InfosComponent = React.memo(() => {
       const code = evt.keyCode;
       const isEnterKey = code === KEY_CODE_ENTER;
       if (!isEnterKey) return;
-      const { value } = evt.target;
-      const empty = !value || value.trim() === '';
+      const update = evt.target.value;
+      const empty = !update || update.trim() === '';
       // NOTE doit renvoyer une info bulle d'erreur
       if (empty) return;
-      dispatch(updateProjectName({ name: value, project: id }));
+      dispatch(updateProjectName({ name: update, project: id }));
     },
     [dispatch, id]
   );
+
+  const onInputChange = useCallback(evt => {
+    evt.preventDefault();
+    const update = evt.target.value;
+    setContent(update);
+  }, []);
+
+  useEffect(() => {
+    setContent(name);
+  }, [name]);
 
   return (
     <div className={classes.infos}>
@@ -98,9 +106,10 @@ const InfosComponent = React.memo(() => {
         <div className={classes.wrapper}>
           <input
             className={classes.input}
-            defaultValue={name}
             type="text"
+            value={content}
             onBlur={onInputBlur}
+            onChange={onInputChange}
             onKeyDown={onKeyDown}
           />
         </div>

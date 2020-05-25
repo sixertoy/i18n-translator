@@ -3,6 +3,7 @@ import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import { px, rgba } from '../../../../core/utils';
+import { USE_SEARCH } from '../../../../features.json';
 import Tooltip from '../../../commons/tooltip';
 import ContextMenu from './menu';
 import Search from './search';
@@ -36,12 +37,11 @@ const useStyles = createUseStyles({
 const OptionsComponent = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-
   return (
     <div className={classes.container} id="board-options">
       <div className={classes.layer}>
         <Title />
-        <Search />
+        {USE_SEARCH && <Search />}
         <div>
           <Tooltip useHover component={<ContextMenu />} theme="material">
             <div className={classes.button}>
