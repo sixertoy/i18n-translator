@@ -19,9 +19,9 @@ import {
 import { selectProject } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
-  button: ({ theme }) => ({
+  button: {
     borderRadius: 0,
-    color: theme.colors.white,
+    color: '#909192',
     composes: [
       'is-block',
       'no-background',
@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
     ],
     height: 40,
     width: '100%',
-  }),
+  },
   container: {
     maxWidth: 170,
     minWidth: 170,
@@ -41,13 +41,13 @@ const useStyles = createUseStyles({
     color: theme.colors.danger,
     fontWeight: 'bold',
   }),
-  splitter: ({ theme }) => ({
-    background: theme.colors.white,
+  splitter: {
+    background: '#909192',
     border: 0,
     composes: ['is-block'],
     height: 1,
     opacity: 0.15,
-  }),
+  },
   warning: ({ theme }) => ({
     color: theme.colors.warning,
   }),

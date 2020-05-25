@@ -33,7 +33,9 @@ const useStyles = createUseStyles({
     width: '100%',
   }),
   percentage: ({ theme }) => ({
-    '& .progress-thumb': { background: theme.colors.grey },
+    '& .progress-thumb': {
+      background: '#362760',
+    },
     '& .progress-track': { background: rgba(theme.colors.white, 0.15) },
     maxWidth: '65%',
     minWidth: '65%',

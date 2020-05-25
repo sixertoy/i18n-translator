@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import {
-  AiOutlineCopy as CloneIcon,
   AiOutlineFullscreen as ExpandIcon,
   AiOutlineShrink as ShrinkIcon,
 } from 'react-icons/ai';
@@ -32,19 +31,19 @@ const useStyles = createUseStyles({
   }),
   container: {
     composes: ['flex-columns', 'flex-between', 'items-center', 'p7'],
-    width: 175,
+    width: 135,
   },
   danger: ({ theme }) => ({
     color: theme.colors.danger,
     composes: ['is-bold'],
   }),
-  splitter: ({ theme }) => ({
-    background: theme.colors.white,
+  splitter: {
+    background: '#909192',
     border: 0,
     composes: ['is-block'],
     height: 1,
     opacity: 0.15,
-  }),
+  },
   warning: ({ theme }) => ({
     color: theme.colors.warning,
   }),
@@ -56,10 +55,6 @@ const ContextMenuComponent = React.memo(
     const classes = useStyles({ theme });
 
     const dispatch = useDispatch();
-    const onCloneLanguage = useCallback(() => {
-      // dispatch(cloneLanguage(lang));
-    }, []);
-
     const onClearLanguage = useCallback(() => {
       dispatch(clearLanguage({ lang, project }));
     }, [dispatch, lang, project]);
@@ -86,12 +81,6 @@ const ContextMenuComponent = React.memo(
           type="button"
           onClick={onClearLanguage}>
           <SwipeIcon />
-        </button>
-        <button
-          className={classes.button}
-          type="button"
-          onClick={onCloneLanguage}>
-          <CloneIcon />
         </button>
         <button
           className={classes.button}

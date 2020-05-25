@@ -1,8 +1,8 @@
 import React from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
-import { px, rgba } from '../../../../core/utils';
+import { px } from '../../../../core/utils';
 import { USE_SEARCH } from '../../../../features.json';
 import Tooltip from '../../../commons/tooltip';
 import ContextMenu from './menu';
@@ -10,40 +10,38 @@ import Search from './search';
 import Title from './title';
 
 const useStyles = createUseStyles({
-  button: ({ theme }) => ({
-    background: rgba(theme.colors.white, 0.1),
+  button: {
+    background: '#1D1D1D',
     borderRadius: 20,
-    color: theme.colors.white,
+    color: '#FFFFFF',
     composes: ['text-center', 'use-pointer', 'fs24'],
     height: 40,
     lineHeight: px(37),
     width: 40,
-  }),
-  container: ({ theme }) => ({
-    background: theme.colors.black,
+  },
+  container: {
     height: 112,
     maxHeight: 112,
     minHeight: 112,
-  }),
-  layer: ({ theme }) => ({
-    background: rgba(theme.colors.white, 0.01),
-    color: theme.colors.white,
+  },
+  layer: {
+    background: '#030303',
+    color: '#FFFFFF',
     composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
     height: '100%',
     width: '100%',
-  }),
+  },
 });
 
 const OptionsComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <div className={classes.container} id="board-options">
       <div className={classes.layer}>
         <Title />
         {USE_SEARCH && <Search />}
         <div>
-          <Tooltip useHover component={<ContextMenu />} theme="material">
+          <Tooltip useHover component={<ContextMenu />} theme="light">
             <div className={classes.button}>
               <ContextIcon />
             </div>

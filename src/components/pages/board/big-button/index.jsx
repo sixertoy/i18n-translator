@@ -13,16 +13,16 @@ const useStyles = createUseStyles({
     composes: ['is-absolute'],
     right: 24,
   },
-  button: ({ theme }) => ({
-    background: theme.colors.black,
+  button: {
+    background: 'linear-gradient(60deg, #EE256B 0%, #FD7822 100%)',
     borderRadius: 28,
-    color: theme.colors.white,
+    color: '#FFFFFF',
     composes: ['text-center', 'use-pointer'],
     fontSize: '2.2rem',
     height: 56,
     lineHeight: px(51),
     width: 56,
-  }),
+  },
   icon: {},
 });
 

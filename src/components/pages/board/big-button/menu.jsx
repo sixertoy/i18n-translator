@@ -69,7 +69,7 @@ const ContextMenuComponent = React.memo(({ scrollTo }) => {
   return (
     <div className={classes.container}>
       <button className={classes.button} type="button" onClick={onExport}>
-        <span>Exporter</span>
+        <strong>Exporter</strong>
         <ExportIcon className={classes.icon} />
       </button>
       <hr className={classes.splitter} />

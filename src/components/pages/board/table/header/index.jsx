@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
   }),
   percentage: {
     '& .progress-thumb': {
-      background: 'linear-gradient(0deg, #EE256B 0%, #FD7822 100%)',
+      background: 'linear-gradient(90deg, #EE256B 0%, #FD7822 100%)',
     },
     '& .progress-track': { background: '#EAEAEA' },
     marginTop: 3,
