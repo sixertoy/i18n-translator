@@ -10,6 +10,11 @@ import FavoriteButton from '../../../commons/buttons/favorite';
 import PercentageBar from '../../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
+  favorite: {
+    '&:hover': { background: 'hsla(0, 0%, 100%, 0.1)' },
+    background: 'hsla(0, 0%, 100%, 0.06)',
+    composes: ['mr7'],
+  },
   infos: {
     composes: ['flex-1'],
   },
@@ -23,10 +28,8 @@ const useStyles = createUseStyles({
     color: theme.colors.white,
     composes: ['is-bold', 'py7'],
     fontSize: '1.6rem',
-    maxWidth: '65%',
-    minWidth: '65%',
     transition: 'color 0.5s, background 0.2s, padding-left 0.5s',
-    width: '65%',
+    width: '100%',
   }),
   percentage: ({ theme }) => ({
     '& .progress-thumb': { background: theme.colors.grey },
@@ -35,7 +38,16 @@ const useStyles = createUseStyles({
     minWidth: '65%',
     width: '65%',
   }),
-  title: {},
+  title: {
+    composes: ['flex-columns', 'flex-start', 'items-center'],
+  },
+  wrapper: {
+    display: 'inline-block',
+    width: 'auto',
+    // maxWidth: '65%',
+    // minWidth: '65%',
+    // width: '65%',
+  },
 });
 
 const InfosComponent = React.memo(() => {
@@ -63,13 +75,19 @@ const InfosComponent = React.memo(() => {
   return (
     <div className={classes.infos}>
       <div className={classes.title}>
-        <FavoriteButton id={id} isFavorite={isFavorite} />
-        <input
-          className={classes.input}
-          defaultValue={name}
-          type="text"
-          onBlur={onTitleUpdate}
+        <FavoriteButton
+          className={classes.favorite}
+          id={id}
+          isFavorite={isFavorite}
         />
+        <div className={classes.wrapper}>
+          <input
+            className={classes.input}
+            defaultValue={name}
+            type="text"
+            onBlur={onTitleUpdate}
+          />
+        </div>
       </div>
       <PercentageBar
         showPercent
