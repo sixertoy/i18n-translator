@@ -71,14 +71,17 @@ const KeyCellComponent = React.memo(
       [dispatch, items, project, value]
     );
 
-    const onInputChange = useCallback(evt => {
-      evt.preventDefault();
-      const update = evt.target.value;
-      // const isEmpty = checkIfIsEmpty(update);
-      // const isDuplicate = checkIfIsDuplicated(update, value, items);
-      setContent(update);
-      // setError(isEmpty || isDuplicate);
-    }, []);
+    const onInputChange = useCallback(
+      evt => {
+        evt.preventDefault();
+        const update = evt.target.value;
+        const isEmpty = checkIfIsEmpty(update);
+        const isDuplicate = checkIfIsDuplicated(update, value, items);
+        setContent(update);
+        setError(isEmpty || isDuplicate);
+      },
+      [items, value]
+    );
 
     useEffect(() => {
       setContent(value);

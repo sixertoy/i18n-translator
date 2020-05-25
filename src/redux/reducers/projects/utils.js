@@ -1,3 +1,3 @@
 export const updateTime = obj => ({ ...obj, mtime: Date.now() });
 
-export const checkIsProject = (project, obj) => obj.id === project;
+export const checkIsProject = (obj, project) => obj.id === project;

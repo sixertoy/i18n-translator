@@ -3,7 +3,7 @@ import { checkIsProject, updateTime } from './utils';
 function updateProjectName(state, action) {
   const { name, project } = action;
   const nextState = state.reduce((acc, obj) => {
-    const isProject = checkIsProject(project, obj);
+    const isProject = checkIsProject(obj, project);
     if (!isProject) return [...acc, obj];
 
     const update = updateTime(obj);

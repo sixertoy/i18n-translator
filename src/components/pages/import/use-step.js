@@ -13,16 +13,16 @@ const useStep = current => {
 
   const onCommitDraft = useCallback(() => {
     dispatch(commitDraftAsync(draft)).then(() => {
-      const next = `/board/${draft.id}`;
-      history.replace(next);
+      const url = `/board/${id}`;
+      history.replace(url);
     });
-  }, [dispatch, draft, history]);
+  }, [dispatch, draft, history, id]);
 
   const onStepChange = useCallback(
     obj => {
       dispatch(updateDraft(obj));
-      const next = `/import/${id}/step/${current + 1}`;
-      history.push(next);
+      const url = `/import/${id}/step/${current + 1}`;
+      history.push(url);
     },
     [id, current, dispatch, history]
   );
