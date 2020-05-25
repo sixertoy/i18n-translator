@@ -1,5 +1,6 @@
 import { EVENT_TYPES } from '../../../constants';
 import addLanguage from './add-language';
+import cloneProject from './clone-project';
 import createKey from './create-key';
 import createProject from './create-project';
 import deleteKey from './delete-key';
@@ -12,6 +13,8 @@ const keys = (state = {}, action) => {
       return addLanguage(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_CREATE:
       return createKey(state, action);
+    case EVENT_TYPES.PROJECT_CLONE:
+      return cloneProject(state, action);
     case EVENT_TYPES.PROJECT_CREATE:
       return createProject(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_DELETE:

@@ -13,6 +13,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { SwipeIcon } from '../../../../assets/icons';
 import {
   clearProject,
+  cloneProject,
   deleteProject,
   toggleFavorite,
 } from '../../../../redux/actions';
@@ -75,7 +76,12 @@ const ContextMenuComponent = React.memo(() => {
     dispatch(clearProject({ project: id }));
   }, [dispatch, id]);
 
-  const onCloneProject = useCallback(() => {}, []);
+  const onCloneProject = useCallback(() => {
+    dispatch(cloneProject({ project: id })).then(project => {
+      const url = `/board/${project}`;
+      history.push(url);
+    });
+  }, [dispatch, history, id]);
 
   return (
     <div className={classes.container}>

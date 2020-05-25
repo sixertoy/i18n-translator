@@ -10,9 +10,9 @@ const createProject = (state, action) => {
   const { draft, json } = action;
   const lang = getLanguage(draft);
   const project = getProject(draft);
-  const next = { lang, project, translations: json };
-  const nextState = hydrate(model, draft, next);
-  return [...state, nextState];
+  const update = { lang, project, translations: json };
+  const next = hydrate(model, draft, update);
+  return [...state, next];
 };
 
 export default createProject;

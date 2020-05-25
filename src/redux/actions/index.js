@@ -1,5 +1,6 @@
 export { default as clearLanguage } from './clear-language';
 export { default as clearProject } from './clear-project';
+export { default as cloneProject } from './clone-project';
 export { default as createDraftAsync } from './create-draft';
 export { default as commitDraftAsync } from './commit-draft';
 export { default as createKeyAsync } from './create-key';

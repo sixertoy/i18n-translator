@@ -44,6 +44,7 @@ export const EVENT_TYPES = {
   LOADING_COMPLETE: 'onLoadingComplete',
   LOADING_START: 'onLoadingStart',
   PROJECT_CLEAR: 'onProjectClear',
+  PROJECT_CLONE: 'onProjectClone',
   PROJECT_CREATE: 'onProjectCreate',
   PROJECT_DELETE: 'onProjectDelete',
   PROJECT_NAME_UPDATE: 'onProjectNameUpdate',
