@@ -1,8 +1,13 @@
 export const updateTime = obj => ({ ...obj, mtime: Date.now() });
 
-export const checkIsLanguage = (obj, lang, project) => {
+export const checkIsProject = (obj, id) => {
+  const isProject = obj.project === id;
+  return isProject;
+};
+
+export const checkIsLanguage = (obj, lang, id) => {
   const isLanguage = obj.lang === lang;
-  const isProject = obj.project === project;
+  const isProject = checkIsProject(obj, id);
   const shouldUpdate = isProject && isLanguage;
   return shouldUpdate;
 };

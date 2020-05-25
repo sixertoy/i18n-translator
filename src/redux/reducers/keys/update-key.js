@@ -1,10 +1,18 @@
 import get from 'lodash.get';
 
+const getProjectKeys = (state, id) => get(state, id);
+
+const replaceKey = (keys, values) => {
+  const [previousValue, updateValue] = values;
+  const next = keys.map(key => (key !== previousValue ? key : updateValue));
+  return next;
+};
+
 function updateKey(state, action) {
-  const { previous, project, update } = action;
-  const keys = get(state, project);
-  const next = keys.map(v => (v !== previous ? v : update));
-  return { ...state, [project]: next };
+  const { project, values } = action;
+  const keys = getProjectKeys(state, project);
+  const update = replaceKey(keys, values);
+  return { ...state, [project]: update };
 }
 
 export default updateKey;
