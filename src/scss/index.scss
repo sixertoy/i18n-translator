@@ -2,10 +2,9 @@
 @import '~@nappr/nappr-styles/styles.scss';
 @import 'html';
 @import 'shadows';
-@import 'fontello';
-@import 'toastify';
 @import 'scrollbars';
-@import 'animated/';
+@import './vendors/';
+@import './animated/';
 
 * {
   outline: none;
@@ -26,14 +25,6 @@
 
 .is-medium {
   font-weight: 500;
-}
-
-.ace_scrollbar.ace_scrollbar-h {
-  overflow-x: hidden !important;
-}
-
-.ace_scroller.ace_scroll-left {
-  box-shadow: none !important;
 }
 
 #root {

@@ -5,6 +5,7 @@ import { IoMdKey as KeyIcon } from 'react-icons/io';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { LanguageIcon } from '../../../../assets/icons';
 import { createKeyAsync, hydrateDraftAsync } from '../../../../redux/actions';
@@ -62,6 +63,7 @@ const ContextMenuComponent = React.memo(({ scrollTo }) => {
 
   const onAddPrimaryKey = useCallback(() => {
     dispatch(createKeyAsync({ project: id })).then(key => {
+      toast.success('Ajouté');
       scrollTo(key);
     });
   }, [id, scrollTo, dispatch]);

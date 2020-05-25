@@ -9,6 +9,7 @@ import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { SwipeIcon } from '../../../../assets/icons';
 import {
@@ -78,6 +79,7 @@ const ContextMenuComponent = React.memo(() => {
 
   const onCloneProject = useCallback(() => {
     dispatch(cloneProject({ project: id })).then(project => {
+      toast.success('Copié');
       const url = `/board/${project}`;
       history.push(url);
     });

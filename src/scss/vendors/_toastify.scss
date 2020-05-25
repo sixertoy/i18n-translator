@@ -36,11 +36,12 @@
 }
 
 .Toastify__toast--error {
+  min-width: 135px;
   color: #7A1200;
   background-color: #E89D96;
 
   &::before {
-    color: #F2C8C4;
+    color: #E89D96;
     content: '\61';
     font-family: 'fontello', serif;
     background-color: #D13B2E;
@@ -49,6 +50,23 @@
 
 .Toastify__close-button--error {
   color: #8B5E5A;
+}
+
+.Toastify__toast--success {
+  min-width: 135px;
+  color: #077829;
+  background-color: #7EF582;
+
+  &::before {
+    color: #7EF582;
+    content: '\E800';
+    font-family: 'fontello', serif;
+    background-color: #077829;
+  }
+}
+
+.Toastify__close-button--success {
+  color: #007D69;
 }
 
 @keyframes Toastify__custom-flipIn {
