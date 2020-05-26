@@ -18,6 +18,7 @@ import ValuesColumn from './values-col';
 const useStyles = createUseStyles({
   columns: {
     composes: ['flex-columns', 'flex-start', 'is-relative'],
+    minWidth: '100%',
     paddingBottom: 80,
   },
   table: {

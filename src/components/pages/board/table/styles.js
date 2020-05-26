@@ -25,7 +25,7 @@ const useTableStyles = createUseStyles({
       width: '0%',
     },
     opacity: 1,
-    overflow: 'hidden',
+    // overflow: 'hidden',
     scaleX: 1,
     transition: 'width 0.3s, opacity 0.3s',
     width: primary ? PRIMARY_COL_WIDTH : COL_WIDTH,

@@ -1,9 +1,13 @@
+import classnames from 'classnames';
 import React from 'react';
 import { AiOutlineEllipsis as ContextIcon } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { px } from '../../../../core/utils';
 import { USE_SEARCH } from '../../../../features.json';
+import { selectLanguages } from '../../../../redux/selectors';
 import Tooltip from '../../../commons/tooltip';
 import ContextMenu from './menu';
 import Search from './search';
@@ -20,9 +24,13 @@ const useStyles = createUseStyles({
     width: 40,
   },
   container: {
+    '&.mini': { marginTop: -112 },
     height: 112,
+    marginTop: 0,
     maxHeight: 112,
     minHeight: 112,
+    transition: 'margin-top 0.3s',
+    zIndex: 10,
   },
   layer: {
     background: '#030303',
@@ -35,8 +43,11 @@ const useStyles = createUseStyles({
 
 const OptionsComponent = React.memo(() => {
   const classes = useStyles();
+  const { id } = useParams();
+  const languages = useSelector(state => selectLanguages(state, id));
+  const mini = Boolean(languages.find(obj => obj.fullscreen));
   return (
-    <div className={classes.container} id="board-options">
+    <div className={classnames(classes.container, { mini })} id="board-options">
       <div className={classes.layer}>
         <Title />
         {USE_SEARCH && <Search />}
