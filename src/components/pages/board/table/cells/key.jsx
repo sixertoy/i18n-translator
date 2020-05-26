@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
   button: ({ theme }) => ({
     '&:hover': { color: theme.colors.danger },
     background: 'transparent',
-    color: rgba(theme.colors.black, 0.25),
+    color: rgba('#000000', 0.25),
     composes: ['pr7', 'pl5', 'is-full-height', 'is-block', 'fs12'],
     transition: 'color 0.5s',
   }),

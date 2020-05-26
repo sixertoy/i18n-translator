@@ -4,7 +4,7 @@ export const useButtonStyles = createUseStyles({
   btn: ({ theme }) => ({
     '&:disabled': { cursor: 'not-allowed', opacity: 0.45 },
     '&:hover': { background: '#EB7392' },
-    background: theme.colors.black,
+    background: '#000000',
     borderRadius: theme.radius.small,
     color: theme.colors.white,
     composes: ['is-block', 'fs18', 'py12', 'px24'],

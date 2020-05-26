@@ -2,7 +2,7 @@ import { createUseStyles } from 'react-jss';
 
 export const useStepStyles = createUseStyles({
   field: ({ theme }) => ({
-    borderColor: theme.colors.black,
+    borderColor: '#000000',
     borderRadius: theme.radius.small,
     borderStyle: 'solid',
     borderWidth: 1,

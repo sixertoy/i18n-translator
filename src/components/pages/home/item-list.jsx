@@ -25,9 +25,6 @@ const useStyles = createUseStyles({
     },
     wrapper: { height: 'auto' },
   },
-  [`@media (min-width: ${861}px)`]: {
-    link: { fontSize: 16 },
-  },
 });
 
 const ProjectItemComponent = React.memo(({ data }) => {

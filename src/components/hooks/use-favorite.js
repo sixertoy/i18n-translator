@@ -1,20 +1,22 @@
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { toggleFavorite } from '../../redux/actions';
+import { selectProject } from '../../redux/selectors';
 
-const useFavorite = id => {
+const useFavorite = project => {
+  const { isFavorite } = useSelector(state => selectProject(state, project));
+
   const dispatch = useDispatch();
-
   const onToggleFavorite = useCallback(
     evt => {
       evt.preventDefault();
-      dispatch(toggleFavorite({ project: id }));
+      dispatch(toggleFavorite({ project }));
     },
-    [dispatch, id]
+    [dispatch, project]
   );
 
-  return onToggleFavorite;
+  return { isFavorite, onToggleFavorite };
 };
 
 export default useFavorite;

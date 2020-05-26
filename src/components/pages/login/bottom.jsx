@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   container: ({ theme }) => ({
-    borderTopColor: theme.colors.black,
+    borderTopColor: '#000000',
     borderTopStyle: 'solid',
     borderTopWidth: 1,
     composes: ['pt24', 'mt32'],

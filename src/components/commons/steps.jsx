@@ -15,9 +15,9 @@ const useStyles = createUseStyles({
     lineHeight: px(28),
   },
   itemCircle: ({ theme }) => ({
-    '.active &': { background: theme.colors.black, color: theme.colors.white },
+    '.active &': { background: '#000000', color: '#FFFFFF' },
     background: 'transparent',
-    border: `1px solid ${theme.colors.black}`,
+    border: `1px solid ${'#000000'}`,
     borderRadius: '100%',
     color: '#000000',
     composes: ['fs10', 'mr5', 'is-inline-block', 'text-center'],
@@ -25,9 +25,9 @@ const useStyles = createUseStyles({
     lineHeight: px(28),
     width: 28,
   }),
-  itemLabel: ({ theme }) => ({
+  itemLabel: {
     '&:after': {
-      background: theme.colors.black,
+      background: '#000000',
       content: '""',
       height: 1,
       left: '100%',
@@ -36,9 +36,9 @@ const useStyles = createUseStyles({
       top: 16,
       width: '9999px',
     },
-    color: theme.colors.black,
+    color: '#000000',
     composes: ['fs16', 'is-inline-block', 'is-relative', 'pr7'],
-  }),
+  },
   items: {
     composes: ['flex-columns', 'flex-between', 'items-center'],
   },

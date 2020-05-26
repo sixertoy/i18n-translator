@@ -11,7 +11,7 @@ import { selectSubscribingEmail } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: ({ theme }) => ({
-    background: theme.colors.black,
+    background: '#000000',
     color: '#FFFFFF',
     composes: ['is-block', 'rnd3', 'px7', 'py12', 'fs16', 'mt7'],
     width: '100%',
@@ -19,10 +19,10 @@ const useStyles = createUseStyles({
   form: {},
   input: ({ theme }) => ({
     '&::placeholder': { opacity: 0.25 },
-    borderColor: theme.colors.black,
+    borderColor: '#000000',
     borderStyle: 'solid',
     borderWidth: 1,
-    color: theme.colors.black,
+    color: '#000000',
     composes: ['is-block', 'rnd3', 'px7', 'py12', 'fs16'],
     width: '100%',
   }),

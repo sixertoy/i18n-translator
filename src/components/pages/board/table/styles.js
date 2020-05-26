@@ -46,7 +46,7 @@ const useTableStyles = createUseStyles({
     '&.error::placeholder': { color: '#FFFFFF' },
     '&::placeholder': { fontSize: 12, opacity: 0.35 },
     '&:focus:not(.error)': {
-      background: rgba(theme.colors.black, 0.05),
+      background: rgba('#000000', 0.05),
       color: rgba(theme.table.font, 0.85),
       paddingLeft: 7,
     },

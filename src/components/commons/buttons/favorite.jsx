@@ -1,12 +1,10 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { AiTwotonePushpin as PinIcon } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { toggleFavorite } from '../../../redux/actions';
-import { selectProject } from '../../../redux/selectors';
+import { useFavorite } from '../../hooks';
 
 const useStyles = createUseStyles({
   button: {
@@ -31,13 +29,7 @@ const useStyles = createUseStyles({
 
 const FavoriteButtonComponent = React.memo(({ className, project }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
-  const { isFavorite } = useSelector(state => selectProject(state, project));
-
-  const onToggleFavorite = useCallback(() => {
-    dispatch(toggleFavorite({ project }));
-  }, [dispatch, project]);
+  const { isFavorite, onToggleFavorite } = useFavorite(project);
 
   return (
     <button

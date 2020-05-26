@@ -25,7 +25,7 @@ const useStyles = createUseStyles({
   },
   menu: {},
   splitter: ({ theme }) => ({
-    background: theme.colors.black,
+    background: '#000000',
     border: 0,
     composes: ['is-block'],
     height: 1,

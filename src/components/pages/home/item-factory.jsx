@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { rgba } from '../../../core/utils';
 import Blank from './blank';
 import Empty from './empty';
 import GridItem from './item-grid';
@@ -12,7 +13,9 @@ const useStyles = createUseStyles({
   title: {
     '& span': { marginLeft: 5, verticalAlign: 'middle' },
     '& svg': { fontSize: '1.15em' },
-    composes: ['is-bold', 'fs16', 'mb16'],
+    color: rgba('#000000', 0.45),
+    composes: ['is-normal', 'fs12', 'mb16', 'is-uppercase'],
+    letterSpacing: '0.075em',
   },
   wrapper: {
     composes: ['flex-columns', 'flex-wrap'],

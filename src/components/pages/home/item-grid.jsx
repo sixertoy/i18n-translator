@@ -16,10 +16,6 @@ const useStyles = createUseStyles({
       minWidth: '32%',
       width: '32%',
     },
-    link: { fontSize: 20 },
-  },
-  [`@media (max-width: ${981}px)`]: {
-    link: { fontSize: 18 },
   },
 });
 

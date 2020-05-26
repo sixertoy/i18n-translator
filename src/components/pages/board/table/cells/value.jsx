@@ -13,7 +13,7 @@ import useTableStyles from '../styles';
 const useStyles = createUseStyles({
   icon: ({ theme }) => ({
     '.notvalid &': { color: theme.colors.danger },
-    color: rgba(theme.colors.black, 0.25),
+    color: rgba('#000000', 0.25),
     composes: ['px12', 'fs12'],
     transition: 'color 0.5s',
   }),

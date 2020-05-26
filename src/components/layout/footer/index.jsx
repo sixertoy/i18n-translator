@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
     color: theme.colors.red,
   }),
   version: ({ theme }) => ({
-    color: rgba(theme.colors.black, 0.35),
+    color: rgba('#000000', 0.35),
   }),
   [`@media (max-width: ${RESPONSIVE_BREAKPOINT}px)`]: {
     version: {
