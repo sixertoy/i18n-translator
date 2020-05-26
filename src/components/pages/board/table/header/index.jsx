@@ -42,7 +42,7 @@ const useStyles = createUseStyles({
 });
 
 const ColumnHeaderComponent = React.memo(
-  ({ clearable, collapsed, depth, label, lang, percentage, project }) => {
+  ({ clearable, depth, fullscreen, label, lang, percentage, project }) => {
     const theme = useTheme();
     const classes = useStyles({ theme });
     const tableClasses = useTableStyles({ depth, theme });
@@ -67,7 +67,7 @@ const ColumnHeaderComponent = React.memo(
             component={
               <Menu
                 clearable={clearable}
-                collapsed={collapsed}
+                fullscreen={fullscreen}
                 lang={lang}
                 project={project}
               />
@@ -87,8 +87,8 @@ const ColumnHeaderComponent = React.memo(
 
 ColumnHeaderComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
-  collapsed: PropTypes.bool.isRequired,
   depth: PropTypes.number.isRequired,
+  fullscreen: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
   percentage: PropTypes.shape({

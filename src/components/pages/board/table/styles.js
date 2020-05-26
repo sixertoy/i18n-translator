@@ -17,9 +17,19 @@ const useTableStyles = createUseStyles({
     padding: 7,
   }),
   column: ({ primary }) => ({
-    maxWidth: primary ? PRIMARY_COL_WIDTH : '65%',
-    minWidth: primary ? PRIMARY_COL_WIDTH : COL_WIDTH,
+    '&.fullscreen': {
+      width: '100%',
+    },
+    '&.hidden': {
+      opacity: 0,
+      width: '0%',
+    },
+    opacity: 1,
+    overflow: 'hidden',
+    scaleX: 1,
+    transition: 'width 0.3s, opacity 0.3s',
     width: primary ? PRIMARY_COL_WIDTH : COL_WIDTH,
+    willChange: 'transform',
     zIndex: primary ? DEPTHS_HEADER + 20 : 'inherit',
   }),
   columns: {

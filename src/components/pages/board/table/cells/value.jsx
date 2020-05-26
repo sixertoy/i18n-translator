@@ -68,19 +68,21 @@ const ValueCellComponent = React.memo(
           notvalid: !value || value === '',
           odd,
         })}>
-        <input
-          className={classnames(classes.input, tableClasses.input)}
-          placeholder="Enter a value"
-          tabIndex={tabIndex}
-          type="text"
-          value={content}
-          onBlur={onInputBlur}
-          onChange={onInputChange}
-          onKeyDown={onKeyDown}
-        />
-        <span className={classes.icon}>
-          <CheckIcon />
-        </span>
+        <React.Fragment>
+          <input
+            className={classnames(classes.input, tableClasses.input)}
+            placeholder="Enter a value"
+            tabIndex={tabIndex}
+            type="text"
+            value={content}
+            onBlur={onInputBlur}
+            onChange={onInputChange}
+            onKeyDown={onKeyDown}
+          />
+          <span className={classes.icon}>
+            <CheckIcon />
+          </span>
+        </React.Fragment>
       </div>
     );
   }

@@ -8,18 +8,9 @@ import createProject from './create-project';
 import deleteKey from './delete-key';
 import deleteLanguage from './delete-language';
 import deleteProject from './delete-project';
+import toggleCollapse from './toggle-collapse';
 import updateKey from './update-key';
 import updateTranslation from './update-translation';
-
-// export function toggleCollapse(state, action) {
-//   const { lang, project } = action;
-//   const next = state.map(obj => {
-//     if (obj.project !== project) return obj;
-//     const collapsed = !obj.collapsed;
-//     return { ...obj, collapsed };
-//   });
-//   return next;
-// }
 
 const languages = (state = [], action) => {
   switch (action.type) {
@@ -41,10 +32,10 @@ const languages = (state = [], action) => {
       return deleteLanguage(state, action);
     case EVENT_TYPES.PROJECT_DELETE:
       return deleteProject(state, action);
+    case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
+      return toggleCollapse(state, action);
     case EVENT_TYPES.LANGUAGE_KEY_UPDATE:
       return updateKey(state, action);
-    // case EVENT_TYPES.LANGUAGE_TOGGLE_COLLAPSE:
-    //   return toggleCollapse(state, action);
     case EVENT_TYPES.LANGUAGE_TRANSLATION_UPDATE:
       return updateTranslation(state, action);
     default:

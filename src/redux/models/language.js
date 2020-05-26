@@ -8,9 +8,9 @@
 // }
 
 const model = {
-  collapsed: false,
   ctime: () => Date.now(),
   fav: false,
+  fullscreen: false,
   label: null,
   lang: null,
   mtime: () => Date.now(),

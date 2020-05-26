@@ -27,8 +27,9 @@ const valuesToPairs = translations =>
 const ValuesColumnComponent = React.memo(
   ({
     clearable,
-    collapsed,
     depth,
+    fullscreen,
+    hidden,
     label,
     lang,
     percentage,
@@ -41,11 +42,15 @@ const ValuesColumnComponent = React.memo(
     const pairs = valuesToPairs(translations);
 
     return (
-      <div className={classnames(classes.column, tableClasses.column)}>
+      <div
+        className={classnames(classes.column, tableClasses.column, {
+          fullscreen,
+          hidden,
+        })}>
         <Header
           clearable={clearable}
-          collapsed={collapsed}
           depth={depth}
+          fullscreen={fullscreen}
           label={label}
           lang={lang}
           percentage={percentage}
@@ -74,8 +79,9 @@ const ValuesColumnComponent = React.memo(
 
 ValuesColumnComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
-  collapsed: PropTypes.bool.isRequired,
   depth: PropTypes.number.isRequired,
+  fullscreen: PropTypes.bool.isRequired,
+  hidden: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
   percentage: PropTypes.shape().isRequired,

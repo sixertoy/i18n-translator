@@ -2,9 +2,9 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
 import {
-  AiOutlineFullscreen as ExpandIcon,
-  AiOutlineShrink as ShrinkIcon,
-} from 'react-icons/ai';
+  GoScreenFull as ExpandIcon,
+  GoScreenNormal as ShrinkIcon,
+} from 'react-icons/go';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
 });
 
 const ContextMenuComponent = React.memo(
-  ({ clearable, collapsed, lang, project }) => {
+  ({ clearable, fullscreen, lang, project }) => {
     const theme = useTheme();
     const classes = useStyles({ theme });
 
@@ -65,7 +65,7 @@ const ContextMenuComponent = React.memo(
 
     const onToggleCollapse = useCallback(() => {
       dispatch(toggleCollapseLanguage({ lang, project }));
-    }, [lang, project, dispatch]);
+    }, [dispatch, lang, project]);
 
     return (
       <div className={classes.container}>
@@ -86,8 +86,8 @@ const ContextMenuComponent = React.memo(
           className={classes.button}
           type="button"
           onClick={onToggleCollapse}>
-          {collapsed && <ExpandIcon />}
-          {!collapsed && <ShrinkIcon />}
+          {fullscreen && <ShrinkIcon />}
+          {!fullscreen && <ExpandIcon />}
         </button>
       </div>
     );
@@ -96,7 +96,7 @@ const ContextMenuComponent = React.memo(
 
 ContextMenuComponent.propTypes = {
   clearable: PropTypes.bool.isRequired,
-  collapsed: PropTypes.bool.isRequired,
+  fullscreen: PropTypes.bool.isRequired,
   lang: PropTypes.string.isRequired,
   project: PropTypes.string.isRequired,
 };
