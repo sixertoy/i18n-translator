@@ -29,12 +29,14 @@ const ValuesColumnComponent = React.memo(({ depth, item, percentage }) => {
   const tableClasses = useTableStyles({ primary: false, theme });
   const useFullscreen = useSelector(state => selectFullscreen(state, project));
 
-  const hidden = false;
+  const hidden = useFullscreen && !fullscreen;
+  const expanded = useFullscreen && fullscreen;
+
   return (
     <div
-      className={classnames(clearable, classes.column, tableClasses.column, {
-        fullscreen: useFullscreen && fullscreen,
-        hidden: useFullscreen && !fullscreen,
+      className={classnames(classes.column, tableClasses.column, {
+        expanded,
+        hidden,
       })}>
       <Header
         clearable={clearable}

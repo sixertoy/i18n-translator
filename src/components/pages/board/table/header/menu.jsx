@@ -18,20 +18,20 @@ import {
 } from '../../../../../redux/actions';
 
 const useStyles = createUseStyles({
-  button: ({ theme }) => ({
-    '&:hover': { background: rgba(theme.colors.white, 0.07) },
+  button: {
+    '&:hover': { background: rgba('#FFFFFF', 0.07) },
     background: 'transparent',
     borderRadius: 20,
-    color: theme.colors.black,
+    color: '#000000',
     composes: ['is-block', 'text-center', 'fs16'],
     height: 40,
     lineHeight: '40px',
     transition: 'background 0.5s',
     width: 40,
-  }),
+  },
   container: {
-    composes: ['flex-columns', 'flex-between', 'items-center', 'p7'],
-    width: 135,
+    // composes: ['flex-rows', 'flex-between', 'items-center', 'p7'],
+    // width: 135,
   },
   danger: ({ theme }) => ({
     color: theme.colors.danger,
@@ -70,10 +70,11 @@ const ContextMenuComponent = React.memo(
     return (
       <div className={classes.container}>
         <button
-          className={classnames(classes.button, classes.danger)}
+          className={classes.button}
           type="button"
-          onClick={onDeleteLanguage}>
-          <DeleteIcon />
+          onClick={onToggleCollapse}>
+          {fullscreen && <ShrinkIcon />}
+          {!fullscreen && <ExpandIcon />}
         </button>
         <button
           className={classnames(classes.button, classes.warning)}
@@ -83,11 +84,10 @@ const ContextMenuComponent = React.memo(
           <SwipeIcon />
         </button>
         <button
-          className={classes.button}
+          className={classnames(classes.button, classes.danger)}
           type="button"
-          onClick={onToggleCollapse}>
-          {fullscreen && <ShrinkIcon />}
-          {!fullscreen && <ExpandIcon />}
+          onClick={onDeleteLanguage}>
+          <DeleteIcon />
         </button>
       </div>
     );

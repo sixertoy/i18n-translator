@@ -9,7 +9,7 @@ const selectFullscreen = createCachedSelector(
   getId,
   (languages, id) => {
     const filtered = languages.filter(obj => obj.project === id);
-    const found = filtered.find(obj => obj.collapsed && obj);
+    const found = filtered.find(obj => obj.fullscreen && obj);
     return Boolean(found);
   }
 )((_, id) => `fullscreen::${id}`);

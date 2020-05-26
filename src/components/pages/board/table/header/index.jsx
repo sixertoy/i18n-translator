@@ -63,6 +63,7 @@ const ColumnHeaderComponent = React.memo(
           />
           <Tooltip
             useHover
+            arrow={false}
             className={classes.tooltip}
             component={
               <Menu
@@ -72,8 +73,8 @@ const ColumnHeaderComponent = React.memo(
                 project={project}
               />
             }
-            offset={[20, 10]}
-            placement="bottom-end"
+            offset={[0, -30]}
+            placement="bottom"
             theme="light">
             <span className={classes.button}>
               <ContextIcon />

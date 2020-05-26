@@ -36,15 +36,13 @@ const TableComponent = React.memo(({ scroller }) => {
   const keys = useSelector(state => selectPrimaryKeys(state, id));
   const languages = useSelector(state => selectLanguages(state, id));
   const percentages = useSelector(state => selectPercentages(state, id));
-  const useFullscreen = useSelector(state => selectFullscreen(state, id));
 
-  const width = useFullscreen ? 'inherit' : `${languages.length * 300}px`;
+  const useFullscreen = useSelector(state => selectFullscreen(state, id));
+  const width = useFullscreen ? '100%' : `${languages.length * 300 + 220}px`;
 
   return (
-    <div className={classes.table}>
-      <div
-        className={classnames(classes.columns, tableClasses.columns)}
-        style={{ width }}>
+    <div className={classes.table} style={{ width }}>
+      <div className={classnames(classes.columns, tableClasses.columns)}>
         {<PrimaryColumn items={keys} project={id} scroller={scroller} />}
         {languages.map((language, index) => {
           const { lang } = language;

@@ -17,17 +17,12 @@ const useTableStyles = createUseStyles({
     padding: 7,
   }),
   column: ({ primary }) => ({
-    '&.fullscreen': {
-      width: '100%',
-    },
-    '&.hidden': {
-      opacity: 0,
-      width: '0%',
-    },
+    '&.expanded': { width: 'calc(100vw - 220px)' },
+    '&.hidden': { opacity: 0, width: 0 },
+    display: 'block',
     opacity: 1,
-    // overflow: 'hidden',
-    scaleX: 1,
-    transition: 'width 0.3s, opacity 0.3s',
+    overflow: 'hidden',
+    transition: 'width 0.3s, opacity 0.3s, minWidth 0.3s',
     width: primary ? PRIMARY_COL_WIDTH : COL_WIDTH,
     willChange: 'transform',
     zIndex: primary ? DEPTHS_HEADER + 20 : 'inherit',
