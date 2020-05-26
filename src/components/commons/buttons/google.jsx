@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FcGoogle as GoogleIcon } from 'react-icons/fc';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { FIREBASE_PROVIDER_GOOGLE } from '../../../constants';
 import { useLogin } from '../../hooks';
@@ -17,9 +17,8 @@ const useStyles = createUseStyles({
 });
 
 const GoogleButtonComponent = React.memo(({ className, useSignup }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
-  const buttonClasses = useButtonStyles({ theme });
+  const classes = useStyles();
+  const buttonClasses = useButtonStyles();
   const { onSigninClick } = useLogin(FIREBASE_PROVIDER_GOOGLE);
 
   return (

@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { AiOutlineGithub as GithubIcon } from 'react-icons/ai';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { FIREBASE_PROVIDER_GITHUB } from '../../../constants';
 import { useLogin } from '../../hooks';
@@ -17,9 +17,8 @@ const useStyles = createUseStyles({
 });
 
 const GithubButtonComponent = React.memo(({ className, useSignup }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
-  const buttonClasses = useButtonStyles({ theme });
+  const classes = useStyles();
+  const buttonClasses = useButtonStyles();
   const { onSigninClick } = useLogin(FIREBASE_PROVIDER_GITHUB);
 
   return (

@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { useButtonStyles } from '../styles';
 import Tooltip from './tooltip';
@@ -23,9 +23,8 @@ const useStyles = createUseStyles({
 
 const DropdownComponent = React.memo(
   ({ content: Content, icon: Icon, label }) => {
-    const theme = useTheme();
-    const classes = useStyles({ theme });
-    const buttonClasses = useButtonStyles({ theme });
+    const classes = useStyles();
+    const buttonClasses = useButtonStyles();
     return (
       <div className={classes.dropdown}>
         <Tooltip

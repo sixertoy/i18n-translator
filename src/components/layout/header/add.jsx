@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { FiPlus as PlusIcon } from 'react-icons/fi';
-import { useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -8,8 +7,7 @@ import { createDraftAsync } from '../../../redux/actions';
 import useButtonStyles from './styles';
 
 const AddButtonComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useButtonStyles({ theme });
+  const classes = useButtonStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const { pathname } = useLocation();

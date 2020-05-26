@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiOutlineProject as ProjectsIcon } from 'react-icons/ai';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import Tooltip from '../../commons/tooltip';
 import { useTooltip } from '../../hooks';
@@ -16,9 +16,8 @@ const useStyles = createUseStyles({
 });
 
 const ProjectsButtonComponent = React.memo(() => {
-  const theme = useTheme();
   const classes = useStyles();
-  const buttonClasses = useButtonStyles({ theme });
+  const buttonClasses = useButtonStyles();
   const { closeTooltipHandler, onCreateHandler } = useTooltip();
   return (
     <Tooltip

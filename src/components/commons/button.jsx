@@ -1,14 +1,12 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useTheme } from 'react-jss';
 
 import { useButtonStyles } from '../styles';
 
 const ButtonComponent = React.memo(
   ({ children, className, disabled, label, onClick }) => {
-    const theme = useTheme();
-    const buttonClasses = useButtonStyles({ theme });
+    const buttonClasses = useButtonStyles();
     return (
       <button
         className={classnames(buttonClasses.btn, className)}

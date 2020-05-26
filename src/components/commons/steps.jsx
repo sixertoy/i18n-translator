@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
     composes: ['mr12', 'no-overflow', 'flex-1', 'no-wrap'],
     lineHeight: px(28),
   },
-  itemCircle: ({ theme }) => ({
+  itemCircle: {
     '.active &': { background: '#000000', color: '#FFFFFF' },
     background: 'transparent',
     border: `1px solid ${'#000000'}`,
@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
     height: 28,
     lineHeight: px(28),
     width: 28,
-  }),
+  },
   itemLabel: {
     '&:after': {
       background: '#000000',
