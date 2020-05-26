@@ -60,7 +60,7 @@ const HomeViewComponent = React.memo(() => {
   const favorites = useSelector(selectFavorites);
   const recents = useSelector(selectRecents);
   const historics = recents.slice(0, 8);
-  const showFavorites = projects.length > 0;
+  const showFavorites = projects && favorites.length > 0;
 
   return (
     <div className={classes.container} id="home-view">

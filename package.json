@@ -60,6 +60,8 @@
     "re-reselect": "^4.0.0",
     "react": "^16.13.1",
     "react-copy-to-clipboard": "^5.0.2",
+    "react-dnd": "^11.1.0",
+    "react-dnd-html5-backend": "^11.1.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "react-icons": "^3.10.0",
