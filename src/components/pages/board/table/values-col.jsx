@@ -67,7 +67,7 @@ const ValuesColumnComponent = React.memo(
               lang={lang}
               odd={odd}
               project={project}
-              tabIndex={tabIndex}
+              tabIndex={hidden ? -1 : tabIndex}
               value={value}
             />
           );
