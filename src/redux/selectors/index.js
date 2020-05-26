@@ -2,6 +2,7 @@ export * from './app';
 export * from './draft';
 export * from './projects';
 export * from './user';
+export { default as selectFullscreen } from './select-fullscreen';
 export { default as selectLangs } from './select-langs';
 export { default as selectLanguages } from './select-languages';
 export { default as selectLimits } from './select-limits';

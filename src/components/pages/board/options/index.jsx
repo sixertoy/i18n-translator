@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 import { px } from '../../../../core/utils';
 import { USE_SEARCH } from '../../../../features.json';
-import { selectLanguages } from '../../../../redux/selectors';
+import { selectFullscreen } from '../../../../redux/selectors';
 import Tooltip from '../../../commons/tooltip';
 import ContextMenu from './menu';
 import Search from './search';
@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
     width: 40,
   },
   container: {
-    '&.mini': { marginTop: -112 },
+    '&.fullscreen': { marginTop: -112 },
     height: 112,
     marginTop: 0,
     maxHeight: 112,
@@ -44,10 +44,11 @@ const useStyles = createUseStyles({
 const OptionsComponent = React.memo(() => {
   const classes = useStyles();
   const { id } = useParams();
-  const languages = useSelector(state => selectLanguages(state, id));
-  const mini = Boolean(languages.find(obj => obj.fullscreen));
+  const fullscreen = useSelector(state => selectFullscreen(state, id));
   return (
-    <div className={classnames(classes.container, { mini })} id="board-options">
+    <div
+      className={classnames(classes.container, { fullscreen })}
+      id="board-options">
       <div className={classes.layer}>
         <Title />
         {USE_SEARCH && <Search />}

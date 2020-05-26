@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
+  selectFullscreen,
   selectLanguages,
   selectPercentages,
   selectPrimaryKeys,
@@ -18,7 +19,7 @@ import ValuesColumn from './values-col';
 const useStyles = createUseStyles({
   columns: {
     composes: ['flex-columns', 'flex-start', 'is-relative'],
-    minWidth: '100%',
+    minWidth: 'inherit',
     paddingBottom: 80,
   },
   table: {
@@ -35,31 +36,26 @@ const TableComponent = React.memo(({ scroller }) => {
   const keys = useSelector(state => selectPrimaryKeys(state, id));
   const languages = useSelector(state => selectLanguages(state, id));
   const percentages = useSelector(state => selectPercentages(state, id));
-  const useFullscreen = languages.find(obj => obj.fullscreen);
-  const width = languages.length * 300;
+  const useFullscreen = useSelector(state => selectFullscreen(state, id));
+
+  const width = useFullscreen ? 'inherit' : `${languages.length * 300}px`;
+
   return (
     <div className={classes.table}>
       <div
         className={classnames(classes.columns, tableClasses.columns)}
-        style={{ width: useFullscreen ? 'inherit' : `${width}px` }}>
+        style={{ width }}>
         {<PrimaryColumn items={keys} project={id} scroller={scroller} />}
         {languages.map((language, index) => {
-          const { clearable, fullscreen, label, lang, translations } = language;
+          const { lang } = language;
           const uniqkey = `${id}::lang::${lang}`;
           const percentage = get(percentages, lang);
           return (
             <ValuesColumn
               key={uniqkey}
-              clearable={clearable}
               depth={index}
-              fullscreen={useFullscreen && fullscreen}
-              hidden={useFullscreen && !fullscreen}
               item={language}
-              label={label}
-              lang={lang}
               percentage={percentage}
-              project={id}
-              translations={translations}
             />
           );
         })}

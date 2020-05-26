@@ -11,7 +11,6 @@ import { updateTranslation } from '../../../../../redux/actions';
 import useTableStyles from '../styles';
 
 const useStyles = createUseStyles({
-  cell: {},
   icon: ({ theme }) => ({
     '.notvalid &': { color: theme.colors.danger },
     color: rgba(theme.colors.black, 0.25),
@@ -63,7 +62,7 @@ const ValueCellComponent = React.memo(
 
     return (
       <div
-        className={classnames(classes.cell, tableClasses.cell, {
+        className={classnames(tableClasses.cell, {
           even: !odd,
           notvalid: !value || value === '',
           odd,
