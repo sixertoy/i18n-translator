@@ -104,12 +104,12 @@ const ContextMenuComponent = React.memo(() => {
           </React.Fragment>
         )}
       </button>
-      <hr className={classes.splitter} />
+      {/* <hr className={classes.splitter} /> */}
       <button className={classes.button} type="button" onClick={onCloneProject}>
         <span>Duplicate</span>
         <CloneIcon className={classes.icon} />
       </button>
-      <hr className={classes.splitter} />
+      {/* <hr className={classes.splitter} /> */}
       <button
         className={classnames(classes.button, classes.warning)}
         type="button"
@@ -117,7 +117,7 @@ const ContextMenuComponent = React.memo(() => {
         <span>Tout effacer</span>
         <SwipeIcon className={classes.icon} />
       </button>
-      <hr className={classes.splitter} />
+      {/* <hr className={classes.splitter} /> */}
       <button
         className={classnames(classes.button, classes.danger)}
         type="button"
