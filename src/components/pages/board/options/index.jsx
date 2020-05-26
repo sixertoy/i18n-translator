@@ -30,7 +30,6 @@ const useStyles = createUseStyles({
     maxHeight: 112,
     minHeight: 112,
     transition: 'margin-top 0.3s',
-    zIndex: 10,
   },
   layer: {
     background: '#030303',

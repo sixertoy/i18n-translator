@@ -18,11 +18,11 @@ const useTableStyles = createUseStyles({
   }),
   column: ({ primary }) => ({
     '&.expanded': { width: 'calc(100vw - 220px)' },
-    '&.hidden': { opacity: 0, width: 0 },
+    '&.hidden': { margin: 0, opacity: 0, width: 0 },
     display: 'block',
     opacity: 1,
     overflow: 'hidden',
-    transition: 'width 0.3s, opacity 0.3s, minWidth 0.3s',
+    transition: 'width 0.3s, opacity 0.3s, margin 0.3s',
     width: primary ? PRIMARY_COL_WIDTH : COL_WIDTH,
     willChange: 'transform',
     zIndex: primary ? DEPTHS_HEADER + 20 : 'inherit',
