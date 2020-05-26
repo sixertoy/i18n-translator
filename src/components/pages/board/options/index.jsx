@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { px } from '../../../../core/utils';
 import { USE_SEARCH } from '../../../../features.json';
 import { selectFullscreen } from '../../../../redux/selectors';
+import FavoriteButton from '../../../commons/buttons/favorite';
 import Tooltip from '../../../commons/tooltip';
 import ContextMenu from './menu';
 import Search from './search';
@@ -15,12 +16,14 @@ import Title from './title';
 
 const useStyles = createUseStyles({
   button: {
-    background: '#1D1D1D',
+    '&:hover': { background: 'hsla(0, 0%, 100%, 0.1)' },
+    background: 'hsla(0, 0%, 100%, 0.06)',
     borderRadius: 20,
     color: '#FFFFFF',
-    composes: ['text-center', 'use-pointer', 'fs24'],
+    composes: ['text-center', 'use-pointer', 'fs24', 'ml7'],
     height: 40,
     lineHeight: px(37),
+    transition: 'background 0.3s',
     width: 40,
   },
   container: {
@@ -38,6 +41,12 @@ const useStyles = createUseStyles({
     height: '100%',
     width: '100%',
   },
+  wrapper: {
+    composes: ['flex-columns', 'flex-end', 'items-center', 'flex-0'],
+    maxWidth: 90,
+    minWidth: 90,
+    width: 90,
+  },
 });
 
 const OptionsComponent = React.memo(() => {
@@ -51,8 +60,9 @@ const OptionsComponent = React.memo(() => {
       <div className={classes.layer}>
         <Title />
         {USE_SEARCH && <Search />}
-        <div>
-          <Tooltip useHover component={<ContextMenu />} theme="light">
+        <div className={classes.wrapper}>
+          <FavoriteButton project={id} />
+          <Tooltip useHover component={<ContextMenu />} theme="material">
             <div className={classes.button}>
               <ContextIcon />
             </div>

@@ -10,7 +10,6 @@ import { createUseStyles, useTheme } from 'react-jss';
 import { useDispatch } from 'react-redux';
 
 import { SwipeIcon } from '../../../../../assets/icons';
-import { rgba } from '../../../../../core/utils';
 import {
   clearLanguage,
   deleteLanguage,
@@ -19,14 +18,14 @@ import {
 
 const useStyles = createUseStyles({
   button: {
-    '&:hover': { background: rgba('#FFFFFF', 0.07) },
-    background: 'transparent',
+    '&:hover': { background: 'hsla(0, 0%, 100%, 0.1)' },
+    background: 'hsla(0, 0%, 100%, 0)',
     borderRadius: 20,
-    color: '#000000',
+    color: '#FFFFFF',
     composes: ['is-block', 'text-center', 'fs16'],
     height: 40,
     lineHeight: '40px',
-    transition: 'background 0.5s',
+    transition: 'background 0.3s',
     width: 40,
   },
   container: {

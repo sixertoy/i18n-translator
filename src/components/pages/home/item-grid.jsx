@@ -27,17 +27,18 @@ const GridComponent = React.memo(({ data }) => {
   const queries = useStyles();
   const classes = useListStyles();
 
-  const url = `/board/${data.id}`;
+  const { id, name } = data;
+  const url = `/board/${id}`;
 
   return (
     <li className={classnames(classes.item, queries.item, 'fadein')}>
       <Link className={classnames(classes.link, queries.link)} to={url}>
         <div className={classes.wrapper}>
-          <span className={classes.name}>{data.name}</span>
+          <span className={classes.name}>{name}</span>
         </div>
       </Link>
       <div className={classes.favorite}>
-        <FavoriteButton id={data.id} isFavorite={data.isFavorite} />
+        <FavoriteButton project={id} />
       </div>
     </li>
   );
@@ -46,8 +47,6 @@ const GridComponent = React.memo(({ data }) => {
 GridComponent.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string,
-    isFavorite: PropTypes.bool,
-    langs: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
   }).isRequired,
 };

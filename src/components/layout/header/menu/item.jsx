@@ -37,8 +37,6 @@ const ProjectItemComponent = React.memo(({ data, onClick }) => {
 ProjectItemComponent.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string,
-    isFavorite: PropTypes.bool,
-    langs: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
   }).isRequired,
   onClick: PropTypes.func.isRequired,

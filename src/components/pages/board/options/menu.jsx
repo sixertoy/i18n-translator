@@ -1,13 +1,9 @@
 import classnames from 'classnames';
 import React, { useCallback } from 'react';
-import {
-  AiFillPushpin as PinOnIcon,
-  AiOutlineCopy as CloneIcon,
-  AiOutlinePushpin as PinOffIcon,
-} from 'react-icons/ai';
+import { AiOutlineCopy as CloneIcon } from 'react-icons/ai';
 import { MdDelete as DeleteIcon } from 'react-icons/md';
 import { createUseStyles, useTheme } from 'react-jss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -16,9 +12,7 @@ import {
   clearProject,
   cloneProject,
   deleteProject,
-  toggleFavorite,
 } from '../../../../redux/actions';
-import { selectProject } from '../../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
@@ -60,7 +54,6 @@ const ContextMenuComponent = React.memo(() => {
   const classes = useStyles({ theme });
 
   const { id } = useParams();
-  const { isFavorite } = useSelector(state => selectProject(state, id));
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -68,10 +61,6 @@ const ContextMenuComponent = React.memo(() => {
     dispatch(deleteProject({ project: id }));
     history.replace('/home');
   }, [dispatch, id, history]);
-
-  const onToggleFavorite = useCallback(() => {
-    dispatch(toggleFavorite({ project: id }));
-  }, [dispatch, id]);
 
   const onClearProject = useCallback(() => {
     dispatch(clearProject({ project: id }));
@@ -87,23 +76,6 @@ const ContextMenuComponent = React.memo(() => {
 
   return (
     <div className={classes.container}>
-      <button
-        className={classes.button}
-        type="button"
-        onClick={onToggleFavorite}>
-        {!isFavorite && (
-          <React.Fragment>
-            <span>Ajouter aux favoris</span>
-            <PinOffIcon className={classes.icon} />
-          </React.Fragment>
-        )}
-        {isFavorite && (
-          <React.Fragment>
-            <span>Supprimer des favoris</span>
-            <PinOnIcon className={classes.icon} />
-          </React.Fragment>
-        )}
-      </button>
       {/* <hr className={classes.splitter} /> */}
       <button className={classes.button} type="button" onClick={onCloneProject}>
         <span>Duplicate</span>

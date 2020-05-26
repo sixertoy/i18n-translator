@@ -7,15 +7,9 @@ import { KEY_CODE_ENTER } from '../../../../constants';
 import { rgba } from '../../../../core/utils';
 import { updateProjectName } from '../../../../redux/actions';
 import { selectPercentages, selectProject } from '../../../../redux/selectors';
-import FavoriteButton from '../../../commons/buttons/favorite';
 import PercentageBar from '../../../commons/percentage-bar';
 
 const useStyles = createUseStyles({
-  favorite: {
-    '&:hover': { background: 'hsla(0, 0%, 100%, 0.1)' },
-    background: 'hsla(0, 0%, 100%, 0.06)',
-    composes: ['mr7'],
-  },
   infos: {
     composes: ['flex-1'],
   },
@@ -42,11 +36,9 @@ const useStyles = createUseStyles({
     width: '65%',
   },
   title: {
-    composes: ['flex-columns', 'flex-start', 'items-center'],
-  },
-  wrapper: {
-    display: 'inline-block',
-    width: 'auto',
+    maxWidth: '60%',
+    minWidth: '60%',
+    width: '60%',
   },
 });
 
@@ -57,7 +49,7 @@ const InfosComponent = React.memo(() => {
   const { id } = useParams();
   const project = useSelector(state => selectProject(state, id));
   const { overall } = useSelector(state => selectPercentages(state, id));
-  const { isFavorite, name } = project;
+  const { name } = project;
 
   const dispatch = useDispatch();
   const onInputBlur = useCallback(
@@ -99,21 +91,14 @@ const InfosComponent = React.memo(() => {
   return (
     <div className={classes.infos}>
       <div className={classes.title}>
-        <FavoriteButton
-          className={classes.favorite}
-          id={id}
-          isFavorite={isFavorite}
+        <input
+          className={classes.input}
+          type="text"
+          value={content}
+          onBlur={onInputBlur}
+          onChange={onInputChange}
+          onKeyDown={onKeyDown}
         />
-        <div className={classes.wrapper}>
-          <input
-            className={classes.input}
-            type="text"
-            value={content}
-            onBlur={onInputBlur}
-            onChange={onInputChange}
-            onKeyDown={onKeyDown}
-          />
-        </div>
       </div>
       <PercentageBar
         showPercent

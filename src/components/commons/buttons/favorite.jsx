@@ -1,44 +1,53 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback } from 'react';
-import {
-  AiFillPushpin as PinOnIcon,
-  AiOutlinePushpin as PinOffIcon,
-} from 'react-icons/ai';
+import { AiTwotonePushpin as PinIcon } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { toggleFavorite } from '../../../redux/actions';
+import { selectProject } from '../../../redux/selectors';
 
 const useStyles = createUseStyles({
   button: {
+    '&:hover': { background: 'hsla(0, 0%, 100%, 0.1)' },
+    background: 'hsla(0, 0%, 100%, 0.06)',
+    borderRadius: '50%',
     display: 'block',
-    height: 34,
+    height: 40,
     textAlign: 'center',
-    width: 34,
+    transition: 'background 0.3s',
+    width: 40,
+  },
+  icon: {
+    '& path': {
+      color: 'rgba(255, 255, 255, 0)',
+      transition: 'color 0.3s',
+    },
+    '& path + path': { color: '#FFFFFF' },
+    '&.active path': { color: '#FFFFFF' },
   },
 });
 
-const FavoriteButtonComponent = React.memo(
-  ({ className, id: project, isFavorite }) => {
-    const classes = useStyles();
-    const dispatch = useDispatch();
+const FavoriteButtonComponent = React.memo(({ className, project }) => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
-    const onToggleFavorite = useCallback(() => {
-      dispatch(toggleFavorite({ project }));
-    }, [dispatch, project]);
+  const { isFavorite } = useSelector(state => selectProject(state, project));
 
-    return (
-      <button
-        className={classnames(classes.button, className)}
-        type="button"
-        onClick={onToggleFavorite}>
-        {!isFavorite && <PinOffIcon className={classes.icon} />}
-        {isFavorite && <PinOnIcon className={classes.icon} />}
-      </button>
-    );
-  }
-);
+  const onToggleFavorite = useCallback(() => {
+    dispatch(toggleFavorite({ project }));
+  }, [dispatch, project]);
+
+  return (
+    <button
+      className={classnames(classes.button, className)}
+      type="button"
+      onClick={onToggleFavorite}>
+      <PinIcon className={classnames(classes.icon, { active: isFavorite })} />
+    </button>
+  );
+});
 
 FavoriteButtonComponent.defaultProps = {
   className: '',
@@ -46,8 +55,7 @@ FavoriteButtonComponent.defaultProps = {
 
 FavoriteButtonComponent.propTypes = {
   className: PropTypes.string,
-  id: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
+  project: PropTypes.string.isRequired,
 };
 
 export default FavoriteButtonComponent;

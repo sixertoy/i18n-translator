@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
   },
   container: {
     background: `linear-gradient(90deg, #EE256B 0%, #FD7822 100%)`,
-    zIndex: 20,
+    zIndex: 1000000,
   },
   logo: {
     composes: ['fs10', 'mx12'],

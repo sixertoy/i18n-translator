@@ -40,7 +40,7 @@ const AvatarComponent = React.memo(() => {
       component={<IdCard user={user} />}
       offset={[0, 12]}
       placement="bottom-end"
-      theme="light">
+      theme="material">
       <button className={classes.button} type="button">
         {showIcon && <UserIcon className="anon" />}
         {!showIcon && <img alt="user avatar" src={photoURL} />}

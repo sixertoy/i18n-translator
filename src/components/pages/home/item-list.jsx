@@ -34,19 +34,18 @@ const ProjectItemComponent = React.memo(({ data }) => {
   const queries = useStyles();
   const classes = useListStyles();
 
-  const url = `/board/${data.id}`;
+  const { id, name } = data;
+  const url = `/board/${id}`;
 
   return (
     <li className={classnames(classes.item, queries.item, 'fadein')}>
       <Link className={classnames(classes.link, queries.link)} to={url}>
         <div className={classnames(classes.wrapper, queries.wrapper)}>
-          <span className={classnames(classes.name, queries.name)}>
-            {data.name}
-          </span>
+          <span className={classnames(classes.name, queries.name)}>{name}</span>
         </div>
       </Link>
       <div className={classes.favorite}>
-        <FavoriteButton id={data.id} isFavorite={data.isFavorite} />
+        <FavoriteButton project={id} />
       </div>
     </li>
   );
@@ -55,8 +54,6 @@ const ProjectItemComponent = React.memo(({ data }) => {
 ProjectItemComponent.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string,
-    isFavorite: PropTypes.bool,
-    langs: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
   }).isRequired,
 };
