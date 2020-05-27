@@ -15,7 +15,6 @@ import Table from './table';
 
 const useStyles = createUseStyles({
   container: {
-    background: '#F1F1F1',
     composes: ['flex-1'],
   },
   layer: {

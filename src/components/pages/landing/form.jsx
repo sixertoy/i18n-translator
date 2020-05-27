@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { updateSubscribingEmail } from '../../../redux/actions';
 
 const useStyles = createUseStyles({
-  button: ({ theme }) => ({
+  button: {
     '&:hover': { textDecoration: 'none' },
-    background: theme.colors.active,
+    background: '#000000',
     color: '#FFFFFF',
     composes: ['is-light', 'py15', 'px24', 'fs24', 'rnd3', 'flex-0'],
     whiteSpace: 'nowrap',
-  }),
+  },
   container: {
     composes: ['flex-columns', 'flex-start', 'items-center'],
     marginLeft: 'auto',
@@ -25,8 +25,7 @@ const useStyles = createUseStyles({
   input: {
     '&::placeholder': { opacity: 0.25 },
     background: '#FFFFFF',
-    border: 0,
-    composes: ['p15', 'fs24', 'rnd3', 'text-overflow'],
+    composes: ['p15', 'fs24', 'rnd3', 'text-overflow', 'no-border'],
     width: '100%',
   },
   wrapper: {
@@ -64,14 +63,13 @@ const useStyles = createUseStyles({
 });
 
 const LandingFormComponent = React.memo(({ email }) => {
-  const theme = useTheme();
   const history = useHistory();
+  const classes = useStyles();
+
   const emailInput = useRef(email);
-  const classes = useStyles({ theme });
   const [submitted, setSubmitted] = useState(false);
 
   const dispatch = useDispatch();
-
   const onFormSubmit = useCallback(
     evt => {
       evt.preventDefault();

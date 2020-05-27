@@ -9,10 +9,9 @@ import { createDraftAsync } from '../../../redux/actions';
 import useListStyles from './styles';
 
 const useStyles = createUseStyles({
-  button: { height: 96 },
+  button: { fontSize: 14, height: 96 },
   icon: { marginLeft: 5 },
   item: {},
-  link: { fontSize: 14 },
   [`@media (min-width: ${861}px)`]: {
     item: {
       maxWidth: '32%',
@@ -38,7 +37,7 @@ const BlankComponent = React.memo(() => {
   return (
     <li className={classnames(classes.item, queries.item)}>
       <button
-        className={classnames(classes.link, queries.link, queries.button)}
+        className={classnames(classes.link, queries.button)}
         type="button"
         onClick={onCreateClick}>
         <span>Ajouter un projet</span>

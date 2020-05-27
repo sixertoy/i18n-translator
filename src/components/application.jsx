@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles, useTheme } from 'react-jss';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import { IfFirebaseReady } from '../core/firebase';
@@ -7,11 +7,11 @@ import routes from '../routes';
 import Loader from './commons/loader';
 
 const useStyles = createUseStyles({
-  application: {
-    background: '#F1F1F1',
+  application: ({ theme }) => ({
+    background: theme.colors.background,
     composes: ['flex-rows', 'is-relative'],
     height: '100%',
-  },
+  }),
   loader: {
     color: '#000000',
     display: 'block',
@@ -19,7 +19,8 @@ const useStyles = createUseStyles({
 });
 
 const Application = React.memo(() => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles({ theme });
   return (
     <IfFirebaseReady loader={<Loader className={classes.loader} />}>
       <div className={classes.application}>

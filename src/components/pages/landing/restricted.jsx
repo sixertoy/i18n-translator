@@ -18,10 +18,10 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   wrapper: {
+    composes: ['pt7'],
     marginLeft: 'auto',
     marginRight: 'auto',
     maxWidth: 680,
-    paddingTop: 7,
     width: '80%',
   },
   [`@media (max-width: ${580}px)`]: {

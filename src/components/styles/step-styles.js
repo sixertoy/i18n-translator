@@ -28,7 +28,7 @@ export const useStepStyles = createUseStyles({
     composes: ['fs24', 'is-bold', 'flex-1'],
   },
   label: ({ theme }) => ({
-    background: theme.colors.lighter,
+    background: theme.colors.background,
     composes: ['is-absolute', 'is-bold', 'p5'],
     left: 12,
     top: -12,

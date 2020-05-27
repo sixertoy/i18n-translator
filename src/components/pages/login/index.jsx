@@ -12,10 +12,10 @@ import Splitter from './splitter';
 import Title from './title';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    background: theme.colors.layer,
+  container: {
+    background: '#000000',
     composes: ['flex-1', 'p42', 'text-center'],
-  }),
+  },
   logo: ({ theme }) => ({
     color: theme.colors.gradient[0],
     display: 'inline',
@@ -34,13 +34,13 @@ const useStyles = createUseStyles({
       paddingRight: 0,
       paddingTOP: 42,
     },
-    wrapper: ({ theme }) => ({
-      background: theme.colors.layer,
+    wrapper: {
+      background: '#000000',
       boxShadow: 'none',
       marginTop: 24,
       padding: 24,
       width: '100%',
-    }),
+    },
   },
 });
 

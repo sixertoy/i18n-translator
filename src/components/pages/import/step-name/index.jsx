@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef } from 'react';
 import { AiFillLock as LockIcon } from 'react-icons/ai';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import Button from '../../../commons/button';
 import Tooltip from '../../../commons/tooltip';
@@ -16,11 +16,11 @@ const useStyles = createUseStyles({
   container: {
     marginTop: '8%',
   },
-  icon: ({ theme }) => ({
-    color: theme.colors.grey,
+  icon: {
+    color: '#000000',
     composes: ['use-pointer', 'fs18', 'ml7', 'text-center'],
     width: 30,
-  }),
+  },
   tooltip: {
     borderRadius: 3,
     width: 120,
@@ -28,8 +28,7 @@ const useStyles = createUseStyles({
 });
 
 const StepNameComponent = ({ index }) => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const stepClasses = useStepStyles();
   const { draft, onStepChange } = useStep(index);
   const input = useRef(draft.name);

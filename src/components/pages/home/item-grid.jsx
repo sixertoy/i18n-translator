@@ -1,15 +1,19 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+  AiFillPushpin as PinIconOn,
+  AiOutlinePushpin as PinIconOff,
+} from 'react-icons/ai';
+import { IoIosMenu as DragIcon } from 'react-icons/io';
 import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import FavoriteButton from '../../commons/buttons/favorite';
+import { useFavorite } from '../../hooks';
 import useListStyles from './styles';
 
 const useStyles = createUseStyles({
   item: {},
-  link: {},
   [`@media (min-width: ${861}px)`]: {
     item: {
       maxWidth: '32%',
@@ -20,22 +24,27 @@ const useStyles = createUseStyles({
 });
 
 const GridComponent = React.memo(({ data }) => {
+  const { id, name } = data;
   const queries = useStyles();
   const classes = useListStyles();
-
-  const { id, name } = data;
-  const url = `/board/${id}`;
+  const { isFavorite } = useFavorite(id);
 
   return (
     <li className={classnames(classes.item, queries.item, 'fadein')}>
-      <Link className={classnames(classes.link, queries.link)} to={url}>
+      <DragIcon className={classes.icon} />
+      {isFavorite && (
+        <PinIconOn className={classnames(classes.icon, classes.favorite)} />
+      )}
+      {!isFavorite && (
+        <PinIconOff className={classnames(classes.icon, classes.favorite)} />
+      )}
+      <Link
+        className={classnames(classes.link, queries.link)}
+        to={`/board/${id}`}>
         <div className={classes.wrapper}>
           <span className={classes.name}>{name}</span>
         </div>
       </Link>
-      <div className={classes.favorite}>
-        <FavoriteButton project={id} />
-      </div>
     </li>
   );
 });

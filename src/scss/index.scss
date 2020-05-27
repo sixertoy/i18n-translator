@@ -10,6 +10,17 @@
   outline: none;
 }
 
+body {
+  color: #3C4A66;
+  background: #F2F6F9;
+}
+
+a,
+input,
+button {
+  color: #3C4A66;
+}
+
 .debug {
   border: 1px solid #000000;
   background: rgba(172, 229, 57, 0.15);

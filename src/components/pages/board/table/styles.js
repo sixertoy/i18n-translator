@@ -8,9 +8,9 @@ const PRIMARY_COL_WIDTH = 220;
 
 const useTableStyles = createUseStyles({
   cell: ({ theme }) => ({
-    '&.even': { background: theme.table.even },
-    '&.odd': { background: theme.table.odd },
-    color: theme.table.font,
+    '&.even': { background: theme.colors.even },
+    '&.odd': { background: theme.colors.odd },
+    color: '#000000',
     composes: ['flex-columns', 'flex-start', 'items-center'],
     height: 60,
     marginBottom: 1,
@@ -31,7 +31,7 @@ const useTableStyles = createUseStyles({
     paddingLeft: PRIMARY_COL_WIDTH,
   },
   header: ({ depth, primary, theme }) => ({
-    background: theme.table.odd,
+    background: theme.colors.odd,
     height: theme.sizes.colheader,
     position: 'sticky',
     top: 0,
@@ -47,14 +47,14 @@ const useTableStyles = createUseStyles({
     '&::placeholder': { fontSize: 12, opacity: 0.35 },
     '&:focus:not(.error)': {
       background: rgba('#000000', 0.05),
-      color: rgba(theme.table.font, 0.85),
+      color: rgba('#000000', 0.85),
       paddingLeft: 7,
     },
     '.primary-keys &': {
-      color: rgba(theme.table.font, 1),
+      color: rgba('#000000', 1),
     },
     borderColor: 'transparent',
-    borderRadius: theme.radius.small,
+    borderRadius: 3,
     borderStyle: 'solid',
     borderWidth: 1,
     height: '100%',

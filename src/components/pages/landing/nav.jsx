@@ -10,9 +10,8 @@ const useStyles = createUseStyles({
     composes: ['is-block', 'ml3', 'py12', 'px24', 'fs18'],
   },
   nav: {
-    background: 'transparent',
     boxSizing: 'content-box',
-    composes: ['flex-columns', 'flex-between', 'items-center'],
+    composes: ['flex-columns', 'flex-between', 'items-center', 'no-background'],
     height: 50,
     maxHeight: 50,
     minHeight: 50,
@@ -25,7 +24,7 @@ const useStyles = createUseStyles({
   },
   signup: ({ theme }) => ({
     background: '#FFFFFF',
-    color: theme.colors.gradient[1],
+    color: theme.colors.orange,
     composes: ['no-underline', 'rnd3'],
   }),
   title: {

@@ -17,10 +17,9 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   layer: ({ theme }) => ({
-    background: theme.app.landing,
-    composes: ['flex-rows', 'flex-start', 'p16'],
+    background: theme.colors.gradient,
+    composes: ['flex-rows', 'flex-start', 'px16', 'pt16', 'pb32'],
     minHeight: '100%',
-    paddingBottom: 32,
   }),
   [`@media (max-width: ${600}px)`]: {
     layer: { padding: 12 },

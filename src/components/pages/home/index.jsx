@@ -19,7 +19,6 @@ import Factory from './item-factory';
 
 const useStyles = createUseStyles({
   container: {
-    background: '#F1F1F1',
     composes: ['flex-1'],
     width: '100%',
   },

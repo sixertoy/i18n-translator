@@ -1,8 +1,7 @@
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import { Redirect, Route, Switch, useParams } from 'react-router-dom';
 
-import { rgba } from '../../../core/utils';
 import withLayout from '../../layout';
 import StepCommit from './step-commit';
 import StepContent from './step-content';
@@ -11,17 +10,15 @@ import StepName from './step-name';
 import Stepper from './stepper';
 
 const useStyles = createUseStyles({
-  container: ({ theme }) => ({
-    background: theme.app.container,
+  container: {
     composes: ['flex-1'],
-  }),
-  layer: ({ theme }) => ({
-    background: rgba(theme.app.layer, 0.95),
+  },
+  layer: {
     composes: ['flex-rows', 'items-center'],
     height: '100%',
     paddingBottom: 32,
     paddingTop: 48,
-  }),
+  },
   stepper: {
     margin: '0 auto',
     width: '80%',
@@ -42,9 +39,9 @@ const steps = [
 ];
 
 const ImportViewComponent = () => {
-  const theme = useTheme();
+  const classes = useStyles();
+
   const { index } = useParams();
-  const classes = useStyles({ theme });
   const current = Number(index);
 
   return (

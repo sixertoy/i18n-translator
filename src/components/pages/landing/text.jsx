@@ -3,13 +3,11 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   description: {
-    composes: ['is-light'],
-    fontSize: 24,
+    composes: ['is-light', 'fs24'],
     lineHeight: 1.4,
   },
   title: {
-    composes: ['is-medium', 'mb12'],
-    fontSize: 48,
+    composes: ['is-medium', 'mb12', 'fs48'],
     letterSpacing: 0.025,
     lineHeight: 1.05,
   },

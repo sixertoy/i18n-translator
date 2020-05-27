@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 const SIZE_TINY = 1;
 const SIZE_SMALL = 3;
@@ -42,24 +42,23 @@ const useStyles = createUseStyles({
     ...getSizeObject(size),
     composes: ['is-relative', 'no-overflow', 'flex-1'],
   }),
-  thumb: ({ size, theme }) => ({
+  thumb: ({ size }) => ({
     ...getSizeObject(size),
-    background: theme.colors.white,
+    background: '#FFFFFF',
     composes: ['is-overlay'],
     transition: 'right 0.5s',
     zIndex: 20,
   }),
-  track: ({ size, theme }) => ({
+  track: ({ size }) => ({
     ...getSizeObject(size),
-    background: theme.colors.grey,
+    background: '#ACE539',
     composes: ['is-overlay'],
     zIndex: 10,
   }),
 });
 
 const ProgresBarComponent = React.memo(({ className, percent, size }) => {
-  const theme = useTheme();
-  const classes = useStyles({ size, theme });
+  const classes = useStyles({ size });
   return (
     <div className={classnames(classes.progress, className)}>
       <span className={classnames(classes.track, 'progress-track')} />

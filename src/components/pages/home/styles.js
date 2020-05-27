@@ -1,18 +1,22 @@
 import { createUseStyles } from 'react-jss';
 
+import { important } from '../../../core/utils';
+
 const useListStyles = createUseStyles({
   favorite: {
-    '& button': { background: 'transparent' },
-    '& svg': { color: '#000000' },
-    height: 34,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    width: 34,
+    top: important(28, 'px'),
+  },
+  icon: {
+    color: 'rgba(0, 0, 0, 0.25)',
+    composes: ['is-absolute'],
+    left: 7,
+    opacity: 0.5,
+    top: 7,
   },
   item: {
-    borderRadius: 3,
-    composes: ['is-relative', 'flex-1', 'no-overflow'],
+    background: '#FFFFFF',
+    border: '1px solid rgba(0, 0, 0, 0.07)',
+    composes: ['is-relative', 'flex-1', 'no-overflow', 'pl30', 'rnd7'],
     margin: '0 1% 1% 0',
     maxWidth: '49%',
     minWidth: '49%',
@@ -20,10 +24,8 @@ const useListStyles = createUseStyles({
   },
   link: {
     '&:hover': { textDecoration: 'none' },
-    background: '#FAFBFC',
-    color: '#42526E',
-    composes: ['is-bold', 'is-block', 'fs16'],
-    lineHeight: '1.3em',
+    composes: ['is-normal', 'is-block', 'fs16'],
+    lineHeight: 1.3,
     width: '100%',
   },
   name: {
