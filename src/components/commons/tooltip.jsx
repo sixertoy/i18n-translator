@@ -10,7 +10,6 @@ const useStyles = createUseStyles({
   tooltip: {
     border: 0,
     borderRadius: 18,
-    composes: ['p7'],
     left: 0,
   },
 });

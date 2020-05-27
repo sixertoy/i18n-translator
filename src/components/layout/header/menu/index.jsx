@@ -36,6 +36,7 @@ const useStyles = createUseStyles({
   container: {
     composes: ['flex-rows', 'flex-start'],
     height: 460,
+    width: 280,
   },
   lists: {
     composes: ['flex-1'],
