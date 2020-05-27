@@ -5,8 +5,8 @@ import { createUseStyles } from 'react-jss';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { createDraftAsync } from '../../../redux/actions';
-import useListStyles from './styles';
+import { createDraftAsync } from '../../../../redux/actions';
+import useListStyles from '../styles';
 
 const useStyles = createUseStyles({
   button: { fontSize: 14, height: 96 },

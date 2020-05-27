@@ -4,8 +4,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import FavoriteButton from '../../commons/buttons/favorite';
-import useListStyles from './styles';
+import useListStyles from '../styles';
 
 const useStyles = createUseStyles({
   item: {},
@@ -28,22 +27,18 @@ const useStyles = createUseStyles({
 });
 
 const ProjectItemComponent = React.memo(({ data }) => {
+  const { id, name } = data;
   const queries = useStyles();
   const classes = useListStyles();
-
-  const { id, name } = data;
-  const url = `/board/${id}`;
-
   return (
     <li className={classnames(classes.item, queries.item, 'fadein')}>
-      <Link className={classnames(classes.link, queries.link)} to={url}>
+      <Link
+        className={classnames(classes.link, queries.link)}
+        to={`/board/${id}`}>
         <div className={classnames(classes.wrapper, queries.wrapper)}>
           <span className={classnames(classes.name, queries.name)}>{name}</span>
         </div>
       </Link>
-      <div className={classes.favorite}>
-        <FavoriteButton project={id} />
-      </div>
     </li>
   );
 });

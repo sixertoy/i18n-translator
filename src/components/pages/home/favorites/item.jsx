@@ -9,8 +9,8 @@ import { IoIosMenu as DragIcon } from 'react-icons/io';
 import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import { useFavorite } from '../../hooks';
-import useListStyles from './styles';
+import { useFavorite } from '../../../hooks';
+import useListStyles from '../styles';
 
 const useStyles = createUseStyles({
   item: {},

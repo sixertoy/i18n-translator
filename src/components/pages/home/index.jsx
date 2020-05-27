@@ -1,21 +1,12 @@
 import React from 'react';
-import {
-  AiOutlineClockCircle as ClockIcon,
-  AiOutlineProject as ProjectsIcon,
-  AiOutlinePushpin as PinIcon,
-} from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
-import {
-  selectFavorites,
-  selectProjects,
-  selectRecents,
-} from '../../../redux/selectors';
 import withLayout from '../../layout';
-import Factory from './item-factory';
+import Favorites from './favorites';
+import Projects from './projects';
+import Recents from './recents';
 
 const useStyles = createUseStyles({
   container: {
@@ -55,12 +46,6 @@ const useStyles = createUseStyles({
 
 const HomeViewComponent = React.memo(() => {
   const classes = useStyles();
-  const projects = useSelector(selectProjects);
-  const favorites = useSelector(selectFavorites);
-  const recents = useSelector(selectRecents);
-  const historics = recents.slice(0, 8);
-  const showFavorites = projects && favorites.length > 0;
-
   return (
     <div className={classes.container} id="home-view">
       <IfFirebaseUnAuthed>
@@ -69,29 +54,11 @@ const HomeViewComponent = React.memo(() => {
       <IfFirebaseAuthed>
         <div className={classes.wrapper}>
           <div className={classes.grids}>
-            {showFavorites && (
-              <Factory
-                useGrid
-                icon={PinIcon}
-                items={favorites}
-                label="Épinglés"
-              />
-            )}
-            <Factory
-              useBlank
-              useGrid
-              icon={ProjectsIcon}
-              items={projects}
-              label="Vos projets"
-            />
+            <Favorites />
+            <Projects />
           </div>
           <div className={classes.lists}>
-            <Factory
-              icon={ClockIcon}
-              items={historics}
-              label="Récemment consultés"
-              useEmpty={!historics || historics.length <= 0}
-            />
+            <Recents />
           </div>
         </div>
       </IfFirebaseAuthed>
