@@ -1,34 +1,22 @@
-$green: #7AC142;
-$curve: cubic-bezier(0.65, 0, 0.45, 1);
-
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.checkmark {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+.tickmark {
+  width: 100px;
   display: block;
-  stroke-width: 2;
-  $stroke: green;
-
-  stroke-miterlimit: 10;
+  margin: 40px auto 0;
 }
 
-.checkmark__check {
-  transform-origin: 50% 50%;
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-  animation: stroke 0.3s $curve 0.8s forwards;
+.tickmark__check {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  stroke-dashoffset: -100;
+  animation: tickmark-animation 0.9s 0.35s ease-in-out forwards;
 }
 
-@keyframes stroke {
+@keyframes tickmark-animation {
+  0% {
+    stroke-dashoffset: -100;
+  }
+
   100% {
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 900;
   }
 }

@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
   brand: {
     '& span': {
       fontSize: '2.625em',
-      marginLeft: 3,
+      marginLeft: 7,
       verticalAlign: 'middle',
     },
     '& svg': {

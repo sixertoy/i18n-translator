@@ -90,11 +90,12 @@ const LandingFormComponent = React.memo(({ email }) => {
         <div className={classes.wrapper}>
           <input
             ref={emailInput}
+            autoComplete="email"
             className={classes.input}
             defaultValue={email}
-            name="landing.email"
-            placeholder="e-mail"
-            type="email"
+            name="email"
+            placeholder="email"
+            type="text"
           />
         </div>
         <button className={classes.button} type="submit">

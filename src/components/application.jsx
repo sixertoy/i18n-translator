@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import { IfFirebaseReady } from '../core/firebase';
 import routes from '../routes';
-import Loader from './commons/loader';
+import Loader from './layout/loader';
 
 const useStyles = createUseStyles({
   application: ({ theme }) => ({
@@ -12,17 +12,13 @@ const useStyles = createUseStyles({
     composes: ['flex-rows', 'is-relative'],
     height: '100%',
   }),
-  loader: {
-    color: '#000000',
-    display: 'block',
-  },
 });
 
 const Application = React.memo(() => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <IfFirebaseReady loader={<Loader className={classes.loader} />}>
+    <IfFirebaseReady loader={<Loader />}>
       <div className={classes.application}>
         <Switch>
           {routes.map(obj => {

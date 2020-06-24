@@ -40,7 +40,7 @@ const DemoComponent = React.memo(() => {
         className={classes.button}
         type="button"
         onClick={onAnonymousClick}>
-        <span>Testez sans vous inscrire</span>
+        <span>Découvrez sans vous inscrire</span>
       </button>
     </div>
   );
