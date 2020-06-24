@@ -11,7 +11,6 @@ const useStyles = createUseStyles({
     letterSpacing: '0.12em',
   },
   credits: {
-    background: '#FFFFFF',
     borderRadius: `3px 3px 0 0`,
     bottom: 0,
     composes: ['is-uppercase', 'pb0', 'pt5', 'px12', 'is-absolute'],

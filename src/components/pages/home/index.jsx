@@ -54,10 +54,10 @@ const HomeViewComponent = React.memo(() => {
       <IfFirebaseAuthed>
         <div className={classes.wrapper}>
           <div className={classes.grids}>
-            <Favorites />
             <Projects />
           </div>
           <div className={classes.lists}>
+            <Favorites />
             <Recents />
           </div>
         </div>

@@ -93,7 +93,7 @@ const LandingFormComponent = React.memo(({ email }) => {
             autoComplete="email"
             className={classes.input}
             defaultValue={email}
-            name="email"
+            name="landing.email"
             placeholder="email"
             type="text"
           />

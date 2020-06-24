@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useRef } from 'react';
 import { AiFillLock as LockIcon } from 'react-icons/ai';
+import { IoIosArrowRoundForward as ArrowIcon } from 'react-icons/io';
 import { createUseStyles } from 'react-jss';
 
-import Button from '../../../commons/button';
 import Tooltip from '../../../commons/tooltip';
 import useStepStyles from '../styles';
 import useStep from '../use-step';
@@ -11,7 +11,7 @@ import useStep from '../use-step';
 const useStyles = createUseStyles({
   button: {
     composes: ['mt12'],
-    width: '100%',
+    width: 'auto',
   },
   container: {
     marginTop: '8%',
@@ -51,9 +51,9 @@ const StepNameComponent = ({ index }) => {
           </label>
           <input
             ref={input}
+            FAFBFC
             className={stepClasses.input}
             defaultValue={input.current}
-            // disabled={restricted}
             name="project.name"
             type="text"
           />
@@ -69,9 +69,9 @@ const StepNameComponent = ({ index }) => {
             </div>
           </Tooltip>
         </div>
-        <Button className={classes.button} onClick={onClick}>
-          <span>Suivant</span>
-        </Button>
+        <button className={classes.button} type="button" onClick={onClick}>
+          <ArrowIcon />
+        </button>
       </div>
     </div>
   );
