@@ -13,7 +13,21 @@ import { useFavorite } from '../../../hooks';
 import useListStyles from '../styles';
 
 const useStyles = createUseStyles({
-  item: {},
+  item: {
+    background: '#FFFFFF',
+    border: '1px solid rgba(0, 0, 0, 0.07)',
+    composes: ['is-relative', 'flex-1', 'no-overflow', 'pl30', 'rnd7'],
+    margin: '0 1% 1% 0',
+    maxWidth: '49%',
+    minWidth: '49%',
+    width: '49%',
+  },
+  link: {
+    '&:hover': { textDecoration: 'none' },
+    composes: ['is-normal', 'is-block', 'is-bold', 'fs16'],
+    lineHeight: 1.3,
+    width: '100%',
+  },
   [`@media (min-width: ${861}px)`]: {
     item: {
       maxWidth: '32%',

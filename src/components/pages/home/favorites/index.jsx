@@ -24,17 +24,25 @@ const useStyles = createUseStyles({
 const FavoritesComponent = React.memo(() => {
   const classes = useStyles();
   const favorites = useSelector(selectFavorites);
+  const hasFavorites = favorites.length > 0;
   return (
     <div className={classes.factory}>
       <h3 className={classes.title}>
         <PinIcon />
         <span>Épinglés</span>
       </h3>
-      <ul className={classes.wrapper}>
-        {favorites.map(obj => (
-          <Item key={obj.id} data={obj} />
-        ))}
-      </ul>
+      {!hasFavorites && (
+        <div className={classes.empties}>
+          <span>Vos projets favoris s&apos;afficheront ici</span>
+        </div>
+      )}
+      {hasFavorites && (
+        <ul className={classes.wrapper}>
+          {favorites.map(obj => (
+            <Item key={obj.id} data={obj} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 });

@@ -10,14 +10,24 @@ import useListStyles from '../styles';
 
 const useStyles = createUseStyles({
   button: {
-    background: '#F2F2F2',
-    border: '1px solid #DFDFE0',
+    background: 'transparent',
+    border: 0,
     color: '#919191',
     fontSize: '3em',
     height: 96,
   },
-  icon: { marginLeft: 5 },
-  item: {},
+  icon: {
+    marginLeft: 5,
+  },
+  item: {
+    background: 'rgba(0, 0, 0, 0.02)',
+    border: '1px solid rgba(0, 0, 0, 0.07)',
+    composes: ['is-relative', 'flex-1', 'no-overflow', 'rnd7'],
+    margin: '0 1% 1% 0',
+    maxWidth: '49%',
+    minWidth: '49%',
+    width: '49%',
+  },
   [`@media (min-width: ${861}px)`]: {
     item: {
       maxWidth: '32%',

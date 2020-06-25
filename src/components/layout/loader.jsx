@@ -2,7 +2,9 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
-  dot: {},
+  dot: {
+    color: '#EF2769',
+  },
   preloader: {
     composes: ['flex-1'],
     display: 'flex',

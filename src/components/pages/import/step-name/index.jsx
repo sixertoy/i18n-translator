@@ -9,17 +9,25 @@ import useStepStyles from '../styles';
 import useStep from '../use-step';
 
 const useStyles = createUseStyles({
-  button: {
-    composes: ['mt12'],
-    width: 'auto',
-  },
   container: {
+    margin: '0 auto',
     marginTop: '8%',
+    width: '80%',
   },
   icon: {
     color: '#000000',
     composes: ['use-pointer', 'fs18', 'ml7', 'text-center'],
     width: 30,
+  },
+  submit: {
+    background: '#F2F2F2',
+    border: '1px solid #DFDFE0',
+    borderRadius: 35,
+    color: '#919191',
+    composes: ['mt12'],
+    fontSize: '3em',
+    height: 70,
+    width: 70,
   },
   tooltip: {
     borderRadius: 3,
@@ -69,7 +77,7 @@ const StepNameComponent = ({ index }) => {
             </div>
           </Tooltip>
         </div>
-        <button className={classes.button} type="button" onClick={onClick}>
+        <button className={classes.submit} type="button" onClick={onClick}>
           <ArrowIcon />
         </button>
       </div>

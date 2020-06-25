@@ -24,17 +24,25 @@ const useStyles = createUseStyles({
 const RecentsComponent = React.memo(() => {
   const classes = useStyles();
   const recents = useSelector(selectRecents);
+  const hasRecents = recents.length > 0;
   return (
     <div className={classes.factory}>
       <h3 className={classes.title}>
         <ClockIcon />
         <span>Récemment Consultés</span>
       </h3>
-      <ul className={classes.wrapper}>
-        {recents.map(obj => (
-          <Item key={obj.id} data={obj} />
-        ))}
-      </ul>
+      {!hasRecents && (
+        <div className={classes.empties}>
+          <span>Vos projets récents s&apos;afficheront ici</span>
+        </div>
+      )}
+      {hasRecents && (
+        <ul className={classes.wrapper}>
+          {recents.map(obj => (
+            <Item key={obj.id} data={obj} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 });
