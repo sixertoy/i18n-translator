@@ -6,7 +6,7 @@ import Brand from '../brand';
 import Add from './add';
 import Avatar from './avatar';
 import Home from './home';
-import Projects from './projects';
+// import Projects from './projects';
 
 const useStyles = createUseStyles({
   aside: {
@@ -36,8 +36,8 @@ const ApplicationHeaderComponent = React.memo(() => {
       <div className={classes.wrapper}>
         <div className={classnames(classes.aside, 'left')}>
           <Home />
-          <span className={classes.spacer} />
-          <Projects />
+          {/* <span className={classes.spacer} />
+          <Projects /> */}
         </div>
         <div className={classes.logo}>
           <Brand />
