@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import withLayout from '../../layout';
-import Favorites from './favorites';
+// import Favorites from './favorites';
 import Projects from './projects';
 import Recents from './recents';
 
@@ -57,7 +57,7 @@ const HomeViewComponent = React.memo(() => {
             <Projects />
           </div>
           <div className={classes.lists}>
-            <Favorites />
+            {/* <Favorites /> */}
             <Recents />
           </div>
         </div>
