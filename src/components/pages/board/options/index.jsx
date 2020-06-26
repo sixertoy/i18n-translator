@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { px } from '../../../../core/utils';
 import { USE_SEARCH } from '../../../../features.json';
 import { selectFullscreen } from '../../../../redux/selectors';
-import FavoriteButton from '../../../commons/buttons/favorite';
+// import FavoriteButton from '../../../commons/buttons/favorite';
 import Tooltip from '../../../commons/tooltip';
 import ContextMenu from './menu';
 import Search from './search';
@@ -61,7 +61,7 @@ const OptionsComponent = React.memo(() => {
         <Title />
         {USE_SEARCH && <Search />}
         <div className={classes.wrapper}>
-          <FavoriteButton project={id} />
+          {/* <FavoriteButton project={id} /> */}
           <Tooltip useHover component={<ContextMenu />} theme="material">
             <div className={classes.button}>
               <ContextIcon />
