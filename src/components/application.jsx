@@ -7,11 +7,12 @@ import routes from '../routes';
 import Loader from './layout/loader';
 
 const useStyles = createUseStyles({
-  application: ({ theme }) => ({
-    background: theme.colors.background,
+  application: {
+    background: '#FFF',
+    // background: theme.colors.background,
     composes: ['flex-rows', 'is-relative'],
     height: '100%',
-  }),
+  },
 });
 
 const Application = React.memo(() => {

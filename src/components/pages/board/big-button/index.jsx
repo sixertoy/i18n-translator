@@ -14,7 +14,8 @@ const useStyles = createUseStyles({
     right: 24,
   },
   button: {
-    background: '#030303',
+    // background: `linear-gradient(90deg, #EE256B 0%, #FD7822 100%)`,
+    background: '#491AA6',
     borderRadius: 28,
     color: '#FFFFFF',
     composes: ['text-center', 'use-pointer'],

@@ -35,7 +35,10 @@ const useStyles = createUseStyles({
     transition: 'margin-top 0.3s',
   },
   layer: {
-    background: '#030303',
+    // background: 'rgba(0, 0, 0, 0.3)',
+    // background: '#030303',
+    // background: '#FFFFFF',
+    background: '#301D6B',
     color: '#FFFFFF',
     composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
     height: '100%',

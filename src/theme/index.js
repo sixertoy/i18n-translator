@@ -46,8 +46,10 @@ import { rgba } from '../core/utils';
 
 // -> Default Theme
 const red = '#CD0000';
-const odd = rgba('#FFFFFF', 0.45);
-const even = rgba('#000000', 0.01);
+// const odd = rgba('#FFFFFF', 0.45);
+// const even = rgba('#000000', 0.01);
+const odd = '#F7F8F9';
+const even = '#FFFFFF';
 const danger = '#F53844';
 const warning = '#F0812F';
 const background = '#FAFBFC';

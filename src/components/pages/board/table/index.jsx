@@ -24,6 +24,7 @@ const useStyles = createUseStyles({
   },
   table: {
     composes: ['is-overlay'],
+    padding: 12,
   },
 });
 

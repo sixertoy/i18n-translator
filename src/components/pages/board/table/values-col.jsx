@@ -11,7 +11,7 @@ import Header from './header';
 import useTableStyles from './styles';
 
 const useStyles = createUseStyles({
-  column: { marginLeft: 1 },
+  column: { marginLeft: 3 },
 });
 
 const sortByKeyAsc = (a, b) => {

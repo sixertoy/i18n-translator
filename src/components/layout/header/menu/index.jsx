@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  AiFillPushpin as PinOnIcon,
+  // AiFillPushpin as PinOnIcon,
   AiOutlineClockCircle as ClockIcon,
 } from 'react-icons/ai';
 import { FiPlus as PlusIcon } from 'react-icons/fi';

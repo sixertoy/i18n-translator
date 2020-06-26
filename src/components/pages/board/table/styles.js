@@ -8,8 +8,13 @@ const PRIMARY_COL_WIDTH = 220;
 
 const useTableStyles = createUseStyles({
   cell: ({ theme }) => ({
-    '&.even': { background: theme.colors.even },
-    '&.odd': { background: theme.colors.odd },
+    '&.even': {
+      background: theme.colors.even,
+    },
+    '&.odd': {
+      background: theme.colors.odd,
+    },
+    borderBottom: '1px solid #E6E6E9',
     color: '#000000',
     composes: ['flex-columns', 'flex-start', 'items-center'],
     height: 60,
