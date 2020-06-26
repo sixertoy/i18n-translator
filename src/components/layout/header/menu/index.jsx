@@ -57,14 +57,14 @@ const ProjectsComponent = React.memo(({ onClick }) => {
     <div className={classes.container}>
       <div className={classes.lists}>
         {noItems && <Blank />}
-        {showFavorites && (
+        {/* {showFavorites && (
           <List
             icon={PinOnIcon}
             items={favorites.slice(0, 3)}
             label="Épinglés"
             onClick={onClick}
           />
-        )}
+        )} */}
         {showRecents && (
           <List
             icon={ClockIcon}
