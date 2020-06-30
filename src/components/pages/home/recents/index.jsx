@@ -8,7 +8,12 @@ import { selectRecents } from '../../../../redux/selectors';
 import Item from './item';
 
 const useStyles = createUseStyles({
-  factory: { composes: ['mb24'] },
+  container: { composes: ['mb24'] },
+  empties: {
+    border: '1px solid rgba(0, 0, 0, 0.2)',
+    borderRadius: 4,
+    composes: ['p12'],
+  },
   title: {
     '& span': { marginLeft: 5, verticalAlign: 'middle' },
     '& svg': { fontSize: '1.15em' },
@@ -26,7 +31,7 @@ const RecentsComponent = React.memo(() => {
   const recents = useSelector(selectRecents);
   const hasRecents = recents.length > 0;
   return (
-    <div className={classes.factory}>
+    <div className={classes.container}>
       <h3 className={classes.title}>
         <ClockIcon />
         <span>Récemment Consultés</span>
@@ -38,9 +43,11 @@ const RecentsComponent = React.memo(() => {
       )}
       {hasRecents && (
         <ul className={classes.wrapper}>
-          {recents.map(obj => (
-            <Item key={obj.id} data={obj} />
-          ))}
+          {recents
+            .filter((o, i) => i < 3)
+            .map(obj => (
+              <Item key={obj.id} data={obj} />
+            ))}
         </ul>
       )}
     </div>

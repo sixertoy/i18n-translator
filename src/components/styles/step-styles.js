@@ -27,12 +27,12 @@ export const useStepStyles = createUseStyles({
     '&:disabled': { opacity: 0.65 },
     composes: ['fs24', 'is-bold', 'flex-1'],
   },
-  label: ({ theme }) => ({
-    background: theme.colors.background,
+  label: {
+    background: 'transparent',
     composes: ['is-absolute', 'is-bold', 'p5'],
     left: 12,
     top: -12,
-  }),
+  },
   options: {
     composes: ['fs14', 'm0', 'p0', 'use-pointer'],
     minWidth: '100%',

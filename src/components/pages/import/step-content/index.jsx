@@ -4,13 +4,11 @@ import { AiOutlineDownload as DownloadIcon } from 'react-icons/ai';
 import { IoIosSave as DiskIcon } from 'react-icons/io';
 import { createUseStyles } from 'react-jss';
 
-// import { toast } from 'react-toastify';
 import Button from '../../../commons/button';
 import Dropdown from '../../../commons/dropdown';
 import MonacoEditor from '../../../commons/monaco-editor';
 import useStep from '../use-step';
 import EditorMenu from './menu';
-// import { createEditorDefaultValue } from './utils';
 
 const useStyles = createUseStyles({
   container: {
@@ -27,7 +25,15 @@ const useStyles = createUseStyles({
     boxShadow: '0 0 5px 0 rgba(0, 0, 0, 0.05)',
   },
   submit: {
-    composes: ['ml7'],
+    '&:hover': {
+      background: 'rgba(0, 0, 0, 0.2)',
+    },
+    background: '#FFFFFF',
+    border: '1px solid rgba(0, 0, 0, 0.2)',
+    color: '#000000',
+    composes: ['ml7', 'is-block', 'fs18', 'py12', 'px24'],
+    transition:
+      'color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
   },
 });
 
@@ -37,13 +43,6 @@ const StepContentComponent = ({ index }) => {
   const [content, setContent] = useState(draft.content);
 
   const onEditorHandler = useCallback(value => {
-    // const isEqual = value === content;
-    // const hasError = errs && errs.length;
-    // const isEmpty = !value || value.trim() === '';
-    // const isDisabled = Boolean(hasError || isEmpty);
-    // if (hasError) errs.forEach(m => toast.error(m));
-    // setDisabled(isDisabled);
-    // if (isEqual) return;
     setContent(value);
   }, []);
 
@@ -60,7 +59,6 @@ const StepContentComponent = ({ index }) => {
       <MonacoEditor
         className={classes.editor}
         content={content}
-        // disabled={disabled}
         onChange={onEditorHandler}
       />
       <div className={classes.controls}>
@@ -69,10 +67,10 @@ const StepContentComponent = ({ index }) => {
           icon={DownloadIcon}
           label="Importer"
         />
-        <Button className={classes.submit} onClick={onSubmit}>
+        <button className={classes.submit} type="button" onClick={onSubmit}>
           <span>Continuer</span>
           <DiskIcon className="ml7" />
-        </Button>
+        </button>
       </div>
     </div>
   );

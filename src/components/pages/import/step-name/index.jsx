@@ -59,7 +59,6 @@ const StepNameComponent = ({ index }) => {
           </label>
           <input
             ref={input}
-            FAFBFC
             className={stepClasses.input}
             defaultValue={input.current}
             name="project.name"

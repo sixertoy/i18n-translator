@@ -24,13 +24,13 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   menu: {},
-  splitter: ({ theme }) => ({
+  splitter: {
     background: '#000000',
     border: 0,
     composes: ['is-block'],
     height: 1,
     opacity: 0.15,
-  }),
+  },
 });
 
 const EditorMenuComponent = React.memo(({ onChange }) => {

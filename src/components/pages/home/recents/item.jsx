@@ -1,14 +1,15 @@
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-import useListStyles from '../styles';
-
 const useStyles = createUseStyles({
   item: {},
-  link: {},
+  link: {
+    '&:hover': { textDecoration: 'none' },
+    border: '1px solid rgba(0, 0, 0, 0.07)',
+    composes: ['is-block', 'py12', 'px7', 'rnd7', 'is-bold'],
+  },
   name: {},
   wrapper: {},
   [`@media (min-width: ${681}px)`]: {
@@ -28,15 +29,12 @@ const useStyles = createUseStyles({
 
 const ProjectItemComponent = React.memo(({ data }) => {
   const { id, name } = data;
-  const queries = useStyles();
-  const classes = useListStyles();
+  const classes = useStyles();
   return (
-    <li className={classnames(classes.item, queries.item, 'fadein')}>
-      <Link
-        className={classnames(classes.link, queries.link)}
-        to={`/board/${id}`}>
-        <div className={classnames(classes.wrapper, queries.wrapper)}>
-          <span className={classnames(classes.name, queries.name)}>{name}</span>
+    <li className={classes.item}>
+      <Link className={classes.link} to={`/board/${id}`}>
+        <div className={classes.wrapper}>
+          <span>{name}</span>
         </div>
       </Link>
     </li>

@@ -35,9 +35,6 @@ const useStyles = createUseStyles({
     transition: 'margin-top 0.3s',
   },
   layer: {
-    // background: 'rgba(0, 0, 0, 0.3)',
-    // background: '#030303',
-    // background: '#FFFFFF',
     background: '#301D6B',
     color: '#FFFFFF',
     composes: ['flex-columns', 'flex-between', 'items-center', 'px32'],
@@ -65,7 +62,7 @@ const OptionsComponent = React.memo(() => {
         {USE_SEARCH && <Search />}
         <div className={classes.wrapper}>
           {/* <FavoriteButton project={id} /> */}
-          <Tooltip useHover component={<ContextMenu />} theme="material">
+          <Tooltip useHover component={<ContextMenu />} theme="light">
             <div className={classes.button}>
               <ContextIcon />
             </div>

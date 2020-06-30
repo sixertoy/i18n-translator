@@ -27,13 +27,6 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   percentage: {
-    '& .progress-thumb': {
-      background: '#5D20D2',
-    },
-    '& .progress-track': {
-      // background: rgba('#FFFFFF', 0.15)
-      background: 'hsla(0, 0%, 100%, 0.06)',
-    },
     maxWidth: '65%',
     minWidth: '65%',
     width: '65%',

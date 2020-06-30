@@ -44,14 +44,14 @@ const useStyles = createUseStyles({
   }),
   thumb: ({ size }) => ({
     ...getSizeObject(size),
-    background: '#FFFFFF',
+    background: '#3b1d98',
     composes: ['is-overlay'],
     transition: 'right 0.5s',
     zIndex: 20,
   }),
   track: ({ size }) => ({
     ...getSizeObject(size),
-    background: '#ACE539',
+    background: 'hsla(0, 0%, 100%, 0.06)',
     composes: ['is-overlay'],
     zIndex: 10,
   }),

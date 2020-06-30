@@ -17,7 +17,6 @@ const useStyles = createUseStyles({
       height: 34,
       width: 34,
     },
-    borderRadius: '50%',
     composes: ['is-block', 'fs16', 'no-overflow'],
     height: 34,
     width: 34,

@@ -6,7 +6,7 @@ const CountLabelComponent = React.memo(
     let label = `${count}/${total}`;
     if (useCount === 'percent') label = `${percent}%`;
     return (
-      <div className="flex-1">
+      <div className="flex-1 percent">
         {disabled && <span>n/a</span>}
         {!disabled && <span>{label}</span>}
       </div>

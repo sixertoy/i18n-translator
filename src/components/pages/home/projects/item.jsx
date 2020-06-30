@@ -1,32 +1,31 @@
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import {
-//   AiFillPushpin as PinIconOn,
-//   AiOutlinePushpin as PinIconOff,
-// } from 'react-icons/ai';
-// import { IoIosMenu as DragIcon } from 'react-icons/io';
 import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
-// import { useFavorite } from '../../../hooks';
-import useListStyles from '../styles';
-
 const useStyles = createUseStyles({
   item: {
-    background: '#FFFFFF',
-    border: '1px solid rgba(0, 0, 0, 0.07)',
-    composes: ['is-relative', 'flex-1', 'no-overflow', 'pl30', 'rnd7'],
+    composes: ['is-relative', 'flex-1'],
     margin: '0 1% 1% 0',
     maxWidth: '49%',
     minWidth: '49%',
     width: '49%',
   },
   link: {
-    '&:hover': { textDecoration: 'none' },
-    composes: ['is-normal', 'is-block', 'is-bold', 'fs16'],
-    lineHeight: 1.3,
+    '&:hover': {
+      background: '#301D6B',
+      textDecoration: 'none',
+    },
+    background: '#3b1d98',
+    boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 8px !important',
+    color: '#FFFFFF',
+    composes: ['is-block', 'is-bold', 'fs18', 'text-center', 'rnd7'],
+    transition: 'background 0.3s',
     width: '100%',
+  },
+  wrapper: {
+    composes: ['p12'],
+    height: 96,
   },
   [`@media (min-width: ${861}px)`]: {
     item: {
@@ -39,24 +38,13 @@ const useStyles = createUseStyles({
 
 const GridComponent = React.memo(({ data }) => {
   const { id, name } = data;
-  const queries = useStyles();
-  const classes = useListStyles();
-  // const { isFavorite } = useFavorite(id);
+  const classes = useStyles();
 
   return (
-    <li className={classnames(classes.item, queries.item, 'fadein')}>
-      {/* <DragIcon className={classes.icon} />
-      {isFavorite && (
-        <PinIconOn className={classnames(classes.icon, classes.favorite)} />
-      )}
-      {!isFavorite && (
-        <PinIconOff className={classnames(classes.icon, classes.favorite)} />
-      )} */}
-      <Link
-        className={classnames(classes.link, queries.link)}
-        to={`/board/${id}`}>
+    <li className={classes.item}>
+      <Link className={classes.link} to={`/board/${id}`}>
         <div className={classes.wrapper}>
-          <span className={classes.name}>{name}</span>
+          <span>{name}</span>
         </div>
       </Link>
     </li>

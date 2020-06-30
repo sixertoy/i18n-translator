@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
     composes: ['flex-columns', 'items-center'],
   },
   container: {
-    background: `linear-gradient(90deg, #EE256B 0%, #FD7822 100%)`,
+    background: `linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%) !important`,
     zIndex: 1000000,
   },
   logo: {

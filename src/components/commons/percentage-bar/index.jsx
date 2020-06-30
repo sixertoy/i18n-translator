@@ -16,7 +16,13 @@ const useStyles = createUseStyles({
     marginRight: position === POSITION_AFTER ? 7 : 0,
   }),
   percentage: {
-    composes: ['flex-columns', 'items-center', 'flex-start', 'is-full-width'],
+    composes: [
+      'flex-columns',
+      'items-center',
+      'flex-start',
+      'is-full-width',
+      'is-bold',
+    ],
   },
 });
 
@@ -59,7 +65,6 @@ const PercentageBarComponent = React.memo(
 
 PercentageBarComponent.defaultProps = {
   position: 'after',
-  // rounded: false,
   size: 'normal',
   useCount: false,
 };

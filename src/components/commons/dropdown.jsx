@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { useButtonStyles } from '../styles';
 import Tooltip from './tooltip';
 
 const useStyles = createUseStyles({
   button: {
+    background: '#FFFFFF',
+    border: '1px solid rgba(0, 0, 0, 0.2)',
+    color: '#000000',
+    composes: ['is-block', 'fs18', 'py12', 'px24'],
     height: '100%',
     textAlign: 'center',
     width: 200,
@@ -24,7 +27,6 @@ const useStyles = createUseStyles({
 const DropdownComponent = React.memo(
   ({ content: Content, icon: Icon, label }) => {
     const classes = useStyles();
-    const buttonClasses = useButtonStyles();
     return (
       <div className={classes.dropdown}>
         <Tooltip
@@ -36,11 +38,11 @@ const DropdownComponent = React.memo(
           maxWidth={250}
           offset={[0, 1]}
           placement="top"
-          theme="material">
-          <span className={classnames(buttonClasses.btn, classes.button)}>
+          theme="light">
+          <button className={classes.button}>
             {label && <span>{label}</span>}
             {Icon && <Icon className="ml7" />}
-          </span>
+          </button>
         </Tooltip>
       </div>
     );

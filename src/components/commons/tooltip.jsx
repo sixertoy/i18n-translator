@@ -23,7 +23,6 @@ const TooltipComponent = ({
   useHover,
   ...rest
 }) => {
-  const classes = useStyles();
   const content = component || title;
 
   const overrides = {
@@ -33,7 +32,7 @@ const TooltipComponent = ({
   return (
     <Tippy
       arrow={roundArrow}
-      className={classnames(classes.tooltip, className)}
+      className={className}
       content={content}
       interactive={interactive}
       placement="bottom"

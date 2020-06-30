@@ -77,7 +77,7 @@ const ColumnHeaderComponent = React.memo(
             }
             offset={[0, -30]}
             placement="bottom"
-            theme="material">
+            theme="light">
             <span className={classes.button}>
               <ContextIcon />
             </span>

@@ -39,7 +39,7 @@ const ReactDumbComponent = React.memo(() => {
         applications.
       </h1>
       <p className={classes.description}>
-        Typpo permet d&apos;orcherstrer en un clin d&apos;oeil vos fichiers
+        Typpo permet d&apos;éditer et d&apos;exporter simplement vos fichiers
         d&apos;internationalisation pour tous vos projets.
       </p>
     </div>
