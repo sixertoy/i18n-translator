@@ -3,29 +3,38 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 
+import Pill from './pill';
+
 const useStyles = createUseStyles({
   item: {
-    composes: ['is-relative', 'flex-1'],
+    '&:hover': {
+      background: '#3b1d98',
+    },
+    background: '#4F36A4',
+    boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 8px !important',
+    composes: ['is-relative', 'flex-1', 'rnd7', 'no-overflow', 'flex-rows'],
+    height: '8rem',
     margin: '0 1% 1% 0',
     maxWidth: '49%',
     minWidth: '49%',
+    transition: 'background 0.3s',
     width: '49%',
   },
   link: {
     '&:hover': {
-      background: '#301D6B',
       textDecoration: 'none',
     },
-    background: '#3b1d98',
-    boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 8px !important',
     color: '#FFFFFF',
-    composes: ['is-block', 'is-bold', 'fs18', 'text-center', 'rnd7'],
-    transition: 'background 0.3s',
+    composes: ['is-block', 'is-bold', 'fs18', 'text-center', 'flex-1'],
     width: '100%',
   },
-  wrapper: {
+  pills: {
     composes: ['p12'],
-    height: 96,
+  },
+  wrapper: {
+    composes: ['p12', 'flex-rows', 'flex-center'],
+    height: '100%',
+    lineHeight: '1.1em',
   },
   [`@media (min-width: ${861}px)`]: {
     item: {
@@ -37,23 +46,29 @@ const useStyles = createUseStyles({
 });
 
 const GridComponent = React.memo(({ data }) => {
-  const { id, name } = data;
+  const { id, langs, name } = data;
   const classes = useStyles();
 
   return (
-    <li className={classes.item}>
+    <div className={classes.item}>
       <Link className={classes.link} to={`/board/${id}`}>
         <div className={classes.wrapper}>
           <span>{name}</span>
         </div>
       </Link>
-    </li>
+      <div className={classes.pills}>
+        {langs.map(lang => (
+          <Pill key={lang} lang={lang} />
+        ))}
+      </div>
+    </div>
   );
 });
 
 GridComponent.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string,
+    langs: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
   }).isRequired,
 };

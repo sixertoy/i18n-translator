@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 import { repository, version } from '../../../../package.json';
 import { RESPONSIVE_BREAKPOINT } from '../../../constants';
@@ -10,15 +10,6 @@ const useStyles = createUseStyles({
     composes: ['px32', 'pb0', 'pt12', 'fs8', 'is-uppercase', 'is-relative'],
     letterSpacing: '0.12em',
   },
-  credits: {
-    borderRadius: `3px 3px 0 0`,
-    bottom: 0,
-    composes: ['is-uppercase', 'pb0', 'pt5', 'px12', 'is-absolute'],
-    right: 32,
-  },
-  love: ({ theme }) => ({
-    color: theme.colors.red,
-  }),
   version: {
     color: rgba('#000000', 0.35),
   },
@@ -33,8 +24,7 @@ const useStyles = createUseStyles({
 });
 
 const ApplicationFooter = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <div className={classes.container} id="layout-footer">
       <a className={classes.version} href={repository.url}>
@@ -42,9 +32,6 @@ const ApplicationFooter = React.memo(() => {
           v{version} - Typpo <span>- i18n online translation editor</span>
         </span>
       </a>
-      <div className={classes.credits}>
-        Made with <span className={classes.love}>♥</span> and React
-      </div>
     </div>
   );
 });

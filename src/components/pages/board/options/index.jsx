@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 import { px } from '../../../../core/utils';
 import { USE_SEARCH } from '../../../../features.json';
 import { selectFullscreen } from '../../../../redux/selectors';
-// import FavoriteButton from '../../../commons/buttons/favorite';
 import Tooltip from '../../../commons/tooltip';
 import ContextMenu from './menu';
 import Search from './search';
@@ -41,6 +40,9 @@ const useStyles = createUseStyles({
     height: '100%',
     width: '100%',
   },
+  tooltip: {
+    borderRadius: 40,
+  },
   wrapper: {
     composes: ['flex-columns', 'flex-end', 'items-center', 'flex-0'],
     maxWidth: 90,
@@ -61,8 +63,11 @@ const OptionsComponent = React.memo(() => {
         <Title />
         {USE_SEARCH && <Search />}
         <div className={classes.wrapper}>
-          {/* <FavoriteButton project={id} /> */}
-          <Tooltip useHover component={<ContextMenu />} theme="light">
+          <Tooltip
+            useHover
+            className={classes.tooltip}
+            component={<ContextMenu />}
+            theme="light">
             <div className={classes.button}>
               <ContextIcon />
             </div>

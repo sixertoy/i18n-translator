@@ -38,7 +38,11 @@ const AvatarComponent = React.memo(() => {
       theme="light"
       useHover={false}>
       <button className={classes.button} type="button">
-        {showIcon && <UserIcon className="anon" />}
+        {showIcon && (
+          <React.Fragment>
+            <UserIcon className="anon" />
+          </React.Fragment>
+        )}
         {!showIcon && <img alt="user avatar" src={photoURL} />}
       </button>
     </Tooltip>

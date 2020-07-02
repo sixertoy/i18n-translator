@@ -7,17 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { createDraftAsync } from '../../../../redux/actions';
 
 const useStyles = createUseStyles({
-  icon: {
-    marginLeft: 5,
-  },
-  item: {
-    composes: ['is-relative', 'flex-1'],
-    margin: '0 1% 1% 0',
-    maxWidth: '49%',
-    minWidth: '49%',
-    width: '49%',
-  },
-  link: {
+  button: {
     '&:hover': {
       color: '#301D6B',
       textDecoration: 'none',
@@ -27,9 +17,20 @@ const useStyles = createUseStyles({
     color: '#3b1d98',
     composes: ['text-center', 'is-block', 'rnd7'],
     fontSize: '3em',
-    height: 96,
+    height: '100%',
     transition: 'color 0.3s',
     width: '100%',
+  },
+  icon: {
+    marginLeft: 5,
+  },
+  item: {
+    composes: ['is-relative', 'flex-1'],
+    height: '8rem',
+    margin: '0 1% 1% 0',
+    maxWidth: '49%',
+    minWidth: '49%',
+    width: '49%',
   },
   [`@media (min-width: ${861}px)`]: {
     item: {
@@ -53,11 +54,11 @@ const BlankComponent = React.memo(() => {
   }, [dispatch, history]);
 
   return (
-    <li className={classes.item}>
-      <button className={classes.link} type="button" onClick={onCreateClick}>
+    <div className={classes.item}>
+      <button className={classes.button} type="button" onClick={onCreateClick}>
         <PlusIcon className={classes.icon} />
       </button>
-    </li>
+    </div>
   );
 });
 

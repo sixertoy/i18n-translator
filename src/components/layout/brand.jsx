@@ -18,7 +18,8 @@ const useStyles = createUseStyles({
       verticalAlign: 'middle',
     },
     '&:hover': { textDecoration: 'none !important' },
-    color: '#FFFFFF',
+    color: '#D70566',
+    // color: '#FFFFFF',
     composes: ['ff-lobster', 'flex-columns', 'flex-start', 'items-center'],
   },
 });

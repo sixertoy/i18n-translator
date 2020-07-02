@@ -16,7 +16,9 @@ import {
 
 const useStyles = createUseStyles({
   button: {
-    borderRadius: 0,
+    '&:hover': {
+      color: '#FFFFFF !important',
+    },
     color: '#909192',
     composes: [
       'is-block',
@@ -25,7 +27,6 @@ const useStyles = createUseStyles({
       'flex-between',
       'items-center',
     ],
-    height: 40,
     width: '100%',
   },
   container: {
@@ -37,13 +38,6 @@ const useStyles = createUseStyles({
     color: theme.colors.danger,
     fontWeight: 'bold',
   }),
-  splitter: {
-    background: '#909192',
-    border: 0,
-    composes: ['is-block'],
-    height: 1,
-    opacity: 0.15,
-  },
   warning: ({ theme }) => ({
     color: theme.colors.warning,
   }),
@@ -76,12 +70,10 @@ const ContextMenuComponent = React.memo(() => {
 
   return (
     <div className={classes.container}>
-      {/* <hr className={classes.splitter} /> */}
       <button className={classes.button} type="button" onClick={onCloneProject}>
         <span>Duplicate</span>
         <CloneIcon className={classes.icon} />
       </button>
-      {/* <hr className={classes.splitter} /> */}
       <button
         className={classnames(classes.button, classes.warning)}
         type="button"
@@ -89,7 +81,6 @@ const ContextMenuComponent = React.memo(() => {
         <span>Tout effacer</span>
         <SwipeIcon className={classes.icon} />
       </button>
-      {/* <hr className={classes.splitter} /> */}
       <button
         className={classnames(classes.button, classes.danger)}
         type="button"

@@ -56,7 +56,7 @@ const background = '#FAFBFC';
 
 const pink = '#EE256B';
 const orange = '#FD7822';
-// const gradient = `linear-gradient(0deg, ${pink} 0%, ${orange} 100%)`;
+// const gradient = `linear-gradient(0deg, #3b1d98 0%, #4F36A4 100%)`;
 const gradient =
   'linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%) !important';
 

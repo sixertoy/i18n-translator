@@ -1,18 +1,7 @@
 import Tippy from '@tippyjs/react';
-import classnames from 'classnames';
-// import omit from 'lodash.omit';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createUseStyles } from 'react-jss';
 import { roundArrow } from 'tippy.js';
-
-const useStyles = createUseStyles({
-  tooltip: {
-    border: 0,
-    borderRadius: 18,
-    left: 0,
-  },
-});
 
 const TooltipComponent = ({
   children,

@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '../../../core/firebase';
 import withLayout from '../../layout';
-// import Favorites from './favorites';
 import Projects from './projects';
 import Recents from './recents';
 
@@ -14,7 +13,7 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   grids: {
-    composes: ['flex-1', 'is-relative', 'mr24'],
+    composes: ['flex-1', 'is-relative', 'ml24'],
   },
   lists: {
     composes: ['flex-0'],
@@ -30,12 +29,11 @@ const useStyles = createUseStyles({
   },
   [`@media (max-width: ${680}px)`]: {
     grids: {
-      marginRight: 0,
+      marginLeft: 0,
     },
     lists: {
-      maxWidth: '100%',
-      minWidth: '100%',
-      width: '100%',
+      display: 'none',
+      visibility: 'hidden',
     },
     wrapper: {
       flexDirection: 'column-reverse',
@@ -53,12 +51,11 @@ const HomeViewComponent = React.memo(() => {
       </IfFirebaseUnAuthed>
       <IfFirebaseAuthed>
         <div className={classes.wrapper}>
+          <div className={classes.lists}>
+            <Recents />
+          </div>
           <div className={classes.grids}>
             <Projects />
-          </div>
-          <div className={classes.lists}>
-            {/* <Favorites /> */}
-            <Recents />
           </div>
         </div>
       </IfFirebaseAuthed>
