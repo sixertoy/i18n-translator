@@ -7,16 +7,15 @@ import Avatar from './avatar';
 
 const useStyles = createUseStyles({
   aside: {
-    '&.left': { justifyContent: 'flex-start' },
-    '&.right': { justifyContent: 'flex-end' },
-    composes: ['flex-columns', 'items-center'],
+    composes: ['flex-columns', 'items-center', 'flex-end'],
+    flex: '0 !important',
   },
   container: {
     // background: `linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%) !important`,
     zIndex: 1000000,
   },
   logo: {
-    composes: ['fs10', 'mx12'],
+    composes: ['fs10', 'mx12', 'flex-1'],
     fontSize: '0.9rem',
   },
   spacer: {
@@ -42,7 +41,7 @@ const ApplicationHeaderComponent = React.memo(() => {
         <div className={classes.logo}>
           <Brand />
         </div>
-        <div className={classnames(classes.aside, 'right')}>
+        <div className={classes.aside}>
           <Avatar />
         </div>
       </div>

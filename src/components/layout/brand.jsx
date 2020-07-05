@@ -19,7 +19,6 @@ const useStyles = createUseStyles({
     },
     '&:hover': { textDecoration: 'none !important' },
     color: '#D70566',
-    // color: '#FFFFFF',
     composes: ['ff-lobster', 'flex-columns', 'flex-start', 'items-center'],
   },
 });

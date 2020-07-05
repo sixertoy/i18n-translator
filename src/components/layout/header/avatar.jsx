@@ -4,28 +4,47 @@ import { AiOutlineUser as UserIcon } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
-import { rgba } from '../../../core/utils';
 import { selectUser } from '../../../redux/selectors';
 import Tooltip from '../../commons/tooltip';
 import IdCard from './idcard';
 
 const useStyles = createUseStyles({
   button: {
-    '& .anon': { color: rgba('#FFFFFF', 0.55) },
-    '& img': {
-      composes: ['is-block'],
-      height: 34,
-      width: 34,
+    '& .icon': {
+      color: '#E61E4D',
+      marginLeft: 8,
+      marginRight: 8,
     },
-    composes: ['is-block', 'fs16', 'no-overflow'],
-    height: 34,
-    width: 34,
+    '& img': {
+      borderRadius: '50%',
+      composes: ['is-block'],
+      height: 30,
+      marginLeft: 8,
+      width: 30,
+    },
+    border: '1px solid #EDEDED',
+    borderRadius: 20,
+    composes: [
+      'is-block',
+      'fs16',
+      'p5',
+      'no-overflow',
+      'flex-columns',
+      'items-center',
+    ],
+    height: 42,
+    paddingLeft: '16px !important',
+  },
+  name: {
+    fontSize: '0.8em',
+    fontWeight: 600,
   },
 });
 
 const AvatarComponent = React.memo(() => {
   const classes = useStyles();
   const user = useSelector(selectUser);
+  // const name = get(user, 'name', 'Invité');
   const photoURL = get(user, 'photoURL', null);
   const isAnonymous = get(user, 'isAnonymous', null);
   const showIcon = isAnonymous || !photoURL;
@@ -38,11 +57,8 @@ const AvatarComponent = React.memo(() => {
       theme="light"
       useHover={false}>
       <button className={classes.button} type="button">
-        {showIcon && (
-          <React.Fragment>
-            <UserIcon className="anon" />
-          </React.Fragment>
-        )}
+        <span className={classes.name}>Invité</span>
+        {showIcon && <UserIcon className="icon" />}
         {!showIcon && <img alt="user avatar" src={photoURL} />}
       </button>
     </Tooltip>

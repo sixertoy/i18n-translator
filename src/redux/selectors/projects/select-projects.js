@@ -1,5 +1,6 @@
 import orderBy from 'lodash.orderby';
 import { createSelector } from 'reselect';
+import slugify from 'slugify';
 
 const getProjects = state => state.projects;
 const getFavorites = state => state.favorites;
@@ -10,9 +11,10 @@ const selectProjects = createSelector(
   (projs, favs) => {
     let projects = projs.map(obj => {
       const isFavorite = favs.includes(obj.id);
-      return { ...obj, isFavorite };
+      const slug = slugify(obj.name);
+      return { ...obj, isFavorite, slug };
     });
-    projects = orderBy(projects, ['name']);
+    projects = orderBy(projects, ['slug']);
     return projects;
   }
 );

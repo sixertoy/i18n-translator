@@ -8,6 +8,8 @@ const useStyles = createUseStyles({
     borderRadius: 20,
     color: '#FFFFFF',
     composes: ['px5', 'py5', 'fs8', 'is-bold', 'text-center'],
+    display: 'inline-block',
+    marginLeft: 5,
     width: 40,
   },
 });

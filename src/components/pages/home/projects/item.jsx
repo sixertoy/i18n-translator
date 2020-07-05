@@ -1,7 +1,9 @@
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
+import slugify from 'slugify';
 
 import Pill from './pill';
 
@@ -29,7 +31,7 @@ const useStyles = createUseStyles({
     width: '100%',
   },
   pills: {
-    composes: ['p12'],
+    composes: ['py12', 'pr12', 'pl7'],
   },
   wrapper: {
     composes: ['p12', 'flex-rows', 'flex-center'],
@@ -45,12 +47,15 @@ const useStyles = createUseStyles({
   },
 });
 
-const GridComponent = React.memo(({ data }) => {
+const GridComponent = React.memo(({ data, hidden }) => {
   const { id, langs, name } = data;
   const classes = useStyles();
-
+  const slugified = slugify(name);
   return (
-    <div className={classes.item}>
+    <div
+      className={classnames(classes.item, slugified, {
+        hidden,
+      })}>
       <Link className={classes.link} to={`/board/${id}`}>
         <div className={classes.wrapper}>
           <span>{name}</span>
@@ -65,12 +70,17 @@ const GridComponent = React.memo(({ data }) => {
   );
 });
 
+GridComponent.defaultProps = {
+  hidden: false,
+};
+
 GridComponent.propTypes = {
   data: PropTypes.shape({
     id: PropTypes.string,
     langs: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
   }).isRequired,
+  hidden: PropTypes.bool,
 };
 
 export default GridComponent;

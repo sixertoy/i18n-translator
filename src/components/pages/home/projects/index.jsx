@@ -1,14 +1,16 @@
-import React from 'react';
+import orderBy from 'lodash.orderby';
+import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 
 import { selectProjects } from '../../../../redux/selectors';
 import Blank from './blank';
 import Item from './item';
+import Toolbar from './toolbar';
 
 const useStyles = createUseStyles({
-  factory: { composes: ['mb24'] },
-  wrapper: {
+  container: { composes: ['mb24'] },
+  pills: {
     composes: ['flex-columns', 'flex-wrap'],
   },
 });
@@ -16,12 +18,17 @@ const useStyles = createUseStyles({
 const ListComponent = React.memo(() => {
   const classes = useStyles();
   const projects = useSelector(selectProjects);
+  const [filter, setFilter] = useState(null);
+
   return (
-    <div className={classes.factory}>
-      <div className={classes.wrapper}>
-        {projects.map(obj => (
-          <Item key={obj.id} data={obj} />
-        ))}
+    <div className={classes.container}>
+      <Toolbar onFilter={setFilter} />
+      <div className={classes.pills}>
+        {projects &&
+          filter &&
+          orderBy(projects, [filter.prop], filter.order).map(obj => (
+            <Item key={obj.id} data={obj} />
+          ))}
         <Blank />
       </div>
     </div>

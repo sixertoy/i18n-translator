@@ -7,19 +7,23 @@
 @import './animated/';
 
 body {
-  color: #3c4a66;
+  color: #484848;
   background: #ffffff;
 }
 
 a,
 input,
 button {
-  color: #3c4a66;
+  color: #484848;
 }
 
 .debug {
   border: 1px solid #000000;
   background: rgba(172, 229, 57, 0.15);
+}
+
+.ff-montserrat {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .ff-roboto {
