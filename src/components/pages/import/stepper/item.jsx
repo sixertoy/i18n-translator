@@ -9,17 +9,17 @@ import { px, rgba } from '../../../../core/utils';
 const useStyles = createUseStyles({
   circle: {
     '.active &': {
-      background: '#FD7822',
+      background: '#D94865',
       color: '#FFFFFF',
     },
     '.before &': {
-      background: '#EE256B',
+      background: '#5142A4',
       color: '#FFFFFF',
     },
     background: rgba('#000000', 0.1),
     borderRadius: '100%',
     color: rgba('#000000', 0.65),
-    composes: ['fs10', 'mr5', 'is-inline-block', 'text-center'],
+    composes: ['fs12', 'mr5', 'is-inline-block', 'text-center', 'is-bold'],
     height: 28,
     lineHeight: px(28),
     width: 28,
@@ -41,7 +41,8 @@ const useStyles = createUseStyles({
       top: 16,
       width: '9999px',
     },
-    '.active &': { color: '#FD7822', fontWeight: 'bold' },
+    '.active &': { color: '#D94865', fontWeight: 'bold' },
+    '.before &': { color: '#5142A4', fontWeight: 'bold' },
     color: rgba('#000000', 0.45),
     composes: ['fs16', 'is-inline-block', 'is-relative', 'pr7'],
   },

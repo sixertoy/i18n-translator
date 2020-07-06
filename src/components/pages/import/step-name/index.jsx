@@ -5,7 +5,6 @@ import { IoIosArrowRoundForward as ArrowIcon } from 'react-icons/io';
 import { createUseStyles } from 'react-jss';
 
 import Tooltip from '../../../commons/tooltip';
-import useStepStyles from '../styles';
 import useStep from '../use-step';
 
 const useStyles = createUseStyles({
@@ -14,10 +13,42 @@ const useStyles = createUseStyles({
     marginTop: '8%',
     width: '80%',
   },
+  field: {
+    borderColor: '#000000',
+    borderRadius: 7,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    composes: [
+      'is-block',
+      'is-relative',
+      'pl24',
+      'px7',
+      'py24',
+      'flex-columns',
+      'items-center',
+    ],
+    height: 'auto',
+    width: '100%',
+  },
+  form: {
+    margin: '0 auto',
+    width: 350,
+  },
   icon: {
     color: '#000000',
     composes: ['use-pointer', 'fs18', 'ml7', 'text-center'],
     width: 30,
+  },
+  input: {
+    // TODO add disabled state
+    '&:disabled': { opacity: 0.65 },
+    composes: ['fs24', 'is-bold', 'flex-1'],
+  },
+  label: {
+    background: 'transparent',
+    composes: ['is-absolute', 'is-bold', 'p5'],
+    left: 12,
+    top: -12,
   },
   submit: {
     background: '#F2F2F2',
@@ -37,7 +68,6 @@ const useStyles = createUseStyles({
 
 const StepNameComponent = ({ index }) => {
   const classes = useStyles();
-  const stepClasses = useStepStyles();
   const { draft, onStepChange } = useStep(index);
   const input = useRef(draft.name);
 
@@ -52,14 +82,14 @@ const StepNameComponent = ({ index }) => {
 
   return (
     <div className={classes.container} id="step-project">
-      <div className={stepClasses.form}>
-        <div className={stepClasses.field}>
-          <label className={stepClasses.label} htmlFor="project.name">
+      <div className={classes.form}>
+        <div className={classes.field}>
+          <label className={classes.label} htmlFor="project.name">
             <span>Nom du projet</span>
           </label>
           <input
             ref={input}
-            className={stepClasses.input}
+            className={classes.input}
             defaultValue={input.current}
             name="project.name"
             type="text"
