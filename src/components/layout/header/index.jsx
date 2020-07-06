@@ -24,7 +24,6 @@ const useStyles = createUseStyles({
   wrapper: {
     composes: ['flex-columns', 'flex-between', 'items-center', 'px24'],
     margin: '0 auto',
-    maxWidth: 960,
     paddingBottom: 64,
     paddingTop: 24,
   },
