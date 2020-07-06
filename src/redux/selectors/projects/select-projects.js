@@ -11,7 +11,7 @@ const selectProjects = createSelector(
   (projs, favs) => {
     let projects = projs.map(obj => {
       const isFavorite = favs.includes(obj.id);
-      const slug = slugify(obj.name);
+      const slug = slugify(obj.name).toLowerCase();
       return { ...obj, isFavorite, slug };
     });
     projects = orderBy(projects, ['slug']);

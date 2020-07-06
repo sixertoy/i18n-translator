@@ -9,8 +9,18 @@ import { MdSortByAlpha as AlphaIcon } from 'react-icons/md';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
+  button: {
+    borderRadius: 20,
+    composes: ['text-center'],
+  },
   container: {
-    composes: ['flex-columns', 'flex-end'],
+    composes: ['flex-columns', 'flex-between', 'mb12'],
+  },
+  label: {
+    composes: ['fs10', 'is-uppercase'],
+  },
+  search: {
+    border: '1px solid rgba(0, 0, 0, 0.15)',
   },
 });
 
@@ -24,11 +34,21 @@ const ICONS = {
   slug: AlphaIcon,
 };
 
-const ProjectsToolbarComponent = React.memo(({ onFilter }) => {
+const ProjectsToolbarComponent = React.memo(({ onFilter, onSearch }) => {
   const classes = useStyles();
   const mounted = useRef(false);
   const [active, setActive] = useState(0);
   const [filters, setFilters] = useState(FILTERS);
+
+  const searchHandler = useCallback(
+    evt => {
+      const { value } = evt.target;
+      const lower = value.toLowerCase();
+      const trimmed = lower.trim();
+      onSearch(trimmed);
+    },
+    [onSearch]
+  );
 
   const filterHandler = useCallback(
     index => {
@@ -54,6 +74,9 @@ const ProjectsToolbarComponent = React.memo(({ onFilter }) => {
 
   return (
     <div className={classes.container}>
+      <div className={classes.search}>
+        <input type="text" onChange={searchHandler} />
+      </div>
       <div className="filters">
         {filters.map((obj, index) => {
           const Icon = ICONS[obj.prop];
@@ -62,9 +85,10 @@ const ProjectsToolbarComponent = React.memo(({ onFilter }) => {
           return (
             <button
               key={obj.prop}
+              className={classes.button}
               type="button"
               onClick={() => filterHandler(index)}>
-              <span>{obj.label}</span>
+              <span className={classes.label}>{obj.label}</span>
               <Icon />
               {isactive && <Order />}
             </button>
@@ -77,6 +101,7 @@ const ProjectsToolbarComponent = React.memo(({ onFilter }) => {
 
 ProjectsToolbarComponent.propTypes = {
   onFilter: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default ProjectsToolbarComponent;

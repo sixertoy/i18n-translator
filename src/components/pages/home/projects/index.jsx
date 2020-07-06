@@ -18,17 +18,18 @@ const useStyles = createUseStyles({
 const ListComponent = React.memo(() => {
   const classes = useStyles();
   const projects = useSelector(selectProjects);
+  const [search, setSearch] = useState('');
   const [filter, setFilter] = useState(null);
 
   return (
     <div className={classes.container}>
-      <Toolbar onFilter={setFilter} />
+      <Toolbar onFilter={setFilter} onSearch={setSearch} />
       <div className={classes.pills}>
         {projects &&
           filter &&
-          orderBy(projects, [filter.prop], filter.order).map(obj => (
-            <Item key={obj.id} data={obj} />
-          ))}
+          orderBy(projects, [filter.prop], filter.order)
+            .filter(({ slug }) => slug.indexOf(search) !== -1)
+            .map(obj => <Item key={obj.id} data={obj} />)}
         <Blank />
       </div>
     </div>
