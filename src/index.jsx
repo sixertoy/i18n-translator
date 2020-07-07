@@ -1,4 +1,5 @@
 import 'firebase/auth';
+import 'firebase/database';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/dist/svg-arrow.css';
 import 'tippy.js/animations/shift-away-subtle.css';

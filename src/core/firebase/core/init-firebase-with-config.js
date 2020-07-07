@@ -1,6 +1,10 @@
 let FIREBASE_APP_SINGLETON = null;
 
-function initFirebaseWithConfig(
+export function getFirebaseApp() {
+  return FIREBASE_APP_SINGLETON;
+}
+
+export function initFirebaseWithConfig(
   firebase,
   {
     apiKey,
@@ -34,5 +38,3 @@ function initFirebaseWithConfig(
   }
   return FIREBASE_APP_SINGLETON;
 }
-
-export default initFirebaseWithConfig;

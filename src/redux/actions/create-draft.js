@@ -3,13 +3,25 @@ import ucFirst from 'lodash.upperfirst';
 import { v1 as uuidv1 } from 'uuid';
 
 import { EVENT_TYPES } from '../../constants';
+import { database } from '../../core/firebase';
 
-const createDraftAsync = () => dispatch => {
-  const id = uuidv1();
-  const name = ucFirst(getName());
-  const draft = { content: '', id, langs: [], name };
-  dispatch({ draft, type: EVENT_TYPES.DRAFT_CREATE });
-  return Promise.resolve(id);
-};
+const createDraftAsync = () => dispatch =>
+  new Promise(resolve => {
+    const id = uuidv1();
+    const now = Date.now();
+    const path = `/projects/${id}`;
+    const draft = {
+      content: '',
+      ctime: now,
+      id,
+      langs: [],
+      mtime: now,
+      name: ucFirst(getName()),
+    };
+    database.create(path, draft).then(() => {
+      dispatch({ draft, type: EVENT_TYPES.DRAFT_CREATE });
+      resolve(id);
+    });
+  });
 
 export default createDraftAsync;

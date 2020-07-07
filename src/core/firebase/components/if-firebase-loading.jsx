@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FirebaseAuthContext, renderWithProps } from '../core';
+import { renderWithProps } from '../../utils';
+import { FirebaseAuthContext } from '../core';
 
 const IfFirebaseLoading = React.memo(({ loader }) => (
   <FirebaseAuthContext.Consumer>
