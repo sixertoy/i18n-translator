@@ -35,12 +35,11 @@ const ReactDumbComponent = React.memo(() => {
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.title}>
-        Avec Typpo, vous gagnez du temps dans la gestion des traductions de vos
-        applications.
+        Gagnez du temps dans la gestion des traductions de vos applications.
       </h1>
       <p className={classes.description}>
         Typpo permet d&apos;éditer et d&apos;exporter simplement vos fichiers
-        d&apos;internationalisation pour tous vos projets.
+        d&apos;internationalisation.
       </p>
     </div>
   );

@@ -16,19 +16,18 @@ const useStyles = createUseStyles({
     height: '100%',
     width: '100%',
   },
-  layer: ({ theme }) => ({
-    background: theme.colors.gradient,
+  layer: {
+    background: `linear-gradient(45deg, #3b1d98 0%, #D94865 100%)`,
     composes: ['flex-rows', 'flex-start', 'px16', 'pt16', 'pb32'],
     minHeight: '100%',
-  }),
+  },
   [`@media (max-width: ${600}px)`]: {
     layer: { padding: 12 },
   },
 });
 
 const LandingViewComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   const email = useSelector(selectSubscribingEmail);
   return (
     <React.Fragment>

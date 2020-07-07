@@ -22,12 +22,12 @@ const useStyles = createUseStyles({
     color: '#FFFFFF',
     composes: ['no-background'],
   },
-  signup: ({ theme }) => ({
+  signup: {
     background: '#FFFFFF',
-    color: theme.colors.orange,
     composes: ['no-underline', 'rnd3'],
-  }),
+  },
   title: {
+    color: '#FFFFFF',
     composes: ['fs12', 'flex-1'],
   },
   wrapper: {
@@ -41,8 +41,7 @@ const useStyles = createUseStyles({
 });
 
 const LandingNavComponent = React.memo(() => {
-  const theme = useTheme();
-  const classes = useStyles({ theme });
+  const classes = useStyles();
   return (
     <nav className={classes.nav}>
       <Brand className={classes.title} />
