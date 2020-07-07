@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 
-import { selectRecents } from '../../../../redux/selectors';
+import { database } from '../../../../core/firebase';
 import Item from './item';
 
 const useStyles = createUseStyles({
@@ -31,8 +30,15 @@ const useStyles = createUseStyles({
 
 const RecentsComponent = React.memo(() => {
   const classes = useStyles();
-  const recents = useSelector(selectRecents);
-  const hasRecents = recents.length > 0;
+  const [recents, setRecents] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      database.all('/projects').then(setRecents);
+    };
+    fetchData();
+  }, []);
+  const hasRecents = recents && recents.length > 0;
   return (
     <div className={classes.container}>
       <h3 className={classes.title}>
@@ -45,11 +51,9 @@ const RecentsComponent = React.memo(() => {
       )}
       {hasRecents && (
         <ul className={classes.wrapper}>
-          {recents
-            .filter((o, i) => i < 3)
-            .map(obj => (
-              <Item key={obj.id} data={obj} />
-            ))}
+          {recents.map(obj => (
+            <Item key={obj.id} data={obj} />
+          ))}
         </ul>
       )}
     </div>
