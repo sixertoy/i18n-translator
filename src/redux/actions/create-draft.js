@@ -11,7 +11,7 @@ const createDraftAsync = () => dispatch =>
     const langs = [];
     const id = uuidv1();
     const now = Date.now();
-    const path = `/projects/${id}`;
+    const path = `/projects`;
     const name = ucFirst(getName());
     const slug = slugify(name);
     const draft = {
@@ -23,7 +23,7 @@ const createDraftAsync = () => dispatch =>
       name,
       slug,
     };
-    database.create(path, draft).then(() => {
+    database.create(id, path, draft).then(() => {
       dispatch({ draft, type: EVENT_TYPES.DRAFT_CREATE });
       resolve(id);
     });
