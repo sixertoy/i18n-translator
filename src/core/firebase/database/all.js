@@ -8,7 +8,7 @@ function all(path) {
       .ref(path)
       .once('value')
       .then(dataSnapshot => {
-        const values = dataSnapshot.val();
+        const values = dataSnapshot.val() || {};
         const results = Object.entries(values).map(arr => arr[1]);
         resolve(results);
       })

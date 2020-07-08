@@ -48,7 +48,7 @@ const useStyles = createUseStyles({
 });
 
 const GridComponent = React.memo(({ data, hidden }) => {
-  const { id, langs, name } = data;
+  const { id, langs = [], name } = data;
   const classes = useStyles();
   const slugified = slugify(name);
   return (

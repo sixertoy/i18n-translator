@@ -1,9 +1,8 @@
 import orderBy from 'lodash.orderby';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSelector } from 'react-redux';
 
-import { selectProjects } from '../../../../redux/selectors';
+import { database } from '../../../../core/firebase';
 import Blank from './blank';
 import Item from './item';
 import Toolbar from './toolbar';
@@ -17,10 +16,16 @@ const useStyles = createUseStyles({
 
 const ListComponent = React.memo(() => {
   const classes = useStyles();
-  const projects = useSelector(selectProjects);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState(null);
+  const [projects, setProjects] = useState(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      database.all('/projects').then(setProjects);
+    };
+    fetchData();
+  }, []);
   return (
     <div className={classes.container}>
       <Toolbar onFilter={setFilter} onSearch={setSearch} />
