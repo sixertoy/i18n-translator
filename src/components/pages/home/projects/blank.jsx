@@ -1,10 +1,7 @@
 import React, { useCallback } from 'react';
 import { FiPlus as PlusIcon } from 'react-icons/fi';
 import { createUseStyles } from 'react-jss';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
-import { createDraftAsync } from '../../../../redux/actions';
 
 const useStyles = createUseStyles({
   button: {
@@ -42,16 +39,12 @@ const useStyles = createUseStyles({
 });
 
 const BlankComponent = React.memo(() => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
 
   const onCreateClick = useCallback(() => {
-    dispatch(createDraftAsync()).then(id => {
-      const url = `/import/${id}/step/1`;
-      history.push(url);
-    });
-  }, [dispatch, history]);
+    history.push(`/import`);
+  }, [history]);
 
   return (
     <div className={classes.item}>

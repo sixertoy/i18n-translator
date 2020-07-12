@@ -16,13 +16,13 @@ export const FIREBASE_PROVIDER_GITHUB = 'github.com';
 export const FIREBASE_PROVIDER_ANON = 'anonymous';
 
 export const DEFAULT_LANGUAGES = {
-  // using language keys RFC 3066
+  // http://www.i18nguy.com/unicode/language-identifiers.html
   'de-DE': 'Deutsch',
-  'en-US': 'English',
+  'en-GB': 'English',
   'es-ES': 'Español',
   'fr-FR': 'Français',
   'it-IT': 'Italiano',
-  'pt-PT': 'Portugues',
+  'pt-PT': 'Português',
 };
 
 export const EVENT_TYPES = {
@@ -56,17 +56,12 @@ export const EVENT_TYPES = {
 
 export const EDITOR_DEFAULT_CONTENT = JSON.stringify(
   {
-    ACTION_CHANGE_PWD: 'Change your password',
-    ACTION_CHOOSE_AVATAR: 'Select an avatar (less than 300Kb)',
-    ACTION_CHOOSE_PICTURE: 'Choose a picture',
-    ACTION_CHOOSE_VIDEO: 'Choose a video (mp4)',
-    ACTION_FOLLOW_USERNAME: 'Follow {username}',
-    ACTION_SIGN_IN: 'Log in',
-    ACTION_SIGN_UP: 'Sign up',
-    ACTION_TO_BOOKMARK_NAME: 'Bookmark {name}',
-    ACTION_TO_LIKE_NAME: 'Like {name}',
-    ACTION_UNFOLLOW_USERNAME: 'Unfollow {username}',
-    AVAILABLE_ON_APPSTORE: 'Available on the AppStore',
+    LOGIN_SIGN_IN: 'Sign in',
+    LOGIN_SIGN_UP: 'Sign up',
+    MENU_ABOUT: 'About us',
+    MENU_ACCOUNT: 'My Account',
+    MENU_CONTACT: 'Contact us',
+    MENU_HOME: 'Home',
   },
   null,
   2

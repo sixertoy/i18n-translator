@@ -1,17 +1,17 @@
 import NotFound from './components/pages/404';
 import Board from './components/pages/board';
+import Create from './components/pages/create';
 import Export from './components/pages/export';
 import Home from './components/pages/home';
-import Import from './components/pages/import';
 import Landing from './components/pages/landing';
 import Login from './components/pages/login';
 import Logout from './components/pages/logout';
 
 export const ROUTES_ID = {
   BOARD: 'board',
+  CREATE: 'create',
   EXPORT: 'export',
   HOME: 'home',
-  IMPORT: 'import',
   LANDING: 'landing',
   NOT_FOUND: 'not-found',
   SIGN_IN: 'signin',
@@ -45,10 +45,10 @@ const routes = [
     path: '/home',
   },
   {
-    component: Import,
+    component: Create,
     exact: true,
-    id: ROUTES_ID.IMPORT,
-    path: ['/import/:id/step/:index(\\d)'],
+    id: ROUTES_ID.CREATE,
+    path: ['/import/:id?'],
   },
   {
     component: Board,
