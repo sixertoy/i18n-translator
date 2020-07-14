@@ -1,58 +1,46 @@
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { DEFAULT_LANGUAGES } from '../../../../../constants';
+import Pill from './pill';
 
 const useStyles = createUseStyles({
-  container: {},
-  pill: {
-    '&.isselected': {
-      background: '#000',
-      color: '#FFF',
-    },
-    background: '#CCC',
-    borderRadius: 20,
-    composes: ['text-center', 'mr12'],
-    height: 40,
-    width: 120,
+  container: {
+    composes: ['mb24'],
+  },
+  languages: {
+    composes: ['flex-columns', 'items-center'],
+  },
+  title: {
+    composes: ['mb24', 'is-light'],
   },
 });
 
 const CreateProjectLangsComponent = React.memo(({ initial }) => {
   const classes = useStyles();
-  const [selected, selectSelected] = useState([]);
+  const [selection, selectSelection] = useState([]);
 
-  const clickHandler = useCallback(
-    value => {
-      let next = [...selected];
-      const exists = next.includes(value);
-      if (!exists) {
-        next.push(value);
-      } else {
-        next = next.filter(v => v !== value);
-      }
-      selectSelected(next);
+  const changeHandler = useCallback(
+    (value, selected) => {
+      const next = selected
+        ? [...selection, value]
+        : selection.filter(v => v !== value);
+      selectSelection(next);
     },
-    [selected]
+    [selection]
   );
 
   return (
-    <div className={classes.container}>
-      {initial.map(([value, label]) => {
-        const isselected = selected.includes(value);
-        return (
-          <button
-            key={value}
-            className={classnames(classes.pill, { isselected })}
-            type="button"
-            onClick={() => clickHandler(value)}>
-            <span>{label}</span>
-          </button>
-        );
-      })}
-    </div>
+    <section className={classes.container}>
+      <h2 className={classes.title}>Sélection / Import de langues</h2>
+      <div className={classes.languages}>
+        {initial.map(arr => {
+          const data = { label: arr[1], value: arr[0] };
+          return <Pill key={data.value} data={data} onChange={changeHandler} />;
+        })}
+      </div>
+    </section>
   );
 });
 

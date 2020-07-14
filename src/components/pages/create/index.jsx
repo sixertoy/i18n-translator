@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
     width: '80%',
   },
   wrapper: {
-    composes: ['flex-rows', 'flex-start'],
+    composes: ['flex-rows', 'flex-start', 'py24', 'pl24', 'pr12'],
     height: '100%',
     margin: '0 auto',
     maxWidth: 960,
@@ -38,19 +38,10 @@ const ImportViewComponent = () => {
   return (
     <div className={classes.container} id="create-view">
       <div className={classes.wrapper}>
-        <ul>
-          <li>
-            <ProjectKeys />
-          </li>
-          <li>Edition/Check des props</li>
-          <li>Choisir le language de référence</li>
-          <li>
-            <ProjectLanguages />
-          </li>
-          <li>
-            <ProjectName />
-          </li>
-        </ul>
+        <ProjectName />
+        <ProjectLanguages />
+        <ProjectKeys />
+        <section>Choisir le language de référence</section>
       </div>
     </div>
   );

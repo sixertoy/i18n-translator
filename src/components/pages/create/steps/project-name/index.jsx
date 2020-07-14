@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {
-    paddingTop: 30,
+    composes: ['mb24'],
   },
   field: {
     borderColor: '#000000',
@@ -30,11 +30,11 @@ const useStyles = createUseStyles({
     '&:disabled': { opacity: 0.65 },
     composes: ['fs24', 'is-bold', 'flex-1', 'text-center'],
   },
-  label: {
-    background: 'transparent',
-    composes: ['is-absolute', 'is-bold', 'p5'],
-    left: 12,
-    top: -30,
+  title: {
+    composes: ['mb24', 'is-light'],
+  },
+  wrapper: {
+    composes: ['pr12'],
   },
 });
 
@@ -42,20 +42,20 @@ const CreateProjectNameComponent = React.memo(({ initial }) => {
   const classes = useStyles();
   const changeHandler = useCallback(() => {}, []);
   return (
-    <div className={classes.container}>
-      <label className={classes.field}>
-        <div className={classes.label}>
-          <span>Nom du projet</span>
-        </div>
-        <input
-          className={classes.input}
-          defaultValue={initial}
-          name="name"
-          type="text"
-          onChange={changeHandler}
-        />
-      </label>
-    </div>
+    <section className={classes.container}>
+      <h2 className={classes.title}>Nom du projet</h2>
+      <div className={classes.wrapper}>
+        <label className={classes.field}>
+          <input
+            className={classes.input}
+            defaultValue={initial}
+            name="name"
+            type="text"
+            onChange={changeHandler}
+          />
+        </label>
+      </div>
+    </section>
   );
 });
 

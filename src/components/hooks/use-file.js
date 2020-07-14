@@ -5,6 +5,10 @@ const useFile = () => {
   const [json, setJson] = useState(null);
   // useDebugValue(json);
 
+  const reset = useCallback(() => {
+    setJson(null);
+  }, []);
+
   const onUploadChange = useCallback(evt => {
     evt.preventDefault();
     try {
@@ -28,7 +32,7 @@ const useFile = () => {
     };
   }, [onUploadChange]);
 
-  return { json, ref };
+  return { json, ref, reset };
 };
 
 export default useFile;
