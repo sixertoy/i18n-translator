@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { DEFAULT_LANGUAGES } from '../../../../../constants';
+import { DEFAULT_LANGUAGES } from '../../../../constants';
 import Pill from './pill';
 
 const useStyles = createUseStyles({
@@ -22,10 +22,10 @@ const CreateProjectLangsComponent = React.memo(({ initial }) => {
   const [selection, selectSelection] = useState([]);
 
   const changeHandler = useCallback(
-    (value, selected) => {
+    (value, selected, json) => {
       const next = selected
-        ? [...selection, value]
-        : selection.filter(v => v !== value);
+        ? [...selection, { json, value }]
+        : selection.filter(obj => obj.value !== value);
       selectSelection(next);
     },
     [selection]

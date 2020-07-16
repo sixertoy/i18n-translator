@@ -2,9 +2,8 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 import withLayout from '../../layout';
-import ProjectKeys from './steps/project-keys';
-import ProjectLanguages from './steps/project-languages';
-import ProjectName from './steps/project-name';
+import ProjectLanguages from './project-languages';
+import ProjectName from './project-name';
 
 const useStyles = createUseStyles({
   container: {
@@ -32,16 +31,11 @@ const useStyles = createUseStyles({
 
 const ImportViewComponent = () => {
   const classes = useStyles();
-  // const name = ucFirst(getName());
-  // const draft = { name };
-  // const onSubmit = useCallback(() => {}, []);
   return (
     <div className={classes.container} id="create-view">
       <div className={classes.wrapper}>
         <ProjectName />
         <ProjectLanguages />
-        <ProjectKeys />
-        <section>Choisir le language de référence</section>
       </div>
     </div>
   );

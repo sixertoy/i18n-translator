@@ -1,13 +1,10 @@
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useState } from 'react';
-import {
-  AiOutlineCloseCircle as CloseIcon,
-  AiOutlineCloudUpload as ImportIcon,
-} from 'react-icons/ai';
+import React, { useCallback, useState } from 'react';
+import { AiOutlineCloseCircle as CloseIcon } from 'react-icons/ai';
 import { createUseStyles } from 'react-jss';
 
-import { useFile } from '../../../../hooks';
+import FileUploader from './file-uploader';
 
 const useStyles = createUseStyles({
   pill: {
@@ -19,6 +16,7 @@ const useStyles = createUseStyles({
     },
     '& .icon': {
       display: 'block',
+      fontSize: 16,
       paddingBottom: 5,
       paddingTop: 5,
     },
@@ -56,50 +54,42 @@ const useStyles = createUseStyles({
 const LanguagePillComponent = React.memo(({ data, onChange }) => {
   const classes = useStyles();
   const { label, value } = data;
-  const { json, ref: upload, reset } = useFile();
+  const [json, setJSON] = useState(null);
   const [selected, setSelected] = useState(false);
 
-  const onUploadHandler = useCallback(() => {
-    if (selected && json) {
-      const next = !selected;
-      reset();
-      setSelected(next);
-      onChange(value, next, null);
-    } else {
-      upload.current.click();
-    }
-  }, [json, onChange, reset, selected, upload, value]);
+  const onUploadSuccess = useCallback(content => {
+    setJSON(content);
+    setSelected(true);
+    // onChange(value, true, content);
+  }, []);
+
+  const onResetHandler = useCallback(() => {
+    setJSON(null);
+    // onChange(value, selected, null);
+  }, []);
 
   const onClick = useCallback(() => {
-    const next = !selected;
-    setSelected(next);
-    onChange(value, next, null);
-  }, [onChange, selected, value]);
-
-  useEffect(() => {
-    if (json && !selected) {
-      const next = true;
-      setSelected(next);
-      onChange(value, next, json);
-    }
+    const nextSelected = !selected;
+    setSelected(nextSelected);
+    const nextJSON = !selected ? json : null;
+    setJSON(nextJSON);
+    onChange(value, nextSelected, json);
   }, [json, onChange, selected, value]);
 
   return (
     <div className={classnames(classes.pill, { selected })}>
-      <input
-        ref={upload}
-        accept=".json,application/json"
-        className="is-hidden"
-        type="file"
-      />
       <button key={value} className="button" type="button" onClick={onClick}>
         <span>{label}</span>
       </button>
       <span className="spacer" />
-      <button className="icon" type="button" onClick={onUploadHandler}>
-        {selected && <CloseIcon />}
-        {!selected && <ImportIcon />}
-      </button>
+      {!json && (
+        <FileUploader name={`field_${value}`} onSuccess={onUploadSuccess} />
+      )}
+      {json && (
+        <button className="icon" type="button" onClick={onResetHandler}>
+          <CloseIcon />
+        </button>
+      )}
     </div>
   );
 });
