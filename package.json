@@ -30,7 +30,7 @@
     "prettier-stylelint": "^0.4.2",
     "react-scripts": "3.4.1",
     "redux-devtools-extension": "^2.13.8",
-    "stylelint": "^13.3.3",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
     "stylelint-scss": "^3.17.1"
